@@ -1,6 +1,13 @@
 # Dataset access and lineage audit (15 October 2026)
 
-This is a source audit, not a local image integrity check. The execution host cannot resolve external hosts via its shell, so no restricted data, MRI images, or QA records were downloaded and no image decoding was claimed. Counts below are **publisher claims / repository display counts**, not independently enumerated local counts.
+The Dallas section below records a local real-image integrity check. The subsequent SGMRI-VQA, BrainTRACE, and NeuroQA counts remain **publisher claims / repository display counts**, not locally verified usable image-linked records.
+
+## Dallas Lifespan Brain Study — executable feasibility source
+
+- The [official ds004856 release 1.3.0](https://openneuro.org/datasets/ds004856/versions/1.3.0) is CC0. A metadata checkout is pinned to Git commit `077d0a4e4f32b7c18e3628893a96708ef24e1178`; its image entries are Git-annex links, not voxel data. Actual public OpenNeuro object bytes were downloaded separately into ignored `local_data/`. The pilot checks every NIfTI byte length and SHA-256 against its annex key before accepting it.
+- Locally verified: 2 subjects, 4 wave 1/2 sessions, 4 T1 MPRAGE and 4 FLAIR volumes. All eight decode as finite nonempty 3D images in RAS+ orientation, and deterministic axial/coronal/sagittal PNG evidence was rendered. Both subjects have T1 and FLAIR wave 1→2 pairs with positive MRI intervals. The detailed subject-level receipt stays local and ignored by Git.
+- One FLAIR pair changes through-plane spacing from 6 mm to 2.5 mm. The [dataset README](https://github.com/OpenNeuroDatasets/ds004856) describes a 24-to-64-slice FLAIR protocol change. This pilot proves image access and geometric handling, not a comparable longitudinal FLAIR biomarker or clinical progression. The available FreeSurfer 5.3 summary workbook contains cross-sectional derived measures, not segmentation masks or independent clinical ground truth.
+- Reproduce locally with `PYTHONPATH=src python -m mri_rl.dallas_pilot --images-root local_data/ds004856 --bids-root <pinned metadata checkout> --output-dir local_data/ds004856_evidence`. The command prints only aggregate counts; its detailed receipt and MRI renders are ignored by Git.
 
 ## SGMRI-VQA and fastMRI+
 

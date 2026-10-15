@@ -1,0 +1,11 @@
+# Independent Claude Code critique — 2026-10-15
+
+Claude Code was authenticated through its official CLI sign-in and ran in an isolated review directory. It received the research question and public source URLs, not the other reviewers' conclusions or local patient files. It read Vero's abstract, README and training documentation; the Dallas README; and abstracts of adjacent medical RL papers. It explicitly did not verify local NIfTI bytes, the workbook, full Vero ablations, or full papers beyond abstracts. Those access limits constrain the review.
+
+Claude's strongest alternative explanation is that apparent benefit from task balancing could come from **generic reward-scale/variance handling**, extra informative rollouts, or format learning, rather than MRI-specific transfer. It proposed a matched-compute comparison of natural mix, proposed balance, natural mix plus per-task normalization and zero-variance filtering, single-task arms, and shuffled-label control. It also called for patient-separated evaluation, no-image/metadata controls, zero-variance group rates, and multiple seeds. If generic normalization matches the proposed method within seed variation, the specific balancing claim fails.
+
+It judged regional FreeSurfer-derived measurements and within-person comparisons as potentially verifiable but cautioned that cross-sectional FreeSurfer differences near test-retest noise are not biological truth. It considered cognitive composites, radiology-style reports, pathology, and diagnosis unsuitable image-grounded targets from Dallas alone. The only plausible new operation it identified was a repeatability-qualified cross-wave consistency reward; it made **no novelty claim** because its literature audit was not exhaustive.
+
+This agrees with the independent imaging and statistical reviews on the current decision: the real two-subject dataset is an ingestion smoke test, not an RL or clinical result. The full Claude transcript is retained locally at `work/claude_review/critique.md` outside the repository.
+
+Primary sources Claude cited: [Vero](https://arxiv.org/abs/2604.04917), [Vero code](https://github.com/zlab-princeton/vero), [Vero training](https://raw.githubusercontent.com/zlab-princeton/vero/main/docs/TRAINING.md), [MedGRPO](https://arxiv.org/abs/2512.06581), [Dallas](https://github.com/OpenNeuroDatasets/ds004856).

@@ -44,6 +44,6 @@ Unit of independence is patient, with all longitudinal visits, acquisitions, sli
 
 **KILL a scientific claim:** patient leakage or image-answer mismatch; test data/rubric used in training or model selection; rewards can be maximized by constant/abstain/metadata shortcut; no actual weight update or matched model inference; H1 off-diagonal deterioration absent or unreproducible; balanced mixture fails to beat strong mixture/reward controls; claimed gain disappears under independent-patient or source-held-out evaluation. These are claim-specific KILL rules; they need not end useful engineering work.
 
-## Claude Code check
+## Claude Code check at the time of this review
 
-`/opt/homebrew/bin/claude` exists and `claude --version` reports `2.1.301 (Claude Code)`. I did not verify authentication or run Claude. Do not say Claude reviewed the project on this evidence.
+`/opt/homebrew/bin/claude` exists and `claude --version` reports `2.1.301 (Claude Code)`. This reviewer did not verify authentication or run Claude. Claude was authenticated and independently reviewed the project later; see `reviews/CLAUDE_INDEPENDENT_CRITIQUE.md`.

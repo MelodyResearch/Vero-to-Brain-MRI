@@ -1,17 +1,17 @@
 # Execution record — 2026-10-15
 
-## Verified local execution
+## Verified execution
 
-- **IMPLEMENTED, TESTED_CPU:** `PYTHONPATH=src pytest -q` returned `10 passed in 0.11s` (Python 3.13.6, macOS Apple M3 Pro). It tests invalid and matching frame IoU, reward parsing, image decoding and split overlap, box bounds, render ordering, NIfTI RAS orientation/affine roundtrip, balanced sampler, budget validation and patient-unit paired comparison.
-- **TESTED_CPU engineering smoke:** `mri_rl.cli audit` decoded two generated 8×8 PNG *engineering fixtures* with distinct dummy subjects; `mri_rl.cli score` scored one supplied dummy prediction. Both commands exited zero. Fixture outputs were removed before commit and have no scientific meaning.
-- `torch.backends.mps.is_available()` and `torch.cuda.is_available()` both returned `False` in this environment. Machine is Apple M3 Pro with 36 GB memory. No GPU endpoint or VLM training runtime was identified. Vero's documented training configuration uses 8×80GB A100/H100; that is an upstream reference, not a measured requirement for this reduced experiment.
-- Shell `curl` to Hugging Face failed with `Could not resolve host`; no dataset files were downloaded by shell. Source audit used browsable primary web pages. Locally verified genuine MRI images/subjects/studies/volumes/tasks: **0/0/0/0/0**.
-- Claude Code 2.1.301 is installed but `claude auth status` returned `loggedIn: false`; Claude did not participate.
+- **REAL_IMAGE_PILOT_VERIFIED:** OpenNeuro Dallas ds004856 v1.3.0 metadata commit `077d0a4e4f32b7c18e3628893a96708ef24e1178`. Eight genuine NIfTI files from two subjects and two waves (T1 MPRAGE plus FLAIR each) matched their Git-annex byte counts and SHA-256 keys, decoded to finite 3D arrays, and produced deterministic anatomical evidence views. Four wave 1→2 subject/modality pairs passed identity and elapsed-time checks. One FLAIR pair had discordant 6 versus 2.5 mm slice spacing. Private exact hashes, affines, voxel statistics, and PNGs remain under ignored `local_data/`.
+- **TESTED_CPU:** `PYTHONPATH=src pytest -q` passed 13 tests after adding physical-aspect and voxel↔display-coordinate checks. The Dallas pilot command returned `subjects=2`, `sessions=4`, `volumes=8`, `T1_pairs=2`, `FLAIR_pairs=2`, `spacing_discordant_pairs=1`. The coronal FLAIR render was visually inspected after the aspect correction.
+- **SOURCE_AUDITED:** The FreeSurfer 5.3 brainsummary workbook was downloaded and checksum matched to its annex key; selected wave 1/2 global-volume rows exist. No repeatability threshold, diagnostic reference, or image-grounded region target was established from that workbook.
+- **INDEPENDENT_REVIEWED:** Imaging, novelty, RL/statistics, and significance reviewers inspected distinct risks. A separately authenticated Claude Code session produced a source-limited independent critique. The shared conclusion is that the two-subject pilot proves access and rendering only; it cannot establish MRI reasoning, balanced-RL benefit, or clinical utility.
+- **GITHUB_PRIVATE_PUSHED:** Initial commit `a80641307ce2fcd14511df27e1adfef3f1b08bea` was pushed to the private `MelodyResearch/Longitudinal-BrainMRI-Verifiable-RL` repository and remote parity verified. Later commit parity is checked separately after each push.
 
-## Unexecuted science
+## Not executed or validated
 
-`INFERENCE_COMPLETED`: none. `TRAINING_COMPLETED`: none. `SCIENTIFICALLY_VALIDATED`: none. Qwen3-VL versus Vero, SGMRI MRI evaluation, single-task RL, balanced RL, MedGRPO control, transfer matrix and BrainTRACE longitudinal generalization are all **NOT_RUN**. Lack of legitimate image-linked MRI data is `DATA_BLOCKED`; large-model execution is `GPU_BLOCKED`. The public benchmark's publisher counts in `DATASET_MANIFEST.json` are not local usable counts.
+`MODEL_INFERENCE`, `RL_TRAINING`, `TRANSFER_MATRIX`, `SCIENTIFIC_VALIDATION`: **NOT_RUN**. MPS and CUDA were unavailable in the current Python environment, and no authorized GPU endpoint was found. SGMRI-VQA image-linked QA, BrainTRACE, and NeuroQA remain `DATA_BLOCKED` on their separate upstream image/access requirements. Dallas provides real images but does not cure those benchmark-specific blocks. No generated fixtures, publisher counts, FreeSurfer deltas, or two-subject bootstrap should be presented as model or clinical results.
 
-## Repository publication
+## Decision
 
-The local Git repository is initialized independently. Private GitHub creation and remote push remain blocked by automatic approval review of the final browser action. `gh auth status` also reported an invalid local CLI token. No GitHub repository URL or remote parity can be claimed until explicit approval and authenticated push succeed.
+**GO** for expanding a controlled real-image feasibility cohort. **REFORMULATE** longitudinal reward claims around image-visible, repeatability-qualified targets and no-image controls. **NO GO** for any claim that Vero-style RL has improved MRI reasoning, since no model was run and no eligible patient-held-out comparison exists.
