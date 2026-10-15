@@ -1,0 +1,7 @@
+# Image-linked record and split contract
+
+One JSON object per line. Required keys: `id` (unique QA ID), `subject_id` (real grouping key, locally pseudonymized), `study_id`, `task`, `target`, and nonempty `frames` with `{index, path}` for each actual image. `task` is currently one of `categorical`, `spatial`, `numeric`, `longitudinal_direction`. For spatial tasks, `target` is `{frame: int, box: [x1,y1,x2,y2]}` in pixel-edge coordinates. Numeric targets require `{value, absolute_tolerance}`; tolerance must be justified before evaluation. Direction targets require `{direction}`. Model predictions are separate JSONL `{id, prediction}` objects.
+
+The CPU gate checks subject overlap, duplicate IDs, image decoding and required lineage. Dataset-specific adapters must additionally verify source agreement, image/QA volume linkage, expected slice count, image dimensions, bounding-box bounds, laterality/orientation, acquisition sequence, visit chronology, and cross-dataset duplicates before a scientific claim. The current generic gate does **not** itself establish these dataset-specific conditions or that a question is visually answerable.
+
+All observations from a subject, including repeat studies and slices, remain in one split. No official test source may be used for prompt or reward calibration. If only `volume_id` is available and subject linkage is unknown, label patient separation `UNVERIFIED` and do not report patient-independent generalization. BrainTRACE test rows, targets and rubrics stay outside this training manifest.

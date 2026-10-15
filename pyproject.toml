@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "longitudinal-brainmri-verifiable-rl"
+version = "0.1.0"
+description = "Auditable feasibility path for verifiable brain MRI reasoning"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0", "Pillow>=10", "nibabel>=5.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+mri-rl = "mri_rl.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
