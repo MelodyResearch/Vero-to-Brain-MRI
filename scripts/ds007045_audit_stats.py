@@ -11,6 +11,9 @@ Add ``--sft local_data/frozen_eval_v1/ds007045_sft4_256.jsonl`` and
 ``--sft-before <complete matched 107-row before-adapter output>`` only after
 both adapter predictions have completed. The optional extension verifies
 both adapter checksums and training-patient exposure before scoring SFT.
+The optional ``--rl-proportional`` and ``--rl-uniform`` arguments must be given
+together with both SFT arguments. They score post hoc boxed-answer ablations
+only after both final adapters have complete 107-row outputs.
 
 The script requires ignored local manifests, gold records, images and raw model
 outputs. It does not write any patient-level data or change the locked scorer.
@@ -73,9 +76,15 @@ def main() -> None:
     cli.add_argument("--vero", type=Path, required=True)
     cli.add_argument("--sft", type=Path, help="Optional complete 107-row base-initialized SFT adapter outputs")
     cli.add_argument("--sft-before", type=Path, help="Required matched 4-bit LoRA before-update outputs when --sft is set")
+    cli.add_argument("--rl-proportional", type=Path, help="Complete 107-row proportional boxed-ablation final adapter outputs")
+    cli.add_argument("--rl-uniform", type=Path, help="Complete 107-row uniform boxed-ablation final adapter outputs")
     args = cli.parse_args()
     if args.sft_before is not None and args.sft is None:
         raise ValueError("--sft-before requires --sft")
+    if (args.rl_proportional is None) != (args.rl_uniform is None):
+        raise ValueError("post hoc RL audit requires both proportional and uniform outputs")
+    if args.rl_proportional is not None and (args.sft is None or args.sft_before is None):
+        raise ValueError("post hoc RL audit requires matched SFT before/after outputs")
     private = args.repo / "local_data"
     manifest_path = private / "frozen_eval_v1/ds007045_heldout_manifest.jsonl"
     manifest = rows(manifest_path)
@@ -287,6 +296,105 @@ def main() -> None:
             "before_raw_valid": sum(value["before_valid"] for value in sft_stats.values()),
             "categories": sft_stats,
         }
+        if args.rl_proportional is not None:
+            arm_paths = {
+                "proportional": (args.rl_proportional, "rl_proportional_single_box_8group_v1", 1),
+                "uniform": (args.rl_uniform, "rl_uniform_single_box_8group_v1", 2),
+            }
+            arm_predictions = {}
+            arm_results = {}
+            arm_patient_macro = {}
+            for arm, (prediction_path, directory_name, expected_updates) in arm_paths.items():
+                arm_dir = private / "ds007045_bounded" / directory_name
+                receipt = json.loads((arm_dir / "arm_receipt_PRIVATE.json").read_text())
+                updates = [row for row in receipt["group_results"] if row["optimizer_steps"] > 0]
+                if (receipt["arm"] != arm or receipt["reward_profile"] != "single_box_anywhere_ablation"
+                        or receipt["starting_adapter_sha256"] != checkpoint_sha
+                        or receipt["optimizer_steps"] != expected_updates
+                        or len(updates) != expected_updates
+                        or receipt["completed_prompt_groups"] != 8
+                        or receipt["actual_rollouts"] != 16
+                        or receipt["max_response_tokens"] != 256
+                        or receipt["heldout_test_used"] or receipt["source_test_used"]):
+                    raise ValueError("post hoc RL arm receipt mismatch")
+                final_step = arm_dir / f"step_{updates[-1]['step']:02d}"
+                final_sha = sha(final_step / "after_adapters.safetensors")
+                if final_sha != receipt["final_adapter_sha256"] or final_sha == checkpoint_sha:
+                    raise ValueError("post hoc RL final adapter did not match changed checkpoint")
+                if sha(final_step / "adapter_config.json") != config_sha:
+                    raise ValueError("post hoc RL adapter config mismatch")
+                prediction = load_verified(prediction_path, manifest_path, source)
+                if any(
+                    row["model_config_sha256"] != base_config
+                    or row["model_template_sha256"] != base_template
+                    or row["template_override_sha256"] is not None
+                    or row.get("adapter_checkpoint_sha256") != final_sha
+                    or row.get("adapter_config_sha256") != config_sha
+                    or not isinstance(row.get("adapter_verified_parameter_tensors"), int)
+                    or row["adapter_verified_parameter_tensors"] <= 0
+                    for row in prediction.values()
+                ):
+                    raise ValueError("post hoc RL inference checkpoint/model/template mismatch")
+                arm_predictions[arm] = prediction
+                category_results = {}
+                patient_macro_scores = defaultdict(list)
+                for category in categories:
+                    keys = [key for key, row in source.items() if row["category"] == category]
+                    grouped = defaultdict(list)
+                    discordance = Counter()
+                    for key in keys:
+                        patient = gold[key]["private_subject"]
+                        target = source[key]
+                        correct, valid, _ = score(category, target["gold"], prediction[key]["response"])
+                        sft_correct = score(category, target["gold"], sft[key]["response"])[0]
+                        grouped[patient].append((correct, valid))
+                        discordance["rl_only" if correct and not sft_correct else "sft_only" if sft_correct and not correct else "same"] += 1
+                    if len(grouped) != 8:
+                        raise ValueError("post hoc RL category does not cover eight patients")
+                    patient_scores = {patient: mean(value[0] for value in items) for patient, items in grouped.items()}
+                    for patient, patient_score in patient_scores.items():
+                        patient_macro_scores[patient].append(patient_score)
+                    category_results[category] = {
+                        "n": len(keys),
+                        "correct": sum(sum(value[0] for value in items) for items in grouped.values()),
+                        "valid": sum(sum(value[1] for value in items) for items in grouped.values()),
+                        "patient_mean": round(mean(patient_scores.values()), 6),
+                        "paired_patient_minus_sft": round(mean(patient_scores[p] - mean(score(category, source[k]["gold"], sft[k]["response"])[0] for k in keys if gold[k]["private_subject"] == p) for p in grouped), 6),
+                        "discordance_vs_sft": dict(discordance),
+                    }
+                if len(patient_macro_scores) != 8 or any(len(values) != 4 for values in patient_macro_scores.values()):
+                    raise ValueError("incomplete post hoc RL patient macro")
+                arm_patient_macro[arm] = {patient: mean(values) for patient, values in patient_macro_scores.items()}
+                arm_results[arm] = {
+                    "status": "post hoc single-box-anywhere reward ablation; unequal active updates",
+                    "starting_adapter_sha256": checkpoint_sha,
+                    "final_adapter_sha256": final_sha,
+                    "attempted_groups": 8,
+                    "actual_rollouts": 16,
+                    "active_groups": receipt["task_reward_varying_groups"],
+                    "optimizer_steps": receipt["optimizer_steps"],
+                    "actual_response_tokens": receipt["actual_response_tokens"],
+                    "raw_correct": sum(value["correct"] for value in category_results.values()),
+                    "raw_valid": sum(value["valid"] for value in category_results.values()),
+                    "patient_category_macro": round(mean(arm_patient_macro[arm].values()), 6),
+                    "worst_category_patient_mean": round(min(value["patient_mean"] for value in category_results.values()), 6),
+                    "paired_patient_macro_minus_sft": round(mean(arm_patient_macro[arm][p] - mean(sft_patient_macro[p]) for p in arm_patient_macro[arm]), 6),
+                    "categories": category_results,
+                }
+            cross_arm = {}
+            for category in categories:
+                keys = [key for key, row in source.items() if row["category"] == category]
+                discordance = Counter()
+                for key in keys:
+                    pc = score(category, source[key]["gold"], arm_predictions["proportional"][key]["response"])[0]
+                    uc = score(category, source[key]["gold"], arm_predictions["uniform"][key]["response"])[0]
+                    discordance["proportional_only" if pc and not uc else "uniform_only" if uc and not pc else "same"] += 1
+                cross_arm[category] = dict(discordance)
+            arm_results["uniform_minus_proportional"] = {
+                "paired_patient_macro_difference": round(mean(arm_patient_macro["uniform"][p] - arm_patient_macro["proportional"][p] for p in arm_patient_macro["uniform"]), 6),
+                "discordance_by_category": cross_arm,
+            }
+            result["posthoc_rl_boxed_ablation"] = arm_results
     print(json.dumps(result, indent=2))
 
 
