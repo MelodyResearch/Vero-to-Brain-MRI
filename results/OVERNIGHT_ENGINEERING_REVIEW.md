@@ -1,7 +1,7 @@
 # Overnight independent engineering review
 
 <!-- CURRENT_ENGINEERING_STATUS -->
-**Latest verified training: 23 cumulative updates, cursor 92. Latest authorized stage: exactly steps 24–25, ending at cursor 100.** Evaluation and controls have source/CPU reviews only; model execution remains unapproved. Earlier consumed approvals do not authorize replay or expansion.
+**Latest verified training: 28 cumulative updates, cursor 112.** The completed stage approval is consumed; further updates require a separate approval after fresh resource evidence. Evaluation and controls have source/CPU reviews only. Earlier approvals do not authorize replay or expansion.
 <!-- END_CURRENT_ENGINEERING_STATUS -->
 
 ## Scope and current verdict
@@ -119,6 +119,9 @@ All rows below are **REPRODUCED / PASS_WITH_LIMITATIONS**, based on primary priv
 | 18–19 | 76 | 0.904681936 / 0.732752539 | 3.173778016 / 3.029052296 | 504 / 504 | 0 / 1 / 0.2 | 22 decisions, 0 HOLD; min available 10.02870 GiB, min pressure-free 52%; swap 9.65277 → max 9.65277 → end 9.64496 GiB |
 | 20–21 | 84 | 0.653491944 / 0.619530104 | 2.887618216 / 2.761349954 | 504 / 504 | 0 / 1 / 0.2 | 22 decisions, 0 HOLD; min available 10.17961 GiB, min pressure-free 52%; swap 9.61365 → max 9.61365 → end 9.59021 GiB |
 | 22–23 | 92 | 0.502279773 / 0.357984170 | 2.778040002 / 2.454688845 | 504 / 504 | 0 / 1 / 0.2 | 22 decisions, 0 HOLD; min available 10.10307 GiB, min pressure-free 52%; swap 9.57459 → max 9.57459 → end 9.56678 GiB |
+| 24–25 | 100 | 0.333479512 / 0.344586801 | 2.527959434 / 2.111511418 | 504 / 504 | 0 / 1 / 0.2 | 22 decisions, 0 HOLD; min available 9.73090 GiB, min pressure-free 50%; swap 9.56678 → max 9.56678 → end 9.55896 GiB |
+| 26–27 | 108 | 0.230041262 / 0.223904731 | 2.335821284 / 1.726777305 | 504 / 504 | 0 / 1 / 0.2 | 22 decisions, 0 HOLD; min available 9.77061 GiB, min pressure-free 49%; swap 9.55896 → max 9.55896 → end 9.55896 GiB |
+| 28 | 112 | 0.179576086 | 1.367220902 | 504 | 0 / 1 / 0.2 | 14 decisions, 0 HOLD; min available 9.58586 GiB, min pressure-free 48%; swap 9.55896 → max 9.55896 → end 9.55896 GiB |
 <!-- ENGINEERING_STAGE_ROWS -->
 
 Stage 4–5 saves verified intermediate cursor 16 and final cursor 20, with distinct changed adapter hashes and complete 1,011-tensor state payloads. Final adapter SHA-256: `89694d04924c1327f638a7ca9b622c5f3c96aa3c6fc894115de0946b03f8767b`. Final optimizer payload SHA-256: `836d1b1169b32ba76f3b6603fb0209fede25ef37b6cbd489d6aaaa59ca583eb6`. Full per-step hashes and CPU results are in `overnight_resume_review_v1/postrun_step005_independent_verification.json`. Float64 aggregate adapter delta L2 is 0.31993798362058434. All 22 resource decisions reproduce; final-generation telemetry is present, AC/100% battery and no competing heavyweight process were recorded, and thermal telemetry remains unavailable.
@@ -149,6 +152,8 @@ Each row is **PASS_WITH_LIMITATIONS** for only the named new updates and one seq
 | 20–21 | 76 → 84 | `balanced_sft_resume_step021_v1` / `approval_step021.json` | `48cea0459b0dff50150ec767b3d850698eae0ca9de31baa7f7f86198cd62d6a0` | Three post-run samples spanning65.16seconds; swap exactly stable9.621523GiB; pressure-free70%, AC/100%, competing model workers0; all loading gates pass |
 | 22–23 | 84 → 92 | `balanced_sft_resume_step023_v1` / `approval_step023.json` | `db504ebe01694a9832fdb9fe35b58d00bdf32123dbdb73a768872387532eea0b` | Three post-run samples spanning 48 seconds; swap exactly stable 9.59021 GiB; pressure-free 67%, AC/100%, competing model workers 0; all loading gates pass |
 | 24–25 | 92 → 100 | `balanced_sft_resume_step025_v1` / `approval_step025.json` | `16de7f348fe33a54c55bcb8bc9308e0bcfafdc06a0b4590ca228b7413cda43a0` | Two post-run samples 35.10 seconds apart; swap stable 9.566777 GiB; latest available 14.9949 GiB, pressure-free 67%, AC/100%, competing model workers 0; loading gates pass |
+| 26–27 | 100 → 108 | `balanced_sft_resume_step027_v1` / `approval_step027.json` | `bff4837983568263673e9ceb1299bbdf2c201a5d201f6324a55165c730d37053` | Two post-run samples 35.09 seconds apart; swap stable 9.55896 GiB; latest available 14.63879 GiB, pressure-free 65%, AC/100%, competing model workers 0; loading gates pass |
+| 28 only | 108 → 112 | `balanced_sft_resume_step028_v1` / `approval_step028.json` | `1a9f2149fa320131efdaa6f4f9ddf06ac16de2a0ec39b9484956d98886142c37` | Two post-run samples 35.10 seconds apart; swap stable 9.55896 GiB; latest available 14.7697 GiB, pressure-free 64%, AC/100%, competing model workers 0; loading gates pass |
 <!-- ENGINEERING_APPROVAL_ROWS -->
 
 Step 8–9 launcher `overnight_resume_review_v1/launch_step009.py` explicitly requests two updates from step007. Approval remains conditional on the same conservative gates; no step10 is approved. The separately developed evaluation helper is outside these twelve bound training sources and has not been reviewed or authorized by this approval.
@@ -206,3 +211,13 @@ Exactly steps 22–23 are approved after auditing both actual step20/21 boundari
 Stage 22–23 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step023_independent_verification.json`. Final adapter SHA-256 `b1b5277209e1a4429ff06fbdfcbabe94aa7d47ac9db048b98e1829f8daf47ce3`; final optimizer payload SHA-256 `0d5cfc69e80f77f0102bd206111d55ace21c731f9bce4883fa1d69ccfa4ba25c`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
 
 Exactly steps 24–25 approved from verified step23: intermediate cursor96 and final100. Twelve source identities, static preflight and launcher two-update argument verified. No step26 or evaluation execution approved.
+
+Stage 24–25 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step025_independent_verification.json`. Final adapter SHA-256 `283826709a0f3172528b08c5368adedac2563ce1ad7047ca5e12737f91838c88`; final optimizer payload SHA-256 `9a033a2b6a2d5370cd5d0d9fa7fddcbfe8f93c13d784030d710c2998402c8605`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
+
+Exactly steps 26–27 approved from verified step25, requiring intermediate cursor104 and final108. Twelve source identities, static preflight and launcher two-update argument verified. Step28 requires its own one-update approval after actual step27 and fresh resources; no evaluation execution approved.
+
+Stage 26–27 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step027_independent_verification.json`. Final adapter SHA-256 `58d4708e354c498cf6e34cec1300f4b565ea07d2be37053249595303f1c1759d`; final optimizer payload SHA-256 `5d37236242134a288dcdb2ba39909b3273726f4107cd12f906787db291483539`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
+
+Exactly one new update, step28, approved from verified step27, ending cursor112. The final executed-prefix hash equals the frozen full112 schedule hash. Twelve source identities and static preflight pass; launcher AST verifies steps=1 and its completion summary reads the actual receipt field. No further training or evaluation execution is approved.
+
+Stage 28 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step028_independent_verification.json`. Final adapter SHA-256 `b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572`; final optimizer payload SHA-256 `3559a34613558e7c00025b9a22cb7841971943dc348f89b049d25f202a17d7a7`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.

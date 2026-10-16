@@ -57,3 +57,9 @@ The latest user directive was read during B12–13. Its request to start from st
 B17 is independently verified (68examples); B18–19 is a separate finite approved continuation. C progressed from mask geometry to an actual frozen44-row/35-patient candidate cohort:10new patients,20MRIvolumes124875617bytes, preserving existing/reserved exclusions and the1000pixel rule.44rows are two related mask endpoints, nottwoindependentvisualabilities. Independent C source/header/hash/linkage review passed with limitations; fullcohortpixelrerender NOT_RUN, no Ctraining orclinicaladmission.
 
 New P1 evaluation guard: current image bytes must match immutableA0/A28 baseline outputs, not only manifest paths. Reproduced failing case corrected,26tests+actual54recordcheck independently passed. Paired scorer additionally binds historical output bytes and labels itself same-family analysis. Patientmacro andquestionmacro differ in historicalA28 (62.5% vs65.625%); both estimands remain explicit.
+
+## B28 actual execution boundary
+
+OBSERVED: final one-update stage exited0 with28cumulative optimizer updates,112example presentations and completed_control_28steps=true. AdapterSHA b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572. Full-chain independent audit and matched54 inference are the next gates; no accuracy gain or pixel dependence is inferred from completion or last-step mean loss0.17958. FixedA0/A28 and24+24control identities remain unchanged.
+
+REPRODUCED: C2 fixed PNG controls yield18/32tumor correct for both thumbnail andhistogram1NN; enhancement5/12 and6/12. Independent replay matched all88predictions/neighbors/distances, with zero same-patient neighbors. This is a selected training-cohort diagnostic, not independent-patient generalization or clinical admission.
