@@ -25,3 +25,6 @@ def test_tumor_routes_reject_unsupported_language():
     assert score("tumor_enhancing_presence", "no", "possibly no") == (False, False, None)
     assert score("tumor_grid", "center-middle", "center-middle") == (True, True, None)
     assert score("tumor_grid", "center-middle", "center") == (False, False, None)
+    assert score("tumor_presence", "yes", "yes") == (True, True, None)
+    assert score("sequence_flair_vs_t1ce", "contrast-enhanced T1", "contrast-enhanced T1") == (True, True, None)
+    assert score("sequence_flair_vs_t1ce", "FLAIR", "T1") == (False, False, None)

@@ -31,6 +31,13 @@ def score(category: str, gold: object, response: str) -> tuple[bool, bool, float
     if category == "mri_sequence_identification":
         token = answer.upper().strip(" .")
         return token == gold.upper(), token in {"T1", "FLAIR"}, None
+    if category == "sequence_flair_vs_t1ce":
+        token = answer.lower().strip(" .")
+        choices = {"flair", "contrast-enhanced t1"}
+        return token == gold.lower(), token in choices, None
+    if category == "tumor_presence":
+        token = answer.lower().strip(" .")
+        return token == gold, token in {"yes", "no"}, None
     if category == "tumor_enhancing_presence":
         token = answer.lower().strip(" .")
         return token == gold, token in {"yes", "no"}, None
