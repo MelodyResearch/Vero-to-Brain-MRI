@@ -34,6 +34,8 @@ PYTHONPATH=src python -m mri_rl.dallas_pilot --images-root local_data/ds004856 -
 
 ## Research path
 
+The project-local [paper-reading protocol](research/methodology/NORMAN_PAPER_READING_PROTOCOL.md) and [13 primary-paper audits](research/paper_reading/) reconstruct research choices, check claims against full texts and reported tables, and propose falsifying MRI experiments. The [independent Claude review](research/paper_reading/CLAUDE_INDEPENDENT_METHOD_REVIEW_RAW.md) is archived with its source-access limits; cross-paper conclusions reconcile it with the PDF audits. This is our own adaptation of the three-layer reading method, not the original external Norman skill.
+
 1. Expand the real Dallas MRI cohort with subject-first splits and acquisition/QC checks. Use image-only versus metadata, blank-image and shuffled-image controls. Keep FreeSurfer-derived change targets indeterminate until a defensible repeatability threshold is frozen.
 2. Obtain approved fastMRI source images if pursuing SGMRI-VQA, then link to public QA rows and audit every frame, box and subject split. Freeze an eligible held-out set before matched Qwen3-VL and Vero inference with the same rendered evidence and decoding budget.
 3. If baseline competence and task diversity justify RL, train same-starting-weight, matched-budget single-task and proportional/uniform mixture arms. Add longitudinal tasks only with actual repeat visits and independent patients.

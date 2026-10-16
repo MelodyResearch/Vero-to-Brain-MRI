@@ -1,5 +1,7 @@
 # Three-layer reviews of the closest works
 
+**Current detailed audit:** The 13 requested full-text paper reviews, PDF page reconciliation, independent novelty/statistical reviews, and cross-paper synthesis are in [`research/paper_reading/`](paper_reading/). This earlier note is retained as the project's first-pass source review; its queue below records the state before the detailed audit.
+
 Status: source-based methodological review, not reproduction. Source commits and model revision hashes remain `UNVERIFIED`; the linked primary papers and official code/cards are the evidence. Other named works in the request remain unreviewed in depth and are not claimed as novelty clearances.
 
 ## [Vero, arXiv:2604.04917v3](https://arxiv.org/html/2604.04917) · [official code](https://github.com/zlab-princeton/vero)

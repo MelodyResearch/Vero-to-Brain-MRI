@@ -2,6 +2,8 @@
 
 ## Verified execution
 
+- **SOURCE_AUDITED:** A project-local Norman-style reading skill and protocol were validated; 11 specified medical/MRI papers plus Vero and BrainTRACE received individual primary-source audits. Three PDF-size gaps were resolved by exact-version local PDF inspection. Independent novelty, statistical and authenticated Claude Code reviews are archived; the Claude review's PDF/code limits are explicit. These are literature findings, not reproduced model outcomes.
+
 - **REAL_IMAGE_PILOT_VERIFIED:** OpenNeuro Dallas ds004856 v1.3.0 metadata commit `077d0a4e4f32b7c18e3628893a96708ef24e1178`. Eight genuine NIfTI files from two subjects and two waves (T1 MPRAGE plus FLAIR each) matched their Git-annex byte counts and SHA-256 keys, decoded to finite 3D arrays, and produced deterministic anatomical evidence views. Four wave 1→2 subject/modality pairs passed identity and elapsed-time checks. One FLAIR pair had discordant 6 versus 2.5 mm slice spacing. Private exact hashes, affines, voxel statistics, and PNGs remain under ignored `local_data/`.
 - **TESTED_CPU:** `PYTHONPATH=src pytest -q` passed 13 tests after adding physical-aspect and voxel↔display-coordinate checks. The Dallas pilot command returned `subjects=2`, `sessions=4`, `volumes=8`, `T1_pairs=2`, `FLAIR_pairs=2`, `spacing_discordant_pairs=1`. The coronal FLAIR render was visually inspected after the aspect correction.
 - **SOURCE_AUDITED:** The FreeSurfer 5.3 brainsummary workbook was downloaded and checksum matched to its annex key; selected wave 1/2 global-volume rows exist. No repeatability threshold, diagnostic reference, or image-grounded region target was established from that workbook.
