@@ -101,3 +101,19 @@ Agents should conduct independent criticism on material decisions and publish a 
 **Completion is not** a new README, 13 review documents, two subjects, a fake reward, passing CPU tests or a speculative GO/KILL memo. Report what actually ran, evidence receipts, Git commit, unresolved external permissions/compute and precisely which experiments remain NOT_RUN. Do not promise asynchronous execution outside the current session.
 
 **Never:** invent MRI diagnosis, access restricted images without consent, mix held-out test labels into training, modify Story A or NeuroBrain, claim original Vero code executed without verification, rent GPUs automatically, publish the private repo, or claim novel ML algorithms without appropriate controls.
+
+## Headless operation: no desktop/browser handoffs for public research
+
+**Explicit researcher direction:** Run routine research autonomously through background-compatible, noninteractive CLI, APIs and existing GitHub credentials. Do not open the researcher's browser tabs, control the desktop GUI, summon manual clicks, or request repeated permission for openly accessible material. The project repository presently contains code, literature audits and aggregate scientific records, not a licensed bundle of MRI patient scans; this fact should not be used to block routine public-source operations. Treat each *future source* according to its actual access terms.
+
+Allowed without repetitive user interaction, within the active execution session:
+- `gh`/GitHub API and `git`: search/read open-source Vero/medical-RL repositories, pin commits, inspect pretrained-model metadata, make ordinary commits/pushes **to the existing PRIVATE MRI project only**.
+- `curl`/`wget`/`python`/dataset client APIs: inspect/download arXiv open papers, Hugging Face *public and authorized* datasets/checkpoints, OpenNeuro CC0 data via official endpoints, public data-host/object-store files. Retry legitimate API methods, honor rate limits, use staged checksummed retrievals, verify real MRI image bytes rather than symbolic pointers. Prefer CLI/DataLad/git-annex for annex-backed NIfTI.
+- Locally preprocess licensed images, derive eligibility counts, implement Vero training adapters, run CPU tests and compatible already-authorized local inference, work with independent Codex/Claude agents, update GitHub issue/research receipts.
+
+**Access split:** PUBLIC / ALREADY_AUTHORIZED / EXTERNAL_APPROVAL_NEEDED / NOT_PERMITTED. A public metadata page is not necessarily permission to use hidden scan bytes. If fastMRI/MR-RATE/ADNI/MIRIAD requires researcher-specific approval, skip that specific source and continue alternative genuinely public MRI image+annotation sources without involving the researcher, unless no feasible route remains. Never forge approvals, autoaccept a DUA, circumvent access controls, make payments, rent GPUs or change repository visibility.
+
+The *first scientific priority* remains systematic Vero-to-MRI task-balanced GSPO transfer, not a standalone anatomical change verifier. Headless data sourcing must be directed toward **two verified heterogeneous image-answer task families**, with independent patient/source checks; a public MRI collection without ground-truth tasks is still only a feasibility source. Run real-model generation when compatible authorized compute permits, then actual weight-updating comparisons; label blocked/not run honestly.
+
+Do not finish early merely because the desktop/browser route is unavailable. Preserve reproducibility and do not promise out-of-session autonomous activity.
+
