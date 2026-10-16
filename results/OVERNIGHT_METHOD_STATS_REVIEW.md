@@ -167,3 +167,17 @@ Header-only checks independently confirm that every image and its source mask sh
 These metadata-only baselines were independently recomputed and reproduce the producer's counts. They are resubstitution diagnostics, not held-out predictive estimates. Site-related shortcuts remain despite within-level label balance. The enhancement task still lacks upper-level positive support. No new C training or clinical visibility adjudication occurred. A fresh pixel-by-pixel rerender of all 20 volumes was not run in this header/hash audit; the earlier single-patient pair reproduction remains separate evidence.
 
 Private audit receipt: `overnight_method_stats_v1/independent_c2_cohort_headers_PRIVATE.json`. Render receipt SHA-256: `5786681d14498f4ac2545d858e293a5f12e5ad0cd31234e8c2b6a79ef030b06b`. No reserved prospective payload was read.
+
+### C2 actual PNG shortcut baselines: independent replay
+
+**`REPRODUCED`; `PASS_WITH_LIMITATIONS` for the recorded fixed-feature CPU experiment.** The expanded cohort was subsequently tested with the same prespecified C1 features. This reviewer independently extracted 16×16 bilinear grayscale thumbnails and 16-bin full-PNG grayscale distributions, then independently chose nearest neighbors using scalar squared distances and deterministic record-ID ties. Histogram bins were accumulated from integer grayscale counts rather than the producer's NumPy histogram call. All 88 predictions, nearest-neighbor identities, distances and confusion counts match the saved primary receipt. Every neighbor belongs to another patient; categories are evaluated separately, and no within-category duplicate image hash occurs.
+
+| Fixed leave-one-patient-out 1NN | Tumor presence | Enhancing-mask presence |
+|---|---:|---:|
+| 16×16 grayscale thumbnail |18/32|5/12|
+| 16-bin grayscale histogram |18/32|6/12|
+| Fixed-no reference |16/32|6/12|
+
+The source/C1 feature definition and frozen cohort hashes agree with the receipt. Features depend on image pixels only; labels enter through the nearest training neighbor, not feature extraction or query selection. No image filenames or subject identifiers enter distance calculations. The full PNG still includes panel borders, constant modality captions, intensity distributions and anatomy, so these are deliberately simple shortcut probes rather than lesion-specific classifiers. Site structure is not removed by leave-one-patient-out exclusion, and all cohorts were selected using training-label geometry. Weak scores do not prove absence of shortcuts, establish clinical visibility or demonstrate independent generalization. C1 and C2 scores concern different selected cohorts and must not be interpreted as a controlled improvement comparison.
+
+This replay used one small PNG at a time with single-thread caps and explicit MLX/MLX-VLM/Torch/Transformers/nibabel import blocking. No MRI volumes or models were loaded. Primary receipt SHA-256: `59d15c50d24537a066f720c311a81b22decc529499ffef99a63ebf643cff6a75`. Independent evidence is private at `overnight_method_stats_v1/independent_c2_pixel_shortcuts_PRIVATE.json`. Scientific task admission remains `NOT_VERIFIED`.
