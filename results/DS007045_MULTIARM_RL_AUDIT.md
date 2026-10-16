@@ -1,6 +1,6 @@
 # Independent audit of attempted ds007045 GSPO arms
 
-**Status:** `INFERENCE_COMPLETED` for 24 on-policy prompt groups and 48 image-conditional rollouts on local Metal; **`TRAINING_COMPLETED` does not apply to these three RL arms** because each made zero optimizer steps and retained identical adapter bytes. Audit date: 2026-10-15. The earlier four-step SFT weight update is separately documented in [the matched-precision audit](DS007045_INDEPENDENT_FROZEN_AUDIT.md). This audit reports only aggregate details; schedules, patient tokens, images, generations, and model weights remain under ignored `local_data/`.
+**Direct-profile status:** `INFERENCE_COMPLETED` for 24 on-policy prompt groups and 48 image-conditional rollouts on local Metal; **`TRAINING_COMPLETED` does not apply to these three direct-profile arms** because each made zero optimizer steps and retained identical adapter bytes. A separate post hoc reward ablation below made real updates in two arms. Audit date: 2026-10-15. The earlier four-step SFT weight update is separately documented in [the matched-precision audit](DS007045_INDEPENDENT_FROZEN_AUDIT.md). This audit reports only aggregate details; schedules, patient tokens, images, generations, and model weights remain under ignored `local_data/`.
 
 ## Receipt validation
 
