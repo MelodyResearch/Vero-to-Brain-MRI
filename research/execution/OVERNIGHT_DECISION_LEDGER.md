@@ -8,7 +8,7 @@ Covenant revision read: remote0ed14a2, fast-forwarded without discarding local c
 - Engineering: isolated Codex agent `safe_resume_reviewer`, same inherited model family.
 - MRI data: isolated Codex agent `overnight_c_data`, same family.
 - RL/statistical/scientific: isolated Codex agent `overnight_method_stats`, same family.
-- `CROSS_MODEL_REVIEW=NOT_VERIFIED`. Claude CLI initially reported `loggedIn=false` inside the sandbox; a subsequent authorized keychain-capable check reported `loggedIn=true`, authMethod `claude.ai`. No new research payload has been sent. Existing denial of unpublished ds007045 sharing remains in force. A genuine future Claude review requires independently permitted exact materials; authentication is now verified. No cross-family agreement/disagreement can be reported without those reviews.
+- `CROSS_MODEL_REVIEW=NOT_VERIFIED` for private B/C interfaces. Claude CLI initially reported `loggedIn=false` inside the sandbox; a subsequent authorized keychain-capable check reported `loggedIn=true`, authMethod `claude.ai`. A separately approved public-upstream-only source review has completed (claude-sonnet-5-5); no private MRI payload has been sent. Existing denial of unpublished ds007045 sharing remains in force. A genuine future Claude review requires independently permitted exact materials; authentication is now verified. Public-source findings are preserved separately from local experiment approval.
 
 ## B restoration and step3 — ENGINEERING_UNBLOCK / B_LABEL_CONTROL
 
@@ -38,4 +38,13 @@ Covenant revision read: remote0ed14a2, fast-forwarded without discarding local c
 | P2 | Reloadreceipt omitted tokenfinishreason andpostgenerationresources | Nonemptyresponse alone doesnotshowtruncation | Saveactualbackendfinish_reason/generation_tokens/peakmemory andpostgenerationboundary | Realstep2fields present; historicalunknowns unchanged: OBSERVED |
 | P1 | LocalRLmultiarm resetsAdampergroup | SFTrestorecouldbemistaken forfixingRL | Keep priorRLexploratory; separatecontinuousRLimplementation required before matchedmixtureclaim | Source-reviewed, NOT_VERIFIED forcorrectedRL; no newRLlaunched |
 
-No actual Claude findings or cross-model consensus exist for this sprint. All scientific improvement claims remain NOT_VERIFIED until matched evaluation and pixel controls are run.
+Actual Claude public-source findings now exist in results/CLAUDE_PUBLIC_VERO_REVIEW.md; this provides no local MRI review or consensus. All scientific improvement claims remain NOT_VERIFIED until matched evaluation and pixel controls are run.
+
+
+## Subsequent B stages: same experiment, finite approvals
+
+Each stage continues the same six-item B check above; only the already-executed prefix, parent checkpoint and new approved range advance. Stage4–5 consumes examples13–20 from verified step3. It tests restoration/continued updating, freezes the complete B schedule and all12 reviewed sources, retains A/B matched-budget falsifier and baselines, and stops at cumulative5. Reviewer approval6a8105ed4bfd2533c5af225d8d531240c4208049788298e33e87b050845b1737; resource checks remain live. The next stage always needs a new receipt-based independent approval.
+
+## Public-only cross-model method review — PRIMARY_VERO_TRANSFER
+
+Purpose: independently identify source-level invariants and limitations of the official recipe before future MRI RL comparisons. Exact scope is publicVero025ca3c800fc95224c86323c1f7fd33dceed3090 excerpts; no private project code/data/metrics or previously denied material. Exact promptSHA29f33b1b207be1a8ae329ff2121310d8d0bb74ae7ee01cc157766d67a527f11d,97711bytes, isolatedcwd/safe-mode/toolsdisabled/no-session-persistence. Authenticated invocation passed applicable approval controls. Hypothesis: independently reconstructed code behavior may expose transfer invariants; falsify any alleged defect with minimal source fixtures rather than agreement. Frozenpublicsource and a separately instructed Codex initial review precede comparison. Missing imports/configs/runtime are explicit limits. This finite remote source review does not load a local model or authorize B/C/RL interfaces. Claude completed successfully in235544ms, modelclaude-sonnet-5-5; scoped source PASS_WITH_LIMITATIONS, open-endedjudge NOT_VERIFIED. Independent Codex initial findings SHAe4cc86ec16dbd80889cbb1efd4b04484bc091162d383ac9049011cc9f8ac18d1 were frozen before reading it. Comparison and decisive publicfixtures are separate; local experiment cross-model status remains NOT_VERIFIED.

@@ -97,3 +97,23 @@ Three post-step-three samples spanning **36.61 seconds** show swap **6.88342 →
 Reviewer-authored approval: `overnight_resume_review_v1/approval_step005.json`, SHA-256 **`6a8105ed4bfd2533c5af225d8d531240c4208049788298e33e87b050845b1737`**. Reviewer launcher `launch_step005.py` explicitly calls `steps=2` with parent `balanced_sft_resume_step003_v1` and new output `balanced_sft_resume_step005_v1`; AST and saved budget checks confirm that scope. Actual static preflight passes. The independently authored dynamic evidence binds the step-three audit, parent state/receipt/approval and stable resource samples.
 
 Stage range hash: `143f43fc2d8a276ffd53da32ceeb51e5ee1ff8ca7b606d7e4fae4b7615cf38ce`; cumulative twenty-example prefix hash: `b779c6f380c26740d4440d8dddf0896fe2ba95ee080e1cae49c1f3f927065ace`. One sequential fresh reload and <=256-token greedy training-image generation at stage end are included. **No step six or automatic subsequent stage is authorized.** The implementation’s native tiny-fixture equality remains valid; full-Qwen uninterrupted parity remains unmeasured. Steps four and five remain NOT_RUN until actual receipts are independently audited.
+
+
+## Subsequent bounded-stage ledger
+
+All rows below are **REPRODUCED / PASS_WITH_LIMITATIONS**, based on primary private receipts, independent checksums/header/layout inspection and bounded per-tensor CPU checks. Each intermediate adapter/state and actual completed prefix is verified; complete 504 Adam moment pairs, learning rate, RNG inventory, restored starting cursor and unchanged source approval remain required. Values are engineering observations, not held-out model-performance estimates.
+
+| Newly completed steps | Cumulative cursor | Per-step mean losses | Per-step gradient L2 | Changed finite tensors per step | Strict final reload accuracy/format/reward | Resource observations |
+| --- | --- | --- | --- | --- | --- | --- |
+| 4–5 | 20 | 6.711098671 / 6.355120540 | 8.701938941 / 9.788064628 | 504 / 504 | 0 / 0 / 0 | 22 decisions, no HOLD; min available 8.65620 GiB, min pressure-free 47%; swap 6.82092 → max 7.89313 → end 7.86188 GiB |
+<!-- ENGINEERING_STAGE_ROWS -->
+
+Stage 4–5 saves verified intermediate cursor 16 and final cursor 20, with distinct changed adapter hashes and complete 1,011-tensor state payloads. Final adapter SHA-256: `89694d04924c1327f638a7ca9b622c5f3c96aa3c6fc894115de0946b03f8767b`. Final optimizer payload SHA-256: `836d1b1169b32ba76f3b6603fb0209fede25ef37b6cbd489d6aaaa59ca583eb6`. Full per-step hashes and CPU results are in `overnight_resume_review_v1/postrun_step005_independent_verification.json`. Float64 aggregate adapter delta L2 is 0.31993798362058434. All 22 resource decisions reproduce; final-generation telemetry is present, AC/100% battery and no competing heavyweight process were recorded, and thermal telemetry remains unavailable.
+
+### Authorization ledger after step five
+
+**PASS_WITH_LIMITATIONS for exactly steps 6–7**, frozen examples 21–28, ending at cumulative step 7/cursor 28, with full intermediate state at step 6/cursor 24 and one sequential final reload generation capped at 256 tokens. All twelve code hashes remain unchanged; actual static preflight and launcher budget inspection pass. Two post-step-five samples 39.90 seconds apart show decreasing swap (7.78375 to approximately 7.7056 GiB), available memory above 12.6 GiB, pressure-free 64–67%, AC/100% and no competing model process. Fresh launch gates remain mandatory, and the lead must finish concurrent local data work before loading the model.
+
+Approval: `overnight_resume_review_v1/approval_step007.json`; digest **`b0b3a84f085b0644a9b955902bb6dcc65b26025c08dcf511f711ab0de398e40c`**. Launcher: `launch_step007.py`; parent `balanced_sft_resume_step005_v1`, output `balanced_sft_resume_step007_v1`, explicit `steps=2`. Stage-range hash `ce76d33200c94211daf2afb73fe854df89b1388d41f72d1766f660db33625bf9`; cumulative prefix hash `26f042cd472af22209da87322b5b5962131dcd9886bed2612bcedf5793d489e5`. No step 8 or subsequent stage is authorized. This remains B_LABEL_CONTROL / ENGINEERING_UNBLOCK under the covenant.
+
+A minor inherited explanatory string in earlier approval metadata said “cumulative8” after scopes expanded; actual machine-enforced prefix counts/hashes and launch budgets were correct. The new approval text now derives that explanatory count from its exact scope. Prior approvals and executed evidence are preserved unchanged.

@@ -121,3 +121,11 @@ The expansion **does not fix the missing upper-level enhancing-positive support*
 These combined maxima are mask-geometry feasibility results, not MRI-ready training examples. New corresponding MRI frames were not downloaded or loaded in this verification, so no new visibility or image alignment claim follows. A useful next retrieval is bounded paired MRI for selected new eligible cases, followed by alignment/visible-evidence checks. The negative enhancement result argues against downloading many additional subjects under an assumption that the original fixed upper level will automatically become viable.
 
 Actual mask receipt SHA-256: `cbaff83e42b1b146760439d08570af1787638013d7af77d7ebc3e2195c1c5c3b`. The separate verification and exhaustive combined-flow result are retained privately at `overnight_method_stats_v1/independent_c2_masks_PRIVATE.json`.
+
+### Subsequently executed: targeted real MRI pair
+
+During a confirmed GPU-idle interval, this reviewer independently verified the new C2 upper-level FLAIR/T1ce pair: **two payloads, one training-source patient,10,317,786 bytes**. Source Git-annex pointers at the frozen commit, local sizes/hashes, selection lineage, existing40/reserved14 exclusion, image/mask affine equality,182×218×182 LAS geometry and finite intensities all agree. No prospective image was read. The selected subject is the only new candidate meeting the unchanged upper-level tumor-area criterion.
+
+The slice136 mask recount is1867 tumor pixels and733 enhancing pixels. Thus it supports the tumor geometry filter but still fails the enhancing≥1000 criterion. Independent serial array preprocessing reproduces each saved PNG panel pixel-for-pixel using the recorded percentile subsampling, rotation and bilinear display transform; both panels also match their locations in the combined PNG. Combined PNG SHA-256: `45bec4d19bcbf5ce9309ef81d40d723403d9da1fc45be0a51dc4a0a6fa426a57`.
+
+**Verdict: `PASS_WITH_LIMITATIONS` for actual source-linked MRI bytes, geometry and rendering.** This verifies a real image pair beyond mask-only feasibility. It is not a blinded visible-lesion judgment, a new model result or scientific task admission. Status remains `ENGINEERING_ONLY`, clinical visibility `NOT_VERIFIED`. Private independent receipt: `overnight_method_stats_v1/independent_c2_image_PRIVATE.json`.
