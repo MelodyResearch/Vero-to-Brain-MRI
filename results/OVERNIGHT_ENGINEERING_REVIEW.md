@@ -1,7 +1,7 @@
 # Overnight independent engineering review
 
 <!-- CURRENT_ENGINEERING_STATUS -->
-**B28 verified complete; primary evaluation 44/54 records verified without scoring. Exactly records 45–48 now authorized.** Later inference records and controls need separate approvals; no further training authorized.
+**B28 and all54 primary records verified; no_image control 4/24 verified. Exactly no_image records 5–8 authorized.** Later controls require separate approval; no further training authorized.
 <!-- END_CURRENT_ENGINEERING_STATUS -->
 
 ## Scope and current verdict
@@ -245,4 +245,21 @@ Two post28 resource samples35.1015 seconds apart show stable swap9.55896484GiB, 
 | 36/54 | 12 events, 0 HOLD; min available 10.39682 GiB, min pressure-free 53%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 37–40 | `2fb20004e462d2537d4ae18b3b1cb4664a7e2283b2cb139d61064d95195bfb72` |
 | 40/54 | 12 events, 0 HOLD; min available 10.42638 GiB, min pressure-free 54%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 41–44 | `2991dd07c36edee65976afa51044ed045812c2fff39d17f321bada6e9b12380d` |
 | 44/54 | 12 events, 0 HOLD; min available 10.29901 GiB, min pressure-free 53%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 45–48 | `93d6638b3daad240782eab8213e06289eaf83f311978e1771d941b7788cb8639` |
+| 48/54 | 12 events, 0 HOLD; min available 10.01566 GiB, min pressure-free 52%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 49–52 | `c5b8389d69ede8a8b6a55406dd36352d6480f3de822d37cb5939ab7232164fef` |
+| 52/54 | 12 events, 0 HOLD; min available 9.85994 GiB, min pressure-free 51%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 53–54 | `6b25c265ffb7c4257b20999f33d702443e2fe47e7bd367975ae385034cf17b46` |
 <!-- PRIMARY_EVAL_ROWS -->
+
+## Full primary completion and first no-image control scope
+
+**PASS_WITH_LIMITATIONS.** All54 primary records match the frozen manifest in order, all14 stage approvals and their output-prefix byte hashes, actualB28 adapter and current evaluator source/profile identities. Total164 resource events independently reproduced, no HOLD; all model-release boundaries present. Final output SHA-256 `6f7a3bf69600aa424693e31c68a5026edc38f866df09c67048da3a37ba84017b`. Every recorded generation ended with backend `stop`; token accounting and limits verified. This engineering audit did not score responses. Complete54-record private audit saved as `primary_054_independent_verification_PRIVATE.json`; paired numerical analysis is separate.
+
+Exactly no-image records1–4 approved after full primary completion and fresh resource evidence. Immutable24-record transformation, historicalA28 control output digest, prompt/profile/adapter identities and zero-image scope all verify against the reviewed unchanged control module. Primary output digest is part of every control record's expected metadata. Approval `b28_matched_eval_v1/approval_no_image_004.json`, digest `dd22a6613255fa8f33c9c35f56b84ef0015ea470816726f492ae363c88da7850`; launcher `launch_no_image_004.py` passes actual preflight with native imports blocked. Native execution of this new control wrapper remains NOT_RUN until receipts exist. No no-image record5 or swap control inference approved.
+
+## Sequence-control stage receipt audits
+
+| Mode and completed records | Resource and identity evidence | Next finite scope | Approval SHA-256 |
+| --- | --- | --- | --- |
+| no_image 4/24 | 12 decisions, 0 HOLD; min available 9.81973 GiB, min pressure-free 51%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only no_image 5–8 | `6d333be23b3063275b4486f1f8e742f91d4a90f31d837873b908a79624f114d4` |
+<!-- CONTROL_EVAL_ROWS -->
+
+First native no-image stage verified from actual receipts: four outputs, zero image placeholders and null image hashes, frozen prompts contain no image blocks, exactB28 adapter504 tensors and all12 resource decisions valid. Reviewed unchanged source passes only the frozen prompt and image=None to generation; private gold is hashed for provenance, with no per-record gold inserted into prompts. All four backend finishes are stop and token accounting is valid. No score inspected. This confirms first-stage wrapper execution, not clinical performance.

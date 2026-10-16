@@ -38,3 +38,22 @@ The six-category diagnostic framework is DATA, SCIENTIFIC_DESIGN, METHODS, ENGIN
 The independent optimizer-lifecycle review adds a precise distinction: the current local smoke computes detached old probabilities at unchanged weights, checks old/current equality, performs exactly one optimizer step and discards the optimizer (`mlx_gspo_smoke.py:343`, `:392`, `:432`, `:451`). Its loss evaluations therefore use approximately unit importance ratios. Repairing persistent Adam state will remove the restart confound but will not itself exercise changed-policy clipping or reproduce upstream rollout-block/minibatch reuse. This is a scope limitation, not an algebraic GSPO error: pinned upstream `dp_actor.py:491–535` also has an explicit one-minibatch/one-epoch on-policy shortcut. No prior local training result is reclassified as faithful full-recipe GSPO.
 
 `research/RL_CONTINUITY_MINIMAL_CORRECTION.md` records the source hashes, minimal state correction, separate later fidelity changes, strict train-only diagnostic selection and decisive acceptance tests. Existing CPU suites were independently rerun with model imports blocked: 33 passed, one native MLX test skipped. The corrected RL driver is **not implemented**, native RL restore is **NOT_VERIFIED**, and this source review grants no model-launch approval. The all-valid, task-varying rollout filter remains a declared diagnostic/active-group intervention rather than demonstrated unmodified Vero behavior.
+
+## Completed B28 primary diagnostic — 2026-10-16
+
+**REPRODUCED / scoped DISPROVEN prediction:** the frozen 14/14 sequence-exposure intervention did not increase sequence accuracy in this completed run on the four-patient internal-development cohort. A28 and B28 both score15/24 and predict21 FLAIR/3 T1. This does not disprove class balancing in other datasets, budgets or seeds.
+
+B28 scores34/54 versus A28 36/54: no improved questions, two lost,52 unchanged; enhancement8→7/12 and grid3→2/6. Full format54/54 for both; all54 B outputs have actual stop termination. Parameter updates were real and the full optimizer chain passed independent review. Thus format rejection, observed truncation and missing updates do not explain this particular primary-score result. Two patients worsen and two are unchanged. Cross-task interference is a hypothesis, not an established RL negative-transfer mechanism.
+
+**Competing hypotheses and next decisive tests:**
+
+| Category | Current evidence / uncertainty | Smallest distinguishing test |
+|---|---|---|
+| Data | Historical slice/site/visibility limitations persist; B did not change the other84 examples. | Complete the frozen sequence no-image/swap controls; keep separate C evidence and prospective patients sealed. |
+| Scientific design | Three binary/spatial routes share annotation provenance; four routes are not four independent capabilities. | Require independent visual-answerability admission before claiming a transfer matrix. |
+| Methods | Correcting within-sequence exposure is not a Vero uniform-versus-proportional RL comparison. RL Adam resets and rollout/minibatch deviations remain. | Correct and independently test continuous RL state; separately test frozen old-policy likelihoods after an actual update. |
+| Engineering | Complete state, native prompt/pixels and54 full-format/stop outputs verified. | Audit actual target tokens and assistant-only loss boundary; do not relax the parser. |
+| Experimental design | Four repeatedly inspected development patients, one seed; equal update/example budgets do not establish equal token or wall-clock budgets. | Preserve descriptive paired estimates; predeclare a new evaluation before opening a fresh cohort. |
+| Model / optimization | Answer-specific loss/gradient contributions and final-checkpoint training sequence accuracy are unmeasured. | A future frozen training-pair generation/teacher-forced answer-margin probe can distinguish training underfit from a development-only shortfall; no hyperparameter search is authorized by this observation. |
+
+The no-image and swapped-image results are still pending at this entry. The initial independent numerical conclusion is preserved in results/B28_PRIMARY_INDEPENDENT_REVIEW.md. No new checkpoint selection, reward relaxation or claim of a novel MRI algorithm follows from the negative result.
