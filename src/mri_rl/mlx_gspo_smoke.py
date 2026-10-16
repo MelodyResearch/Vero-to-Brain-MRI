@@ -16,6 +16,7 @@ import os
 from pathlib import Path
 
 from mri_rl.vero_mri_reward import compute_score_from_data_source
+from mri_rl.resource_supervisor import ResourceGate
 
 
 VERO_SHA = "025ca3c800fc95224c86323c1f7fd33dceed3090"
@@ -163,6 +164,10 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         template_override = (json.loads(raw_template)["chat_template"]
                              if template_override_path.suffix == ".json" else raw_template)
     output.mkdir(parents=True, exist_ok=True)
+    if (output / "receipt.json").exists():
+        raise ValueError("Completed GSPO unit already exists; do not overwrite an optimizer step")
+    gate = ResourceGate(output / "resource_events.jsonl")
+    gate.before_unit("model_load")
     mx.random.seed(seed)
     model, processor = load(str(model_path))
     model = prepare_model_for_training(model, train_type="lora", lora_rank=4,
@@ -188,6 +193,7 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
     advantages = []
     selected_group = None
     for group_index, row in enumerate(candidate_records):
+        gate.before_unit(f"rollout_group_{group_index}")
         image = row["images"][0]
         question = row["extra_info"]["question"]
         system_text = official_system_prompt if official_system_prompt is not None else (

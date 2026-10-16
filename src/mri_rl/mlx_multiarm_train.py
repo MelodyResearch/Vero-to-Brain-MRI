@@ -19,7 +19,12 @@ from collections import Counter
 from pathlib import Path
 
 from mri_rl.mlx_gspo_smoke import _sha256, load_system_prompt_file
+from mri_rl.experiment_contract import require_launch_preflight
 from mri_rl.vero_official_launch import DS_DOMAINS, expected_batch_counts
+
+
+DEFAULT_RL_SYSTEM_PROMPT = (
+    "Respond using <think>brief visual reasoning</think><answer>\\boxed{final answer}</answer>.")
 
 
 def build_schedule(records: Path, arm: str, groups: int, seed: int,
@@ -94,7 +99,18 @@ def run(model: Path, records: Path, output: Path, starting_adapter: Path,
         arm: str, groups: int = 8, group_size: int = 2, max_tokens: int = 256,
         seed: int = 7, specialist_category: str | None = None,
         reward_profile: str = "direct_vero",
-        system_prompt_file: Path | None = None) -> dict:
+        system_prompt_file: Path | None = None,
+        contract_path: Path | None = None, dev_records: Path | None = None,
+        dynamic_receipt_path: Path | None = None,
+        review_verdict_path: Path | None = None) -> dict:
+    expected_system = (load_system_prompt_file(system_prompt_file)[0]
+                       if system_prompt_file is not None else DEFAULT_RL_SYSTEM_PROMPT)
+    contract_id = require_launch_preflight(
+        contract_path=contract_path, train=records, dev=dev_records,
+        model_path=model, dynamic_receipt_path=dynamic_receipt_path,
+        review_verdict_path=review_verdict_path, expected_system=expected_system,
+        expected_max_tokens=max_tokens, expected_reward_profile=reward_profile,
+        expected_starting_adapter=starting_adapter)
     private_root = Path(__file__).resolve().parents[2] / "local_data"
     if not output.resolve().is_relative_to(private_root):
         raise ValueError("Raw MRI rollouts and weights must stay under ignored local_data/")
@@ -152,6 +168,7 @@ def run(model: Path, records: Path, output: Path, starting_adapter: Path,
         if receipt["policy_updated"]:
             current_adapter = step_dir / "after_adapters.safetensors"
         aggregate = {**details, "starting_adapter_sha256": starting_sha,
+                     "experiment_contract_id": contract_id,
                      "rollouts_per_group": group_size, "max_response_tokens": max_tokens,
                      "reward_profile": reward_profile,
                      "system_prompt_sha256": system_prompt_sha,
@@ -186,12 +203,18 @@ def main() -> None:
                                                      "single_box_anywhere_ablation"),
                         default="direct_vero")
     parser.add_argument("--system-prompt-file", type=Path)
+    parser.add_argument("--contract", type=Path, required=True)
+    parser.add_argument("--dev-records", type=Path, required=True)
+    parser.add_argument("--dynamic-receipt", type=Path, required=True)
+    parser.add_argument("--review-verdict", type=Path, required=True)
     args = parser.parse_args()
     receipt = run(args.model.resolve(), args.records.resolve(), args.output.resolve(),
                   args.starting_adapter.resolve(), args.arm, args.groups,
                   args.group_size, args.max_tokens, args.seed,
                   args.specialist_category, args.reward_profile,
-                  args.system_prompt_file.resolve() if args.system_prompt_file else None)
+                  args.system_prompt_file.resolve() if args.system_prompt_file else None,
+                  args.contract.resolve(), args.dev_records.resolve(),
+                  args.dynamic_receipt.resolve(), args.review_verdict.resolve())
     print(json.dumps({key: value for key, value in receipt.items()
                       if key != "group_results"}, indent=2))
 

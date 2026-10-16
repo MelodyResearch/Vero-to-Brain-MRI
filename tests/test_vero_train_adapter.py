@@ -185,6 +185,19 @@ def test_direct_vero_format_gate_rejects_prefix_and_empty_reasoning():
     assert no_box["accuracy"] == 1.0 and no_box["format"] == 0.5
 
 
+def test_direct_vero_nested_text_box_matches_pinned_box_extraction():
+    args = {"data_source": "OpenNeuro_ds007045", "ground_truth": "FLAIR",
+            "extra_info": {"reward_type": "mri_sequence"}}
+    nested = compute_score_from_data_source(
+        solution_str=r"<think>visible.</think><answer>It is \boxed{\text{FLAIR}}.</answer>",
+        **args)
+    assert nested == {"score": 1.0, "accuracy": 1.0, "format": 1.0}
+    two_boxes = compute_score_from_data_source(
+        solution_str=r"<think>visible.</think><answer>\boxed{T1} \boxed{\text{FLAIR}}</answer>",
+        **args)
+    assert two_boxes == {"score": 0.9, "accuracy": 1.0, "format": 0.5}
+
+
 def test_direct_vero_overlong_profile_is_inactive_under_local_cap():
     assert overlong_penalty(512, 512, "direct_vero") == 0.0
     assert overlong_penalty(512, 512, "scaled_smoke") == -1.0

@@ -21,6 +21,30 @@ _GRID_LABELS = {f"{x}-{y}" for x in ("left", "center", "right")
                 for y in ("top", "middle", "bottom")}
 
 
+def _boxed_contents(text: str) -> list[str]:
+    """Extract balanced boxed payloads like the pinned Vero reward helper."""
+    contents = []
+    cursor = 0
+    while (start := text.find(r"\boxed", cursor)) >= 0:
+        cursor = start + len(r"\boxed")
+        while cursor < len(text) and text[cursor].isspace():
+            cursor += 1
+        if cursor >= len(text) or text[cursor] != "{":
+            continue
+        begin = cursor + 1
+        depth = 1
+        cursor = begin
+        while cursor < len(text) and depth:
+            depth += (text[cursor] == "{") - (text[cursor] == "}")
+            cursor += 1
+        if depth:
+            break
+        content = text[begin:cursor - 1].strip()
+        wrapped = _TEXT_WRAPPER.fullmatch(content)
+        contents.append(wrapped.group(1).strip() if wrapped else content)
+    return contents
+
+
 def _answer_and_format(response: str) -> tuple[str, float]:
     # Mirror pinned Vero's full-match tag gate and nonempty think/answer checks.
     if any(response.count(tag) != 1 for tag in
@@ -32,7 +56,7 @@ def _answer_and_format(response: str) -> tuple[str, float]:
     answer = match.group("answer").strip()
     if not answer:
         return "", 0.0
-    boxes = _BOXED.findall(answer)
+    boxes = _boxed_contents(answer)
     if len(boxes) == 1 and boxes[0].strip():
         return boxes[0].strip(), 1.0
     if len(boxes) > 1:

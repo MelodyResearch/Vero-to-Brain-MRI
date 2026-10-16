@@ -16,10 +16,45 @@ import os
 from pathlib import Path
 
 from mri_rl.mlx_gspo_smoke import _sha256
+from mri_rl.experiment_contract import require_launch_preflight
+from mri_rl.resource_supervisor import ResourceGate
 
 
 CATEGORIES = ("mri_sequence", "mri_tumor_presence",
               "mri_enhancing_presence", "mri_tumor_grid")
+SFT_SYSTEM_PROMPT = (
+    "Respond with one short observation in <think> and one boxed final answer in <answer>.")
+
+
+def _atomic_json(path: Path, value: dict) -> None:
+    temporary = path.with_name(path.name + ".partial")
+    with temporary.open("w") as handle:
+        json.dump(value, handle, indent=2)
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(temporary, path)
+
+
+def _save_step_checkpoint(save_trainable_weights, model, output: Path,
+                          step_number: int, metadata: dict) -> dict:
+    """Durably preserve weights at a completed optimizer-step boundary.
+
+    This does not capture optimizer/RNG state and is not an exact resume point.
+    """
+    checkpoint_dir = output / "checkpoints"
+    checkpoint_dir.mkdir(exist_ok=True)
+    path = checkpoint_dir / f"step_{step_number:03d}_adapters.safetensors"
+    temporary = checkpoint_dir / f"step_{step_number:03d}_adapters.partial.safetensors"
+    save_trainable_weights(model, temporary)
+    with temporary.open("rb") as handle:
+        os.fsync(handle.fileno())
+    os.replace(temporary, path)
+    receipt = {**metadata, "completed_optimizer_steps": step_number,
+               "adapter_sha256": _sha256(path), "adapter_path": str(path),
+               "optimizer_state_saved": False, "rng_state_saved": False,
+               "exact_resume_supported": False}
+    _atomic_json(checkpoint_dir / f"step_{step_number:03d}_receipt.json", receipt)
+    return receipt
 
 
 def _schedule_train_rows(path: Path, steps: int, seed: int) -> list[list[dict]]:
@@ -56,13 +91,27 @@ def _selected_train_rows(path: Path) -> list[dict]:
 
 
 def run(model_path: Path, records: Path, output: Path, seed: int = 7,
-        steps: int = 1) -> dict:
+        steps: int = 1, resource_guard: bool = True,
+        contract_path: Path | None = None, dev_records: Path | None = None,
+        dynamic_receipt_path: Path | None = None,
+        review_verdict_path: Path | None = None) -> dict:
+    contract_id = require_launch_preflight(
+        contract_path=contract_path, train=records, dev=dev_records,
+        model_path=model_path, dynamic_receipt_path=dynamic_receipt_path,
+        review_verdict_path=review_verdict_path,
+        expected_system=SFT_SYSTEM_PROMPT)
     private_root = Path(__file__).resolve().parents[2] / "local_data"
     if not output.resolve().is_relative_to(private_root):
         raise ValueError("MRI adapters and receipts must stay under ignored local_data/")
     if not model_path.is_dir():
         raise FileNotFoundError("Local base checkpoint missing")
     schedule = _schedule_train_rows(records, steps, seed)
+    output.mkdir(parents=True, exist_ok=True)
+    if (output / "receipt.json").exists() or list((output / "checkpoints").glob("step_*_receipt.json")):
+        raise ValueError("Output already contains a completed or partial SFT run; choose a new directory")
+    gate = ResourceGate(output / "resource_events.jsonl") if resource_guard else None
+    if gate:
+        gate.before_unit("model_load")
     os.environ.setdefault("HF_HUB_OFFLINE", "1")
     os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
     import mlx.core as mx
@@ -75,7 +124,6 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
     from mlx_vlm.trainer.common.utils import save_trainable_weights
     from mlx_vlm.utils import prepare_inputs, should_add_special_tokens
 
-    output.mkdir(parents=True, exist_ok=True)
     mx.random.seed(seed)
     model, processor = load(str(model_path))
     model = prepare_model_for_training(model, train_type="lora", lora_rank=4,
@@ -102,16 +150,26 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
 
     loss_and_grad = nn.value_and_grad(model, loss_for)
     optimizer = optim.Adam(learning_rate=1e-5)
+    checkpoint_metadata = {
+        "model_config_sha256": _sha256(model_path / "config.json"),
+        "training_records_sha256": _sha256(records),
+        "seed": seed, "planned_optimizer_steps": steps,
+        "precision": "MLX 4-bit base, LoRA rank 4",
+        "microbatch_size": 1, "gradient_accumulation_examples": len(CATEGORIES),
+        "image_budget_prompt_tokens": 2048,
+    }
     losses = []
     examples = []
     gradient_norms = []
     for step_index, chosen in enumerate(schedule):
+        if gate:
+            gate.before_unit(f"optimizer_step_{step_index + 1}")
         grad_sum = None
         for row in chosen:
             image = row["images"][0]
             question = row["extra_info"]["question"]
             messages = [
-                {"role": "system", "content": "Respond with one short observation in <think> and one boxed final answer in <answer>."},
+                {"role": "system", "content": SFT_SYSTEM_PROMPT},
                 {"role": "user", "content": question},
             ]
             prompt = apply_chat_template(processor, model.config, messages,
@@ -154,11 +212,14 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
         optimizer.update(model, grad_sum)
         mx.eval(model.trainable_parameters(), optimizer.state)
         mx.clear_cache()
+        _save_step_checkpoint(save_trainable_weights, model, output,
+                              step_index + 1, checkpoint_metadata)
     save_trainable_weights(model, after)
     after_sha = _sha256(after)
     if before_sha == after_sha:
         raise RuntimeError("SFT optimizer step did not change adapter weights")
     receipt = {
+        "experiment_contract_id": contract_id,
         "status": "SFT_ENGINEERING_CONTROL", "model_path_name": model_path.name,
         "source": "OpenNeuro_ds007045", "internal_train_only": True,
         "heldout_test_used": False, "categories": list(CATEGORIES),
@@ -167,9 +228,11 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
         "distinct_patients_exposed": len({example["patient_key"] for example in examples}),
         "before_adapter_sha256": before_sha, "after_adapter_sha256": after_sha,
         "trainable_adapter_format": "MLX safetensors 4-bit base LoRA rank 4",
+        "periodic_adapter_checkpoints": steps,
+        "exact_resume_supported": False,
         "science_claim": False,
     }
-    (output / "receipt.json").write_text(json.dumps(receipt, indent=2))
+    _atomic_json(output / "receipt.json", receipt)
     return receipt
 
 
@@ -180,9 +243,19 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--steps", type=int, default=1)
+    parser.add_argument("--no-resource-guard", action="store_true")
+    parser.add_argument("--contract", type=Path, required=True)
+    parser.add_argument("--dev-records", type=Path, required=True)
+    parser.add_argument("--dynamic-receipt", type=Path, required=True)
+    parser.add_argument("--review-verdict", type=Path, required=True)
     args = parser.parse_args()
     print(json.dumps(run(args.model.resolve(), args.records.resolve(),
-                         args.output.resolve(), args.seed, args.steps), indent=2))
+                         args.output.resolve(), args.seed, args.steps,
+                         resource_guard=not args.no_resource_guard,
+                         contract_path=args.contract.resolve(),
+                         dev_records=args.dev_records.resolve(),
+                         dynamic_receipt_path=args.dynamic_receipt.resolve(),
+                         review_verdict_path=args.review_verdict.resolve()), indent=2))
 
 
 if __name__ == "__main__":

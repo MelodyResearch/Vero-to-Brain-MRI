@@ -1,5 +1,9 @@
 # Project guardrails
 
+## Independent training-interface review
+
+For substantial new SFT or RL jobs, follow [research/ENGINEERING_REVIEW_PROTOCOL.md](research/ENGINEERING_REVIEW_PROTOCOL.md): Codex implements; Claude Code independently verifies only when the exact review material is permitted by approval controls. Record a scoped `PASS`, `PASS_WITH_LIMITATIONS`, `FAIL`, or `NOT_VERIFIED` verdict. A previous attempt to share unpublished ds007045 material with Claude was denied by automatic approval review; do not bypass it or claim Claude reviewed this configuration. An isolated Codex review is explicitly labeled interim and does not make a scientifically invalid experiment valid. Require real-image reward variance, task-related gradient/weight update, checkpoint reload, patient/data checks and resource readiness before a substantial launch. A failed gate blocks the affected job while independent work continues.
+
 ## Headless public-source access — standing researcher instructions
 
 The researcher authorizes **routine noninteractive research operations** using existing repository access and legitimately public data: GitHub API/search/clone/fetch, arXiv/publisher open paper downloads, Hugging Face public repository/dataset APIs, OpenNeuro public downloads, authorized public object stores, and standard CLI tools (`git`, `gh`, `curl`, `wget`, `python`, `huggingface_hub`, DataLad/git-annex when needed). Conduct these **headlessly**, without opening the researcher's desktop browser, taking over the screen, waiting for clicks, or asking approval for each public search/download/normal commit/push to this existing PRIVATE repo. Preserve rate limits, provenance, exact hashes, licenses and disk/bandwidth prudence. Publicly downloadable MRI images are not automatically restricted merely because they are MRI; verify actual source-specific terms rather than assuming all images require a DUA.

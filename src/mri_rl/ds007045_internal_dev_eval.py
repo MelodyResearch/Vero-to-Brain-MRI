@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from mri_rl.frozen_eval import sha256
+from mri_rl.mlx_sft_warmstart import SFT_SYSTEM_PROMPT
 from mri_rl.vero_mri_reward import compute_score_from_data_source
 
 
@@ -48,7 +49,10 @@ def _read_records(path: Path, expected_name: str, split: str) -> list[dict]:
 
 def build_manifest(train_path: Path, dev_path: Path, output_dir: Path,
                    expected_rows: int = 54, expected_patients: int = 4,
-                   private_root: Path | None = None) -> dict:
+                   private_root: Path | None = None,
+                   prompt_profile: str = "original") -> dict:
+    if prompt_profile not in {"original", "sft_train_matched"}:
+        raise ValueError("Unknown internal-dev prompt profile")
     private_root = private_root or Path(__file__).resolve().parents[2] / "local_data"
     if not output_dir.resolve().is_relative_to(private_root.resolve()):
         raise ValueError("Internal-dev prompts and gold must stay under ignored local_data")
@@ -63,13 +67,16 @@ def build_manifest(train_path: Path, dev_path: Path, output_dir: Path,
     if {r["ability"] for r in dev} != ROUTES:
         raise ValueError("Internal dev must cover all four MRI categories")
     output_dir.mkdir(parents=True, exist_ok=True)
-    manifest = output_dir / "internal_dev_manifest.jsonl"
-    gold = output_dir / "internal_dev_gold_PRIVATE.jsonl"
+    suffix = "" if prompt_profile == "original" else "_sft_train_matched"
+    manifest = output_dir / f"internal_dev_manifest{suffix}.jsonl"
+    gold = output_dir / f"internal_dev_gold{suffix}_PRIVATE.jsonl"
     with manifest.open("w") as manifest_out, gold.open("w") as gold_out:
         for row in dev:
+            prompt = (row["prompt"] if prompt_profile == "original" else
+                      [{"role": "system", "content": SFT_SYSTEM_PROMPT}, *row["prompt"]])
             manifest_out.write(json.dumps({
                 "record_id": row["id"], "category": row["ability"],
-                "image": row["images"][0], "prompt": row["prompt"],
+                "image": row["images"][0], "prompt": prompt,
             }, sort_keys=True) + "\n")
             gold_out.write(json.dumps({
                 "record_id": row["id"], "category": row["ability"],
@@ -80,13 +87,15 @@ def build_manifest(train_path: Path, dev_path: Path, output_dir: Path,
             }, sort_keys=True) + "\n")
     receipt = {
         "source": "OpenNeuro_ds007045", "split": "internal_dev",
+        "prompt_profile": prompt_profile,
         "rows": len(dev), "dev_patients": len(dev_patients),
         "train_dev_disjoint": True,
         "category_rows": dict(Counter(r["ability"] for r in dev)),
         "manifest_sha256": sha256(manifest), "gold_sha256": sha256(gold),
         "heldout_test_used": False,
     }
-    (output_dir / "build_receipt_PRIVATE.json").write_text(json.dumps(receipt, indent=2))
+    (output_dir / f"build_receipt{suffix}_PRIVATE.json").write_text(
+        json.dumps(receipt, indent=2))
     return receipt
 
 
@@ -116,6 +125,8 @@ def score_outputs(manifest_path: Path, gold_path: Path, outputs_path: Path) -> d
     manifest_hash = sha256(manifest_path)
     adapter_shas = set()
     config_shas = set()
+    model_settings = set()
+    decoding_settings = set()
     buckets = defaultdict(lambda: {"rows": 0, "format_valid": 0,
                                    "accuracy_correct": 0, "reward_sum": 0.0})
     patient_scores = defaultdict(list)
@@ -129,8 +140,24 @@ def score_outputs(manifest_path: Path, gold_path: Path, outputs_path: Path) -> d
                 not isinstance(row.get("adapter_verified_parameter_tensors"), int) or
                 row["adapter_verified_parameter_tensors"] <= 0):
             raise ValueError("Output lacks verified native-template adapter receipt")
+        if (row.get("prompt") != expected["prompt"] or
+                row.get("image_sha256") != sha256(Path(expected["image"])) or
+                row.get("image_placeholder_count") != 1):
+            raise ValueError("Internal-dev prompt or image receipt mismatch")
+        if (not isinstance(row.get("model_path"), str) or not row["model_path"] or
+                not isinstance(row.get("model_config_sha256"), str) or
+                not row["model_config_sha256"] or
+                not isinstance(row.get("model_template_sha256"), str) or
+                not row["model_template_sha256"]):
+            raise ValueError("Missing internal-dev model configuration receipt")
+        if (type(row.get("max_tokens")) is not int or row["max_tokens"] <= 0 or
+                row.get("temperature") != 0):
+            raise ValueError("Missing or nondeterministic internal-dev decoding receipt")
         adapter_shas.add(row.get("adapter_checkpoint_sha256"))
         config_shas.add(row.get("adapter_config_sha256"))
+        model_settings.add((row["model_path"], row["model_config_sha256"],
+                            row["model_template_sha256"]))
+        decoding_settings.add((row["max_tokens"], row["temperature"]))
         grade = compute_score_from_data_source(
             "OpenNeuro_ds007045", row["response"], target["ground_truth"],
             target["extra_info"], format_score=0.2)
@@ -141,8 +168,9 @@ def score_outputs(manifest_path: Path, gold_path: Path, outputs_path: Path) -> d
         bucket["reward_sum"] += grade["score"]
         patient_scores[target["patient_key"]].append(grade["accuracy"])
     if (len(adapter_shas) != 1 or None in adapter_shas or len(config_shas) != 1 or
-            None in config_shas):
-        raise ValueError("Predictions do not share one verified adapter checkpoint")
+            None in config_shas or len(model_settings) != 1 or
+            len(decoding_settings) != 1):
+        raise ValueError("Predictions do not share one adapter, model, and decoding configuration")
     by_category = {
         category: {"rows": bucket["rows"], "format_valid": bucket["format_valid"],
                    "accuracy_correct": bucket["accuracy_correct"],
@@ -169,12 +197,15 @@ def main() -> None:
     build.add_argument("--train", type=Path, required=True)
     build.add_argument("--dev", type=Path, required=True)
     build.add_argument("--output-dir", type=Path, required=True)
+    build.add_argument("--prompt-profile", choices=("original", "sft_train_matched"),
+                       default="original")
     score = sub.add_parser("score")
     score.add_argument("--manifest", type=Path, required=True)
     score.add_argument("--gold", type=Path, required=True)
     score.add_argument("--outputs", type=Path, required=True)
     args = parser.parse_args()
-    result = (build_manifest(args.train, args.dev, args.output_dir)
+    result = (build_manifest(args.train, args.dev, args.output_dir,
+                             prompt_profile=args.prompt_profile)
               if args.action == "build" else
               score_outputs(args.manifest, args.gold, args.outputs))
     print(json.dumps(result, indent=2))
