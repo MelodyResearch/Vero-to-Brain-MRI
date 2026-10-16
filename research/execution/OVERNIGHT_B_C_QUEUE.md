@@ -1,0 +1,33 @@
+# B/C execution queue — 2026-10-15 researcher directive
+
+Starting verified main: 3250d811cc4be9aac9a2d03228fbed25d08fb9e3.
+
+## B — implementation and experiments
+
+1. Implement a strict restoration boundary linking adapter, complete Adam state, RNG, frozen schedule/cursor, completed updates and contract. Preserve the verified step-001 source snapshot and all artifacts. Fail on missing/corrupt/mismatched state.
+2. Native tiny CPU fixture: two continuous updates versus save/fresh-model restore/update; compare parameters, losses, gradients, moments, learning rate, cursor and next RNG draws. Independent engineering review.
+3. Exactly one real restored update on B examples5–8; save/reload and independently verify.
+4. One further update, then individually reviewed stages of at most two updates up to28 while actual resource gates pass. No repetition of completed steps or blind restart after critical failure.
+5. If28 completes, incremental matched54dev evaluation and sequence pixel controls. Reuse verified identical historical evaluation; no unnecessary model rerun.
+
+## C — training-only scientific redesign
+
+1. Solve maximum feasible smaller balanced patient-distinct subsets without weakening the1000nativepixel rule. Separately version any change in required slice levels.
+2. Audit site/label/level distributions and trivial/level-only baselines; independently verify matching.
+3. Task cards distinguish sequence discrimination, mask-centroid engineering endpoints and genuine clinical/visual answerability. Reserve prospective subjects; bounded metadata-only expansion assessment first.
+
+## Operating boundaries
+
+One lead model process; reviewers use lightweight CPU and idle during GPU stages. Claude authentication: sandbox checkfalse, subsequent keychain-capable checktrue (claude.ai); external sharing remains separately gated. No denied dataset payload will be sent externally. Isolated Codex engineering, MRI-data and RL/statistical reviewers are explicitly attributed. Use existing private repository; no MRI, patient-linked records, raw generations, weights, optimizer states or panic logs committed.
+
+No claim that tiny fixture establishes full-Qwen bitwise parity; actual restore must verify inventory and semantics. No inference of generalization from format validity or parameter change. No automatic overnight scheduler or promise of activity after this session.
+
+## Milestone evidence
+
+- M1: restore path implemented; native continuous-vs-restored fixture passes, plus native Adam/RNG test (2passed). Final defaultCPU suite189passed/2skipped. Independent step2 approval4ee4e17f… binds12sources and exactold/newproducer migration.
+- M2: actual restoredstep2 exited0; cumulative2updates/8examples, newadapter70b92a14ca2837676ab8582b7fb23a39a0f9c676bbeccfa458ba291ae436e660. Independent postrunreview PASS_WITH_LIMITATIONS; all504 changed, state/RNG and reload verified.
+- C1: exactbalancedmax26tumor/10enhancement, independentlyproved. RealpixelCPU LOPOthumbnail12/26 and6/10; histogram13/26 and4/10. AllcardsENGINEERING_ONLY; site andvisualanswerabilitylimitations remain.
+- C2:12newtrain-only metadata candidates excludeexisting40+reserved14; all12 actual masks downloaded and checksummed (318016bytes); prospectiveevaluation subjects excluded. Only mask geometry is ready for those12; targetedonepatient MRI pair retrieval underway.
+- M3: actual step3 exited0; cumulative3updates/12examples. Afteradapter381b0ca7711099bfd0bf33f33605c4791b24a8a4d51f2c0b8a52738f968e792b; independent review PASS_WITH_LIMITATIONS. Next4–5stage pending postrunresource samples and newapproval. No B28 claim.
+- Fresh default CPU verification:193passed,2skipped; native fixture tests separately passed earlier.
+- Authenticated Claude public-upstream-only source review launched in safe-mode/toolsdisabled isolated directory; no private MRI material supplied. Verdict pending; localB/C cross-model review remains NOT_VERIFIED.

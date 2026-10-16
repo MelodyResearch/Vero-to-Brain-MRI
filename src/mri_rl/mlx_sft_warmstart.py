@@ -24,6 +24,7 @@ from mri_rl.experiment_contract import require_launch_preflight, load_contract, 
 from mri_rl.resource_supervisor import ResourceGate, sample_macos
 from mri_rl.paced_resources import PacedGate, PACED_POLICY
 from mri_rl.optimizer_checkpoint import save_optimizer_checkpoint
+from mri_rl.sft_resume import inspect_boundary, restore_native_state, OPTIMIZER, OPTIMIZER_SEMANTICS, completed_prefix
 
 
 CATEGORIES = ("mri_sequence", "mri_tumor_presence",
@@ -179,15 +180,27 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
         starting_adapter: Path | None = None,
         expected_review_sha256: str | None = None,
         execution_tier: str = "C", phase: str = "continuation",
-        schedule_policy: str = "balanced_sequence_v2") -> dict:
+        schedule_policy: str = "balanced_sequence_v2",
+        resume_from: Path | None = None) -> dict:
     if contract_path is None or dev_records is None:
         raise ValueError("Private contract and dev split are required")
     if not 1 <= steps <= 2:
         raise ValueError("Current post-panic authorization permits only a reviewed 1–2 step compatibility prefix")
     schedule = _schedule_train_rows(records, 28, seed, schedule_policy)
     inventory = schedule_inventory(schedule)
-    prefix_binding = {"executed_prefix_sha256": canonical_hash(inventory[:4*steps]),
-                      "executed_prefix_examples": 4*steps}
+    resume = (inspect_boundary(resume_from, contract_id=load_contract(contract_path).identity(),
+                               inventory=inventory, starting_adapter=starting_adapter) if resume_from else None)
+    start_step = resume["completed_steps"] if resume else 0
+    end_step = start_step + steps
+    if end_step > 28: raise ValueError("Stage exceeds frozen B28 schedule")
+    prefix_binding = {"executed_prefix_sha256": canonical_hash(inventory[:4*end_step]),
+                      "executed_prefix_examples": 4*end_step}
+    stage_binding = {"stage_start_step": start_step, "stage_end_step": end_step,
+                     "stage_examples_sha256": canonical_hash(inventory[4*start_step:4*end_step]),
+                     "optimizer_semantics": OPTIMIZER_SEMANTICS,
+                     "resume_from": str(resume_from.resolve()) if resume_from else None,
+                     "resume_manifest_sha256": resume["manifest_sha256"] if resume else None,
+                     "resume_receipt_sha256": resume["receipt_sha256"] if resume else None}
     generation = load_contract(contract_path).generation if contract_path is not None else {"max_tokens": 256, "temperature": 0.0}
     contract_id = require_launch_preflight(
         contract_path=contract_path, train=records, dev=dev_records,
@@ -204,7 +217,7 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
                               "target_max_tokens": 64, "examples_per_update": len(CATEGORIES),
                               "schedule_policy": schedule_policy,
                               "schedule_sha256": canonical_hash(inventory),
-                              "paced_policy": PACED_POLICY, **prefix_binding})
+                              "paced_policy": PACED_POLICY, **prefix_binding, **stage_binding})
     if execution_tier != "C" or phase != "continuation":
         raise ValueError("SFT control requires explicit Tier C continuation authorization")
     if not resource_guard:
@@ -278,7 +291,7 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
         return -mx.mean(selected[0, prompt_ids.shape[-1]-1:])
 
     loss_and_grad = nn.value_and_grad(model, loss_for)
-    optimizer = optim.Adam(learning_rate=1e-5, bias_correction=False)
+    optimizer = optim.Adam(learning_rate=1e-5, betas=[0.9,0.999], eps=1e-8, bias_correction=False)
     checkpoint_metadata = {
         "model_config_sha256": _sha256(model_path / "config.json"),
         "training_records_sha256": _sha256(records),
@@ -288,11 +301,25 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
         "microbatch_size": 1, "gradient_accumulation_examples": len(CATEGORIES),
         "image_budget_prompt_tokens": 2048,
     }
-    losses = []
-    examples = []
-    gradient_norms = []
+    losses = list(resume["receipt"]["loss_terms"]) if resume else []
+    examples = list(resume["receipt"]["examples"]) if resume else []
+    gradient_norms = list(resume["receipt"]["gradient_l2_by_step"]) if resume else []
+    restored_state_evidence = None
+    if resume:
+        signature = {k:{"shape":list(v.shape),"dtype":str(v.dtype)} for k,v in tree_flatten(model.trainable_parameters())}
+        expected = {"adapter_sha256":before_sha,"contract_id":contract_id,
+                    "trainable_signature":signature,"schedule_sha256":canonical_hash(inventory),
+                    "sampler_position_examples":4*start_step,"optimizer":OPTIMIZER,"backend":mx.__version__}
+        restored = restore_native_state(resume["state_directory"],optimizer=optimizer,
+                                         expected_bindings=expected,mx=mx)
+        restored_state_evidence = {"manifest_sha256":resume["manifest_sha256"],
+            "optimizer_updates":int(optimizer.step.item()),"sampler_position_examples":4*start_step,
+            "moment_pairs":len(signature),"rng_inventory":["mlx","python"],
+            "learning_rate":float(optimizer.learning_rate.item()),"optimizer_semantics":OPTIMIZER_SEMANTICS,
+            "validated_complete_state":True,"rng_restored_after_model_setup":True}
+        _atomic_json(output / "restore_receipt.json",restored_state_evidence)
     previous_adapter_sha = before_sha
-    for step_index, chosen in enumerate(schedule[:steps]):
+    for step_index, chosen in enumerate(schedule[start_step:end_step], start=start_step):
         if gate:
             gate.before_unit(f"optimizer_step_{step_index + 1}")
         gate.before_unit(f"before_step_{step_index+1}")
@@ -354,7 +381,7 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
         mx.eval(model.trainable_parameters(), optimizer.state)
         mx.clear_cache()
         boundary = _save_step_checkpoint(save_trainable_weights, model, output,
-                              step_index + 1, checkpoint_metadata)
+                              step_index + 1, {**checkpoint_metadata, **completed_prefix(inventory,step_index+1)})
         if boundary["adapter_sha256"] == previous_adapter_sha:
             raise RuntimeError("Completed SFT step did not change adapter bytes")
         finite = all(bool(mx.all(mx.isfinite(v)).item()) for _,v in tree_flatten(model.trainable_parameters()))
@@ -372,19 +399,19 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
             bindings={"adapter_sha256":boundary["adapter_sha256"],"contract_id":contract_id,
                       "trainable_signature":signature,"schedule_sha256":canonical_hash(inventory),
                       "sampler_position_examples":4*(step_index+1),
-                      "optimizer":{"name":"Adam","lr":1e-5,"bias_correction":False},
+                      "optimizer":OPTIMIZER,
                       "backend":mx.__version__},
             completed_groups=step_index+1,optimizer_updates=step_index+1,
             save_arrays=lambda path,arrays:mx.save_safetensors(str(path),arrays))
         boundary.update({"optimizer_state_saved":True,"rng_state_saved":True,
                          "state_directory":f"state_{step_index+1:03d}",
-                         "exact_resume_supported":False})
+                         "exact_resume_supported":True})
         _atomic_json(output / "checkpoints" / f"step_{step_index+1:03d}_receipt.json", boundary)
         _atomic_json(output / "progress_PRIVATE.json", {
-            "completed_optimizer_steps": step_index + 1, "examples": examples,
+            "completed_optimizer_steps": step_index + 1, "stage_completed_optimizer_steps":step_index+1-start_step, "examples": examples,
             "loss_terms": losses, "gradient_l2_by_step": gradient_norms,
-            "schedule_sha256": canonical_hash(inventory), "contract_id": contract_id, **prefix_binding})
-        print(f"SFT completed step {step_index + 1}/{steps}; loss={sum(losses[-4:])/4:.5f}", flush=True)
+            "schedule_sha256": canonical_hash(inventory), "contract_id": contract_id, **completed_prefix(inventory,step_index+1)})
+        print(f"SFT completed step {step_index + 1}/{end_step}; loss={sum(losses[-4:])/4:.5f}", flush=True)
         gate.after_step(step_index+1)
     save_trainable_weights(model, after)
     after_sha = _sha256(after)
@@ -398,17 +425,20 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
         "source": "OpenNeuro_ds007045", "internal_train_only": True,
         "heldout_test_used": False, "categories": list(CATEGORIES),
         "examples": examples, "loss_terms": losses, "gradient_l2_by_step": gradient_norms,
-        "optimizer_steps": steps, "learning_rate": 1e-5, **prefix_binding,
+        "optimizer_steps": end_step, "stage_optimizer_steps":steps, "learning_rate": 1e-5, **prefix_binding, **stage_binding,
+        "restored_state_evidence":restored_state_evidence,
+        "original_starting_adapter_sha256": (resume["receipt"].get("original_starting_adapter_sha256",resume["receipt"]["starting_adapter_sha256"]) if resume else before_sha),
         "adam_bias_correction": False, "starting_tensors_verified": True,
         "schedule_sha256": canonical_hash(inventory),
         "schedule_policy": schedule_policy, "scheduled_full28_label_exposure_by_route": label_exposure,
-        "label_exposure_by_route": schedule_label_exposure(schedule[:steps]),
-        "completed_control_28steps": False,
+        "label_exposure_by_route": schedule_label_exposure(schedule[:end_step]),
+        "completed_control_28steps": end_step==28,
         "distinct_patients_exposed": len({example["patient_key"] for example in examples}),
         "before_adapter_sha256": before_sha, "after_adapter_sha256": after_sha,
         "trainable_adapter_format": "MLX safetensors 4-bit base LoRA rank 4",
         "periodic_adapter_checkpoints": steps,
-        "exact_resume_supported": False, "continuous_single_process_optimizer": True,
+        "exact_resume_supported": True, "stage_continuous_single_process_optimizer": True,
+        "resume_verification_scope":"native fixture equality; real state restored and validated; full-Qwen uninterrupted equivalence not measured",
         "optimizer_state_saved_each_step": True, "paced_policy": PACED_POLICY,
         "science_claim": False,
     }
@@ -438,13 +468,16 @@ def run(model_path: Path, records: Path, output: Path, seed: int = 7,
     response=generate(reloaded,reload_processor,prompt,image=[image],max_tokens=256,temperature=0,verbose=False)
     if not response.text.strip():
         raise RuntimeError("Fresh SFT reload generated empty response")
+    gate.before_unit("reload_generation_completed")
     _atomic_json(output / "reload_inference_receipt.json", {
         "loaded_adapter_sha256": after_sha, "fresh_model_loaded": True,
         "exact_adapter_tensor_match": True, "adapter_tensor_count": len(disk),
         "actual_model_generation": True, "generated_text": response.text,
         "image_sha256": _sha256(Path(image)), "contract_id": contract_id,
         "record_id": row["id"], "rendered_prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
-        "max_tokens": 256, "temperature": 0})
+        "max_tokens": 256, "temperature": 0,
+        "generation_tokens":response.generation_tokens,"finish_reason":response.finish_reason,
+        "generation_peak_memory_gb":response.peak_memory})
     receipt.update({"status": "SFT_ENGINEERING_CONTROL", "checkpoint_reloaded": True,
                     "reload_inference_receipt_sha256": _sha256(output / "reload_inference_receipt.json")})
     _atomic_json(output / "receipt.json", receipt)
@@ -456,6 +489,7 @@ def main() -> None:
     parser.add_argument("--model", type=Path, required=True)
     parser.add_argument("--records", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--resume-from",type=Path)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--steps", type=int, default=1)
     parser.add_argument("--no-resource-guard", action="store_true")
@@ -479,7 +513,8 @@ def main() -> None:
                          starting_adapter=args.starting_adapter.resolve(),
                          expected_review_sha256=args.expected_review_sha256,
                          execution_tier=args.execution_tier, phase=args.phase,
-                         schedule_policy=args.schedule_policy), indent=2))
+                         schedule_policy=args.schedule_policy,
+                         resume_from=args.resume_from.resolve() if args.resume_from else None), indent=2))
 
 
 if __name__ == "__main__":

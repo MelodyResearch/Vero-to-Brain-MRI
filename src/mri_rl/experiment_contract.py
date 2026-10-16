@@ -400,7 +400,7 @@ def review_scope(*, contract_path: Path, execution_tier: str, phase: str,
     sources = ("experiment_contract.py", "vero_mri_reward.py", "mlx_gspo_smoke.py",
                "mlx_sft_warmstart.py", "mlx_multiarm_train.py", "resource_supervisor.py",
                "sft_evidence.py", "frozen_eval.py", "ds007045_internal_dev_eval.py",
-               "paced_resources.py", "optimizer_checkpoint.py")
+               "paced_resources.py", "optimizer_checkpoint.py", "sft_resume.py")
     contract = load_contract(contract_path)
     return {
         "execution_policy": EXECUTION_POLICY,
@@ -527,6 +527,16 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
     if dynamic_receipt_path is None:
         raise ValueError("Continuation requires verified real-model dynamic receipt")
     dynamic = json.loads(dynamic_receipt_path.read_text())
+    if dynamic.get("kind") == "supervised_resume_v1":
+        if execution_tier != "C" or launch_configuration.get("runner") != "mlx_sft_warmstart":
+            raise ValueError("Supervised resume cannot authorize RL")
+        from mri_rl.sft_resume import verify_resume_evidence
+        from mri_rl.mlx_sft_warmstart import _schedule_train_rows, schedule_inventory
+        verify_resume_evidence(dynamic, contract=contract,
+            inventory=schedule_inventory(_schedule_train_rows(train,28,7,"balanced_sequence_v2")),
+            starting_adapter=expected_starting_adapter, configuration=launch_configuration,
+            budget=launch_budget, private_root=private_root)
+        return contract.identity()
     if dynamic.get("kind") == "supervised_control_v1":
         if execution_tier != "C" or launch_configuration.get("runner") != "mlx_sft_warmstart":
             raise ValueError("Supervised evidence cannot authorize RL training")

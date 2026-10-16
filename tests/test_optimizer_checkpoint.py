@@ -145,7 +145,7 @@ def test_tampered_update_count_rejected(tmp_path):
 
 
 @pytest.mark.skipif((__import__("sys").platform == "darwin" and __import__("os").environ.get("MRI_REAUTHORIZED_TINY_CPU") != "1") or __import__("os").environ.get("MRI_TEST_MLX_CPU") != "1",
-                    reason="Post-panic macOS MLX import prohibited; native verification requires separately authorized remote runtime")
+                    reason="Native verification is opt-in and uses the explicitly authorized tiny CPU fixture")
 def test_native_mlx_cpu_optimizer_and_rng_resume(tmp_path):
     import mlx.core as mx
     import mlx.optimizers as optim
