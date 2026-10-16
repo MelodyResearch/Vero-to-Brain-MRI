@@ -12,6 +12,7 @@ def test_centroid_scoring_has_explicit_voxel_tolerance():
     correct, valid, distance = score("central_slice_hippocampal_centroid", [10, 20], "(13, 20)")
     assert (correct, valid, distance) == (True, True, 3.0)
     assert score("central_slice_hippocampal_centroid", [10, 20], "unknown") == (False, False, None)
+    assert score("central_slice_hippocampal_centroid", [10, 20], "the scan has 13 slices and center 20") == (False, False, None)
 
 
 def test_unknown_task_fails_closed():

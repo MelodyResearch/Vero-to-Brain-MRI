@@ -20,10 +20,10 @@ def normalize_answer(response: str) -> str:
 def score(category: str, gold: object, response: str) -> tuple[bool, bool, float | None]:
     answer = normalize_answer(response)
     if category == "central_slice_hippocampal_centroid":
-        numbers = re.findall(r"(?<!\d)-?\d+(?!\d)", answer)
-        if len(numbers) != 2:
+        coordinate = re.fullmatch(r"\(?\s*(\d+)\s*(?:,|\s)\s*(\d+)\s*\)?", answer)
+        if coordinate is None:
             return False, False, None
-        distance = math.dist([int(x) for x in numbers], gold)
+        distance = math.dist([int(coordinate.group(1)), int(coordinate.group(2))], gold)
         return distance <= 3, True, distance
     if category == "central_slice_anterior_posterior_dominance":
         token = answer.lower().strip(" .")
