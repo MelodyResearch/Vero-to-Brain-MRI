@@ -2,6 +2,12 @@
 
 Independent research inspired by Princeton's [Vero](https://github.com/zlab-princeton/vero). This is **not** an official Princeton collaboration. The falsifiable question is whether task-balanced verifiable RL improves cross-skill transfer in real brain MRI without harming grounding or explanation quality.
 
+## Primary research direction — Vero-to-MRI recipe transfer
+
+**The researcher's current priority is to transfer and experimentally test Vero's full *training recipe* on genuine brain MRI:** heterogeneous image-grounded task categories, category-balanced sampling, task-routed verifiable rewards, open-ended ability retention, and **actual GSPO model training**. The central endpoint is a held-out **train-task × test-task transfer matrix** against same-data SFT, single-task RL, proportional mixtures and MedGRPO/active-group controls. **A longitudinal-change verifier is one task-specific component, not a gate preventing other eligible MRI categories from being trained.**
+
+**Execution source of truth:** [Vero-to-MRI primary execution contract](research/VERO_TO_MRI_PRIMARY_EXECUTION_CONTRACT.md). Prior literature-review decisions and experiments remain archived as historical evidence, not silent replacements for this researcher-directed objective. Current neural inference, weight-updating RL and completed cross-task matrix remain **NOT_RUN** until verified execution receipts exist.
+
 ## Current evidence (2026-10-15)
 
 | Gate | State | Evidence |
