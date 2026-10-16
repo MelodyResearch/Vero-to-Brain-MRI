@@ -1,6 +1,6 @@
 # Independent patient-level frozen MRI diagnostic
 
-Status: `INFERENCE_COMPLETED` for the paired 107-question base/Vero checkpoint comparison; `TRAINING_COMPLETED` and `SCIENTIFICALLY_VALIDATED` do not apply. Audit date: 2026-10-15. This is a frozen-model comparison on real MRI, **not** Vero-to-MRI recipe transfer or a weight-updating RL result.
+Status: `INFERENCE_COMPLETED` for the paired 107-question base/Vero checkpoint comparison; `TRAINING_COMPLETED` for the separate four-step SFT LoRA engineering control below; `SCIENTIFICALLY_VALIDATED` does not apply. Audit date: 2026-10-15. The frozen-model comparison is **not** Vero-to-MRI recipe transfer or a weight-updating RL result.
 
 ## Dataset and receipt checks
 
@@ -39,12 +39,28 @@ The private prespecified manifest contains 16 within-patient z=91 FLAIR/T1ce ima
 
 Swapped-image outputs remained heavily FLAIR-biased: 15/16 for base and 14/16 for Vero. A single-patient gray/no-image tumor probe cannot establish general visual reliance or lack of it. The controls nevertheless rule out treating these frozen scores as convincing image-grounded tumor reasoning; correctness can occur without the tumor image, and a visually counterfactual sequence swap seldom changes the answer. Control outcomes were excluded from the 107-question main metrics.
 
+## Matched-precision four-step SFT adapter control
+
+A separate base-initialized **4-bit, rank-4 LoRA SFT** engineering run updated adapter weights for four optimizer steps using 16 real image/question/answer examples from **14 of the 32 training patients** across the four categories. Its private receipt records zero held-out patients used in training, four finite loss/gradient steps, and different before/after checkpoint SHA-256 values: before `502084c8a1394fdffd765741b9b0fbfcb6720268dfe7671c20d7a67dc5f86088`, after `39c5c48796a53bd82ef3184f54a266935b30f686af841b850bd981aa061ed8ca`. The independent audit verified those bytes, the adapter config, training-only anonymous patient-token crosswalk, and that **504 saved adapter tensors** were exactly reloaded for each of 107 before and 107 after predictions. Every inference row matched the same held-out prompt/image/manifest hashes, base model configuration and chat template, one image placeholder, `temperature=0`, and 256-token maximum.
+
+| Category | Matched 4-bit LoRA **before** correct / valid | **After four SFT steps** correct / valid | Patient-mean accuracy before → after |
+| --- | ---: | ---: | ---: |
+| FLAIR vs contrast-enhanced T1 | 26 / 48 | 26 / 48 | 54.2% → 54.2% |
+| Any tumor on fixed slice | 13 / 24 | 13 / 24 | 54.2% → 54.2% |
+| Enhancing tumor on fixed slice | 11 / 24 | 11 / 24 | 45.8% → 45.8% |
+| Tumor-centroid 3 × 3 grid | 3 correct / 4 valid of 11 | 4 correct / 5 valid of 11 | 18.75% → 25.0% |
+| **Raw total / equal-category patient macro** | **53 correct; 100 valid / 43.23%** | **54 correct; 101 valid / 44.79%** | **+1.5625 percentage points** |
+
+The four steps changed **six of 11** grid response strings and no responses in the other three categories. Exactly **one** grid answer changed from incorrect/invalid to correct/valid; no other correctness or validity changed. The patient-category macro improvement is consequently one patient's grid score, not a broad cross-category improvement. The training-majority macro baseline is 45.31%, slightly above this after-SFT result. This is an actual weight-update and matched-precision before/after inference receipt, yet four steps and one changed correct answer do not establish a useful SFT learning curve or generalization effect. No SFT-specific no-image or swapped-image controls were run, so visual reliance remains unverified for this adapter.
+
+The SFT before/after outputs have private SHA-256 `ff2d5e20c0ee9598571eda8f0d432f6ab156294063027e6d0b277f78e3c1a9bd` and `c6ce22532949aebd6bfa5c516d20f78dcefbc5bccf0a5d707bfdbec5c37ccbc3`, respectively. The larger numerical gap between 4-bit LoRA SFT **after** (44.79%) and the earlier BF16 frozen base (33.33%) or Vero (32.81%) is **not** attributable to four SFT steps: the matched 4-bit LoRA **before** state already scored 43.23%. Use the before/after contrast for any local SFT effect, and keep BF16 frozen comparisons descriptive.
+
 ## Scope and significance
 
 The sequence label is supported independently by BIDS acquisition metadata. The three tumor tasks share an expert-reviewed, algorithm-initialized tumor mask; they are correlated derivatives of one reference source, not three independent biological labels. Images are registered processed derivatives, and scanner/site appearance may yield shortcuts. This convenience sample has only one held-out patient per site, no external-patient crosswalk with MSD, no established lack of pretraining exposure, and no clinical endpoint. The fixed slice positions were set before mask inspection, but a central slice grid task still needs visual and format validation.
 
 - **Scientific significance:** No clinical, neurobiological, or longitudinal conclusion follows. Accuracy here is not tumor diagnostic performance.
-- **AI/ML significance:** This is the first within-source, patient-keyed frozen base/Vero MRI comparison in the project. Neither checkpoint demonstrates a robust advantage here; both fail to exceed simple category baselines on the macro metric. No MRI training occurred, so the Vero task-balanced GSPO hypothesis remains untested.
+- **AI/ML significance:** This is a within-source, patient-keyed frozen base/Vero MRI comparison plus a four-step SFT adapter engineering control. Neither frozen checkpoint demonstrates a robust advantage here; both fail to exceed simple category baselines on the macro metric. The matched SFT before/after change is one correct grid answer. No balanced GSPO or MRI RL comparison occurred, so the Vero task-balanced GSPO hypothesis remains untested.
 - **Experimental significance:** The same-source, patient-disjoint data infrastructure now supports controlled training experiments without waiting for longitudinal change labels. First resolve grid output-format failure and image reliance on a separate development subset, then lock a larger patient/site evaluation and compare identical-base SFT, single-task RL, proportional-mixture GSPO, balanced GSPO, and MedGRPO/active-group controls with matched image-token/rollout budgets and full cross-task evaluation. Do not tune on these eight test patients.
 
 Raw patient keys, images, masks, and generations remain in ignored local files and must not be committed.
