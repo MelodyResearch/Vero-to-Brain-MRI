@@ -31,3 +31,10 @@ Statuses follow the requested vocabulary. RESOLVED means a specific verified eng
 5. Prepare a strict Vero RL diagnostic only from eligible training examples with demonstrated task-varying rewards and verified continuous optimizer state. Full mixture claims require common starting weights/budgets and the complete cross-task matrix.
 
 The six-category diagnostic framework is DATA, SCIENTIFIC_DESIGN, METHODS, ENGINEERING, EXPERIMENTAL_DESIGN and MODEL_OPTIMIZATION. Architecture/capacity explanations remain hypotheses until discriminating tests; no new architecture or optimizer is justified by this registry.
+
+
+### R06 additional source-level evidence — continuity is necessary but insufficient
+
+The independent optimizer-lifecycle review adds a precise distinction: the current local smoke computes detached old probabilities at unchanged weights, checks old/current equality, performs exactly one optimizer step and discards the optimizer (`mlx_gspo_smoke.py:343`, `:392`, `:432`, `:451`). Its loss evaluations therefore use approximately unit importance ratios. Repairing persistent Adam state will remove the restart confound but will not itself exercise changed-policy clipping or reproduce upstream rollout-block/minibatch reuse. This is a scope limitation, not an algebraic GSPO error: pinned upstream `dp_actor.py:491–535` also has an explicit one-minibatch/one-epoch on-policy shortcut. No prior local training result is reclassified as faithful full-recipe GSPO.
+
+`research/RL_CONTINUITY_MINIMAL_CORRECTION.md` records the source hashes, minimal state correction, separate later fidelity changes, strict train-only diagnostic selection and decisive acceptance tests. Existing CPU suites were independently rerun with model imports blocked: 33 passed, one native MLX test skipped. The corrected RL driver is **not implemented**, native RL restore is **NOT_VERIFIED**, and this source review grants no model-launch approval. The all-valid, task-varying rollout filter remains a declared diagnostic/active-group intervention rather than demonstrated unmodified Vero behavior.

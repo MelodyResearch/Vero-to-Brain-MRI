@@ -257,6 +257,58 @@
       "stops": 0,
       "thermal": "SENSOR_UNAVAILABLE",
       "science_claim": false
+    },
+    {
+      "evidence": "REPRODUCED",
+      "cumulative_optimizer_steps": 21,
+      "new_stage_updates": 2,
+      "cumulative_examples": 84,
+      "distinct_training_patients_exposed": 28,
+      "new_step_mean_losses": [
+        0.6534919440746307,
+        0.6195301041007042
+      ],
+      "new_step_gradient_l2": [
+        2.8876182163342565,
+        2.76134995444752
+      ],
+      "adapter_sha256": "2e3394fb16990fdf51709917add110924195245b79b0d8e7786f7984daa36f3f",
+      "receipt_sha256": "87f7b85507ed4c0d7083b167280612cdad81f219f17ad6805e3a66e95a28824a",
+      "independent_audit_sha256": "01690c69c0a226accf5262d12478ea96e0c5bd23d1bab6e67ada99fdb19b1138",
+      "review_approval_sha256": "48cea0459b0dff50150ec767b3d850698eae0ca9de31baa7f7f86198cd62d6a0",
+      "minimum_sampled_available_gib": 10.179611206054688,
+      "minimum_pressure_free_percent": 52.0,
+      "maximum_sampled_swap_gib": 9.61365234375,
+      "holds": 0,
+      "stops": 0,
+      "thermal": "SENSOR_UNAVAILABLE",
+      "science_claim": false
+    },
+    {
+      "evidence": "REPRODUCED",
+      "cumulative_optimizer_steps": 23,
+      "new_stage_updates": 2,
+      "cumulative_examples": 92,
+      "distinct_training_patients_exposed": 28,
+      "new_step_mean_losses": [
+        0.5022797733545303,
+        0.35798417031764984
+      ],
+      "new_step_gradient_l2": [
+        2.778040001777744,
+        2.454688845394252
+      ],
+      "adapter_sha256": "b1b5277209e1a4429ff06fbdfcbabe94aa7d47ac9db048b98e1829f8daf47ce3",
+      "receipt_sha256": "c48d01ced3171ba74bae899e510f75ee60291738ce6f80c5405a5b871dbca7d8",
+      "independent_audit_sha256": "85993e5721aff93a72ee037fe7609261123013b08f05a64cae5e7bd9d9b5c47c",
+      "review_approval_sha256": "db504ebe01694a9832fdb9fe35b58d00bdf32123dbdb73a768872387532eea0b",
+      "minimum_sampled_available_gib": 10.103073120117188,
+      "minimum_pressure_free_percent": 52.0,
+      "maximum_sampled_swap_gib": 9.57458984375,
+      "holds": 0,
+      "stops": 0,
+      "thermal": "SENSOR_UNAVAILABLE",
+      "science_claim": false
     }
   ],
   "completed_B28": false,
