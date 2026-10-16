@@ -18,7 +18,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-from mri_rl.mlx_gspo_smoke import _sha256
+from mri_rl.mlx_gspo_smoke import _sha256, load_system_prompt_file
 from mri_rl.vero_official_launch import DS_DOMAINS, expected_batch_counts
 
 
@@ -86,10 +86,15 @@ def build_schedule(records: Path, arm: str, groups: int, seed: int,
     return schedule, details
 
 
+def system_prompt_cli_args(path: Path | None) -> list[str]:
+    return ["--system-prompt-file", str(path)] if path is not None else []
+
+
 def run(model: Path, records: Path, output: Path, starting_adapter: Path,
         arm: str, groups: int = 8, group_size: int = 2, max_tokens: int = 256,
         seed: int = 7, specialist_category: str | None = None,
-        reward_profile: str = "direct_vero") -> dict:
+        reward_profile: str = "direct_vero",
+        system_prompt_file: Path | None = None) -> dict:
     private_root = Path(__file__).resolve().parents[2] / "local_data"
     if not output.resolve().is_relative_to(private_root):
         raise ValueError("Raw MRI rollouts and weights must stay under ignored local_data/")
@@ -97,8 +102,11 @@ def run(model: Path, records: Path, output: Path, starting_adapter: Path,
         raise FileNotFoundError("A common starting LoRA adapter is required")
     if not 2 <= group_size <= 8 or not 16 <= max_tokens <= 512:
         raise ValueError("Bounded group/response budget exceeded")
-    if reward_profile not in {"direct_vero", "scaled_smoke"}:
+    if reward_profile not in {"direct_vero", "scaled_smoke", "boxed_only_ablation",
+                              "single_box_anywhere_ablation"}:
         raise ValueError("Unknown reward profile")
+    system_prompt_sha = (load_system_prompt_file(system_prompt_file)[1]
+                         if system_prompt_file is not None else None)
     schedule, details = build_schedule(records, arm, groups, seed, specialist_category)
     output.mkdir(parents=True, exist_ok=True)
     (output / "schedule_private.jsonl").write_text(
@@ -117,7 +125,8 @@ def run(model: Path, records: Path, output: Path, starting_adapter: Path,
                "--group-size", str(group_size), "--max-tokens", str(max_tokens),
                "--max-groups", "1", "--seed", str(seed + index),
                "--reward-profile", reward_profile,
-               "--adapter-checkpoint", str(current_adapter)]
+               "--adapter-checkpoint", str(current_adapter),
+               *system_prompt_cli_args(system_prompt_file)]
         completed = subprocess.run(cmd, env=os.environ.copy(), text=True,
                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         (step_dir / "process_log_PRIVATE.txt").write_text(completed.stdout)
@@ -145,6 +154,9 @@ def run(model: Path, records: Path, output: Path, starting_adapter: Path,
         aggregate = {**details, "starting_adapter_sha256": starting_sha,
                      "rollouts_per_group": group_size, "max_response_tokens": max_tokens,
                      "reward_profile": reward_profile,
+                     "system_prompt_sha256": system_prompt_sha,
+                     "system_prompt_source": ("pinned_official" if system_prompt_sha
+                                              else "local_short"),
                      "completed_prompt_groups": len(results), "group_results": results,
                      "optimizer_steps": sum(r["optimizer_steps"] for r in results),
                      "actual_rollouts": sum(len(r["response_tokens"]) for r in results),
@@ -169,13 +181,17 @@ def main() -> None:
     parser.add_argument("--group-size", type=int, default=2)
     parser.add_argument("--max-tokens", type=int, default=256)
     parser.add_argument("--seed", type=int, default=7)
-    parser.add_argument("--reward-profile", choices=("direct_vero", "scaled_smoke"),
+    parser.add_argument("--reward-profile", choices=("direct_vero", "scaled_smoke",
+                                                     "boxed_only_ablation",
+                                                     "single_box_anywhere_ablation"),
                         default="direct_vero")
+    parser.add_argument("--system-prompt-file", type=Path)
     args = parser.parse_args()
     receipt = run(args.model.resolve(), args.records.resolve(), args.output.resolve(),
                   args.starting_adapter.resolve(), args.arm, args.groups,
                   args.group_size, args.max_tokens, args.seed,
-                  args.specialist_category, args.reward_profile)
+                  args.specialist_category, args.reward_profile,
+                  args.system_prompt_file.resolve() if args.system_prompt_file else None)
     print(json.dumps({key: value for key, value in receipt.items()
                       if key != "group_results"}, indent=2))
 

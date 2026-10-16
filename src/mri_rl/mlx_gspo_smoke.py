@@ -19,6 +19,7 @@ from mri_rl.vero_mri_reward import compute_score_from_data_source
 
 
 VERO_SHA = "025ca3c800fc95224c86323c1f7fd33dceed3090"
+OFFICIAL_SYSTEM_PROMPT_SHA256 = "3dc7c55d78ae580385b72b98d65317ceb2acc36874e4c00b4ad8ede787d6d7ad"
 DIRECT_VERO_MAX_RESPONSE = 18432
 DIRECT_VERO_OVERLONG_BUFFER = 2048
 ROUTE_SOURCES = {
@@ -42,7 +43,8 @@ def advantages_from_rewards(rewards: list[float], epsilon: float = 1e-6) -> list
 
 def overlong_penalty(response_tokens: int, max_tokens: int,
                      reward_profile: str) -> float:
-    if reward_profile == "direct_vero":
+    if reward_profile in {"direct_vero", "boxed_only_ablation",
+                          "single_box_anywhere_ablation"}:
         maximum, buffer = DIRECT_VERO_MAX_RESPONSE, DIRECT_VERO_OVERLONG_BUFFER
     elif reward_profile == "scaled_smoke":
         maximum, buffer = max_tokens, max_tokens // 2
@@ -52,7 +54,8 @@ def overlong_penalty(response_tokens: int, max_tokens: int,
 
 
 def reward_profile_metadata(reward_profile: str, max_tokens: int) -> dict:
-    if reward_profile == "direct_vero":
+    if reward_profile in {"direct_vero", "boxed_only_ablation",
+                          "single_box_anywhere_ablation"}:
         overlong = {"max_response_length": DIRECT_VERO_MAX_RESPONSE,
                     "buffer_length": DIRECT_VERO_OVERLONG_BUFFER}
     elif reward_profile == "scaled_smoke":
@@ -69,6 +72,19 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def load_system_prompt_file(
+    path: Path, expected_sha: str = OFFICIAL_SYSTEM_PROMPT_SHA256,
+) -> tuple[str, str]:
+    """Load only the exact system prompt from the pinned official Vero source."""
+    raw = path.read_bytes()
+    if not raw:
+        raise ValueError("Official system prompt file is empty")
+    digest = hashlib.sha256(raw).hexdigest()
+    if digest != expected_sha:
+        raise ValueError("Official system prompt SHA-256 does not match pinned Vero source")
+    return raw.decode("utf-8"), digest
 
 
 def _records_for_route(path: Path, reward_type: str, limit: int,
@@ -111,10 +127,14 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         template_override_path: Path | None = None,
         concise_prompt: bool = False, diverse_labels: bool = False,
         adapter_checkpoint: Path | None = None,
-        reward_profile: str = "scaled_smoke") -> dict:
+        reward_profile: str = "scaled_smoke",
+        system_prompt_file: Path | None = None) -> dict:
     private_root = Path(__file__).resolve().parents[2] / "local_data"
     if not output.resolve().is_relative_to(private_root):
         raise ValueError("Raw MRI rollouts and adapter weights must stay under ignored local_data/")
+    official_system_prompt, official_system_prompt_sha = (
+        load_system_prompt_file(system_prompt_file)
+        if system_prompt_file is not None else (None, None))
     import mlx.core as mx
     import mlx.nn as nn
     import mlx.optimizers as optim
@@ -127,7 +147,8 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
 
     if group_size < 2 or group_size > 8 or max_tokens < 16 or max_tokens > 512 or not 1 <= max_groups <= 3:
         raise ValueError("Bounded smoke requires group 2–8, response 16–512, and 1–3 groups")
-    if reward_profile not in {"direct_vero", "scaled_smoke"}:
+    if reward_profile not in {"direct_vero", "scaled_smoke", "boxed_only_ablation",
+                              "single_box_anywhere_ablation"}:
         raise ValueError("Unknown reward profile")
     if not model_path.is_dir():
         raise FileNotFoundError("Local Qwen3-VL checkpoint missing")
@@ -169,7 +190,8 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
     for group_index, row in enumerate(candidate_records):
         image = row["images"][0]
         question = row["extra_info"]["question"]
-        system_text = ("Use exactly this short format and no preamble: "
+        system_text = official_system_prompt if official_system_prompt is not None else (
+                       "Use exactly this short format and no preamble: "
                        "<think>one brief observation</think><answer>\\boxed{final answer}</answer>."
                        if concise_prompt else
                        "Respond using <think>brief visual reasoning</think><answer>\\boxed{final answer}</answer>.")
@@ -207,6 +229,8 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
                 data_source=row["data_source"], solution_str=result.text,
                 ground_truth=row["reward_model"]["ground_truth"],
                 extra_info=row["extra_info"], format_score=0.2,
+                allow_bare_boxed=reward_profile == "boxed_only_ablation",
+                single_box_anywhere=reward_profile == "single_box_anywhere_ablation",
             )
             penalty = overlong_penalty(len(tokens), max_tokens, reward_profile)
             grade["overlong"] = penalty
@@ -241,6 +265,9 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         **reward_profile_metadata(reward_profile, max_tokens),
         "template_override_sha256": (_sha256(template_override_path)
                                      if template_override_path else None),
+        "system_prompt_sha256": official_system_prompt_sha,
+        "system_prompt_source": ("pinned_official" if official_system_prompt_sha
+                                 else "local_short"),
         "starting_adapter_sha256": (_sha256(adapter_checkpoint)
                                     if adapter_checkpoint else None),
         "concise_prompt": concise_prompt, "diverse_labels": diverse_labels,
@@ -319,10 +346,13 @@ def main() -> None:
     parser.add_argument("--max-groups", type=int, default=3)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--template-override", type=Path)
+    parser.add_argument("--system-prompt-file", type=Path)
     parser.add_argument("--concise-prompt", action="store_true")
     parser.add_argument("--diverse-labels", action="store_true")
     parser.add_argument("--adapter-checkpoint", type=Path)
-    parser.add_argument("--reward-profile", choices=("direct_vero", "scaled_smoke"),
+    parser.add_argument("--reward-profile", choices=("direct_vero", "scaled_smoke",
+                                                     "boxed_only_ablation",
+                                                     "single_box_anywhere_ablation"),
                         default="scaled_smoke")
     args = parser.parse_args()
     result = run(args.model.resolve(), args.records.resolve(), args.output.resolve(),
@@ -330,7 +360,8 @@ def main() -> None:
                  args.template_override.resolve() if args.template_override else None,
                  args.concise_prompt, args.diverse_labels,
                  args.adapter_checkpoint.resolve() if args.adapter_checkpoint else None,
-                 args.reward_profile)
+                 args.reward_profile,
+                 args.system_prompt_file.resolve() if args.system_prompt_file else None)
     print(json.dumps({key: value for key, value in result.items()
                       if key not in {"attempts", "loss_terms"}}, indent=2))
 

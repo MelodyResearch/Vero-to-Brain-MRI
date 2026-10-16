@@ -15,6 +15,7 @@ _FORMAT = re.compile(
     re.DOTALL,
 )
 _BOXED = re.compile(r"\\boxed\{([^{}]+)\}")
+_TEXT_WRAPPER = re.compile(r"\\text\{([^{}]+)\}")
 _COORD = re.compile(r"\s*([+-]?\d+)\s*[, ]\s*([+-]?\d+)\s*")
 _GRID_LABELS = {f"{x}-{y}" for x in ("left", "center", "right")
                 for y in ("top", "middle", "bottom")}
@@ -39,9 +40,47 @@ def _answer_and_format(response: str) -> tuple[str, float]:
     return answer, 0.5
 
 
+def _single_box_anywhere_answer(response: str, route: str) -> str:
+    """Exploratory extraction of one boxed answer with route-specific grammar."""
+    if response.count(r"\boxed") != 1:
+        return ""
+    marker = r"\boxed{"
+    start = response.find(marker)
+    if start < 0:
+        return ""
+    depth = 1
+    end = None
+    for index in range(start + len(marker), len(response)):
+        if response[index] == "{":
+            depth += 1
+        elif response[index] == "}":
+            depth -= 1
+            if depth == 0:
+                end = index
+                break
+    if end is None:
+        return ""
+    answer = response[start + len(marker):end].strip()
+    wrapper = _TEXT_WRAPPER.fullmatch(answer)
+    if wrapper:
+        answer = wrapper.group(1).strip()
+    if route == "mri_centroid_2d":
+        return answer if _COORD.fullmatch(answer) else ""
+    allowed = {
+        "mri_dominance": {"anterior", "posterior"},
+        "mri_enhancing_presence": {"yes", "no"},
+        "mri_tumor_presence": {"yes", "no"},
+        "mri_sequence": {"flair", "contrast-enhanced t1"},
+        "mri_tumor_grid": _GRID_LABELS,
+    }.get(route, set())
+    return answer if answer.lower() in allowed else ""
+
+
 def compute_score_from_data_source(
     data_source: str, solution_str: str, ground_truth: str,
     extra_info: dict | None = None, format_score: float = 0.2,
+    allow_bare_boxed: bool = False,
+    single_box_anywhere: bool = False,
 ) -> dict[str, float]:
     """Return fail-closed verifiable task accuracy and Vero's 0.8/0.2 blend."""
     if data_source not in {"MSD_Task04_Hippocampus", "MSD_Task01_BrainTumour",
@@ -57,7 +96,15 @@ def compute_score_from_data_source(
         raise ValueError("Tumor reward route/source mismatch")
     if route in {"mri_sequence", "mri_tumor_presence"} and data_source != "OpenNeuro_ds007045":
         raise ValueError("ds007045 reward route/source mismatch")
-    answer, formatting = _answer_and_format(solution_str)
+    answer, formatting = ((
+        _single_box_anywhere_answer(solution_str, route), 0.0)
+        if single_box_anywhere else _answer_and_format(solution_str))
+    # Exploratory ablation: one bare boxed label may earn MRI accuracy, while
+    # its invalid Vero tag format still receives zero format reward.
+    if allow_bare_boxed and formatting == 0.0:
+        bare_box = _BOXED.fullmatch(solution_str.strip())
+        if bare_box:
+            answer = bare_box.group(1).strip()
     if route == "mri_centroid_2d":
         target = _COORD.fullmatch(ground_truth)
         if target is None:

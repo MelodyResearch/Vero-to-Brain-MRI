@@ -1,4 +1,5 @@
 import json
+import pytest
 
 from mri_rl.ds007045_train_adapter import convert_ds007045
 from mri_rl.mlx_sft_warmstart import _schedule_train_rows, _selected_train_rows
@@ -66,6 +67,14 @@ def test_patient_keyed_conversion_never_writes_heldout_gold(tmp_path):
                      "mri_tumor_grid"):
         assert len({next(r for r in step if r["ability"] == category)["extra_info"]["patient_key"]
                     for step in schedule}) == 4
+    full_schedule = _schedule_train_rows(out / "train.verl.jsonl", steps=28, seed=7)
+    assert len(full_schedule) == 28
+    for category in ("mri_sequence", "mri_tumor_presence", "mri_enhancing_presence",
+                     "mri_tumor_grid"):
+        assert len({next(r for r in step if r["ability"] == category)["extra_info"]["patient_key"]
+                    for step in full_schedule}) == 28
+    with pytest.raises(ValueError, match="1–28"):
+        _schedule_train_rows(out / "train.verl.jsonl", steps=29, seed=7)
     sampled = _records_for_route(out / "train.verl.jsonl", "mri_sequence", 3)
     assert len(sampled) == 3
     assert all(r["extra_info"]["patient_lineage"] == "BIDS_SUBJECT_VERIFIED"

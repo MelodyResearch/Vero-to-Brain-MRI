@@ -25,8 +25,8 @@ CATEGORIES = ("mri_sequence", "mri_tumor_presence",
 def _schedule_train_rows(path: Path, steps: int, seed: int) -> list[list[dict]]:
     if path.name != "train.verl.jsonl":
         raise ValueError("Warm-start accepts only internal train.verl.jsonl")
-    if not 1 <= steps <= 8:
-        raise ValueError("Bounded SFT supports 1–8 steps")
+    if not 1 <= steps <= 28:
+        raise ValueError("Bounded SFT supports 1–28 steps")
     rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
     by_category: dict[str, dict[str, list[dict]]] = {category: {} for category in CATEGORIES}
     for row in rows:

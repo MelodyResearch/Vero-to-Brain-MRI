@@ -74,6 +74,8 @@ def main() -> None:
     cli.add_argument("--sft", type=Path, help="Optional complete 107-row base-initialized SFT adapter outputs")
     cli.add_argument("--sft-before", type=Path, help="Required matched 4-bit LoRA before-update outputs when --sft is set")
     args = cli.parse_args()
+    if args.sft_before is not None and args.sft is None:
+        raise ValueError("--sft-before requires --sft")
     private = args.repo / "local_data"
     manifest_path = private / "frozen_eval_v1/ds007045_heldout_manifest.jsonl"
     manifest = rows(manifest_path)

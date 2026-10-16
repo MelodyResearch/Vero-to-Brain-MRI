@@ -110,6 +110,63 @@ def test_bare_boxed_answer_is_gated_by_official_format_rule():
         assert score["accuracy"] == score["format"] == score["score"] == 0.0
 
 
+def test_boxed_only_ablation_rewards_only_exact_bare_boxed_mri_label():
+    args = {"data_source": "MSD_Task01_BrainTumour", "ground_truth": "yes",
+            "extra_info": {"reward_type": "mri_enhancing_presence"},
+            "allow_bare_boxed": True}
+    correct = compute_score_from_data_source(solution_str=r" \boxed{yes} ", **args)
+    wrong = compute_score_from_data_source(solution_str=r"\boxed{no}", **args)
+    prose = compute_score_from_data_source(solution_str=r"The answer is \boxed{yes}", **args)
+    assert correct == {"score": 0.8, "accuracy": 1.0, "format": 0.0}
+    assert wrong == prose == {"score": 0.0, "accuracy": 0.0, "format": 0.0}
+    assert compute_score_from_data_source(
+        solution_str=r"\boxed{yes}",
+        data_source=args["data_source"], ground_truth=args["ground_truth"],
+        extra_info=args["extra_info"],
+    )["score"] == 0.0
+
+
+def test_boxed_only_ablation_preserves_direct_overlong_parameters():
+    assert overlong_penalty(512, 512, "boxed_only_ablation") == 0.0
+    assert reward_profile_metadata("boxed_only_ablation", 512) == {
+        "reward_profile": "boxed_only_ablation",
+        "overlong_config": {"max_response_length": 18432, "buffer_length": 2048},
+    }
+
+
+def test_single_box_anywhere_ablation_extracts_only_allowed_label():
+    args = {"data_source": "OpenNeuro_ds007045", "ground_truth": "FLAIR",
+            "extra_info": {"reward_type": "mri_sequence"},
+            "single_box_anywhere": True}
+    correct = compute_score_from_data_source(
+        solution_str=r"Visible MRI features suggest FLAIR. $\boxed{\text{FLAIR}}$", **args)
+    wrong = compute_score_from_data_source(
+        solution_str=r"I infer \boxed{contrast-enhanced T1}.", **args)
+    assert correct == {"score": 0.8, "accuracy": 1.0, "format": 0.0}
+    assert wrong == {"score": 0.0, "accuracy": 0.0, "format": 0.0}
+    for response in (
+        r"\boxed{FLAIR} or \boxed{contrast-enhanced T1}",
+        r"The scan is \boxed{T2}",
+        r"The scan is \boxed{FLAIR",
+        r"No box: FLAIR",
+    ):
+        assert compute_score_from_data_source(solution_str=response, **args) == {
+            "score": 0.0, "accuracy": 0.0, "format": 0.0}
+    assert compute_score_from_data_source(
+        solution_str=r"Visible MRI features suggest FLAIR. $\boxed{\text{FLAIR}}$",
+        data_source=args["data_source"], ground_truth=args["ground_truth"],
+        extra_info=args["extra_info"],
+    )["score"] == 0.0
+
+
+def test_single_box_anywhere_ablation_keeps_fixed_direct_overlong():
+    assert overlong_penalty(512, 512, "single_box_anywhere_ablation") == 0.0
+    assert reward_profile_metadata("single_box_anywhere_ablation", 512) == {
+        "reward_profile": "single_box_anywhere_ablation",
+        "overlong_config": {"max_response_length": 18432, "buffer_length": 2048},
+    }
+
+
 def test_direct_vero_format_gate_rejects_prefix_and_empty_reasoning():
     args = {"data_source": "MSD_Task01_BrainTumour", "ground_truth": "yes",
             "extra_info": {"reward_type": "mri_enhancing_presence"}}
