@@ -6,7 +6,7 @@ import pytest
 
 from mri_rl.vero_mri_reward import compute_score_from_data_source
 from mri_rl.vero_official_launch import build_launch, expected_batch_counts
-from mri_rl.mlx_gspo_smoke import advantages_from_rewards
+from mri_rl.mlx_gspo_smoke import _records_for_route, advantages_from_rewards
 from mri_rl.vero_train_adapter import convert_jsonl
 
 
@@ -99,6 +99,30 @@ def test_mlx_smoke_group_advantages_match_pinned_sample_std():
     values = advantages_from_rewards([0.0, 1.0], epsilon=0.0)
     assert values == pytest.approx([-1 / 2**0.5, 1 / 2**0.5])
     assert advantages_from_rewards([0.2, 0.2]) == [0.0, 0.0]
+
+
+def test_bare_boxed_answer_is_gated_by_official_format_rule():
+    args = {"data_source": "MSD_Task01_BrainTumour", "ground_truth": "yes",
+            "extra_info": {"reward_type": "mri_enhancing_presence"}}
+    for response in (r"\boxed{yes}", r"\boxed{no}"):
+        score = compute_score_from_data_source(solution_str=response, **args)
+        assert score["accuracy"] == score["format"] == score["score"] == 0.0
+
+
+def test_smoke_diverse_labels_are_prespecified(tmp_path):
+    path = tmp_path / "records.jsonl"
+    rows = []
+    for index, label in enumerate(("yes", "yes", "yes", "no", "no")):
+        image = tmp_path / f"image_{index}.png"
+        image.write_bytes(b"image")
+        rows.append({"id": f"case_{index}", "data_source": "MSD_Task01_BrainTumour",
+                     "images": [str(image)], "reward_model": {"ground_truth": label},
+                     "extra_info": {"reward_type": "mri_enhancing_presence",
+                                    "patient_lineage": "UNVERIFIED"}})
+    path.write_text("".join(json.dumps(row) + "\n" for row in rows))
+    selected = _records_for_route(path, "mri_enhancing_presence", 3,
+                                  diverse_labels=True)
+    assert [row["id"] for row in selected] == ["case_0", "case_3", "case_1"]
 
 
 def test_combined_task01_routes_and_mixture_weights(tmp_path):

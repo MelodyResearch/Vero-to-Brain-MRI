@@ -22,13 +22,27 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def adapter_metadata(adapter_checkpoint: Path | None) -> dict:
+    if adapter_checkpoint is None:
+        return {"adapter_checkpoint_sha256": None, "adapter_config_sha256": None}
+    if not adapter_checkpoint.is_file() or adapter_checkpoint.suffix != ".safetensors":
+        raise FileNotFoundError("MLX LoRA adapter checkpoint missing")
+    config = adapter_checkpoint.parent / "adapter_config.json"
+    if not config.is_file():
+        raise FileNotFoundError("MLX LoRA adapter config missing")
+    return {"adapter_checkpoint_sha256": sha256(adapter_checkpoint),
+            "adapter_config_sha256": sha256(config)}
+
+
 def run(model_path: Path, manifest_path: Path, output_path: Path, max_tokens: int = 64,
-        template_override_path: Path | None = None) -> None:
+        template_override_path: Path | None = None,
+        adapter_checkpoint: Path | None = None) -> None:
     from mlx_vlm import generate, load
     from mlx_vlm.prompt_utils import apply_chat_template
 
     if not model_path.is_dir():
         raise FileNotFoundError(model_path)
+    adapter_receipt = adapter_metadata(adapter_checkpoint)
     records = [json.loads(line) for line in manifest_path.read_text().splitlines() if line.strip()]
     if not records:
         raise ValueError("empty manifest")
@@ -37,6 +51,26 @@ def run(model_path: Path, manifest_path: Path, output_path: Path, max_tokens: in
             raise ValueError("missing image or prompt")
 
     model, processor = load(str(model_path))
+    verified_adapter_parameters = None
+    if adapter_checkpoint is not None:
+        import mlx.core as mx
+        from mlx.utils import tree_flatten
+        from mlx_vlm.trainer.common.model import prepare_model_for_training
+
+        model = prepare_model_for_training(
+            model, train_type="lora", quantization_bits=4,
+            quantization_group_size=64, checkpoint_path=adapter_checkpoint,
+            verbose=False,
+        )
+        saved = mx.load(str(adapter_checkpoint))
+        loaded = dict(tree_flatten(model.trainable_parameters()))
+        if set(saved) != set(loaded) or not loaded:
+            raise ValueError("Loaded LoRA keys differ from checkpoint")
+        for key, value in loaded.items():
+            if value.shape != saved[key].shape or not bool(mx.all(value == saved[key]).item()):
+                raise ValueError("Loaded LoRA weights differ from checkpoint")
+        verified_adapter_parameters = len(loaded)
+        model.eval()
     template_override = None
     if template_override_path is not None:
         raw_template = template_override_path.read_text()
@@ -67,6 +101,8 @@ def run(model_path: Path, manifest_path: Path, output_path: Path, max_tokens: in
                 "model_config_sha256": sha256(model_path / "config.json"),
                 "model_template_sha256": sha256(model_path / "chat_template.json") if (model_path / "chat_template.json").exists() else (sha256(model_path / "chat_template.jinja") if (model_path / "chat_template.jinja").exists() else None),
                 "template_override_sha256": sha256(template_override_path) if template_override_path else None,
+                **adapter_receipt,
+                "adapter_verified_parameter_tensors": verified_adapter_parameters,
                 "manifest_sha256": sha256(manifest_path),
                 "prompt": record["prompt"],
                 "image_placeholder_count": image_placeholders,
@@ -88,8 +124,10 @@ def main() -> None:
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--max-tokens", type=int, default=64)
     parser.add_argument("--template-override", type=Path)
+    parser.add_argument("--adapter-checkpoint", type=Path)
     args = parser.parse_args()
-    run(args.model, args.manifest, args.output, args.max_tokens, args.template_override)
+    run(args.model, args.manifest, args.output, args.max_tokens,
+        args.template_override, args.adapter_checkpoint)
 
 
 if __name__ == "__main__":

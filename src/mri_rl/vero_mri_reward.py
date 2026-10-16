@@ -33,15 +33,19 @@ def compute_score_from_data_source(
     extra_info: dict | None = None, format_score: float = 0.2,
 ) -> dict[str, float]:
     """Return fail-closed verifiable task accuracy and Vero's 0.8/0.2 blend."""
-    if data_source not in {"MSD_Task04_Hippocampus", "MSD_Task01_BrainTumour"} or not isinstance(extra_info, dict):
+    if data_source not in {"MSD_Task04_Hippocampus", "MSD_Task01_BrainTumour",
+                           "OpenNeuro_ds007045"} or not isinstance(extra_info, dict):
         raise ValueError("Unsupported source or missing reward metadata")
     if not 0 <= format_score <= 1:
         raise ValueError("format_score outside [0,1]")
     route = extra_info.get("reward_type")
     if route in {"mri_centroid_2d", "mri_dominance"} and data_source != "MSD_Task04_Hippocampus":
         raise ValueError("Task04 reward route/source mismatch")
-    if route in {"mri_enhancing_presence", "mri_tumor_grid"} and data_source != "MSD_Task01_BrainTumour":
-        raise ValueError("Task01 reward route/source mismatch")
+    if route in {"mri_enhancing_presence", "mri_tumor_grid"} and data_source not in {
+            "MSD_Task01_BrainTumour", "OpenNeuro_ds007045"}:
+        raise ValueError("Tumor reward route/source mismatch")
+    if route in {"mri_sequence", "mri_tumor_presence"} and data_source != "OpenNeuro_ds007045":
+        raise ValueError("ds007045 reward route/source mismatch")
     answer, formatting = _answer_and_format(solution_str)
     if route == "mri_centroid_2d":
         target = _COORD.fullmatch(ground_truth)
@@ -59,13 +63,23 @@ def compute_score_from_data_source(
         accuracy = float(answer.lower() == ground_truth)
         distance = None
     elif route == "mri_enhancing_presence":
-        if data_source != "MSD_Task01_BrainTumour" or ground_truth not in {"yes", "no"}:
+        if ground_truth not in {"yes", "no"}:
             raise ValueError("Malformed enhancing-presence target or source")
         accuracy = float(answer.lower() == ground_truth)
         distance = None
+    elif route == "mri_tumor_presence":
+        if ground_truth not in {"yes", "no"}:
+            raise ValueError("Malformed tumor-presence target")
+        accuracy = float(answer.lower() == ground_truth)
+        distance = None
+    elif route == "mri_sequence":
+        if ground_truth not in {"FLAIR", "contrast-enhanced T1"}:
+            raise ValueError("Malformed MRI sequence target")
+        accuracy = float(answer.lower() == ground_truth.lower())
+        distance = None
     elif route == "mri_tumor_grid":
-        if data_source != "MSD_Task01_BrainTumour" or ground_truth not in _GRID_LABELS:
-            raise ValueError("Malformed tumor-grid target or source")
+        if ground_truth not in _GRID_LABELS:
+            raise ValueError("Malformed tumor-grid target")
         accuracy = float(answer.lower() == ground_truth)
         distance = None
     else:
