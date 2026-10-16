@@ -1,5 +1,7 @@
 # Execution record — 2026-10-15
 
+**Historical first-pilot snapshot.** The two-subject counts and `MODEL_INFERENCE: NOT_RUN` statements below describe the original checkpoint and are superseded by the current [README](../README.md), [Vero-to-MRI research contract](../research/VERO_TO_MRI_PRIMARY_EXECUTION_CONTRACT.md), [multi-task data audits](../data/MULTITASK_MRI_DATA_TAXONOMY.md), and [real frozen-model diagnostic](FROZEN_MODEL_DIAGNOSTIC.md). Preserve this record as chronology, not current status.
+
 ## Verified execution
 
 - **SOURCE_AUDITED:** A project-local Norman-style reading skill and protocol were validated; 11 specified medical/MRI papers plus Vero and BrainTRACE received individual primary-source audits. Three PDF-size gaps were resolved by exact-version local PDF inspection. Independent novelty, statistical and authenticated Claude Code reviews are archived; the Claude review's PDF/code limits are explicit. These are literature findings, not reproduced model outcomes.

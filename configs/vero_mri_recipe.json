@@ -1,0 +1,42 @@
+{
+  "status": "NOT_RUN",
+  "purpose": "Vero-style MRI multi-task method transfer contract, not an executed trainer",
+  "source_paper": "https://arxiv.org/html/2604.04917v3",
+  "source_code": "https://github.com/zlab-princeton/vero",
+  "source_code_revision": "UNVERIFIED",
+  "starting_checkpoint": null,
+  "data_revision": null,
+  "categories": [
+    "anatomy",
+    "spatial_grounding",
+    "quantitative",
+    "longitudinal",
+    "open_ended"
+  ],
+  "routes": {
+    "anatomy": "exact_match",
+    "spatial_grounding": "grounding_2d",
+    "quantitative": "numeric",
+    "longitudinal": "longitudinal_direction",
+    "open_ended": "open_ended_judge"
+  },
+  "sampling": {
+    "policy": "equal_category_counts",
+    "replacement": true,
+    "patient_level_grouping": "REQUIRED_BEFORE_TRAINING"
+  },
+  "group_size": 8,
+  "clip_low": 0.0003,
+  "clip_high": 0.0004,
+  "kl_coefficient": 0.0,
+  "accuracy_weight": 0.8,
+  "format_weight": 0.2,
+  "max_tokens": 4096,
+  "overlong_buffer": 2048,
+  "overlong_strength": 1.0,
+  "steps": null,
+  "batch_size": null,
+  "model_inference": "NOT_RUN",
+  "rl_weight_updates": "NOT_RUN",
+  "training_gate": "BLOCKED_ON_VALIDATED_MRI_TASK_TARGETS_INDEPENDENT_JUDGE_CHECKPOINT_AND_GPU"
+}
