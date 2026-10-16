@@ -19,6 +19,10 @@ def standardized_advantage(values: list[float], epsilon: float = 0.0) -> tuple[l
         raise ValueError("Group needs at least two finite rewards")
     if not math.isfinite(epsilon) or epsilon < 0:
         raise ValueError("epsilon must be finite and nonnegative")
+    # Check equality before mean/variance: [0.1] * 3 has a nonzero computed
+    # variance in binary floating point despite every reward being identical.
+    if min(values) == max(values):
+        return [0.0] * len(values), False
     mean = sum(values) / len(values)
     variance = sum((v - mean) ** 2 for v in values) / len(values)
     if variance == 0:
@@ -39,13 +43,17 @@ def replay_groups(groups: list[dict], epsilon: float = 0.0) -> dict:
     """Compare content rewards, affine scaling, logistic scaling and format mix.
 
     The affine transform is the declared 2*x+5 demonstration. Logistic is
-    MedGRPO Eq. 3 with k=3 and caller-supplied training-derived p50/IQR.
+    MedGRPO Eq. 3 with k=3 and caller-supplied p50/IQR. Groups with one
+    calibration_key (default: task) must share statistics. For a real replay,
+    provide a distinct dataset/task key and training-derived statistics.
     Format mix is Vero's 0.8 content + 0.2 format, independently applied.
-    It omits overlong penalty, KL, clipping, and optimizer effects.
+    It omits overlong penalty, KL, clipping, and optimizer effects. Effective
+    shares count groups, not rollouts, tokens, or gradient magnitude.
     """
     if not groups:
         raise ValueError("Need at least one group")
     seen = set()
+    calibrations = {}
     output = []
     for group in groups:
         group_id = group["id"]
@@ -63,6 +71,13 @@ def replay_groups(groups: list[dict], epsilon: float = 0.0) -> dict:
             raise ValueError("Rewards and calibration statistics must be finite")
         if iqr <= 0:
             raise ValueError("IQR must be positive")
+        calibration_key = group.get("calibration_key", task)
+        if not isinstance(calibration_key, str) or not calibration_key:
+            raise ValueError("calibration_key must be a nonempty string")
+        stats = (p50, iqr)
+        if calibration_key in calibrations and calibrations[calibration_key] != stats:
+            raise ValueError("Inconsistent calibration statistics within calibration_key")
+        calibrations[calibration_key] = stats
         if any(x < 0 or x > 1 for x in fmt):
             raise ValueError("Format reward must be in [0,1]")
         content_rewards = {
@@ -86,9 +101,15 @@ def replay_groups(groups: list[dict], epsilon: float = 0.0) -> dict:
     for scheme in scheme_names:
         active = Counter(row["task"] for row in output if row["schemes"][scheme]["active"])
         active_count = sum(active.values())
+        content_scheme = scheme.removesuffix("_format")
+        content_active = sum(row["schemes"][content_scheme]["active"] for row in output)
+        format_only_active = sum(row["schemes"][scheme]["active"] and
+                                 not row["schemes"][content_scheme]["active"] for row in output)
         summary[scheme] = {
             "groups": len(output),
             "active_groups": active_count,
+            "content_active_groups": content_active,
+            "format_only_active_groups": format_only_active,
             "zero_variance_groups": len(output) - active_count,
             "nominal_share": {task: count / len(output) for task, count in sorted(nominal.items())},
             "active_share": {task: (active[task] / active_count if active_count else 0.0)

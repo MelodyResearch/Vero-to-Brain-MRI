@@ -25,15 +25,21 @@ def _hash_file(path: Path) -> str:
 
 
 def load_verified_cohort(root: Path) -> dict:
-    """Load local T1 and FLAIR, verify bytes, and form 12 T1 pairs."""
+    """Load local T1 and FLAIR, verify bytes, and form all available T1 pairs."""
     data_root = root / "local_data/ds004856"
     pilot = json.loads((root / "local_data/ds004856_evidence/private_receipt.json").read_text())
-    expanded = json.loads((root / "local_data/dallas_expansion_private_receipt.json").read_text())
     raw = list(pilot["records"])
-    for person in expanded["records"]:
-        for image in person["images"]:
-            raw.append({"subject": person["subject"], "session": Path(image["relative_path"]).parts[1],
-                        "modality": "T1", **image})
+    for receipt_name in ("dallas_expansion_private_receipt.json", "dallas_second_batch_private_receipt.json"):
+        receipt_path = root / "local_data" / receipt_name
+        if not receipt_path.exists():
+            continue
+        expanded = json.loads(receipt_path.read_text())
+        for person in expanded["records"]:
+            for image in person["images"]:
+                raw.append({"subject": person["subject"], "session": Path(image["relative_path"]).parts[1],
+                            "modality": "T1", **image})
+    if len({x["relative_path"] for x in raw}) != len(raw):
+        raise ValueError("Duplicate source image across private receipts")
     scans = []
     for item in raw:
         rel = item["relative_path"]

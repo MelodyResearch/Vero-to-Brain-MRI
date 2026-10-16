@@ -6,16 +6,15 @@ Independent research inspired by Princeton's [Vero](https://github.com/zlab-prin
 
 | Gate | State | Evidence |
 |---|---|---|
-| Dallas ds004856 real MRI ingestion | VERIFIED_CPU | 2 subjects, 4 sessions, 8 checksum-matched NIfTI volumes; `data/SUBJECT_STUDY_LINEAGE.md` |
-| SGMRI-VQA public QA metadata | SOURCE_AUDITED | Official card and file-tree audit in `data/DATASET_ACCESS_AND_LICENSE_AUDIT.md` |
-| SGMRI-VQA image-linked QA and patient splits | DATA_BLOCKED | Official listing lacks promised image archives; source images require fastMRI agreement; no patient-disjoint lineage verified |
-| BrainTRACE longitudinal image evaluation | DATA_BLOCKED | Public benchmark is test-only; MR-RATE volumes require upstream access |
-| Geometry, image integrity, 2D frame IoU, task rewards, sampling, report code | IMPLEMENTED, TESTED_CPU | `src/mri_rl/`; `pytest` |
-| Qwen3-VL vs matched Vero inference | NOT_RUN, GPU_BLOCKED | Dallas image access now verified, but the two-subject pilot is not an eligible evaluation cohort and no authorized GPU endpoint was found |
-| RL model weight updates / transfer matrix | NOT_RUN | No eligible multi-task training set or authorized training compute |
-| Scientific hypothesis or method validation | NOT_RUN | No model outcomes exist |
+| Dallas ds004856 real MRI ingestion | `DATA_VERIFIED` | 20 people, 40 sessions, 44 source-hash-matched volumes: 40 paired T1 and 4 FLAIR; [cohort audit](data/DALLAS_EXPANSION_AUDIT.md) |
+| Paired T1 registration and image QC | `TESTED_CPU` | 20/20 provisional numeric passes; 1 artifact hold, 19 not certified; [registration audit](data/LONGITUDINAL_QC_RESULTS.md) |
+| Real-image verifier challenges | `TESTED_CPU` | 20/20 correct-pair provenance passes; unregistered grids still pass the coarse gate in 2/20; all biological change claims abstain; [challenge report](results/VERIFIER_CHALLENGE_RESULTS.md) |
+| Image-only identity retrieval | `TESTED_CPU` | Spatial T1 match 8/20 versus nonspatial intensity summary 10/20; [shortcut audit](results/IDENTITY_BASELINE_RESULTS.md) |
+| Reward/optimizer replay | `TESTED_CPU`, fixture only | Exact-affine, nonlinear calibration, ties and format-only gradients; [replay report](results/REWARD_REPLAY_RESULTS.md) |
+| Qwen3-VL versus matched Vero MRI inference | `NOT_RUN` | A local MLX GPU self-test succeeded outside the sandbox; no image-evaluation-eligible biological-change set exists. Checkpoint acquisition/runtime parity is being audited. |
+| Multi-task RL and scientific/clinical validation | `NOT_RUN` | No two independently validated MRI rewards, held-out cohort or trained weights. |
 
-The local machine is an M3 Pro with 36 GB unified memory. It supports CPU integrity checks; this repository makes no claim about GPU inference or RL training performance. Claude Code was authenticated and provided an independent source-limited critique, summarized in `reviews/CLAUDE_INDEPENDENT_CRITIQUE.md`. Other independent reviewers examined prior art, imaging, data, and statistical design.
+The local machine is an M3 Pro with 36 GB unified memory. MRI payloads and patient-linked receipts remain ignored locally. Authenticated Claude Code completed an independent aggregate scientific critique and a code-only reward review; neither received subject-linked data. The [source audit](data/INDEPENDENT_REFERENCE_SOURCE_AUDIT.md) identifies a restricted-registration MIRIAD scan–rescan route for measuring noise before training. The project remains active; passing data and engineering gates is not evidence of Vero transfer.
 
 ## Working CPU path
 
@@ -34,7 +33,7 @@ PYTHONPATH=src python -m mri_rl.dallas_pilot --images-root local_data/ds004856 -
 
 ## Research path
 
-The project-local [paper-reading protocol](research/methodology/NORMAN_PAPER_READING_PROTOCOL.md) and [13 primary-paper audits](research/paper_reading/) reconstruct research choices, check claims against full texts and reported tables, and propose falsifying MRI experiments. The [independent Claude review](research/paper_reading/CLAUDE_INDEPENDENT_METHOD_REVIEW_RAW.md) is archived with its source-access limits; cross-paper conclusions reconcile it with the PDF audits. This is our own adaptation of the three-layer reading method, not the original external Norman skill.
+The project-local [paper-reading protocol](research/methodology/NORMAN_PAPER_READING_PROTOCOL.md) and [13 primary-paper audits](research/paper_reading/) reconstruct research choices, check claims against full texts and reported tables, and propose falsifying MRI experiments. The [independent Claude review](research/paper_reading/CLAUDE_INDEPENDENT_METHOD_REVIEW_RAW.md) is archived with its source-access limits; cross-paper conclusions reconcile it with the PDF audits. The installed global `$norman-paper-reading` skill and the retained project-local adaptation informed these reviews; the global skill was not reinstalled or overwritten.
 
 1. Expand the real Dallas MRI cohort with subject-first splits and acquisition/QC checks. Use image-only versus metadata, blank-image and shuffled-image controls. Keep FreeSurfer-derived change targets indeterminate until a defensible repeatability threshold is frozen.
 2. Obtain approved fastMRI source images if pursuing SGMRI-VQA, then link to public QA rows and audit every frame, box and subject split. Freeze an eligible held-out set before matched Qwen3-VL and Vero inference with the same rendered evidence and decoding budget.

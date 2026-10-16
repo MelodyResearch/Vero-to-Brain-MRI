@@ -90,11 +90,12 @@ def test_patient_level_challenge_uses_real_registration_results(cohort):
     if not path.exists():
         pytest.skip("Registration QC receipt absent")
     output = run_challenge(cohort, path)
-    assert output["subjects"] == 12
-    assert output["scenarios"]["correct_pair"]["provenance_accept"] == 12
-    assert output["scenarios"]["correct_pair"]["change_not_evaluable"] == 12
-    assert output["scenarios"]["wrong_person"]["provenance_reject"] == 12
-    assert output["scenarios"]["flipped_header"]["provenance_reject"] == 12
+    assert output["subjects"] == 20
+    assert output["scenarios"]["correct_pair"]["provenance_accept"] == 20
+    assert output["scenarios"]["correct_pair"]["change_not_evaluable"] == 20
+    assert output["scenarios"]["correct_pair"]["image_hold"] == 1
+    assert output["scenarios"]["wrong_person"]["provenance_reject"] == 20
+    assert output["scenarios"]["flipped_header"]["provenance_reject"] == 20
     assert output["scenarios"]["pixel_lr_flip"]["provenance_reject"] == 1
-    assert output["scenarios"]["unsupported_measurement"]["change_reject"] == 12
-    assert output["scenarios"]["below_repeatability_fixture"]["change_not_evaluable"] == 12
+    assert output["scenarios"]["unsupported_measurement"]["change_reject"] == 20
+    assert output["scenarios"]["below_repeatability_fixture"]["change_not_evaluable"] == 20

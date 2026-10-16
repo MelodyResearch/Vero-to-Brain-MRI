@@ -7,7 +7,7 @@ name = "longitudinal-brainmri-verifiable-rl"
 version = "0.1.0"
 description = "Auditable feasibility path for verifiable brain MRI reasoning"
 requires-python = ">=3.11"
-dependencies = ["numpy>=2.0", "Pillow>=10", "nibabel>=5.0"]
+dependencies = ["numpy>=2.0", "Pillow>=10", "nibabel>=5.0", "scipy>=1.11"]
 
 [project.optional-dependencies]
 test = ["pytest>=8"]

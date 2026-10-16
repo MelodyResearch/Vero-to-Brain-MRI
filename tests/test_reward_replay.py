@@ -20,6 +20,12 @@ def test_zero_variance_group_stays_inactive():
     assert active is False
 
 
+def test_equal_nonbinary_floats_do_not_create_false_gradient():
+    advantages, active = standardized_advantage([0.1, 0.1, 0.1])
+    assert active is False
+    assert advantages == [0.0, 0.0, 0.0]
+
+
 def test_epsilon_weakens_affine_invariance_at_small_reward_scale():
     raw, _ = standardized_advantage([0.0, 1.0], epsilon=0.5)
     scaled, _ = standardized_advantage([0.0, 2.0], epsilon=0.5)
@@ -57,6 +63,20 @@ def test_format_can_activate_all_wrong_group_without_content_signal():
     assert row["schemes"]["raw"]["active"] is False
     assert row["schemes"]["raw_format"]["active"] is True
     assert all(value == 0 for value in row["schemes"]["raw"]["rewards"])
+    summary = replay["summary"]["raw_format"]
+    assert summary["content_active_groups"] == 3
+    assert summary["format_only_active_groups"] == 1
+
+
+def test_calibration_must_be_shared_within_declared_key():
+    groups = [
+        {"id": "a", "task": "spatial", "content": [0, 1], "format": [1, 1], "p50": 0.5, "iqr": 0.5},
+        {"id": "b", "task": "spatial", "content": [0, 1], "format": [1, 1], "p50": 0.6, "iqr": 0.5},
+    ]
+    with pytest.raises(ValueError, match="calibration"):
+        replay_groups(groups)
+    groups[1]["calibration_key"] = "other-dataset/spatial"
+    replay_groups(groups)
 
 
 def test_constant_output_probe_exposes_prevalence_shortcut():
