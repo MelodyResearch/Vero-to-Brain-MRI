@@ -106,6 +106,7 @@ All rows below are **REPRODUCED / PASS_WITH_LIMITATIONS**, based on primary priv
 | Newly completed steps | Cumulative cursor | Per-step mean losses | Per-step gradient L2 | Changed finite tensors per step | Strict final reload accuracy/format/reward | Resource observations |
 | --- | --- | --- | --- | --- | --- | --- |
 | 4–5 | 20 | 6.711098671 / 6.355120540 | 8.701938941 / 9.788064628 | 504 / 504 | 0 / 0 / 0 | 22 decisions, no HOLD; min available 8.65620 GiB, min pressure-free 47%; swap 6.82092 → max 7.89313 → end 7.86188 GiB |
+| 6–7 | 28 | 6.131338596 / 5.590974331 | 11.241118678 / 11.608965319 | 504 / 504 | 0 / 0 / 0 | 22 decisions, no HOLD; min available 8.80391 GiB, min pressure-free 49%; swap 7.47906 → max 7.87671 → end 7.79858 GiB |
 <!-- ENGINEERING_STAGE_ROWS -->
 
 Stage 4–5 saves verified intermediate cursor 16 and final cursor 20, with distinct changed adapter hashes and complete 1,011-tensor state payloads. Final adapter SHA-256: `89694d04924c1327f638a7ca9b622c5f3c96aa3c6fc894115de0946b03f8767b`. Final optimizer payload SHA-256: `836d1b1169b32ba76f3b6603fb0209fede25ef37b6cbd489d6aaaa59ca583eb6`. Full per-step hashes and CPU results are in `overnight_resume_review_v1/postrun_step005_independent_verification.json`. Float64 aggregate adapter delta L2 is 0.31993798362058434. All 22 resource decisions reproduce; final-generation telemetry is present, AC/100% battery and no competing heavyweight process were recorded, and thermal telemetry remains unavailable.
@@ -117,3 +118,17 @@ Stage 4–5 saves verified intermediate cursor 16 and final cursor 20, with dist
 Approval: `overnight_resume_review_v1/approval_step007.json`; digest **`b0b3a84f085b0644a9b955902bb6dcc65b26025c08dcf511f711ab0de398e40c`**. Launcher: `launch_step007.py`; parent `balanced_sft_resume_step005_v1`, output `balanced_sft_resume_step007_v1`, explicit `steps=2`. Stage-range hash `ce76d33200c94211daf2afb73fe854df89b1388d41f72d1766f660db33625bf9`; cumulative prefix hash `26f042cd472af22209da87322b5b5962131dcd9886bed2612bcedf5793d489e5`. No step 8 or subsequent stage is authorized. This remains B_LABEL_CONTROL / ENGINEERING_UNBLOCK under the covenant.
 
 A minor inherited explanatory string in earlier approval metadata said “cumulative8” after scopes expanded; actual machine-enforced prefix counts/hashes and launch budgets were correct. The new approval text now derives that explanatory count from its exact scope. Prior approvals and executed evidence are preserved unchanged.
+
+Step 6–7 private audit: `overnight_resume_review_v1/postrun_step007_independent_verification.json`. Both boundaries and actual prefixes pass, at cursors 24 and 28. Final adapter SHA-256 `e5f444649ccb865e49d9e29f35d6cdd30968112d429b44ae3bc12db1f9002a68`; final optimizer payload SHA-256 `60c6f993e3c65d435a6c479a65ddf6ee411886034c96c2d5f5b4c9548369b7c1`. No code changes or scientific-success claims accompany this result.
+
+
+## Later scoped approvals
+
+Each row is **PASS_WITH_LIMITATIONS** for only the named new updates and one sequential final reload/generation (<=256 tokens). Each separately authored approval binds unchanged implementation hashes, parent artifacts, independent audit, actual schedule range/cumulative prefix and post-run stability samples. Actual static preflight and launcher budget assertions pass. Live resource gates remain mandatory; further stages require separate review. These remain B_LABEL_CONTROL / ENGINEERING_UNBLOCK, with no approval for the new evaluation helper, C training or RL.
+
+| New updates | Starting → ending cursor | Output / private approval | Independently supplied approval SHA-256 | Post-run stability supporting scope |
+| --- | --- | --- | --- | --- |
+| 8–9 | 28 → 36 | `balanced_sft_resume_step009_v1` / `approval_step009.json` | `fa54a27f03d67b68466e14a54fdbe1aadeb698de6c589bdd3a0c0e2edb3741b7` | Two samples 36.34 seconds apart; swap 7.79858 → 7.79077 GiB; available 14.14900 → 13.9044 GiB, pressure-free 68 → 69%; AC/100%, competing model workers 0 |
+<!-- ENGINEERING_APPROVAL_ROWS -->
+
+Step 8–9 launcher `overnight_resume_review_v1/launch_step009.py` explicitly requests two updates from step007. Approval remains conditional on the same conservative gates; no step10 is approved. The separately developed evaluation helper is outside these twelve bound training sources and has not been reviewed or authorized by this approval.
