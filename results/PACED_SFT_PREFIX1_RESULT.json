@@ -1,0 +1,69 @@
+{
+  "status": "SFT_ENGINEERING_CONTROL",
+  "experiment_contract_id": "babad5d1ab01a36aa5ffb04f86096f3efab10011876a9014fcd6d52689119517",
+  "review_sha256": "3413e06b3205b779af66b9d2e19eaf60faf0d27d6783838ec8d2a192a6d57a54",
+  "starting_adapter_sha256": "502084c8a1394fdffd765741b9b0fbfcb6720268dfe7671c20d7a67dc5f86088",
+  "after_adapter_sha256": "1c7c27bd4c4a902026334d49c88eb8d602678ab517880823d92c614e3de12c04",
+  "adapter_config_sha256": "032becabb7cbb6d2af6f3451eb127e5f944551d42eb51eaee3e8d75b839b2f6a",
+  "optimizer_steps": 1,
+  "executed_prefix_sha256": "a27b301f679be9126101144c3ba39d2f369ed88abf165b6f8a639247a9a12bbf",
+  "executed_prefix_examples": 4,
+  "schedule_sha256": "2e5d6bcb55cfb949035986fa8e65debdf13013badb04c275d195fd96be661f67",
+  "completed_control_28steps": false,
+  "changed_tensors": 252,
+  "adapter_tensor_count": 504,
+  "parameters_finite": true,
+  "parameter_delta_l2": 0.07449211645171108,
+  "checkpoint_reloaded": true,
+  "exact_resume_supported": false,
+  "continuous_single_process_optimizer": true,
+  "science_claim": false,
+  "run_name": "balanced_sft_prefix1_paced_v3",
+  "loss_terms": [
+    6.120268821716309,
+    6.87427282333374,
+    6.954374313354492,
+    7.041138172149658
+  ],
+  "mean_loss": 6.74751353263855,
+  "gradient_l2": 8.834030061690534,
+  "actual_exposure": {
+    "mri_sequence": {
+      "contrast-enhanced T1": 1
+    },
+    "mri_tumor_presence": {
+      "yes": 1
+    },
+    "mri_enhancing_presence": {
+      "yes": 1
+    },
+    "mri_tumor_grid": {
+      "left-middle": 1
+    }
+  },
+  "patients_exposed": 4,
+  "fresh_reload_strict_reward": {
+    "score": 0.0,
+    "accuracy": 0.0,
+    "format": 0.0
+  },
+  "reload_is_training_image": true,
+  "new_heldout_evaluation": false,
+  "resource_boundary_samples": 13,
+  "resource_actions": [
+    "CONTINUE"
+  ],
+  "boundary_min_available_gib": 9.414794921875,
+  "boundary_min_pressure_free_percent": 48.0,
+  "boundary_max_swap_gib": 0.8930078125,
+  "mlx_reported_peak_before_reload_generation_gib": 11.476442934945226,
+  "thermal": "SENSOR_UNAVAILABLE",
+  "resource_scope": "safe-boundary samples; no telemetry after final reload generation",
+  "private_receipt_sha256": "9555c7de240599776e4f1adf6703fd57f2873bb56d19d1840b067d37ffdd6bbc",
+  "reload_receipt_sha256": "0239ad1c85a8886eddc3eac9fe8e262c606f55128de54e9e96cc4f7c523a6915",
+  "optimizer_manifest_sha256": "428da3cfb8edf31566d478e10f753550dec800062c3a6ed53df262f2ed34a5c5",
+  "default_cpu_tests": {
+    "passed": 180,
+    "skipped": 1
+  }
+}

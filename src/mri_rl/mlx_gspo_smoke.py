@@ -7,6 +7,7 @@ small and fail-closed: a zero-variance reward group produces no update.
 
 from __future__ import annotations
 
+
 import argparse
 import gc
 import hashlib

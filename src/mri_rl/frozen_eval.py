@@ -6,6 +6,7 @@ must be produced separately after checking source and patient lineage.
 
 from __future__ import annotations
 
+
 import argparse
 import hashlib
 import json

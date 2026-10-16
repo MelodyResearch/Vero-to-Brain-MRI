@@ -20,3 +20,8 @@ local_data/
 restricted_data/
 checkpoints/
 results/private/
+
+# Local working notes and crash/system evidence
+work/
+*.panic
+*.ips

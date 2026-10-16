@@ -208,12 +208,14 @@ def test_runner_gate_failure_precedes_model_load_and_output(tmp_path, monkeypatc
     monkeypatch.setattr(sft_module, "load_contract", lambda path: SimpleNamespace(
         generation={"max_tokens": 256, "temperature": 0.0}))
     monkeypatch.setattr(sft_module, "require_launch_preflight", battery_block)
+    monkeypatch.setattr(sft_module, "_schedule_train_rows", lambda *args: [])
     monkeypatch.setattr(multiarm_module, "load_contract", lambda path:
                         SimpleNamespace(system_instruction="test system"))
     monkeypatch.setattr(multiarm_module, "require_launch_preflight", dynamic_block)
     try:
         run_sft(tmp_path / "missing_model", tmp_path / "missing_records",
-                tmp_path / "sft_output", contract_path=tmp_path / "contract")
+                tmp_path / "sft_output", contract_path=tmp_path / "contract",
+                dev_records=tmp_path / "dev")
     except ValueError as exc:
         assert "battery reports discharging" in str(exc)
     else:

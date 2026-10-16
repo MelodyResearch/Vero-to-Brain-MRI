@@ -15,6 +15,7 @@ from mri_rl.mlx_gspo_smoke import _sha256
 
 @pytest.fixture
 def arm_fixture(monkeypatch):
+    # Simulated subprocess receipts only; no native runtime is imported.
     private_root = Path(module.__file__).resolve().parents[2] / "local_data"
     with tempfile.TemporaryDirectory(dir=private_root) as directory:
         root = Path(directory)

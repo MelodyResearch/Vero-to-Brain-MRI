@@ -398,7 +398,9 @@ def review_scope(*, contract_path: Path, execution_tier: str, phase: str,
     """
     root = Path(__file__).resolve().parents[2]
     sources = ("experiment_contract.py", "vero_mri_reward.py", "mlx_gspo_smoke.py",
-               "mlx_sft_warmstart.py", "mlx_multiarm_train.py", "resource_supervisor.py")
+               "mlx_sft_warmstart.py", "mlx_multiarm_train.py", "resource_supervisor.py",
+               "sft_evidence.py", "frozen_eval.py", "ds007045_internal_dev_eval.py",
+               "paced_resources.py", "optimizer_checkpoint.py")
     contract = load_contract(contract_path)
     return {
         "execution_policy": EXECUTION_POLICY,
@@ -408,6 +410,9 @@ def review_scope(*, contract_path: Path, execution_tier: str, phase: str,
         "generation": contract.generation,
         "starting_adapter_sha256": (sha256_file(expected_starting_adapter)
                                      if expected_starting_adapter is not None else None),
+        "starting_adapter_config_sha256": (sha256_file(expected_starting_adapter.parent / "adapter_config.json")
+            if expected_starting_adapter is not None and
+            (expected_starting_adapter.parent / "adapter_config.json").is_file() else None),
         "dynamic_receipt_sha256": (sha256_file(dynamic_receipt_path)
                                     if dynamic_receipt_path is not None else None),
         "source_sha256": {name: sha256_file(root / "src" / "mri_rl" / name)
@@ -522,6 +527,15 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
     if dynamic_receipt_path is None:
         raise ValueError("Continuation requires verified real-model dynamic receipt")
     dynamic = json.loads(dynamic_receipt_path.read_text())
+    if dynamic.get("kind") == "supervised_control_v1":
+        if execution_tier != "C" or launch_configuration.get("runner") != "mlx_sft_warmstart":
+            raise ValueError("Supervised evidence cannot authorize RL training")
+        from mri_rl.sft_evidence import verify_supervised_evidence
+        verify_supervised_evidence(dynamic, contract=contract, train=train,
+                                   starting_adapter=expected_starting_adapter,
+                                   configuration=launch_configuration, budget=launch_budget,
+                                   private_root=private_root)
+        return contract.identity()
     if dynamic.get("contract_id") != contract.identity():
         raise ValueError("Dynamic diagnostic contract mismatch")
     required_true = ("actual_model_generation", "real_mri_image_verified",
