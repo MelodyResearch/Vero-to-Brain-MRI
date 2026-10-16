@@ -10,7 +10,10 @@ import math
 import re
 
 
-_FORMAT = re.compile(r"<think>(?:(?!<think>|</think>).)+</think>\s*<answer>(.*?)</answer>\s*\Z", re.DOTALL)
+_FORMAT = re.compile(
+    r"<think>(?P<think>(?:(?!<think>|</think>).)*)</think>\s*<answer>(?P<answer>.*?)</answer>\s*\Z",
+    re.DOTALL,
+)
 _BOXED = re.compile(r"\\boxed\{([^{}]+)\}")
 _COORD = re.compile(r"\s*([+-]?\d+)\s*[, ]\s*([+-]?\d+)\s*")
 _GRID_LABELS = {f"{x}-{y}" for x in ("left", "center", "right")
@@ -18,13 +21,18 @@ _GRID_LABELS = {f"{x}-{y}" for x in ("left", "center", "right")
 
 
 def _answer_and_format(response: str) -> tuple[str, float]:
-    match = _FORMAT.search(response)
-    if not match:
+    # Mirror pinned Vero's full-match tag gate and nonempty think/answer checks.
+    match = _FORMAT.fullmatch(response)
+    if not match or not match.group("think").strip():
         return "", 0.0
-    answer = match.group(1).strip()
+    answer = match.group("answer").strip()
+    if not answer:
+        return "", 0.0
     boxes = _BOXED.findall(answer)
-    if len(boxes) == 1:
+    if len(boxes) == 1 and boxes[0].strip():
         return boxes[0].strip(), 1.0
+    if len(boxes) > 1:
+        return boxes[-1].strip(), 0.5
     return answer, 0.5
 
 

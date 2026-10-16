@@ -19,6 +19,8 @@ from mri_rl.vero_mri_reward import compute_score_from_data_source
 
 
 VERO_SHA = "025ca3c800fc95224c86323c1f7fd33dceed3090"
+DIRECT_VERO_MAX_RESPONSE = 18432
+DIRECT_VERO_OVERLONG_BUFFER = 2048
 ROUTE_SOURCES = {
     "mri_centroid_2d": {"MSD_Task04_Hippocampus"},
     "mri_dominance": {"MSD_Task04_Hippocampus"},
@@ -36,6 +38,29 @@ def advantages_from_rewards(rewards: list[float], epsilon: float = 1e-6) -> list
     mean = sum(rewards) / len(rewards)
     std = math.sqrt(sum((x - mean) ** 2 for x in rewards) / (len(rewards) - 1))
     return [(x - mean) / (std + epsilon) for x in rewards]
+
+
+def overlong_penalty(response_tokens: int, max_tokens: int,
+                     reward_profile: str) -> float:
+    if reward_profile == "direct_vero":
+        maximum, buffer = DIRECT_VERO_MAX_RESPONSE, DIRECT_VERO_OVERLONG_BUFFER
+    elif reward_profile == "scaled_smoke":
+        maximum, buffer = max_tokens, max_tokens // 2
+    else:
+        raise ValueError("Unknown overlong reward profile")
+    return min(-(response_tokens - (maximum - buffer)) / buffer, 0.0)
+
+
+def reward_profile_metadata(reward_profile: str, max_tokens: int) -> dict:
+    if reward_profile == "direct_vero":
+        overlong = {"max_response_length": DIRECT_VERO_MAX_RESPONSE,
+                    "buffer_length": DIRECT_VERO_OVERLONG_BUFFER}
+    elif reward_profile == "scaled_smoke":
+        overlong = {"max_response_length": max_tokens,
+                    "buffer_length": max_tokens // 2}
+    else:
+        raise ValueError("Unknown reward profile")
+    return {"reward_profile": reward_profile, "overlong_config": overlong}
 
 
 def _sha256(path: Path) -> str:
@@ -85,7 +110,8 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         max_tokens: int, seed: int, max_groups: int = 3,
         template_override_path: Path | None = None,
         concise_prompt: bool = False, diverse_labels: bool = False,
-        adapter_checkpoint: Path | None = None) -> dict:
+        adapter_checkpoint: Path | None = None,
+        reward_profile: str = "scaled_smoke") -> dict:
     private_root = Path(__file__).resolve().parents[2] / "local_data"
     if not output.resolve().is_relative_to(private_root):
         raise ValueError("Raw MRI rollouts and adapter weights must stay under ignored local_data/")
@@ -101,6 +127,8 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
 
     if group_size < 2 or group_size > 8 or max_tokens < 16 or max_tokens > 512 or not 1 <= max_groups <= 3:
         raise ValueError("Bounded smoke requires group 2–8, response 16–512, and 1–3 groups")
+    if reward_profile not in {"direct_vero", "scaled_smoke"}:
+        raise ValueError("Unknown reward profile")
     if not model_path.is_dir():
         raise FileNotFoundError("Local Qwen3-VL checkpoint missing")
     if adapter_checkpoint is not None and not adapter_checkpoint.is_file():
@@ -180,9 +208,7 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
                 ground_truth=row["reward_model"]["ground_truth"],
                 extra_info=row["extra_info"], format_score=0.2,
             )
-            # Small-response scaling of the official last-buffer overlong ramp.
-            buffer = max_tokens // 2
-            penalty = min(-(len(tokens) - (max_tokens - buffer)) / buffer, 0.0)
+            penalty = overlong_penalty(len(tokens), max_tokens, reward_profile)
             grade["overlong"] = penalty
             grade["total"] = grade["score"] + penalty
             candidates.append({"tokens": tokens, "text": result.text, "reward": grade})
@@ -212,6 +238,7 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         "implementation": "MLX independent LoRA port of pinned GSPO-token loss; not official veRL",
         "model_path_name": model_path.name, "image_source": row["data_source"],
         "reward_type": route, "group_size": group_size,
+        **reward_profile_metadata(reward_profile, max_tokens),
         "template_override_sha256": (_sha256(template_override_path)
                                      if template_override_path else None),
         "starting_adapter_sha256": (_sha256(adapter_checkpoint)
@@ -295,12 +322,15 @@ def main() -> None:
     parser.add_argument("--concise-prompt", action="store_true")
     parser.add_argument("--diverse-labels", action="store_true")
     parser.add_argument("--adapter-checkpoint", type=Path)
+    parser.add_argument("--reward-profile", choices=("direct_vero", "scaled_smoke"),
+                        default="scaled_smoke")
     args = parser.parse_args()
     result = run(args.model.resolve(), args.records.resolve(), args.output.resolve(),
                  args.route, args.group_size, args.max_tokens, args.seed, args.max_groups,
                  args.template_override.resolve() if args.template_override else None,
                  args.concise_prompt, args.diverse_labels,
-                 args.adapter_checkpoint.resolve() if args.adapter_checkpoint else None)
+                 args.adapter_checkpoint.resolve() if args.adapter_checkpoint else None,
+                 args.reward_profile)
     print(json.dumps({key: value for key, value in result.items()
                       if key not in {"attempts", "loss_terms"}}, indent=2))
 

@@ -6,7 +6,8 @@ import pytest
 
 from mri_rl.vero_mri_reward import compute_score_from_data_source
 from mri_rl.vero_official_launch import build_launch, expected_batch_counts
-from mri_rl.mlx_gspo_smoke import _records_for_route, advantages_from_rewards
+from mri_rl.mlx_gspo_smoke import (_records_for_route, advantages_from_rewards,
+                                    overlong_penalty, reward_profile_metadata)
 from mri_rl.vero_train_adapter import convert_jsonl
 
 
@@ -107,6 +108,33 @@ def test_bare_boxed_answer_is_gated_by_official_format_rule():
     for response in (r"\boxed{yes}", r"\boxed{no}"):
         score = compute_score_from_data_source(solution_str=response, **args)
         assert score["accuracy"] == score["format"] == score["score"] == 0.0
+
+
+def test_direct_vero_format_gate_rejects_prefix_and_empty_reasoning():
+    args = {"data_source": "MSD_Task01_BrainTumour", "ground_truth": "yes",
+            "extra_info": {"reward_type": "mri_enhancing_presence"}}
+    for response in (
+        "Preamble <think>image.</think><answer>\\boxed{yes}</answer>",
+        "<think>  </think><answer>\\boxed{yes}</answer>",
+    ):
+        score = compute_score_from_data_source(solution_str=response, **args)
+        assert score["accuracy"] == score["format"] == score["score"] == 0.0
+    boxed = compute_score_from_data_source(
+        solution_str="<think>visible.</think><answer>\\boxed{yes}</answer>", **args)
+    assert boxed["accuracy"] == boxed["format"] == 1.0
+    no_box = compute_score_from_data_source(
+        solution_str="<think>visible.</think><answer>yes</answer>", **args)
+    assert no_box["accuracy"] == 1.0 and no_box["format"] == 0.5
+
+
+def test_direct_vero_overlong_profile_is_inactive_under_local_cap():
+    assert overlong_penalty(512, 512, "direct_vero") == 0.0
+    assert overlong_penalty(512, 512, "scaled_smoke") == -1.0
+    assert overlong_penalty(362, 512, "scaled_smoke") == -0.4140625
+    assert reward_profile_metadata("direct_vero", 512) == {
+        "reward_profile": "direct_vero",
+        "overlong_config": {"max_response_length": 18432, "buffer_length": 2048},
+    }
 
 
 def test_smoke_diverse_labels_are_prespecified(tmp_path):
