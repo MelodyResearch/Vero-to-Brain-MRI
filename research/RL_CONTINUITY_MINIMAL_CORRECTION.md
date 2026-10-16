@@ -1,6 +1,6 @@
 # Minimal correction for continuous local GSPO optimization
 
-**Status:** `PROPOSED` correction, **not implemented or launched**. Review tag: `ENGINEERING_UNBLOCK`. Reviewer: independent Codex method/statistics agent. `CROSS_MODEL_REVIEW=NOT_VERIFIED` for private/local interfaces. The genuine Claude review covered public upstream source only and does not approve this correction. This document preserves the historical one-update experiments and does not alter B or C.
+**Original design status:** `PROPOSED` correction at the time of the review below. **2026-10-16 update:** a separately versioned implementation now has CPU and tiny native fixture evidence plus scoped independent `PASS_WITH_LIMITATIONS`; see [implementation](../results/CONTINUOUS_RL_IMPLEMENTATION.md) and [independent review](../results/CONTINUOUS_RL_INDEPENDENT_ENGINEERING_REVIEW.md). Real-Qwen integration and MRI RL remain `NOT_VERIFIED` / `NOT_RUN`. The dated design evidence below is preserved. Review tag: `ENGINEERING_UNBLOCK`. Reviewer: independent Codex method/statistics agent. `CROSS_MODEL_REVIEW=NOT_VERIFIED` for private/local interfaces. The genuine Claude review covered public upstream source only and does not approve this correction. This document preserves the historical one-update experiments and does not alter B or C.
 
 ## Mission alignment
 
