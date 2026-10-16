@@ -163,7 +163,7 @@ def score_outputs(manifest_path: Path, gold_path: Path, outputs_path: Path) -> d
             target["extra_info"], format_score=0.2)
         bucket = buckets[row["category"]]
         bucket["rows"] += 1
-        bucket["format_valid"] += grade["format"] > 0
+        bucket["format_valid"] += grade["format"] == 1
         bucket["accuracy_correct"] += grade["accuracy"] > 0
         bucket["reward_sum"] += grade["score"]
         patient_scores[target["patient_key"]].append(grade["accuracy"])

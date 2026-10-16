@@ -19,7 +19,7 @@ def test_macos_parsers_and_unavailable_sensors():
                              "Pages free: 100000.\nPages inactive: 200000.\n"
                              "Pages speculative: 100000.") == 400000 * 16384 / 1024**3
     assert _swap_used_gib("vm.swapusage: total = 32.00G  used = 30569.00M  free = 1.00G") == 30569 / 1024
-    assert _power("Now drawing from 'AC Power'\n -InternalBattery-0 98%; discharging") == ("AC", 98)
+    assert _power("Now drawing from 'AC Power'\n -InternalBattery-0 98%; discharging") == ("BATTERY", 98)
     assert _thermal("CPU_Speed_Limit = 75") == "THROTTLED"
     assert _thermal("No thermal warning level has been recorded") == "SENSOR_UNAVAILABLE"
 

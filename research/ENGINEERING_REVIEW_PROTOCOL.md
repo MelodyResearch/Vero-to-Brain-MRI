@@ -1,20 +1,31 @@
-# Independent engineering review before substantial MRI training
+# Independent engineering review and scoped execution
 
-The project lead (Codex) implements data, prompts, rewards, SFT/GSPO, model runs and receipts. A separate Claude Code review is required for substantial new training **when the exact code/data payload is permitted by the approval controls**. Review code and raw permitted receipts before the lead's preferred diagnosis wherever possible. Never interpret a code-review pass as validation of MRI scientific generalization.
+Policy version: `mri-execution-tiers-v1`. Codex implements and executes. A separate reviewer inspects source and permitted raw evidence before seeing the implementer's preferred diagnosis where feasible. Claude Code is a desired independent reviewer when authenticated and the exact payload is permitted. The researcher's 2026-10-15 correction explicitly permits an isolated Codex reviewer for local work when Claude is unavailable. A review pass never establishes MRI scientific generalization.
 
-## Required cycle
+## Execution tiers
 
-1. Codex freezes a versioned experiment contract and produces the source diff, tests, deidentified or permitted data-lineage audit, exact model/adapter hashes, a bounded real-image rollout receipt, and resource sample.
-2. Independent reviewer checks image/label and patient integrity; SFT/inference/RL prompt and token boundaries; strict parser/reward decomposition; GSPO old/current log probabilities, advantages and gradient flow; checkpoint reload; fair budgets; and visual shortcut controls. Record a concrete failure example or unverified point.
-3. Codex fixes verified defects with a failing-then-passing regression test. The reviewer verifies the corrected artifact, rather than approving a summary of the fix.
-4. The review verdict is one of `PASS`, `PASS_WITH_LIMITATIONS`, `FAIL`, or `NOT_VERIFIED`, scoped to a named contract and component. `FAIL` blocks the affected training job. `NOT_VERIFIED` cannot authorize a substantial job. A bounded diagnostic may run to obtain the missing evidence if its data/resource gates pass and its result is labeled exploratory.
-5. A substantial SFT/RL launch requires the reviewed contract, static data/prompt/reward checks, an actual image-conditioned group with task-reward variance, finite task-related gradients, changed adapter bytes and checkpoint reload, plus adequate AC power and memory. If one gate fails, continue other CPU/data/scientific work.
+| Tier | Scope | Required evidence and approval |
+| --- | --- | --- |
+| A | CPU tests, image/data audits, reward replay, statistics | Reproducible automated static checks. No Claude requirement; battery power does not block CPU work. The Tier A result never authorizes a model launcher. |
+| B diagnostic | First bounded real-image model diagnostic | Exact static data/prompt/reward contract, positive and negative parser tests, safe AC/memory/thermal preflight, separate approval bound to current code/config/starting adapter/budget. At most one optimizer update, three groups, eight total rollouts and 512 response tokens per rollout. A previous update receipt is intentionally not required. |
+| B continuation | Bounded continuation after a diagnostic | All B gates plus independently reviewed raw on-policy generations, strict-format correct/incorrect answers within the selected group, task accuracy variation, finite nonzero gradient, changed adapter bytes and fresh reload inference. At most three updates, three groups, eight total rollouts and 512 tokens. |
+| C | Substantial or confirmatory training | Reproducible dynamic evidence plus explicit independent authorization for the exact finite budget, matched comparison checks, acceptance criteria, resources and patient/data validity. No unconditional Claude-only block; use a permitted explicitly authorized independent reviewer and accurately record identity. |
 
-## Sharing and reviewer identity
+The initial B diagnostic must enforce task variation and finite gradients internally before updating, then verify actual changed weights and checkpoint reload. A zero-variance or nonfinite-gradient result authorizes no expansion. Strict format alone and length-only reward differences do not satisfy task-reward variation. Increase generation diversity or change training-only eligible tasks only with recorded justification and a newly bound review.
 
-A prior attempt to send the unpublished ds007045 design to third-party Claude was **rejected by automatic approval review** before execution. Do not retry that denied payload through a different route or attribute any result to Claude. An isolated Codex agent can perform an accurately labeled interim review, but the Claude verdict remains `NOT_VERIFIED` for that payload until an allowed review channel is available. Source code, aggregate findings and non-patient test fixtures may be considered separately only through applicable approval controls; denial of a specific payload is not permission to disguise it.
+## Required cycle and approval provenance
 
-On 2026-10-15 this task's `claude auth status` returned `loggedIn: false`. The researcher had reported a sign-in earlier, but this CLI environment cannot currently authenticate Claude Code. No new Claude request was run in this cycle. Authentication and the payload approval must both be resolved before attributing a new verdict to Claude.
+1. Codex freezes the contract, source, run configuration, output destination, exact starting adapter and finite budget, then runs preliminary CPU tests.
+2. A separate reviewer directly inspects those artifacts, identifies defects and scientific limits, and writes an approval under ignored `local_data`. Its verdict is `PASS`, `PASS_WITH_LIMITATIONS`, `FAIL`, or `NOT_VERIFIED`. Limited approval names the precise limits. `FAIL` and `NOT_VERIFIED` cannot authorize affected model work.
+3. Codex fixes verified defects and adds meaningful regression cases; reviewer verifies corrections. Disagreements are retained and resolved through reproducible tests.
+4. The reviewer independently sends the SHA-256 of their authored approval through the orchestration message. The launcher receives that expected digest separately from the candidate file. The approval binds `review_scope(...)`: execution policy, contract ID, source hashes, generation config, tier/phase, budget, launch configuration, starting adapter and (for continuation) dynamic receipt hash. Changes invalidate approval.
+5. Launch rechecks actual static data/prompt/reward/resource gates and, for expansion, recomputes strict raw-output rewards, selected-group task variation, adapter bytes and checkpoint reload linkage before loading a model.
+
+This is a trusted orchestration boundary, not cryptographic reviewer identity against a process controlled by the same OS user. A reviewer-name field alone is insufficient; an implementer computing a digest from their own purported approval is not independent review. Unit fixtures exercise acceptance/rejection branches and are never scientific receipts. Unrelated CPU/data work continues if a model gate fails.
+
+## Sharing and historical reviewer status
+
+An earlier attempt to send unpublished ds007045 design material to Claude was rejected by automatic approval review before execution. Do not evade that denied sharing route or attribute a local review to Claude. Only independently permitted payloads can be considered separately. The prior `claude auth status` check reported `loggedIn: false`; later checks must record their actual result. External authentication or sharing limitations do not block separately authorized local Tier B review.
 
 ## Current audit ledger
 

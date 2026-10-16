@@ -21,6 +21,7 @@ from mri_rl.vero_mri_reward import compute_score_from_data_source
 
 
 VERSION = "mri-prompt-reward-v1"
+EXECUTION_POLICY = "mri-execution-tiers-v1"
 QWEN_BASE_REVISION = "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
 STRICT_PARSER = "vero_mri_reward.strict_tags_boxed_v1"
 STRICT_GRAMMAR = "<think>nonempty</think><answer>\\boxed{one answer}</answer>"
@@ -334,7 +335,8 @@ def check_resource(sample: ResourceSample) -> list[str]:
 
 
 def preflight(contract_path: Path, train: Path, dev: Path,
-              artifacts: dict[str, Path], sample: ResourceSample | None = None) -> dict:
+              artifacts: dict[str, Path], sample: ResourceSample | None = None, *,
+              require_model_resources: bool = True) -> dict:
     contract = load_contract(contract_path)
     failures = check_artifacts(contract, artifacts)
     data = check_data(contract, train, dev)
@@ -360,9 +362,10 @@ def preflight(contract_path: Path, train: Path, dev: Path,
             if "<|image_pad|>" not in rendered:
                 failures.append("rendered prompt lacks MRI image placeholder")
     resource = sample if sample is not None else sample_macos()
-    failures.extend(check_resource(resource))
+    if require_model_resources:
+        failures.extend(check_resource(resource))
     battery_status_conflict = False
-    if sample is None:
+    if sample is None and require_model_resources:
         try:
             battery_text = subprocess.run(["pmset", "-g", "batt"], capture_output=True,
                                           text=True, timeout=2, check=False).stdout.lower()
@@ -383,6 +386,57 @@ def preflight(contract_path: Path, train: Path, dev: Path,
             "checkpoint reload reproduces saved weights"]}
 
 
+def review_scope(*, contract_path: Path, execution_tier: str, phase: str,
+                 launch_budget: dict[str, int], expected_starting_adapter: Path | None,
+                 dynamic_receipt_path: Path | None = None,
+                 launch_configuration: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Binding the independent reviewer must inspect, author, and send by digest.
+
+    The caller obtains the approval digest from the reviewer message, not from
+    the candidate approval file. This is a trusted orchestration boundary, not
+    cryptographic authentication against another process owned by the same user.
+    """
+    root = Path(__file__).resolve().parents[2]
+    sources = ("experiment_contract.py", "vero_mri_reward.py", "mlx_gspo_smoke.py",
+               "mlx_sft_warmstart.py", "mlx_multiarm_train.py", "resource_supervisor.py")
+    contract = load_contract(contract_path)
+    return {
+        "execution_policy": EXECUTION_POLICY,
+        "contract_id": contract.identity(), "execution_tier": execution_tier,
+        "phase": phase, "launch_budget": launch_budget,
+        "launch_configuration": launch_configuration,
+        "generation": contract.generation,
+        "starting_adapter_sha256": (sha256_file(expected_starting_adapter)
+                                     if expected_starting_adapter is not None else None),
+        "dynamic_receipt_sha256": (sha256_file(dynamic_receipt_path)
+                                    if dynamic_receipt_path is not None else None),
+        "source_sha256": {name: sha256_file(root / "src" / "mri_rl" / name)
+                          for name in sources},
+    }
+
+
+def _check_review(*, review_verdict_path: Path | None, expected_review_sha256: str | None,
+                  scope: dict[str, Any]) -> None:
+    if (review_verdict_path is None or not review_verdict_path.is_file() or
+            not expected_review_sha256 or
+            sha256_file(review_verdict_path) != expected_review_sha256):
+        raise ValueError("NOT_VERIFIED: independently supplied review digest missing or mismatched")
+    verdict = json.loads(review_verdict_path.read_text())
+    if verdict.get("verdict") not in {"PASS", "PASS_WITH_LIMITATIONS"}:
+        raise ValueError("Independent review did not authorize this configuration")
+    if any(verdict.get(key) != value for key, value in scope.items()):
+        raise ValueError("Independent review scope is stale or mismatches code, contract, adapter, or budget")
+    if (verdict.get("reviewer_kind") not in {"isolated_codex", "claude_code"} or
+            not verdict.get("reviewer_id") or not verdict.get("reviewer_findings")):
+        raise ValueError("Independent reviewer identity/findings missing")
+    if verdict["verdict"] == "PASS_WITH_LIMITATIONS" and not verdict.get("limitations"):
+        raise ValueError("Limited approval requires explicit limitations")
+    if scope["execution_tier"] == "C":
+        if (verdict.get("substantial_training_authorized") is not True or
+                not verdict.get("acceptance_criteria") or not verdict.get("matched_budget_checks")):
+            raise ValueError("Tier C needs explicit substantial approval, acceptance criteria and matched budgets")
+
+
 def require_launch_preflight(*, contract_path: Path | None, train: Path,
                              dev: Path | None, model_path: Path,
                              dynamic_receipt_path: Path | None,
@@ -390,17 +444,30 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
                              expected_system: str,
                              expected_max_tokens: int | None = None,
                              expected_reward_profile: str = "direct_vero",
-                             expected_starting_adapter: Path | None = None) -> str:
-    """Mandatory gate for substantial jobs; call before any MLX import/load.
+                             expected_starting_adapter: Path | None = None,
+                             execution_tier: str = "C", phase: str = "continuation",
+                             launch_budget: dict[str, int] | None = None,
+                             expected_review_sha256: str | None = None,
+                             expected_temperature: float | None = None,
+                             launch_configuration: dict[str, Any] | None = None) -> str:
+    """Verify exact tier before model loading; Tier A authorizes CPU work only.
 
-    Receipt declarations are checked against hashes and referenced files, but
-    scientific authenticity still requires the independent human/agent review.
+    Tier B diagnostic resolves the bootstrap dependency: static safety and an
+    actual independent approval permit at most one attempted update. The runner
+    must enforce task variance/finite gradients and verify save/reload itself.
+    Continuation requires reviewed dynamic receipts from that diagnostic.
     """
-    if contract_path is None or dev is None or dynamic_receipt_path is None or review_verdict_path is None:
-        raise ValueError("Private contract, dev split, dynamic receipt, and independent verdict are required")
+    if contract_path is None or dev is None:
+        raise ValueError("Private contract and dev split are required")
+    if execution_tier not in {"A", "B", "C"}:
+        raise ValueError("Unknown execution tier")
+    if (execution_tier == "A" and phase != "cpu") or (execution_tier != "A" and phase not in {"diagnostic", "continuation"}):
+        raise ValueError("Invalid execution tier/phase")
+    if execution_tier == "C" and phase != "continuation":
+        raise ValueError("Tier C requires independently verified prior dynamic evidence")
     private_root = Path(__file__).resolve().parents[2] / "local_data"
     for path in (contract_path, dynamic_receipt_path, review_verdict_path):
-        if not path.resolve().is_relative_to(private_root):
+        if path is not None and not path.resolve().is_relative_to(private_root):
             raise ValueError("Contract and evidence must stay under ignored local_data")
     contract = load_contract(contract_path)
     if contract.system_instruction != expected_system:
@@ -409,6 +476,27 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
         raise ValueError("Training reward profile differs from versioned contract")
     if expected_max_tokens is not None and contract.generation["max_tokens"] != expected_max_tokens:
         raise ValueError("Training max_tokens differs from versioned contract")
+    if expected_temperature is not None and contract.generation["temperature"] != expected_temperature:
+        raise ValueError("Training temperature differs from versioned contract")
+    if execution_tier != "A":
+        if not isinstance(launch_configuration, dict) or not launch_configuration.get("runner"):
+            raise ValueError("Exact launcher configuration is required")
+        required_budget = {"optimizer_steps", "max_groups", "rollouts_per_group", "max_tokens"}
+        if (not isinstance(launch_budget, dict) or set(launch_budget) != required_budget or
+                any(type(value) is not int or value < 1 for value in launch_budget.values())):
+            raise ValueError("Explicit positive integer launch budget is required")
+        if launch_budget["max_tokens"] != contract.generation["max_tokens"]:
+            raise ValueError("Launch token budget differs from contract")
+        if execution_tier == "B":
+            step_limit = 1 if phase == "diagnostic" else 3
+            if (launch_budget["optimizer_steps"] > step_limit or launch_budget["max_groups"] > 3 or
+                    launch_budget["max_groups"] * launch_budget["rollouts_per_group"] > 8 or
+                    launch_budget["rollouts_per_group"] < 2 or launch_budget["max_tokens"] > 512):
+                raise ValueError("Tier B exceeds bounded diagnostic/continuation budget")
+        if phase == "diagnostic" and dynamic_receipt_path is not None:
+            raise ValueError("First diagnostic must not depend on a prior dynamic receipt")
+        if expected_starting_adapter is None or not expected_starting_adapter.is_file():
+            raise ValueError("Exact starting adapter file is required for model launch")
     paths = resolve_artifact_paths(contract_path)
     for name, filename in (("model_config", "config.json"),
                            ("processor_config", "preprocessor_config.json"),
@@ -416,9 +504,23 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
                            ("chat_template", "chat_template.json")):
         if paths[name].resolve() != (model_path / filename).resolve():
             raise ValueError("Contract model/processor path differs from launch model")
-    report = preflight(contract_path, train, dev, paths)
+    report = preflight(contract_path, train, dev, paths,
+                       require_model_resources=execution_tier != "A")
     if not report["cpu_preflight_passed"]:
         raise ValueError("CPU preflight failed: " + "; ".join(report["failures"]))
+    if execution_tier == "A":
+        return contract.identity()
+    scope = review_scope(contract_path=contract_path, execution_tier=execution_tier,
+                         phase=phase, launch_budget=launch_budget,
+                         expected_starting_adapter=expected_starting_adapter,
+                         dynamic_receipt_path=dynamic_receipt_path,
+                         launch_configuration=launch_configuration)
+    _check_review(review_verdict_path=review_verdict_path,
+                  expected_review_sha256=expected_review_sha256, scope=scope)
+    if execution_tier == "B" and phase == "diagnostic":
+        return contract.identity()
+    if dynamic_receipt_path is None:
+        raise ValueError("Continuation requires verified real-model dynamic receipt")
     dynamic = json.loads(dynamic_receipt_path.read_text())
     if dynamic.get("contract_id") != contract.identity():
         raise ValueError("Dynamic diagnostic contract mismatch")
@@ -452,7 +554,13 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
             source.get("policy_updated") is not True or
             source.get("optimizer_steps") != 1 or
             source.get("groups_attempted", 0) < 1 or
-            source.get("science_claim") is not False):
+            source.get("science_claim") is not False or
+            source.get("contract_id") != contract.identity() or
+            source.get("temperature") != contract.generation["temperature"] or
+            source.get("max_tokens") != contract.generation["max_tokens"] or
+            source.get("system_prompt_sha256") != contract.system_instruction_sha256 or
+            source.get("model_config_sha256") != contract.model_config_sha256 or
+            source.get("training_records_sha256") != contract.train_manifest_sha256):
         raise ValueError("Source receipt is not a real ds007045 direct-Vero MLX diagnostic")
     if (source.get("before_adapter_sha256") != before or
             source.get("after_adapter_sha256") != after or
@@ -474,6 +582,7 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
         raise ValueError("Raw rollout/source group count mismatch")
     train_by_id = {row["id"]: row for row in _read_jsonl(train)}
     verified_variance = False
+    selected_image_sha256 = None
     for raw_group, attempt in zip(raw, attempts):
         row = train_by_id.get(raw_group.get("record_id"))
         rollouts = raw_group.get("rollouts", [])
@@ -483,7 +592,17 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
                 raw_group.get("group_index") != attempt.get("group_index") or
                 len(rollouts) < 2 or len(rollouts) != len(saved_rewards)):
             raise ValueError("Rollout linkage or group shape invalid")
-        scores = []
+        image_sha = sha256_file(Path(row["images"][0]))
+        rendered = raw_group.get("rendered_prompt", "")
+        prompt_ids = raw_group.get("prompt_token_ids")
+        if (raw_group.get("image_sha256") != image_sha or attempt.get("image_sha256") != image_sha
+                or contract.system_instruction not in rendered
+                or not rendered.endswith(contract.assistant_prefix)
+                or not isinstance(prompt_ids, list) or not prompt_ids
+                or attempt.get("rendered_prompt_sha256") != sha256_bytes(rendered.encode())
+                or attempt.get("prompt_token_ids_sha256") != sha256_bytes(json.dumps(prompt_ids).encode())):
+            raise ValueError("Raw group image/prompt binding invalid")
+        scores, accuracies, formats = [], [], []
         for rollout, saved in zip(rollouts, saved_rewards):
             tokens = rollout.get("token_ids")
             if not isinstance(tokens, list) or not tokens or not isinstance(rollout.get("text"), str):
@@ -495,10 +614,19 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
                    for key in ("score", "accuracy", "format")):
                 raise ValueError("Saved reward disagrees with strict recomputation")
             scores.append(grade["score"])
-        if max(scores) > min(scores) and attempt.get("active") is True:
+            accuracies.append(grade["accuracy"])
+            formats.append(grade["format"])
+        # Accuracy variation, with both candidates satisfying the strict format,
+        # prevents a format-only or length-only difference authorizing expansion.
+        strict_accuracies = [accuracy for accuracy, fmt in zip(accuracies, formats) if fmt == 1]
+        if (all(fmt == 1 for fmt in formats) and strict_accuracies and min(strict_accuracies) == 0 and max(strict_accuracies) == 1
+                and max(scores) > min(scores) and attempt.get("active") is True
+                and task_rewards == accuracies
+                and source.get("selected_active_group") == raw_group.get("group_index")):
             verified_variance = True
+            selected_image_sha256 = image_sha
     if not verified_variance:
-        raise ValueError("No independently recomputed active task-reward group")
+        raise ValueError("No independently recomputed active strict task-reward group")
     reload_path = Path(dynamic.get("reload_inference_receipt_path", ""))
     if (not reload_path.resolve().is_relative_to(private_root) or
             not reload_path.is_file() or
@@ -506,7 +634,7 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
         raise ValueError("Independent checkpoint reload inference receipt unavailable")
     reload_receipt = json.loads(reload_path.read_text())
     if (reload_receipt.get("loaded_adapter_sha256") != after or
-            reload_receipt.get("image_sha256") != contract.image_bytes_sha256 or
+            reload_receipt.get("image_sha256") != selected_image_sha256 or
             reload_receipt.get("actual_model_generation") is not True or
             not isinstance(reload_receipt.get("generated_text"), str) or
             not reload_receipt["generated_text"]):
@@ -516,21 +644,7 @@ def require_launch_preflight(*, contract_path: Path | None, train: Path,
                 dynamic.get("starting_adapter_sha256") != sha256_file(expected_starting_adapter) or
                 source.get("starting_adapter_sha256") != sha256_file(expected_starting_adapter)):
             raise ValueError("Diagnostic starting adapter differs from training launch")
-    verdict = json.loads(review_verdict_path.read_text())
-    if verdict.get("verdict") not in {"PASS", "PASS_WITH_LIMITATIONS", "FAIL", "NOT_VERIFIED"}:
-        raise ValueError("Independent review verdict vocabulary invalid")
-    if (verdict.get("contract_id") != contract.identity() or
-            verdict.get("dynamic_receipt_sha256") != sha256_file(dynamic_receipt_path) or
-            verdict.get("verdict") != "PASS" or
-            verdict.get("reviewer_kind") != "claude_code" or
-            not verdict.get("reviewer_findings")):
-        raise ValueError("Permitted Claude review PASS missing, limited, rejected, or stale")
-    # Local JSON, even if internally consistent, cannot authenticate that
-    # Claude actually performed the review or that MLX generated the bytes.
-    # Current prior approval rejected sharing this material with Claude.
-    # Keep substantial launch closed until an authorized, independently
-    # authenticated review mechanism is implemented and tested.
-    raise ValueError("NOT_VERIFIED: local receipts cannot authenticate independent review provenance")
+    return contract.identity()
 
 
 def main() -> None:

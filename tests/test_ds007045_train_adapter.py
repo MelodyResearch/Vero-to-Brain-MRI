@@ -61,13 +61,13 @@ def test_patient_keyed_conversion_never_writes_heldout_gold(tmp_path):
     sft = _selected_train_rows(out / "train.verl.jsonl")
     assert [r["ability"] for r in sft] == [
         "mri_sequence", "mri_tumor_presence", "mri_enhancing_presence", "mri_tumor_grid"]
-    schedule = _schedule_train_rows(out / "train.verl.jsonl", steps=4, seed=7)
-    assert schedule == _schedule_train_rows(out / "train.verl.jsonl", steps=4, seed=7)
+    schedule = _schedule_train_rows(out / "train.verl.jsonl", steps=4, seed=7, schedule_policy="legacy_lexical_v1")
+    assert schedule == _schedule_train_rows(out / "train.verl.jsonl", steps=4, seed=7, schedule_policy="legacy_lexical_v1")
     for category in ("mri_sequence", "mri_tumor_presence", "mri_enhancing_presence",
                      "mri_tumor_grid"):
         assert len({next(r for r in step if r["ability"] == category)["extra_info"]["patient_key"]
                     for step in schedule}) == 4
-    full_schedule = _schedule_train_rows(out / "train.verl.jsonl", steps=28, seed=7)
+    full_schedule = _schedule_train_rows(out / "train.verl.jsonl", steps=28, seed=7, schedule_policy="legacy_lexical_v1")
     assert len(full_schedule) == 28
     for category in ("mri_sequence", "mri_tumor_presence", "mri_enhancing_presence",
                      "mri_tumor_grid"):
@@ -115,3 +115,67 @@ def test_patient_keyed_reward_routes_use_exact_mask_or_sidecar_labels():
             f"<think>Read visible MRI evidence.</think><answer>\\boxed{{{truth}}}</answer>",
             truth, {"reward_type": route})
         assert result["accuracy"] == result["format"] == result["score"] == 1.0
+
+
+def _sft_schedule_fixture(tmp_path, patients=28):
+    image = tmp_path / "image.png"
+    image.write_bytes(b"CPU schedule fixture only")
+    rows = []
+    from mri_rl.mlx_sft_warmstart import CATEGORIES, SEQUENCE_LABELS
+    for patient in range(patients):
+        for category in CATEGORIES:
+            labels = SEQUENCE_LABELS if category == "mri_sequence" else ("yes",)
+            for index, label in enumerate(labels):
+                rows.append({"id": f"p{patient:02}-{category}-{index}",
+                    "data_source": "OpenNeuro_ds007045", "ability": category,
+                    "images": [str(image)], "reward_model": {"ground_truth": label},
+                    "extra_info": {"patient_key": f"p{patient:02}",
+                                   "patient_lineage": "BIDS_SUBJECT_VERIFIED",
+                                   "internal_split": "train"}})
+    path = tmp_path / "train.verl.jsonl"
+    path.write_text("".join(json.dumps(row) + "\n" for row in rows))
+    return path, rows
+
+
+def test_future_sft_balances_labels_without_changing_patients_or_budget(tmp_path):
+    from mri_rl.mlx_sft_warmstart import CATEGORIES, schedule_label_exposure
+    path, rows = _sft_schedule_fixture(tmp_path)
+    legacy = _schedule_train_rows(path, 28, 7, "legacy_lexical_v1")
+    future = _schedule_train_rows(path, 28, 7, "balanced_sequence_v2")
+    assert schedule_label_exposure(legacy)["mri_sequence"] == {"FLAIR": 28}
+    assert schedule_label_exposure(future)["mri_sequence"] == {"FLAIR": 14, "contrast-enhanced T1": 14}
+    assert sum(map(len, future)) == 112
+    for category in CATEGORIES:
+        old = [row for step in legacy for row in step if row["ability"] == category]
+        new = [row for step in future for row in step if row["ability"] == category]
+        assert [r["extra_info"]["patient_key"] for r in old] == [r["extra_info"]["patient_key"] for r in new]
+        assert len({r["extra_info"]["patient_key"] for r in new}) == 28
+        if category != "mri_sequence":
+            assert old == new
+    assert future == _schedule_train_rows(path, 28, 7)
+    # Input file ordering cannot change the deterministic schedule.
+    path.write_text("".join(json.dumps(row) + "\n" for row in reversed(rows)))
+    assert future == _schedule_train_rows(path, 28, 7)
+
+
+@pytest.mark.parametrize("steps", [2, 3, 7, 28])
+def test_future_sequence_counts_differ_by_at_most_one(tmp_path, steps):
+    from mri_rl.mlx_sft_warmstart import schedule_label_exposure
+    path, _ = _sft_schedule_fixture(tmp_path)
+    counts = schedule_label_exposure(_schedule_train_rows(path, steps, 13))["mri_sequence"]
+    assert set(counts) == {"FLAIR", "contrast-enhanced T1"}
+    assert abs(counts["FLAIR"] - counts["contrast-enhanced T1"]) <= 1
+
+
+def test_future_sft_rejects_missing_assigned_label_and_nontrain_rows(tmp_path):
+    path, rows = _sft_schedule_fixture(tmp_path)
+    flair_only = [r for r in rows if r["reward_model"]["ground_truth"] != "contrast-enhanced T1"]
+    path.write_text("".join(json.dumps(row) + "\n" for row in flair_only))
+    with pytest.raises(ValueError, match="lacks the assigned label"):
+        _schedule_train_rows(path, 28, 7)
+    # Legacy remains available for exact historical reconstruction.
+    assert len(_schedule_train_rows(path, 28, 7, "legacy_lexical_v1")) == 28
+    rows[0]["extra_info"]["internal_split"] = "internal_dev"
+    path.write_text("".join(json.dumps(row) + "\n" for row in rows))
+    with pytest.raises(ValueError, match="Unexpected source or patient lineage"):
+        _schedule_train_rows(path, 28, 7)

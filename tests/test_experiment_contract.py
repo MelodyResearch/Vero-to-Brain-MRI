@@ -1,4 +1,5 @@
 import json
+import pytest
 import tempfile
 from types import SimpleNamespace
 from dataclasses import asdict
@@ -9,7 +10,7 @@ from PIL import Image
 from mri_rl.experiment_contract import (
     ExperimentContract, QWEN_BASE_REVISION, STRICT_GRAMMAR, STRICT_PARSER,
     VERSION, load_contract, preflight, require_launch_preflight,
-    resolve_artifact_paths,
+    resolve_artifact_paths, review_scope,
     sha256_bytes, sha256_file,
 )
 from mri_rl.resource_supervisor import ResourceSample
@@ -185,7 +186,9 @@ def _launch_paths(tmp_path):
                            ("processor_config", "preprocessor_config.json"),
                            ("tokenizer_config", "tokenizer_config.json"),
                            ("chat_template", "chat_template.json")):
+        contents = artifacts[name].read_bytes()
         artifacts[name] = model_path / filename
+        artifacts[name].write_bytes(contents)
     (tmp_path / "artifact_paths.json").write_text(json.dumps(
         {name: str(path) for name, path in artifacts.items()}))
     dynamic = tmp_path / "dynamic.json"
@@ -195,43 +198,6 @@ def _launch_paths(tmp_path):
     return contract_path, train, dev, model_path, dynamic, review
 
 
-def test_launch_recomputes_cpu_preflight_and_blocks_battery(monkeypatch):
-    private_root = Path(contract_module.__file__).resolve().parents[2] / "local_data"
-    private_root.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory(dir=private_root) as directory:
-        contract, train, dev, model, dynamic, review = _launch_paths(Path(directory))
-        monkeypatch.setattr(contract_module, "preflight", lambda *args, **kwargs:
-                            {"cpu_preflight_passed": False,
-                             "failures": ["battery reports discharging"]})
-        try:
-            require_launch_preflight(
-                contract_path=contract, train=train, dev=dev, model_path=model,
-                dynamic_receipt_path=dynamic, review_verdict_path=review,
-                expected_system="Observe MRI carefully.")
-        except ValueError as exc:
-            assert "battery reports discharging" in str(exc)
-        else:
-            raise AssertionError("Battery failure must block before dynamic receipt")
-
-
-def test_launch_blocks_absent_real_dynamic_gates(monkeypatch):
-    private_root = Path(contract_module.__file__).resolve().parents[2] / "local_data"
-    private_root.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory(dir=private_root) as directory:
-        contract, train, dev, model, dynamic, review = _launch_paths(Path(directory))
-        monkeypatch.setattr(contract_module, "preflight", lambda *args, **kwargs:
-                            {"cpu_preflight_passed": True, "failures": []})
-        try:
-            require_launch_preflight(
-                contract_path=contract, train=train, dev=dev, model_path=model,
-                dynamic_receipt_path=dynamic, review_verdict_path=review,
-                expected_system="Observe MRI carefully.")
-        except ValueError as exc:
-            assert "real-model gates" in str(exc)
-        else:
-            raise AssertionError("Static preflight alone must not launch training")
-
-
 def test_runner_gate_failure_precedes_model_load_and_output(tmp_path, monkeypatch):
     def battery_block(**kwargs):
         raise ValueError("CPU preflight failed: battery reports discharging")
@@ -239,7 +205,11 @@ def test_runner_gate_failure_precedes_model_load_and_output(tmp_path, monkeypatc
     def dynamic_block(**kwargs):
         raise ValueError("Dynamic diagnostic lacks verified real-model gates")
 
+    monkeypatch.setattr(sft_module, "load_contract", lambda path: SimpleNamespace(
+        generation={"max_tokens": 256, "temperature": 0.0}))
     monkeypatch.setattr(sft_module, "require_launch_preflight", battery_block)
+    monkeypatch.setattr(multiarm_module, "load_contract", lambda path:
+                        SimpleNamespace(system_instruction="test system"))
     monkeypatch.setattr(multiarm_module, "require_launch_preflight", dynamic_block)
     try:
         run_sft(tmp_path / "missing_model", tmp_path / "missing_records",
@@ -260,104 +230,229 @@ def test_runner_gate_failure_precedes_model_load_and_output(tmp_path, monkeypatc
     assert not (tmp_path / "rl_output").exists()
 
 
-def test_forged_dynamic_flags_and_source_json_do_not_authorize_launch(monkeypatch):
+
+@pytest.fixture
+def authorized_launch(monkeypatch):
+    """Synthetic gate fixtures only; never evidence of an MRI experiment."""
     private_root = Path(contract_module.__file__).resolve().parents[2] / "local_data"
     private_root.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(dir=private_root) as directory:
         directory = Path(directory)
         contract, train, dev, model, dynamic, review = _launch_paths(directory)
-        source = directory / "receipt.json"
+        adapter = directory / "start.safetensors"
+        adapter.write_bytes(b"synthetic adapter bytes for gate unit test")
+        args = dict(contract_path=contract, train=train, dev=dev, model_path=model,
+                    dynamic_receipt_path=None, review_verdict_path=review,
+                    expected_system="Observe MRI carefully.", expected_max_tokens=256,
+                    expected_temperature=0.0, expected_starting_adapter=adapter,
+                    execution_tier="B", phase="diagnostic",
+                    launch_configuration={"runner": "synthetic_unit_test", "seed": 1},
+                    launch_budget={"optimizer_steps": 1, "max_groups": 3,
+                                   "rollouts_per_group": 2, "max_tokens": 256})
+        monkeypatch.setattr(contract_module, "sample_macos", lambda: _ac())
+        monkeypatch.setattr(contract_module.subprocess, "run", lambda *a, **k:
+                            SimpleNamespace(stdout="Now drawing from 'AC Power'\n90%; charged"))
+        _approve(args)
+        yield args
+
+
+def _approve(args, **extra):
+    scope = review_scope(**{key: args[key] for key in (
+        "contract_path", "execution_tier", "phase", "launch_budget",
+        "expected_starting_adapter", "dynamic_receipt_path", "launch_configuration")})
+    verdict = {**scope, "verdict": "PASS_WITH_LIMITATIONS",
+               "reviewer_kind": "isolated_codex", "reviewer_id": "unit-test-reviewer",
+               "reviewer_findings": "Synthetic gate test; no scientific evidence.",
+               "limitations": "Only the bound diagnostic budget is approved.", **extra}
+    args["review_verdict_path"].write_text(json.dumps(verdict))
+    args["expected_review_sha256"] = sha256_file(args["review_verdict_path"])
+
+
+def test_legitimate_tier_b_diagnostic_accepts_without_prior_update(authorized_launch):
+    args = authorized_launch
+    assert require_launch_preflight(**args) == load_contract(args["contract_path"]).identity()
+
+
+def test_tier_a_cpu_runs_on_battery_without_reviewer(authorized_launch, monkeypatch):
+    args = {**authorized_launch, "execution_tier": "A", "phase": "cpu",
+            "review_verdict_path": None, "expected_review_sha256": None,
+            "expected_starting_adapter": None, "launch_budget": None}
+    monkeypatch.setattr(contract_module, "sample_macos", lambda: ResourceSample(
+        monotonic_seconds=1.0, power_source="BATTERY", battery_percent=50))
+    assert require_launch_preflight(**args)
+
+
+def test_model_tier_blocks_discharge_before_launch(authorized_launch, monkeypatch):
+    monkeypatch.setattr(contract_module.subprocess, "run", lambda *a, **k:
+                        SimpleNamespace(stdout="AC Power\n61%; discharging"))
+    with pytest.raises(ValueError, match="discharging"):
+        require_launch_preflight(**authorized_launch)
+
+
+@pytest.mark.parametrize("field,value,error", [
+    ("expected_review_sha256", None, "review digest"),
+    ("expected_review_sha256", "0" * 64, "review digest"),
+    ("expected_temperature", 1.0, "temperature differs"),
+    ("expected_system", "changed prompt", "system instruction differs"),
+    ("execution_tier", "invented", "Unknown execution tier"),
+])
+def test_invalid_authorization_rejected(authorized_launch, field, value, error):
+    with pytest.raises(ValueError, match=error):
+        require_launch_preflight(**{**authorized_launch, field: value})
+
+
+def test_forged_review_file_cannot_replace_out_of_band_digest(authorized_launch):
+    path = authorized_launch["review_verdict_path"]
+    fake = json.loads(path.read_text())
+    fake.update(reviewer_kind="claude_code", reviewer_id="pretend Claude")
+    path.write_text(json.dumps(fake))
+    with pytest.raises(ValueError, match="review digest"):
+        require_launch_preflight(**authorized_launch)
+
+
+@pytest.mark.parametrize("mutation", ["adapter", "source", "contract", "budget"])
+def test_stale_review_binding_rejected(authorized_launch, monkeypatch, mutation):
+    args = authorized_launch
+    if mutation == "adapter":
+        args["expected_starting_adapter"].write_bytes(b"different adapter")
+    elif mutation == "source":
+        real_scope = contract_module.review_scope
+        def stale(**kwargs):
+            scope = real_scope(**kwargs)
+            scope["source_sha256"]["mlx_gspo_smoke.py"] = "0" * 64
+            return scope
+        monkeypatch.setattr(contract_module, "review_scope", stale)
+    elif mutation == "contract":
+        value = json.loads(args["contract_path"].read_text())
+        value["generation"]["temperature"] = 0.5
+        args["contract_path"].write_text(json.dumps(value))
+        args["expected_temperature"] = 0.5
+    else:
+        args["launch_budget"] = {**args["launch_budget"], "max_groups": 2}
+    with pytest.raises(ValueError, match="stale or mismatches"):
+        require_launch_preflight(**args)
+
+
+@pytest.mark.parametrize("key,value", [("optimizer_steps", 2), ("max_groups", 4),
+                                        ("rollouts_per_group", 4), ("max_tokens", 1024)])
+def test_diagnostic_budget_cannot_expand(authorized_launch, key, value):
+    args = authorized_launch
+    args["launch_budget"] = {**args["launch_budget"], key: value}
+    _approve(args)
+    with pytest.raises(ValueError, match="budget"):
+        require_launch_preflight(**args)
+
+
+def test_continuation_requires_dynamic_evidence(authorized_launch):
+    args = authorized_launch
+    args["phase"] = "continuation"
+    _approve(args)
+    with pytest.raises(ValueError, match="dynamic receipt"):
+        require_launch_preflight(**args)
+
+
+def _dynamic_fixture(args):
+    """Structurally valid simulated receipt for branch testing, not MLX evidence."""
+    directory = args["contract_path"].parent
+    contract = load_contract(args["contract_path"])
+    before_path = directory / "before_adapters.safetensors"
+    after_path = directory / "after_adapters.safetensors"
+    before_path.write_bytes(b"unit-test-before")
+    after_path.write_bytes(b"unit-test-after")
+    before, after = sha256_file(before_path), sha256_file(after_path)
+    raw = [{"group_index": 0, "record_id": "patient-a-train", "rollouts": [
+        {"text": "<think>image</think><answer>\\boxed{FLAIR}</answer>", "token_ids": [1]},
+        {"text": "<think>image</think><answer>\\boxed{definitely-wrong}</answer>", "token_ids": [2]}]}]
+    rendered = resolve_artifact_paths(args["contract_path"])["rendered_prompt"].read_text()
+    raw[0].update(rendered_prompt=rendered, prompt_token_ids=[[1, 2, 3]],
+                  image_sha256=contract.image_bytes_sha256)
+    raw_path = directory / "raw_rollouts.json"
+    raw_path.write_text(json.dumps(raw))
+    source = {
+        "status": "TRAINING_COMPLETED_ENGINEERING_SMOKE", "reward_profile": "direct_vero",
+        "contract_id": contract.identity(), "temperature": 0.0, "max_tokens": 256,
+        "image_source": "OpenNeuro_ds007045", "policy_updated": True,
+        "system_prompt_sha256": contract.system_instruction_sha256,
+        "model_config_sha256": contract.model_config_sha256,
+        "training_records_sha256": contract.train_manifest_sha256,
+        "selected_active_group": 0,
+        "optimizer_steps": 1, "groups_attempted": 1, "science_claim": False,
+        "starting_adapter_sha256": sha256_file(args["expected_starting_adapter"]),
+        "before_adapter_sha256": before, "after_adapter_sha256": after, "gradient_l2": 1.0,
+        "attempts": [{"group_index": 0, "source": "OpenNeuro_ds007045", "route": "mri_sequence",
+                      "active": True, "image_sha256": contract.image_bytes_sha256,
+                      "rendered_prompt_sha256": sha256_bytes(rendered.encode()),
+                      "prompt_token_ids_sha256": sha256_bytes(json.dumps([[1, 2, 3]]).encode()),
+                      "rewards": [{"score": 1., "accuracy": 1., "format": 1.},
+                                                 {"score": .2, "accuracy": 0., "format": 1.}]}]}
+    source_path = directory / "receipt.json"
+    source_path.write_text(json.dumps(source))
+    reload_path = directory / "reload.json"
+    reload_path.write_text(json.dumps({"loaded_adapter_sha256": after,
+        "image_sha256": contract.image_bytes_sha256, "actual_model_generation": True,
+        "generated_text": "unit-test simulated reload"}))
+    dynamic = {"contract_id": contract.identity(), "actual_model_generation": True,
+        "real_mri_image_verified": True, "strict_positive_reward_observed": True,
+        "strict_negative_reward_observed": True, "finite_gradients": True,
+        "weight_changed": True, "checkpoint_reloaded": True,
+        "task_reward_values": [1., 0.], "gradient_norm": 1.,
+        "starting_adapter_sha256": source["starting_adapter_sha256"],
+        "before_adapter_sha256": before, "after_adapter_sha256": after,
+        "reloaded_adapter_sha256": after, "source_receipt_path": str(source_path),
+        "source_receipt_sha256": sha256_file(source_path),
+        "raw_rollouts_sha256": sha256_file(raw_path),
+        "reload_inference_receipt_path": str(reload_path),
+        "reload_inference_receipt_sha256": sha256_file(reload_path)}
+    path = directory / "dynamic.json"
+    path.write_text(json.dumps(dynamic))
+    args.update(dynamic_receipt_path=path, phase="continuation")
+    _approve(args)
+
+
+def test_valid_continuation_has_real_accept_branch(authorized_launch):
+    _dynamic_fixture(authorized_launch)
+    assert require_launch_preflight(**authorized_launch)
+
+
+def test_tier_c_requires_explicit_stronger_review(authorized_launch):
+    _dynamic_fixture(authorized_launch)
+    authorized_launch["execution_tier"] = "C"
+    _approve(authorized_launch)
+    with pytest.raises(ValueError, match="Tier C needs explicit"):
+        require_launch_preflight(**authorized_launch)
+    _approve(authorized_launch, substantial_training_authorized=True,
+             acceptance_criteria="Prespecified bounded synthetic test",
+             matched_budget_checks="Equal updates/rollouts/precision")
+    assert require_launch_preflight(**authorized_launch)
+
+
+@pytest.mark.parametrize("mutation", ["flags", "source", "adapter", "reward", "reload"])
+def test_dynamic_forgery_rejected_even_with_reviewed_file(authorized_launch, mutation):
+    args = authorized_launch
+    _dynamic_fixture(args)
+    path = args["dynamic_receipt_path"]
+    dynamic = json.loads(path.read_text())
+    if mutation == "flags":
+        dynamic["finite_gradients"] = False
+    elif mutation == "source":
+        source = Path(dynamic["source_receipt_path"])
         source.write_text("{}")
-        dynamic.write_text(json.dumps({
-            "contract_id": load_contract(contract).identity(),
-            "actual_model_generation": True,
-            "real_mri_image_verified": True,
-            "strict_positive_reward_observed": True,
-            "strict_negative_reward_observed": True,
-            "finite_gradients": True, "weight_changed": True,
-            "checkpoint_reloaded": True,
-            "task_reward_values": [0, 1], "gradient_norm": 1.0,
-            "before_adapter_sha256": "a" * 64,
-            "after_adapter_sha256": "b" * 64,
-            "reloaded_adapter_sha256": "b" * 64,
-            "source_receipt_path": str(source),
-            "source_receipt_sha256": sha256_file(source),
-        }))
-        monkeypatch.setattr(contract_module, "preflight", lambda *args, **kwargs:
-                            {"cpu_preflight_passed": True, "failures": []})
-        try:
-            require_launch_preflight(
-                contract_path=contract, train=train, dev=dev, model_path=model,
-                dynamic_receipt_path=dynamic, review_verdict_path=review,
-                expected_system="Observe MRI carefully.")
-        except ValueError as exc:
-            assert "not a real ds007045 direct-Vero MLX diagnostic" in str(exc)
-        else:
-            raise AssertionError("Fabricated flags/source receipt must not authorize launch")
-
-
-def test_even_internally_consistent_forged_claude_pass_cannot_open_gate(monkeypatch):
-    private_root = Path(contract_module.__file__).resolve().parents[2] / "local_data"
-    private_root.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory(dir=private_root) as directory:
-        directory = Path(directory)
-        contract_path, train, dev, model, dynamic_path, review_path = _launch_paths(directory)
-        contract = load_contract(contract_path)
-        before_path = directory / "before_adapters.safetensors"
-        after_path = directory / "after_adapters.safetensors"
-        before_path.write_bytes(b"pretend-before")
-        after_path.write_bytes(b"pretend-after")
-        before, after = sha256_file(before_path), sha256_file(after_path)
-        raw = [{"group_index": 0, "record_id": "patient-a-train", "rollouts": [
-            {"text": "<think>image</think><answer>\\boxed{FLAIR}</answer>", "token_ids": [1]},
-            {"text": "<think>image</think><answer>\\boxed{definitely-wrong}</answer>",
-             "token_ids": [2]}]}]
-        raw_path = directory / "raw_rollouts.json"
+        dynamic["source_receipt_sha256"] = sha256_file(source)
+    elif mutation == "adapter":
+        (path.parent / "after_adapters.safetensors").write_bytes(b"tampered")
+    elif mutation == "reward":
+        raw_path = path.parent / "raw_rollouts.json"
+        raw = json.loads(raw_path.read_text())
+        raw[0]["rollouts"][0]["text"] = "wrong"
         raw_path.write_text(json.dumps(raw))
-        source = {
-            "status": "TRAINING_COMPLETED_ENGINEERING_SMOKE", "reward_profile": "direct_vero",
-            "image_source": "OpenNeuro_ds007045", "policy_updated": True,
-            "optimizer_steps": 1, "groups_attempted": 1, "science_claim": False,
-            "before_adapter_sha256": before, "after_adapter_sha256": after,
-            "gradient_l2": 1.0,
-            "attempts": [{"group_index": 0, "source": "OpenNeuro_ds007045",
-                          "route": "mri_sequence", "active": True,
-                          "rewards": [{"score": 1.0, "accuracy": 1.0, "format": 1.0},
-                                      {"score": 0.2, "accuracy": 0.0, "format": 1.0}]}],
-        }
-        source_path = directory / "receipt.json"
-        source_path.write_text(json.dumps(source))
-        reload_path = directory / "reload.json"
-        reload_path.write_text(json.dumps({"loaded_adapter_sha256": after,
-            "image_sha256": contract.image_bytes_sha256,
-            "actual_model_generation": True, "generated_text": "claimed reload"}))
-        dynamic = {
-            "contract_id": contract.identity(), "actual_model_generation": True,
-            "real_mri_image_verified": True, "strict_positive_reward_observed": True,
-            "strict_negative_reward_observed": True, "finite_gradients": True,
-            "weight_changed": True, "checkpoint_reloaded": True,
-            "task_reward_values": [1.0, 0.2], "gradient_norm": 1.0,
-            "before_adapter_sha256": before, "after_adapter_sha256": after,
-            "reloaded_adapter_sha256": after,
-            "source_receipt_path": str(source_path),
-            "source_receipt_sha256": sha256_file(source_path),
-            "raw_rollouts_sha256": sha256_file(raw_path),
-            "reload_inference_receipt_path": str(reload_path),
-            "reload_inference_receipt_sha256": sha256_file(reload_path),
-        }
-        dynamic_path.write_text(json.dumps(dynamic))
-        review_path.write_text(json.dumps({"contract_id": contract.identity(),
-            "dynamic_receipt_sha256": sha256_file(dynamic_path),
-            "verdict": "PASS", "reviewer_kind": "claude_code",
-            "reviewer_findings": "claimed independent approval"}))
-        monkeypatch.setattr(contract_module, "preflight", lambda *args, **kwargs:
-                            {"cpu_preflight_passed": True, "failures": []})
-        try:
-            require_launch_preflight(
-                contract_path=contract_path, train=train, dev=dev, model_path=model,
-                dynamic_receipt_path=dynamic_path, review_verdict_path=review_path,
-                expected_system="Observe MRI carefully.")
-        except ValueError as exc:
-            assert "NOT_VERIFIED" in str(exc)
-        else:
-            raise AssertionError("Self-consistent forged JSON must not launch training")
+        dynamic["raw_rollouts_sha256"] = sha256_file(raw_path)
+    else:
+        reload_path = Path(dynamic["reload_inference_receipt_path"])
+        value = json.loads(reload_path.read_text())
+        value["loaded_adapter_sha256"] = "0" * 64
+        reload_path.write_text(json.dumps(value))
+        dynamic["reload_inference_receipt_sha256"] = sha256_file(reload_path)
+    path.write_text(json.dumps(dynamic))
+    _approve(args)
+    with pytest.raises(ValueError):
+        require_launch_preflight(**args)

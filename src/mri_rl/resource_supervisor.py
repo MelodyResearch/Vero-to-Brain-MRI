@@ -73,7 +73,9 @@ def _swap_used_gib(text: str | None) -> float | None:
 def _power(text: str | None) -> tuple[str, int | None]:
     if not text:
         return "SENSOR_UNAVAILABLE", None
-    if "Now drawing from 'AC Power'" in text:
+    if "discharging" in text.lower():
+        source = "BATTERY"
+    elif "Now drawing from 'AC Power'" in text:
         source = "AC"
     elif "Now drawing from 'Battery Power'" in text:
         source = "BATTERY"

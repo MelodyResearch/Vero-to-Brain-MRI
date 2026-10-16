@@ -16,7 +16,8 @@ import os
 from pathlib import Path
 
 from mri_rl.vero_mri_reward import compute_score_from_data_source
-from mri_rl.resource_supervisor import ResourceGate
+from mri_rl.resource_supervisor import ResourceGate, sample_macos
+from mri_rl.experiment_contract import load_contract, require_launch_preflight, check_resource
 
 
 VERO_SHA = "025ca3c800fc95224c86323c1f7fd33dceed3090"
@@ -123,19 +124,75 @@ def _records_for_route(path: Path, reward_type: str, limit: int,
     return matches[:limit]
 
 
+def task_group_is_informative(grades: list[dict]) -> bool:
+    """A diagnostic update needs correct and incorrect strictly valid answers.
+
+    Equal format and length rewards prevent a format-only signal from being
+    mislabeled as MRI task reward activation.
+    """
+    return (len(grades) >= 2 and all(g["format"] == 1 for g in grades)
+            and len({g["accuracy"] for g in grades}) > 1
+            and len({g.get("overlong", 0) for g in grades}) == 1)
+
+
+def require_runtime_resources() -> None:
+    failures = check_resource(sample_macos())
+    if failures:
+        raise RuntimeError("Diagnostic resource hold: " + "; ".join(failures))
+
+
+def atomic_json(path: Path, value) -> None:
+    temporary = path.with_name(path.name + ".partial")
+    with temporary.open("w") as handle:
+        json.dump(value, handle, indent=2)
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(temporary, path)
+
+
 def run(model_path: Path, records: Path, output: Path, route: str, group_size: int,
         max_tokens: int, seed: int, max_groups: int = 3,
         template_override_path: Path | None = None,
         concise_prompt: bool = False, diverse_labels: bool = False,
         adapter_checkpoint: Path | None = None,
         reward_profile: str = "scaled_smoke",
-        system_prompt_file: Path | None = None) -> dict:
+        system_prompt_file: Path | None = None,
+        contract_path: Path | None = None, dev_records: Path | None = None,
+        review_verdict_path: Path | None = None,
+        expected_review_sha256: str | None = None,
+        execution_tier: str = "B", phase: str = "diagnostic",
+        dynamic_receipt_path: Path | None = None,
+        temperature: float = 1.0) -> dict:
     private_root = Path(__file__).resolve().parents[2] / "local_data"
     if not output.resolve().is_relative_to(private_root):
         raise ValueError("Raw MRI rollouts and adapter weights must stay under ignored local_data/")
-    official_system_prompt, official_system_prompt_sha = (
-        load_system_prompt_file(system_prompt_file)
-        if system_prompt_file is not None else (None, None))
+    if contract_path is None:
+        raise ValueError("Tiered experiment contract required before model loading")
+    if template_override_path is not None or concise_prompt:
+        raise ValueError("Template/prompt overrides require a separately versioned contract")
+    contract = load_contract(contract_path)
+    official_system_prompt = contract.system_instruction
+    official_system_prompt_sha = contract.system_instruction_sha256
+    if system_prompt_file is not None and system_prompt_file.read_text() != official_system_prompt:
+        raise ValueError("System prompt file differs from contract")
+    if adapter_checkpoint is None:
+        raise ValueError("Exact starting adapter is required for this diagnostic")
+    if reward_profile != "direct_vero" or temperature != 1.0:
+        raise ValueError("This reviewed activation uses strict Vero reward and temperature 1")
+    contract_id = require_launch_preflight(
+        contract_path=contract_path, train=records, dev=dev_records,
+        model_path=model_path, dynamic_receipt_path=dynamic_receipt_path,
+        review_verdict_path=review_verdict_path,
+        expected_system=official_system_prompt, expected_max_tokens=max_tokens,
+        expected_reward_profile=reward_profile, expected_starting_adapter=adapter_checkpoint,
+        execution_tier=execution_tier, phase=phase,
+        launch_budget={"optimizer_steps": 1, "max_groups": max_groups,
+                       "rollouts_per_group": group_size, "max_tokens": max_tokens},
+        expected_review_sha256=expected_review_sha256,
+        expected_temperature=temperature,
+        launch_configuration={"runner": "mlx_gspo_smoke", "route": route,
+                              "seed": seed, "diverse_labels": diverse_labels,
+                              "output": str(output.resolve())})
     import mlx.core as mx
     import mlx.nn as nn
     import mlx.optimizers as optim
@@ -164,8 +221,8 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         template_override = (json.loads(raw_template)["chat_template"]
                              if template_override_path.suffix == ".json" else raw_template)
     output.mkdir(parents=True, exist_ok=True)
-    if (output / "receipt.json").exists():
-        raise ValueError("Completed GSPO unit already exists; do not overwrite an optimizer step")
+    if any(output.iterdir()):
+        raise ValueError("GSPO output is not empty; preserve partial and completed work")
     gate = ResourceGate(output / "resource_events.jsonl")
     gate.before_unit("model_load")
     mx.random.seed(seed)
@@ -174,6 +231,13 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
                                        lora_alpha=8, quantization_bits=4,
                                        quantization_group_size=64,
                                        checkpoint_path=adapter_checkpoint, verbose=False)
+    saved_start = mx.load(str(adapter_checkpoint))
+    loaded_start = dict(tree_flatten(model.trainable_parameters()))
+    if set(saved_start) != set(loaded_start) or not all(
+            bool(mx.array_equal(value, loaded_start[name]).item())
+            for name, value in saved_start.items()):
+        raise RuntimeError("Loaded starting adapter tensors differ from reviewed checkpoint")
+    del saved_start, loaded_start
     gc.collect()
     mx.clear_cache()
     model.eval()
@@ -194,6 +258,7 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
     selected_group = None
     for group_index, row in enumerate(candidate_records):
         gate.before_unit(f"rollout_group_{group_index}")
+        require_runtime_resources()
         image = row["images"][0]
         question = row["extra_info"]["question"]
         system_text = official_system_prompt if official_system_prompt is not None else (
@@ -207,10 +272,11 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         ]
         prompt = apply_chat_template(processor, model.config, messages,
                                      add_generation_prompt=True, num_images=1,
+                                     enable_thinking=contract.enable_thinking,
                                      **({"chat_template": template_override,
                                          "enable_thinking": False}
                                         if template_override is not None else {}))
-        if prompt.count("<|image_pad|>") != 1:
+        if prompt.count("<|image_pad|>") != 1 or not prompt.endswith(contract.assistant_prefix):
             raise ValueError("Expected exactly one Qwen3-VL image placeholder")
         inputs = prepare_inputs(
             processor, images=[image], prompts=prompt,
@@ -227,7 +293,8 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         candidates = []
         for _ in range(group_size):
             result = generate(model, processor, prompt, image=[image], max_tokens=max_tokens,
-                              temperature=1.0, top_p=1.0, verbose=False)
+                              temperature=temperature, top_p=1.0, top_k=0, min_p=0.0,
+                              repetition_penalty=None, verbose=False)
             tokens = list(result.token_ids or [])
             if not tokens or result.prompt_tokens != prompt_length:
                 raise ValueError("Rollout tokens and log-probability prompt do not align")
@@ -245,17 +312,32 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
             mx.clear_cache()
         rewards = [item["reward"]["total"] for item in candidates]
         advantages = advantages_from_rewards(rewards)
-        active = max(advantages) - min(advantages) >= 1e-12
+        active = task_group_is_informative([item["reward"] for item in candidates])
+        if active and max(advantages) - min(advantages) < 1e-12:
+            raise ValueError("Task-varying group unexpectedly has zero total advantage")
         attempts.append({
             "group_index": group_index, "source": row["data_source"],
             "route": route, "prompt_tokens": prompt_length,
+            "image_sha256": _sha256(Path(image)),
+            "rendered_prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
+            "prompt_token_ids_sha256": hashlib.sha256(json.dumps(prompt_ids.tolist()).encode()).hexdigest(),
+            "format_valid_count": sum(c["reward"]["format"] == 1 for c in candidates),
+            "task_correct_count": sum(c["reward"]["accuracy"] == 1 for c in candidates),
+            "task_reward_variance": (sum((c["reward"]["accuracy"] - sum(x["reward"]["accuracy"] for x in candidates) / group_size) ** 2 for c in candidates) / group_size),
+            "cap_hit_count": sum(len(c["tokens"]) >= max_tokens for c in candidates),
             "response_tokens": [len(c["tokens"]) for c in candidates],
             "rewards": [c["reward"] for c in candidates],
             "advantages": advantages, "active": active,
         })
         all_raw.append({"group_index": group_index, "record_id": row["id"],
+                        "rendered_prompt": prompt, "prompt_token_ids": prompt_ids.tolist(),
+                        "image_sha256": _sha256(Path(image)),
                         "rollouts": [{"text": c["text"], "token_ids": c["tokens"]}
                                      for c in candidates]})
+        atomic_json(output / "raw_rollouts.json", all_raw)
+        atomic_json(output / "progress.json", {"contract_id": contract_id,
+                    "groups_completed": len(attempts), "optimizer_steps": 0,
+                    "attempts": attempts})
         if active:
             for item in candidates:
                 item["old_logps"] = mx.stop_gradient(logps_for(item["tokens"]))
@@ -264,7 +346,15 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
             selected_group = group_index
             break
     receipt = {
-        "status": "NO_UPDATE_ZERO_VARIANCE", "official_source_sha": VERO_SHA,
+        "status": "NO_UPDATE_NO_TASK_VARIANCE", "official_source_sha": VERO_SHA,
+        "contract_id": contract_id, "execution_tier": execution_tier, "phase": phase,
+        "review_sha256": expected_review_sha256, "seed": seed,
+        "temperature": temperature, "max_tokens": max_tokens,
+        "model_config_sha256": _sha256(model_path / "config.json"),
+        "training_records_sha256": _sha256(records),
+        "optimizer_steps": 0, "starting_adapter_tensors_verified": True,
+        "generation_config": {"temperature": temperature, "top_p": 1.0,
+                              "top_k": 0, "min_p": 0.0, "repetition_penalty": None},
         "implementation": "MLX independent LoRA port of pinned GSPO-token loss; not official veRL",
         "model_path_name": model_path.name, "image_source": row["data_source"],
         "reward_type": route, "group_size": group_size,
@@ -272,8 +362,7 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         "template_override_sha256": (_sha256(template_override_path)
                                      if template_override_path else None),
         "system_prompt_sha256": official_system_prompt_sha,
-        "system_prompt_source": ("pinned_official" if official_system_prompt_sha
-                                 else "local_short"),
+        "system_prompt_source": "versioned_experiment_contract",
         "starting_adapter_sha256": (_sha256(adapter_checkpoint)
                                     if adapter_checkpoint else None),
         "concise_prompt": concise_prompt, "diverse_labels": diverse_labels,
@@ -285,16 +374,29 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         "science_claim": False,
     }
     # Raw generated responses are private and must never be committed.
-    (output / "raw_rollouts.json").write_text(json.dumps(all_raw, indent=2))
+    atomic_json(output / "raw_rollouts.json", all_raw)
     if selected_group is None:
-        (output / "receipt.json").write_text(json.dumps(receipt, indent=2))
+        atomic_json(output / "receipt.json", receipt)
         return receipt
 
     before = output / "before_adapters.safetensors"
     after = output / "after_adapters.safetensors"
     save_trainable_weights(model, before)
     before_sha = _sha256(before)
-    model.train()
+    receipt.update({"status": "ACTIVE_GROUP_GRADIENT_PENDING",
+                    "before_adapter_sha256": before_sha})
+    atomic_json(output / "receipt.json", receipt)
+    # No dropout or train/eval change between old and current log probabilities.
+    model.eval()
+    parity_errors = []
+    for item in candidates:
+        current = logps_for(item["tokens"])
+        mx.eval(current)
+        parity_errors.append(float(mx.max(mx.abs(current - item["old_logps"])).item()))
+    if any(not math.isfinite(value) or value > 1e-5 for value in parity_errors):
+        raise RuntimeError("Old/current on-policy log probabilities differ before update")
+    receipt["old_current_logp_max_abs_errors"] = parity_errors
+    atomic_json(output / "receipt.json", receipt)
 
     def one_loss(model, tokens, old_logps, advantage):
         fresh = logps_for(tokens)
@@ -308,6 +410,7 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
         loss_tokens = mx.maximum(-advantage * ratio, -advantage * clipped)
         return mx.mean(loss_tokens)
 
+    require_runtime_resources()
     loss_and_grad = nn.value_and_grad(model, one_loss)
     grad_sum = None
     losses = []
@@ -323,20 +426,61 @@ def run(model_path: Path, records: Path, output: Path, route: str, group_size: i
                               for _, g in tree_flatten(grad_sum)))
     if not math.isfinite(grad_norm) or grad_norm <= 0:
         raise RuntimeError("Active group produced no finite nonzero gradient")
+    gate.before_unit("optimizer_step")
+    require_runtime_resources()
     optimizer = optim.Adam(learning_rate=1e-5)
     optimizer.update(model, grad_sum)
     mx.eval(model.trainable_parameters(), optimizer.state)
-    save_trainable_weights(model, after)
+    pending_after = output / "after_adapters.partial.safetensors"
+    save_trainable_weights(model, pending_after)
+    with pending_after.open("rb") as handle:
+        os.fsync(handle.fileno())
+    os.replace(pending_after, after)
     after_sha = _sha256(after)
     if before_sha == after_sha:
         raise RuntimeError("Optimizer step did not change adapter weights")
     receipt.update({
-        "status": "TRAINING_COMPLETED_ENGINEERING_SMOKE", "policy_updated": True,
+        "status": "UPDATE_SAVED_RELOAD_PENDING", "policy_updated": True,
         "loss_terms": losses, "gradient_l2": grad_norm,
         "before_adapter_sha256": before_sha, "after_adapter_sha256": after_sha,
         "optimizer_steps": 1, "trainable_adapter_format": "MLX safetensors 4-bit base LoRA rank 4",
     })
-    (output / "receipt.json").write_text(json.dumps(receipt, indent=2))
+    atomic_json(output / "receipt.json", receipt)
+    # Release the training graph before a fresh model load on unified memory.
+    del optimizer, loss_and_grad, grad_sum, grad, scaled, loss, current, model
+    candidates.clear()
+    gc.collect()
+    mx.clear_cache()
+    gate.before_unit("checkpoint_reload")
+    require_runtime_resources()
+    reloaded_model, reloaded_processor = load(str(model_path))
+    reloaded_model = prepare_model_for_training(
+        reloaded_model, train_type="lora", lora_rank=4, lora_alpha=8,
+        quantization_bits=4, quantization_group_size=64,
+        checkpoint_path=after, verbose=False)
+    reloaded_model.eval()
+    disk_weights = mx.load(str(after))
+    loaded_weights = dict(tree_flatten(reloaded_model.trainable_parameters()))
+    if set(disk_weights) != set(loaded_weights) or not all(
+            bool(mx.array_equal(value, loaded_weights[name]).item())
+            for name, value in disk_weights.items()):
+        raise RuntimeError("Fresh model reload differs from saved adapter tensors")
+    reload_result = generate(reloaded_model, reloaded_processor, prompt,
+        image=[image], max_tokens=max_tokens, temperature=0.0, verbose=False)
+    reload_receipt = {"loaded_adapter_sha256": _sha256(after),
+                      "image_sha256": _sha256(Path(image)),
+                      "contract_id": contract_id, "actual_model_generation": True,
+                      "generated_text": reload_result.text,
+                      "exact_adapter_tensor_match": True,
+                      "adapter_tensor_count": len(disk_weights),
+                      "fresh_model_loaded": True}
+    atomic_json(output / "reload_inference_receipt.json", reload_receipt)
+    receipt.update({"status": "TRAINING_COMPLETED_ENGINEERING_SMOKE",
+                    "checkpoint_reloaded": True,
+                    "reloaded_adapter_sha256": _sha256(after),
+                    "exact_reloaded_adapter_tensors": True,
+                    "reload_inference_receipt_sha256": _sha256(output / "reload_inference_receipt.json")})
+    atomic_json(output / "receipt.json", receipt)
     return receipt
 
 
@@ -360,6 +504,13 @@ def main() -> None:
                                                      "boxed_only_ablation",
                                                      "single_box_anywhere_ablation"),
                         default="scaled_smoke")
+    parser.add_argument("--contract", type=Path, required=True)
+    parser.add_argument("--dev-records", type=Path, required=True)
+    parser.add_argument("--review-verdict", type=Path, required=True)
+    parser.add_argument("--expected-review-sha256", required=True)
+    parser.add_argument("--execution-tier", choices=("B", "C"), default="B")
+    parser.add_argument("--phase", choices=("diagnostic", "continuation"), default="diagnostic")
+    parser.add_argument("--dynamic-receipt", type=Path)
     args = parser.parse_args()
     result = run(args.model.resolve(), args.records.resolve(), args.output.resolve(),
                  args.route, args.group_size, args.max_tokens, args.seed, args.max_groups,
@@ -367,7 +518,11 @@ def main() -> None:
                  args.concise_prompt, args.diverse_labels,
                  args.adapter_checkpoint.resolve() if args.adapter_checkpoint else None,
                  args.reward_profile,
-                 args.system_prompt_file.resolve() if args.system_prompt_file else None)
+                 args.system_prompt_file.resolve() if args.system_prompt_file else None,
+                 args.contract.resolve(), args.dev_records.resolve(),
+                 args.review_verdict.resolve(), args.expected_review_sha256,
+                 args.execution_tier, args.phase,
+                 args.dynamic_receipt.resolve() if args.dynamic_receipt else None)
     print(json.dumps({key: value for key, value in result.items()
                       if key not in {"attempts", "loss_terms"}}, indent=2))
 

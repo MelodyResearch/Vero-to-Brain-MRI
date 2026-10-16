@@ -179,3 +179,16 @@ def test_sft_matched_manifest_adds_exact_training_system_without_overwriting_ori
                            "Respond with one short observation in <think> and one boxed final answer in <answer>."}
     assert messages[1]["role"] == "user"
     assert (out / "internal_dev_gold_sft_train_matched_PRIVATE.jsonl").is_file()
+
+
+def test_partial_format_credit_does_not_count_as_strict_format_valid(tmp_path):
+    test_dev_manifest_separates_gold_and_scores_verified_adapter_outputs(tmp_path)
+    output = tmp_path / 'adapter_outputs.jsonl'
+    rows = [json.loads(line) for line in output.read_text().splitlines()]
+    rows[0]['response'] = '<think>visible.</think><answer>FLAIR</answer>'
+    output.write_text(''.join(json.dumps(row) + '\n' for row in rows))
+    dev_eval = importlib.import_module('mri_rl.ds007045_internal_dev_eval')
+    result = dev_eval.score_outputs(tmp_path/'private/internal_dev_manifest.jsonl',
+                                   tmp_path/'private/internal_dev_gold_PRIVATE.jsonl', output)
+    assert result['format_valid'] == 2
+    assert result['accuracy_correct'] == 2
