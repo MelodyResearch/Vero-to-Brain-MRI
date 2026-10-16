@@ -130,9 +130,11 @@ def analyze(contract,outputs,identities,*,pair_count=None):
     for model in MODELS:
         actual=outputs[model]
         require(0<len(actual)<=len(frozen) and len({r['record_id'] for r in actual})==len(actual),'Missing/duplicate output records')
-        for row,expected in zip(actual,frozen):
+        expected_identities=identities[model]
+        if isinstance(expected_identities,list):require(len(expected_identities)==len(actual),'Wrong segment identity count')
+        for index,(row,expected) in enumerate(zip(actual,frozen)):
             require(all(row.get(k)==v for k,v in expected.items()),'Frozen image/label/prompt/record differs')
-            require(row.get('run_identity')==identities[model] and row.get('checkpoint')==model and
+            require(row.get('run_identity')==(expected_identities[index] if isinstance(expected_identities,list) else expected_identities) and row.get('checkpoint')==model and
                     row.get('adapter_sha256')==contract['checkpoints'][model]['sha256'] and row.get('weight_updates')==0,
                     'Checkpoint/run identity mismatch')
             validate_numeric_record(row)
@@ -223,6 +225,19 @@ def analyze(contract,outputs,identities,*,pair_count=None):
     return public,private
 
 
+def validate_scope_extent(scope,raw,records):
+    """Bind saved prefix to this review's cursor and exact permitted next slice."""
+    start=scope.get('completed_records');budget=scope.get('max_new_records');allowed=scope.get('new_record_ids')
+    require(type(start) is int and 0<=start<=len(records) and type(budget) is int and 1<=budget<=8,
+        'Invalid approved cursor/budget')
+    expected=[r['record_id'] for r in records[start:start+budget]]
+    lines=raw.splitlines(keepends=True)
+    require(allowed==expected and start<=len(lines)<=start+len(expected),'Output extends beyond approved scope')
+    prior_hash=hashlib.sha256(b''.join(lines[:start])).hexdigest()
+    require(scope.get('existing_output_sha256')==prior_hash or
+        (start==0 and scope.get('existing_output_sha256') is None),'Approved existing prefix hash mismatch')
+
+
 def load_scoped(contract_path,outputs,scopes):
     paths=[contract_path,*outputs.values(),*scopes.values()]
     require(all(path.exists() for path in paths),'Missing likelihood output/contract/scope')
@@ -239,9 +254,18 @@ def load_scoped(contract_path,outputs,scopes):
             'backend':s['backend_sources'],'battery_diagnostic':s.get('battery_exception') is not None})
         require(identity==s['run_identity'],'Scope run identity cannot be reconstructed')
         profiles.append({k:s[k] for k in ('source_hashes','backend_sources','temperature','max_generation_tokens','lora_rank','lora_alpha','quantization_bits','group_size')})
-        completed_prefix(outputs[model],c['records'],identity)
+        adoption=None
+        if s.get('adopted_prefix'):
+            from mri_rl.likelihood_adoption import verify_adoption
+            bridge=Path(s['adopted_prefix']['path'])
+            adoption=verify_adoption(bridge,s)
+            require(adoption['binding']==s['adopted_prefix'],'Adoption scope digest/profile mismatch')
+            hashes[bridge]=s['adopted_prefix']['sha256']
+        completed_prefix(outputs[model],c['records'],identity,adoption=adoption)
+        validate_scope_extent(s,snapshots[outputs[model]],c['records'])
         require(outputs[model].exists(),'Missing output: '+model)
-        data[model]=[json.loads(line) for line in snapshots[outputs[model]].splitlines()];identities[model]=identity
+        data[model]=[json.loads(line) for line in snapshots[outputs[model]].splitlines()]
+        identities[model]=(adoption['identities']+[identity]*(len(data[model])-len(adoption['identities']))) if adoption else identity
     require(all(profile==profiles[0] for profile in profiles),'Nonmatching model/prompt implementation profiles')
     require(all(sha(path)==value for path,value in hashes.items()),'Likelihood evidence changed during validation')
     return c,data,identities
@@ -258,12 +282,23 @@ def main():
     require(not args.public_output.exists() and not args.private_output.exists(),'Never overwrite prior analysis')
     paths={m:getattr(args,m.lower()) for m in MODELS};scopes={m:getattr(args,m.lower()+'_scope') for m in MODELS}
     require(all(path.resolve().is_relative_to(private_root) for path in [*paths.values(),*scopes.values()]),'Private outputs/scopes must remain ignored')
-    evidence={path:sha(path) for path in [args.contract,*paths.values(),*scopes.values()]}
+    evidence_paths=[args.contract,*paths.values(),*scopes.values()]
+    for scope_path in scopes.values():
+        document=json.loads(scope_path.read_text());scope=document.get('scope',document)
+        if scope.get('adopted_prefix'):
+            bridge=Path(scope['adopted_prefix']['path'])
+            require(bridge.resolve().is_relative_to(private_root),'Adoption bridge must remain private')
+            bridge_doc=json.loads(bridge.read_text())
+            children=[Path(bridge_doc[key]) for key in ('prefix_path','approval_path','audit_path')]
+            require(all(path.resolve().is_relative_to(private_root) for path in children),'Adoption evidence must remain private')
+            evidence_paths.extend([bridge,*children])
+    evidence={path:sha(path) for path in evidence_paths}
     c,rows,identities=load_scoped(args.contract,paths,scopes);require(c['patients']==28,'Production analysis requires frozen 28-patient design')
     public,private=analyze(c,rows,identities,pair_count=args.pair_count)
     require(all(sha(path)==value for path,value in evidence.items()),'Likelihood evidence changed before publication')
     public['evidence_sha256']={'contract':evidence[args.contract],'analyzer':sha(__file__),
-        'outputs':{m:evidence[path] for m,path in paths.items()},'scopes':{m:evidence[path] for m,path in scopes.items()}}
+        'outputs':{m:evidence[path] for m,path in paths.items()},'scopes':{m:evidence[path] for m,path in scopes.items()},
+        'adoption_dependencies':sorted({evidence[path] for path in evidence_paths if path not in [args.contract,*paths.values(),*scopes.values()]})}
     # Constructed public object is a whitelist: no source rows, IDs, paths or text copied.
     for path,value in [(args.private_output,private),(args.public_output,public)]:
         path.parent.mkdir(parents=True,exist_ok=True)

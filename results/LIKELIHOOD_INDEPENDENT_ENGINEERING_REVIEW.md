@@ -109,3 +109,82 @@ The current attempt's48 resource events all replay as CONTINUE. Battery87→86%,
 A0 mean T1-minus-FLAIR margins were−2.67880906 and−2.07975275 for the frozen FLAIR/T1 pair; raw margins−13.39404924 and−10.39881256. This single training-patient pair is a diagnostic, not a scientific efficacy estimate. Output SHA256 `663f3847809b408741f934d28d7d9c0aba0270c03078e89af1822eba3c1b1c9b`; independent audit SHA256 `ed97ff92d3c0af197746a52af0c62de808673324a3917e2d3a77350bce8c4ddc`.
 
 Following the lead's finite efficiency request, the next authorized A0 scope is exactly seven frozen inputs (unique no-image plus the next three fixed pairs), cumulative9, with unchanged caps and source. It supersedes the prepared but unused one-record continuation. This avoids a separate full model reload for no-image while preserving every per-forward, per-generation and battery/resource stop. No A28/B28 launch is preauthorized; each follows actual preceding-stage audit.
+
+## Actual seven-input continuation: loading STOP, prior output preserved
+
+The next serial-loading attempt exited1 at `materialized:1942`, before any new input/forward/generation. The original two-record output is byte-identical, SHA256 `663f3847809b408741f934d28d7d9c0aba0270c03078e89af1822eba3c1b1c9b`. The35-event attempt and original resource-policy reasons were independently replayed. Net stage swap growth was0.826777GiB, below the separate1GiB cap, but the corroborated swap-rate rule independently triggered `sustained_swap_growth` at6.308GiB available/35% pressure-free. Battery remained85%. This was a valid STOP, not a numeric scoring failure.
+
+The revised cleanup worked: the subsequent release event recorded about0.000001GiB active MLX allocation and12.190GiB available memory. Actual prior success therefore establishes one completed pair, not repeatable resource fit. **No same-configuration retry, A28/B28 expansion or relaxed limit is approved.** A materially different loading strategy needs separate value/provenance/resource review. System-wide swap cannot be attributed solely to model loading from these samples, and post-release recovery does not validate continuing with the model resident.
+
+Private audit: `likelihood_independent_review_v1/A0_serial_v2_009_STOP_PRIVATE.json`, SHA256 `7538b3b98829453ed21d55c26930051b5faa2c8695a11f104dd9d2d583282ad3`. Completed evidence remains A0 two real images only; unique no-image, A28 and B28 likelihood probes remain NOT_RUN.
+
+## Prospective warning-only recovery experiment
+
+The original paced policy distinguishes warning HOLD from severe STOP. The battery-specific gate initially converted every reason to STOP. After the observed isolated swap-rate warning, a separately reviewed policy revision permits **only** the sole `sustained_swap_growth` reason with NORMAL supervisor to pause at a computation boundary. It performs no model work during up to three15-second waits, requires two consecutive reason-free samples, and stops on any other reason or non-NORMAL supervisor. Original stage baselines and all HOLD samples remain in drain/swap history; renewed warnings reset recovery count without extending the bounded wait. All absolute numeric caps are unchanged. Earlier stopped attempts remain stopped, not retrospectively successful.
+
+Independent fresh verification:32 focused tests passed under native import blocking, plus four separate cases for rapid drain during HOLD, unchanged original swap baseline, interrupted recovery with fixed wait budget, and thermal failure during HOLD. Only `likelihood_battery.py` differs from the successful serial-loading source scope; all installed backend hashes match.
+
+**PASS_WITH_LIMITATIONS** for exactly three fixed A0 inputs under a new output identity: repeat the preserved image pair for numerical comparison, then unique no-image. Nine forwards, three bounded generations, zero updates; mandatory fresh runtime admission. Real resident warning recovery and the new no-image native path remain unverified until execution. This is a prospective boundary-policy experiment, not an unchanged automatic retry. Repeated images must not be counted as new independent scientific observations.
+
+Approval `likelihood_independent_review_v1/approval_A0_hold_v3_003.json`, SHA256 `421f8024c84a0cc99c12c67ef00d1c4133fc8fff67e22172285c0450391ef861`; launcher `launch_A0_hold_v3_003.sh`. New output `answer_likelihood_z045_v1/A0_hold_v3_outputs_PRIVATE.jsonl`; prior two-record output remains unchanged. No next checkpoint or expansion is approved before actual audit.
+
+## Actual A0 warning-recovery stage: three records completed
+
+Independent numeric replay passes all three rows. The repeated image pair's candidate per-token values, partitions, score summaries, comparisons, oracle values, prepared fingerprints, prompt IDs and generated responses are **exactly equal** to the preserved serial-v2 results. The unique no-image row has57 int32 prompt tokens, no visual tensors or image tokens, oracle disagreement0 and a12-token stopped generation. Its raw/mean T1-minus-FLAIR margins are−14.78893553/−2.95778678. These are one-pair diagnostics, not extra independent samples or a cohort result.
+
+The56-event resource trace reproduces a load-end warning HOLD, one clean HOLD_RECOVERY sample, then a second clean sample permitting work. Battery83→83%; swap7.911250→8.338867GiB, minimum available6.273GiB, pressure-free35%, MLX peak5.977558GiB. Release active allocation is approximately0.000001GiB. Output SHA256 `0305dc47e97445fa3e333a72e20488e4ee6ed3d2e1b172bba3d3385d9e0228e6`; independent audit SHA256 `64dca06739ad334f5ebaa60385eca81d2f3f33ad26e5be887edf84d177943056`.
+
+**PASS_WITH_LIMITATIONS**, followed by exact unchanged-source A28 first-three scope only, with separate output and mandatory fresh admission. Autonomous57-input execution is not approved. A resident model may be considered with separate <=8-input prefix-bound releases, unchanged process-wide budgets and finite review wait, after its own source review.
+
+## Actual A28 first three: routine independent replay
+
+**PASS_WITH_LIMITATIONS.** All three numeric partitions/summaries/preferences/oracle values and prompt/grid/mask fingerprints reproduce; each oracle disagreement is0, each generation stops after17 tokens. Source/backend hashes and frozen identities match the approved scope. The54-event resource trace replays successfully: battery82→81%, minimum available6.433GiB, pressure-free36%, swap8.291992→8.284180GiB, peak5.977558GiB, released active allocation approximately0.000001GiB.
+
+For FLAIR image/T1 image/no-image, mean margins are−1.71248490/−1.16252185/−1.94110365 and raw margins−8.56464909/−5.82208129/−9.70586851. All remain FLAIR-preferred for this one fixed patient; interpretation awaits matched B28 and remains exploratory. Output SHA256 `ef48e7b070b6c8fda61b9a3e4eba67bcc3aa19492ea0f0174287661d4432b66a`; audit SHA256 `81f385954b1ff8701a5fb78680031137a4b2f1d4da712994702944a87c3c7d8f`.
+
+Next approved scope is B28 first three only, identical frozen inputs and settings, fresh resource admission. Approval SHA256 `c884a1b1d33148d9a603756ed15ca0edc68c48fcc8062eba02be099775ee03e4`, private `likelihood_independent_review_v1/approval_B28_hold_v3_003.json`.
+
+## Byte-preserving pilot adoption and resident continuation
+
+The three hold-v3 pilots remain immutable, each with3 completed rows. A separate resident-v4 output for each checkpoint was initialized with exactly those bytes, preserving historical run identities. Each bridge binds the original independent approval, actual result audit, prefix count/hash and full numerical record-loop AST hash. The latter is exactly identical before/after resident integration: `fc51dfd7fe5998b05e723e27f57e703f0f1912ffd6dc836f6614f5be22b0cb31`. New rows start at cursor3 with the new source identity. No A0 or other pilot generation is repeated by this adoption.
+
+Fresh independent verification:55 focused CPU tests passed under native import blocking. Actual model-free plans validate all three bridges and start at manifest positions4–11. A read-only process inventory found no known MRI model worker before preparation. The numerical loop, target definitions, installed backend hashes and fixed inference profile are unchanged. The resident helper's independent StepD review is separately documented; caller integration preserves one gate object and baseline, fsyncs rows, verifies adapters at boundaries, and closes/releases on termination. Full resident behavior still requires actual observation.
+
+**PASS_WITH_LIMITATIONS for A28 positions4–11 only**,24 forwards/eight bounded generations, zero updates. Later chunks need independent request/session/prefix-bound releases of at most8 records; the57-input outer manifest is not a blanket launch grant. Preserve180-second request timeout,15-second checks/cooldown, process-wide resource budgets and unchanged stop limits. No next-checkpoint launch is authorized yet. Mixed-identity analyzer validation is required before final scientific aggregation.
+
+### Resident battery-v3 admission and actual chunk audit
+
+The final initial A28 approval binds battery-v3 `403387fddd5ce67c0b97155185f86735ae6264a05bc34dc6532e1e4d1d9ad854`, runner `894cab501b5cce6d29b404ab283a21099b46afd66d21f3e70565c42d9559e384`, and the immutable pilot bridge. An interim coordination warning described the prepared approval as stale; direct rereading confirmed the actual file already contained these final bindings. The separate C reviewer verified25 battery tests and fake-sensor duration/STOP cases before execution. This policy permits a brief sole swap-rate warning, then requires a sustained30-second/two-observation episode for bounded HOLD; all absolute limits and process-wide budget history remain active. This is a prospective policy change, not reclassification of previous stopped attempts.
+
+Actual resident audits independently recompute token partitions, all score summaries/preferences, shared-prefix and selected-first-token oracle consistency, frozen raw pixels and prepared token/grid/mask fingerprints. Each new chunk preserves the complete prior raw output prefix and the three historical pilot identities. Current source/backend bindings are revalidated, and the complete current-process resource trace is replayed under the exact gate. Request publication follows adapter verification, fsync and cooldown in the bound source; no new native model is loaded by the reviewer.
+
+| Checkpoint / completed records | New records | Verdict | Battery start→observed | Minimum available / pressure-free | Stage swap growth at boundary |
+|---|---:|---|---|---|---:|
+| A28 /11 |8|PASS_WITH_LIMITATIONS|78→77%|6.235GiB /34%|0.266GiB|
+| A28 /19 |8|PASS_WITH_LIMITATIONS|78→76%|6.235GiB /34%|0.266GiB|
+| A28 /27 |8|PASS_WITH_LIMITATIONS|78→75%|6.235GiB /34%|0.266GiB|
+| A28 /35 |8|PASS_WITH_LIMITATIONS|78→75%|6.235GiB /34%|0.266GiB|
+
+A28 request011 was released only for the next eight frozen records, through19. The current model remains resident; this row does not claim final release or whole-manifest completion. B28 and A0 initial continuation approvals are conditional on the preceding checkpoint's clean model-release audit plus fresh runtime admission; their adopted pilot bytes will not be regenerated. Private per-stage audit/approval files retain exact output, request, source and resource hashes.
+
+### Actual A28 resident STOP:42 durable records, no further launch
+
+**PASS_WITH_LIMITATIONS for the preserved42-record evidence; execution status STOPPED_PRESERVED_COMPLETED_PREFIX.** The independently replayed42 rows include all20 complete patient pairs, the unique no-image input, and one unpaired next image. The final requested eight-record chunk completed seven rows before stopping;43/57 and57/57 completion are not claimed. Historical three-row pilot bytes remain unchanged. Output SHA256 `d32a248d462fffd83f46f34f4b82350f9d28dbbc35f9bb9cf7d53881dd793084`; actual audit SHA256 `fcd0592393c738ccc036ade107dfdec2105dc22ace7c95f2d9ef3f3d5175eae6`.
+
+The292-event trace independently reproduces both reasons at the post-record boundary: battery78→73%, reaching the five-point process budget at483.045seconds, and a75→73% window over119.752529seconds (1.002067 percentage points/minute), satisfying the separately frozen rapid-drain rule. These are valid stops. Swap ended8.354980GiB versus8.104375GiB initially, below its cap; maximum8.370605GiB. Minimum available memory6.235GiB/34% pressure-free; MLX peak5.977558GiB. Model release recorded approximately0.000001GiB active memory and12.717GiB available. A subsequent filtered process inventory found no known MRI model worker.
+
+The most recent successful adapter-equality callback was at35 records. The final seven rows were fsynced and numerically verified, but the drain stop preceded their chunk-end adapter callback; final adapter equality was not newly measured. The source remains read-only with zero weight updates. Resource replay, exact source/backend/adapter-file hashes, and all numerical evidence passed independently.
+
+**No next chunk or new checkpoint launch is approved under current resources.** Battery73% is below the75% start gate and the process correctly stopped on drain. Prepared B28/A0 scopes remain conditional and do not permit bypassing this stop. No pilot rows were regenerated. Single-checkpoint partial analysis may use the20 complete pairs with explicit coverage; matched three-checkpoint comparisons remain limited to the original common pilot until additional checkpoint evidence exists.
+
+### Independent single-checkpoint aggregate verification
+
+The actual resident trace contains one admitted loading WARNING at `materialized:1942` (6.242GiB available,34% pressure-free), zero HOLDs, one model load,39 new records,117 forwards and39 generations. Thus this observed run exercised the intended isolated-warning behavior without a warning-induced pause/reload. Its later battery stop still applied. These observations do not establish hardware safety or guarantee that future loads fit.
+
+The first offline single-checkpoint analyzer accepted all42 rows with an obsolete scope permitting only11. The independent reviewer reproduced this provenance defect using the actual preserved output. The implementer added failing tests, then enforced exact cursor, permitted frozen slice, budget≤8, saved extent and original prefix byte hash in both single and paired loaders. Independent StepD checks now reject the obsolete scope and accept the valid partial through43 scope; the paired loader also correctly accepts the mixed3/42/3 output inventories without authorizing broader comparisons. Forty focused single/paired analysis tests passed in the review run. This fix changes offline validation, not any inference record.
+
+Final aggregate `results/A28_LIKELIHOOD_PARTIAL42_AGGREGATE_V3.json`, SHA256 `4ed55f4d4081e1c75f46f89f0c05ddebc1031177df5c0a2ab4ddffed757b45a7`, binds the final single/paired analyzer source hashes. An independent implementation importing neither analyzer nor scorer recomputed391 scalar fields from actual per-token log probabilities and directly parsed the saved strict-format responses. All fields match within1e-12. Earlier immutable aggregate versions are retained; numerical contents are unchanged.
+
+**PASS_WITH_LIMITATIONS.** Among20 complete training-patient pairs, strict generation accuracy is24/40: FLAIR20/20, contrast-enhanced T1 4/20. All40 paired generations have full required format and stopped normally. Counting the separately reported orphan FLAIR image gives25/41; it is excluded from pair statistics. Raw, mean-token and first-token preferences each agree with24/40 labels. Mean-token pair separation averages0.83674414 (median0.21274847), with positive separation in15/20 pairs. The single no-image mean-token margin is−1.94110365.
+
+These data show input-dependent score variation together with a strong FLAIR preference on this fixed, partially completed training-patient prefix. They do not estimate A28 improvement over A0/B28, establish a causal SFT/balance effect, or support independent-patient generalization. Only the original one-pair pilot has all three matched checkpoint measurements. The remaining15 A28 inputs and additional A0/B28 inputs remain unexecuted; current launch conditions have not been satisfied.

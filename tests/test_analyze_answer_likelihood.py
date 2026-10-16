@@ -147,7 +147,8 @@ def scoped_files(fixture,tmp_path,profile=None):
     for model in outputs:
         path=tmp_path/(model+'.jsonl');scopepath=tmp_path/(model+'-scope.json')
         s={'checkpoint':model,'contract_sha256':m.sha(contract),'adapter':c['checkpoints'][model],
-           'output':str(path),'source_hashes':{'fixture':'hash'},'backend_sources':{'fixture':'hash'},
+           'output':str(path),'completed_records':0,'max_new_records':5,'existing_output_sha256':None,
+           'new_record_ids':[r['record_id'] for r in outputs[model]],'source_hashes':{'fixture':'hash'},'backend_sources':{'fixture':'hash'},
            'temperature':0,'max_generation_tokens':256,'lora_rank':4,'lora_alpha':8,'quantization_bits':4,'group_size':64,'battery_exception':None}
         s.update(profile or {})
         s['run_identity']=canonical_hash({'contract':m.sha(contract),'checkpoint':model,'sources':s['source_hashes'],'backend':s['backend_sources'],'battery_diagnostic':False})
@@ -179,3 +180,100 @@ def test_derived_controls_reject_different_questions(fixture):
     c['records'][-1]['prompt'][1]['content'][-1]['text']='Different question'
     for model in o:o[model][-1]['prompt']=c['records'][-1]['prompt']
     with pytest.raises(ValueError,match='question|prompt'):m.analyze(c,o,ids)
+
+
+def test_segment_identity_is_position_bound(fixture):
+    m=module();c,rows,identities=fixture
+    from copy import deepcopy
+    expected={model:[row['run_identity'] for row in values] for model,values in rows.items()}
+    m.analyze(c,rows,expected)
+    changed=deepcopy(rows);changed['A0'][-1]['run_identity']='unauthorized_old'
+    with pytest.raises(ValueError,match='identity'):m.analyze(c,changed,expected)
+
+@pytest.mark.parametrize('damage',[None,'tail_identity','prefix_bytes','bridge_digest'])
+def test_scoped_adoption_end_to_end_preserves_prefix_and_checks_tail(fixture,tmp_path,monkeypatch,damage):
+    """Synthetic reviewed pilot + new tail through the real adoption validator."""
+    import json
+    import mri_rl.likelihood_adoption as adoption_module
+    from mri_rl.experiment_contract import canonical_hash
+    m,contract,paths,scopes=scoped_files(fixture,tmp_path,
+        {'source_hashes':{'fixture':'hash','paced_answer_likelihood':'old'}})
+    verify=adoption_module.verify_adoption
+    # Production restricts to repo local_data; test uses an isolated temp root.
+    monkeypatch.setattr(adoption_module,'verify_adoption',
+        lambda path,current:verify(path,current,private_root=tmp_path))
+    expected={}
+    for model in paths:
+        old=json.loads(scopes[model].read_text());rows=[json.loads(x) for x in paths[model].read_text().splitlines()]
+        prefix=tmp_path/(model+'-pilot.jsonl')
+        prefix.write_bytes(b''.join(paths[model].read_bytes().splitlines(keepends=True)[:3]))
+        approval=tmp_path/(model+'-pilot-approval.json')
+        approval.write_text(json.dumps({'kind':'answer_likelihood_v1','reviewer':'synthetic-independent',
+            'verdict':'PASS_WITH_LIMITATIONS','scope':old}))
+        audit=tmp_path/(model+'-audit.json')
+        audit.write_text(json.dumps({'verdict':'PASS_WITH_LIMITATIONS','output_sha256':m.sha(prefix),'approval_sha256':m.sha(approval)}))
+        bridge=tmp_path/(model+'-bridge.json')
+        bridge.write_text(json.dumps({'kind':'likelihood_immutable_prefix_v1','prefix_path':str(prefix),
+            'prefix_sha256':m.sha(prefix),'approval_path':str(approval),'approval_sha256':m.sha(approval),
+            'audit_path':str(audit),'audit_sha256':m.sha(audit),'records':3,
+            'numeric_loop_sha256':adoption_module.numerical_loop_sha256()}))
+        current={**old,'source_hashes':{**old['source_hashes'],'paced_answer_likelihood':'new'}}
+        current['run_identity']=canonical_hash({'contract':current['contract_sha256'],'checkpoint':model,
+            'sources':current['source_hashes'],'backend':current['backend_sources'],'battery_diagnostic':False})
+        current['adopted_prefix']=verify(bridge,current,private_root=tmp_path)['binding']
+        for row in rows[3:]:row['run_identity']=current['run_identity']
+        paths[model].write_bytes(prefix.read_bytes()+''.join(json.dumps(r)+'\n' for r in rows[3:]).encode())
+        scopes[model].write_text(json.dumps(current))
+        expected[model]=[old['run_identity']]*3+[current['run_identity']]*2
+        if model=='B28':
+            if damage=='tail_identity':
+                rows[-1]['run_identity']=old['run_identity']
+                paths[model].write_bytes(prefix.read_bytes()+''.join(json.dumps(r)+'\n' for r in rows[3:]).encode())
+            elif damage=='prefix_bytes':paths[model].write_bytes(b' '+paths[model].read_bytes())
+            elif damage=='bridge_digest':bridge.write_text(bridge.read_text()+' ')
+    if damage:
+        with pytest.raises(ValueError):m.load_scoped(contract,paths,scopes)
+    else:
+        c,loaded,ids=m.load_scoped(contract,paths,scopes)
+        assert ids==expected
+        public,_=m.analyze(c,loaded,ids)
+        assert public['checkpoints']['B28']['no_image']['unique_inputs']==1
+
+@pytest.mark.parametrize('dependency',['bridge','prefix','approval','audit'])
+def test_main_rechecks_adoption_dependencies_before_publication(tmp_path,monkeypatch,dependency):
+    """Publication-only synthetic fixture; scorer/validator arithmetic tested above."""
+    import json
+    import sys
+    m=module();private=tmp_path/'local_data';private.mkdir()
+    monkeypatch.setattr(m,'__file__',str(tmp_path/'scripts'/'analyzer.py'))
+    contract=private/'contract.json';contract.write_text('{}')
+    deps={key:private/(key+'.json') for key in ['bridge','prefix','approval','audit']}
+    for key,path in deps.items():path.write_text('{}')
+    deps['bridge'].write_text(json.dumps({key+'_path':str(deps[key]) for key in ['prefix','approval','audit']}))
+    args=['analyzer','--contract',str(contract),'--public-output',str(tmp_path/'public.json'),
+          '--private-output',str(private/'out.json')]
+    for model in ['a0','a28','b28']:
+        out=private/(model+'.jsonl');out.write_text('{}\n')
+        scope=private/(model+'-scope.json');scope.write_text(json.dumps({'adopted_prefix':{'path':str(deps['bridge'])}}))
+        args.extend(['--'+model,str(out),'--'+model+'-scope',str(scope)])
+    monkeypatch.setattr(sys,'argv',args)
+    monkeypatch.setattr(m,'load_scoped',lambda *a:({'patients':28},{},{}))
+    def mutate(*a,**kw):
+        deps[dependency].write_text(deps[dependency].read_text()+' ')
+        return {},{}
+    monkeypatch.setattr(m,'analyze',mutate)
+    with pytest.raises(ValueError,match='changed before publication'):m.main()
+    assert not (tmp_path/'public.json').exists() and not (private/'out.json').exists()
+
+
+@pytest.mark.parametrize('damage',['stale_scope','prefix_hash','next_ids'])
+def test_paired_loader_binds_approved_output_extent(fixture,tmp_path,damage):
+    import json
+    m,c,paths,scopes=scoped_files(fixture,tmp_path)
+    scope=json.loads(scopes['A28'].read_text())
+    if damage=='stale_scope':
+        scope['max_new_records']=1;scope['new_record_ids']=scope['new_record_ids'][:1]
+    elif damage=='prefix_hash':scope['existing_output_sha256']='bad'
+    else:scope['new_record_ids'][0]='not-frozen'
+    scopes['A28'].write_text(json.dumps(scope))
+    with pytest.raises(ValueError):m.load_scoped(c,paths,scopes)

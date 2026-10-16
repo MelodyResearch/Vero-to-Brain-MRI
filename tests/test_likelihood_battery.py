@@ -63,3 +63,111 @@ def test_serial_failure_does_not_retain_parameter_references():
     del value;gc.collect()
     assert error is not None
     assert reference() is None
+
+def hold_sample(t,swap=5.9,battery=91):
+    return replace(healthy(t,battery),available_gib=9,swap_used_gib=swap)
+
+@pytest.mark.parametrize('loading',[True,False])
+def test_isolated_rate_warning_admits_without_recovery_sleep(tmp_path,loading):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32)])
+    sleeps=[];p=tmp_path/'r'
+    gate=BatteryDiagnosticGate(p,sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start',loading=loading)
+    gate.before_unit('next',loading=loading)
+    event=json.loads(p.read_text().splitlines()[-1])
+    assert event['action']=='WARNING' and event['admitted'] is True
+    assert event['phase']==('loading' if loading else 'resident')
+    assert event['rate_warning_duration_seconds']==0
+    assert sleeps==[31] and gate.initial.swap_used_gib==5.7
+    assert len(gate.history)==3
+
+def test_sustained_rate_warning_enters_bounded_recovery(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32),hold_sample(62,6.1),hold_sample(77,6.1),hold_sample(92,6.1)])
+    sleeps=[];p=tmp_path/'r'
+    gate=BatteryDiagnosticGate(p,sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start');gate.before_unit('first');gate.before_unit('second')
+    events=[json.loads(x) for x in p.read_text().splitlines()]
+    assert [e['action'] for e in events]==['CONTINUE','CONTINUE','WARNING','HOLD','HOLD_RECOVERY','CONTINUE']
+    assert events[3]['rate_warning_duration_seconds']==30
+    assert sleeps==[31,15,15] and len(gate.history)==6
+    assert gate.initial.swap_used_gib==5.7
+
+def test_phase_change_does_not_carry_loading_transient_or_reset_budget(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32),hold_sample(62,6.1),hold_sample(100,6.8)])
+    sleeps=[];p=tmp_path/'r'
+    gate=BatteryDiagnosticGate(p,sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start',loading=True);gate.before_unit('load',loading=True)
+    gate.before_unit('resident')
+    event=json.loads(p.read_text().splitlines()[-1])
+    assert event['action']=='WARNING' and event['rate_warning_duration_seconds']==0
+    assert sleeps==[31] and gate.initial.swap_used_gib==5.7
+    with pytest.raises(RuntimeError,match='stage_swap_growth'):gate.before_unit('budget')
+
+@pytest.mark.parametrize('later', [hold_sample(77,6.8),hold_sample(77,battery=65),replace(hold_sample(77),other_heavy_processes=1)])
+def test_sustained_hold_stops_immediately_on_hard_deterioration(tmp_path,later):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32),hold_sample(62,6.1),later])
+    sleeps=[]
+    gate=BatteryDiagnosticGate(tmp_path/'r',sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start');gate.before_unit('first')
+    with pytest.raises(RuntimeError):gate.before_unit('sustained')
+    assert sleeps==[31,15]
+
+def test_clean_sample_breaks_rate_streak(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32),hold_sample(50),hold_sample(80,6.1)])
+    sleeps=[];p=tmp_path/'r'
+    gate=BatteryDiagnosticGate(p,sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start')
+    for name in ['first','clean','later']:gate.before_unit(name)
+    assert sleeps==[31]
+    assert json.loads(p.read_text().splitlines()[-1])['rate_warning_duration_seconds']==0
+
+def test_rate_only_supervisor_escalation_does_not_create_premature_stop(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32),hold_sample(33,6.0),hold_sample(34,6.1)])
+    sleeps=[]
+    gate=BatteryDiagnosticGate(tmp_path/'r',sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start');gate.before_unit('first');gate.before_unit('second')
+    gate.before_unit('third')
+    event=json.loads((tmp_path/'r').read_text().splitlines()[-1])
+    assert event['action']=='WARNING' and event['supervisor_level']=='WARNING'
+    assert sleeps==[31]
+
+def test_materializer_phase_inferred_without_raising_headroom_gate(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),replace(hold_sample(32),available_gib=7)])
+    sleeps=[];p=tmp_path/'r'
+    gate=BatteryDiagnosticGate(p,sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start',loading=True);gate.before_unit('materialized:64')
+    event=json.loads(p.read_text().splitlines()[-1])
+    assert event['phase']=='loading' and event['action']=='WARNING'
+    assert sleeps==[31]
+
+def test_real_pressure_is_never_admitted_as_rate_only_warning(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),replace(hold_sample(32),pressure_free_percent=14)])
+    gate=BatteryDiagnosticGate(tmp_path/'r',sampler=lambda:next(samples),sleep=lambda _:None)
+    gate.before_unit('start')
+    with pytest.raises(RuntimeError,match='memory_pressure'):gate.before_unit('next')
+
+def test_sustained_recovery_expires_after_three_rechecks(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32),hold_sample(62,6.1),
+                  hold_sample(77,6.1),hold_sample(92,6.2),hold_sample(107,6.2)])
+    sleeps=[]
+    gate=BatteryDiagnosticGate(tmp_path/'r',sampler=lambda:next(samples),sleep=sleeps.append)
+    gate.before_unit('start');gate.before_unit('first')
+    with pytest.raises(RuntimeError,match='warning_hold_not_recovered'):gate.before_unit('sustained')
+    assert sleeps==[31,15,15,15]
+
+def test_unattributed_supervisor_warning_cannot_be_reclassified(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    samples=iter([healthy(),healthy(31),hold_sample(32)])
+    gate=BatteryDiagnosticGate(tmp_path/'r',sampler=lambda:next(samples),sleep=lambda _:None)
+    gate.before_unit('start')
+    gate.policy.level='WARNING'  # No rate-only episode established in this gate.
+    with pytest.raises(RuntimeError,match='supervisor_not_normal'):gate.before_unit('next')

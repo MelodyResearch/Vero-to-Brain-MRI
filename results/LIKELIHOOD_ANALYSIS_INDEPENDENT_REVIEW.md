@@ -60,3 +60,15 @@ Independent Step D script and receipt are private under `likelihood_analysis_ind
 - Training-cohort likelihood changes cannot establish independent-patient generalization, explain the B development result causally, prove a capacity limit, or justify another training run without a separately falsifiable design.
 
 The review clears the identified analyzer defects within the frozen source scope. It grants neither a model launch nor training approval and does not establish full Vero-to-MRI method transfer.
+
+## Step D — immutable pilot-prefix continuation analysis
+
+**Verdict: PASS_WITH_LIMITATIONS** for the updated analyzer's adoption integration, reviewed independently by the Codex methods/statistics agent against the root agent's implementation. Analyzer SHA256: `eb38b85154005114d8d6b984599c663148506a737a778fdc3396791c64aac41f`; analyzer-test SHA256: `6b24ad7f17fa18e81739500640bf5e2dc72f3c3458671223eee53416972cb743`. This review concerns provenance validation, not new MRI results, launch approval or cross-family review.
+
+The source validates the immutable prefix bridge using the original independent approval, actual-result audit, original prefix bytes, unchanged numerical-loop AST and matching numeric/model/input profile. `completed_prefix` binds historical identities to exact prefix positions and permits only the current identity afterward. The analyzer receives a per-position identity sequence, not an unrestricted set of acceptable identities. Original rows and their original identities are retained.
+
+Four synthetic end-to-end cases exercised the real adoption validator with a temporary private filesystem root: three historical rows followed by two current rows are accepted; a historical identity reused in the new tail, a changed prefix byte and a changed bridge digest are each rejected. These fixtures contain no MRI outputs. Their artificial numeric values are not experimental findings.
+
+The reviewer identified a limited publication-time provenance gap: the new dependency files were checked during loading, but initially were absent from `main`'s final pre-publication evidence checks. The root author added bridge, prefix, approval and audit hashes to that final check. Four additional publication-path fixtures mutate these dependencies individually after validation and before publication. All four now reject without producing either aggregate or private output. The publication fixtures substitute synthetic scoring/validation callbacks only to isolate the final boundary; full real-validator checks are covered by the preceding integration tests. Public provenance lists dependency digests without exposing private paths.
+
+Fresh CPU-only verification: **35 passed in 0.41 seconds** across `test_analyze_answer_likelihood.py` and `test_likelihood_adoption.py`. No model or native MLX work was performed. Actual checkpoint results, prospective cohort selection and resource admission remain separate review scopes. This change prevents repeated completed inference through byte-preserving continuation; it does not turn partial outputs into a completed cohort or increase the number of independent patients.

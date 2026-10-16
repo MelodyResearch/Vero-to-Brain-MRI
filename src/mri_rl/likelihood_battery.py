@@ -7,10 +7,12 @@ import time
 from mri_rl.paced_resources import decisions
 from mri_rl.resource_supervisor import ResourcePolicy, sample_macos
 
-BATTERY_POLICY = {'version':'read-only-likelihood-battery-v1', 'runner':'answer_likelihood_v1',
+BATTERY_POLICY = {'version':'read-only-likelihood-battery-v3-duration-warning', 'runner':'answer_likelihood_v1',
     'start_min_percent':75, 'stop_percent':65, 'initial_sample_gap_seconds':31,
     'rapid_drain_min_seconds':60, 'rapid_drain_min_points':2, 'rapid_drain_points_per_minute':1,
     'stage_max_drain_points':5, 'stage_max_swap_growth_gib':1,
+    'rate_warning_min_seconds':30, 'rate_warning_min_observations':2,
+    'warning_hold_rechecks':3,'warning_hold_seconds':15,'warning_recovery_samples':2,
     'power_watts':'UNAVAILABLE; battery-percent trend is a coarse proxy', 'weight_updates':0}
 
 class BatteryDiagnosticGate:
@@ -18,9 +20,30 @@ class BatteryDiagnosticGate:
         if runner != BATTERY_POLICY['runner']:raise ValueError('Read-only likelihood exception only')
         self.path=Path(path);self.sampler=sampler;self.sleep=sleep
         self.policy=ResourcePolicy();self.initial=None;self.history=[]
+        self._rate_start=None;self._rate_count=0;self._rate_phase=None
+        self._rate_only_episode=False
 
-    def _check(self,name,loading,starting):
+    def _check(self,name,loading,starting,*,recovering=False,clean_samples=0):
         s=self.sampler();level,reasons=self.policy.observe(s)
+        sole_rate=reasons==['sustained_swap_growth']
+        # The generic supervisor counts observations, not elapsed time. Only its
+        # provably rate-only WARNING episode may use this duration-based rule.
+        if level=='NORMAL':self._rate_only_episode=sole_rate
+        elif level=='CRITICAL' or any(r!='sustained_swap_growth' for r in reasons):
+            self._rate_only_episode=False
+        rate_only_level=level=='WARNING' and self._rate_only_episode
+        # Materialization uses the unit memory gate intentionally; phase labeling
+        # must not silently replace that with the stricter loading headroom gate.
+        phase='loading' if loading or name.startswith('materialized:') or name.startswith('quantized_model_ready') else 'resident'
+        if sole_rate:
+            if self._rate_start is None or phase!=self._rate_phase:
+                self._rate_start=s.monotonic_seconds;self._rate_count=0
+            self._rate_count+=1
+        else:self._rate_start=None;self._rate_count=0
+        self._rate_phase=phase
+        duration=0 if self._rate_start is None else s.monotonic_seconds-self._rate_start
+        sustained=(self._rate_count>=BATTERY_POLICY['rate_warning_min_observations'] and
+                   duration>=BATTERY_POLICY['rate_warning_min_seconds'])
         # The exception substitutes only the verified battery source for the AC check.
         known=s.power_source in ('AC','BATTERY')
         effective=replace(s,power_source='AC') if known else s
@@ -40,22 +63,47 @@ class BatteryDiagnosticGate:
                     drop=prior.battery_percent-s.battery_percent
                     if dt>=60 and drop>=2 and drop/(dt/60)>=1:
                         reasons.append('rapid_battery_drain');break
-        if reasons:action='STOP'
+        if level!='NORMAL' and not rate_only_level:reasons.append('supervisor_not_normal')
+        if reasons:
+            if reasons==['sustained_swap_growth']:
+                action='HOLD' if recovering or sustained else 'WARNING'
+            else:action='STOP'
+        elif recovering and clean_samples<1:
+            action='HOLD_RECOVERY'
         event={'unit_id':name,'action':action,'reasons':reasons,'supervisor_level':level,
-            'sample':asdict(s),'battery_exception':BATTERY_POLICY}
+            'sample':asdict(s),'battery_exception':BATTERY_POLICY,
+            'phase':phase,'rate_warning_duration_seconds':duration,
+            'rate_warning_observations':self._rate_count,
+            'rate_only_supervisor_warning':rate_only_level,
+            'admitted':action in ('CONTINUE','WARNING')}
         with self.path.open('a') as f:
             f.write(json.dumps(event,sort_keys=True)+'\n');f.flush();os.fsync(f.fileno())
-        if action!='CONTINUE':raise RuntimeError('Battery diagnostic stopped at boundary: '+','.join(reasons))
-        if self.initial is None:self.initial=s
+        if self.initial is None and action!='STOP':self.initial=s
         self.history.append(s)
-        return s
+        return s,action,reasons
+
+    def _admit(self,name,loading,starting):
+        sample,action,reasons=self._check(name,loading,starting)
+        if action in ('CONTINUE','WARNING'):return sample
+        if action=='STOP':raise RuntimeError('Battery diagnostic stopped at boundary: '+','.join(reasons))
+        clean=0
+        for attempt in range(BATTERY_POLICY['warning_hold_rechecks']):
+            self.sleep(BATTERY_POLICY['warning_hold_seconds'])
+            sample,action,reasons=self._check(name+':warning_hold:'+str(attempt+1),loading,starting,recovering=True,clean_samples=clean)
+            if action=='STOP':raise RuntimeError('Battery diagnostic stopped during HOLD: '+','.join(reasons))
+            clean=clean+1 if not reasons else 0
+            if action=='CONTINUE':return sample
+        with self.path.open('a') as f:
+            f.write(json.dumps({'unit_id':name,'action':'STOP','reasons':['warning_hold_not_recovered'],
+                'sample':asdict(sample),'battery_exception':BATTERY_POLICY},sort_keys=True)+'\n');f.flush();os.fsync(f.fileno())
+        raise RuntimeError('Battery diagnostic stopped: warning_hold_not_recovered')
 
     def before_unit(self,name,loading=False):
         starting=self.initial is None
-        sample=self._check(name,loading,starting)
+        sample=self._admit(name,loading,starting)
         if starting:
             self.sleep(BATTERY_POLICY['initial_sample_gap_seconds'])
-            sample=self._check(name+':second_preflight',loading,True)
+            sample=self._admit(name+':second_preflight',loading,True)
             if sample.monotonic_seconds-self.initial.monotonic_seconds<30:
                 raise RuntimeError('Insufficient preflight sampling interval')
         return sample
