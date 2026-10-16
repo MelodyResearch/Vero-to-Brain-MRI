@@ -31,3 +31,11 @@ No claim that tiny fixture establishes full-Qwen bitwise parity; actual restore 
 - M3: actual step3 exited0; cumulative3updates/12examples. Afteradapter381b0ca7711099bfd0bf33f33605c4791b24a8a4d51f2c0b8a52738f968e792b; independent review PASS_WITH_LIMITATIONS. Next4–5stage pending postrunresource samples and newapproval. No B28 claim.
 - Fresh default CPU verification:193passed,2skipped; native fixture tests separately passed earlier.
 - Authenticated Claude public-upstream-only source review launched in safe-mode/toolsdisabled isolated directory; no private MRI material supplied. Verdict pending; localB/C cross-model review remains NOT_VERIFIED.
+
+## Current verified continuation (supersedes early milestone status)
+
+- B17 independently verified; B18–19 actual process completed and awaits postrun independent audit. Continue from the latest verified parent, never replay completed updates.
+- Current full CPU suite:250passed,2skipped. Native restore fixtures separately passed; no repeat model loading implied.
+- C2 actual frozen cohort:44rows/35patients/38images;20new-cohort MRIvolumes verified,11pairedframes rendered. Independent source/header/hash/linkage review PASS_WITH_LIMITATIONS; fullpixelrerender NOT_RUN and clinicaladmission NOT_VERIFIED.
+- Genuine authenticated Claude publicVero-only review completed; independent Codex initial opinion preserved and disagreement fixtures executed. PrivateB/C cross-model status remains NOT_VERIFIED.
+- B28 primary54 and24+24 controls are implemented and source-reviewed but NOT_RUN. They require completedB28 and separately reviewed finite scopes.

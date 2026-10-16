@@ -3,7 +3,7 @@
   "status": "PARTIAL_TRAINING",
   "verified_stage_results": [
     {
-      "evidence": "OBSERVED_AND_INDEPENDENTLY_REPRODUCED",
+      "evidence": "REPRODUCED",
       "cumulative_optimizer_steps": 2,
       "new_stage_updates": 1,
       "cumulative_examples": 8,
@@ -27,7 +27,7 @@
       "science_claim": false
     },
     {
-      "evidence": "OBSERVED_AND_INDEPENDENTLY_REPRODUCED",
+      "evidence": "REPRODUCED",
       "cumulative_optimizer_steps": 3,
       "new_stage_updates": 1,
       "cumulative_examples": 12,
@@ -51,7 +51,7 @@
       "science_claim": false
     },
     {
-      "evidence": "OBSERVED_AND_INDEPENDENTLY_REPRODUCED",
+      "evidence": "REPRODUCED",
       "cumulative_optimizer_steps": 5,
       "new_stage_updates": 2,
       "cumulative_examples": 20,
@@ -77,7 +77,7 @@
       "science_claim": false
     },
     {
-      "evidence": "OBSERVED_AND_INDEPENDENTLY_REPRODUCED",
+      "evidence": "REPRODUCED",
       "cumulative_optimizer_steps": 7,
       "new_stage_updates": 2,
       "cumulative_examples": 28,
@@ -103,7 +103,7 @@
       "science_claim": false
     },
     {
-      "evidence": "OBSERVED_AND_INDEPENDENTLY_REPRODUCED",
+      "evidence": "REPRODUCED",
       "cumulative_optimizer_steps": 9,
       "new_stage_updates": 2,
       "cumulative_examples": 36,
@@ -127,9 +127,139 @@
       "stops": 0,
       "thermal": "SENSOR_UNAVAILABLE",
       "science_claim": false
+    },
+    {
+      "evidence": "REPRODUCED",
+      "cumulative_optimizer_steps": 11,
+      "new_stage_updates": 2,
+      "cumulative_examples": 44,
+      "distinct_training_patients_exposed": 25,
+      "new_step_mean_losses": [
+        3.444637894630432,
+        2.9753140807151794
+      ],
+      "new_step_gradient_l2": [
+        10.326782027699979,
+        7.904877372340206
+      ],
+      "adapter_sha256": "a47bd3ce1ff84b3f098d409b78b81795ffe49185f201f2f9552c8d285d1f6f37",
+      "receipt_sha256": "3f2573d148de41199778a10bcde91076de3b99473fc39d7ec3cc0f2ab0fc2a36",
+      "independent_audit_sha256": "80ae848afff51cfb0abfe308794b982a801b47e6c128deedbdec778faa0f4807",
+      "review_approval_sha256": "140a401abdc20eb5375d25f341e598711279732cf3d10615e55ba9efd8efc5fa",
+      "minimum_sampled_available_gib": 8.661849975585938,
+      "minimum_pressure_free_percent": 46.0,
+      "maximum_sampled_swap_gib": 9.259033203125,
+      "holds": 0,
+      "stops": 0,
+      "thermal": "SENSOR_UNAVAILABLE",
+      "science_claim": false
+    },
+    {
+      "evidence": "REPRODUCED",
+      "cumulative_optimizer_steps": 13,
+      "new_stage_updates": 2,
+      "cumulative_examples": 52,
+      "distinct_training_patients_exposed": 27,
+      "new_step_mean_losses": [
+        2.4274597764015198,
+        1.8561127185821533
+      ],
+      "new_step_gradient_l2": [
+        6.558643482654365,
+        5.279714035847458
+      ],
+      "adapter_sha256": "99d90bd28c9964e8ec6f1034d9d3aa1e81a51996cb068c7c735b9e168ec3bba6",
+      "receipt_sha256": "7bfb8eb911ba7aa27f3343a7f5da5e8c95aab668d8e985131739d1deae2edefc",
+      "independent_audit_sha256": "410758574a4b7d96e30aec6c3c883e1f2c36f76486b6c0ae3d99a0f6ef8fed92",
+      "review_approval_sha256": "90019ef8069f04910071f5233ed2fab300784a65e0ee0a0480db2fd4626af9f7",
+      "minimum_sampled_available_gib": 9.587921142578125,
+      "minimum_pressure_free_percent": 49.0,
+      "maximum_sampled_swap_gib": 9.98876953125,
+      "holds": 0,
+      "stops": 0,
+      "thermal": "SENSOR_UNAVAILABLE",
+      "science_claim": false
+    },
+    {
+      "evidence": "REPRODUCED",
+      "cumulative_optimizer_steps": 15,
+      "new_stage_updates": 2,
+      "cumulative_examples": 60,
+      "distinct_training_patients_exposed": 27,
+      "new_step_mean_losses": [
+        1.7277165651321411,
+        1.3916589617729187
+      ],
+      "new_step_gradient_l2": [
+        5.0774874204861185,
+        4.231651757491358
+      ],
+      "adapter_sha256": "21e09cacbb31970f0cd3603073015855f7c80bc62f1e808b0b7e05b58145ba59",
+      "receipt_sha256": "87dff0277c1c517cb3aa35cf095cdf664d411a3ae2968b056eea7410478d31db",
+      "independent_audit_sha256": "f1a89a65883677f8d385b15f34374fe50044b9d5a8f4769fb7c4a1cac312cae8",
+      "review_approval_sha256": "4658714abed1f1a9a5a85017547be0536e328e798d8e15ea52128a19533cf950",
+      "minimum_sampled_available_gib": 9.445068359375,
+      "minimum_pressure_free_percent": 49.0,
+      "maximum_sampled_swap_gib": 9.92626953125,
+      "holds": 0,
+      "stops": 0,
+      "thermal": "SENSOR_UNAVAILABLE",
+      "science_claim": false
+    },
+    {
+      "evidence": "REPRODUCED",
+      "cumulative_optimizer_steps": 17,
+      "new_stage_updates": 2,
+      "cumulative_examples": 68,
+      "distinct_training_patients_exposed": 28,
+      "new_step_mean_losses": [
+        1.2651124000549316,
+        0.9168784320354462
+      ],
+      "new_step_gradient_l2": [
+        4.084682286895464,
+        3.385609708349797
+      ],
+      "adapter_sha256": "62f25fb23a922a80afd91c7cb4f5b06c2c72632207a3d02261bdb058388464f8",
+      "receipt_sha256": "3de6c2698f0b37cb5afd43b91ec060f7a1fab06360d46f05ce8f9162e9c50632",
+      "independent_audit_sha256": "e83b56b8bb812df8023c2f390d801b3ba615a34362b29d198f5effc9e33513f2",
+      "review_approval_sha256": "bf255f844df656b28388e471cb46cc0f20b43ca8f0cbb8e4ccedf8cfcf24979e",
+      "minimum_sampled_available_gib": 9.965057373046875,
+      "minimum_pressure_free_percent": 51.0,
+      "maximum_sampled_swap_gib": 9.7074609375,
+      "holds": 0,
+      "stops": 0,
+      "thermal": "SENSOR_UNAVAILABLE",
+      "science_claim": false
+    },
+    {
+      "evidence": "REPRODUCED",
+      "cumulative_optimizer_steps": 19,
+      "new_stage_updates": 2,
+      "cumulative_examples": 76,
+      "distinct_training_patients_exposed": 28,
+      "new_step_mean_losses": [
+        0.9046819359064102,
+        0.7327525392174721
+      ],
+      "new_step_gradient_l2": [
+        3.1737780161469873,
+        3.029052296076114
+      ],
+      "adapter_sha256": "2a1b2c3d22cf45945ffa990ce9be1686d368baae7201bf37f4c37ad8b6923c53",
+      "receipt_sha256": "356a2c9b6eafdfc30c1e209c225cfefd3ac25c1d2eaf17dc9c32065f66bbb97c",
+      "independent_audit_sha256": "940b6b67e3b96f9cb760abf99faa4c7ebb7ade810b07a23e1c2a8fa6bf54b2ab",
+      "review_approval_sha256": "26a6e46678be1f92fa0b8c852aae8f6ce05fe6c38607342ff5a929976df81123",
+      "minimum_sampled_available_gib": 10.028701782226562,
+      "minimum_pressure_free_percent": 52.0,
+      "maximum_sampled_swap_gib": 9.6527734375,
+      "holds": 0,
+      "stops": 0,
+      "thermal": "SENSOR_UNAVAILABLE",
+      "science_claim": false
     }
   ],
   "completed_B28": false,
-  "new_matched_dev_evaluation": "NOT_RUN",
+  "new_matched_dev_evaluation": "See separate evaluation receipts; no evaluation inferred from this training ledger",
   "cross_model_scope": "public_upstream_only; private_B_C_NOT_VERIFIED"
 }

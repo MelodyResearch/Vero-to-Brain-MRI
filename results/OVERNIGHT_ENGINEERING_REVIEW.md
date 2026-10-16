@@ -1,5 +1,9 @@
 # Overnight independent engineering review
 
+<!-- CURRENT_ENGINEERING_STATUS -->
+**Latest verified training: 19 cumulative updates, cursor 76.** The completed stage approval is consumed; further updates require a separate approval after fresh resource evidence. Evaluation and controls have source/CPU reviews only. Earlier approvals do not authorize replay or expansion.
+<!-- END_CURRENT_ENGINEERING_STATUS -->
+
 ## Scope and current verdict
 
 Reviewer: isolated Codex engineering reviewer; no Claude review is claimed. Review uses bounded CPU metadata/source inspection without MLX imports, model loading, GPU execution or MRI-volume loading. The researcher’s latest overnight directive authorizes staged Control B continuation and separate Candidate C research, subject to exact restoration, scoped independent review and live resource checks. The prior one-step approval does not automatically approve a new stage.
@@ -109,6 +113,10 @@ All rows below are **REPRODUCED / PASS_WITH_LIMITATIONS**, based on primary priv
 | 6–7 | 28 | 6.131338596 / 5.590974331 | 11.241118678 / 11.608965319 | 504 / 504 | 0 / 0 / 0 | 22 decisions, no HOLD; min available 8.80391 GiB, min pressure-free 49%; swap 7.47906 → max 7.87671 → end 7.79858 GiB |
 | 8–9 | 36 | 4.912723184 / 4.154455423 | 19.708411036 / 10.760168337 | 504 / 504 | 0 / 0 / 0 | 22 decisions, 0 HOLD; min available 9.08488 GiB, min pressure-free 45%; swap 7.68915 → max 9.22645 → end 9.18738 GiB |
 | 10–11 | 44 | 3.444637895 / 2.975314081 | 10.326782028 / 7.904877372 | 504 / 504 | 0 / 0 / 0 | 22 decisions, 0 HOLD; min available 8.66185 GiB, min pressure-free 46%; swap 8.97638 → max 9.25903 → end 9.22596 GiB |
+| 12–13 | 52 | 2.427459776 / 1.856112719 | 6.558643483 / 5.279714036 | 504 / 504 | 1 / 1 / 1 | 22 decisions, 0 HOLD; min available 9.58792 GiB, min pressure-free 49%; swap 9.13221 → max 9.98877 → end 9.95752 GiB |
+| 14–15 | 60 | 1.727716565 / 1.391658962 | 5.077487420 / 4.231651757 | 504 / 504 | 0 / 0 / 0 | 22 decisions, 0 HOLD; min available 9.44507 GiB, min pressure-free 49%; swap 9.92627 → max 9.92627 → end 9.91064 GiB |
+| 16–17 | 68 | 1.265112400 / 0.916878432 | 4.084682287 / 3.385609708 | 504 / 504 | 0 / 1 / 0.2 | 22 decisions, 0 HOLD; min available 9.96506 GiB, min pressure-free 51%; swap 9.70746 → max 9.70746 → end 9.66840 GiB |
+| 18–19 | 76 | 0.904681936 / 0.732752539 | 3.173778016 / 3.029052296 | 504 / 504 | 0 / 1 / 0.2 | 22 decisions, 0 HOLD; min available 10.02870 GiB, min pressure-free 52%; swap 9.65277 → max 9.65277 → end 9.64496 GiB |
 <!-- ENGINEERING_STAGE_ROWS -->
 
 Stage 4–5 saves verified intermediate cursor 16 and final cursor 20, with distinct changed adapter hashes and complete 1,011-tensor state payloads. Final adapter SHA-256: `89694d04924c1327f638a7ca9b622c5f3c96aa3c6fc894115de0946b03f8767b`. Final optimizer payload SHA-256: `836d1b1169b32ba76f3b6603fb0209fede25ef37b6cbd489d6aaaa59ca583eb6`. Full per-step hashes and CPU results are in `overnight_resume_review_v1/postrun_step005_independent_verification.json`. Float64 aggregate adapter delta L2 is 0.31993798362058434. All 22 resource decisions reproduce; final-generation telemetry is present, AC/100% battery and no competing heavyweight process were recorded, and thermal telemetry remains unavailable.
@@ -132,6 +140,10 @@ Each row is **PASS_WITH_LIMITATIONS** for only the named new updates and one seq
 | --- | --- | --- | --- | --- |
 | 8–9 | 28 → 36 | `balanced_sft_resume_step009_v1` / `approval_step009.json` | `fa54a27f03d67b68466e14a54fdbe1aadeb698de6c589bdd3a0c0e2edb3741b7` | Two samples 36.34 seconds apart; swap 7.79858 → 7.79077 GiB; available 14.14900 → 13.9044 GiB, pressure-free 68 → 69%; AC/100%, competing model workers 0 |
 | 10–11 | 36 → 44 | `balanced_sft_resume_step011_v1` / `approval_step011.json` | `140a401abdc20eb5375d25f341e598711279732cf3d10615e55ba9efd8efc5fa` | Two samples 61.10 seconds apart; swap 9.17957 → 8.98419 GiB; latest available 13.0999 GiB, pressure-free 72%; AC/100%, competing model workers 0 |
+| 12–13 | 44 → 52 | `balanced_sft_resume_step013_v1` / `approval_step013.json` | `90019ef8069f04910071f5233ed2fab300784a65e0ee0a0480db2fd4626af9f7` | Two samples 64.96 seconds apart; swap 9.2103 → 9.1322 GiB; latest available 12.7705 GiB, pressure-free 67%; AC/100%, competing model workers 0 |
+| 14–15 | 52 → 60 | `balanced_sft_resume_step015_v1` / `approval_step015.json` | `4658714abed1f1a9a5a85017547be0536e328e798d8e15ea52128a19533cf950` | Two samples 57.07 seconds apart; swap exactly stable 9.92627 GiB; latest available 14.399 GiB, pressure-free 67%; AC/100%, competing model workers 0 |
+| 16–17 | 60 → 68 | `balanced_sft_resume_step017_v1` / `approval_step017.json` | `bf255f844df656b28388e471cb46cc0f20b43ca8f0cbb8e4ccedf8cfcf24979e` | Two samples 70.88 seconds apart; swap 9.76215 → 9.72309 GiB; latest available 13.559 GiB, pressure-free 69%; AC/100%, competing model workers 0 |
+| 18–19 | 68 → 76 | `balanced_sft_resume_step019_v1` / `approval_step019.json` | `26a6e46678be1f92fa0b8c852aae8f6ce05fe6c38607342ff5a929976df81123` | Post-C-decoding samples 73.98 seconds apart; swap exactly stable 9.65277 GiB; latest available 14.191 GiB, pressure-free 69%; AC/100%, competing model workers 0 |
 <!-- ENGINEERING_APPROVAL_ROWS -->
 
 Step 8–9 launcher `overnight_resume_review_v1/launch_step009.py` explicitly requests two updates from step007. Approval remains conditional on the same conservative gates; no step10 is approved. The separately developed evaluation helper is outside these twelve bound training sources and has not been reviewed or authorized by this approval.
@@ -151,3 +163,31 @@ Installed MLX-VLM source inspection confirms that historical `add_generation_pro
 **PASS_WITH_LIMITATIONS for source/CPU correction only; evaluation execution NOT_VERIFIED / NOT_RUN.** A genuinely completed and independently audited B28, exact new record scope, existing-output digest, fresh resources and separate reviewer approval remain necessary. The new evaluator is outside the twelve frozen training files, which were not changed. Four internal-development patients and 54 correlated questions remain exploratory; this engineering fix does not establish MRI learning or cross-model review of private B/C evidence.
 
 Stage 10–11 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step011_independent_verification.json`. Final adapter SHA-256 `a47bd3ce1ff84b3f098d409b78b81795ffe49185f201f2f9552c8d285d1f6f37`; final optimizer payload SHA-256 `3c5186b062339031476652c480ad5ab765fc9b4320f6d380ebce3e588427a5ac`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
+
+Exactly steps12–13 are separately approved, with intermediate step12/cursor48 and final step13/cursor52. Code hashes remain identical after commit495db13; static preflight and explicit two-update launcher assertions pass. No step14 or evaluation execution is approved.
+
+Stage 12–13 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step013_independent_verification.json`. Final adapter SHA-256 `99d90bd28c9964e8ec6f1034d9d3aa1e81a51996cb068c7c735b9e168ec3bba6`; final optimizer payload SHA-256 `7596e7261eab381f9775582fb23c21934644cdfb9e51574b571974c321d6f6e7`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
+
+Stage12–13 independently exposes27 cumulative patients. Its final single-training-image reload score is1/1/1 under the unchanged strict parser; this is not a development score or evidence of pixel grounding. The fixed28-step schedule, selection and loss remain unchanged. Exactly14–15 are approved after stable resources, unchanged 12 source hashes and passing staticpreflight; intermediate cursor56 and final60 are required. No step16 is approved.
+
+Stage 14–15 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step015_independent_verification.json`. Final adapter SHA-256 `21e09cacbb31970f0cd3603073015855f7c80bc62f1e808b0b7e05b58145ba59`; final optimizer payload SHA-256 `d2cb23fe9f9548d531e789479ccb9ab383f9ec7087bbcbc9121847acd56d53c9`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
+
+## Future sequence-control evaluator review
+
+**NO_ISSUE_FOUND / PASS_WITH_LIMITATIONS for source and CPU checks only.** Reviewed `paced_sequence_controls.py` SHA-256 `30d8ca43298842a553ded6ba20a17e2caa18fe0671ec056c6fcb53836976553c`: genuine B28 and all 54 matching primary predictions are required before controls; immutable 24-row no-image and same-patient/same-slice opposite-sequence manifests, historical A28 control outputs and private gold identity are verified. Exact source, pending IDs, mode, current image hashes, primary-output digest, existing control-output digest and 1–4-record budget enter the independently approved scope. The no-image path requires zero image placeholders; swap requires one. Actual finish/token/peak metadata and post-generation gates remain explicit, and output is persisted before a resource HOLD/STOP.
+
+Independent checks: **9 tests passed in 0.06 seconds** with MLX/MLX-VLM imports blocked. Both actual 24-row control manifests equal transformations of the frozen primary records; historical baseline pixel/prompt/profile checks and private gold hash pass. No model was run. Control inference remains **NOT_VERIFIED / NOT_RUN** until genuine audited B28, complete 54 primary outputs and a new exact execution approval. Baseline correctness does not establish image grounding; later analysis must distinguish answer changes from correct directional label flips.
+
+Exactly steps 16–17 approved with intermediate cursor 64 and final 68, unchanged 12 source hashes, passing actual static preflight and explicit two-update launcher. No step 18 or evaluation execution approved.
+
+Stage 16–17 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step017_independent_verification.json`. Final adapter SHA-256 `62f25fb23a922a80afd91c7cb4f5b06c2c72632207a3d02261bdb058388464f8`; final optimizer payload SHA-256 `c50efdfd83150c0c5e3466700a68bf160aa54a3813afb8ea0cc4f9ddc7f11fdf`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
+
+## Paired-analysis provenance corrections
+
+Lightweight source review identified two bounded issues in the new analysis script: the label `CROSS_MODEL_REVIEW` could imply distinct-family review of private checkpoint results, and matching profile fields alone would not reject edited historical response text. The statistics author added failing regressions, renamed the scope to `PAIRED_INTERNAL_DEV_CHECKPOINT_ANALYSIS`, explicitly records `cross_model_review=NOT_VERIFIED`, and makes the CLI verify exact immutable A0/A28 output digests before analysis. This does not change scoring rules or training.
+
+Independent Step D: source SHA-256 `935dc33d74a8e0f890d590d78c72271040b35d3335f262e222c5fed0c881b600` inspected; **20 paired-analysis tests passed in 0.41 seconds** with MLX imports blocked. Source checks support the distinctions between existing parser accuracy, full-format accuracy, diagnostic answer-only extraction, question-pooled versus within-task patient means, and observed versus unknown termination. Synthetic test results are not model scores. Actual B28 paired numerical analysis remains NOT_RUN until complete predictions exist and are independently recomputed.
+
+Exactly steps18–19 are approved using the fresh `postC_poststep017_resources_PRIVATE.jsonl` evidence after decoding exited. Intermediate cursor72 and final76, unchanged12 source hashes, actual static preflight and explicit two-update launcher are verified. No step20 or evaluation execution is approved.
+
+Stage 18–19 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step019_independent_verification.json`. Final adapter SHA-256 `2a1b2c3d22cf45945ffa990ce9be1686d368baae7201bf37f4c37ad8b6923c53`; final optimizer payload SHA-256 `8e909dff319cd9d86f7fb55fb79bccd02920d9b909bfab1acdeca0b32c4a8a3c`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.

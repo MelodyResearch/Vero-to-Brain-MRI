@@ -129,3 +129,41 @@ During a confirmed GPU-idle interval, this reviewer independently verified the n
 The slice136 mask recount is1867 tumor pixels and733 enhancing pixels. Thus it supports the tumor geometry filter but still fails the enhancing≥1000 criterion. Independent serial array preprocessing reproduces each saved PNG panel pixel-for-pixel using the recorded percentile subsampling, rotation and bilinear display transform; both panels also match their locations in the combined PNG. Combined PNG SHA-256: `45bec4d19bcbf5ce9309ef81d40d723403d9da1fc45be0a51dc4a0a6fa426a57`.
 
 **Verdict: `PASS_WITH_LIMITATIONS` for actual source-linked MRI bytes, geometry and rendering.** This verifies a real image pair beyond mask-only feasibility. It is not a blinded visible-lesion judgment, a new model result or scientific task admission. Status remains `ENGINEERING_ONLY`, clinical visibility `NOT_VERIFIED`. Private independent receipt: `overnight_method_stats_v1/independent_c2_image_PRIVATE.json`.
+
+## 5. Complete B28 comparison analysis prepared; new B28 outcomes not yet observed
+
+**Implementation status: tested on synthetic fixtures and replayed historical saved outputs. Scientific verdict remains `NOT_VERIFIED`.** New analysis-only `scripts/analyze_b28_paired.py` requires the completed 28-update receipt, 112 executed exposures, original A0 adapter, frozen schedule and final B adapter hash before naming predictions B28. It checks all 54 IDs, 24/12/12/6 task counts, four patients, image hashes, prompts, native templates, adapter loading and common model/decoding configuration. The complete optimizer chain still requires separate engineering verification. No training code or historical outputs were changed.
+
+Two metrics are deliberately distinct:
+
+- Equal-task macro of question accuracies: pool questions within each task, then equally average the four task accuracies.
+- Equal-task macro of within-patient task accuracies: average each patient's questions within a task, equally average observed patients for that task, then equally average tasks. A patient without an eligible question in a task is omitted for that task; no invented zero is assigned. Coverage counts accompany this metric.
+
+Actual saved A28 outputs give **65.625%** for the first and **62.5%** for the second. The discrepancy comes from grid questions: six questions across all four patients, with counts 1/1/2/2. Grid pooled question accuracy is 50%, while the mean of within-patient grid accuracies is 37.5%. Sequence, tumor presence and enhancement presence each cover all four patients with equal counts per patient (6, 3 and 3 respectively). A0 remains zero under both definitions. These are descriptive historical reanalyses, not new model inference or independent evidence of generalization.
+
+The unchanged Vero reward contract allows its partial-format branch to receive task accuracy. Therefore contract accuracy and full-format correctness are reported separately, including separate confusion matrices and paired changes. Full-format correctness requires format reward exactly 1 and correct task answer. Diagnostic answer-only extraction never contributes to either primary score. Invalid/unparsed predictions retain an explicit `INVALID` bucket. Historical A28 has full format on all 54, so its two correctness definitions agree.
+
+Both sequence controls must contain all 24 records. The analyzer reconstructs the intervention from the original same-patient, same-slice sequence pair: no-image removes only structured image content; swap substitutes only the opposite sequence image. All prompt text and generation settings remain matched. Swap correctness uses the **replacement image's label**. Correct-direction flips require both original and swapped predictions to be correct and different; arbitrary answer changes are reported separately.
+
+Replaying actual historical outputs reproduces original 15/24, no-image 12/24 and swapped-image 15/24, with 6/24 correct-direction flips. These saved controls do not constitute a new B28 experiment. Observed generation token counts are preserved even when finish reason is unknown; historical termination remains unknown, and a cap-length output does not imply truncation without a recorded finish reason.
+
+CPU verification: `tests/test_b28_paired_analysis.py` plus `tests/test_balanced_sft_comparison_audit.py`: **22 passed**. Fixtures explicitly contain synthetic non-loadable image and adapter bytes; no fixture is entered into real experiment output directories. Tests reject missing/duplicate records and image, prompt, checkpoint, configuration and partial-training mismatches; they exercise replacement-label scoring, partial-format handling, unknown termination and unequal patient coverage. The independent historical replay is private at `overnight_method_stats_v1/historical_metric_control_recheck_v2_PRIVATE.json`. Actual B28 prediction collection and its paired statistical comparison remain pending until the genuine completed run and all outputs exist. No p-values, confirmatory intervals or independence assumptions over 54 questions are made.
+
+### Independent engineering correction and Step D
+
+The first analysis implementation called its scope `CROSS_MODEL_REVIEW`, despite comparing checkpoints from one model family. Following independent review, this was corrected to `PAIRED_INTERNAL_DEV_CHECKPOINT_ANALYSIS`, with `cross_model_review: NOT_VERIFIED` explicit. The CLI also now pins the immutable A0 and A28 output-file SHA-256 values before analysis, so edited response text cannot pass merely by retaining matching configuration fields. Two regression tests first failed and subsequently passed; the combined suite now has **24 passing tests**. The independent engineering reviewer inspected the corrected source and independently ran all 20 paired-analysis tests with MLX imports blocked, confirming both corrections. This is engineering verification of the analyzer, not actual B28 results or a cross-family scientific review.
+
+## 6. Frozen C cohort: independent source, header and aggregate audit
+
+**Verdict: `PASS_WITH_LIMITATIONS` for the linked payloads, reference geometry, frozen selection and aggregate counts.** Independently streamed the hashes of all 20 image volumes (124,875,617 bytes) and checked each against its official Git-annex pointer at the frozen source commit. The scope correctly reuses two previously verified volumes and downloads 18 new volumes totaling 114,557,831 bytes. The 10 new patients exactly match the union selected by the frozen geometry match and exclude the existing 40 and reserved 14 source subjects.
+
+Header-only checks independently confirm that every image and its source mask share the exact expected 182×218×182 LAS affine and 1-mm spacing. No full MRI array was materialized during this review. The 11 new paired PNGs have the recorded hashes and 752×470 RGB geometry. The complete rendered cohort contains 44 task rows, **35 distinct patients and 38 distinct images**; these counts are not interchangeable. Every row retains its frozen patient, label, level and mask areas. Existing question hashes are preserved where present; newly linked geometry rows are not automatically complete training prompt records.
+
+| Category | Rows | Labels | Level counts z45/z91/z136 | Site resubstitution | Site × level resubstitution |
+|---|---:|---|---|---:|---:|
+| Tumor presence |32|16 yes /16 no|20/8/4|21/32|22/32|
+| Enhancement presence |12|6 yes /6 no|4/8/0|9/12|9/12|
+
+These metadata-only baselines were independently recomputed and reproduce the producer's counts. They are resubstitution diagnostics, not held-out predictive estimates. Site-related shortcuts remain despite within-level label balance. The enhancement task still lacks upper-level positive support. No new C training or clinical visibility adjudication occurred. A fresh pixel-by-pixel rerender of all 20 volumes was not run in this header/hash audit; the earlier single-patient pair reproduction remains separate evidence.
+
+Private audit receipt: `overnight_method_stats_v1/independent_c2_cohort_headers_PRIVATE.json`. Render receipt SHA-256: `5786681d14498f4ac2545d858e293a5f12e5ad0cd31234e8c2b6a79ef030b06b`. No reserved prospective payload was read.

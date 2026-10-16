@@ -68,3 +68,9 @@ Twelve additional training-source masks were actually downloaded and checksum/ge
 ### One upper-level real-image pair now available
 
 `OBSERVED`: One of the twelve new mask-only subjects now has its two matching real MRI volumes downloaded and source-hash/affine verified (10,317,786 bytes;182×218×182;LAS;1mm). Its level136 frame contains1,867 source tumor-mask pixels and733 enhancing-mask pixels. Private FLAIR/T1ce panels and an unoverlaid paired image were rendered with the historical display policy. Thus one additional upper-level geometry candidate now has actual linked pixels, while clinical answerability remains unadjudicated. The733-pixel enhancing component is still excluded by the unchanged≥1,000 positive-eligibility rule. No C training admission or full-cohort image availability is implied.
+
+### Latest C2 availability: complete frozen geometry-match image union
+
+`OBSERVED`: All20 FLAIR/T1ce volumes required by the10-new-patient union are now checksum/geometry verified (124,875,617 bytes total, including the reused pair). Eleven needed new paired frames were rendered serially while the GPU worker was idle. Together with verified existing images, the frozen32-row tumor and12-row enhancing-mask cohorts now comprise44 image-linked task rows,35 distinct patients and38 image hashes. Counts/labels/level quotas are unchanged from the earlier maximum matching. Full detail is in `results/C2_IMAGE_LINKED_COHORT_RESULTS.md`.
+
+Admission remains `ENGINEERING_ONLY`. Site-majority associations are21/32 and9/12; source-label visibility and clinical interpretation remain unverified. The expanded cohorts have not been used for model training, classifier evaluation or selection of B checkpoints. Prior C1 simple-image baseline scores must not be transferred to these larger C2 cohorts.
