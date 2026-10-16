@@ -11,6 +11,7 @@ dependencies = ["numpy>=2.0", "Pillow>=10", "nibabel>=5.0"]
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
+registration = ["dipy>=1.12,<2"]
 
 [project.scripts]
 mri-rl = "mri_rl.cli:main"
