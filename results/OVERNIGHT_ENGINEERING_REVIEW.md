@@ -1,7 +1,7 @@
 # Overnight independent engineering review
 
 <!-- CURRENT_ENGINEERING_STATUS -->
-**Latest verified training: 28 cumulative updates, cursor 112.** The completed stage approval is consumed; further updates require a separate approval after fresh resource evidence. Evaluation and controls have source/CPU reviews only. Earlier approvals do not authorize replay or expansion.
+**B28 verified complete; primary evaluation 44/54 records verified without scoring. Exactly records 45–48 now authorized.** Later inference records and controls need separate approvals; no further training authorized.
 <!-- END_CURRENT_ENGINEERING_STATUS -->
 
 ## Scope and current verdict
@@ -221,3 +221,28 @@ Stage 26–27 actual boundaries, checksum/header/finite state checks and full pe
 Exactly one new update, step28, approved from verified step27, ending cursor112. The final executed-prefix hash equals the frozen full112 schedule hash. Twelve source identities and static preflight pass; launcher AST verifies steps=1 and its completion summary reads the actual receipt field. No further training or evaluation execution is approved.
 
 Stage 28 actual boundaries, checksum/header/finite state checks and full per-step hashes are preserved in `overnight_resume_review_v1/postrun_step028_independent_verification.json`. Final adapter SHA-256 `b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572`; final optimizer payload SHA-256 `3559a34613558e7c00025b9a22cb7841971943dc348f89b049d25f202a17d7a7`. **REPRODUCED / PASS_WITH_LIMITATIONS** for actual completion, without a learning or full-Qwen uninterrupted-parity claim.
+
+## Completed B28 chain and first primary evaluation approval
+
+**PASS_WITH_LIMITATIONS.** Final step28 has cursor112, finite gradient1.367220902,504 changed finite tensors and complete504 Adam moment pairs. The complete28-boundary chain was rehashed from original initialization through final adapter `b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572`; every saved state checksum, preceding adapter, actual prefix/cursor, cumulative history and consumed stage approval matches. Preserved per-stage audits establish tensor finiteness and RNG/header checks. All112 examples match the frozen schedule and expose28 patients; recomputed mean training loss2.6830218647207533. Tiny fixture parity does not establish uninterrupted full-Qwen parity. Final training-image generation is not a development score. Private full chain evidence is `overnight_resume_review_v1/full28_chain_independent_verification.json`.
+
+Two post28 resource samples35.1015 seconds apart show stable swap9.55896484GiB, latest available14.3233GiB, pressure-free65%, AC100%, no competing heavy worker; loading gates pass. Thermal telemetry remains unavailable.
+
+**Exactly first4 primary records approved**, preserving all54 frozen record IDs, historical A0/A28 output digests and pixel/prompt/profile equality. No output existed at approval. Private approval `b28_matched_eval_v1/approval_primary_004.json`, digest `7fea3787d4819fa23aa0622578ff0d070ae6a0449110c5609e72ac1a55cef2e4`; launcher `launch_primary_004.py` passes actual CPU-only preflight with native imports blocked. Scope binds actualB28 adapter, five evaluator source hashes, image inventory, fixed greedy256-token profile and resource policy. No scoring before completion; no adaptive record selection. No record5 or control inference approved.
+
+## Primary evaluation stage receipt audits (no scoring)
+
+| Completed records | Resource evidence | Next finite approval | Approval SHA-256 |
+| --- | --- | --- | --- |
+| 4/54 | 12 events, 0 HOLD; min available 10.03903 GiB, min pressure-free 52%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 5–8 | `ce750c732dcf2221dcf37f44e4e954b3cf962e2e8c88d71b97df7c03450b4d59` |
+| 8/54 | 12 events, 0 HOLD; min available 10.09029 GiB, min pressure-free 52%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 9–12 | `680b1db77438595291b0ff956cfa54d692c4fd349ef0cd9e3892f2bc9776497a` |
+| 12/54 | 12 events, 0 HOLD; min available 9.95601 GiB, min pressure-free 52%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 13–16 | `a91a07d0900b11161d59b5d8a8def8ab9296f5643c7858d71d84c45e232fa078` |
+| 16/54 | 12 events, 0 HOLD; min available 10.12653 GiB, min pressure-free 52%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 17–20 | `8120302a984b75055d6b8b2e07342be713cbe51bfa91e5a3b8bdd35f18274641` |
+| 20/54 | 12 events, 0 HOLD; min available 10.06432 GiB, min pressure-free 51%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 21–24 | `b54a073c51d6683e81c7352d1d44bbf95841021f0dd9f8ba523a560b4d9d956c` |
+| 24/54 | 12 events, 0 HOLD; min available 10.30164 GiB, min pressure-free 53%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 25–28 | `7ba61f9214d55b0400439f3649fedb1f84682db20f4131da94b76fd08daddc4b` |
+| 28/54 | 12 events, 0 HOLD; min available 10.16946 GiB, min pressure-free 53%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 29–32 | `aa11500d6661858d9b008ed16a5c0582a684c72663d0c9e583275b9a261cea93` |
+| 32/54 | 12 events, 0 HOLD; min available 10.06670 GiB, min pressure-free 52%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 33–36 | `4b39fcfaf17fe708a8e6d0e97bd80033f4c5cea379d3456a675f38e1a9707524` |
+| 36/54 | 12 events, 0 HOLD; min available 10.39682 GiB, min pressure-free 53%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 37–40 | `2fb20004e462d2537d4ae18b3b1cb4664a7e2283b2cb139d61064d95195bfb72` |
+| 40/54 | 12 events, 0 HOLD; min available 10.42638 GiB, min pressure-free 54%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 41–44 | `2991dd07c36edee65976afa51044ed045812c2fff39d17f321bada6e9b12380d` |
+| 44/54 | 12 events, 0 HOLD; min available 10.29901 GiB, min pressure-free 53%; peak MLX 6.84484 GiB; exact IDs/profile/source/output prefix verified | Only records 45–48 | `93d6638b3daad240782eab8213e06289eaf83f311978e1771d941b7788cb8639` |
+<!-- PRIMARY_EVAL_ROWS -->
