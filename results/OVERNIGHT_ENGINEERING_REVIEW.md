@@ -1,7 +1,7 @@
 # Overnight independent engineering review
 
 <!-- CURRENT_ENGINEERING_STATUS -->
-**B28 and all54 primary records verified; no_image control 4/24 verified. Exactly no_image records 5–8 authorized.** Later controls require separate approval; no further training authorized.
+**B28, all54 primary and all48 controls (24 no-image +24 swap) verified complete. No active model worker found by final read-only process check. No further launch approved.** Engineering verification does not establish scientific success; numerical analysis remains separate.
 <!-- END_CURRENT_ENGINEERING_STATUS -->
 
 ## Scope and current verdict
@@ -260,6 +260,29 @@ Exactly no-image records1–4 approved after full primary completion and fresh r
 | Mode and completed records | Resource and identity evidence | Next finite scope | Approval SHA-256 |
 | --- | --- | --- | --- |
 | no_image 4/24 | 12 decisions, 0 HOLD; min available 9.81973 GiB, min pressure-free 51%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only no_image 5–8 | `6d333be23b3063275b4486f1f8e742f91d4a90f31d837873b908a79624f114d4` |
+| no_image 8/24 | 12 decisions, 0 HOLD; min available 9.90448 GiB, min pressure-free 50%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only no_image 9–12 | `d37b4c021026322526409a655f12dec8b1ef0ed6c79793aea6131f91a218d267` |
+| no_image 12/24 | 12 decisions, 0 HOLD; min available 10.20247 GiB, min pressure-free 52%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only no_image 13–16 | `8e7c9c1038760ca56d17a5082be119222db69d33f9d86828e9f10797cc778f58` |
+| no_image 16/24 | 12 decisions, 0 HOLD; min available 10.05338 GiB, min pressure-free 52%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only no_image 17–20 | `1eb1eb6524d710d60d33a08e888e22b7fdb5c20b2e65d5c966d372a91d0f1f53` |
+| no_image 20/24 | 12 decisions, 0 HOLD; min available 9.85802 GiB, min pressure-free 50%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only no_image 21–24 | `0c15ef3bb92ff34ee8224cd87740eb9ec61416651660f7bf1a470d02fe09a5f9` |
+| swap 4/24 | 12 decisions, 0 HOLD; min available 9.79564 GiB, min pressure-free 50%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only swap 5–8 | `0ed74eadbe0d042d407338aef5f3de4a734962c9cee71c79fa4172caec86dd0a` |
+| swap 8/24 | 12 decisions, 0 HOLD; min available 10.20616 GiB, min pressure-free 52%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only swap 9–12 | `03bcdc34b9dd8b32ff7f29fa9b947693da9d9f835f3fa0ee20e7130e3e33b347` |
+| swap 12/24 | 12 decisions, 0 HOLD; min available 10.05707 GiB, min pressure-free 52%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only swap 13–16 | `45096368a32e47fcf2faeb09783e828989f802bac6ea30b1449c1e8a09bd4da4` |
+| swap 16/24 | 12 decisions, 0 HOLD; min available 9.19585 GiB, min pressure-free 50%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only swap 17–20 | `6fd22e9d588ca4d2aef58254afc5ba6a2926d4d4ada7a4e111513e4c04446e7e` |
+| swap 20/24 | 12 decisions, 0 HOLD; min available 9.92200 GiB, min pressure-free 51%; immutable prefix, source/profile, prompt and image scope verified; no scoring | Only swap 21–24 | `1e89bfc332c6664b99035b7d3cc1e7b59ab3ac775e2c608ac10530706da086d6` |
 <!-- CONTROL_EVAL_ROWS -->
 
 First native no-image stage verified from actual receipts: four outputs, zero image placeholders and null image hashes, frozen prompts contain no image blocks, exactB28 adapter504 tensors and all12 resource decisions valid. Reviewed unchanged source passes only the frozen prompt and image=None to generation; private gold is hashed for provenance, with no per-record gold inserted into prompts. All four backend finishes are stop and token accounting is valid. No score inspected. This confirms first-stage wrapper execution, not clinical performance.
+
+## Completed no-image controls and first swap scope
+
+**PASS_WITH_LIMITATIONS.** All24 no-image controls, six independently approved stages, unchanged output prefixes, zero image placeholders, null pixel hashes and immutable prompts verified without scoring. All72 resource decisions reproduced with no HOLD; six model-release events present. Final no-image output SHA `6226bb9ca175e06bf7a59f775e32e4316ad370f94d1275b1b6d44b2ee460f599`. Complete private audit: `no_image_024_independent_verification_PRIVATE.json`.
+
+Exactly swap records1–4 approved using the unchanged module and frozen historical paired-swap manifest: same patient/slice, opposite sequence pixels, one image placeholder, visible swapped-image target rule. Actual54 primary and24 no-image completion evidence are bound. Approval `b28_matched_eval_v1/approval_swap_004.json`, digest `221d45b9fd2f213eea2f09bec7115ecde13d62c1c385ca24fc245ae8dc8b10b2`; `launch_swap_004.py` actual CPU preflight passes with native imports blocked. First native swap stage remains NOT_RUN pending actual receipts; no automatic expansion beyond4.
+
+First native swap stage verified: four actual outputs with one image placeholder and image hashes matching the frozen same-patient/slice opposite-sequence transformation and immutable historical baseline. Prompts equal frozen transformed prompts; unchanged source sends only that prompt and image to generation, with no per-record gold label appended. ExactB28 adapter, token accounting, four stop finishes and all12 resource decisions pass, no HOLD. This is provenance/runtime verification without scoring; native first-stage limitation is resolved for these four records only.
+
+## Final controls engineering verdict
+
+**PASS_WITH_LIMITATIONS:** all48 control records verified across12 finite stages. Recomputed every stage output-prefix digest against its actual approval and preserved audit, current source/config/adapter identities, exact prompts and control pixel scope; no-image has zero image placeholders/null hashes, swap uses the frozen same-patient/slice opposite-sequence image with one placeholder. All144 resource decisions reproduced, no HOLD,12 model-release boundaries. All control generation finishes report stop with valid token accounting; no scoring performed. Final no-image output SHA `6226bb9ca175e06bf7a59f775e32e4316ad370f94d1275b1b6d44b2ee460f599`; final swap output SHA `58e401f28f25acd359b6b8fadce63145e967c5d1480b5a9e01316ee9b099d5ee`.
+
+Control-wide minimum available memory9.19584656GiB, minimum pressure-free50%, maximum recorded MLX process peak6.84483669GiB. Final two samples31.0965seconds apart: stable swap9.32458984GiB, final available15.07179260GiB/66% pressure-free, AC100%, no competing heavy worker. Thermal telemetry remains unavailable; these are sampled process/boundary observations. A separate read-only OS process query found zero matching training/primary/control model workers after completion. Sandbox initially blocked ps; permitted read-only escalation succeeded. No model or native runtime was loaded by this reviewer. No further training or inference approval issued. Aggregate numeric evidence saved in `results/B28_CONTROLS_ENGINEERING_AUDIT.json`; complete private audit remains local.

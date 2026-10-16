@@ -4,6 +4,8 @@ Starting verified main: 3250d811cc4be9aac9a2d03228fbed25d08fb9e3.
 
 ## B — implementation and experiments
 
+**Latest verified milestone (2026-10-16):** items1–5 below executed within their stated limits. B28 completed28 updates/112 presentations; full54 primary and24+24 controls completed. Independent scoring gives B34/54 versus A36/54; sequence15/24 unchanged, no-image12/24 and swap15/24 unchanged, correct directional flips6/24 unchanged. Tiny native resume parity and full real state chain are verified; full-Qwen uninterrupted numerical parity is not measured. Historical step descriptions below are retained.
+
 1. Implement a strict restoration boundary linking adapter, complete Adam state, RNG, frozen schedule/cursor, completed updates and contract. Preserve the verified step-001 source snapshot and all artifacts. Fail on missing/corrupt/mismatched state.
 2. Native tiny CPU fixture: two continuous updates versus save/fresh-model restore/update; compare parameters, losses, gradients, moments, learning rate, cursor and next RNG draws. Independent engineering review.
 3. Exactly one real restored update on B examples5–8; save/reload and independently verify.
@@ -12,11 +14,15 @@ Starting verified main: 3250d811cc4be9aac9a2d03228fbed25d08fb9e3.
 
 ## C — training-only scientific redesign
 
+**Latest actual progress:** C2 has44 linked task rows over35 patients/38 PNG hashes, retaining the1000-pixel rule and reserved-cohort exclusions. Fixed PNG leave-one-patient-out controls were executed and independently reproduced: thumbnail18/32 tumor and5/12 enhancement, histogram18/32 and6/12. This is selected-training-cohort cross-validation. C model training and clinical visual-answerability admission remain NOT_RUN/NOT_VERIFIED.
+
 1. Solve maximum feasible smaller balanced patient-distinct subsets without weakening the1000nativepixel rule. Separately version any change in required slice levels.
 2. Audit site/label/level distributions and trivial/level-only baselines; independently verify matching.
 3. Task cards distinguish sequence discrimination, mask-centroid engineering endpoints and genuine clinical/visual answerability. Reserve prospective subjects; bounded metadata-only expansion assessment first.
 
 ## Operating boundaries
+
+**Next justified queue:** (1) separately review a read-only fixed training-pair answer-likelihood/generation diagnostic; (2) implement and independently verify the confirmed RL optimizer-continuity correction, preserving frozen old-policy semantics; (3) finish C visual-answerability/task admission; (4) return to specialist/proportional/uniform GSPO and reward-calibration comparisons with matched budgets. No speculative new MRI algorithm, development-driven checkpoint selection or new-cohort tuning is implied. See `research/ROOT_CAUSE_REGISTRY.md` and `research/RL_CONTINUITY_MINIMAL_CORRECTION.md`.
 
 One lead model process; reviewers use lightweight CPU and idle during GPU stages. Claude authentication: sandbox checkfalse, subsequent keychain-capable checktrue (claude.ai); external sharing remains separately gated. No denied dataset payload will be sent externally. Isolated Codex engineering, MRI-data and RL/statistical reviewers are explicitly attributed. Use existing private repository; no MRI, patient-linked records, raw generations, weights, optimizer states or panic logs committed.
 
