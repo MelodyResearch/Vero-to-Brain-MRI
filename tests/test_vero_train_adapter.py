@@ -116,6 +116,7 @@ def test_direct_vero_format_gate_rejects_prefix_and_empty_reasoning():
     for response in (
         "Preamble <think>image.</think><answer>\\boxed{yes}</answer>",
         "<think>  </think><answer>\\boxed{yes}</answer>",
+        "<think>image.<answer>extra</answer></think><answer>\\boxed{yes}</answer>",
     ):
         score = compute_score_from_data_source(solution_str=response, **args)
         assert score["accuracy"] == score["format"] == score["score"] == 0.0

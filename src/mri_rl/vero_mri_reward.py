@@ -22,6 +22,9 @@ _GRID_LABELS = {f"{x}-{y}" for x in ("left", "center", "right")
 
 def _answer_and_format(response: str) -> tuple[str, float]:
     # Mirror pinned Vero's full-match tag gate and nonempty think/answer checks.
+    if any(response.count(tag) != 1 for tag in
+           ("<think>", "</think>", "<answer>", "</answer>")):
+        return "", 0.0
     match = _FORMAT.fullmatch(response)
     if not match or not match.group("think").strip():
         return "", 0.0
