@@ -106,3 +106,33 @@ def test_journal_payload_tampering_is_rejected_before_new_backend(tmp_path):
     p=tmp_path/'c/row_0002/raw_PRIVATE.json';p.write_text('{}')
     with pytest.raises(ValueError):run(tmp_path/'c',resume=True)
     assert len(JournalBackend.made)==before
+
+
+def test_empty_pre_reservation_pending_directory_recovers_as_explicit_zero_native_work(tmp_path):
+    full=run(tmp_path/'full');full_rng=JournalBackend.made[-1].rng.getstate()
+    class Crash(JournalBackend):crash_at=3
+    with pytest.raises(RuntimeError,match='partial'):run(tmp_path/'split',factory=Crash)
+    pending=next((tmp_path/'split').glob('.pending-*'))
+    for p in pending.iterdir():p.unlink()                      # death between mkdtemp and the reservation write: genuinely empty
+    resumed=run(tmp_path/'split',resume=True)
+    assert resumed['complete'] and resumed['rows']==6
+    assert [p.read_bytes() for p in sorted((tmp_path/'split').glob('row_*/raw_PRIVATE.json'))]==[p.read_bytes() for p in sorted((tmp_path/'full').glob('row_*/raw_PRIVATE.json'))]
+    assert JournalBackend.made[-1].rng.getstate()==full_rng
+    assert resumed['measured_tokens']==full['cost_tokens'] and resumed['imputed_unknown_tokens']==0   # empty directory: no work, no invented cost
+    charge=json.loads((tmp_path/'split/abandoned_charges'/(pending.name+'.json')).read_text())
+    assert charge['zero_native_work_empty_directory'] is True and charge['measured_tokens']==charge['imputed_unknown_tokens']==0
+    again=run(tmp_path/'split',resume=True);assert again['cost_tokens']==resumed['cost_tokens']
+
+
+@pytest.mark.parametrize('payload',['file','subdir'])
+def test_payload_without_reservation_remains_a_hard_failure(tmp_path,payload):
+    class Crash(JournalBackend):crash_at=3
+    with pytest.raises(RuntimeError,match='partial'):run(tmp_path/'c',factory=Crash)
+    pending=next((tmp_path/'c').glob('.pending-*'));(pending/'attempt_reservation.json').unlink()
+    for p in pending.iterdir():
+        if p.is_file():p.unlink()
+    if payload=='file':(pending/'rollout_progress_PRIVATE.json').write_text('{}')
+    else:(pending/'unknown_work').mkdir()
+    before=len(JournalBackend.made)
+    with pytest.raises(ValueError,match='no reservation'):run(tmp_path/'c',resume=True)
+    assert len(JournalBackend.made)==before

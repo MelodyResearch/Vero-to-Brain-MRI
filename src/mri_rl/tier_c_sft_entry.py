@@ -214,7 +214,8 @@ def train_prepared(prepared, *, output, adapter, backend_factory, authorize, res
     return sft.run_sft(output=output,steps=prepared['steps'],bindings=prepared['bindings'],
         backend_factory=backend_factory,authorize=authorize,ledger=TokenLedger(prepared['ledger_plan']),
         input_tokens=prepared['input_tokens'],target_tokens=prepared['target_tokens'],
-        resume=resume,starting_adapter=adapter,max_new_steps=max_new_steps)
+        resume=resume,starting_adapter=adapter,max_new_steps=max_new_steps,
+        expected_target_ids=prepared['plan']['sft']['target_ids'])
 
 
 def main():

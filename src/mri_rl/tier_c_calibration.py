@@ -103,6 +103,15 @@ def _publish(output,work,backend,binding,anchor,index,parent,ledger,record=None)
 
 def _charge(output,pending,binding,rows,prompts,parents):
     reservation=pending/'attempt_reservation.json'
+    if not reservation.exists() and not any(pending.iterdir()):
+        # Crash between mkdtemp and the reservation write: the directory is genuinely EMPTY, so no native work can have begun.
+        # Record an explicit, immutable zero-cost charge (same ledger path as every abandoned directory).
+        charge={'binding_sha256':_hash(binding),'directory':pending.name,'parent_receipt_sha256':None,'reservation_sha256':None,
+                'raw_prefix_sha256':None,'measured_tokens':0,'imputed_unknown_tokens':0,'zero_native_work_empty_directory':True}
+        charges=output/'abandoned_charges';charges.mkdir(exist_ok=True);path=charges/(pending.name+'.json')
+        if path.exists():require(json.loads(path.read_text())==charge,'Abandoned calibration evidence changed')
+        else:write_json(path,charge);sync_dir(charges);sync_dir(output)
+        return charge,digest(path)
     require(reservation.is_file(),'Pending calibration group has no reservation')
     r=json.loads(reservation.read_text());index=r.get('index');parent=r.get('parent_receipt_sha256')
     require(r.get('schema')=='calibration-attempt-v1' and r.get('binding_sha256')==_hash(binding) and

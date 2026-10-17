@@ -103,7 +103,7 @@ def _pending_step_cost(pending, ctx, input_tokens, target_tokens):
 
 
 def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, input_tokens, target_tokens,
-            resume=False, starting_adapter=None, max_new_steps=None):
+            resume=False, starting_adapter=None, max_new_steps=None, expected_target_ids=None):
     """One resident run over the whole SFT budget; mirrors continuous_rl.run's boundary protocol."""
     require(callable(authorize) and ledger is not None, 'Authorizer and ledger required')
     require(max_new_steps is None or (type(max_new_steps) is int and max_new_steps > 0),
@@ -150,6 +150,8 @@ def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, inpu
                                       {'updated': False, 'record_id': None, 'schedule_record_id': None,
                                        'ledger': {**ledger.state(), 'partial_dirs_included': []}})
             backend.expected_images = image_hashes            # native sft_step re-hashes against these after every resource callback
+            if expected_target_ids is not None:               # frozen plan target ids; the native step fails closed without them
+                backend.expected_target_ids = expected_target_ids
             ctx = {'binding_sha256': hashlib.sha256(canonical(binding).encode()).hexdigest(), 'steps': steps,
                    'boundary_groups': {digest(b / 'receipt.json'): json.loads((b / 'receipt.json').read_text())['completed_groups']
                                        for b in sorted(output.glob('boundary_*'))}}
@@ -226,6 +228,8 @@ def native_backend_class():
             vg = nn.value_and_grad(self.model, loss_fn)
             expected = getattr(self, 'expected_images', None)
             require(isinstance(expected, dict), 'Approved image hashes are required by the native SFT step')
+            expected_ids = getattr(self, 'expected_target_ids', None)
+            require(isinstance(expected_ids, dict), 'Frozen target token ids are required by the native SFT step')
             self.model.eval(); grad_sum = None; losses = []; prompts = []; targets = []
             for row in examples:
                 self.before_unit('sft_example')
@@ -241,7 +245,9 @@ def native_backend_class():
                     add_special_tokens=self.special_tokens(self.model.config.model_type, self.processor))
                 require(digest(row['images'][0]) == expected[row['id']], 'Frozen image changed during native preparation')
                 prompt_ids = prepared['input_ids']
-                target_ids = mx.array(self.processor.tokenizer.encode(sft_target(row), add_special_tokens=False), dtype=prompt_ids.dtype)
+                actual_ids = [int(t) for t in self.processor.tokenizer.encode(sft_target(row), add_special_tokens=False)]
+                require(actual_ids == expected_ids.get(row['id']), 'Native target token ids differ from the frozen plan; no gradient computed')
+                target_ids = mx.array(actual_ids, dtype=prompt_ids.dtype)
                 kwargs = {k: v for k, v in prepared.items() if k not in {'input_ids', 'attention_mask', 'pixel_values'}}
                 loss, grad = vg(self.model, prompt_ids, target_ids, prepared.get('pixel_values'), kwargs)
                 mx.eval(loss, grad)

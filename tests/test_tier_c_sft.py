@@ -159,8 +159,62 @@ def test_native_step_rejects_nonfinite_loss_or_gradient_before_any_optimizer_upd
     b.optimizer = types.SimpleNamespace(update=lambda m, g: called.append(g), state={})
     ex = ROWS[:4]
     b.expected_images = {r['id']: hashlib.sha256(Path(r['images'][0]).read_bytes()).hexdigest() for r in ex}
+    b.expected_target_ids = {r['id']: [3] for r in ex}
     with pytest.raises(ValueError, match='Nonfinite'):
         b.sft_step(ex, tmp_path)
     assert called == []
     with pytest.raises(ValueError, match='Approved image hashes'):
         del b.expected_images; b.sft_step(ex, tmp_path)
+
+
+def _native_standin(ex, tokenizer_ids, grad_calls, update_calls):
+    import types, hashlib
+    cls = sft.native_backend_class(); b = cls.__new__(cls)
+    b.mx = types.SimpleNamespace(array=lambda v, dtype=None: np.array(v), float32=np.float32, eval=lambda *x: None, clear_cache=lambda: None, sum=np.sum)
+    def vg(model, fn):
+        def call(model_, prompt_ids, target_ids, pixels, kwargs):
+            grad_calls.append(target_ids.tolist()); return np.array(1.0), {'g': np.array([1.0], dtype=np.float32)}
+        return call
+    b.nn = types.SimpleNamespace(value_and_grad=vg)
+    b.model = types.SimpleNamespace(eval=lambda: None, config=types.SimpleNamespace(model_type='fixture'), trainable_parameters=lambda: {})
+    b.contract = types.SimpleNamespace(system_instruction='s', enable_thinking=False, assistant_prefix='END')
+    b.processor = types.SimpleNamespace(tokenizer=types.SimpleNamespace(encode=lambda *a, **k: list(tokenizer_ids)))
+    b.template = lambda *a, **k: '<|image_pad|>END'; b.prepare_inputs = lambda *a, **k: {'input_ids': np.array([[1, 2]], dtype=np.int64)}
+    b.special_tokens = lambda *a: False; b.before_unit = lambda n: None
+    b.tree_map = lambda fn, *t: {k: fn(*(x[k] for x in t)) for k in t[0]}; b.tree_flatten = lambda d: list(d.items())
+    b.optimizer = types.SimpleNamespace(update=lambda m, g: update_calls.append(g), state={})
+    b.expected_images = {r['id']: hashlib.sha256(Path(r['images'][0]).read_bytes()).hexdigest() for r in ex}
+    return b
+
+
+def test_same_length_wrong_target_ids_are_rejected_before_any_gradient_or_update(tmp_path):
+    ex = ROWS[:4]; grads, updates = [], []
+    b = _native_standin(ex, [999], grads, updates); b.expected_target_ids = {r['id']: [7] for r in ex}   # same count, different id
+    with pytest.raises(ValueError, match='target token ids differ'):
+        b.sft_step(ex, tmp_path)
+    assert grads == [] and updates == []
+    ok = _native_standin(ex, [7], grads, updates); ok.expected_target_ids = {r['id']: [7] for r in ex}
+    out = ok.sft_step(ex, tmp_path)
+    assert grads == [[7]] * 4 and len(updates) == 1 and out['target_tokens'] == [1] * 4                 # exact ids pass; math path unchanged
+
+
+def test_native_step_fails_closed_without_frozen_target_ids(tmp_path):
+    ex = ROWS[:4]; grads, updates = [], []
+    b = _native_standin(ex, [7], grads, updates)
+    with pytest.raises(ValueError, match='Frozen target token ids are required'):
+        b.sft_step(ex, tmp_path)
+    assert grads == [] and updates == []
+
+
+def test_run_sft_hands_the_plan_target_ids_to_the_backend(tmp_path):
+    steps, _ = sft.build_steps(ROWS, 7, 10**6, IN, TGT, max_steps=1)
+    seen = {}
+    class Capture(SFTBackend):
+        def sft_step(self, examples, work):
+            seen['ids'] = getattr(self, 'expected_target_ids', None); return super().sft_step(examples, work)
+    plan = {**PLAN, 'budget': {**PLAN['budget'], 'text_visual_token_cap': 10**6}}
+    expected = {r['id']: [1, 2] for r in ROWS}
+    sft.run_sft(output=tmp_path / 'cap', steps=sft.step_rows(ROWS, steps), bindings={'arm': 'SFT_C', 'seed': 7},
+                backend_factory=Capture, authorize=lambda c: None, ledger=tt.TokenLedger(plan), input_tokens=IN,
+                target_tokens=TGT, expected_target_ids=expected)
+    assert seen['ids'] == expected
