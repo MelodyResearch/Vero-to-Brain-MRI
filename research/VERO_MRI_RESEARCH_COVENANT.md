@@ -59,24 +59,24 @@ Before a final statement, reconcile: `N questions != N patients`; `N reward rout
 
 When uncertain or contradictory, write `NOT_VERIFIED` and a bounded decisive check, not a guessed story. Reuse existing data/literature audits; do not needlessly audit 13 papers again.
 
-## 5. Genuine cross-model review: Codex + Claude, when permitted
+## 5. Genuine cross-model review and researcher-directed Claude execution
 
-**Implementation lead:** Codex (GPT-based) owns code, experiments, raw receipts, GitHub and first analysis.
+**Role assignment is flexible:** the researcher may designate either Codex (GPT) **or Claude Code** as the primary implementation/execution lead. When Claude leads, it may work on eligible code/data, implement debugging, run scoped local inference and GSPO, and push verified changes under the same hardware/data/review contracts. When Codex leads, Claude can serve as the independent second model family; when Claude leads, seek a genuinely distinct model family for independent verification when available. A second agent of the **same** underlying model is an independent agent, not a cross-model validation.
 
-**Independent model-family reviewer:** Claude Code, **only when authenticated and the exact intended material is allowed by applicable sharing approvals**. Claude independently reads permissible source/configs/aggregate results, without receiving Codex's preferred conclusion first. Assign it adversarial review of experiment design, image/label shortcuts, method fidelity, optimizer/gradient contract, evaluation leakage and unsupported conclusions. Have it specify counterexamples and executable falsification tests; a generic `LGTM` or agreement is not an independent review.
+**Project/public data versus service access:** OpenNeuro ds007045 is a public dataset according to the source audit; the project's unpublished analyses, Gitignored raw receipts, patient-linked records and private GitHub repository are distinct artifacts. Public dataset status does not automatically authorize disclosure of every private derived file to any outside service. The researcher explicitly wants Claude Code to participate in this project. Use the normal authenticated Claude workflow and applicable user/service/organizational approval for the **specific** files or actions. Claude should be allowed to use the authorized public MRI data and appropriately approved project materials; do not require a blanket prohibition merely because the dataset name is ds007045.
 
-**Third viewpoint if feasible:** a second, separately instructed statistical/scientific reviewer; distinguish independent *agent* from independent *model family*. Multiple isolated Codex agents using the same underlying model **DO NOT** constitute a cross-model review.
+**Historical approval incident is not a global ban:** one earlier attempt to transmit a **specific unpublished ds007045 payload** for an external Claude review was rejected before Claude ran. That incident does not establish a permanent prohibition on all Claude access, on public MRI data, or on a newly authorized workflow. Determine exactly which payload/transfer and approval mechanism failed, request legitimate renewed approval through the normal mechanism if applicable, and proceed when it is actually granted. **Do not evade a still-applicable denial by disguising the refused payload, changing transport channels to bypass controls, or falsely recording authorization.** The old `loggedIn: false` status was local to an earlier CLI environment; check current state instead of treating it as permanent. Genuine Claude public-source review has since occurred, but did not validate private B/C results.
 
-**Privacy/provenance limit:** an earlier attempt to share unpublished ds007045 material with Claude was explicitly rejected by automatic approval review. **Never evade this denial by rephrasing, disguise, indirect transfer, or a different channel.** Authentication must also be real; no invented `Claude PASS`. Source-only or aggregate-only review still requires that the actual payload be independently permitted. If access or authorization is absent, set `CROSS_MODEL_REVIEW=NOT_VERIFIED`, use an **accurately identified isolated Codex** red-team as interim review under existing scoped local-experiment policy, and continue other approved B/C work. Do not claim that two model families collaborated.
+**Independent critique is adversarial:** each available distinct model reviews actual permissible source, data provenance, prompt/reward/optimizer code, scoring evidence and study design independently, ideally before reading another model's preferred conclusion. Require concrete counterexamples, falsifying tests and independently recomputed results; `LGTM` is insufficient. When Claude is lead, an authorized independent Codex or other model reviews as feasible; if cross-family review is not available for that exact payload, record `CROSS_MODEL_REVIEW=NOT_VERIFIED` without blocking otherwise approved work.
 
-**Independent review order:**
-1. Freeze exact run/config/diff and gather evidence without supplying an interpretive leading summary.
-2. Codex and permitted Claude each issue an initial independent finding: `CONFIRMED_DEFECT`, `PLAUSIBLE_CONCERN`, `DISAGREEMENT`, `NO_ISSUE_FOUND` or `NOT_VERIFIED`, with direct artifact/code references.
-3. Compare disagreements; run the smallest decisive reproduction on safe CPU fixtures where possible.
-4. Fix a confirmed P0/P1 defect with a failing-then-passing regression test; reviewers check the **changed source and results**, not merely the implementer's recap.
-5. Preserve disagreements and unfixed uncertainties in a decision ledger. Do not delete or smooth negative findings.
+**Decision protocol:**
+1. Freeze exact source/config/diff and hashes; provide independently permitted raw evidence without a leading diagnosis.
+2. Record each actual reviewer's initial `CONFIRMED_DEFECT`, `PLAUSIBLE_CONCERN`, `DISAGREEMENT`, `NO_ISSUE_FOUND` or `NOT_VERIFIED` verdict with evidence references.
+3. Resolve material disagreement with the smallest safe reproducible test.
+4. Fix verified P0/P1 defects with failing-then-passing tests and review corrected source/receipts, not summaries.
+5. Preserve reviewer identities, permission scope, unresolved disagreements and negative findings. Do not invent multi-model consensus.
 
-Review P0 (data leak, wrong patient unit, fake update, invalid labels, broken optimizer continuity or safety) before affected model training; P1 (major confound) with a separate control/qualification; P2 docs/style should not block a night of real work.
+P0 correctness, patient leakage, hardware safety and irreproducible optimizer state gate affected model training; P1 methodological confounds require an isolated control or explicit qualification; P2 documentation does not block real progress. An unavailable Claude integration never imposes a blanket stop on legitimate CPU/data tasks or already authorized model execution.
 
 ## 6. Hardware discipline and scientific continuity
 
