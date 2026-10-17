@@ -1,0 +1,29 @@
+{
+  "changed_source_only": "tier_c_calibration.py",
+  "exact_scientific_plan_unchanged": true,
+  "independent_StepD_sha256": "a831e08271c5aef3ce2896e0b58db27f39a15bbe8f8c97dab9bce2ebb043b2f1",
+  "launcher_sha256": "26f10812fd252d18c55bed21559b8b2ed0220e747a75d7a6127e172928c234d0",
+  "limitations": [
+    "Read-only common-B28 calibration only; no SFT/GSPO update or test access.",
+    "Actual native calibration and exact MLX RNG resume through this new glue remain NOT_RUN; unchanged shared native restore separately verified.",
+    "Zero-IQR prevents calibrated arms; no invented floor. Binary mechanistic control, not faithful medical-video replication.",
+    "Existing AC, pressure, swap, thermal and one-heavy-process gates remain; prior panic cannot be ruled out."
+  ],
+  "native_calibration": "NOT_RUN",
+  "plan_sha256": "d97352653d2ada2a47b7a13f36aacecec7a86db98a967903bd4884642e191092",
+  "previous_release_preserved": true,
+  "protocol": {
+    "group_size": 4,
+    "max_tokens": 256,
+    "seed": 7,
+    "temperature": 1,
+    "token_cap": 179440,
+    "training_rows": 76,
+    "weight_updates": 0
+  },
+  "review_sha256": "6d9e30e469452c4df09a26aae613b3fc5ce3dd33c45b8d2b2a74f8fce03d7412",
+  "reviewer": "Codex/root",
+  "schema": "common-B28-calibration-guarded-scoped-independent-release-v2",
+  "scope_sha256": "ce0ef5245fcac53e0c74e1d8fa7d2efd44281aa51c0b210140b22f6159a908d8",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

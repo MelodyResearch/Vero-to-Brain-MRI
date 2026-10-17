@@ -1,0 +1,30 @@
+{
+  "actual_native_SFT_or_calibration_execution": "NOT_RUN",
+  "changed_source_sha256": {
+    "tier_c_calibration.py": "ac351df23d729aa4bc620a2183254139c65f6ea4c2dfaa046e7dd1ac8e6501a6",
+    "tier_c_sft.py": "1df718f0fdb0316cc4b63d194027c5e3a4e386194920f96f7be3d1b353814283",
+    "tier_c_sft_entry.py": "0f230a556f1a39bf048ad5259df91c17ec6871cdd88a71c922af2f57176266f6"
+  },
+  "code_commit": "8ed1884",
+  "current_U7_affected": false,
+  "evidence_tier": "REPRODUCED_CPU",
+  "independent_checks": [
+    "Executed original published counterexamples BEFORE the corrections: empty pending STUCK and same-count wrong target accepted.",
+    "Read exact three-source correction diff and all six new focused regression cases.",
+    "57focused CPU tests passed1.69s independently.",
+    "Wrong same-length target and missing target IDs reject before gradient execution/update; exact target IDs pass and entry passes compiled target IDs.",
+    "Empty pre-reservation directory resumes with explicit0measured/0imputed charge and exact original RNG/raw rows; any file/subdirectory payload without reservation still rejects before backend.",
+    "Native NLL loss_fn exact AST matches previously audited9b4d4ca source; objective and token-position mask unchanged.",
+    "All19 currently running U7critical source hashes remain exact to actual original approval."
+  ],
+  "limitations": [
+    "CPU/interface correction verification only; native execution and MRI learning remain separate.",
+    "Original frozen scientific inputs/schedules/targets/checkpoints/budgets unchanged; source-bound unrun SFT/calibration plans and launch approvals must be rebound before native launch.",
+    "Previous Claude source review and own-implementation receipts are preserved; this is independently executed Codex StepD, not Claude self-approval."
+  ],
+  "no_observed_real_target_mismatch": true,
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewer": "Codex/root independent of Claude correction author",
+  "schema": "claude-two-corrections-independent-step-D-v1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
