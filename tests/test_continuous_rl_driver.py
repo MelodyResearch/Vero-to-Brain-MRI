@@ -255,3 +255,74 @@ def test_tampered_or_missing_adapter_config_fails_boundary_inspection_and_resume
     (boundary / 'adapter_config.json').unlink()
     with pytest.raises(ValueError):
         run(m, setup, tmp / 'nat2', 1, resume=True, factory=NativeLikeBackend)
+
+
+# ---- Tier C optional hooks: grader / row validator / token ledger / larger group cap ----
+def tier_c_rows(setup, n=6, source='OpenNeuro_ds004856'):
+    rows = []
+    for i in range(n):
+        r = json.loads(json.dumps(setup[0][0]))
+        r['id'] = f'src{i % 3}#occ{i // 3}'; r['data_source'] = source if i % 2 else 'OpenNeuro_ds007045'
+        rows.append(r)
+    return rows
+
+
+def hook_grader(row, text, config):
+    acc = 1.0 if 'FLAIR' in text else 0.0
+    return {'score': 0.8 * acc + 0.2, 'accuracy': acc, 'format': 1.0}
+
+
+def run_c(m, setup, directory, rows, count, *, resume=False, ledger=None, cap=8, **kw):
+    return m.run(output=directory, schedule=rows, bindings=setup[1], backend_factory=NumericBackend, authorize=lambda c: None,
+                 max_new_groups=count, resume=resume, grader=hook_grader, row_validator=lambda r: None, ledger=ledger,
+                 input_tokens=(lambda r: 213) if ledger is not None else None, max_groups_cap=cap, **kw)
+
+
+def test_default_cap_stays_three_and_larger_cap_is_explicit(setup):
+    m = module(); _, _, tmp = setup
+    with pytest.raises(ValueError): run(m, setup, tmp / 'c0', 4)                   # unchanged default
+    r = run_c(m, setup, tmp / 'c1', tier_c_rows(setup), 5, cap=8)
+    assert r['completed_groups'] == 5
+
+
+def test_row_validator_and_grader_hooks_replace_the_single_source_rules(setup):
+    m = module(); _, _, tmp = setup
+    rows = tier_c_rows(setup)
+    with pytest.raises(ValueError):                                              # without the validator the other source is rejected
+        m.run(output=tmp / 'v0', schedule=rows, bindings=setup[1], backend_factory=NumericBackend, authorize=lambda c: None, max_new_groups=1)
+    run_c(m, setup, tmp / 'v1', rows, 2)
+    r = json.loads((sorted((tmp / 'v1').glob('boundary_*'))[-1] / 'receipt.json').read_text())
+    assert r['grades'][0]['score'] in (1.0, 0.2) and r['record_id'].startswith('src')
+
+
+def test_ledger_persists_across_resume_and_stops_when_the_whole_group_does_not_fit(setup):
+    from mri_rl.two_task_training import TokenLedger
+    m = module(); _, _, tmp = setup
+    plan = {'group_size': 2, 'max_tokens': 256, 'budget': {'input_tokens_min': 213, 'input_tokens_max': 405, 'text_visual_token_cap': 2 * (213 + 256) * 3 + 10}}
+    rows = tier_c_rows(setup)
+    led = TokenLedger(plan)
+    first = run_c(m, setup, tmp / 'l', rows, 1, ledger=led)
+    assert first['completed_groups'] == 1 and led.used == 2 * 213 + 2
+    led2 = TokenLedger(plan)
+    r2 = run_c(m, setup, tmp / 'l', rows, 5, resume=True, ledger=led2)
+    assert led2.charged_groups >= 2 and r2['status'] == 'TOKEN_BUDGET_EXHAUSTED'   # restored cost + fresh reservations stop the run
+    assert r2['completed_groups'] < len(rows)
+    last = json.loads((sorted((tmp / 'l').glob('boundary_*'))[-1] / 'receipt.json').read_text())
+    assert last['ledger']['used_tokens'] == led2.used
+
+
+def test_crashed_attempt_partial_work_is_charged_exactly_once(setup):
+    from mri_rl.two_task_training import TokenLedger
+    m = module(); _, _, tmp = setup
+    plan = {'group_size': 2, 'max_tokens': 256, 'budget': {'input_tokens_min': 213, 'input_tokens_max': 405, 'text_visual_token_cap': 10**6}}
+    rows = tier_c_rows(setup)
+    run_c(m, setup, tmp / 'p', rows, 1, ledger=TokenLedger(plan))
+    crash = tmp / 'p' / '.pending-crash'; crash.mkdir()
+    (crash / 'rollout_progress_PRIVATE.json').write_text(json.dumps({'record_id': rows[1]['id'], 'responses': [{'token_ids': [1, 2, 3]}]}))
+    led = TokenLedger(plan)
+    run_c(m, setup, tmp / 'p', rows, 1, resume=True, ledger=led)
+    partial = 1 * 213 + 3
+    assert led.used == (2 * 213 + 2) + partial + (2 * 213 + 2)                    # first group + crashed partial + next group
+    led_again = TokenLedger(plan)
+    run_c(m, setup, tmp / 'p', rows, 1, resume=True, ledger=led_again)
+    assert led_again.used == led.used + (2 * 213 + 2)                             # partial dir not charged a second time

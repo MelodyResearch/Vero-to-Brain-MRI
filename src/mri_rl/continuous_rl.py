@@ -70,15 +70,18 @@ def _step(backend):
     return value
 
 
-def _binding(schedule, bindings, config):
+def _binding(schedule, bindings, config, row_validator=None):
     require(isinstance(bindings, dict) and bindings, 'Exact experiment bindings required')
     require(schedule and len({r['id'] for r in schedule}) == len(schedule), 'Unique frozen schedule required')
     images = {}
     for row in schedule:
         extra = row['extra_info']
-        require(row['data_source'] == 'OpenNeuro_ds007045' and extra.get('internal_split') == 'train'
-                and extra.get('patient_lineage') == 'BIDS_SUBJECT_VERIFIED' and extra.get('patient_key'),
-                'Training-only verified patient schedule required')
+        if row_validator is None:
+            require(row['data_source'] == 'OpenNeuro_ds007045' and extra.get('internal_split') == 'train'
+                    and extra.get('patient_lineage') == 'BIDS_SUBJECT_VERIFIED' and extra.get('patient_key'),
+                    'Training-only verified patient schedule required')
+        else:
+            row_validator(row)   # explicit typed multi-source boundary (Tier C); raises on any violation
         require(row['ability'] == extra['reward_type'] and len(row['images']) == 1,
                 'Task route or image inventory mismatch')
         images[row['id']] = digest(row['images'][0])
@@ -172,7 +175,7 @@ def _publish(output, work, backend, binding, completed, updates, parent, evidenc
     return {**receipt, 'path': destination}
 
 
-def _grades(row, raw, config):
+def _grades(row, raw, config, grader=None):
     require(raw.get('record_id') == row['id'], 'Rollout record mismatch')
     responses = raw.get('responses', [])
     require(len(responses) == config['group_size'], 'Incomplete rollout group')
@@ -181,8 +184,9 @@ def _grades(row, raw, config):
         tokens = response.get('token_ids', [])
         require(isinstance(response.get('text'), str) and tokens and len(tokens) <= config['max_tokens']
                 and all(type(t) is int and t >= 0 for t in tokens), 'Invalid response tokens/text')
-        grade = compute_score_from_data_source(row['data_source'], response['text'],
-            row['reward_model']['ground_truth'], row['extra_info'])
+        grade = (grader(row, response['text'], config) if grader is not None else
+                 compute_score_from_data_source(row['data_source'], response['text'],
+                                                row['reward_model']['ground_truth'], row['extra_info']))
         grade['overlong'] = overlong_penalty(len(tokens), config['max_tokens'], 'direct_vero')
         grade['total'] = grade['score'] + grade['overlong']
         require(all(math.isfinite(v) for v in grade.values()), 'Nonfinite reward')
@@ -190,8 +194,25 @@ def _grades(row, raw, config):
     return grades
 
 
+def _partial_cost(pending, schedule_by_id, input_tokens):
+    """Token cost of a crashed attempt's already-generated responses (deterministic; read from its progress file)."""
+    path = pending / 'rollout_progress_PRIVATE.json'
+    if not path.is_file():
+        return 0
+    raw = json.loads(path.read_text())
+    row = schedule_by_id.get(raw.get('record_id'))
+    require(row is not None, 'Crashed attempt references an unknown schedule record')
+    responses = raw.get('responses', [])
+    return len(responses) * input_tokens(row) + sum(len(r['token_ids']) for r in responses)
+
+
+def _ledger_state(ledger, included):
+    return {**ledger.state(), 'partial_dirs_included': sorted(included)}
+
+
 def run(*, output, schedule, bindings, backend_factory, authorize, max_new_groups,
-        resume=False, starting_adapter=None, config=None, max_optimizer_updates=None):
+        resume=False, starting_adapter=None, config=None, max_optimizer_updates=None,
+        grader=None, row_validator=None, ledger=None, input_tokens=None, max_groups_cap=3):
     """Run at most a fixed number of attempted groups, with one backend/optimizer.
 
     authorize(context) MUST independently validate exact scope and resources;
@@ -202,13 +223,17 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
     require(callable(authorize), 'Independent authorizer is required')
     require(max_optimizer_updates is None or (type(max_optimizer_updates) is int and max_optimizer_updates >= 1),
             'Optimizer update budget must be a positive integer')
-    require(type(max_new_groups) is int and 1 <= max_new_groups <= 3, 'Bounded 1–3 group stage required')
+    require(type(max_groups_cap) is int and 3 <= max_groups_cap <= 256, 'Invalid group cap')
+    require(type(max_new_groups) is int and 1 <= max_new_groups <= max_groups_cap,
+            'Bounded stage required (default 1–3 groups; a larger cap needs the explicit Tier C parameter)')
+    require((ledger is None) == (input_tokens is None) and (ledger is None or callable(input_tokens)),
+            'Token ledger and input-token function go together')
     config = json.loads(canonical(PROFILE if config is None else config))
     for key in PROFILE:
         if key not in {'group_size', 'max_tokens'}:
             require(config.get(key) == PROFILE[key], 'Historical optimizer/reward/profile change requires new version')
     require(2 <= config['group_size'] <= 8 and 16 <= config['max_tokens'] <= 512, 'Invalid bounded rollout configuration')
-    binding = _binding(schedule, bindings, config); output = Path(output)
+    binding = _binding(schedule, bindings, config, row_validator); output = Path(output)
     if output.exists() and not resume:
         raise FileExistsError('Existing run requires explicit resume; preserve evidence')
     if resume:
@@ -246,7 +271,19 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                 work = Path(tempfile.mkdtemp(prefix='.pending-', dir=output))
                 current = _publish(output, work, backend, binding, 0, 0, None,
                                    {'updated': False, 'record_id': None, 'schedule_record_id': None})
+            included = set(); stopped = None
+            if ledger is not None:
+                prior = (current.get('ledger') or {}) if current else {}
+                ledger.used = prior.get('used_tokens', 0); ledger.charged_groups = prior.get('charged_groups', 0)
+                included = set(prior.get('partial_dirs_included', []))
+                by_id = {r['id']: r for r in schedule}
+                for pending in sorted(output.glob('.pending-*')):      # crashed attempts: charge their generated work once
+                    if pending.name not in included:
+                        ledger.used += _partial_cost(pending, by_id, input_tokens)
+                        included.add(pending.name)
             for index in range(cursor, min(cursor+max_new_groups, len(schedule))):
+                if ledger is not None and not ledger.can_start(input_tokens(schedule[index])):
+                    stopped = 'TOKEN_BUDGET_EXHAUSTED'; break                # whole-group reservation does not fit
                 # Total budget is enforced before any further rollout; a skip never consumes it.
                 if max_optimizer_updates is not None and current['optimizer_updates'] >= max_optimizer_updates:
                     break
@@ -268,7 +305,7 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                 authorize({**context, 'phase': 'post_rollout', 'cursor': index,
                            'boundary_receipt_sha256': digest(current['path'] / 'receipt.json')})
                 require(digest(row['images'][0]) == expected_image, 'Frozen image changed after rollout')
-                grades = _grades(row, raw, config)
+                grades = _grades(row, raw, config, grader)
                 advantages = advantages_from_rewards([g['total'] for g in grades])
                 active = task_group_is_informative(grades); update_evidence = {}
                 if active:
@@ -283,6 +320,8 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                             'Update lacks finite gradient/loss and on-policy alignment evidence')
                 require(_step(backend) == before_step + int(active), 'Optimizer step count mismatch')
                 after_state = state_fingerprint(backend, backend.optimizer_state(), work / 'optimizer_after.safetensors')
+                if ledger is not None:
+                    ledger.charge(input_tokens(row), [len(r['token_ids']) for r in raw['responses']])
                 if not active: require(before_state == after_state, 'Inactive group changed optimizer state')
                 # Verify byte-stable weights even for a skip; backend serializes deterministically.
                 check = work / 'verify_adapter.safetensors'; backend.save_adapter(check)
@@ -292,10 +331,16 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                     digest(current['path'] / 'receipt.json'), {'updated': active, 'record_id': row['id'],
                     'schedule_record_id': schedule[index]['id'], 'grades': grades, 'advantages': advantages,
                     'optimizer_before_fingerprint': before_state, 'optimizer_after_fingerprint': after_state,
-                    'update_evidence': update_evidence})
+                    'update_evidence': update_evidence,
+                    **({'ledger': _ledger_state(ledger, included)} if ledger is not None else {})})
             budget_hit = max_optimizer_updates is not None and current['optimizer_updates'] >= max_optimizer_updates
-            return {'status': 'UPDATE_BUDGET_REACHED' if budget_hit else
-                              'SCHEDULE_COMPLETE' if current['completed_groups'] == len(schedule) else 'BOUNDED_STAGE_COMPLETE',
+            if stopped:
+                status = stopped
+            elif budget_hit:
+                status = 'UPDATE_BUDGET_REACHED'
+            else:
+                status = 'SCHEDULE_COMPLETE' if current['completed_groups'] == len(schedule) else 'BOUNDED_STAGE_COMPLETE'
+            return {'status': status,
                     'completed_groups': current['completed_groups'], 'optimizer_updates': current['optimizer_updates'],
                     'boundary': str(current['path']), 'exact_resume_profile': config['profile'],
                     'native_runtime_validation': 'REQUIRES_SEPARATE_EVIDENCE', 'science_claim': False}

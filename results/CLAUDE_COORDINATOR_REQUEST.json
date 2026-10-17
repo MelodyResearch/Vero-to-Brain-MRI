@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "first_real_gspo_update_done_reload_and_tierC_integration",
+ "kind": "tier_c_driver_hooks_ready_for_scoped_review",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -324,5 +324,17 @@
   "approval for the reload check bound to boundary_0001 (pilot reload mode uses the same cache; verifies exact tensors + one greedy generation)",
   "cache option for continuous_rl_dev_eval so post-update dev evaluation does not need the BF16 model",
   "Tier C driver hooks (grader / row validator / token ledger / group cap) are being implemented now as optional parameters; will send exact diff"
- ]
+ ],
+ "tier_c_driver_change": {
+  "file": "src/mri_rl/continuous_rl.py",
+  "sha256": "303f59597b93c166d7333442bc42fd46f49803e1eee62b54a045e9e73fc59516",
+  "what": [
+   "optional grader(row, text, config): replaces compute_score_from_data_source for routed two-source grading (default None = unchanged)",
+   "optional row_validator(row): replaces the ds007045-only binding rule (typed two-source boundary), default unchanged",
+   "optional token ledger + input_tokens(row): whole-group reservation before each group (stops with status TOKEN_BUDGET_EXHAUSTED), actual cost charged after the group, ledger state (+ included crashed-attempt dirs) stored in every committed receipt and restored on resume; a crashed .pending-* attempt is charged for its already-generated responses exactly once (idempotent via the receipt list)",
+   "max_groups_cap (explicit, 3..256): default stays 3, Tier C passes its own cap; the update cap/atomic boundaries/Adam persistence are untouched"
+  ],
+  "tests": "61 passed (driver + pilot + two_task_training + dev_eval + mlx_continuous): default cap/behaviour unchanged; hook grader/validator accept the second source; ledger persists across resume and stops when a whole group no longer fits; partial crash work charged once, not twice; native-optional file untouched",
+  "not_done": "binding of the compiled plan + final sampler schedule into bindings, a Tier C launcher (needs your private paths/plan), calibration statistics run, same-C-data SFT config, final dev/test matrix queue; SFT surface not yet touched"
+ }
 }
