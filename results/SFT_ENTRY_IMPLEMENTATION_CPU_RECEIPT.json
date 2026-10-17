@@ -1,0 +1,59 @@
+{
+  "GSPO_critical_sources_modified": false,
+  "SFT_objective_author": "Claude Code; objective/optimizer/targets unchanged",
+  "TDD_RED": [
+    "run_sft unexpected max_new_steps argument",
+    "SFT executable entry missing",
+    "SFT continuation proof helper absent"
+  ],
+  "actual_CPU_compile": {
+    "cap": 169216,
+    "full_steps_per_seed": {
+      "11": 120,
+      "13": 121,
+      "7": 120
+    },
+    "plan_file_sha256": "35c1e005b634c80a6c2b83a4238c8c2961e3de5517d9cdbed9b16b60aa8e7615",
+    "processed_tokens_per_seed": {
+      "11": 168439,
+      "13": 168788,
+      "7": 167878
+    },
+    "three_seeds": [
+      7,
+      11,
+      13
+    ]
+  },
+  "actual_CPU_first_scope": {
+    "approved": false,
+    "execution_tier": "B",
+    "first_scope_file_sha256": "72916b7d021fe59c9f663fa0b04d51b14706b2fd42702b2e9dadb9d376a2b064",
+    "full_schedule_steps": 120,
+    "known_first_step_input_target_cost": 1304,
+    "max_new_steps": 1,
+    "seed": 7
+  },
+  "author": "Codex /root/likelihood_finish_reviewer, implementation role for this new entry only",
+  "changed_source_sha256": {
+    "src/mri_rl/tier_c_sft.py": "9d85b168bfcc759f35b364fb12990b89196a9ccf9d9fe079f2159c7c8e61b922",
+    "src/mri_rl/tier_c_sft_entry.py": "5f34081e477b9ca624fc65cda6b710677c7690e0284bd0a9761c933fb62ad12e",
+    "tests/test_tier_c_sft_entry.py": "7dda32f46b8a61d691866eae13cfd15a661187bc7043919115e586e7dfb93a9f"
+  },
+  "continuity": "Stage bound and resume are scope fields only. Core receives the entire frozen schedule each invocation; stable binding retains plan, source, target and schedule identities. Shared native restore proof plus actual SFT update receipt is needed before Tier C; no additional SFT-only model reload/generation is required.",
+  "focused_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. python3 -c <append existing venv site-packages; pytest.main tests/test_tier_c_sft_entry.py tests/test_tier_c_sft.py>",
+    "native_model_or_MLX_imported": false,
+    "outcome": "23 passed in 0.53s"
+  },
+  "limitations": [
+    "No model execution or new weight update performed.",
+    "New entry requires coordinator independent source review and exact private approval before native execution; implementer has not approved own source.",
+    "Native shared restore code was previously executed for GSPO, but native SFT autograd remains unverified until the bounded diagnostic.",
+    "Processed input+target token budget is not a claim of matched FLOPs or visual understanding/generalization."
+  ],
+  "mission_alignment": "Make same-C-data SFT executable under the common B28 start and finite processed-token cap, with one diagnostic stage and exact optimizer/RNG continuation along the full frozen schedule.",
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "schema": "same-C-SFT-entry-implementation-receipt-v1",
+  "status": "IMPLEMENTED_TESTED_CPU_NOT_REVIEWED_NOT_LAUNCH_AUTHORIZED"
+}

@@ -103,9 +103,11 @@ def _pending_step_cost(pending, ctx, input_tokens, target_tokens):
 
 
 def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, input_tokens, target_tokens,
-            resume=False, starting_adapter=None):
+            resume=False, starting_adapter=None, max_new_steps=None):
     """One resident run over the whole SFT budget; mirrors continuous_rl.run's boundary protocol."""
     require(callable(authorize) and ledger is not None, 'Authorizer and ledger required')
+    require(max_new_steps is None or (type(max_new_steps) is int and max_new_steps > 0),
+            'max_new_steps must be a positive integer or None')
     require(len(steps) <= ledger.plan['budget']['maximum_attempted_groups'] + 58, 'Unexpected SFT step count')
     image_hashes = {e['id']: digest(e['images'][0]) for s in steps for e in s['examples']}
     config = {'profile': 'tier_c_sft_v1', 'examples_per_step': EXAMPLES_PER_STEP, 'target_cap': TARGET_CAP,
@@ -156,7 +158,8 @@ def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, inpu
                     ledger.charge_imputed(_pending_step_cost(pending, ctx, input_tokens, target_tokens))
                     included.add(pending.name)
             stopped = None
-            for index in range(cursor, len(steps)):
+            end = len(steps) if max_new_steps is None else min(len(steps), cursor + max_new_steps)
+            for index in range(cursor, end):
                 step = steps[index]
                 if not ledger.can_start_cost(step_cost(step, input_tokens, target_tokens)):
                     stopped = 'TOKEN_BUDGET_EXHAUSTED'; break

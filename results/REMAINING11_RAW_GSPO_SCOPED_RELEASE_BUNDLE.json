@@ -1,0 +1,187 @@
+{
+  "bundle_manifest_sha256": "2c93c04100299f7632277917e8360154e332504d763e30118925e77c47711ab8",
+  "first_release_sha256": "ea7df77ad76834f5e3aeb47d59a053b1a8261adbaa9db7464783f6ebba72881d",
+  "group_size": 4,
+  "limitations": [
+    "Conditional scopes are not executed experiments. U_raw7 is excluded and must finish with independent final verification before this bundle starts.",
+    "Raw-arm scopes only; calibrated/SFT gates remain separate. Zero-update outcomes remain legitimate negative attempts, not successful training.",
+    "Same previous scientific/resource limitations remain; no clinical, brain-specific or held-out generalization conclusion follows."
+  ],
+  "max_occurrences_per_arm_seed": 198,
+  "max_tokens": 256,
+  "models_launched": 0,
+  "no_unchanged_broad_tests_repeated": true,
+  "plan_sha256": "68921ba47ee00b646a607edfa788fdd2ac6b1b58b54416b95390a8d7ed150a66",
+  "prerequisite_stage": "rl:U_raw:7",
+  "prerequisite_state": "ACTIVE_NOT_DONE",
+  "remaining_raw_configs": 11,
+  "reviewer": "Independent Codex /root/full_arm_execution_contract",
+  "runner_guard_tests_passed": 6,
+  "runner_review": "PENDING_ROOT_INDEPENDENT_REVIEW_NOT_EXECUTED",
+  "runner_sha256": "b66b233e56844a4df7b86dd9b5b9cc7b3111eb1c37a54c141421e6c4559b35b1",
+  "schema": "remaining-raw-arm-release-bundle-v1",
+  "source_sha256": {
+    "continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+    "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+    "full_arm_protocol.py": "b0ab1f99baba5131ee3ced994a2d5d7041bd53d051bbf505de152d8e743310b1",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+    "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "reward_replay.py": "32a511c9a9c223766f889720af23fcd3d96e3e1482c57f024c4aaf962a8757f5",
+    "tier_c_entry.py": "84e2581dc8b1065301f2ce1e7098db5a213a6b1c29b002c2fb8de6db7b5ddaf8",
+    "two_task_pool.py": "b06d9278599b7ef08655137f8405cfd190a324807cc0b8777801833e07770053",
+    "two_task_training.py": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd",
+    "vero_category_sampler.py": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "vero_official_launch.py": "ccc3cd3e5ab8d26890ae1062bd79bf7c4f1e5b8e6de34fff923c7388c5ba911f",
+    "visit_correspondence.py": "ccaaa7c4cf2ed75afae93cb44a2728d128b9943e8bba9296dd9904d7875d0bd5"
+  },
+  "stage_order": [
+    "rl:S_sequence:7",
+    "rl:S_correspondence:7",
+    "rl:P_raw:7",
+    "rl:S_sequence:11",
+    "rl:S_correspondence:11",
+    "rl:P_raw:11",
+    "rl:U_raw:11",
+    "rl:S_sequence:13",
+    "rl:S_correspondence:13",
+    "rl:P_raw:13",
+    "rl:U_raw:13"
+  ],
+  "stages": [
+    {
+      "arm": "S_sequence",
+      "id": "rl:S_sequence:7",
+      "launcher_sha256": "65975cf172d894fb019a6214ead23c0dfb098bd7cfaff7e3188ff11bdcde6d32",
+      "realized_schedule_counts": {
+        "mri_sequence": 198
+      },
+      "review_sha256": "ab2efb1cdfc1fc2363f500969d183611e570bfe8d0b982c96d892e33514ac849",
+      "scope_sha256": "6d81b2d24357de5b32c7c583872191ed8efac950d4315479dd1b645e4fec7c08",
+      "seed": 7
+    },
+    {
+      "arm": "S_correspondence",
+      "id": "rl:S_correspondence:7",
+      "launcher_sha256": "eb2565117906ade90ff400c1a285a0c59946096951794c2c48f83b57163c0a41",
+      "realized_schedule_counts": {
+        "mri_visit_correspondence": 198
+      },
+      "review_sha256": "94a255a170a14af7df27eaf11c1132274189d7bb0229a46f69fc89f544b30bc8",
+      "scope_sha256": "0b110199e86a7bd6ee9ae6afcc8574811712d6aafcb5f5bcc21dd079e26b83ee",
+      "seed": 7
+    },
+    {
+      "arm": "P_raw",
+      "id": "rl:P_raw:7",
+      "launcher_sha256": "8b120ed72f3e59a1878100f74f8fc96d8841a9b01dca307fc602bd20b23334dd",
+      "realized_schedule_counts": {
+        "mri_sequence": 76,
+        "mri_visit_correspondence": 122
+      },
+      "review_sha256": "e4f279153240d13105e3ba9dbe1fafd8ba4ff2a8b75c24c8771f3b89ed3d53d9",
+      "scope_sha256": "d95e47c3ab766bb10770f98bacb45d9224a6f1a62d2ce267b58f29933f9d1d53",
+      "seed": 7
+    },
+    {
+      "arm": "S_sequence",
+      "id": "rl:S_sequence:11",
+      "launcher_sha256": "00bfe2e1b0e671588b550c34c8d7e083abeee65bf05e68aabed3893b3622f16e",
+      "realized_schedule_counts": {
+        "mri_sequence": 198
+      },
+      "review_sha256": "1282ef6c446e551b55784ff6053146a0a36cedcfe26d7d1ef24f8a4c2e4b4130",
+      "scope_sha256": "d6f1b507e3a5a0eb3fc60f27dd369bb6e35b98336ac3c69d262fc04fbc1630a5",
+      "seed": 11
+    },
+    {
+      "arm": "S_correspondence",
+      "id": "rl:S_correspondence:11",
+      "launcher_sha256": "6e56f86bf868734f1cfaa66b3fd7bdd315201837c01ce9a274e2fbe088ebb79d",
+      "realized_schedule_counts": {
+        "mri_visit_correspondence": 198
+      },
+      "review_sha256": "1e8607dba7286561583ee6476a37393a2204ea1a9a8cbac17ad4c52218c8d55a",
+      "scope_sha256": "3cace9132a3df660a289f237c2fe935590e5d0ad90d478294354e0b1fb7da5fb",
+      "seed": 11
+    },
+    {
+      "arm": "P_raw",
+      "id": "rl:P_raw:11",
+      "launcher_sha256": "769450d41fe24394c8902a0462e493ec4d3c546229249e857f462f59f69b88d4",
+      "realized_schedule_counts": {
+        "mri_sequence": 71,
+        "mri_visit_correspondence": 127
+      },
+      "review_sha256": "7460f520833e4500e22c491aa8628eb93c374b3f6ec41b452c5600b88fec70e2",
+      "scope_sha256": "320627b4a8ff0380254cc663cc15a07fbb3ec07f15e7226e7cc49be807959c3b",
+      "seed": 11
+    },
+    {
+      "arm": "U_raw",
+      "id": "rl:U_raw:11",
+      "launcher_sha256": "f6e3fc8e7b2cec7de25ed73720af511544c603dbd30652969d036a65619b28f0",
+      "realized_schedule_counts": {
+        "mri_sequence": 95,
+        "mri_visit_correspondence": 103
+      },
+      "review_sha256": "23087a75561e807946f0c80a535880b0b3523e2c77ca1b25d6b3f767eb33794a",
+      "scope_sha256": "13955ac229a4c1da46d1cbfe6f08a9710c0aa63da9ce89ba07e0e263db62e0e7",
+      "seed": 11
+    },
+    {
+      "arm": "S_sequence",
+      "id": "rl:S_sequence:13",
+      "launcher_sha256": "ec7851dfd761a80a01cb858d524eca418c805d3304697436ec3dd6888abe294e",
+      "realized_schedule_counts": {
+        "mri_sequence": 198
+      },
+      "review_sha256": "a978502f25715aa24ba7c310ecc7e99de43a28787569259724e9719bbe7320c0",
+      "scope_sha256": "9189d7010e1f2ae40476867469eb6792b24809b2de4ff42e874f6940b6afd063",
+      "seed": 13
+    },
+    {
+      "arm": "S_correspondence",
+      "id": "rl:S_correspondence:13",
+      "launcher_sha256": "79610de119d62ec89e96fde463fefe56091d248e426bbe4dbb7136bf87105be7",
+      "realized_schedule_counts": {
+        "mri_visit_correspondence": 198
+      },
+      "review_sha256": "e401aacf807728431fdbc65cdf6e112c4e86de5b117c7128c2545d9fba839e9c",
+      "scope_sha256": "9a8b4bdffd237259e0a4a619aff843d9006ca98a7b3ff746cce52303f6e9591e",
+      "seed": 13
+    },
+    {
+      "arm": "P_raw",
+      "id": "rl:P_raw:13",
+      "launcher_sha256": "fa3ba61e28b5de16686d86b42629cd3872031e730f05beffc3b7b3d1f51b1faa",
+      "realized_schedule_counts": {
+        "mri_sequence": 73,
+        "mri_visit_correspondence": 125
+      },
+      "review_sha256": "9be9e40d9d41a3dd354f69dd52a46fd0aac6a87687c3cc54f49e70b2d31188f5",
+      "scope_sha256": "3b9bd50f9ad0c464d828c5a715ac55903e89e569afb9a66820a1b9a5fc979db2",
+      "seed": 13
+    },
+    {
+      "arm": "U_raw",
+      "id": "rl:U_raw:13",
+      "launcher_sha256": "191c218c7c3a3b8f84ff2a7434b8aa20d53f9ac9f185ba39857a53e122a863f1",
+      "realized_schedule_counts": {
+        "mri_sequence": 93,
+        "mri_visit_correspondence": 105
+      },
+      "review_sha256": "1ee4cab833ae661723125269ff15e471d17799d028ce9a4641cd682963c53d03",
+      "scope_sha256": "fb3e798e256e106e597c821c32189af999057aafde6ff74187ad4ff5a02ca7d7",
+      "seed": 13
+    }
+  ],
+  "status": "APPROVED_SCOPES_CONDITIONAL_NOT_EXECUTED",
+  "token_cap_per_arm_seed": 169216
+}

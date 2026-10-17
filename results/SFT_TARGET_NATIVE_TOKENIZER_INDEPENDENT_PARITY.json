@@ -1,0 +1,18 @@
+{
+  "all_token_ids_exact": true,
+  "native_model_or_MLX_imported": false,
+  "plan_file_sha256": "35c1e005b634c80a6c2b83a4238c8c2961e3de5517d9cdbed9b16b60aa8e7615",
+  "reviewer": "root Codex independent of SFT entry implementer",
+  "scientific_training_or_loss_gradient_claimed": false,
+  "scope": "Real native-model AutoTokenizer target-token IDs versus frozen raw-tokenizers SFT plan",
+  "source_rows": 76,
+  "status": "PASS",
+  "token_counts": [
+    15,
+    16,
+    19
+  ],
+  "tokenizer_class": "Qwen2Tokenizer",
+  "tokenizer_json_sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+  "unique_target_strings": 4
+}
