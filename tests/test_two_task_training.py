@@ -1,18 +1,32 @@
 """Synthetic-row tests for the shared two-task training surface (no model, no MRI)."""
 from collections import Counter
+import tempfile
+from pathlib import Path
 import pytest
 from mri_rl import two_task_training as tt
 from mri_rl import visit_correspondence as vc
 
 
+TMP = Path(tempfile.mkdtemp(prefix='ttt_'))
+
+
+def _img(name):
+    p = TMP / name
+    p.write_bytes(b'PNG')
+    return str(p)
+
+
 def seq_row(i):
-    return {'id': f'seq{i}', 'ability': 'mri_sequence', 'data_source': tt.SEQ_SOURCE, 'images': [f'/x/s{i}.png'],
+    img = _img(f's{i}.png')
+    return {'id': f'seq{i}', 'ability': 'mri_sequence', 'data_source': tt.SEQ_SOURCE, 'images': [img],
+            'prompt': [{'role': 'user', 'content': [{'type': 'image', 'image': img}, {'type': 'text', 'text': 'q'}]}],
             'reward_model': {'ground_truth': 'FLAIR' if i % 2 else 'contrast-enhanced T1'},
             'extra_info': {'reward_type': 'mri_sequence', 'internal_split': 'train', 'patient_lineage': 'BIDS_SUBJECT_VERIFIED',
                            'patient_key': f'p{i}', 'question': 'q'}}
 
 
 def dal_row(i):
+    img = _img(f'd{i}.png')
     h = lambda c: c * 64
     same = i % 2 == 0
     key = lambda n: f'{n:024x}'
@@ -20,9 +34,9 @@ def dal_row(i):
          'patient_lineage': 'BIDS_SUBJECT_VERIFIED', 'patient_key': key(i), 'candidate_patient_key': key(i) if same else key(i + 1000),
          'statistical_cluster_key': key(i + 5000), 'query_source_sha256': h('a'), 'candidate_source_sha256': h('b'),
          'metadata_plan_sha256': h('c'), 'render_contract_sha256': h('d'), 'question': vc.QUESTION}
-    return {'id': f'dal{i}', 'ability': 'mri_visit_correspondence', 'data_source': vc.SOURCE, 'images': [f'/x/d{i}.png'],
+    return {'id': f'dal{i}', 'ability': 'mri_visit_correspondence', 'data_source': vc.SOURCE, 'images': [img],
             'reward_model': {'ground_truth': 'same' if same else 'different'}, 'extra_info': e,
-            'prompt': [{'role': 'user', 'content': [{'type': 'image', 'image': f'/x/d{i}.png'}, {'type': 'text', 'text': vc.QUESTION}]}]}
+            'prompt': [{'role': 'user', 'content': [{'type': 'image', 'image': img}, {'type': 'text', 'text': vc.QUESTION}]}]}
 
 
 ROWS = [seq_row(i) for i in range(28)] + [dal_row(i) for i in range(48)]
@@ -34,25 +48,35 @@ def test_weights_follow_the_admitted_manifest():
     assert tt.category_weights({'sampling': 'specialist', 'task': 'mri_sequence'}, ROWS) == {'mri_sequence': 1.0, 'mri_visit_correspondence': 0.0}
 
 
-def test_schedule_is_deterministic_blockwise_with_repeated_occurrence_ids_and_exhaustion_reshuffle():
-    w = tt.category_weights({'sampling': 'uniform'}, ROWS)
-    a, b = tt.build_schedule(ROWS, w, 7, 198), tt.build_schedule(ROWS, w, 7, 198)
-    assert [r['id'] for r in a] == [r['id'] for r in b] and len(a) == 198
-    assert [r['id'] for r in a] != [r['id'] for r in tt.build_schedule(ROWS, w, 11, 198)]
-    ids = [r['id'] for r in a]; assert len(set(ids)) == 198                      # every occurrence id is distinct
-    src = Counter(r['extra_info']['source_id'] for r in a)
-    assert max(src.values()) > 1 and all(r['extra_info']['occurrence'] >= 0 for r in a)  # sequence pool (28) is exhausted/reshuffled
+def test_schedule_wraps_the_pinned_sampler_with_opaque_ids_and_source_record_ids():
+    arm = {'sampling': 'uniform'}
+    a, binding = tt.build_schedule(ROWS, arm, 7, 198)
+    b, _ = tt.build_schedule(ROWS, arm, 7, 198)
+    assert [r['id'] for r in a] == [r['id'] for r in b] and len(a) == 198 and len({r['id'] for r in a}) == 198
+    assert all(r['id'] != r['source_record_id'] and r['source_record_id'] in {x['id'] for x in ROWS} for r in a)
+    assert [r['id'] for r in a] != [r['id'] for r in tt.build_schedule(ROWS, arm, 11, 198)[0]]
+    assert binding['official_vero_commit'].startswith('025ca3') and binding['mode'] == 'uniform'
     rep = tt.realized_report(a)
-    assert rep['unique_source_rows']['mri_sequence'] == 28 and rep['unique_source_rows']['mri_visit_correspondence'] <= 48
-    full = tt.build_schedule(ROWS, w, 7, 256)                                    # full block honors floor/largest-remainder counts
-    assert Counter(r['ability'] for r in full) == {'mri_sequence': 128, 'mri_visit_correspondence': 128}
+    assert rep['unique_source_rows']['mri_sequence'] == 28 and rep['category_counts']['mri_sequence'] > 28   # pool exhausted/reshuffled
+    # model-visible fields unchanged by the wrapper
+    src = {x['id']: x for x in ROWS}
+    assert all(r['prompt'] == src[r['source_record_id']].get('prompt') and r['reward_model'] == src[r['source_record_id']]['reward_model'] for r in a)
 
 
-def test_specialist_schedule_is_single_category_and_minority_not_rounded_away():
-    s = tt.build_schedule(ROWS, tt.category_weights({'sampling': 'specialist', 'task': 'mri_visit_correspondence'}, ROWS), 7, 64)
+def test_specialist_and_proportional_schedules_follow_the_arm_definition():
+    s, _ = tt.build_schedule(ROWS, {'sampling': 'specialist', 'task': 'mri_visit_correspondence'}, 7, 64)
     assert {r['ability'] for r in s} == {'mri_visit_correspondence'}
-    p = tt.build_schedule(ROWS, tt.category_weights({'sampling': 'proportional'}, ROWS), 7, 256)
-    assert Counter(r['ability'] for r in p)['mri_sequence'] in (94, 95)          # 256*28/76 = 94.3 -> floor/remainder, not 0
+    p, bind = tt.build_schedule(ROWS, {'sampling': 'proportional'}, 7, 198)
+    assert bind['logical_batch_category_counts']['mri_sequence'] in (94, 95) and Counter(r['ability'] for r in p)['mri_sequence'] > 0
+
+
+def test_input_token_lookup_uses_the_source_record_id_and_requires_full_coverage():
+    from mri_rl.two_task_pool import canonical_sha
+    sched, _ = tt.build_schedule(ROWS, {'sampling': 'uniform'}, 7, 20)
+    meas = [{'record_sha256': canonical_sha(r), 'input_tokens': 213 if r['ability'] == 'mri_sequence' else 405} for r in ROWS]
+    look = tt.input_tokens_by_source(meas, ROWS)
+    assert all(look(r) == (213 if r['ability'] == 'mri_sequence' else 405) for r in sched)
+    with pytest.raises(ValueError): tt.input_tokens_by_source(meas[:-1], ROWS)
 
 
 def test_row_validation_rejects_wrong_source_split_or_prompt():

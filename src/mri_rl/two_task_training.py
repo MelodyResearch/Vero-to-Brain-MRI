@@ -12,17 +12,14 @@ from __future__ import annotations
 import hashlib
 import json
 from collections import Counter
-import numpy as np
 
 from mri_rl.full_arm_protocol import can_start_group, charge_group
 from mri_rl.reward_replay import _logistic
 from mri_rl.vero_mri_reward import compute_score_from_data_source
-from mri_rl.vero_official_launch import expected_batch_counts
 from mri_rl.visit_correspondence import SOURCE as DALLAS_SOURCE, score_visit_correspondence
 
 SEQ_SOURCE = 'OpenNeuro_ds007045'
 ROUTES = {'mri_sequence': SEQ_SOURCE, 'mri_visit_correspondence': DALLAS_SOURCE}
-BLOCK = 256
 
 
 class CalibrationBlocked(ValueError):
@@ -57,41 +54,36 @@ def category_weights(arm, rows):
     raise ValueError('Unknown sampling')
 
 
-def build_schedule(rows, weights, seed, n_attempts):
-    """Deterministic occurrence schedule of length n_attempts (<= a few blocks). Returns rows with occurrence ids."""
-    by_cat = {t: [r for r in rows if r['ability'] == t] for t in ROUTES}
-    for r in rows:
-        validate_training_row(r)
-    active = {t: w for t, w in weights.items() if w > 0}
-    if abs(sum(active.values()) - 1) > 1e-9 or any(not by_cat[t] for t in active):
-        raise ValueError('Weights must sum to 1 over non-empty categories')
-    rng = np.random.default_rng(seed)
-    pools = {t: [] for t in active}
-    seen = Counter()
-    out = []
-    while len(out) < n_attempts:
-        counts = expected_batch_counts(active, BLOCK)
-        block = []
-        for t, c in counts.items():
-            for _ in range(c):
-                if not pools[t]:                       # exhaustion -> reshuffle the whole category
-                    pools[t] = list(rng.permutation(len(by_cat[t])))
-                block.append(by_cat[t][pools[t].pop()])
-        order = rng.permutation(len(block))            # within-block shuffle
-        for i in order:
-            src = block[int(i)]
-            occ = seen[src['id']]; seen[src['id']] += 1
-            out.append({**src, 'id': f"{src['id']}#occ{occ}", 'extra_info': {**src['extra_info'], 'source_id': src['id'], 'occurrence': occ}})
-    out = out[:n_attempts]                             # token-limited prefix: realized weights are reported, not the nominal ones
-    return out
+def build_schedule(rows, arm, seed, n_attempts):
+    """Thin wrapper over Codex's pinned-class-AST-parity sampler (vero_category_sampler). Returns the frozen occurrence
+    schedule: opaque unique top-level id, top-level source_record_id (original frozen row id), all else unchanged."""
+    from mri_rl.vero_category_sampler import build_category_schedule
+    mode = arm['sampling']
+    out = build_category_schedule(rows, mode=mode, seed=seed, max_groups=n_attempts,
+                                  specialist_category=arm.get('task') if mode == 'specialist' else None)
+    return out['schedule'], out['binding']
 
 
 def realized_report(schedule):
     c = Counter(r['ability'] for r in schedule)
-    unique = {t: len({r['extra_info']['source_id'] for r in schedule if r['ability'] == t}) for t in ROUTES}
+    unique = {t: len({r['source_record_id'] for r in schedule if r['ability'] == t}) for t in ROUTES}
     patients = {t: len({r['extra_info']['patient_key'] for r in schedule if r['ability'] == t}) for t in ROUTES}
     return {'attempts': len(schedule), 'category_counts': dict(c), 'unique_source_rows': unique, 'distinct_patients': patients,
             'schedule_sha256': hashlib.sha256(json.dumps([r['id'] for r in schedule]).encode()).hexdigest()}
+
+
+def input_tokens_by_source(measurement_rows, source_rows):
+    """Occurrence row -> measured native input tokens (incl. visual). Measurements are keyed by canonical_sha(source row)
+    exactly as scripts/measure_native_training_tokens.py wrote them; every frozen source row must be covered."""
+    from mri_rl.two_task_pool import canonical_sha
+    by_sha = {m['record_sha256']: int(m['input_tokens']) for m in measurement_rows}
+    table = {}
+    for row in source_rows:
+        key = canonical_sha(row)
+        if key not in by_sha:
+            raise ValueError('Frozen source row has no native token measurement')
+        table[row['id']] = by_sha[key]
+    return lambda row: table[row.get('source_record_id', row['id'])]
 
 
 def make_grader(calibration=None):

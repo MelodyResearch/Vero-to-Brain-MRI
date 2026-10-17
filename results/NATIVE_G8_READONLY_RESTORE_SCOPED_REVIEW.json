@@ -1,0 +1,38 @@
+{
+  "approval_sha256": "b846b17be26623c9a90328ff2a63756bf59280467622ba4a891dcba7b8d687c0",
+  "boundary_receipt_sha256": "fb5c5c182f215498074fe08c5cdc678a863bbc284d2cb8ba4e2e35d65bd750f9",
+  "evidence_tier": "REPRODUCED",
+  "findings": [
+    "Read-only verifier independently rebuilt current script/source/cache/contract/training image scope exactly and binds the already independently verified boundary_0001 receipt and updated adapter.",
+    "Current driver adds unrelated training hooks, but the three functions used by this program (inspect_boundaries/digest/require) are AST-identical to the reviewed pre-hook source. No training hooks are approved or invoked.",
+    "Verifier constructs exactly one cached native backend from the committed updated adapter, verifies loaded base/adapter tensors through the existing backend, loads checkpoint using ORIGINAL immutable experiment binding, and assigns complete saved Adam/RNG with native restore.",
+    "Independent signatures include full pack_tree layout and dtype/shape/payload hashes for every native saved/restored optimizer/RNG tensor; exact step1 and finite state checked. One frozen training-image greedy generation follows; unchanged adapter tensors/Adam are rechecked.",
+    "Program contains no optimizer update or training-driver invocation; immutable boundary is read only. Generation and inventory are durably saved in a new exclusive output; finally closes the backend and explicitly samples post-close memory."
+  ],
+  "limitations": [
+    "Exactly one fresh native read-only restore and one greedy generation of the pinned TRAINING image; no training update, continuation, alternate image, repeated generation or full-arm execution.",
+    "Existing PacedGate training-compatible AC/memory/pressure/swap/thermal/concurrency gates remain binding; read-only likelihood battery/cache exceptions are not added.",
+    "Successful state assignment/greedy inference does not prove uninterrupted-versus-resumed NEXT UPDATE equivalence, official Vero numerical parity, scientific improvement, or patient generalization.",
+    "Approval binds the current one-off script and source hashes; any change invalidates it. If current admission blocks or genuine resource pressure occurs, preserve completed prior receipts and stop affected native work.",
+    "Thermal telemetry may remain unavailable; neither this approval nor a successful run guarantees system stability."
+  ],
+  "mission_alignment": "Verify that the actual one-step adapter and full saved Adam/RNG can be restored before further recipe-transfer experiments.",
+  "native_restore_execution": "NOT_RUN",
+  "new_tests": "Pure CPU scope equality and used-function AST equality; no unchanged broad tests or model imports.",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "native-g8-readonly-state-restore-scoped-independent-review-v1",
+  "script_sha256": "4074233ce8b2ed5541bb2544f96a113ba31107abe3c9f3976143ac603f4137be",
+  "source_sha256": {
+    "continuous_rl.py": "303f59597b93c166d7333442bc42fd46f49803e1eee62b54a045e9e73fc59516",
+    "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+    "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af"
+  },
+  "updated_adapter_sha256": "5671e1bdd63f8d972d13144cc7e3afec207bc0b80131f0b707a647168ad9210d",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

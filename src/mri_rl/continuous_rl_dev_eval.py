@@ -19,7 +19,7 @@ from mri_rl.frozen_eval import adapter_metadata, prepare_resume
 from mri_rl.paced_resources import PacedGate
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCES = ('continuous_rl_dev_eval.py', 'mlx_continuous_gspo.py', 'frozen_eval.py', 'likelihood_loading.py',
+SOURCES = ('likelihood_cache.py', 'continuous_rl_dev_eval.py', 'mlx_continuous_gspo.py', 'frozen_eval.py', 'likelihood_loading.py',
            'paced_resources.py', 'resource_supervisor.py', 'experiment_contract.py', 'continuous_rl.py')
 
 
@@ -115,10 +115,19 @@ def main():
     p.add_argument('--label', required=True, help='e.g. B28_start or B28_gspo1; bound into the approval scope')
     p.add_argument('--seed', type=int, default=7)
     p.add_argument('--resume', action='store_true')
+    p.add_argument('--cache-dir', type=Path)
+    p.add_argument('--cache-certificate', type=Path)
+    p.add_argument('--cache-certificate-sha256')
     a = p.parse_args()
     for n in ('model', 'contract', 'adapter', 'manifest', 'output', 'review_verdict'):
         setattr(a, n, getattr(a, n).resolve())
     require(a.output.is_relative_to(ROOT / 'local_data'), 'Outputs must stay under ignored local_data')
+    for n in ('cache_dir', 'cache_certificate'):
+        if getattr(a, n) is not None:
+            setattr(a, n, getattr(a, n).resolve())
+    from mri_rl.continuous_rl_pilot import cache_binding_for
+    a.cache_binding = cache_binding_for(a)             # pure Python, before any native import; None when no cache requested
+    cache = {'dir': str(a.cache_dir)} if a.cache_binding else None
     contract = load_contract(a.contract)
     max_tokens = contract.generation['max_tokens']
     subset = a.subset_ids_file.read_text().split() if a.subset_ids_file else None
@@ -134,15 +143,15 @@ def main():
              'adapter_checkpoint_sha256': expected['adapter_checkpoint_sha256'],
              'adapter_config_sha256': expected['adapter_config_sha256'],
              'output': str(a.output), 'weight_updates': 0, 'seed': a.seed, 'resume': a.resume,
-             'starting_output_sha256': start_output, 'image_sha256': image_hashes, 'model_inventory': inventory, 'source_sha256': source_hashes()}
+             'derived_cache': a.cache_binding, 'starting_output_sha256': start_output, 'image_sha256': image_hashes, 'model_inventory': inventory, 'source_sha256': source_hashes()}
     _check_review(review_verdict_path=a.review_verdict, expected_review_sha256=a.expected_review_sha256, scope=scope)
     gate = PacedGate(a.output.with_name(a.output.name + '_resource_events.jsonl'))
     def before_unit(name):
-        gate.before_unit(name, loading=name in {'native_model_load', 'quantized_model_ready'})
-    from mri_rl.mlx_continuous_gspo import NativeGSPOBackend
+        gate.before_unit(name, loading=is_loading_unit(name, cache))
+    from mri_rl.mlx_continuous_gspo import NativeGSPOBackend, is_loading_unit
     config = {'group_size': 2, 'max_tokens': max_tokens}
     counts = evaluate(records, lambda: NativeGSPOBackend(a.adapter, config, model_path=a.model,
-                      contract=contract, seed=a.seed, before_unit=before_unit), a.output, expected, resume=a.resume,
+                      contract=contract, seed=a.seed, before_unit=before_unit, cache=cache), a.output, expected, resume=a.resume,
                       approved_image_sha256=image_hashes, approved_output_sha256=start_output,
                       verify_model=lambda: require(model_inventory(a.model, contract, a.contract) == inventory,
                                                    'Model artifacts changed after review'))

@@ -1,0 +1,27 @@
+{
+ "kind": "native_g8_readonly_restore_execution_aggregate",
+ "executed_by": "authentic Claude Code lead running the root-authored reviewed script (script not Claude-authored)",
+ "script_sha256": "4074233ce8b2ed5541bb2544f96a113ba31107abe3c9f3976143ac603f4137be",
+ "approval_sha256": "b846b17be26623c9a90328ff2a63756bf59280467622ba4a891dcba7b8d687c0",
+ "status": "NATIVE_RESTORE_AND_GREEDY_COMPLETED, exit 0",
+ "result": {
+  "exact_adapter_tensor_count": 504,
+  "optimizer_native_array_count": 1010,
+  "restored_optimizer_step": 1,
+  "restored_adam_exact": true,
+  "restored_python_and_MLX_RNG_exact": true,
+  "read_only_weights_and_adam_unchanged": true,
+  "new_weight_updates": 0,
+  "greedy_generations": 1,
+  "generation_tokens": 20,
+  "post_close_mlx_active_gib": 9.85e-07,
+  "post_close_mlx_peak_gib": 5.65,
+  "boundary_receipt_sha256": "fb5c5c182f215498074fe08c5cdc678a863bbc284d2cb8ba4e2e35d65bd750f9",
+  "derived_cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160"
+ },
+ "limits": {
+  "next_update_equivalence": "NOT_RUN",
+  "scientific_generalization": false,
+  "generation_is_an_engineering_reload_check_not_a_dev_evaluation": true
+ }
+}

@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "tier_c_driver_hooks_ready_for_scoped_review",
+ "kind": "restore_done_tierC_entry_glue_ready",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -336,5 +336,17 @@
   ],
   "tests": "61 passed (driver + pilot + two_task_training + dev_eval + mlx_continuous): default cap/behaviour unchanged; hook grader/validator accept the second source; ledger persists across resume and stops when a whole group no longer fits; partial crash work charged once, not twice; native-optional file untouched",
   "not_done": "binding of the compiled plan + final sampler schedule into bindings, a Tier C launcher (needs your private paths/plan), calibration statistics run, same-C-data SFT config, final dev/test matrix queue; SFT surface not yet touched"
- }
+ },
+ "new_since_restore": [
+  "two_task_training.build_schedule now wraps Codex vero_category_sampler (pinned-AST-parity); input_tokens_by_source keyed by canonical_sha(row) like the token receipt",
+  "tier_c_entry.prepare_arm/train_arm: binds compiled plan, arm, seed, schedule binding, token receipt, common start hashes, grader (Eq.3 only with frozen stats, else CalibrationBlocked), ledger, one resident run over the whole budget via continuous_rl.run hooks",
+  "continuous_rl_dev_eval: optional cache flags (same certified-cache binding; ready-unit classification)",
+  "tests: tier_c_entry 4, two_task_training 8, dev_eval 9 pass"
+ ],
+ "still_needed_for_native_tierC": [
+  "independent check of continuous_rl hooks + tier_c_entry (critical surface)",
+  "common-start bindings file (adapter sha, cache cert, processor, prompt contract) and plan file path; I will generate from the safe receipts",
+  "frozen common-init calibration rollouts (statistics) only for the two calibrated arms; raw arms and SFT do not need them",
+  "two-source contract validator: experiment_contract remains 007045-only; I am NOT forging a contract; a minimal explicit C source gate in experiment_contract is the next change (protected file, edit now allowed)"
+ ]
 }
