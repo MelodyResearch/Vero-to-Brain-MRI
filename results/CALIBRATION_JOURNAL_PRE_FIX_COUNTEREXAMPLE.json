@@ -1,0 +1,9 @@
+{
+  "first_result_rows": 6,
+  "frozen_rows": 6,
+  "kind": "CPU counterexample before calibration journal correction",
+  "native_or_model_imported": false,
+  "old_source_sha256": "4c1a5385e17a9ada77ff59d2513483f4ab31c05b6d1c946ca23e747859e9e2bf",
+  "resumed_result_rows": 7,
+  "unknown_completed_ID_accepted_on_resume": true
+}

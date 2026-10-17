@@ -1,0 +1,100 @@
+{
+  "actual_MRI_improvement": "NOT_VERIFIED",
+  "actual_calibration_stats": "NOT_RUN",
+  "author": "Codex /root/likelihood_finish_reviewer; original Claude statistics formula preserved",
+  "cross_model_review": "NOT_VERIFIED for new Codex entry/journal; genuine Claude quota currently unavailable",
+  "evidence_tier": "OBSERVED",
+  "files_sha256": {
+    "src/mri_rl/tier_c_calibration.py": "2e0bb4e0ecc628ddff7992497bfd3b4a0fe97f21765db410024668c6346137fe",
+    "src/mri_rl/tier_c_calibration_entry.py": "d149ae375aa415c9659981b83087eec715df0f3c47d8374deeb524b49133cd76",
+    "tests/test_tier_c_calibration.py": "390debc064997ec4b3833935eb391f23032d3e7c366fa37430b7c038bf440232",
+    "tests/test_tier_c_calibration_entry.py": "8c23926507cb588c7f5ce949bee7128691fa9d5f84145907dc7e8c99a47ce6a9",
+    "tests/test_tier_c_calibration_journal.py": "c0ea89a5199c99b9c085f1a93e10dd33d9e1b5ac3be4a44b3b896862a9906325"
+  },
+  "frozen_19_GSPO_sources_changed": false,
+  "independent_review": "NOT_VERIFIED: implementer did not issue own approval",
+  "journal": {
+    "completed_row_raw_and_RNG": "atomic immutable directory plus parent/hash chain",
+    "parameter_fingerprint": "all504 trainable tensor bytes before/after, no optimizer.update path",
+    "resume": "full previous row Python/MLX RNG and optimizer step0 restored through existing shared native backend, completed rows not rerun",
+    "unfinished_row_cost": "known completed prefix measured plus remaining unknown worst-case imputed; separate durable evidence, no free retry"
+  },
+  "limitations": [
+    "No native runtime execution yet.",
+    "CPU fixtures test journal/RNG semantics; MLX calibration wrapper requires independently approved actual execution.",
+    "Binary mechanistic/null calibration control; no faithful full medical-video replication claim.",
+    "No clinical MRI or independent-patient generalization claim."
+  ],
+  "mission_alignment": {
+    "claim_falsifier": "Only actual complete C76 raw rollouts can yield usable statistics; zero task IQR blocks the calibrated arm. CPU tests do not establish native sampling or MRI learning.",
+    "isolation": "Read-only K4 common B28; all ordered76 C training rows; frozen weights/images/native prompts; separate cost from RL arms.",
+    "link": "Prepare frozen common-start task calibration required for the MedGRPO-style binary mechanistic control in the matched Vero-to-MRI experiment.",
+    "provenance": "Private plan and unapproved scope bind current source closure, model/cache/config/adapter, images, prompt IDs and native measurements.",
+    "resources": "No native model launched. Existing AC/memory/pressure/swap/thermal/concurrency gates reused, one resident model when independently approved.",
+    "shortcut_baseline": "No development/test sampling or checkpoint selection. Mechanistic binary control, not faithful video-task replication."
+  },
+  "native_calibration": "NOT_RUN",
+  "private_artifact_hashes": {
+    "command_file_sha256": "af2cb4c939d295ed63bb03c6ec1161efb252ef3bbedfcaabed054d01286a86d5",
+    "plan_file_sha256": "d94179b5a615ea7e0e9a9286381fb00d7cb361473e2eab10246e7e07f79da5ea",
+    "plan_internal_sha256": "5c3faf1cebe7aff6562beb4171c7d457d2f3438d23bfc305996def831e5b5d05",
+    "scope_file_sha256": "86841e6b5eea304f5dc66ac0db94f01f00c0e4a55448baabb0fcd4a9bfebac5a",
+    "scope_internal_sha256": "0233864cd47300a4d072149813727a4440d56309d3a6da68c05148342d535193"
+  },
+  "protocol": {
+    "RL_arm_budget_reference": 169216,
+    "calibration_cost_separate": true,
+    "max_generated_tokens_per_rollout": 256,
+    "maximum_native_input_plus_generated_tokens": 179440,
+    "rollouts_per_prompt": 4,
+    "seed": 7,
+    "statistics_unit": "per-prompt mean raw accuracy; per-task linear percentiles25/50/75",
+    "summed_native_input_tokens": 25404,
+    "tasks": {
+      "mri_sequence": 28,
+      "mri_visit_correspondence": 48
+    },
+    "temperature": 1.0,
+    "training_rows": 76,
+    "weight_updates": 0,
+    "zero_IQR": "BLOCK_NO_FLOOR"
+  },
+  "research_tags": [
+    "PRIMARY_VERO_TRANSFER",
+    "ENGINEERING_UNBLOCK"
+  ],
+  "schema": "common-B28-calibration-implementation-CPU-v1",
+  "source_closure_sha256": {
+    "continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+    "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+    "full_arm_protocol.py": "b0ab1f99baba5131ee3ced994a2d5d7041bd53d051bbf505de152d8e743310b1",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+    "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "reward_replay.py": "32a511c9a9c223766f889720af23fcd3d96e3e1482c57f024c4aaf962a8757f5",
+    "tier_c_calibration.py": "2e0bb4e0ecc628ddff7992497bfd3b4a0fe97f21765db410024668c6346137fe",
+    "tier_c_calibration_entry.py": "d149ae375aa415c9659981b83087eec715df0f3c47d8374deeb524b49133cd76",
+    "tier_c_entry.py": "84e2581dc8b1065301f2ce1e7098db5a213a6b1c29b002c2fb8de6db7b5ddaf8",
+    "two_task_pool.py": "b06d9278599b7ef08655137f8405cfd190a324807cc0b8777801833e07770053",
+    "two_task_training.py": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd",
+    "vero_category_sampler.py": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "vero_official_launch.py": "ccc3cd3e5ab8d26890ae1062bd79bf7c4f1e5b8e6de34fff923c7388c5ba911f",
+    "visit_correspondence.py": "ccaaa7c4cf2ed75afae93cb44a2728d128b9943e8bba9296dd9904d7875d0bd5"
+  },
+  "status": [
+    "IMPLEMENTED",
+    "TESTED_CPU"
+  ],
+  "tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. python3 -m pytest -q -p no:cacheprovider tests/test_tier_c_calibration.py tests/test_tier_c_calibration_journal.py tests/test_tier_c_calibration_entry.py",
+    "exit_code": 0,
+    "native_imports": false,
+    "summary": "21 passed in 0.54s"
+  }
+}

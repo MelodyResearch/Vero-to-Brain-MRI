@@ -1,4 +1,5 @@
 import pytest
+import hashlib
 from mri_rl import tier_c_calibration as cal
 from tests.test_two_task_training import ROWS
 from tests.test_continuous_rl_driver import NumericBackend
@@ -21,9 +22,12 @@ def test_graded_support_yields_frozen_statistics_usable_by_the_grader():
 
 
 class CalBackend(NumericBackend):
+    def parameter_fingerprint(self): return hashlib.sha256(self.weight.tobytes()).hexdigest()
     def rollout(self, row, index, directory):
         raw = super().rollout(row, index, directory); raw['responses'] = raw['responses'] * 2   # 4 samples
-        raw['image_sha256'] = digest(row['images'][0]); return raw
+        raw['image_sha256'] = digest(row['images'][0])
+        raw.update(group_index=index,rendered_prompt='CPU_FIXTURE',prompt_sha256=hashlib.sha256(b'CPU_FIXTURE').hexdigest(),prompt_token_ids=[[0]*213])
+        return raw
 
 
 def test_run_is_durable_resumable_never_repeats_rows_and_reports_cost(tmp_path):
@@ -32,12 +36,14 @@ def test_run_is_durable_resumable_never_repeats_rows_and_reports_cost(tmp_path):
         def rollout(self, row, index, directory):
             seen.append(row['id']); return super().rollout(row, index, directory)
     sub = ROWS[:3] + ROWS[28:31]
+    bound={'starting_adapter_sha256':'a'*64,'kind':'CPU_FIXTURE'}
+    prompts={r['id']:{'rendered_prompt_sha256':hashlib.sha256(b'CPU_FIXTURE').hexdigest(),'input_token_ids':[[0]*213]} for r in sub}
     out = cal.run_calibration(rows=sub, backend_factory=lambda: Counting(None, {}), authorize=lambda c: None, output=tmp_path / 'c',
-                              group_size=4, input_tokens=lambda r: 213)
+                              group_size=4, input_tokens=lambda r: 213,bindings=bound,prompt_signatures=prompts)
     assert out['rows'] == 6 and len(seen) == 6 and out['cost_tokens'] > 6 * 4 * 213
     again = cal.run_calibration(rows=sub, backend_factory=lambda: Counting(None, {}), authorize=lambda c: None, output=tmp_path / 'c',
-                                group_size=4, input_tokens=lambda r: 213, resume=True)
+                                group_size=4, input_tokens=lambda r: 213, resume=True,bindings=bound,prompt_signatures=prompts)
     assert len(seen) == 6 and again['rows'] == 6                                  # nothing regenerated
     with pytest.raises(FileExistsError):
         cal.run_calibration(rows=sub, backend_factory=lambda: Counting(None, {}), authorize=lambda c: None, output=tmp_path / 'c',
-                            group_size=4, input_tokens=lambda r: 213)
+                            group_size=4, input_tokens=lambda r: 213,bindings=bound,prompt_signatures=prompts)
