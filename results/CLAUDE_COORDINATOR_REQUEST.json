@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "request_after_cached_A28_attempt_001_stop",
+ "kind": "freeze_request_cache_swap_phase_machine_and_new_plans",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -234,11 +234,10 @@
   "4_adoption_identity": "likelihood_adoption.segment_identity(old): includes derived_cache only when the segment recorded it; old identities reconstruct unchanged; new cached identities reconstruct with it. PROFILE deliberately does not compare derived_cache so uncached historical prefixes (A28 first 42) can be adopted into cached continuations. Tests for both."
  },
  "source_sha256_frozen": {
-  "paced_answer_likelihood.py": "751b1eb894e25d6eb72e9a0b9da38157bd5b1b413641971a347b750bc0e269a5",
-  "likelihood_battery.py": "6de2d400278b34e554dc406b11acc4e0d56eac911339e16484e56bcb830a64fd",
-  "likelihood_adoption.py": "2420384c37c4f1d32e3416e63add77f80bb8fb40f1484d277cae77e7bf20932e",
-  "quant_cache.py": "25b6c8c3778d1a0d60d2841ba8076239f64f572493d2fe2f1d96ecb876008c13",
-  "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889"
+  "likelihood_battery.py": "SEE_COMMIT",
+  "paced_answer_likelihood.py": "unchanged since root-reviewed diff",
+  "likelihood_cache.py": "unchanged",
+  "likelihood_adoption.py": "unchanged"
  },
  "bridges_for_root": {
   "inputs_existing": "reserve20_review/bridge_A28_PRIVATE.json, bridge_B28_PRIVATE.json, bridge_A0_PRIVATE.json (+ their approvals/audits)",
@@ -252,5 +251,40 @@
   "question": "How should the retained 1 GiB stage swap-growth cap treat a 4.8 GiB cached model load that is otherwise healthy (avail>=5.67 GiB, pressure-free>=31%, OS level 2, no thermal/concurrency/battery issue)?",
   "evidence_based_option": "Cache-path-only loading-phase cap sized from the observed swap/resident ratio: 0.22 x packed 4.82 GiB = 1.07 GiB observed; e.g. 1.5 GiB growth during model_load..quantized_model_ready/cache_parameters_verified only (about 1.4x observed), resident-phase cap stays 1 GiB; absolute-swap, pressure %, available floors, OS level 4, thermal, concurrency unchanged. Needs your review before any change; I have not edited the gate.",
   "alternative": "keep 1 GiB and wait for a lower-swap baseline (initial swap was already 6.7 GiB), accepting repeated trips."
- }
+ },
+ "change": {
+  "file": "likelihood_battery.py only (+focused tests)",
+  "generic_path": "cache_profile None -> legacy 1 GiB stage cap exactly as before",
+  "cache_path": [
+   "load phase until an ADMITTED quantized_model_ready; load swap growth from the ORIGINAL initial sample must stay < packed 4.8163 GiB (load_swap_growth_budget STOP); the 1.073 GiB healthy case logs and continues",
+   "rate-only sustained_swap_growth warning in the load phase -> WARNING (log+continue), no HOLD/dwell; any non-rate reason or policy CRITICAL still STOPs",
+   "resident_start captured exactly once, only after quantized_model_ready was admitted (load budget evaluated first; a stopped ready cannot capture; second ready cannot reset); original initial/history/ResourcePolicy never reset",
+   "resident: net growth from resident_start < 1 GiB AND total from initial < packed + 1 (4.8163+1) else STOP; old resident rate policy retained",
+   "events log cache_phase, swap_growth_total_gib, swap_growth_resident_net_gib, resident_start_swap_gib, swap_limits_gib"
+  ],
+  "unchanged": "OS level 4 stop, unknown sensors, forecast+2 GiB headroom (cache_required_gib), pressure-free floors, corroborated critical swap rate, thermal, other heavy, battery 20%, no training exception; numerical record loop AST fc51dfd7...0cb31",
+  "note": "The packed+1 total limit is implied by (load < packed) AND (net < 1); kept as specified and tested at the edge.",
+  "tests": "43 passed (cache + battery files only): 1.073 healthy load continues w/o hold; load>=packed STOP; failed ready no baseline; second ready no reset; resident net 0.99 ok / 1.0 STOP; generic 1 GiB unchanged; pressure/thermal/concurrency/battery/OS4 still stop."
+ },
+ "new_private_plans": {
+  "dir": "local_data/ds007045_bounded/likelihood_exact_cache_v1",
+  "files": "plan_{A28,B28,A0}_v2_PRIVATE.json (old plans untouched)",
+  "sha256": {
+   "A28": "8e32eba6de555a442e04e99b538d98099b390ccb9678ca6448ae7a766fbd3d65",
+   "B28": "0e484817f003198565aac55713effb6b646fbd95307d6ae90a19ca78f842844a",
+   "A0": "a22ebc57b0f11b550abc8398707c8421a93b4afb81b8f7caa7cb687f9cda4055"
+  },
+  "prefix_counts": {
+   "A28": 42,
+   "B28": 3,
+   "A0": 3
+  },
+  "new_records": {
+   "A28": 15,
+   "B28": 54,
+   "A0": 54
+  },
+  "script": "work/exact_quant_cache/make_plans.py (prepare_plan only; prints counts/hashes)"
+ },
+ "next": "Root supplies new approval hashes once; I set them in work/exact_quant_cache/run_cached_likelihood.py (REVIEW_SHA) and execute A28->B28->A0; old hashes cannot match the changed source."
 }

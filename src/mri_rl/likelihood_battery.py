@@ -42,6 +42,7 @@ class BatteryDiagnosticGate:
         self.policy=ResourcePolicy();self.initial=None;self.history=[]
         self._rate_start=None;self._rate_count=0;self._rate_phase=None
         self._rate_only_episode=False
+        self.resident_start=None   # captured exactly once, only after an ADMITTED quantized_model_ready (cache path)
 
     def _check(self,name,loading,starting,*,recovering=False,clean_samples=0):
         s=self.sampler();level,reasons=self.policy.observe(s)
@@ -80,17 +81,37 @@ class BatteryDiagnosticGate:
         if s.battery_percent is None:reasons.append('battery_sensor_unknown')
         elif s.battery_percent<=BATTERY_POLICY['stop_percent']:reasons.append('battery_low_reserve_stop')
         if s.swap_used_gib is None:reasons.append('swap_sensor_unknown')
-        if self.initial is not None:
-            if s.swap_used_gib is not None and s.swap_used_gib-self.initial.swap_used_gib>=BATTERY_POLICY['stage_max_swap_growth_gib']:
+        cache_phase=None;total_growth=net_growth=None;limits=None
+        if self.initial is not None and s.swap_used_gib is not None:
+            total_growth=s.swap_used_gib-self.initial.swap_used_gib
+        if self.cache_profile is None:
+            # Generic (non-cache) path: the legacy 1 GiB stage cap, exactly as before.
+            if total_growth is not None and total_growth>=BATTERY_POLICY['stage_max_swap_growth_gib']:
                 reasons.append('stage_swap_growth')
+        else:
+            # Cache path: ONE phase machine; the original initial/history/ResourcePolicy are never reset.
+            packed=self.cache_profile['packed_gib'];cap=BATTERY_POLICY['stage_max_swap_growth_gib']
+            cache_phase='resident' if self.resident_start is not None else 'load'
+            limits={'load_total_growth_lt':packed,'resident_net_growth_lt':cap,'resident_total_growth_lt':packed+cap}
+            if total_growth is not None:
+                if cache_phase=='load':
+                    if total_growth>=packed:reasons.append('load_swap_growth_budget')
+                else:
+                    net_growth=s.swap_used_gib-self.resident_start.swap_used_gib
+                    if net_growth>=cap:reasons.append('stage_swap_growth')
+                    if total_growth>=packed+cap:reasons.append('total_swap_growth_budget')
         if level!='NORMAL' and not rate_only_level:reasons.append('supervisor_not_normal')
         if reasons:
             if reasons==['sustained_swap_growth']:
-                action='HOLD' if recovering or sustained else 'WARNING'
+                # Cache load phase: a rate-only warning under otherwise healthy gates is logged and continues (no dwell/HOLD).
+                if self.cache_profile is not None and cache_phase=='load' and not recovering:action='WARNING'
+                else:action='HOLD' if recovering or sustained else 'WARNING'
             else:action='STOP'
         elif recovering and clean_samples<1:
             action='HOLD_RECOVERY'
-        event={'unit_id':name,'action':action,'reasons':reasons,'supervisor_level':level,'os_pressure_level':os_level,'cache_profile':self.cache_profile,
+        event={'unit_id':name,'action':action,'reasons':reasons,'supervisor_level':level,'os_pressure_level':os_level,'cache_profile':self.cache_profile,'cache_phase':cache_phase,
+            'swap_growth_total_gib':total_growth,'swap_growth_resident_net_gib':net_growth,'swap_limits_gib':limits,
+            'resident_start_swap_gib':None if self.resident_start is None else self.resident_start.swap_used_gib,
             'sample':asdict(s),'battery_exception':BATTERY_POLICY,
             'phase':phase,'rate_warning_duration_seconds':duration,
             'rate_warning_observations':self._rate_count,
@@ -99,6 +120,8 @@ class BatteryDiagnosticGate:
         with self.path.open('a') as f:
             f.write(json.dumps(event,sort_keys=True)+'\n');f.flush();os.fsync(f.fileno())
         if self.initial is None and action!='STOP':self.initial=s
+        if (self.cache_profile is not None and self.resident_start is None and name=='quantized_model_ready'
+                and action in ('CONTINUE','WARNING')):self.resident_start=s   # load budget was checked above; never reset
         self.history.append(s)
         return s,action,reasons
 

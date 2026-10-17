@@ -1,0 +1,54 @@
+{
+  "actual_MRI_generation_executed": false,
+  "actual_OS_dispatch_pressure_mask": 2,
+  "available_gib": 5.7695770263671875,
+  "battery_percent": 100,
+  "checkpoint": "A28",
+  "completed_counts_unchanged": {
+    "A0": 3,
+    "A28": 42,
+    "B28": 3
+  },
+  "evidence_tier": "OBSERVED_AND_INDEPENDENTLY_RECALCULATED",
+  "interpretation": "Fixed1GiB stage threshold was exceeded under known allocation, while measured hard memory/OScritical/thermal-throttle/concurrency conditions did not trigger. This is not evidence of panic prevention, zero resource impact, or proven future full-workload stability.",
+  "minimum_focused_regressions": [
+    "Replay actual cached load trace:1.073486GiB growth passes as logged rate warning under other healthyconditions.",
+    "Load budget exceeded stops; total budget exceeded stops.",
+    "Resident baseline absent during parameter materialization/parity, captured once at admittedquantized_model_ready, never shifted by repeatedready/recovery calls.",
+    "Load can exceed1GiB while resident delta<1GiB; resident reaches1GiB stops.",
+    "OScritical4, lowforecastheadroom, critical/sustainedcorroboratedpressure, thermal throttle, unknown/occupied heavyinventory and battery20 stillstop.",
+    "Initial/history/supervisorstate survivephaseboundary; noncachebattery and alltrainingpoliciesunchanged."
+  ],
+  "mlx_active_and_peak_gib": [
+    4.777728535234928,
+    4.777728535234928
+  ],
+  "native_imports": false,
+  "other_heavy_processes": 0,
+  "power_source": "AC",
+  "pressure_free_percent": 32.0,
+  "proposed_exact_scope": {
+    "load_swap_growth_budget_gib": 4.8163,
+    "other_protections": "Keep actualOScritical4, perphase available-memory forecast+2reserve, pressureminimums,1worker, battery20, thermal and unknown sensor behavior; training/globalgateunchanged.",
+    "rate_warning_during_loading": "Rate-only under bounded known materialization and all other genuine gates healthy: log and continue, without automatichold/reload. Corroborated or critical pressure not exempt.",
+    "read_only_cached_likelihood_only": true,
+    "resident_baseline": "Capture current sample exactly once only after an admitted quantized_model_ready event. Do not reset initial, history, previous swap samples or ResourcePolicy.",
+    "resident_growth_budget_gib": 1,
+    "resident_rules": "Keep resident growth cap and sustained/corroborated rate supervision; do not carry a load-only rate warning into compulsory resident reload.",
+    "total_growth_budget_gib": 5.8163
+  },
+  "raw_resource_log_sha256": "beb17d08e2d3f7398970030a8ca90ee0a333b8b36c3cf993cb46e0cedcae392f",
+  "released_mlx_active_gib": 9.611248970031738e-07,
+  "resource_budget_qualification": "Allocation-derived engineering envelope, not a medically/scientifically validated hardware safety bound.",
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "stop_reasons": [
+    "sustained_swap_growth",
+    "stage_swap_growth"
+  ],
+  "stop_unit": "materialized:1438",
+  "swap_growth_gib": 1.073486328125,
+  "swap_start_gib": 6.7138671875,
+  "swap_stop_gib": 7.787353515625,
+  "thermal_state": "SENSOR_UNAVAILABLE",
+  "verdict": "ACTUAL_LOAD_STOP_CONFIRMED; PHASE_SCOPED_POLICY_CHANGE_REASONABLE_PENDING_CODE_REVIEW"
+}

@@ -151,3 +151,77 @@ def test_cache_materialization_checks_forecast_even_above_generic_unit_floor(tmp
     g.initial = healthy()
     with pytest.raises(RuntimeError, match='insufficient_memory_headroom'):
         g.before_unit('materialized:64')
+
+
+# ---- cache-path swap phase machine (load envelope -> resident baseline) ----
+def phased_gate(tmp_path, name, swaps, profile=True, **sample_kw):
+    """Gate fed a scripted sequence of swap values (one per sample); advancing clock; healthy otherwise."""
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    from mri_rl.paced_answer_likelihood import CACHE_PROFILE as P
+    d = tmp_path / name; d.mkdir(); it = iter(swaps); clock = [0.0]
+    def sampler():
+        clock[0] += 31.0
+        return healthy(monotonic_seconds=clock[0], swap_used_gib=next(it), available_gib=9.0, **sample_kw)
+    return BatteryDiagnosticGate(d / 'r.jsonl', sampler=sampler, sleep=lambda s: None, cache_profile=P if profile else None), d
+
+
+def test_healthy_cache_load_with_1p073_growth_logs_and_continues_without_hold(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
+    # swaps: preflight x2 at 6.714, then rising loads incl. the real 1.073 and a slow-rising rate-only tail
+    g, d = phased_gate(tmp_path, 'a', [6.714, 6.714, 6.8, 7.0, 7.4, 7.787, 7.787])
+    g.before_unit('before_runtime_import', loading=True)
+    for u in ('materialized:64', 'materialized:640', 'materialized:1280', 'materialized:1438'):
+        assert g.before_unit(u)
+    assert g.before_unit('quantized_model_ready')
+    ev = [json.loads(l) for l in (d / 'r.jsonl').read_text().splitlines()]
+    assert all(e['action'] in ('CONTINUE', 'WARNING') for e in ev) and not any(':warning_hold' in e['unit_id'] for e in ev)
+    assert ev[-1]['cache_phase'] == 'load' and abs(ev[-2]['swap_growth_total_gib'] - 1.073) < 1e-6
+    assert g.resident_start is not None and ev[-1]['swap_limits_gib']['resident_total_growth_lt'] == pytest.approx(5.8163, abs=1e-4)
+
+
+def test_load_growth_at_or_above_packed_stops_and_failed_ready_cannot_capture_baseline(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 1)
+    g, _ = phased_gate(tmp_path, 'b', [6.0, 6.0, 6.0 + 4.8163 + 0.001])
+    g.before_unit('before_runtime_import', loading=True)
+    with pytest.raises(RuntimeError): g.before_unit('quantized_model_ready')
+    assert g.resident_start is None
+    g2, _ = phased_gate(tmp_path, 'b2', [6.0, 6.0, 11.0])
+    g2.before_unit('before_runtime_import', loading=True)
+    with pytest.raises(RuntimeError): g2.before_unit('materialized:64')
+
+
+def test_resident_net_and_total_limits_and_second_ready_cannot_reset(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 1)
+    # ready captured at 8.0 (growth 2.0 from 6.0); resident net 0.99 ok; net 1.0 stops
+    g, _ = phased_gate(tmp_path, 'c', [6.0, 6.0, 8.0, 8.0, 8.99, 9.0])
+    g.before_unit('before_runtime_import', loading=True); g.before_unit('quantized_model_ready')
+    base = g.resident_start
+    assert g.before_unit('quantized_model_ready') and g.resident_start is base      # second ready does not reset
+    assert g.before_unit('before_record:x')                                          # net 0.99 < 1
+    with pytest.raises(RuntimeError): g.before_unit('before_record:y')               # net 1.0 -> stop
+    # total limit is implied: baseline growth < packed and net < 1 keep total < packed + 1 (checked at the edge)
+    g2, d2 = phased_gate(tmp_path, 'c2', [6.0, 6.0, 10.8, 10.8, 11.79])
+    g2.before_unit('before_runtime_import', loading=True); g2.before_unit('quantized_model_ready')
+    assert g2.before_unit('before_record:x')
+    last = json.loads((d2 / 'r.jsonl').read_text().splitlines()[-1])
+    assert last['swap_growth_total_gib'] < last['swap_limits_gib']['resident_total_growth_lt']
+
+
+def test_generic_non_cache_path_keeps_exact_1gib_stage_cap(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 1)
+    g, _ = phased_gate(tmp_path, 'd', [6.0, 6.0, 7.0], profile=False)
+    g.before_unit('before_runtime_import', loading=True)
+    with pytest.raises(RuntimeError): g.before_unit('materialized:64')
+
+
+@pytest.mark.parametrize('kw, level', [(dict(pressure_free_percent=10), 1), (dict(thermal_state='THROTTLED'), 1),
+                                       (dict(other_heavy_processes=1), 1), (dict(battery_percent=15), 1), ({}, 4)])
+def test_critical_protections_remain_in_load_phase(tmp_path, monkeypatch, kw, level):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: level)
+    g, _ = phased_gate(tmp_path, 'e%d' % abs(hash(str(kw))), [6.0] * 6, **kw)
+    with pytest.raises(RuntimeError): g.before_unit('before_runtime_import', loading=True)
