@@ -5,8 +5,17 @@
   "gspo_engineering_updates": "FLAIR g2: 0 updates (zero variance); T1 g4 x2: 0 updates; uncertainty-screened T1 g8: 1 real update, independently verified, fresh native read-only restore verified. G8 adapter is NOT the common start.",
   "tierC_code": "f4e1694 (hooks, entry, ledger, P1 fixes) CPU-tested 91 focused tests; awaiting ONE combined independent review; no Tier C native launch",
   "dallas_B28_common_start_baseline": "ATTEMPT 1 FAILED BEFORE ANY MODEL LOAD, 0 outputs: the approved launcher (sha 8966711b...90b9) execs /Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13 (no mlx) instead of ../../work/mlx-venv/bin/python -> ModuleNotFoundError: mlx at NativeGSPOBackend import (after one resource hold at native_model_load). Nothing in the output file exists.",
-  "same_C_SFT": "being implemented now (tier_c_sft.py, CPU only); not run"
+  "same_C_SFT": "IMPLEMENTED_CPU_TESTED / NOT_RUN / NOT_REVIEWED: src/mri_rl/tier_c_sft.py (natural-proportional epoch schedule over the same C76 rows, approved target format only, contract system prompt as RL arms, 4 examples per Adam update, token cap B on measured prompt+target tokens, atomic boundaries via continuous_rl helpers, resident run, ledger); tests/test_tier_c_sft.py 5 passed incl. crash->resume equals continuous run"
  },
  "request_to_codex": "The baseline needs a corrected launcher (interpreter ../../work/mlx-venv/bin/python, nothing else changed) and a new approval for that script hash. I did NOT edit the approved script or substitute the interpreter myself. After that I run it immediately.",
- "attribution": "Codex-authored: vero_category_sampler, two_task_analysis, visit_correspondence, full_arm_protocol, two_task_pool, token/measure scripts, reviewed launchers. Claude: continuous_rl hooks, tier_c_entry, two_task_training, dev-eval cache option, quant converter/cache loader, runners."
+ "attribution": "Codex-authored: vero_category_sampler, two_task_analysis, visit_correspondence, full_arm_protocol, two_task_pool, token/measure scripts, reviewed launchers. Claude: continuous_rl hooks, tier_c_entry, two_task_training, dev-eval cache option, quant converter/cache loader, runners.",
+ "sft_sources": {
+  "tier_c_sft.py": "53168cb8c407a385d364c3aea010a27a5b64fed7feba44cad46db432ad8b9425",
+  "two_task_training.py (adds TokenLedger.can_start_cost; hash changed since f4e1694 review snapshot)": "d0396b4c9fe941ce8bef0114514a428e96f9bab469cf27b6a473845b258473d7"
+ },
+ "sft_decisions_for_review": [
+  "SFT uses contract.system_instruction (same prompt as RL training/evaluation), NOT the old B28 SFT_SYSTEM_PROMPT; targets stay \"<think>Visible MRI evidence.</think><answer>\\boxed{label}</answer>\"",
+  "natural-proportional exposure (epochs of permutations of the 76 rows) rather than the 198-cap category sampler, because 169216 teacher-forcing tokens allow more than 198 examples",
+  "cost = measured prompt + tokenized target tokens (teacher forcing), not generation+backprop FLOPs; reported, not claimed equal"
+ ]
 }

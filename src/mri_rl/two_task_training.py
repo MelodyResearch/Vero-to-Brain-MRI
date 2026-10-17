@@ -122,6 +122,10 @@ class TokenLedger:
         self.charged_groups += 1
         return self.used
 
+    def can_start_cost(self, cost):
+        """Teacher-forcing steps have an exactly known cost (measured prompts + tokenized targets): fit-or-stop."""
+        return self.used + cost <= self.plan['budget']['text_visual_token_cap']
+
     def charge_imputed(self, tokens):
         self.used += tokens
         self.imputed += tokens
