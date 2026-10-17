@@ -5,20 +5,20 @@
       "mri_sequence": {
         "frozen_IQR": 0.8125,
         "frozen_p50": 1.0,
-        "maximum_abs_advantage_change_at_actual_epsilon": 9.938354912808478e-06,
-        "maximum_abs_difference_epsilon0_float64": 4.440892098500626e-16,
-        "maximum_abs_difference_from_exact_epsilon_factor_formula": 4.440892098500626e-16,
+        "maximum_abs_advantage_change_at_actual_epsilon": 4.133233401093506e-06,
+        "maximum_abs_difference_epsilon0_float64": 1.1102230246251565e-16,
+        "maximum_abs_difference_from_exact_epsilon_factor_formula": 1.1102230246251565e-16,
         "observed_active_groups": 16,
-        "positive_reward_scale": 0.2739531792866866
+        "positive_reward_scale": 0.475691199385886
       },
       "mri_visit_correspondence": {
         "frozen_IQR": 1.0,
         "frozen_p50": 0.25,
-        "maximum_abs_advantage_change_at_actual_epsilon": 1.1787114672312526e-05,
-        "maximum_abs_difference_epsilon0_float64": 5.551115123125783e-16,
-        "maximum_abs_difference_from_exact_epsilon_factor_formula": 5.551115123125783e-16,
+        "maximum_abs_advantage_change_at_actual_epsilon": 2.6730929107987578e-06,
+        "maximum_abs_difference_epsilon0_float64": 2.220446049250313e-16,
+        "maximum_abs_difference_from_exact_epsilon_factor_formula": 2.220446049250313e-16,
         "observed_active_groups": 23,
-        "positive_reward_scale": 0.24135520006119104
+        "positive_reward_scale": 0.5838292342762835
       }
     },
     "analytic_result": "For binary accuracy and constant format/overlong, any strictly increasing two-value calibration is r_new=c+s*r_raw, s>0. With epsilon0, per-group standardized advantages are identical; zero-variance membership is unchanged.",
@@ -29,167 +29,175 @@
       {
         "hypothetical_IQR": 0.0625,
         "hypothetical_p50": 0.0,
-        "max_abs_standardized_advantage_change": 3.7499735636714604e-06,
-        "positive_reward_scale": 0.4999998874648379
+        "max_abs_standardized_advantage_change": 3.749971875466329e-06,
+        "positive_reward_scale": 0.5
       },
       {
         "hypothetical_IQR": 0.125,
         "hypothetical_p50": 0.0,
-        "max_abs_standardized_advantage_change": 3.755005452799054e-06,
-        "positive_reward_scale": 0.49966464986953363
+        "max_abs_standardized_advantage_change": 3.7499718756883738e-06,
+        "positive_reward_scale": 0.49999999996224864
       },
       {
         "hypothetical_IQR": 0.25,
         "hypothetical_p50": 0.0,
-        "max_abs_standardized_advantage_change": 4.0298294301521764e-06,
-        "positive_reward_scale": 0.48201379003790845
+        "max_abs_standardized_advantage_change": 3.750064038632317e-06,
+        "positive_reward_scale": 0.4999938558253978
       },
       {
         "hypothetical_IQR": 0.5,
         "hypothetical_p50": 0.0,
-        "max_abs_standardized_advantage_change": 6.097709364993875e-06,
-        "positive_reward_scale": 0.3807970779778823
+        "max_abs_standardized_advantage_change": 3.7872451768006243e-06,
+        "positive_reward_scale": 0.49752737684336534
       },
       {
         "hypothetical_IQR": 1.0,
         "hypothetical_p50": 0.0,
-        "max_abs_standardized_advantage_change": 1.2479484378546957e-05,
-        "positive_reward_scale": 0.2310585786300049
+        "max_abs_standardized_advantage_change": 4.535899052138248e-06,
+        "positive_reward_scale": 0.45257412682243336
       },
       {
         "hypothetical_IQR": 0.0625,
         "hypothetical_p50": 0.25,
-        "max_abs_standardized_advantage_change": 6.870719215790189e-08,
-        "positive_reward_scale": 0.9820076458633062
+        "max_abs_standardized_advantage_change": 2.3040902519255724e-11,
+        "positive_reward_scale": 0.9999938558253976
       },
       {
         "hypothetical_IQR": 0.125,
         "hypothetical_p50": 0.25,
-        "max_abs_standardized_advantage_change": 5.194900958294113e-07,
-        "positive_reward_scale": 0.8783244548212478
+        "max_abs_standardized_advantage_change": 9.295331615533087e-09,
+        "positive_reward_scale": 0.9975273616133857
       },
       {
         "hypothetical_IQR": 0.25,
         "hypothetical_p50": 0.25,
-        "max_abs_standardized_advantage_change": 1.7353910084505486e-06,
-        "positive_reward_scale": 0.6836327054524383
+        "max_abs_standardized_advantage_change": 1.8721056593840046e-07,
+        "positive_reward_scale": 0.9524507322464469
       },
       {
         "hypothetical_IQR": 0.5,
         "hypothetical_p50": 0.25,
-        "max_abs_standardized_advantage_change": 4.772033437516754e-06,
-        "positive_reward_scale": 0.44003380739549824
+        "max_abs_standardized_advantage_change": 8.992113786909783e-07,
+        "positive_reward_scale": 0.8065875335630505
       },
       {
         "hypothetical_IQR": 1.0,
         "hypothetical_p50": 0.25,
-        "max_abs_standardized_advantage_change": 1.1787114672312526e-05,
-        "positive_reward_scale": 0.24135520006119104
+        "max_abs_standardized_advantage_change": 2.6730929107987578e-06,
+        "positive_reward_scale": 0.5838292342762835
       },
       {
         "hypothetical_IQR": 0.0625,
         "hypothetical_p50": 0.5,
-        "max_abs_standardized_advantage_change": 2.51680165597179e-09,
-        "positive_reward_scale": 0.9993292997390671
+        "max_abs_standardized_advantage_change": 4.440892098500626e-16,
+        "positive_reward_scale": 0.9999999999244973
       },
       {
         "hypothetical_IQR": 0.125,
         "hypothetical_p50": 0.5,
-        "max_abs_standardized_advantage_change": 1.3992949021712775e-07,
-        "positive_reward_scale": 0.9640275800758169
+        "max_abs_standardized_advantage_change": 4.608180503851145e-11,
+        "positive_reward_scale": 0.9999877116507956
       },
       {
         "hypothetical_IQR": 0.25,
         "hypothetical_p50": 0.5,
-        "max_abs_standardized_advantage_change": 1.1738755327783679e-06,
-        "positive_reward_scale": 0.7615941559557647
+        "max_abs_standardized_advantage_change": 1.8636744147926265e-08,
+        "positive_reward_scale": 0.9950547536867306
       },
       {
         "hypothetical_IQR": 0.5,
         "hypothetical_p50": 0.5,
-        "max_abs_standardized_advantage_change": 4.3647907765898e-06,
-        "positive_reward_scale": 0.4621171572600098
+        "max_abs_standardized_advantage_change": 3.929656562373651e-07,
+        "positive_reward_scale": 0.9051482536448666
       },
       {
         "hypothetical_IQR": 1.0,
         "hypothetical_p50": 0.5,
-        "max_abs_standardized_advantage_change": 1.1561058707254546e-05,
-        "positive_reward_scale": 0.2449186624037092
+        "max_abs_standardized_advantage_change": 2.1541130119651086e-06,
+        "positive_reward_scale": 0.6351489523872873
       },
       {
         "hypothetical_IQR": 0.0625,
         "hypothetical_p50": 0.75,
-        "max_abs_standardized_advantage_change": 6.870719193585728e-08,
-        "positive_reward_scale": 0.9820076458633062
+        "max_abs_standardized_advantage_change": 2.30406804746508e-11,
+        "positive_reward_scale": 0.9999938558253976
       },
       {
         "hypothetical_IQR": 0.125,
         "hypothetical_p50": 0.75,
-        "max_abs_standardized_advantage_change": 5.194900958294113e-07,
-        "positive_reward_scale": 0.8783244548212475
+        "max_abs_standardized_advantage_change": 9.295331615533087e-09,
+        "positive_reward_scale": 0.9975273616133858
       },
       {
         "hypothetical_IQR": 0.25,
         "hypothetical_p50": 0.75,
-        "max_abs_standardized_advantage_change": 1.7353910086725932e-06,
-        "positive_reward_scale": 0.6836327054524381
+        "max_abs_standardized_advantage_change": 1.8721056571635586e-07,
+        "positive_reward_scale": 0.9524507322464472
       },
       {
         "hypothetical_IQR": 0.5,
         "hypothetical_p50": 0.75,
-        "max_abs_standardized_advantage_change": 4.772033437960843e-06,
-        "positive_reward_scale": 0.44003380739549824
+        "max_abs_standardized_advantage_change": 8.992113786909783e-07,
+        "positive_reward_scale": 0.8065875335630505
       },
       {
         "hypothetical_IQR": 1.0,
         "hypothetical_p50": 0.75,
-        "max_abs_standardized_advantage_change": 1.1787114672534571e-05,
-        "positive_reward_scale": 0.24135520006119104
+        "max_abs_standardized_advantage_change": 2.6730929107987578e-06,
+        "positive_reward_scale": 0.5838292342762835
       },
       {
         "hypothetical_IQR": 0.0625,
         "hypothetical_p50": 1.0,
-        "max_abs_standardized_advantage_change": 3.7499735636714604e-06,
-        "positive_reward_scale": 0.4999998874648379
+        "max_abs_standardized_advantage_change": 3.7499718752442845e-06,
+        "positive_reward_scale": 0.5
       },
       {
         "hypothetical_IQR": 0.125,
         "hypothetical_p50": 1.0,
-        "max_abs_standardized_advantage_change": 3.7550054530210986e-06,
-        "positive_reward_scale": 0.4996646498695335
+        "max_abs_standardized_advantage_change": 3.7499718763545076e-06,
+        "positive_reward_scale": 0.49999999996224864
       },
       {
         "hypothetical_IQR": 0.25,
         "hypothetical_p50": 1.0,
-        "max_abs_standardized_advantage_change": 4.0298294301521764e-06,
-        "positive_reward_scale": 0.48201379003790845
+        "max_abs_standardized_advantage_change": 3.7500640384102724e-06,
+        "positive_reward_scale": 0.4999938558253978
       },
       {
         "hypothetical_IQR": 0.5,
         "hypothetical_p50": 1.0,
-        "max_abs_standardized_advantage_change": 6.097709364549786e-06,
-        "positive_reward_scale": 0.3807970779778824
+        "max_abs_standardized_advantage_change": 3.7872451765785797e-06,
+        "positive_reward_scale": 0.49752737684336523
       },
       {
         "hypothetical_IQR": 1.0,
         "hypothetical_p50": 1.0,
-        "max_abs_standardized_advantage_change": 1.2479484379435135e-05,
-        "positive_reward_scale": 0.2310585786300049
+        "max_abs_standardized_advantage_change": 4.535899051694159e-06,
+        "positive_reward_scale": 0.4525741268224332
       }
     ],
     "independent_actual_calibration_proof_sha256": "83a0aab154c06a2b2d51a024c3624d29be5a78cdf6bd34a2a0129d174c934652",
-    "maximum_actual_active_advantage_change": 1.1787114672312526e-05,
-    "maximum_grid_advantage_change": 1.2479484379435135e-05,
+    "maximum_actual_active_advantage_change": 4.133233401093506e-06,
+    "maximum_grid_advantage_change": 4.535899052138248e-06,
     "observed_binary_informative_groups": 39,
     "sample_standard_deviation_ddof": 1
   },
   "causal_reason_for_decline_identified": false,
+  "diagnostic_only_correction": {
+    "affected": "Only reported calibration epsilon magnitudes and hypothetical-grid values; no training, checkpoint, raw signal count or C40 metric changed.",
+    "defect": "Diagnostic used sigmoid((accuracy-p50)/IQR), whereas frozen training uses sigmoid(3*(accuracy-p50)/IQR).",
+    "original_result_sha256": "3a32b2e23fb971a6c9d04ca6a518893890d3d5be21f5471da3cce3b7a5eedfa3",
+    "recomputation": "39 actual accepted grade vectors from125 individually hash-authenticated receipt JSONs; no raw response/decoder/Adam-array replay.",
+    "training_sources_changed": false,
+    "version": "factor3-v1"
+  },
   "evidence_sha256": {
     "actual_frozen_calibration": "c5cbb6cb4c1dc4cb9fdfd8e5bd1d98b3e49b535dbab76f7100678ac435081c1f",
     "baseline_private": "32ce2cd88a9d316e94f75177eb8c6c36e33bcd351fe4028ed9e88aa3c26dda8f",
     "baseline_report": "9e838d469736e373b44626baba8acba388e8dbe44bcaa0bed97018bfad561c4a",
     "dev_manifest": "95a489d0182c917657042f542868c629bcda827fe8d396bac562bc5318e5cd09",
-    "diagnostic_source": "deaee4fdaf8a03770f4b23362077489b65a6d4918a884f039ec6b10131008689",
+    "diagnostic_source": "aefb27140b464da196da86b10bc912aa149d477209172a13892dd90764015495",
     "final_output": "ac54c9317c1d4cae9fe842591bc896f4fa3e27906bb41331cbe9fbd7fddcb960",
     "final_receipt": "5404b72895f0e779400b6864d9d491b05ce4e0012c75b0ffdc14bd26afff3109",
     "final_report": "09d65834f4e61db5ecdc846af61bf5c0af16639720d0b51887998601e1bce5dd",

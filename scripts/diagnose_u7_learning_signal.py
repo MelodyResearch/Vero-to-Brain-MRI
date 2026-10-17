@@ -177,7 +177,7 @@ def calibration_invariance(groups,frozen_calibration,proof_sha256):
     eligible=[g for g in groups if g['informative'] and set(x['accuracy'] for x in g['grades'])=={0.,1.}];grid=[]
     for median in (0.,.25,.5,.75,1.):
         for iqr in (.0625,.125,.25,.5,1.):
-            logistic=lambda x:1/(1+math.exp(-(x-median)/iqr))
+            logistic=lambda x:1/(1+math.exp(-3*(x-median)/iqr))
             scale=logistic(1)-logistic(0);max_error=0.
             for g in eligible:
                 raw=[x['total'] for x in g['grades']];trans=[.8*logistic(x['accuracy'])+.2*x['format']+x['overlong'] for x in g['grades']]
@@ -185,7 +185,7 @@ def calibration_invariance(groups,frozen_calibration,proof_sha256):
             grid.append({'hypothetical_p50':median,'hypothetical_IQR':iqr,'positive_reward_scale':scale,'max_abs_standardized_advantage_change':max_error})
     actual={}
     for task in TASKS:
-        stats=frozen_calibration[task];median=stats['p50'];iqr=stats['iqr'];logistic=lambda x:1/(1+math.exp(-(x-median)/iqr))
+        stats=frozen_calibration[task];median=stats['p50'];iqr=stats['iqr'];logistic=lambda x:1/(1+math.exp(-3*(x-median)/iqr))
         scale=logistic(1)-logistic(0);error=0.;zero_error=0.;formula_error=0.;selected=[g for g in eligible if g['task']==task]
         for g in selected:
             raw=[x['total'] for x in g['grades']];trans=[.8*logistic(x['accuracy'])+.2*x['format']+x['overlong'] for x in g['grades']]

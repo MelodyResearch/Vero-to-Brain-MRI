@@ -1,0 +1,73 @@
+{
+  "author": "Codex /root/likelihood_finish_reviewer",
+  "corrected_result_sha256": "3f2eac2ed61b890a11a7fc98c92c931ba95095f0bd0ab114f9495b5078a6ed88",
+  "corrected_source_sha256": "aefb27140b464da196da86b10bc912aa149d477209172a13892dd90764015495",
+  "epsilon0_affine_invariance_preserved": true,
+  "failing_case": "Actual sequence reward scale was0.2739531792866866; correct literal factor3 scale0.475691199385886.",
+  "independent_review": {
+    "checks": [
+      "Read exact two-expression diff against frozen k=3 reward formula.",
+      "Independently ran5 focused tests: exit0,0.16s.",
+      "Independently recalculated only calibration from39 actual accepted grade vectors under the126-receipt chain bound by existing U7 proof.",
+      "Literal expected sigmoid values and saved corrected calibration matched exactly; all non-calibration/non-source fields unchanged.",
+      "No raw-response decoder or optimizer arrays reaudited; no native model execution or training/source19/21 change."
+    ],
+    "limitations": [
+      "Confirms diagnostic numerical correction, not MRI generalization, identical finite-precision training trajectories or completed calibrated-arm results."
+    ],
+    "reviewer": "Codex /root"
+  },
+  "literal_expected_probabilities": {
+    "correspondence": [
+      0.320821300824607,
+      0.9046505351008906
+    ],
+    "sequence": [
+      0.02430880061411401,
+      0.5
+    ]
+  },
+  "model_launches": 0,
+  "native_training_changed": false,
+  "new_actual_statistics": {
+    "mri_sequence": {
+      "frozen_IQR": 0.8125,
+      "frozen_p50": 1.0,
+      "maximum_abs_advantage_change_at_actual_epsilon": 4.133233401093506e-06,
+      "maximum_abs_difference_epsilon0_float64": 1.1102230246251565e-16,
+      "maximum_abs_difference_from_exact_epsilon_factor_formula": 1.1102230246251565e-16,
+      "observed_active_groups": 16,
+      "positive_reward_scale": 0.475691199385886
+    },
+    "mri_visit_correspondence": {
+      "frozen_IQR": 1.0,
+      "frozen_p50": 0.25,
+      "maximum_abs_advantage_change_at_actual_epsilon": 2.6730929107987578e-06,
+      "maximum_abs_difference_epsilon0_float64": 2.220446049250313e-16,
+      "maximum_abs_difference_from_exact_epsilon_factor_formula": 2.220446049250313e-16,
+      "observed_active_groups": 23,
+      "positive_reward_scale": 0.5838292342762835
+    }
+  },
+  "optimizer_arrays_reaudited": false,
+  "prior_artifacts": [
+    {
+      "path": "scripts/diagnose_u7_learning_signal.py",
+      "sha256": "deaee4fdaf8a03770f4b23362077489b65a6d4918a884f039ec6b10131008689"
+    },
+    {
+      "path": "tests/test_u7_learning_signal.py",
+      "sha256": "bdc5a5c2e29fa25fdd3c96b85fae91f56f713f30156c5474cb1f7c998417683f"
+    },
+    {
+      "path": "results/U7_NEGATIVE_LEARNING_SIGNAL_DIAGNOSTIC.json",
+      "sha256": "3a32b2e23fb971a6c9d04ca6a518893890d3d5be21f5471da3cce3b7a5eedfa3"
+    }
+  ],
+  "schema": "U7-factor3-diagnostic-only-correction-v1",
+  "status": "INDEPENDENTLY_VERIFIED_DIAGNOSTIC_ONLY_CORRECTION",
+  "tests": "Focused new regression RED before correction; all5 tests PASS0.20s after; no native imports.",
+  "tests_sha256": "e18fc7af223c5bf534f78bda95034239546a8ddb78444801542cfa3f5b6742eb",
+  "unchanged_all_non_calibration_statistics": true,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

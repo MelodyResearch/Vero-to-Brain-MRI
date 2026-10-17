@@ -44,3 +44,19 @@ def test_unique_source_counts_do_not_count_repeated_occurrences_as_new_images():
     assert out['attempted_groups']==2 and out['unique_source_rows_attempted']==1
     assert out['unique_source_rows_contributing_updates']==out['unique_image_payloads_contributing_updates']==1
     assert out['accepted_positive_advantage_answer_counts']=={'contrast-enhanced t1':2}
+
+
+def test_actual_calibration_uses_literal_factor3_frozen_reward_formula():
+    m=module();from mri_rl.reward_replay import _logistic
+    frozen={'mri_sequence':{'p50':1.,'iqr':.8125},'mri_visit_correspondence':{'p50':.25,'iqr':1.}}
+    expected={'mri_sequence':(0.02430880061411401,.5),'mri_visit_correspondence':(.320821300824607,.9046505351008906)}
+    groups=[{'task':task,'informative':True,'grades':[{'accuracy':a,'format':1.,'overlong':0.,'total':.8*a+.2} for a in (0.,0.,0.,1.)]} for task in frozen]
+    x=m.calibration_invariance(groups,frozen,'CPU_FIXTURE')
+    for task,(lo,hi) in expected.items():
+        p=frozen[task]
+        assert _logistic(0.,p['p50'],p['iqr'])==pytest.approx(lo,abs=1e-15)
+        assert _logistic(1.,p['p50'],p['iqr'])==pytest.approx(hi,abs=1e-15)
+        assert x['actual_frozen_statistics'][task]['positive_reward_scale']==pytest.approx(hi-lo,abs=1e-15)
+        raw=[.2,.2,.2,1.];transformed=[.8*lo+.2]*3+[.8*hi+.2]
+        expected_epsilon=max(abs(a-b) for a,b in zip(m.standardize(raw),m.standardize(transformed)))
+        assert x['actual_frozen_statistics'][task]['maximum_abs_advantage_change_at_actual_epsilon']==pytest.approx(expected_epsilon,abs=1e-14)
