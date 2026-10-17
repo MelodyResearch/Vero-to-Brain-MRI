@@ -1,0 +1,109 @@
+{
+ "kind": "cached_gspo_t1_groups2_aggregate",
+ "launcher_sha256": "148d1f08c8b2a5cc4856fb943b7be1682822bc0626f1988ed9f27804f490d96e",
+ "approval_sha256": "d72a87ffd3e95a34b43bca1fccb620b5aada2126caae402bdc1dc1faaabd01b1",
+ "review_file_sha256": "0d1291ca8a04e753419bfbce03aa36e66af912cec59406d2a9b1b3d24aac45a1",
+ "result": "SCHEDULE_COMPLETE, 2 groups attempted, 0 optimizer updates (GENUINE NEGATIVE: zero reward variance in both groups); exit 0",
+ "groups": [
+  {
+   "group": 1,
+   "rollouts": 4,
+   "accuracy": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "format": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "total_reward": [
+    0.2,
+    0.2,
+    0.2,
+    0.2
+   ],
+   "advantages": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "response_tokens": [
+    17,
+    17,
+    17,
+    17
+   ],
+   "finish": "stop x4",
+   "informative": false,
+   "reading": "T1 row answered wrongly (FLAIR) by all four samples"
+  },
+  {
+   "group": 2,
+   "rollouts": 4,
+   "accuracy": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "format": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "total_reward": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "advantages": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "response_tokens": [
+    19,
+    20,
+    20,
+    20
+   ],
+   "finish": "stop x4",
+   "informative": false,
+   "reading": "second T1 row answered correctly by all four samples"
+  }
+ ],
+ "state": {
+  "adapter_sha256_unchanged": "b316db3d5ead... (B28 start)",
+  "optimizer_fingerprint_unchanged": true,
+  "boundaries": 3,
+  "adapter_config_in_boundaries": true,
+  "optimizer_updates": 0,
+  "weights_changed": false,
+  "loss_gradient_not_computed": "no informative group, by design"
+ },
+ "resources": {
+  "events": 78,
+  "non_continue_events": 3,
+  "min_available_gib": 5.94,
+  "swap_gib": [
+   9.723,
+   9.723
+  ],
+  "max_mlx_peak_gib": 5.572
+ },
+ "diagnosis": "Across 3 groups / 10 samples at temperature 1 (FLAIR pilot + these two), the SFT-initialized B28 policy is nearly deterministic per prompt: samples agree within a group (correct or wrong together). Same phenomenon as the historical strict-profile runs that produced 0 updates. With group sizes 2-4 and a near-deterministic initializer, informative groups will be rare; this is a property of the initializer/task/prompt, not an engineering fault. Nothing was forced.",
+ "options_for_scientific_decision_not_taken": [
+  "larger groups (Tier B caps rollouts at 8/stage; a new Tier scope for group 8)",
+  "prompt screening by prior rollout difficulty on the TRAINING pool only (Vero-style filtering; must be declared before outcomes and kept out of dev)",
+  "a different common start with more output entropy (e.g. SFT checkpoint earlier in training or A0 under a format-tolerant active-group rule) - changes the frozen common-start protocol",
+  "accept the negative result: report that B28-initialized strict-reward GSPO is reward-degenerate on this task"
+ ]
+}

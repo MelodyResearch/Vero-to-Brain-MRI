@@ -1,0 +1,45 @@
+{
+  "actual_weight_update": "NOT_VERIFIED",
+  "approval_sha256": "d72a87ffd3e95a34b43bca1fccb620b5aada2126caae402bdc1dc1faaabd01b1",
+  "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+  "cpu_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_continuous_rl_pilot.py::test_cached_ready_is_a_resident_unit_and_is_admitted_at_the_observed_6p41_gib tests/test_continuous_rl_pilot.py::test_cached_ready_still_holds_below_the_unit_floor_and_stops_when_critical",
+    "outcome": "2 passed in 0.03s"
+  },
+  "current_preflight": "PASS",
+  "evidence_tier": "REPRODUCED",
+  "findings": [
+    "Reviewed only bbb5c30 source change: is_loading_unit classifies native_model_load as loading for all paths; quantized_model_ready as resident only with the certified cache; uncached READY classification unchanged.",
+    "Two focused CPU regression tests pass in 0.03s, reproducing actual 6.4117 GiB / 36% cached READY admission and preserving resident<6 GiB, pressure<30%, severe, AC and initial-load gates.",
+    "Current ten pilot source hashes, twelve contract source hashes, unchanged contract/adapter/config, full certified-cache identity and exact two-group/four-rollout/one-update budget independently match the supplied candidate scope.",
+    "Training rows and image files verified locally; selected row IDs independently equal the first two T1 rows in the hash-verified immutable C pool order; labels remain hidden from native prompts."
+  ],
+  "launcher_sha256": "148d1f08c8b2a5cc4856fb943b7be1682822bc0626f1988ed9f27804f490d96e",
+  "limitations": [
+    "New prospectively ordered T1 engineering diagnostic: at most two training groups \u00d7 four sampled rollouts = eight rollouts, maximum one total optimizer update, exact B28 weights with fresh Adam and seed7; not a continuation of the FLAIR trajectory.",
+    "Native first FLAIR group correctly skipped its zero-variance update; this approval does not assume a T1 group will be informative. Stop on the first actual update, preserve skipped groups, never alter rewards or select generated responses to force variance.",
+    "Only train mode and the exact new unused output are approved. Reload, internal-dev evaluation, continuation and full specialist/proportional/uniform arms require their exact subsequent scopes.",
+    "Training retains initial 8 GiB/35% load gate, resident 6 GiB/30% gate and all original power, memory/swap, thermal/concurrency/severe stops. Cache-only READY classification uses resident limits after materialization; no battery inference exception. Native gradient peak remains unmeasured.",
+    "One or two training images cannot establish visual grounding, MRI generalization, recipe parity or multi-task transfer; actual finite gradients/changed weights and independently verified native reload are needed before expansion."
+  ],
+  "mission_alignment": "Test whether a prospectively selected T1 group supplies task-reward variance for one genuine update, before matched full-recipe transfer training.",
+  "native_pilot": "NOT_RUN",
+  "pilot_source_sha256": {
+    "continuous_rl.py": "ce5c06e793f845416857aa005c24b9225fb38e362528f18fd317dc09814febb1",
+    "continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+    "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8"
+  },
+  "prospective_selection_C_pool_sha256": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewed_commit": "bbb5c30b2a62e453bfebdcb02de841eed602b02b",
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "cached-t1-two-group-gspo-scoped-independent-review-v1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
