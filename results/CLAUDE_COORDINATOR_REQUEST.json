@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "request_cached_likelihood_path_review_then_finite_57_continuation",
+ "kind": "freeze_request_cached_finite_57_stage_4_corrections",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -42,9 +42,9 @@
   ]
  },
  "launch_templates": {
-  "gspo_train": "PYTHONPATH=src python3 -m mri_rl.continuous_rl_pilot train --model M --train T --dev D --contract C --adapter B28 --output OUT --review-verdict V --expected-review-sha256 H --record-ids ID1 [--resume]",
-  "gspo_reload": "same with 'reload' (separate approval bound to the actual updated boundary digest)",
-  "dev_eval": "PYTHONPATH=src python3 -m mri_rl.continuous_rl_dev_eval --model M --contract C --adapter ADAPTER --manifest DEVMANIFEST --output OUTJSONL --review-verdict V --expected-review-sha256 H --label <B28_start|B28_gspo1> [--subset-ids-file F] [--resume]  (one approval per label; paths supplied by Codex's private launcher, not read by Claude)"
+  "A28": "PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.paced_answer_likelihood --contract <C> --checkpoint A28 --output <OUT_A28> --battery-diagnostic --finite-remaining --max-new-records 15 --adopt-prefix <BRIDGE_A28_cache> --cache-dir ../../work/exact_quant_cache/cache --cache-certificate ../../work/exact_quant_cache/cache_certificate.json --cache-certificate-sha256 8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160 --approval <APPROVAL> --approval-sha256 <H> --execute",
+  "B28": "PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.paced_answer_likelihood --contract <C> --checkpoint B28 --output <OUT_B28> --battery-diagnostic --finite-remaining --max-new-records 54 --adopt-prefix <BRIDGE_B28_cache> --cache-dir ../../work/exact_quant_cache/cache --cache-certificate ../../work/exact_quant_cache/cache_certificate.json --cache-certificate-sha256 8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160 --approval <APPROVAL> --approval-sha256 <H> --execute",
+  "A0": "PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.paced_answer_likelihood --contract <C> --checkpoint A0 --output <OUT_A0> --battery-diagnostic --finite-remaining --max-new-records 54 --adopt-prefix <BRIDGE_A0_cache> --cache-dir ../../work/exact_quant_cache/cache --cache-certificate ../../work/exact_quant_cache/cache_certificate.json --cache-certificate-sha256 8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160 --approval <APPROVAL> --approval-sha256 <H> --execute"
  },
  "source_sha256_pilot": {
   "continuous_rl.py": "ddf4ff7f409dd513dfb1e9837b040be3664714030fb623ef87cfae544bcc4e7d",
@@ -67,7 +67,7 @@
   "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
   "continuous_rl.py": "ddf4ff7f409dd513dfb1e9837b040be3664714030fb623ef87cfae544bcc4e7d"
  },
- "tests": "tests/test_quant_convert.py 10 passed (real-metadata plan, the three Codex counterexamples, leak guard, assembly byte-exactness, partial refusal, policy trace). Native NOT_RUN.",
+ "tests": "Focused replay only: cache/paced/adoption/battery/quant_cache 62 passed.",
  "baseline_reuse": "NOT_VERIFIED until Codex verifies B28 baseline prompt/native format/precision/adapter/model artifacts; matching row metadata is not proof of numerical equivalence. No reruns done.",
  "scientific_status": "Task is sequence recognition from acquisition labels: ENGINEERING_ONLY. Codex CPU technical visibility check = PASS_WITH_LIMITATIONS for the frozen pair; clinical blind assessment NOT_VERIFIED. Dev set 54 questions / 4 previously used patients; reserved patients excluded. No generalization claim.",
  "priority": "Likelihood first: on release of the existing scoped launcher and recovered headroom, Claude executes A28 from record 43, then B28 from 4, then A0 from 4. GSPO not started ahead of this.",
@@ -226,5 +226,24 @@
   "needed": "ONE initial approval covering all remaining chunks per checkpoint (ResidentSession verifies approval each chunk; I cannot change that handshake without a new review) and the three bridge/adoption files for the new identity; per-record fsync already exists",
   "first_native_step": "single cached materialization: available >= 6.8163 GiB at load (currently ~8.3 GiB by vm_stat, os pressure level 2 = WARN logged only); report peak/residual/active and swap delta; then A28 first record"
  },
- "equivalence_check": "optional saved-record prefix-oracle validation only if you require it (not an experiment row)"
+ "equivalence_check": "optional saved-record prefix-oracle validation only if you require it (not an experiment row)",
+ "corrections": {
+  "1_certifier": "quant_cache.certify_cache now requires BOTH quantization and quantization_config == quant_config(qmap); regression with a conflicting quantization_config rejects. No conversion rerun; the actual cache has both keys correct.",
+  "2_gate_profile": "likelihood_battery.cache_required_gib: phase-aware available-memory requirement replacing ONLY the insufficient_memory_headroom reason on the cache path. initial load (before_runtime_import/model_load): packed 4.8163 + 2 reserve = 6.8163 GiB; materialization (materialized:N, quantized_model_ready, cache_parameters_verified): max(0, 4.8163 - mlx_active) + 2; resident record/forward units: 1.2 + 2 = 3.2 GiB (1.2 = ceil of observed increment 1.155647 = max peak 5.977558 - max active 4.821911 over 311 historical A28 events). Unchanged: pressure-free %, 1 GiB stage swap cap, sustained corroborated swap growth, thermal, concurrency/unknown, absolute severe stops (<2 GiB or <=3% pressure), battery 20%, OS pressure level 4 STOP (1/2 logged). Profile is in scope as cache_gate_profile. Tests: phase math, resident 4.0 GiB allowed/3.0 blocked, pressure/thermal/concurrency/battery/severe still block.",
+  "3_finite_stage": "--finite-remaining (explicit; requires battery diagnostic, non-resident; max_new_records 1-57, default behavior stays 1-8): ONE reviewed scope lists all pending record ids; same single loop, per-record gate, 3 forwards + generation + 2e-3 prefix check, flush+fsync per record, one resident model, no handshake. Scope carries finite_remaining_stage=True. Scoring loop AST hash unchanged (fc51dfd7...0cb31); the existing time.sleep(2) stays inside the loop because removing it would alter the adopted loop identity.",
+  "4_adoption_identity": "likelihood_adoption.segment_identity(old): includes derived_cache only when the segment recorded it; old identities reconstruct unchanged; new cached identities reconstruct with it. PROFILE deliberately does not compare derived_cache so uncached historical prefixes (A28 first 42) can be adopted into cached continuations. Tests for both."
+ },
+ "source_sha256_frozen": {
+  "paced_answer_likelihood.py": "751b1eb894e25d6eb72e9a0b9da38157bd5b1b413641971a347b750bc0e269a5",
+  "likelihood_battery.py": "6de2d400278b34e554dc406b11acc4e0d56eac911339e16484e56bcb830a64fd",
+  "likelihood_adoption.py": "2420384c37c4f1d32e3416e63add77f80bb8fb40f1484d277cae77e7bf20932e",
+  "quant_cache.py": "25b6c8c3778d1a0d60d2841ba8076239f64f572493d2fe2f1d96ecb876008c13",
+  "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889"
+ },
+ "bridges_for_root": {
+  "inputs_existing": "reserve20_review/bridge_A28_PRIVATE.json, bridge_B28_PRIVATE.json, bridge_A0_PRIVATE.json (+ their approvals/audits)",
+  "outputs_proposed": "reserve20_review/bridge_A28_cache_PRIVATE.json, bridge_B28_cache_PRIVATE.json, bridge_A0_cache_PRIVATE.json",
+  "scope_of_each": "immutable prefix bytes + historical identities/segments unchanged; new tail identity = current sources + derived_cache binding; prefix counts verified durable: A28 42, B28 3, A0 3, next 43/4/4"
+ },
+ "order": "A28 then B28 then A0 automatically after root release; one heavy worker; model resident per checkpoint stage; certificate path/digest must match the certified cache"
 }

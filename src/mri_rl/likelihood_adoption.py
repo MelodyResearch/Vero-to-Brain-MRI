@@ -23,6 +23,13 @@ def numerical_loop_sha256():
     return hashlib.sha256(ast.dump(loops[0],include_attributes=False).encode()).hexdigest()
 
 
+def segment_identity(old):
+    """Reconstruct a segment's run identity; derived_cache participates only when that segment recorded one."""
+    return canonical_hash({'contract':old['contract_sha256'],'checkpoint':old['checkpoint'],
+        'sources':old['source_hashes'],'backend':old['backend_sources'],'battery_diagnostic':old.get('battery_exception') is not None,
+        **({'derived_cache':old['derived_cache']} if old.get('derived_cache') else {})})
+
+
 def _segment(d,current,root):
     """Verify one immutable reviewed segment; returns (bytes, identity, record count)."""
     prefix=Path(d['prefix_path']).resolve();approval=Path(d['approval_path']).resolve();audit=Path(d['audit_path']).resolve()
@@ -39,8 +46,7 @@ def _segment(d,current,root):
     oldnumeric={k:v for k,v in old['source_hashes'].items() if k not in EXECUTION_ONLY}
     newnumeric={k:v for k,v in current['source_hashes'].items() if k not in EXECUTION_ONLY}
     if oldnumeric!=newnumeric:raise ValueError('Adopted numeric source changed')
-    identity=canonical_hash({'contract':old['contract_sha256'],'checkpoint':old['checkpoint'],
-        'sources':old['source_hashes'],'backend':old['backend_sources'],'battery_diagnostic':old.get('battery_exception') is not None})
+    identity=segment_identity(old)
     if identity!=old['run_identity']:raise ValueError('Original identity cannot be reconstructed')
     raw=prefix.read_bytes()
     if not raw or not raw.endswith(b'\n'):raise ValueError('Torn/empty adopted prefix')

@@ -66,11 +66,14 @@ def verify_review(path,digest,scope):
         or not r.get('reviewer') or r.get('scope')!=scope):raise ValueError('Independent approval scope mismatch')
 
 
-# Measured cache footprint 4.7756 GiB + adapter 0.041 GiB + 2 GiB critical reserve (replaces the generic 8 GiB load heuristic on the cache path only).
-CACHE_LOAD_FLOOR_GIB=4.7756+0.0407+2.0
+# Measured cache-path memory profile (replaces the generic 8/6 GiB heuristics for the memory-headroom reason only).
+# packed = certified cache 4.7756 GiB + adapter 0.0407 GiB; resident increment = max(MLX peak 5.9776 - max active 4.8219)
+# = 1.1556 GiB over the 311 historical A28 resource events, rounded up; reserve = 2 GiB critical headroom.
+CACHE_PROFILE={'packed_gib':4.7756+0.0407,'resident_increment_gib':1.2,'reserve_gib':2.0,
+               'source':'A28 historical resources: 311 events, max peak 5.977558, max active 4.821911 GiB'}
 
 
-def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_diagnostic=False, resident=False, adoption_path=None, cache=None):
+def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_diagnostic=False, resident=False, adoption_path=None, cache=None, finite_remaining=False):
     private=Path(__file__).resolve().parents[2]/'local_data'
     if not contract_path.resolve().is_relative_to(private) or not output.resolve().is_relative_to(private):
         raise ValueError('Ignored private contract/output paths required')
@@ -78,7 +81,8 @@ def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_dia
     if (c['version']!='training_answer_likelihood_v1' or c['patients']!=28 or c['heldout_used'] is not False
         or c['weight_updates']!=0 or c['fixed_prefix']!=al.PREFIX or c['fixed_suffix']!=al.SUFFIX
         or c['labels']!=list(al.LABELS) or c['generation']!={'max_tokens':256,'temperature':0}):raise ValueError('Wrong frozen experiment')
-    if type(max_new_records) is not int or not 1<=max_new_records<=8:raise ValueError('Finite1–8 record scope required')
+    if type(max_new_records) is not int or not 1<=max_new_records<=(57 if finite_remaining else 8):raise ValueError('Finite1–8 record scope required (1–57 only with the explicit finite-remaining stage)')
+    if finite_remaining and (resident or not battery_diagnostic):raise ValueError('Finite-remaining stage is a single non-resident read-only battery-exception loop')
     if checkpoint not in ('A0','A28','B28'):raise ValueError('Unknown checkpoint')
     for key in ('train','schedule'):
         if sha256(Path(c[key+'_path']))!=c[key+'_sha256']:raise ValueError('Frozen training source changed')
@@ -128,7 +132,9 @@ def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_dia
         'completed_records':completed,'new_record_ids':[r['record_id'] for r in pending],
         'max_new_records':max_new_records,'forwards_per_record':3,'generations_per_record':1,
         'max_generation_tokens':256,'temperature':0,'prefix_tolerance':c['common_prefix_tolerance'],
-        'model_materialization':'serial_parameter_v2_exact_derived_cache' if cache_binding else 'serial_parameter_v2','derived_cache':cache_binding,'paced_policy':PACED_POLICY,'battery_exception':BATTERY_POLICY if battery_diagnostic else None,'lora_rank':4,'lora_alpha':8,'quantization_bits':4,'group_size':64,'weight_updates':0,'resident':resident}
+        'model_materialization':'serial_parameter_v2','paced_policy':PACED_POLICY,'battery_exception':BATTERY_POLICY if battery_diagnostic else None,'lora_rank':4,'lora_alpha':8,'quantization_bits':4,'group_size':64,'weight_updates':0,'resident':resident}
+    if cache_binding:scope.update(model_materialization='serial_parameter_v2_exact_derived_cache',derived_cache=cache_binding,cache_gate_profile=cache['profile'])
+    if finite_remaining:scope['finite_remaining_stage']=True
     adoption=None
     if adoption_path is not None:
         from mri_rl.likelihood_adoption import verify_adoption
@@ -142,14 +148,14 @@ def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_dia
 
 
 def run(contract_path,checkpoint,output,approval,approval_digest,max_new_records,battery_diagnostic=False,
-        resident=False,resident_session=None,adoption_path=None,cache=None):
+        resident=False,resident_session=None,adoption_path=None,cache=None,finite_remaining=False):
     if resident and (resident_session is None or not Path(resident_session).resolve().is_relative_to(Path(__file__).resolve().parents[2]/'local_data')):
         raise ValueError('Resident execution requires a new ignored private session directory')
-    c,pending,scope=prepare_plan(contract_path,checkpoint,output,max_new_records,battery_diagnostic,resident,adoption_path,cache)
+    c,pending,scope=prepare_plan(contract_path,checkpoint,output,max_new_records,battery_diagnostic,resident,adoption_path,cache,finite_remaining)
     verify_review(approval,approval_digest,scope)
     if not pending:return {'status':'COMPLETED','new_records':0}
     output.parent.mkdir(parents=True,exist_ok=True)
-    gate=(BatteryDiagnosticGate(output.with_suffix('.resources.jsonl'),load_floor_gib=cache['load_floor_gib']) if (battery_diagnostic and cache) else (BatteryDiagnosticGate if battery_diagnostic else PacedGate)(output.with_suffix('.resources.jsonl')));gate.before_unit('before_runtime_import',loading=True)
+    gate=(BatteryDiagnosticGate(output.with_suffix('.resources.jsonl'),cache_profile=cache['profile']) if (battery_diagnostic and cache) else (BatteryDiagnosticGate if battery_diagnostic else PacedGate)(output.with_suffix('.resources.jsonl')));gate.before_unit('before_runtime_import',loading=True)
     os.environ.setdefault('HF_HUB_OFFLINE','1');os.environ.setdefault('TRANSFORMERS_OFFLINE','1')
     import mlx.core as mx
     import mlx.nn as nn
@@ -278,14 +284,14 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--contract',type=Path,required=True);p.add_argument('--checkpoint',choices=['A0','A28','B28'],required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--max-new-records',type=int,default=2)
     p.add_argument('--adopt-prefix',type=Path);p.add_argument('--resident',action='store_true');p.add_argument('--resident-session',type=Path)
-    p.add_argument('--cache-dir',type=Path);p.add_argument('--cache-certificate',type=Path);p.add_argument('--cache-certificate-sha256');p.add_argument('--battery-diagnostic',action='store_true');p.add_argument('--approval',type=Path);p.add_argument('--approval-sha256');p.add_argument('--execute',action='store_true');a=p.parse_args()
+    p.add_argument('--finite-remaining',action='store_true',help='One reviewed non-resident stage covering ALL remaining records (1-57)');p.add_argument('--cache-dir',type=Path);p.add_argument('--cache-certificate',type=Path);p.add_argument('--cache-certificate-sha256');p.add_argument('--battery-diagnostic',action='store_true');p.add_argument('--approval',type=Path);p.add_argument('--approval-sha256');p.add_argument('--execute',action='store_true');a=p.parse_args()
     args=(a.contract.resolve(),a.checkpoint,a.output.resolve())
     cache=None
     if a.cache_dir:
         if not (a.cache_certificate and a.cache_certificate_sha256):p.error('Cache needs --cache-certificate and --cache-certificate-sha256')
-        cache={'dir':str(a.cache_dir.resolve()),'certificate':str(a.cache_certificate.resolve()),'certificate_sha256':a.cache_certificate_sha256,'load_floor_gib':CACHE_LOAD_FLOOR_GIB}
-    if not a.execute:print(json.dumps(prepare_plan(*args,a.max_new_records,a.battery_diagnostic,a.resident,a.adopt_prefix,cache)[2],indent=2));return
+        cache={'dir':str(a.cache_dir.resolve()),'certificate':str(a.cache_certificate.resolve()),'certificate_sha256':a.cache_certificate_sha256,'profile':CACHE_PROFILE}
+    if not a.execute:print(json.dumps(prepare_plan(*args,a.max_new_records,a.battery_diagnostic,a.resident,a.adopt_prefix,cache,a.finite_remaining)[2],indent=2));return
     if not a.approval or not a.approval_sha256:p.error('Independent scope approval required')
-    print(json.dumps(run(*args,a.approval,a.approval_sha256,a.max_new_records,a.battery_diagnostic,a.resident,a.resident_session,a.adopt_prefix,cache)))
+    print(json.dumps(run(*args,a.approval,a.approval_sha256,a.max_new_records,a.battery_diagnostic,a.resident,a.resident_session,a.adopt_prefix,cache,a.finite_remaining)))
 
 if __name__=='__main__':main()

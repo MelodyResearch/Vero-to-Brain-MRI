@@ -96,7 +96,8 @@ def certify_cache(plan, units_dir, cache_dir, source_dir, qmap):
     cfg_src = json.loads((source_dir / 'config.json').read_text())
     cfg_new = json.loads((cache_dir / 'config.json').read_text())
     delta = {k for k in set(cfg_src) | set(cfg_new) if cfg_src.get(k) != cfg_new.get(k)}
-    if delta != {'quantization', 'quantization_config'} or cfg_new['quantization'] != quant_config(qmap):
+    if (delta != {'quantization', 'quantization_config'} or cfg_new['quantization'] != quant_config(qmap)
+            or cfg_new['quantization_config'] != quant_config(qmap)):
         raise ValueError('Config differs from the source beyond the exact quantization keys')
     if sha_file(cache_dir / 'config_source.json') != sha_file(source_dir / 'config.json'):
         raise ValueError('config_source.json is not the original config')
