@@ -23,16 +23,12 @@ def numerical_loop_sha256():
     return hashlib.sha256(ast.dump(loops[0],include_attributes=False).encode()).hexdigest()
 
 
-def verify_adoption(path,current,*,private_root=None):
-    root=Path(private_root or Path(__file__).resolve().parents[2]/'local_data').resolve()
-    path=Path(path).resolve()
-    if not path.is_relative_to(root):raise ValueError('Adoption must remain private')
-    digest=sha256(path);d=json.loads(path.read_text())
-    if d.get('kind')!='likelihood_immutable_prefix_v1':raise ValueError('Unknown adoption contract')
+def _segment(d,current,root):
+    """Verify one immutable reviewed segment; returns (bytes, identity, record count)."""
     prefix=Path(d['prefix_path']).resolve();approval=Path(d['approval_path']).resolve();audit=Path(d['audit_path']).resolve()
     if not all(p.is_relative_to(root) for p in (prefix,approval,audit)):raise ValueError('Adoption source must remain private')
     if sha256(prefix)!=d['prefix_sha256'] or sha256(approval)!=d['approval_sha256']:raise ValueError('Adoption source digest mismatch')
-    if sha256(audit)!=d['audit_sha256'] or d['numeric_loop_sha256']!=numerical_loop_sha256():raise ValueError('Adopted numerical loop/audit changed')
+    if sha256(audit)!=d['audit_sha256']:raise ValueError('Adopted numerical loop/audit changed')
     reviewed=json.loads(audit.read_text())
     if reviewed.get('verdict') not in ('PASS','PASS_WITH_LIMITATIONS') or reviewed.get('output_sha256')!=d['prefix_sha256'] or reviewed.get('approval_sha256')!=d['approval_sha256']:
         raise ValueError('Pilot actual result lacks exact independent verification')
@@ -48,10 +44,33 @@ def verify_adoption(path,current,*,private_root=None):
     if identity!=old['run_identity']:raise ValueError('Original identity cannot be reconstructed')
     raw=prefix.read_bytes()
     if not raw or not raw.endswith(b'\n'):raise ValueError('Torn/empty adopted prefix')
-    rows=[json.loads(line) for line in raw.splitlines()]
-    if type(d['records']) is not int or not 1<=d['records']<=57 or len(rows)!=d['records'] or any(r.get('run_identity')!=identity for r in rows):
-        raise ValueError('Invalid adopted prefix identities/count')
-    if sha256(audit)!=d['audit_sha256'] or sha256(path)!=digest or sha256(prefix)!=d['prefix_sha256'] or sha256(approval)!=d['approval_sha256']:
-        raise ValueError('Adoption evidence changed during validation')
-    return {'bytes':raw,'identities':[identity]*len(rows),'binding':{'path':str(path),'sha256':digest,'records':len(rows),
-        'prefix_sha256':d['prefix_sha256'],'approval_sha256':d['approval_sha256']}}
+    return raw,identity,d['records']
+
+
+def verify_adoption(path,current,*,private_root=None):
+    """Adopt a reviewed immutable prefix, optionally extended by reviewed continuation segments.
+
+    Each continuation segment is a later byte-extension of the previous prefix, with its
+    own approved source identity and actual-result audit; no identity is rewritten.
+    """
+    root=Path(private_root or Path(__file__).resolve().parents[2]/'local_data').resolve()
+    path=Path(path).resolve()
+    if not path.is_relative_to(root):raise ValueError('Adoption must remain private')
+    digest=sha256(path);d=json.loads(path.read_text())
+    if d.get('kind')!='likelihood_immutable_prefix_v1':raise ValueError('Unknown adoption contract')
+    if d['numeric_loop_sha256']!=numerical_loop_sha256():raise ValueError('Adopted numerical loop/audit changed')
+    segments=[d]+list(d.get('continuation',[]))
+    raw=b'';identities=[]
+    for seg in segments:
+        data,identity,records=_segment(seg,current,root)
+        rows=[json.loads(line) for line in data.splitlines()]
+        if not data.startswith(raw) or type(records) is not int or not 1<=records<=57 or len(rows)!=records or records<=len(identities):
+            raise ValueError('Invalid adopted prefix identities/count')
+        if any(r.get('run_identity')!=identity for r in rows[len(identities):]):raise ValueError('Invalid adopted prefix identities/count')
+        identities+=[identity]*(records-len(identities));raw=data
+    for seg in segments:
+        if sha256(Path(seg['audit_path']))!=seg['audit_sha256'] or sha256(Path(seg['prefix_path']))!=seg['prefix_sha256'] or sha256(Path(seg['approval_path']))!=seg['approval_sha256']:
+            raise ValueError('Adoption evidence changed during validation')
+    if sha256(path)!=digest:raise ValueError('Adoption evidence changed during validation')
+    return {'bytes':raw,'identities':identities,'binding':{'path':str(path),'sha256':digest,'records':len(identities),
+        'prefix_sha256':segments[-1]['prefix_sha256'],'approval_sha256':segments[-1]['approval_sha256']}}
