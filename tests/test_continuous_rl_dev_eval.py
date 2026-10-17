@@ -96,7 +96,7 @@ def test_native_generate_record_rechecks_image_after_callback(tmp_path):
 
 
 def test_dev_source_inventory_hashes_loader_and_backend():
-    assert {'mlx_continuous_gspo.py', 'likelihood_loading.py', 'frozen_eval.py'} <= set(dev.source_hashes())
+    assert {'mlx_continuous_gspo.py', 'likelihood_loading.py', 'frozen_eval.py', 'likelihood_cache.py', 'continuous_rl_pilot.py'} <= set(dev.source_hashes())
 
 
 def test_image_changed_after_review_is_rejected_before_backend_construction(tmp_path):

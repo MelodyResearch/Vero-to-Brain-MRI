@@ -19,7 +19,7 @@ from mri_rl.frozen_eval import adapter_metadata, prepare_resume
 from mri_rl.paced_resources import PacedGate
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCES = ('likelihood_cache.py', 'continuous_rl_dev_eval.py', 'mlx_continuous_gspo.py', 'frozen_eval.py', 'likelihood_loading.py',
+SOURCES = ('likelihood_cache.py', 'continuous_rl_pilot.py', 'continuous_rl_dev_eval.py', 'mlx_continuous_gspo.py', 'frozen_eval.py', 'likelihood_loading.py',
            'paced_resources.py', 'resource_supervisor.py', 'experiment_contract.py', 'continuous_rl.py')
 
 
