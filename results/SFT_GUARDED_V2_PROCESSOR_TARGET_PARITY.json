@@ -1,0 +1,27 @@
+{
+  "MRI_or_image_arrays_loaded": false,
+  "USE_TF": "0",
+  "USE_TORCH": "0",
+  "all_token_ids_exact": true,
+  "full_AutoProcessor_instantiation": "NOT_AVAILABLE_WITH_TORCH_DISABLED: optional Qwen3VLVideoProcessor requires Torch/Torchvision",
+  "model_weights_loaded": false,
+  "native_model_or_MLX_imported": false,
+  "parity_method": "Exact official Qwen3VLProcessor._load_tokenizer_from_pretrained subroutine used by AutoProcessor; no video/image processor or MLX patch instantiated",
+  "plan_file_sha256": "bddc0e18bef6e4691cfe22644d8a5b64e4b427fce29c5d049e45bbcd552c0374",
+  "processor_class": "Qwen3VLProcessor (tokenizer-loader component only)",
+  "processor_config_sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+  "reviewer": "isolated Codex /root/two_task_admission",
+  "schema": "guarded-v2-SFT-AutoProcessor-target-parity-v1",
+  "scientific_training_or_gradient_claimed": false,
+  "source_rows": 76,
+  "source_script_sha256": "f9a29e4cecfeca01ea94f1f534c81ec51fd41dd878f8d6b1a62c8f250a6c0a79",
+  "status": "PASS",
+  "token_counts": [
+    15,
+    16,
+    19
+  ],
+  "tokenizer_class": "Qwen2Tokenizer",
+  "tokenizer_json_sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+  "unique_target_strings": 4
+}

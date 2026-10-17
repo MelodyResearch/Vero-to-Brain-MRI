@@ -1,0 +1,73 @@
+{
+  "StepD_sha256": "a831e08271c5aef3ce2896e0b58db27f39a15bbe8f8c97dab9bce2ebb043b2f1",
+  "all_scientific_plan_fields_equal_old_except_source_hashes": true,
+  "exact_target_ID_lists": 76,
+  "first_step_tokens": 1304,
+  "launcher_sha256": "a2034d445c988b6479bb72539cc63ad351ab0d82915cd744e0f2321824eb8a19",
+  "limitations": [
+    "Only one fresh TierB first SFT step is authorized; full seed7continuation, seeds11/13, test release and scientific claims await actual execution/proofs.",
+    "Isolated Codex scoped approval; cross-family source review/correction and independent verification status are recorded separately in the bound StepDreceipt. No Claude raw MRI/result access is asserted.",
+    "Full AutoProcessor instantiation could not run Torch-free due optional video backend. Its exact official tokenizer-loader component passes all76frozen targets; actual native backend additionally fails closed on exact targetIDs before gradient.",
+    "Actual native SFT first gradient, changed adapter, optimizer0to1 and1304ledger remain NOT_RUN; CPU/source/tokenizer evidence is not a training result.",
+    "Only after current heavyweight job exits; unchanged AC/memory/swap/thermal/concurrency guards, no app closures or panic guarantee.",
+    "Shared actual G8native full restore remains source-bound; no extra read-only SFT8Breload is requested. Continuation must restore actual saved Adam/RNG before subsequent updates."
+  ],
+  "model_or_MRI_arrays_loaded": false,
+  "native_training_execution": "NOT_RUN",
+  "new_conditional_tools_sha256": {
+    "build_remaining_SFT_releases_PRIVATE.py": "73f8ca41ed2c71ba7deb280f4e86b750656bcf040f6f4d72807a9e9502ec007d",
+    "verify_first_SFT_step_PRIVATE.py": "a78751e29ff0af4cd059f4e614145a37197aa91912165140465806339a6674f3"
+  },
+  "old_artifacts_preserved": {
+    "first_launcher": "75c424323fd354697d1c88a682f713566f3c250e281fda4008403990d4be6c82",
+    "first_review": "056cced637c3333783a02d2c6aa666cd48ffd8d072776477b68dda2e9a080752",
+    "plan": "35c1e005b634c80a6c2b83a4238c8c2961e3de5517d9cdbed9b16b60aa8e7615"
+  },
+  "only_changed_source_entries": [
+    "tier_c_sft.py",
+    "tier_c_sft_entry.py"
+  ],
+  "plan_canonical_sha256": "4fe16bc7e5621cde8854135ae226e74cd4c8b0542fe7462e165363f5890c952c",
+  "plan_file_sha256": "bddc0e18bef6e4691cfe22644d8a5b64e4b427fce29c5d049e45bbcd552c0374",
+  "review_sha256": "eef76d5ffe9a434c384d3df507a65c03a379ddd52152241db98b97f8ee3adeb5",
+  "reviewer": "isolated Codex /root/two_task_admission",
+  "same_seed7_output_unstarted": true,
+  "schema": "guarded-v2-SFT-first-step-source-rebind-v1",
+  "scope_canonical_sha256": "574c0a5dbddc43f2786c7aafed32b1101921b56ab17ad382d3824051055fe55b",
+  "source_rows": 76,
+  "source_sha256": {
+    "continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+    "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+    "full_arm_protocol.py": "b0ab1f99baba5131ee3ced994a2d5d7041bd53d051bbf505de152d8e743310b1",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+    "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "reward_replay.py": "32a511c9a9c223766f889720af23fcd3d96e3e1482c57f024c4aaf962a8757f5",
+    "tier_c_entry.py": "84e2581dc8b1065301f2ce1e7098db5a213a6b1c29b002c2fb8de6db7b5ddaf8",
+    "tier_c_sft.py": "1df718f0fdb0316cc4b63d194027c5e3a4e386194920f96f7be3d1b353814283",
+    "tier_c_sft_entry.py": "0f230a556f1a39bf048ad5259df91c17ec6871cdd88a71c922af2f57176266f6",
+    "two_task_pool.py": "b06d9278599b7ef08655137f8405cfd190a324807cc0b8777801833e07770053",
+    "two_task_training.py": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd",
+    "vero_category_sampler.py": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "vero_official_launch.py": "ccc3cd3e5ab8d26890ae1062bd79bf7c4f1e5b8e6de34fff923c7388c5ba911f",
+    "visit_correspondence.py": "ccaaa7c4cf2ed75afae93cb44a2728d128b9943e8bba9296dd9904d7875d0bd5"
+  },
+  "target_parity_receipt_sha256": "2ce11c5f4f454f2c42e3ff2643d9256ba27844e1ee875163130c6eb50becbef9",
+  "unchanged_seed_costs": {
+    "11": 168439,
+    "13": 168788,
+    "7": 167878
+  },
+  "unchanged_seed_steps": {
+    "11": 120,
+    "13": 121,
+    "7": 120
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
