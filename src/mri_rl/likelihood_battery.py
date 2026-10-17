@@ -137,7 +137,7 @@ class BatteryDiagnosticGate:
         with self.path.open('a') as f:
             f.write(json.dumps(event,sort_keys=True)+'\n');f.flush();os.fsync(f.fileno())
         if self.initial is None and action!='STOP':self.initial=s
-        if (self.cache_profile is not None and self.resident_start is None and name=='quantized_model_ready'
+        if (self.cache_profile is not None and self.resident_start is None and name.split(':warning_hold:',1)[0]=='quantized_model_ready'
                 and action in ('CONTINUE','WARNING')):self.resident_start=s   # load budget was checked above; never reset
         self.history.append(s)
         return s,action,reasons

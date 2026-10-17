@@ -294,3 +294,18 @@ def test_generic_non_cache_path_has_no_memory_hold(tmp_path, monkeypatch):
     monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
     g, d, slept = mem_gate(tmp_path, 'g', [27, 31, 32], profile=False)
     with pytest.raises(RuntimeError): g.before_unit('candidate:x:FLAIR')
+
+
+def test_ready_boundary_recovery_captures_resident_baseline_once(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
+    g, _, _ = mem_gate(tmp_path, 'ready-recovery', [27, 31, 32, 32])
+    g.resident_start = None
+    original_initial, original_history = g.initial, g.history
+    sampler = g.sampler
+    g.sampler = lambda: replace(sampler(), mlx_active_gib=4.82)
+    admitted = g.before_unit('quantized_model_ready')
+    assert g.resident_start is admitted
+    assert g.initial is original_initial and g.history is original_history
+    g.before_unit('quantized_model_ready')
+    assert g.resident_start is admitted

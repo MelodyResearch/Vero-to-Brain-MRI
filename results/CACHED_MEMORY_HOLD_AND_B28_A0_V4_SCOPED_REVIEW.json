@@ -1,0 +1,37 @@
+{
+  "A28_complete57_preserved_not_replanned": true,
+  "actual_B28_warning_replay": "HOLD; no nextoperation at27%pressurefree",
+  "analyzer_review": {
+    "different_execution_versions": "All3verified immutable-prefix/ASTadoptions required; each scope/row fullidentity preserved.",
+    "file_sha256": "9ab9183f94046fe17bb29b24f48efa0dbe54b53be640143ee3604f7d65ccc340",
+    "filter": "Existing authoritativeEXECUTION_ONLY only; full numerical/backend/precision/cache comparisons retained",
+    "numerical_metric_functions_unchanged": true
+  },
+  "battery_source_sha256": "d829fde19e0fa97144b50c04397eda219b543099712c4a61af4cbd5be3a56db6",
+  "confirmed_READY_recovery_failure_resolved": "Canonicalize warning_hold suffix only for once-only admittedREADY baseline capture; initial/history retained.",
+  "focused_tests": {
+    "HOLD_READY": "12passed0.06s",
+    "analysis_execution_version_and_certificate": "10passed0.60s"
+  },
+  "limits": "Existing pressurefloor30 retained. Bounded HOLD45s/two truly clean samples, allcriticalprotections retained; no native result or hardwareguarantee inferred.",
+  "native_imports": false,
+  "numerical_record_AST": "fc51dfd7fe5998b05e723e27f57e703f0f1912ffd6dc836f6614f5be22b0cb31",
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "reviews": [
+    {
+      "checkpoint": "B28",
+      "completed": 3,
+      "plan_file_sha256": "e567912baad2e9dd15e15a68cda02c174786be28ca8818b6f5ea33431ca43141",
+      "remaining": 54,
+      "review_sha256": "08adc3770afa9e4fa2c2eeab788a58b1da47ef59932fc60fd6ccf008c1b65f1d"
+    },
+    {
+      "checkpoint": "A0",
+      "completed": 3,
+      "plan_file_sha256": "60c72ea35dd65080d3f7b394cac39b88cf539ac1c4d39ea719784919ccf61960",
+      "remaining": 54,
+      "review_sha256": "1fc24814c6db4075d66861bc4c5480f1d58b3e74139d52858fabae8cdfdd0ad0"
+    }
+  ],
+  "verdict": "PASS_WITH_LIMITATIONS_CACHED_MEMORY_HOLD_AND_EXACT_B28_A0_V4"
+}
