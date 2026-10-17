@@ -17,6 +17,15 @@ from mri_rl.continuous_rl import PROFILE, require, digest
 from mri_rl.paced_resources import PACED_POLICY
 
 
+def is_loading_unit(name, cache):
+    """Resource-gate stage of a backend unit. The 8 GiB INITIAL load floor applies to native_model_load only.
+    On the cache path quantized_model_ready is a RESIDENT unit (the model is already materialized), so it uses the
+    existing resident training gate (6 GiB unit floor / 30% pressure); the uncached BF16 classification is unchanged."""
+    if name == 'native_model_load':
+        return True
+    return name == 'quantized_model_ready' and not cache
+
+
 class NativeGSPOBackend:
     def __init__(self, adapter, config, *, model_path, contract, seed, before_unit, cache=None):
         require(callable(before_unit), 'Explicit resource authorizer required')

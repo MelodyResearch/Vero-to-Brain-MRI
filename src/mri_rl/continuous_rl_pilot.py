@@ -117,8 +117,8 @@ def main():
     config = {**PROFILE, 'group_size': args.group_size, 'max_tokens': contract.generation['max_tokens']}
     gate = PacedGate(args.output.with_name(args.output.name + '_resource_events.jsonl'))
     def before_unit(name):
-        gate.before_unit(name, loading=name in {'native_model_load', 'quantized_model_ready'})
-    from mri_rl.mlx_continuous_gspo import backend_factory, NativeGSPOBackend
+        gate.before_unit(name, loading=is_loading_unit(name, cache))
+    from mri_rl.mlx_continuous_gspo import backend_factory, NativeGSPOBackend, is_loading_unit
     bindings = {'adapter_sha256': sha256_file(args.adapter), 'contract_id': contract.identity(),
                 'seed': args.seed, 'source_sha256': source_hashes(), 'model_dir': str(args.model),
                 'derived_cache_certificate_sha256': args.cache_certificate_sha256 if args.cache_binding else None}

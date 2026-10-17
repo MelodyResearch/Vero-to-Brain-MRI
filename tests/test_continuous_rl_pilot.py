@@ -152,3 +152,50 @@ def test_native_constructor_cache_branch_is_serial_parity_checked_and_restores_s
     assert 'verify_loaded_parameters' in text and 'quantization_bits=None' in text and "load(str(cache['dir'])" in text
     assert text.index("before_unit('cache_parameters_verified')") < text.index('quantization_bits=None')
     assert "load(str(model_path),lazy=True)" in text      # uncached path unchanged
+
+
+# ---- stage classification of quantized_model_ready on the cache path (observed 6.41 GiB / 36% false hold) ----
+def _paced(tmp_path, name, **kw):
+    from mri_rl.paced_resources import PacedGate
+    from mri_rl.resource_supervisor import ResourceSample
+    base = dict(available_gib=6.4117, pressure_free_percent=36, power_source='AC', other_heavy_processes=0,
+                thermal_state='NORMAL', mlx_active_gib=4.8184, swap_used_gib=9.73, process_rss_gib=0.3,
+                battery_percent=100, monotonic_seconds=1.0)
+    sample = ResourceSample(**{**base, **kw})
+    d = tmp_path / name; d.mkdir()
+    slept = []
+    return PacedGate(d / 'r.jsonl', sampler=lambda: sample, sleep=slept.append), slept
+
+
+def test_cached_ready_is_a_resident_unit_and_is_admitted_at_the_observed_6p41_gib(tmp_path):
+    from mri_rl.mlx_continuous_gspo import is_loading_unit
+    cache = {'dir': 'x'}
+    assert is_loading_unit('native_model_load', cache) and is_loading_unit('native_model_load', None)
+    assert not is_loading_unit('quantized_model_ready', cache)          # NEW: resident gate on the cache path
+    assert is_loading_unit('quantized_model_ready', None)               # uncached BF16 classification unchanged
+    g, slept = _paced(tmp_path, 'a')
+    assert g.before_unit('quantized_model_ready', loading=is_loading_unit('quantized_model_ready', cache)) and slept == []
+    g, slept = _paced(tmp_path, 'b')                                    # RED before the fix: same unit as loading=True holds
+    with pytest.raises(RuntimeError, match='Resource hold persists'):
+        g.before_unit('quantized_model_ready', loading=True)
+    assert len(slept) == 20
+
+
+def test_cached_ready_still_holds_below_the_unit_floor_and_stops_when_critical(tmp_path):
+    from mri_rl.mlx_continuous_gspo import is_loading_unit
+    c = {'dir': 'x'}
+    g, _ = _paced(tmp_path, 'c', available_gib=5.9)                     # below the 6 GiB unit floor
+    with pytest.raises(RuntimeError, match='Resource hold persists'):
+        g.before_unit('quantized_model_ready', loading=is_loading_unit('quantized_model_ready', c))
+    g, _ = _paced(tmp_path, 'd', pressure_free_percent=28)              # below the 30% pressure floor
+    with pytest.raises(RuntimeError, match='Resource hold persists'):
+        g.before_unit('quantized_model_ready', loading=is_loading_unit('quantized_model_ready', c))
+    g, _ = _paced(tmp_path, 'e', pressure_free_percent=2, available_gib=1.5)
+    with pytest.raises(RuntimeError, match='stopped'):
+        g.before_unit('quantized_model_ready', loading=is_loading_unit('quantized_model_ready', c))
+    g, _ = _paced(tmp_path, 'f', power_source='BATTERY')                # training AC requirement retained
+    with pytest.raises(RuntimeError):
+        g.before_unit('quantized_model_ready', loading=is_loading_unit('quantized_model_ready', c))
+    g, _ = _paced(tmp_path, 'g')                                        # the initial cached load keeps the 8 GiB floor
+    with pytest.raises(RuntimeError, match='Resource hold persists'):
+        g.before_unit('native_model_load', loading=is_loading_unit('native_model_load', c))
