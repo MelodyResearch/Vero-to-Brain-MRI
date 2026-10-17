@@ -69,10 +69,12 @@ class BatteryDiagnosticGate:
         effective=replace(s,power_source='AC') if known else s
         action,reasons=decisions(effective,loading=loading,supervisor_reasons=reasons)
         # Cache path only (measured profile, not the generic 8/6 GiB heuristics): replace ONLY the memory-headroom reason.
-        if self.cache_profile is not None and action!='STOP' and 'insufficient_memory_headroom' in reasons:
+        if self.cache_profile is not None:
             need=cache_required_gib(self.cache_profile,name,s.mlx_active_gib)
-            if s.available_gib is not None and s.available_gib>=need:
-                reasons=[r for r in reasons if r!='insufficient_memory_headroom'];action='HOLD' if reasons else 'CONTINUE'
+            reasons=[r for r in reasons if r!='insufficient_memory_headroom']
+            if s.available_gib is None or s.available_gib<need:
+                reasons.append('insufficient_memory_headroom')
+            if action!='STOP':action='HOLD' if reasons else 'CONTINUE'
         os_level=os_pressure_level()
         if os_level==4:reasons.append('os_memory_pressure_critical')
         if s.battery_percent is None:reasons.append('battery_sensor_unknown')

@@ -1,0 +1,41 @@
+{
+  "counterexample": {
+    "actual_method": "BatteryDiagnosticGate._check",
+    "available_gib": 6.5,
+    "cache_required_gib": 6.7163,
+    "cause": "Cache profile only examined if the generic insufficient_memory_headroom reason exists; generic resident6GiB admission can pass when the exact phase forecast fails.",
+    "mlx_active_gib": 0.1,
+    "observed_action": "CONTINUE",
+    "observed_reasons": [],
+    "pressure_free_percent": 50,
+    "unit": "materialized:64"
+  },
+  "focused_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_likelihood_cache.py tests/test_quant_cache.py tests/test_likelihood_adoption.py",
+    "elapsed_seconds": 0.35,
+    "failed": 0,
+    "passed": 31
+  },
+  "minimum_fix": "Always replace the generic headroom requirement with the exact cache phase requirement on the cache path, retaining other pressure/swap/thermal/concurrency/battery conditions.",
+  "native_imports": false,
+  "other_focused_findings": {
+    "cache_and_source_binding": "Reviewed; exact immutable certificate/cache remains source/input-bound",
+    "certifier_secondary_quantization_key": "Original blindspot fixed and regression passes",
+    "finite_remaining": "Explicit nonresident read-only1\u201357 scope keeps one model across a full fixed pending record list",
+    "loaded_base_and_adapter_checks": "1438 base parameters checked before504adapter values; real execution NOT_RUN",
+    "numerical_record_AST": "Unchanged fc51dfd7fe5998b05e723e27f57e703f0f1912ffd6dc836f6614f5be22b0cb31",
+    "segment_identity": "Original and optional derived-cache segments reconstruct separately"
+  },
+  "pending_launch": "Only affected cached likelihood launch blocked until minimal gate corrections; no new broad audit needed.",
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "second_boundary": "Before verify_loaded_parameters add an existing resource-gate call using resident_increment+reserve, because parity comparison builds full-tensor host bytes and reads disk bytes (largest about333.8MiB each) after materialization. The remaining-packed+2GiB admission does not reserve that comparison increment.",
+  "source_commit": "a5b62b252912c9568b6bbce8e75acb2f58e62dfa",
+  "source_sha256": {
+    "likelihood_adoption.py": "2420384c37c4f1d32e3416e63add77f80bb8fb40f1484d277cae77e7bf20932e",
+    "likelihood_battery.py": "6de2d400278b34e554dc406b11acc4e0d56eac911339e16484e56bcb830a64fd",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "paced_answer_likelihood.py": "751b1eb894e25d6eb72e9a0b9da38157bd5b1b413641971a347b750bc0e269a5",
+    "quant_cache.py": "25b6c8c3778d1a0d60d2841ba8076239f64f572493d2fe2f1d96ecb876008c13"
+  },
+  "verdict": "FAIL_CACHE_PROFILE_ENFORCEMENT_BOUNDARY_ONLY"
+}

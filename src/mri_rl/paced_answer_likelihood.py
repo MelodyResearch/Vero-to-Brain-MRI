@@ -182,6 +182,7 @@ def run(contract_path,checkpoint,output,approval,approval_digest,max_new_records
             def to_bytes(v):
                 a=np.asarray(v.view(mx.uint16) if v.dtype==mx.bfloat16 else v)
                 return a.tobytes(),('BF16' if v.dtype==mx.bfloat16 else 'U32' if v.dtype==mx.uint32 else str(v.dtype)),a.shape
+            gate.before_unit('before_cache_parameter_parity')
             if verify_loaded_parameters(tree_flatten(model.parameters()),cache['dir'],to_bytes)!=1438:raise ValueError('Cache parameter inventory mismatch')
             gate.before_unit('cache_parameters_verified')
             model=prepare_model_for_training(model,train_type='lora',lora_rank=4,lora_alpha=8,quantization_bits=None,quantization_group_size=64,checkpoint_path=adapter,verbose=False)

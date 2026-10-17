@@ -141,3 +141,13 @@ def test_certifier_requires_both_quantization_keys(tmp_path):
     cfg = json.loads((c / 'config.json').read_text()); cfg['quantization_config'] = {'bits': 8, 'group_size': 64}
     (c / 'config.json').write_text(json.dumps(cfg))
     with pytest.raises(ValueError): quant_cache.certify_cache(plan, out, c, src, qmap)
+
+
+def test_cache_materialization_checks_forecast_even_above_generic_unit_floor(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    from mri_rl.paced_answer_likelihood import CACHE_PROFILE
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
+    g = gate(tmp_path, 'forecast', healthy(available_gib=6.5, mlx_active_gib=0.1), cache_profile=CACHE_PROFILE)
+    g.initial = healthy()
+    with pytest.raises(RuntimeError, match='insufficient_memory_headroom'):
+        g.before_unit('materialized:64')
