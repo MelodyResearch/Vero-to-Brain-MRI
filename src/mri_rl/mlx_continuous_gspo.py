@@ -192,6 +192,21 @@ class NativeGSPOBackend:
                 'optimizer_profile':'persistent Adam 1e-5; no bias correction; no scheduler change',
                 'checkpoint_reload':'Required at next backend construction; not separately inferred'}
 
+    def greedy_generate(self,row):
+        """Deterministic reload-check generation from the loaded adapter; no gradient or state change."""
+        self.model.eval();self.before_unit('reload_greedy_generation')
+        messages=[{'role':'system','content':self.contract.system_instruction},
+                  {'role':'user','content':row['extra_info']['question']}]
+        prompt=self.template(self.processor,self.model.config,messages,add_generation_prompt=True,
+                             num_images=1,enable_thinking=self.contract.enable_thinking)
+        require(prompt.count('<|image_pad|>')==1 and prompt.endswith(self.contract.assistant_prefix),
+                'Native image placeholder/assistant prefix mismatch')
+        result=self.generate(self.model,self.processor,prompt,image=[row['images'][0]],
+            max_tokens=self.config['max_tokens'],temperature=0.,verbose=False)
+        self.mx.clear_cache()
+        return {'record_id':row['id'],'text':result.text,'token_ids':list(result.token_ids or []),
+                'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest()}
+
     def close(self):
         self.active=None;self.model=None;self.processor=None
         if hasattr(self,'optimizer'):del self.optimizer

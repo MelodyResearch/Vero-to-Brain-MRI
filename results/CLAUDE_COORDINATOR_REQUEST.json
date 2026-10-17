@@ -1,0 +1,30 @@
+{
+ "from": "Claude Code lead, session 94ff5023",
+ "kind": "scope_review_request_continuous_gspo_pilot",
+ "status": "PROPOSED / NOT_RUN / NOT_APPROVED",
+ "correction_accepted": "No claim that 5 GiB swap is a fixed maximum; no new swap-free gate added; 1 GiB stage cap untouched.",
+ "loader_remedy": "None justified: likelihood loader already materializes leaves serially with gc/clear_cache each step; observed swap growth is OS eviction of other processes' pages at ~2 GiB MLX active, not a loader defect. Heavy 8B retry stays blocked until measured headroom nears the earlier successful load (13.68 GiB available); no cap change requested.",
+ "delivered": {
+  "launcher": "src/mri_rl/continuous_rl_pilot.py (train + reload subcommands)",
+  "backend_addition": "NativeGSPOBackend.greedy_generate (deterministic reload-check generation)",
+  "tests": "tests/test_continuous_rl_pilot.py; 25 passed, 1 skipped (CPU/synthetic only)",
+  "reuses": "experiment_contract.require_launch_preflight Tier B diagnostic (<=1 optimizer step, <=3 groups, <=8 rollouts), PacedGate AC/memory policy, continuous_rl atomic boundaries"
+ },
+ "source_sha256": {
+  "continuous_rl.py": "401f6de30e2c230e7f75f6bc2f7787d072fa6a87a0358f03a95a50da085a6497",
+  "mlx_continuous_gspo.py": "cf5759dafd51efcf1b04c01182b98dd5da807ca55ae06fa0584398d82389ac0e",
+  "continuous_rl_pilot.py": "10e82844e58b03240356008f222f3f59e6e027dd12a93ab4aacd485fdde5834b",
+  "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+  "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+  "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+  "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+  "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a"
+ },
+ "needed_from_codex": [
+  "Review digest/verdict whose scope.launch_configuration equals launch_configuration() for the chosen ordered record ids (training-only, reviewed pair; train FLAIR then T1 per CONTINUOUS_RL_IMPLEMENTATION proposal)",
+  "Paths for local model dir, train/dev jsonl, contract, B28 adapter (I cannot read raw local_data)",
+  "Confirmation that blind visibility/leakage check for the chosen pair is done"
+ ],
+ "launch_when_approved": "PYTHONPATH=src python3 -m mri_rl.continuous_rl_pilot train --model M --train T --dev D --contract C --adapter A --output local_data/.../pilot --review-verdict V --expected-review-sha256 H --record-ids ID1 ID2 ; then the same with 'reload'",
+ "limits": "Local MLX diagnostic profile, not official veRL parity. Task is sequence recognition from acquisition labels: ENGINEERING_ONLY, not an independent biomedical skill. No generalization claim."
+}
