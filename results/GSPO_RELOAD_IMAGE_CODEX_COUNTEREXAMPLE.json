@@ -1,0 +1,11 @@
+{
+  "verdict": "CONFIRMED_DEFECT",
+  "component": "NativeGSPOBackend.greedy_generate",
+  "synthetic_only": true,
+  "native_imports": false,
+  "expected_frozen_image_sha256": "ceaaf181b9ed74d5ff05ec1883c071ebf72a318e2e3281c9680a67cf2e78d058",
+  "actually_generated_image_sha256": "25e0328878f0c1b15928e81c58a64aa89434db532fc20da61e4d811898e43a4a",
+  "mutation_in_resource_callback_accepted": true,
+  "generation_returned_success": true,
+  "scientific_consequence": "Reload prediction can use changed pixels after binding inspection without rejecting or recording that image hash."
+}

@@ -1,0 +1,11 @@
+{
+  "verdict": "ORIGINAL_CLEANUP_DEFECT_RESOLVED",
+  "source_commit": "aafc84f",
+  "synthetic_only": true,
+  "native_imports": false,
+  "constructor_completed": true,
+  "image_mismatch_rejected": true,
+  "backend_closed": true,
+  "failure": "Frozen image changed before reload generation",
+  "consequence": "Post-constructor image mismatch rejects and explicit backend.close now runs."
+}

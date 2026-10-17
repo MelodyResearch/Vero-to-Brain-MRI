@@ -1,0 +1,11 @@
+{
+  "verdict": "CONFIRMED_DEFECT",
+  "source_commit": "a3fbc28",
+  "synthetic_only": true,
+  "native_imports": false,
+  "constructor_completed": true,
+  "image_mismatch_rejected": true,
+  "backend_closed": false,
+  "failure": "Frozen image changed before reload generation",
+  "consequence": "Post-constructor image guard raises before try/finally, skipping explicit backend cleanup."
+}

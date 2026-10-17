@@ -1,0 +1,35 @@
+{
+  "actual_model_or_training_executed": false,
+  "adapter_config_export_template": "EXECUTABLE_NOT_RUN; genuine updated weights absent",
+  "baseline54_rows_match_frozen_metadata_prompt_pixels": "NOT_VERIFIED; adapter fingerprint mismatch; reuse not approved",
+  "candidate_plan_sha256": "1cb339e4e3bc4fa02b84f079f5352f97b76147541843934565e829d47510fecc",
+  "clinical_expert_blind_visibility": "NOT_VERIFIED",
+  "engineering_acquisition_label_diagnostic_supported": true,
+  "focused_test_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_continuous_rl_pilot.py tests/test_mlx_continuous_gspo.py tests/test_continuous_rl_driver.py tests/test_continuous_rl_dev_eval.py",
+  "focused_tests": 43,
+  "initializer": "B28",
+  "internal_dev_patients": 4,
+  "internal_dev_questions": 54,
+  "launch_ready": false,
+  "max_total_optimizer_updates": 1,
+  "native_prompt_filename_patient_or_hidden_target_leak_detected": false,
+  "remaining_blockers": [
+    "Physical-memory/headroom loader stop unresolved; no heavy launch approval.",
+    "Fresh exact independent launch verdict/digest NOT_ISSUED.",
+    "Actual Qwen gradient/update/native reload and post-update dev generation have not run.",
+    "Saved54 baseline has a different adapter fingerprint from selected B28 initializer; matched-initializer baseline reuse is NOT_VERIFIED."
+  ],
+  "renderer_caption_leak_to_selected_single_images": false,
+  "rollouts_per_group": 2,
+  "selected_groups": 1,
+  "selected_source_reconstructions_exact": 2,
+  "software_train_reload_dev_components_review": "PASS_WITH_LIMITATIONS_CPU_ONLY",
+  "source_code_commit": "4a1bf3e414b75163af6a6b6dd88fcce46c1ef50e",
+  "source_inventory_counts": {
+    "dev": 8,
+    "pilot": 9
+  },
+  "status": "PREPARED_ENGINEERING_ONLY_NOT_APPROVED_NOT_RUN",
+  "train_dev_patient_disjoint": true,
+  "train_patients": 28
+}
