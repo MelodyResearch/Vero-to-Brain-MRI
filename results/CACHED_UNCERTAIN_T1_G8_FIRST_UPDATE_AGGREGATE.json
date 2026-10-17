@@ -1,0 +1,105 @@
+{
+ "kind": "cached_uncertain_t1_g8_first_real_gspo_update",
+ "launcher_sha256": "a5770cbf79fe9e8879e82acab0d52816d7ae8d05dbc555e2c8a45dfed172afbe",
+ "approval_sha256": "5a418cff47ea9e2db0f933f2741a9c8a0938cbd5e39d3f2731f2a105570778d6",
+ "review_file_sha256": "de60f09f7c4a9995fabfb67f0b8bb429a4502acebc5d97d3c942b22f51680636",
+ "status": "UPDATE_BUDGET_REACHED; exit 0; 1 group attempted, 1 optimizer update, cap reached",
+ "scope_label": "training-only, uncertainty-screened T1 ENGINEERING diagnostic (not unbiased primary-arm sampling, no generalization claim)",
+ "group": {
+  "rollouts": 8,
+  "accuracy": [
+   1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1,
+   0
+  ],
+  "format": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "total_reward": [
+   1.0,
+   0.2,
+   0.2,
+   1.0,
+   0.2,
+   0.2,
+   1.0,
+   0.2
+  ],
+  "advantages": [
+   1.208,
+   -0.725,
+   -0.725,
+   1.208,
+   -0.725,
+   -0.725,
+   1.208,
+   -0.725
+  ],
+  "response_tokens": [
+   20,
+   20,
+   21,
+   20,
+   16,
+   17,
+   20,
+   18
+  ],
+  "distinct_response_texts": 7,
+  "nondegenerate": true
+ },
+ "optimization": {
+  "loss_terms": [
+   -1.2076,
+   0.7246,
+   0.7246,
+   -1.2076,
+   0.7246,
+   0.7246,
+   -1.2076,
+   0.7246
+  ],
+  "gradient_l2": 1.702929,
+  "old_current_logp_max_abs_error": 0.0,
+  "optimizer": "persistent Adam 1e-5, no bias correction, fresh from B28 then saved",
+  "optimizer_updates": 1
+ },
+ "weights": {
+  "adapter_before_sha256_prefix": "b316db3d5ead",
+  "adapter_after_sha256_prefix": "5671e1bdd63f",
+  "adapter_changed": true,
+  "optimizer_fingerprint_changed": true,
+  "adapter_config_json_in_boundary": true,
+  "boundary": "boundary_0001 atomic (adapter+Adam+RNG+cursor+rollout)"
+ },
+ "resources": {
+  "events": 85,
+  "non_continue_events": 4,
+  "min_available_gib": 5.99,
+  "max_mlx_peak_gib": 7.779,
+  "swap_gib_range": [
+   9.723,
+   10.041
+  ],
+  "note": "first measured training peak on the cached model: 7.78 GiB MLX (microbatch 1, gradient checkpointing)"
+ },
+ "not_yet_done": [
+  "post-update reload check (separate approval bound to this boundary digest)",
+  "post-update dev evaluation",
+  "any claim of improved visual discrimination or generalization",
+  "GSPO_TRAINING_COMPLETED"
+ ],
+ "reading": "Group 8 on an uncertainty-screened T1 row gave 3/8 correct with nonzero reward variance, so a genuine GSPO-token gradient and a real LoRA/Adam update occurred. This is the first verified weight-changing real-MRI GSPO update of the project; its effect on the model is unmeasured."
+}

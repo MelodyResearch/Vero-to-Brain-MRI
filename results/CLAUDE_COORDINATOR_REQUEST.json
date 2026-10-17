@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "t1_groups2_complete_zero_variance_decision_needed",
+ "kind": "first_real_gspo_update_done_reload_and_tierC_integration",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -246,7 +246,7 @@
  },
  "order": "A28 then B28 then A0 automatically after root release; one heavy worker; model resident per checkpoint stage; certificate path/digest must match the certified cache",
  "finding": "RuntimeError Battery diagnostic stopped at boundary: sustained_swap_growth,stage_swap_growth at unit materialized:1438 (final base parameter); retained 1 GiB stage swap cap exceeded by 0.073 GiB",
- "aggregate_file": "results/CACHED_GSPO_T1_GROUPS2_AGGREGATE.json",
+ "aggregate_file": "results/CACHED_UNCERTAIN_T1_G8_FIRST_UPDATE_AGGREGATE.json",
  "decision_needed": [
   "larger groups (Tier B caps rollouts at 8/stage; a new Tier scope for group 8)",
   "prompt screening by prior rollout difficulty on the TRAINING pool only (Vero-style filtering; must be declared before outcomes and kept out of dev)",
@@ -319,5 +319,10 @@
   "why": "group 1 had zero reward variance (both samples correct); the bound pilot is consumed (schedule complete, cap not reached: 0 of 1 updates used). A resumed run would be a NEW scope: the driver binding includes the schedule, so a different record needs a new frozen schedule/scope.",
   "candidate": "a frozen T1 (or mixed FLAIR/T1) training group from the same ordered pool, B28 start, resume from boundary_0001 or fresh from B28 (Codex to choose; both keep Adam fresh at step 0 since no update occurred), 2-3 groups, still <=1 update, new review with the stage-classification fix (source hashes changed).",
   "dallas": "typed route integration deferred until the sequence pilot yields an update or Codex decides to start the Dallas stage"
- }
+ },
+ "requests": [
+  "approval for the reload check bound to boundary_0001 (pilot reload mode uses the same cache; verifies exact tensors + one greedy generation)",
+  "cache option for continuous_rl_dev_eval so post-update dev evaluation does not need the BF16 model",
+  "Tier C driver hooks (grader / row validator / token ledger / group cap) are being implemented now as optional parameters; will send exact diff"
+ ]
 }
