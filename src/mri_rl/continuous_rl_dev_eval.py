@@ -13,7 +13,8 @@ import os
 import time
 from pathlib import Path
 from mri_rl.continuous_rl import require, digest
-from mri_rl.experiment_contract import _check_review, load_contract, sha256_file
+from mri_rl.experiment_contract import (_check_review, check_artifacts, load_contract, resolve_artifact_paths,
+                                        sha256_file)
 from mri_rl.frozen_eval import adapter_metadata, prepare_resume
 from mri_rl.paced_resources import PacedGate
 
@@ -37,6 +38,23 @@ def select_records(manifest, subset_ids):
     return [r for r in records if r['record_id'] in set(wanted)]  # manifest order, never score-ordered
 
 
+def model_inventory(model, contract, contract_path):
+    """Validate the supplied model dir against the contract and hash EVERY file (weights, tokenizer,
+    processor, template). No native imports. Returns a canonical, reviewable inventory."""
+    model = Path(model).resolve()
+    require(model.is_dir(), 'Model directory missing')
+    paths = resolve_artifact_paths(Path(contract_path))
+    for name, filename in (('model_config', 'config.json'), ('processor_config', 'preprocessor_config.json'),
+                           ('tokenizer_config', 'tokenizer_config.json'), ('chat_template', 'chat_template.json')):
+        require(paths[name].resolve() == (model / filename).resolve(), 'Supplied model dir differs from contract artifacts')
+    failures = check_artifacts(contract, paths)
+    require(not failures, 'Contract artifact check failed: ' + '; '.join(failures))
+    files = sorted(p for p in model.rglob('*') if p.is_file())
+    require(any(p.suffix == '.safetensors' for p in files), 'No model weights found')
+    return {'model_dir': str(model),
+            'files': [{'path': str(p.relative_to(model)), 'bytes': p.stat().st_size, 'sha256': sha256_file(p)} for p in files]}
+
+
 def expected_config(model, manifest, adapter, max_tokens):
     model = Path(model)
     template = model / 'chat_template.json'
@@ -48,15 +66,26 @@ def expected_config(model, manifest, adapter, max_tokens):
             'max_tokens': max_tokens, 'temperature': 0, **adapter_metadata(adapter)}
 
 
-def evaluate(records, backend_factory, output, expected, *, resume):
+def evaluate(records, backend_factory, output, expected, *, resume, approved_image_sha256,
+             approved_output_sha256=None, verify_model=None):
     """Generate for every pending record with one backend; returns aggregate counts only."""
     output = Path(output)
+    # Everything below compares against values captured BEFORE review; nothing is re-blessed from disk.
+    require(set(approved_image_sha256) >= {r['record_id'] for r in records if r.get('image')},
+            'Reviewed image hashes must cover every image record')
+    require((digest(output) if output.exists() else None) == approved_output_sha256,
+            'Existing output differs from the reviewed starting output')
     output.parent.mkdir(parents=True, exist_ok=True)
     done = prepare_resume(output, records, expected) if resume else set()
     if not resume:
         require(not output.exists(), 'Output exists; use resume to preserve completed work')
     pending = [r for r in records if r['record_id'] not in done]
-    shas = {r['record_id']: (digest(r['image']) if r.get('image') else None) for r in pending}
+    shas = {r['record_id']: (approved_image_sha256[r['record_id']] if r.get('image') else None) for r in pending}
+    for r in pending:
+        require(not r.get('image') or digest(r['image']) == shas[r['record_id']],
+                'Image bytes differ from the reviewed hash; refusing before model construction')
+    if verify_model is not None and pending:
+        verify_model()
     counts = {'manifest_records': len(records), 'reused': len(done), 'generated': 0, 'hit_max_tokens': 0}
     if not pending:
         return counts
@@ -95,12 +124,17 @@ def main():
     subset = a.subset_ids_file.read_text().split() if a.subset_ids_file else None
     records = select_records(a.manifest, subset)
     expected = expected_config(a.model, a.manifest, a.adapter, max_tokens)
+    inventory = model_inventory(a.model, contract, a.contract)
+    image_hashes = {r['record_id']: digest(r['image']) for r in records if r.get('image')}
+    start_output = digest(a.output) if a.output.exists() else None
+    require(a.resume or start_output is None, 'Output exists; use --resume to preserve completed work')
     scope = {'execution_tier': 'B', 'kind': 'continuous_rl_dev_eval_v1', 'label': a.label,
              'contract_id': contract.identity(), 'manifest_sha256': expected['manifest_sha256'],
              'subset_record_ids': [r['record_id'] for r in records], 'max_tokens': max_tokens, 'temperature': 0,
              'adapter_checkpoint_sha256': expected['adapter_checkpoint_sha256'],
              'adapter_config_sha256': expected['adapter_config_sha256'],
-             'output': str(a.output), 'weight_updates': 0, 'source_sha256': source_hashes()}
+             'output': str(a.output), 'weight_updates': 0, 'seed': a.seed, 'resume': a.resume,
+             'starting_output_sha256': start_output, 'image_sha256': image_hashes, 'model_inventory': inventory, 'source_sha256': source_hashes()}
     _check_review(review_verdict_path=a.review_verdict, expected_review_sha256=a.expected_review_sha256, scope=scope)
     gate = PacedGate(a.output.with_name(a.output.name + '_resource_events.jsonl'))
     def before_unit(name):
@@ -108,7 +142,10 @@ def main():
     from mri_rl.mlx_continuous_gspo import NativeGSPOBackend
     config = {'group_size': 2, 'max_tokens': max_tokens}
     counts = evaluate(records, lambda: NativeGSPOBackend(a.adapter, config, model_path=a.model,
-                      contract=contract, seed=a.seed, before_unit=before_unit), a.output, expected, resume=a.resume)
+                      contract=contract, seed=a.seed, before_unit=before_unit), a.output, expected, resume=a.resume,
+                      approved_image_sha256=image_hashes, approved_output_sha256=start_output,
+                      verify_model=lambda: require(model_inventory(a.model, contract, a.contract) == inventory,
+                                                   'Model artifacts changed after review'))
     print(json.dumps({'label': a.label, **counts, 'output_sha256': digest(a.output) if a.output.exists() else None}))
 
 

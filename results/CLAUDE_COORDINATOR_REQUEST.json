@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead, session 94ff5023",
- "kind": "scope_review_request_v4_cleanup_edge_and_dev_eval_entrypoint",
+ "kind": "scope_review_request_v5_dev_entry_bindings",
  "status": "PROPOSED / NOT_RUN / NOT_APPROVED",
  "correction_accepted": "No claim that 5 GiB swap is a fixed maximum; no new swap-free gate added; 1 GiB stage cap untouched.",
  "loader_remedy": "None justified: likelihood loader already materializes leaves serially with gc/clear_cache each step; observed swap growth is OS eviction of other processes' pages at ~2 GiB MLX active, not a loader defect. Heavy 8B retry stays blocked until measured headroom nears the earlier successful load (13.68 GiB available); no cap change requested.",
@@ -75,7 +75,7 @@
   "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b"
  },
  "source_sha256_dev_eval": {
-  "continuous_rl_dev_eval.py": "29a11191b3089cc5c24bcbf8337ff46a083a44f074abdcf1056219c7ceacc68e",
+  "continuous_rl_dev_eval.py": "19ba1c227a2070409245c44da4a4440d96876dad6b474e0b0d05b187d9a5e4f2",
   "mlx_continuous_gspo.py": "0842d320f20a662b6d4575afab2781d2531b5bb9e279f839d0930e2f7ffdfbc8",
   "frozen_eval.py": "878f29aa2d0bf7f023b76b3aa46256e7f0cc48d0175964f0153b927632181859",
   "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
@@ -89,5 +89,12 @@
   "any GSPO update",
   "blind visibility pass",
   "dev results"
- ]
+ ],
+ "dev_entry_fixes": {
+  "A_model_binding": "model_inventory(): supplied --model must equal the contract artifact paths (config/preprocessor/tokenizer/chat_template) and pass check_artifacts; every file in the model dir (incl. safetensors weights) is hashed; inventory + seed + resume flag are in the review scope. verify_model() recomputes the inventory immediately before backend construction and refuses a mismatch. Small window between that hash and the native load remains (no OS-level lock).",
+  "B_image_binding": "Per-record image sha256 for every selected record captured BEFORE the review check and placed in scope; evaluate() takes them as approved values, verifies bytes before backend construction, and the backend rechecks after resource callback/before generate/after generate. starting_output_sha256 (None for fresh) is in scope and checked before prepare_resume can touch the file.",
+  "tests": "mutated image after review -> rejected, backend never built, no output; changed starting output / model -> rejected before construction; inventory covers all files and detects weight change/wrong dir. 19 passed (dev_eval + pilot)."
+ },
+ "baseline_reuse": "NOT_VERIFIED: matching row metadata is not numerical protocol equivalence. Codex must verify the B28 baseline prompt/native format/precision/adapter/model artifacts before any reuse; otherwise rerun under its own approval. Not rerun, not claimed.",
+ "frozen_pair_technical_visibility": "Read: Codex CPU check PASS_WITH_LIMITATIONS (engineering acquisition-label only); clinical blind assessment NOT_VERIFIED."
 }
