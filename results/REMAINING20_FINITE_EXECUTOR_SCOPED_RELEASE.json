@@ -1,0 +1,66 @@
+{
+  "acceptance_criteria": [
+    "Run only exact20 listed stages with each existing independent native approval. Preserve native resource/power/one-heavy protections and every complete-group/step checkpoint.",
+    "Adopt actual U7 only through trusted actual exit+full numerical+final weight reload release. Never repeat completed U7 or first SFT7 step.",
+    "Require actual exit0, frozen full-budget terminal, complete chain and actual Adam scalar before each queue advance. Preserve zero-update negative attempts.",
+    "Record final-budget states and separately verify remaining major numerics and full22-checkpoint final evaluation before any study-completion claim."
+  ],
+  "evidence_tier": "EXACT_FINITE_EXECUTOR_REVIEW_AFTER_ACTUAL_NATIVE_U7_SFT1_AND_CALIBRATION76",
+  "executor_sha256": "44c2636f3ee3c65b208cc7588eb15d49025b0c195f73eb86772353b9de042629",
+  "limitations": [
+    "This release permits finite local execution; it is not evidence all20 native stages have run or all weights changed.",
+    "Independent native backward recomputation is NOT_RUN; CPU state proofs and actual source-bound native receipt checks are distinct.",
+    "CROSS_MODEL_REVIEW=NOT_VERIFIED for private remaining20 queue payload; genuine earlier Claude source reviews and actual40evaluation are accurately recorded. Normal Claude Bash denial was respected; current execution uses separate approved Codex local path.",
+    "Local MLX language-LoRA/fourbit/group4 differs official Vero distributed CUDA/vision recipe; open-ended retention and secondary active-ratio controller remain unestablished.",
+    "Binary active rewards make calibrated arms a mechanistic-null control; no nonlinear method innovation inferred.",
+    "Whole-head Dallas shortcuts and source/task confounding persist. C40 is previously examined internal dev; final100pixels remain sealed until exact22checkpoint release. No clinical or independent-patient generalization claim.",
+    "AC is required for training. Genuine critical pressure/absolute swap/thermal/instability stops affected native workload. No OS protections changed and no panic-prevention guarantee.",
+    "Final evaluation, independent remaining numeric proofs and GitHub final result push remain required. Whole MRI research remains active."
+  ],
+  "manifest_sha256": "f47169577b285d03e21dafe904244d77be83c10edcf730f3b72a7a129cd1bd01",
+  "matched_budget_checks": [
+    "All RL169216 native-input-plus-generated-token caps,K4,max256,maximum198attempts,fullgroupreservation and measured/imputed debt.",
+    "Calibrated P/U schedules match raw counterparts; statistics from actual common-start train-only76rows frozen before all6 calibrated arms.",
+    "SFT7 full120steps/167878tokens includes original1step/1304tokens;119remaining. SFT11/13 fresh commonB28 with120/121steps and168439/168788tokens. No exactFLOP or effective-update equality claim."
+  ],
+  "mission_alignment_check": "Execute the remaining frozen17GSPO plus3same-dataSFT comparator stages, one native child at a time; actual U7 completion is adopted and SFT7 resumes step1. This advances the original Vero-to-MRI factorial without changing algorithms, labels or budgets.",
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "review_sha256": "fe2d11c66f841b3cb7e76bbfffd1be98739baabd4fe708bc5e90122c21a0296c",
+  "reviewer_findings": [
+    "Read full frozen executor and assembler; independently ran nine focused controller tests PASS, including no-approval, forged/nonzero exit, bounded-diagnostic-as-full rejection and explicit calibration routing.",
+    "Independently reconstructed final20 exact configs from trusted actual calibration76 proof and firstSFT1 proof. Actual final verify_config CLI EXIT0 ALL20_CONFIGS_VERIFIED_NO_MODELS_STARTED.",
+    "Source19/21, common B28/cache/data/prompt/precision, each native169216token cap, exact official-category schedules and three SFT full schedules verified.",
+    "First actual U7 full125groups/39Adam updates independently checked, actual final weight constructor and40eval done; original group7/21 momentum proofs and native fresh G8 restore retained.",
+    "Actual SFT1 optimizer0\u21921,504 changed tensors and NumPy weight error0 verified; full seed7 resumes its exact unchanged boundary1.",
+    "Reviewed completed-only exact-byte storage helper and 14 focused tests previously; helper unchanged. Storage runs only after actual nativeexit0 and full chain/ledger/optimizer terminal.",
+    "One sequential subprocess awaited, durable per-stage actual exit witnesses, no DONE reruns, failed states retained, no blind retries, no test pixels opened."
+  ],
+  "reviewer_id": "Codex /root independent of execution-adapter implementer",
+  "reviewer_kind": "isolated_codex",
+  "schema": "remaining20-executor-scoped-review-v1",
+  "stage_order": [
+    "rl:S_sequence:7",
+    "rl:S_correspondence:7",
+    "rl:P_raw:7",
+    "rl:S_sequence:11",
+    "rl:S_correspondence:11",
+    "rl:P_raw:11",
+    "rl:U_raw:11",
+    "rl:S_sequence:13",
+    "rl:S_correspondence:13",
+    "rl:P_raw:13",
+    "rl:U_raw:13",
+    "rl:P_calibrated:7",
+    "rl:U_calibrated:7",
+    "rl:P_calibrated:11",
+    "rl:U_calibrated:11",
+    "rl:P_calibrated:13",
+    "rl:U_calibrated:13",
+    "sft:7",
+    "sft:11",
+    "sft:13"
+  ],
+  "storage_helper_sha256": "5de00f8ed1119403c7cea3a293ad311d5df8c563aba49a9afbeb8359bf50db59",
+  "substantial_training_authorized": true,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

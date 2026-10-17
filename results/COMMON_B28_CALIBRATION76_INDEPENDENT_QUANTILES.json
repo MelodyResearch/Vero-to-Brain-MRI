@@ -1,0 +1,212 @@
+{
+  "actual_native_exit_code": 0,
+  "calibrated_arms_unblocked": true,
+  "calibrated_reward_nonlinear_mechanism_identifiable_from_response_support": false,
+  "calibration_plan_sha256": "d97352653d2ada2a47b7a13f36aacecec7a86db98a967903bd4884642e191092",
+  "checks": {
+    "304_accuracy_and_format_values_independently_recomputed": true,
+    "304_response_texts_independently_ByteLevel_decoded": true,
+    "abandoned_work_costs_independently_authenticated": true,
+    "actual_LR_and_concrete_Python_MLX_RNG_all77_snapshots": true,
+    "actual_optimizer_step_remains0_all77_snapshots": true,
+    "all77_row_parent_chains_and_state_bindings": true,
+    "all_saved_file_hashes_verified": 382,
+    "common_B28_504_parameter_fingerprint_reconstructed_and_equal_all_snapshots": true,
+    "native_prompt_render_and_input_IDs_match_frozen_capture": true,
+    "percentile_algorithm": "Sort; position=(n-1)*p; interpolate adjacent endpoints at p=.25,.5,.75; no NumPy/calibration statistics helper called",
+    "source_manifest_order_labels_and_image_bytes": true,
+    "statistics_unit": "76 per-prompt means of K4 raw accuracy, partitioned28/48 by task; not304 pooled responses"
+  },
+  "common_504_parameter_fingerprint": "ca9200a6e0a3ce856e6269f1a2520c03d1f3e772085a00e1de8339ea75a8b28c",
+  "complete_receipt_sha256": "a11d59ac6c90718d7feb3235e1bdf822c5e6d3fc26986ad99b192255a64480dc",
+  "evidence_sha256": {
+    "actual_exit_witness": "4d631781403d67cf166836ba87dc0016ac9911bf798fc003819f16df62cc0d80",
+    "approved_review": "6d9e30e469452c4df09a26aae613b3fc5ce3dd33c45b8d2b2a74f8fce03d7412",
+    "calibration_file": "c5cbb6cb4c1dc4cb9fdfd8e5bd1d98b3e49b535dbab76f7100678ac435081c1f",
+    "closed_native_stdout": "12ad0fb0538169922ca0ef543d4436f123dbff2fb4d9c015c17dcea6814bea52",
+    "common_B28_adapter": "b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572",
+    "derived_calibration_log": "9e1cb945f3412b8f29eb042681bae1c61a30a11fb5502244d951ada09531f3c5",
+    "frozen_native_inputs": "582dd574f82315417206fa9a4f42edcb6abca06b039cbf8d94c71850e15165f6",
+    "journal_receipt_chain": [
+      "7bd759d0f1f9966850a9b2b012c8acfafededc0ceb5244bdc6ba385b61b7d7eb",
+      "5d8c3e928b07dd2a370dc99b8f1f332ab607a333c53f45242a686327d0b8148d",
+      "b9d80402552eb1a8c297f18d91955209acf11451530e24e74030c92cc777ea5c",
+      "f3ce8903e08074661ebbdb1451aac9952c636a201514fbbb8bd19996c3c5a979",
+      "6e2dca9dc610dc747901e9af1e48420196b3d30bd48117661fbb30b770533a4f",
+      "7de52f956c904e46a2ee99415d80353855dad9c65b3645ad9ce2ee5ecbd19572",
+      "fd828be36e5c80ff2557cb55a45aed5eff00f7077698623841f14a986deb29b5",
+      "e095d4769644b490774a51953fc3d919e59c499418346ef4e389accb6caf0593",
+      "8b6e1aa2cfe0ed981f0a7a8c54c2f8dd8eb6724b437af8079a719d0a6f470ea4",
+      "28cc41bac730d2808a712113702bdced7dae0cd37e6af891a4ac478f68113910",
+      "691a57f9afb2c3e85e38a88bc853748f52259e7cb495ba7e625c1f860a4b5254",
+      "fa78b3f6d9faf7438f4f2b1913b44fd5a2d982d874060e802ed5afb5934aeaf1",
+      "f1881395cee44f2fbf51badeaa66bfcf43691a1746ab4d34336e13ce393edfa4",
+      "74c0caf66393326b8998a734ae22e1c59f2ac2394d297a5e49589fe525e56e4a",
+      "a0a707a2e3a6cdb4b65950730dd96be18a77310b2ecfbcecb9ab11c6ce31c0cd",
+      "ca83d7a92a0aeb74c988b34d8d15916c0186ee33a7fabbfd82d1bde34ca02b11",
+      "2c90526271ce20f6e2e8c712483983f6a32b909c11ea88247af282e2724f7040",
+      "e4489c4f73837c7dacc1b188dae2c4f2c7ce72bbb5722bab9f046553aedd9a1b",
+      "f750868faa98650cb4e45c4da58cd2e01bd426771af3bd06bdf09f70031d084a",
+      "3bfce6f634fe465c7a425559a5b6db80edd9f1ff453b2480a5d5cbe35dd09c61",
+      "fdab13dfb7e467aec57da29f5951fc9b3a0b09a45a34fdcdfba1572fd55d9c5f",
+      "86e8a52ad84c0be9a8b7bec0fdfef5fcb5383dbd64ae37cdd3468dfb05ca6808",
+      "241ed0a1ac3e834693d80356b7fc325affd1cba8c9624a8ef2f59acabb49f209",
+      "69a3cd40c0ba1bdadb739990dab3f4fdcfd3f351e80eed695c120c4d1ba00c32",
+      "f673b0d9033c3f5132fedbdca7f6224292d37468875e64417798e158e6d3da13",
+      "3a3fbe482c66d3f950dfb6719f3059b2e7c82d43370e5ec058b383a14825b114",
+      "a6a3ca42a61d64d6eb0adc209720ed7bcaabcbe2a40f2410927c9ed5ca48ca80",
+      "d31587f89208eec3dd871104bdf41baf107fe4615b81116f709bbbb8f6c32d75",
+      "a6c84daf354d223a9409b6fcd02e923c39aa01b5e5e4723a35ef98fb6c4aa1fe",
+      "ab1b00ac6dce9e7de14171e5eb07da21d63af13514e05ae719d40a02764be4d2",
+      "c9b18659d75666c9ce23c844b5446e613dbd8599c379197c8680406f987f96f4",
+      "1753c3d0fee45fed343a1c9be9464461d4c5a085c37636322e0c49ba8c668073",
+      "0ad03a2c6a887fc8da2fa22630b03fa4fa645b0eeada8b10762cc9a72916a9c3",
+      "13fc5a06f145aa1438f59572461291a2e52ce4fd2b4163846f4c5814b7231754",
+      "7e9ac9a9f2b27581c204b446e86b873e1bf07713495ff12c3e48656b84c149e7",
+      "7a9ac1b8355865192cc0c709f88ffb2d00e63aafe973560bcb4685eb1669f29e",
+      "807a7af5001bdc4c62d883f830c8b5e2a0bfe57adb3b1fe1d7daef091929de82",
+      "5d76784bf0d8d336964e0a838ab32cc37d213f42013110144d06235e58f05f32",
+      "87edacd8fd8c9231f23357da886fad2d0ea834e5e15b564e08d55d42859f626a",
+      "0e30c5f951a706c5172eb822a272a0086aa24a5037415212619d5ca13c893392",
+      "df6aef26ee03988124d1995f3e82ff8afbffe205eed78d15327c90aa2eacccac",
+      "98a5f27de475f632f31f3552e78676427b8332fde45d3a85aeceb9d40324df45",
+      "7ed58f3c10a064cc55567785f2992f00c956af8cd9545c8c16fadaebaa898c38",
+      "99b526288b25ccf8dac8b10eb8a328b4292b859f5732d09feb9ab92ad56c84a9",
+      "4c4cfa6ed1c35c24f7d8ccf58edd1d469dee443a0a59a129808ea0c822dec8dd",
+      "655819addc33a52b33f0ee8e9f30839d7e10621764beb8b995fd89539b07b885",
+      "afb21c57c84a41b32ad21909115ae0243400dff52c5d8646a60df8ca015f8c01",
+      "7ff04b72df753e3333076c5fd3406779dce465a13aae729fe0fbd5e84971d538",
+      "20ac85c89f7008e5e63151116cc40b4f93ab4ce622bd02d038452590f290cea7",
+      "a75c6d71225b16ce95c2f9441fd28e5a64655a453671626d5d6b2e524f636016",
+      "55ef3af2abe67228b669d32af6154463dbd35dcdb0c3d97c306a80357a17a3e8",
+      "b77239189c559a389c35f840f391f69c6517b69b3f396ba67dda0a021f5b43ba",
+      "00db9ac5e5176cc7c7b1924218959c07e5dc27ecaa88bc4444e3dcc94702187c",
+      "98d19826ad007dd4f9dae719c35b8fd9417f2c4a937fc6cc17917d8f4f64817d",
+      "13adb57599506773693aa22be45ef39eaccc21f022bca22ff47c2c55aea4694b",
+      "4b75c9a6ccd9d714a2a61aa3f233b8ed6dac76844fe1690de137cf53c25ce23d",
+      "bf36619a83af4530a52f9e7806ca047a3a0fd2b61360dfbf8995707183edae83",
+      "439de0a9b4304bd164dcb99a3f24e78999ff56679edcf5bfbed4d468df3a5d02",
+      "77ccef22d153ff9638bbc7950b0230023d6113aa15e5dedb74e276e0f967251b",
+      "3b307cb42ce9f477009159e3b4b98ef6705e27152fa1ee2b85a216ea325ddafa",
+      "8908dad0a2ab66193bc0f956e3f515861af91d6a477a95897c83e7309a157b5f",
+      "b3e189d46ddf7744731381c1db968f63596316f37b6dba817fb118ca3dd1bb86",
+      "cf9218453ff424b96e165eb10231ef1b9cd125abfd48589ae144f5ec250378fd",
+      "10fda47842ca8f0f04074c895f114fd6d7455d5e7223808d949d607e5a36c850",
+      "fc18c9ffcabb2177810bf437e83f45a332f85dd93589557f558007be1a954675",
+      "aa39a303ce8356d6722f702a8f5186769378a8199ef80cfe15b209455c6248c3",
+      "5f05d1d82e4daabee1ebedf4e1862d0349e9055f7ebfc68acdd03294c1f19bd4",
+      "ef7cf56977f0740bcb8b43d7e1fe36599b4f88c45bf48178925698347d273fae",
+      "ab7316d578a887dc15e1258e52fe2e9fa28eaf42aa2836e74ce70c9329acc783",
+      "237289ab23d5fd88f1c54d79c0ad15f7fab39b7097e6fec5a9d8d248d0acc65c",
+      "701f2d4a36430d296bfa2489a613d58a9dcd4886dec635435dd8914da79b2cc7",
+      "d69af058810b8fd50073afa22823f148174aa7fd91a879331595f4c6c22a3204",
+      "be45c58f8624cc3cdcba2ba1bdc0792729173dedc5298605beb2ad76011e89a0",
+      "d108a154121d6f517d818b8de1475dde07e014dcde40ab4bc7514e82e3710247",
+      "b84e91648809d590f54df18a23c0b4b0f56e1f8604073eb2528435a71d53fcb2",
+      "51b18b15a58be2959ba01866cc1a31450e856945e2e42639abed5d0cd5338cd2",
+      "895a8ebcedad822019ac73a108443b19ef86f585107d7840b21fffd988b81171"
+    ],
+    "plan_file": "0e2832489a8a2b5d84e6129f7c57e6936364599ffe503bab85435db5683af24d",
+    "verifier_source": "c4c3fc4295b9a562e03be104a66fce9fa0ec742cf27571a87521fb66db1e3acd"
+  },
+  "evidence_tier": "REPRODUCED_CPU_FROM_ACTUAL_NATIVE_CALIBRATION_JOURNAL",
+  "final_row_receipt_sha256": "895a8ebcedad822019ac73a108443b19ef86f585107d7840b21fffd988b81171",
+  "generated_tokens": 5133,
+  "imputed_unknown_tokens": 0,
+  "journal_binding_sha256": "ea84a9954c7812a24a11ebb5de6b1d20512d31abbf41e4a29053ea93b53fbab5",
+  "limitations": [
+    "Training-only calibration rollouts are repeated stochastic responses, not held-out task accuracy or independent patients.",
+    "Snapshot fingerprints are independently tied to actual common B28 adapter bytes; no extra native reload or independent execution of model logits/backprop occurred in this CPU verifier.",
+    "Concrete RNG states and exact step0 are authenticated; native RNG-next-generation trajectory was not independently rerun.",
+    "Binary per-response accuracy support cannot establish a nonlinear MedGRPO mechanism even if per-prompt means have several levels; do not interpret tiny advantage-epsilon differences as new MRI understanding.",
+    "Zero IQR truthfully blocks affected calibrated configurations without a floor; raw RL and SFT remain independent executable work.",
+    "Whole-head correspondence has face/skull/neck/intensity shortcuts and task/source confounding; no clinical or independent-patient generalization claim."
+  ],
+  "linear_quantiles": {
+    "mri_sequence": {
+      "p50": 1.0,
+      "q25": 0.1875,
+      "q75": 1.0
+    },
+    "mri_visit_correspondence": {
+      "p50": 0.25,
+      "q25": 0.0,
+      "q75": 1.0
+    }
+  },
+  "measured_tokens": 106749,
+  "native_input_tokens": 101616,
+  "ordered_raw_76_verified": true,
+  "per_prompt_mean_accuracy_support": {
+    "mri_sequence": [
+      0.0,
+      0.25,
+      0.75,
+      1.0
+    ],
+    "mri_visit_correspondence": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "per_response_raw_accuracy_support": {
+    "mri_sequence": [
+      0.0,
+      1.0
+    ],
+    "mri_visit_correspondence": [
+      0.0,
+      1.0
+    ]
+  },
+  "raw_quantiles_independently_recomputed": true,
+  "raw_scores_by_task": {
+    "mri_sequence": {
+      "correct_raw": 76.0,
+      "full_format": 107,
+      "responses": 112
+    },
+    "mri_visit_correspondence": {
+      "correct_raw": 88.0,
+      "full_format": 175,
+      "responses": 192
+    }
+  },
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "responses": 304,
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "rows": 76,
+  "saved_MLX_RNG_changes": 76,
+  "saved_MLX_RNG_unique_states": 77,
+  "schema": "common-B28-calibration-independent-quantiles-v1",
+  "statistics": {
+    "mri_sequence": {
+      "blocked": false,
+      "distinct_levels": 4,
+      "iqr": 0.8125,
+      "n": 28,
+      "p50": 1.0
+    },
+    "mri_visit_correspondence": {
+      "blocked": false,
+      "distinct_levels": 5,
+      "iqr": 1.0,
+      "n": 48,
+      "p50": 0.25
+    }
+  },
+  "statistics_sha256": "56f99eb602568942387fa15fc787e0e9a6121c0ae8e9774e61ca1584db132e5f",
+  "task_prompt_counts": {
+    "mri_sequence": 28,
+    "mri_visit_correspondence": 48
+  },
+  "token_cap": 179440,
+  "total_cost_tokens": 106749,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "weight_updates": 0,
+  "zero_IQR_tasks": []
+}
