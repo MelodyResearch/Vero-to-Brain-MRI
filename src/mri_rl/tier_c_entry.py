@@ -40,7 +40,9 @@ def prepare_arm(plan, arm_name, seed, source_rows, measurement_rows, calibration
     grader = make_grader(calibration if arm['reward'] == 'medgrpo_eq3' else None)
     lookup = input_tokens_by_source(measurement_rows, source_rows)
     ledger_plan = {'group_size': plan['group_size'], 'max_tokens': plan['max_tokens'], 'budget': plan['budget']}
+    images = {r['id']: hashlib.sha256(Path(r['images'][0]).read_bytes()).hexdigest() for r in source_rows}
     bindings = {'plan_sha256': _sha(plan), 'arm': arm, 'seed': seed, 'schedule_binding_sha256': _sha(schedule_binding),
+                'source_image_sha256': _sha(images),
                 'measurements_sha256': plan['measurements_sha256'], 'common': common,
                 'calibration_sha256': _sha(calibration) if calibration is not None else None}
     return {'arm': arm, 'seed': seed, 'schedule': schedule, 'schedule_binding': schedule_binding, 'bindings': bindings,
@@ -66,7 +68,7 @@ def train_arm(prepared, *, output, backend_factory, authorize, resume=False, sta
 ROOT = Path(__file__).resolve().parents[2]
 CRITICAL_SOURCES = ('tier_c_entry.py', 'two_task_training.py', 'continuous_rl.py', 'mlx_continuous_gspo.py', 'continuous_rl_pilot.py',
                     'optimizer_checkpoint.py', 'vero_mri_reward.py', 'visit_correspondence.py', 'vero_category_sampler.py',
-                    'full_arm_protocol.py', 'likelihood_cache.py', 'likelihood_loading.py', 'paced_resources.py',
+                    'full_arm_protocol.py', 'experiment_contract.py', 'mlx_gspo_smoke.py', 'vero_official_launch.py', 'likelihood_cache.py', 'likelihood_loading.py', 'paced_resources.py',
                     'resource_supervisor.py', 'reward_replay.py', 'two_task_pool.py')
 
 
@@ -91,9 +93,39 @@ def review_scope(prepared, *, output):
     return {'kind': 'tier_c_arm_v1', 'execution_tier': 'C', 'phase': 'continuation', 'arm': prepared['arm'], 'seed': prepared['seed'],
             'plan_sha256': b['plan_sha256'], 'schedule_binding_sha256': b['schedule_binding_sha256'],
             'schedule_ids_sha256': prepared['realized']['schedule_sha256'], 'common': b['common'],
-            'calibration_sha256': b['calibration_sha256'], 'budget': prepared['ledger_plan']['budget'],
+            'calibration_sha256': b['calibration_sha256'], 'source_image_sha256': b['source_image_sha256'], 'budget': prepared['ledger_plan']['budget'],
             'group_size': prepared['ledger_plan']['group_size'], 'max_attempted_groups': prepared['max_groups'],
             'output': str(Path(output).resolve()), 'source_sha256': source_hashes()}
+
+
+def measurements_sha256(measurements):
+    return hashlib.sha256(json.dumps(measurements, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+
+
+def prompt_semantics(contract):
+    """The exact prompt-affecting contract fields (not the file hash, which also covers split manifests)."""
+    return {'system_instruction': contract.system_instruction, 'assistant_prefix': contract.assistant_prefix,
+            'enable_thinking': contract.enable_thinking, 'generation': dict(contract.generation)}
+
+
+def verify_runtime_artifacts(plan, measurements, adapter, contract_path, load_contract, measurement_contract_path=None):
+    """Everything below must hold BEFORE any backend; failures raise ValueError."""
+    if measurements_sha256(measurements) != plan['measurements_sha256']:
+        raise ValueError('Measurement receipt differs from the compiled plan')
+    if hashlib.sha256(Path(adapter).read_bytes()).hexdigest() != plan['common_bindings']['starting_adapter_sha256']:
+        raise ValueError('Starting adapter bytes differ from the compiled plan')
+    config = Path(adapter).parent / 'adapter_config.json'
+    if plan.get('adapter_config_sha256') is not None:
+        if not config.is_file() or hashlib.sha256(config.read_bytes()).hexdigest() != plan['adapter_config_sha256']:
+            raise ValueError('Adapter config / persisted quantization map differs from the compiled plan')
+    runtime_sha = hashlib.sha256(Path(contract_path).read_bytes()).hexdigest()
+    measured_sha = measurements['prompt_contract_sha256']
+    if runtime_sha != measured_sha:
+        if measurement_contract_path is None or hashlib.sha256(Path(measurement_contract_path).read_bytes()).hexdigest() != measured_sha:
+            raise ValueError('Runtime contract differs from the measured contract and no matching measurement contract was supplied')
+        if prompt_semantics(load_contract(measurement_contract_path)) != prompt_semantics(load_contract(contract_path)):
+            raise ValueError('Runtime prompt semantics differ from the measured prompt semantics')
+    return {'runtime_contract_sha256': runtime_sha, 'measured_contract_sha256': measured_sha}
 
 
 def main():
@@ -112,12 +144,15 @@ def main():
     ap.add_argument('--model', type=Path); ap.add_argument('--contract', type=Path)
     ap.add_argument('--cache-dir', type=Path); ap.add_argument('--cache-certificate', type=Path)
     ap.add_argument('--review-verdict', type=Path); ap.add_argument('--expected-review-sha256')
+    ap.add_argument('--measurement-contract', type=Path)
     ap.add_argument('--resume', action='store_true')
     a = ap.parse_args()
     meas = json.loads(a.measurements.read_text())
     if a.command == 'compile':
         plan = compile_plan(meas, common_bindings(meas, a.adapter, a.cache_certificate_sha256))
         plan['common_bindings'] = common_bindings(meas, a.adapter, a.cache_certificate_sha256)
+        cfg = Path(a.adapter).parent / 'adapter_config.json'
+        plan['adapter_config_sha256'] = hashlib.sha256(cfg.read_bytes()).hexdigest() if cfg.is_file() else None
         with a.plan.open('x') as f:
             json.dump(plan, f, indent=2, sort_keys=True, allow_nan=False)
         print(json.dumps({'plan_sha256': _sha(plan), 'token_cap': plan['budget']['text_visual_token_cap'],
@@ -133,6 +168,7 @@ def main():
                           'category_counts': prepared['realized']['category_counts'], 'plan_sha256': prepared['bindings']['plan_sha256']}))
         return
     from mri_rl.experiment_contract import _check_review, load_contract
+    verify_runtime_artifacts(plan, meas, a.adapter, a.contract, load_contract, a.measurement_contract)
     require_local = a.output.resolve().is_relative_to(ROOT / 'local_data')
     if not require_local:
         raise ValueError('Outputs must stay under ignored local_data')

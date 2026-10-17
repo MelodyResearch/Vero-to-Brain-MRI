@@ -71,3 +71,22 @@ def test_common_bindings_come_from_files_and_sources_not_free_text(tmp_path):
     cb = te.common_bindings({'prompt_contract_sha256': 'c' * 64}, adapter, 'b' * 64)
     import hashlib
     assert cb['starting_adapter_sha256'] == hashlib.sha256(b'weights').hexdigest() and set(cb) == set(__import__('mri_rl.full_arm_protocol', fromlist=['x']).BINDINGS)
+
+
+def test_runtime_contract_may_differ_in_file_hash_only_with_identical_prompt_semantics(tmp_path):
+    import hashlib
+    from types import SimpleNamespace
+    def mk(name, system='S', extra=''):
+        p = tmp_path / name; p.write_text(json.dumps({'system_instruction': system, 'assistant_prefix': 'A', 'enable_thinking': False,
+                                                      'generation': {'max_tokens': 256, 'temperature': 1.0}, 'split_manifest': extra})); return p
+    load = lambda p: SimpleNamespace(**json.loads(p.read_text()))
+    measured, same, other = mk('m.json', extra='old split'), mk('r.json', extra='new split'), mk('o.json', system='DIFFERENT')
+    adapter = tmp_path / 'a.safetensors'; adapter.write_bytes(b'w')
+    meas = {'prompt_contract_sha256': hashlib.sha256(measured.read_bytes()).hexdigest()}
+    pl = {'measurements_sha256': te.measurements_sha256(meas), 'common_bindings': {'starting_adapter_sha256': hashlib.sha256(b'w').hexdigest()}}
+    assert te.verify_runtime_artifacts(pl, meas, adapter, same, load, measured)['runtime_contract_sha256'] != meas['prompt_contract_sha256']
+    with pytest.raises(ValueError): te.verify_runtime_artifacts(pl, meas, adapter, same, load)               # differing file, no measured contract
+    with pytest.raises(ValueError): te.verify_runtime_artifacts(pl, meas, adapter, other, load, measured)    # different prompt semantics
+    (tmp_path / 'adapter_config.json').write_text('{}')
+    pl['adapter_config_sha256'] = '0' * 64
+    with pytest.raises(ValueError): te.verify_runtime_artifacts(pl, meas, adapter, measured, load)           # persisted quant map/config differs

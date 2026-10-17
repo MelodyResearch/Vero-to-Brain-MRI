@@ -70,7 +70,7 @@ def _step(backend):
     return value
 
 
-def _binding(schedule, bindings, config, row_validator=None):
+def _binding(schedule, bindings, config, row_validator=None, ledger_plan=None):
     require(isinstance(bindings, dict) and bindings, 'Exact experiment bindings required')
     require(schedule and len({r['id'] for r in schedule}) == len(schedule), 'Unique frozen schedule required')
     images = {}
@@ -88,7 +88,8 @@ def _binding(schedule, bindings, config, row_validator=None):
     return {'experiment': bindings, 'configuration': config,
             'schedule_sha256': hashlib.sha256(canonical(schedule).encode()).hexdigest(),
             'schedule_record_ids': [row['id'] for row in schedule],
-            'image_sha256': images, 'driver_source_sha256': digest(__file__)}
+            'image_sha256': images, 'driver_source_sha256': digest(__file__),
+            **({'ledger_plan_sha256': hashlib.sha256(canonical(ledger_plan).encode()).hexdigest()} if ledger_plan is not None else {})}
 
 
 def inspect_boundaries(output, expected_binding):
@@ -109,7 +110,7 @@ def inspect_boundaries(output, expected_binding):
         for name, sha in receipt['files_sha256'].items():
             require(name in {'adapter.safetensors', 'adapter_config.json', 'optimizer/manifest.json', 'optimizer/state.safetensors',
                              'rollout_PRIVATE.json', 'rollout_progress_PRIVATE.json',
-                             'optimizer_before.safetensors', 'optimizer_after.safetensors'},
+                             'optimizer_before.safetensors', 'optimizer_after.safetensors', 'attempt_reservation.json'},
                     'Unexpected bundle inventory')
             p = path / name
             require(p.is_file() and not p.is_symlink() and digest(p) == sha, 'Boundary file digest mismatch')
@@ -158,7 +159,7 @@ def _publish(output, work, backend, binding, completed, updates, parent, evidenc
     # Backend partial rollout logs are not automatically admitted as a completed bundle.
     allowed = {'adapter.safetensors', 'adapter_config.json', 'optimizer/manifest.json', 'optimizer/state.safetensors',
                'rollout_PRIVATE.json', 'rollout_progress_PRIVATE.json',
-               'optimizer_before.safetensors', 'optimizer_after.safetensors'}
+               'optimizer_before.safetensors', 'optimizer_after.safetensors', 'attempt_reservation.json'}
     require(set(files) <= allowed, 'Unexpected backend output in atomic bundle')
     receipt = {'schema': 'continuous-rl-boundary-v1', 'binding': binding,
                'completed_groups': completed, 'optimizer_updates': updates,
@@ -194,16 +195,46 @@ def _grades(row, raw, config, grader=None):
     return grades
 
 
-def _partial_cost(pending, schedule_by_id, input_tokens):
-    """Token cost of a crashed attempt's already-generated responses (deterministic; read from its progress file)."""
-    path = pending / 'rollout_progress_PRIVATE.json'
-    if not path.is_file():
-        return 0
-    raw = json.loads(path.read_text())
-    row = schedule_by_id.get(raw.get('record_id'))
+def _partial_cost(pending, schedule_by_id, input_tokens, max_tokens=256):
+    """(measured, imputed) token cost of a crashed attempt.
+
+    measured = responses whose generated ids were durably recorded (their image binding is verified here);
+    imputed  = ONE conservative in-flight response (input + max_tokens) when the attempt had a durable reservation but
+               fewer recorded responses than the group size. Unobserved work is never presented as actual consumption."""
+    reservation = pending / 'attempt_reservation.json'
+    progress = pending / 'rollout_progress_PRIVATE.json'
+    raw = json.loads(progress.read_text()) if progress.is_file() else None
+    reserved = json.loads(reservation.read_text()) if reservation.is_file() else None
+    if raw is None and reserved is None:
+        return 0, 0
+    record_id = (raw or reserved).get('record_id')
+    row = schedule_by_id.get(record_id)
     require(row is not None, 'Crashed attempt references an unknown schedule record')
-    responses = raw.get('responses', [])
-    return len(responses) * input_tokens(row) + sum(len(r['token_ids']) for r in responses)
+    expected_image = digest(row['images'][0])
+    if raw is not None:
+        require(raw.get('image_sha256') == expected_image, 'Crashed attempt image binding differs from the frozen input')
+    if reserved is not None:
+        require(reserved.get('record_id') == record_id and reserved.get('input_tokens') == input_tokens(row),
+                'Crashed attempt reservation differs from the frozen schedule')
+    responses = (raw or {}).get('responses', [])
+    measured = len(responses) * input_tokens(row) + sum(len(r['token_ids']) for r in responses)
+    group = (reserved or {}).get('group_size')
+    imputed = (input_tokens(row) + (reserved.get('max_tokens') if reserved else max_tokens)) \
+        if (reserved is not None and len(responses) < group) else 0
+    return measured, imputed
+
+
+def _ledger_preflight(ledger, input_tokens, schedule, config, max_new_groups):
+    """Strict plan/runtime agreement BEFORE any backend is constructed."""
+    plan = ledger.plan; budget = plan['budget']
+    require(config['group_size'] == plan['group_size'] and config['max_tokens'] == plan['max_tokens'],
+            'Runtime group size / max tokens differ from the compiled ledger plan')
+    require(len(schedule) <= budget['maximum_attempted_groups'] and max_new_groups <= budget['maximum_attempted_groups'],
+            'Schedule exceeds the compiled maximum attempted groups')
+    for row in schedule:
+        tokens = input_tokens(row)
+        require(type(tokens) is int and budget['input_tokens_min'] <= tokens <= budget['input_tokens_max'],
+                'Measured input cost outside the compiled range')
 
 
 def _ledger_state(ledger, included):
@@ -233,7 +264,9 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
         if key not in {'group_size', 'max_tokens'}:
             require(config.get(key) == PROFILE[key], 'Historical optimizer/reward/profile change requires new version')
     require(2 <= config['group_size'] <= 8 and 16 <= config['max_tokens'] <= 512, 'Invalid bounded rollout configuration')
-    binding = _binding(schedule, bindings, config, row_validator); output = Path(output)
+    if ledger is not None:
+        _ledger_preflight(ledger, input_tokens, schedule, config, max_new_groups)
+    binding = _binding(schedule, bindings, config, row_validator, ledger.plan if ledger is not None else None); output = Path(output)
     if output.exists() and not resume:
         raise FileExistsError('Existing run requires explicit resume; preserve evidence')
     if resume:
@@ -275,11 +308,14 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
             if ledger is not None:
                 prior = (current.get('ledger') or {}) if current else {}
                 ledger.used = prior.get('used_tokens', 0); ledger.charged_groups = prior.get('charged_groups', 0)
+                ledger.imputed = prior.get('imputed_unknown_tokens', 0)
                 included = set(prior.get('partial_dirs_included', []))
                 by_id = {r['id']: r for r in schedule}
                 for pending in sorted(output.glob('.pending-*')):      # crashed attempts: charge their generated work once
                     if pending.name not in included:
-                        ledger.used += _partial_cost(pending, by_id, input_tokens)
+                        measured, imputed = _partial_cost(pending, by_id, input_tokens, config['max_tokens'])
+                        ledger.used += measured
+                        ledger.charge_imputed(imputed)
                         included.add(pending.name)
             for index in range(cursor, min(cursor+max_new_groups, len(schedule))):
                 if ledger is not None and not ledger.can_start(input_tokens(schedule[index])):
@@ -295,6 +331,9 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                 require(digest(row['images'][0]) == expected_image, 'Frozen image changed before rollout')
                 require(before_step == current['optimizer_updates'], 'Optimizer counter lost continuity')
                 work = Path(tempfile.mkdtemp(prefix='.pending-', dir=output))
+                if ledger is not None:   # durable bound attempt reservation BEFORE any generation
+                    write_json(work / 'attempt_reservation.json', {'record_id': row['id'], 'index': index,
+                        'input_tokens': input_tokens(row), 'group_size': config['group_size'], 'max_tokens': config['max_tokens']})
                 before_state = state_fingerprint(backend, backend.optimizer_state(), work / 'optimizer_before.safetensors')
                 raw = backend.rollout(row, index, work)
                 write_json(work / 'rollout_PRIVATE.json', raw)

@@ -298,7 +298,7 @@ def test_row_validator_and_grader_hooks_replace_the_single_source_rules(setup):
 def test_ledger_persists_across_resume_and_stops_when_the_whole_group_does_not_fit(setup):
     from mri_rl.two_task_training import TokenLedger
     m = module(); _, _, tmp = setup
-    plan = {'group_size': 2, 'max_tokens': 256, 'budget': {'input_tokens_min': 213, 'input_tokens_max': 405, 'text_visual_token_cap': 2 * (213 + 256) * 3 + 10}}
+    plan = {'group_size': 2, 'max_tokens': 256, 'budget': {'input_tokens_min': 213, 'input_tokens_max': 405, 'text_visual_token_cap': 2 * (213 + 256) * 3 + 10, 'maximum_attempted_groups': 10}}
     rows = tier_c_rows(setup)
     led = TokenLedger(plan)
     first = run_c(m, setup, tmp / 'l', rows, 1, ledger=led)
@@ -314,15 +314,17 @@ def test_ledger_persists_across_resume_and_stops_when_the_whole_group_does_not_f
 def test_crashed_attempt_partial_work_is_charged_exactly_once(setup):
     from mri_rl.two_task_training import TokenLedger
     m = module(); _, _, tmp = setup
-    plan = {'group_size': 2, 'max_tokens': 256, 'budget': {'input_tokens_min': 213, 'input_tokens_max': 405, 'text_visual_token_cap': 10**6}}
+    plan = {'group_size': 2, 'max_tokens': 256, 'budget': {'input_tokens_min': 213, 'input_tokens_max': 405, 'text_visual_token_cap': 10**6, 'maximum_attempted_groups': 10}}
     rows = tier_c_rows(setup)
     run_c(m, setup, tmp / 'p', rows, 1, ledger=TokenLedger(plan))
     crash = tmp / 'p' / '.pending-crash'; crash.mkdir()
-    (crash / 'rollout_progress_PRIVATE.json').write_text(json.dumps({'record_id': rows[1]['id'], 'responses': [{'token_ids': [1, 2, 3]}]}))
+    image_sha = m.digest(rows[1]['images'][0])
+    (crash / 'rollout_progress_PRIVATE.json').write_text(json.dumps({'record_id': rows[1]['id'], 'image_sha256': image_sha, 'responses': [{'token_ids': [1, 2, 3]}]}))
+    (crash / 'attempt_reservation.json').write_text(json.dumps({'record_id': rows[1]['id'], 'index': 1, 'input_tokens': 213, 'group_size': 2, 'max_tokens': 256}))
     led = TokenLedger(plan)
     run_c(m, setup, tmp / 'p', rows, 1, resume=True, ledger=led)
-    partial = 1 * 213 + 3
-    assert led.used == (2 * 213 + 2) + partial + (2 * 213 + 2)                    # first group + crashed partial + next group
+    partial = (1 * 213 + 3) + (213 + 256)                                          # measured response + ONE imputed in-flight response
+    assert led.used == (2 * 213 + 2) + partial + (2 * 213 + 2) and led.imputed == 213 + 256
     led_again = TokenLedger(plan)
     run_c(m, setup, tmp / 'p', rows, 1, resume=True, ledger=led_again)
     assert led_again.used == led.used + (2 * 213 + 2)                             # partial dir not charged a second time

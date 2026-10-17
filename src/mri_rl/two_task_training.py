@@ -107,9 +107,12 @@ def make_grader(calibration=None):
 
 
 class TokenLedger:
-    """Persisted whole-group token accounting around full_arm_protocol.can_start_group/charge_group."""
-    def __init__(self, plan, used=0, charged_groups=0):
-        self.plan, self.used, self.charged_groups = plan, used, charged_groups
+    """Persisted whole-group token accounting around full_arm_protocol.can_start_group/charge_group.
+
+    `used` = measured actual cost + `imputed` conservative charges for unobserved crashed in-flight work (kept separate;
+    imputed amounts are NOT claimed as actual consumption)."""
+    def __init__(self, plan, used=0, charged_groups=0, imputed=0):
+        self.plan, self.used, self.charged_groups, self.imputed = plan, used, charged_groups, imputed
 
     def can_start(self, input_tokens):
         return can_start_group(self.used, input_tokens, self.plan)
@@ -119,5 +122,10 @@ class TokenLedger:
         self.charged_groups += 1
         return self.used
 
+    def charge_imputed(self, tokens):
+        self.used += tokens
+        self.imputed += tokens
+
     def state(self):
-        return {'used_tokens': self.used, 'charged_groups': self.charged_groups, 'cap': self.plan['budget']['text_visual_token_cap']}
+        return {'used_tokens': self.used, 'charged_groups': self.charged_groups, 'imputed_unknown_tokens': self.imputed,
+                'cap': self.plan['budget']['text_visual_token_cap']}
