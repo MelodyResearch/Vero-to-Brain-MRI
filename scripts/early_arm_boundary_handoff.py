@@ -38,13 +38,22 @@ def identity(pid):
  if p.returncode==1 and not p.stdout.strip():return None
  require(p.returncode==0,'Process inventory unavailable')
  fields=p.stdout.strip().split(None,8);require(len(fields)==9,'Unknown ps identity format')
- return {'pid':int(fields[0]),'ppid':int(fields[1]),'lstart':' '.join(fields[2:7]),'status':fields[7],'command':fields[8],'birth':birth(pid)}
+ try:stamp=birth(pid)
+ except ValueError:
+  # The process may exit after ps captured its row but before proc_pidinfo.
+  # Only a second successful absence observation converts this to None.
+  confirm=subprocess.run(['ps','-p',str(pid),'-o','pid='],capture_output=True,text=True)
+  if confirm.returncode==1 and not confirm.stdout.strip():return None
+  raise
+ return {'pid':int(fields[0]),'ppid':int(fields[1]),'lstart':' '.join(fields[2:7]),'status':fields[7],'command':fields[8],'birth':stamp}
 def same(a,b):return bool(a and b and all(a.get(k)==b.get(k) for k in ('pid','lstart','command','birth')))
 def table():
- text=subprocess.check_output(['ps','-axo','pid=,ppid=,stat=,command='],text=True);out={}
+ query=subprocess.Popen(['ps','-axo','pid=,ppid=,stat=,command='],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+ query_pid=query.pid;text,error=query.communicate();require(query.returncode==0,'Process inventory query failed');out={}
  for line in text.splitlines():
   parts=line.strip().split(None,3)
-  if len(parts)==4:out[int(parts[0])]={'pid':int(parts[0]),'ppid':int(parts[1]),'status':parts[2],'command':parts[3]}
+  # Exclude only this exact already-reaped query, not ps-named processes.
+  if len(parts)==4 and int(parts[0])!=query_pid:out[int(parts[0])]={'pid':int(parts[0]),'ppid':int(parts[1]),'status':parts[2],'command':parts[3]}
  return out
 def descendants(pid):
  rows=table();found=set();parents={pid}
@@ -89,7 +98,14 @@ def retire_at_boundary(expected,ops,verify,check_cursor,timeout=300,before_retir
   # Paused validation is reversible until this exact boundary. A validation
   # alarm must never interrupt TERM/CONT or the original-lock handoff.
   if before_retire is not None:before_retire()
-  ops.signal(expected,signal.SIGTERM);ops.signal(expected,signal.SIGCONT);stopped=False
+  ops.signal(expected,signal.SIGTERM)
+  # Darwin can deliver pending TERM and reap a stopped process immediately.
+  # CONT only the same surviving identity; absence is successful retirement.
+  now=ops.identity(expected['pid'])
+  known_zombie=bool(now and now.get('status','').startswith('Z') and now.get('pid')==expected['pid'] and now.get('birth')==expected['birth'])
+  if same(now,expected) and not known_zombie:ops.signal(expected,signal.SIGCONT)
+  elif now is not None and not known_zombie:require(False,'PID reused after TERM; never signal replacement')
+  stopped=False
   until=time.monotonic()+min(timeout,10)
   while ops.alive(expected) and time.monotonic()<until:ops.sleep(.05)
   require(not ops.alive(expected),'Parent did not terminate; handoff refused')
@@ -119,6 +135,13 @@ def validate_contract(c):
  require(len(c['diagnostic_commands'])==2 and len(c['diagnostic_status_paths'])==2,'Exact two sequential checkpoints required')
  for argv in c['diagnostic_commands']:
   require(c['handler_source_path'] in argv and '--execute' in argv and not any(x in argv for x in ('--lease','--lease-lock-fd','--expected-lease-sha256','--review-verdict','--expected-review-sha256')),'Unexpected handler base argv')
+ if c.get('retired_boundary_recovery'):
+  r=c['retired_boundary_recovery']
+  for key in ('failed_contract','failed_marker','failed_controller_source'):
+   require(sha(r[key+'_path'])==r[key+'_sha256'],'Retired recovery evidence changed: '+key)
+  old=load(r['failed_contract_path']);marker=load(r['failed_marker_path'])
+  require(old['controller_source_sha256']==r['failed_controller_source_sha256'] and marker['contract_sha256']==r['failed_contract_sha256'],'Recovery is not bound to actually armed failed source')
+  require(old['expected_old_parent_identity']==c['expected_old_parent_identity'] and old['boundary_stage_id']==c['boundary_stage_id'] and old['original_manifest_sha256']==MANIFEST_SHA,'Recovery changes original boundary')
  return m
 
 def prepare(config,output):
@@ -139,6 +162,14 @@ def prepare(config,output):
  c['observed_python_executable_path']=evidence['ps'].strip().split(' -c ',1)[0];c['lexical_python_CPU_probe']=evidence
  c['handler_source_sha256']=sha(c['handler_source_path']);validate_contract(c);require(not Path(output).exists(),'Preserve existing contract');save(output,c)
  return {'status':'PREPARED_NOT_ARMED','contract_sha256':sha(output),'parent_identity':parent}
+
+
+def prepare_recovery(config,output):
+ x=load(config);r=x['retired_boundary_recovery'];require(sha(r['failed_contract_path'])==r['failed_contract_sha256'],'Wrong failed contract')
+ old=load(r['failed_contract_path']);c={**old,**x,'controller_source_path':str(Path(__file__).absolute()),'controller_source_sha256':sha(__file__)}
+ require(identity(c['expected_old_parent_identity']['pid']) is None,'Retired original parent still exists; no recovery')
+ require(not Path(output).exists(),'Preserve existing recovery contract');validate_contract(c);save(output,c)
+ return {'status':'RETIRED_RECOVERY_PREPARED_NOT_EXECUTED','contract_sha256':sha(output)}
 
 def timeout_alarm(signum,frame):raise TimeoutError('Bounded paused-phase validation expired')
 def cheap_terminal(ex,st):
@@ -163,18 +194,27 @@ def arm(contract_path,expected_contract,review_path,expected_review,approval_ind
  st=next(s for s in m['stages'] if s['id']==c['boundary_stage_id']);expected=c['expected_old_parent_identity'];out=Path(c['handoff_output_dir']);out.mkdir(parents=True,exist_ok=True)
  with (out/'armed_SAFE.json').open('x') as marker:
   json.dump({'contract_sha256':expected_contract,'review_sha256':expected_review,'controller_identity':identity(os.getpid())},marker);marker.flush();os.fsync(marker.fileno())
- deadline=time.monotonic()+c['wait_timeout_seconds'];summary=None
- while time.monotonic()<deadline:
-  if not same(identity(expected['pid']),expected):save(out/'handoff_status_SAFE.json',{'status':'SKIPPED_PARENT_CHANGED_NO_SIGNALS'});return
-  if cheap_terminal(ex,st):break
-  time.sleep(1.)
- else:save(out/'handoff_status_SAFE.json',{'status':'SKIPPED_TIMEOUT_NO_SIGNALS'});return
- # All validation failures/timeout here resume the old queue; signals never target a child.
- prior_handler=signal.signal(signal.SIGALRM,timeout_alarm);signal.setitimer(signal.ITIMER_REAL,c['paused_validation_timeout_seconds'])
- try:
-  summary,status=retire_at_boundary(expected,RealOps(),lambda:ex.verify_rl_terminal(st,st['exit_receipt']),lambda:quiet_cursor(c['queue_cursor_path'],st['id']),before_retire=lambda:signal.setitimer(signal.ITIMER_REAL,0))
- finally:signal.setitimer(signal.ITIMER_REAL,0);signal.signal(signal.SIGALRM,prior_handler)
- if summary is None:save(out/'handoff_status_SAFE.json',{'status':status,'queue_left_running':True});return
+ summary=None
+ if c.get('retired_boundary_recovery'):
+  r=c['retired_boundary_recovery']
+  require(identity(expected['pid']) is None,'Original parent is not absent; recovery never signals')
+  require(sha(st['exit_receipt'])==r['actual_exit_receipt_sha256'] and sha(st['raw_log'])==r['actual_closed_log_sha256'],'Actual completed boundary differs')
+  require(sha(c['queue_cursor_path'])==r['expected_cursor_sha256'],'Recovery cursor changed')
+  require(cheap_terminal(ex,st),'Actual completed boundary missing');quiet_cursor(c['queue_cursor_path'],st['id'])
+  summary=ex.verify_rl_terminal(st,st['exit_receipt'])
+ else:
+  deadline=time.monotonic()+c['wait_timeout_seconds'];summary=None
+  while time.monotonic()<deadline:
+   if not same(identity(expected['pid']),expected):save(out/'handoff_status_SAFE.json',{'status':'SKIPPED_PARENT_CHANGED_NO_SIGNALS'});return
+   if cheap_terminal(ex,st):break
+   time.sleep(1.)
+  else:save(out/'handoff_status_SAFE.json',{'status':'SKIPPED_TIMEOUT_NO_SIGNALS'});return
+  # All validation failures/timeout here resume the old queue; signals never target a child.
+  prior_handler=signal.signal(signal.SIGALRM,timeout_alarm);signal.setitimer(signal.ITIMER_REAL,c['paused_validation_timeout_seconds'])
+  try:
+   summary,status=retire_at_boundary(expected,RealOps(),lambda:ex.verify_rl_terminal(st,st['exit_receipt']),lambda:quiet_cursor(c['queue_cursor_path'],st['id']),before_retire=lambda:signal.setitimer(signal.ITIMER_REAL,0))
+  finally:signal.setitimer(signal.ITIMER_REAL,0);signal.signal(signal.SIGALRM,prior_handler)
+  if summary is None:save(out/'handoff_status_SAFE.json',{'status':status,'queue_left_running':True});return
  lock=open(c['queue_lock_path'],'a');lockfd=lock.fileno();os.set_inheritable(lockfd,False)
  until=time.monotonic()+10
  while True:
@@ -186,6 +226,8 @@ def arm(contract_path,expected_contract,review_path,expected_review,approval_ind
  try:
   require(not descendants(os.getpid()),'Unexpected controller child before lease')
   cursor=quiet_cursor(c['queue_cursor_path'],st['id']);cursor_sha=sha(c['queue_cursor_path']);info=os.fstat(lockfd)
+  if c.get('retired_boundary_recovery'):
+   require(cursor_sha==c['retired_boundary_recovery']['expected_cursor_sha256'] and identity(expected['pid']) is None,'Recovery state changed before exclusive lease')
   save(out/'original_cursor_PRIVATE.json',cursor);save(out/'original_exit_PRIVATE.json',load(st['exit_receipt']))
   lease={'schema':'natural-arm-boundary-handoff-lease-v1','lease_id':str(uuid.uuid4()),'contract_sha256':expected_contract,'controller_source_sha256':sha(__file__),
    'controller_identity':identity(os.getpid()),'original_parent_identity':expected,'original_parent_exited':not alive(expected),'boundary_stage_id':st['id'],
@@ -220,9 +262,11 @@ def arm(contract_path,expected_contract,review_path,expected_review,approval_ind
 def main():
  p=argparse.ArgumentParser(description=__doc__);sub=p.add_subparsers(dest='command',required=True)
  a=sub.add_parser('prepare');a.add_argument('--config',required=True);a.add_argument('--output',required=True)
+ a=sub.add_parser('prepare-recovery');a.add_argument('--config',required=True);a.add_argument('--output',required=True)
  a=sub.add_parser('arm')
  for flag in ('contract','expected-contract-sha256','review','expected-review-sha256','approval-index','expected-approval-index-sha256'):a.add_argument('--'+flag,required=True)
  a=p.parse_args()
- if a.command=='prepare':print(json.dumps(prepare(a.config,a.output),sort_keys=True))
+ if a.command=='prepare-recovery':print(json.dumps(prepare_recovery(a.config,a.output),sort_keys=True))
+ elif a.command=='prepare':print(json.dumps(prepare(a.config,a.output),sort_keys=True))
  else:arm(a.contract,a.expected_contract_sha256,a.review,a.expected_review_sha256,a.approval_index,a.expected_approval_index_sha256)
 if __name__=='__main__':main()

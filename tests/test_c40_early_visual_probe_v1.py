@@ -52,8 +52,8 @@ def test_valid_inherited_boundary_lease_keeps_original_cursor_unchanged(tmp_path
  manifest=tmp_path/'manifest.json';manifest.write_text(json.dumps({'stages':[{'id':'rl:P_raw:13','output':str(run.parent),'exit_receipt':str(exitp),'raw_log':str(log)}]}))
  cursor=tmp_path/'cursor.json';cursor.write_text('{"stages":{"rl:P_raw:13":{"state":"RUNNING"}}}')
  before=cursor.read_bytes();lock=tmp_path/'remaining20.lock';lock.write_text('');base=['/lexical/python','-u','handler.py','--execute'];controller={'pid':333,'lstart':'START','command':'CONTROLLER'}
- contract={'contract_sha256':'C','controller_source_sha256':'S','boundary_stage_id':'rl:P_raw:13','expected_old_parent_identity':{'pid':444},'queue_cursor_path':str(cursor),'original_manifest_path':str(manifest),'diagnostic_commands':[base]}
- monkeypatch.setattr(m.os,'getppid',lambda:333);monkeypatch.setattr(m,'process_identity',lambda pid:controller if pid==333 else None);monkeypatch.setattr(m.sys,'orig_argv',base)
+ contract={'contract_sha256':'C','controller_source_sha256':'S','boundary_stage_id':'rl:P_raw:13','expected_old_parent_identity':{'pid':444},'queue_cursor_path':str(cursor),'original_manifest_path':str(manifest),'diagnostic_commands':[base],'original_queue_argv':['/lexical/python'],'observed_python_executable_path':'/certified/Python'}
+ monkeypatch.setattr(m.os,'getppid',lambda:333);monkeypatch.setattr(m,'process_identity',lambda pid:controller if pid==333 else None);monkeypatch.setattr(m.sys,'orig_argv',base);monkeypatch.setattr(m.sys,'executable','/lexical/python')
  with lock.open('a') as handle:
   fcntl.flock(handle.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB);stat=lock.stat()
   terminal={'completed_groups':1,'optimizer_updates':1,'boundary_receipt_sha256':m.sha(run/'receipt.json'),'full_budget_terminal_verified':True,'native_terminal_status':'TOKEN_BUDGET_EXHAUSTED'}
@@ -62,3 +62,26 @@ def test_valid_inherited_boundary_lease_keeps_original_cursor_unchanged(tmp_path
    'arm_exit_receipt_sha256':m.sha(exitp),'closed_native_log_sha256':m.sha(log),'completed_boundary_receipt_sha256':m.sha(run/'receipt.json'),'terminal_summary':terminal,'diagnostic_command_base_sha256':[m.h(base)]}
   p=tmp_path/'lease.json';p.write_text(json.dumps(lease));assert m.validate_lease(p,m.sha(p),contract,lock,handle.fileno())==lease
   assert cursor.read_bytes()==before
+
+
+def test_only_certified_macos_argv0_is_normalized_and_other_arguments_unchanged():
+ m=mod();lexical='/exact/venv/bin/python';observed='/certified/Python.app/Contents/MacOS/Python'
+ c={'original_queue_argv':[lexical], 'observed_python_executable_path':observed}
+ argv=[observed,'-u','handler.py','--checkpoint','B28','--execute']
+ assert m.normalized_command_base(argv,c,lexical)==[lexical]+argv[1:]
+ assert m.normalized_command_base([lexical]+argv[1:],c,lexical)==[lexical]+argv[1:]
+ with pytest.raises(ValueError):m.normalized_command_base(['/unknown/python']+argv[1:],c,lexical)
+ with pytest.raises(ValueError):m.normalized_command_base(argv,c,'/wrong/venv/python')
+ changed=argv[:];changed[-2]='U_raw_seed7'
+ assert m.normalized_command_base(changed,c,lexical)[1:]==changed[1:]
+
+
+def test_actual_lexical_venv_python_command_normalization_cpu_only():
+ import subprocess,json
+ m=mod();lexical='/Users/vv/Documents/Codex/2026-10-15/files-pasted-by-the-user-codex-2/work/mlx-venv/bin/python'
+ code='import json,sys;print(json.dumps({"executable":sys.executable,"argv":sys.orig_argv}))'
+ r=subprocess.run([lexical,'-c',code],text=True,capture_output=True,check=True);actual=json.loads(r.stdout)
+ assert actual['executable']==lexical
+ c={'original_queue_argv':[lexical],'observed_python_executable_path':actual['argv'][0]}
+ normalized=m.normalized_command_base(actual['argv'],c,actual['executable'])
+ assert normalized==[lexical]+actual['argv'][1:]

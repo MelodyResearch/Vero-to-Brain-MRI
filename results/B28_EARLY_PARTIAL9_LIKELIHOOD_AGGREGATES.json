@@ -1,0 +1,133 @@
+{
+  "Dallas_no_image_records": 0,
+  "Dallas_query_directions": {
+    "mean_margin_differences": [
+      0.6249996423721313,
+      -0.37500016018748283
+    ],
+    "negative": 1,
+    "positive": 1
+  },
+  "Dallas_real_minus_no_image": null,
+  "U7_comparison": "NOT_RUN",
+  "all_eight_real_candidate_margins_negative": true,
+  "analysis_is_not_training_or_U7_comparison": true,
+  "checkpoint": "B28",
+  "checks": {
+    "all_25_approved_source_hashes_and_early_run_identity_recomputed": true,
+    "all_candidate_token_partitions_and_logit_positions_revalidated_with_actual_tokenizer": true,
+    "all_eight_source_image_byte_hashes_verified": true,
+    "all_original21_training_terminal": "NOT_CLAIMED_BY_THIS_EARLY_DIAGNOSTIC",
+    "all_saved_nine_prefix_oracle_checks_pass": true,
+    "all_saved_token_logprob_summaries_and_comparisons_recomputed": true,
+    "all_ten_rows_complete": false,
+    "exact_original_plan_order_first_nine": true,
+    "exact_system_question_candidate_labels_prefix_and_suffix": true,
+    "final_resident_weight_integrity_after_tenth_record_failure": "NOT_CLAIMED",
+    "original_plan_adapter_weights_and_config_hashes_verified": true,
+    "rendered_prompt_hashes_and_expanded_visual_prompt_IDs_reproduced": true
+  },
+  "completed_records": 9,
+  "evidence_sha256": {
+    "analysis_source": "5a27343fc2deeeb6c5771b2603d005049b0338847a537a4380c33978d881a862",
+    "approved_early_review": "679d320beea1f1dc7fff0e3fa23ca187aa73631d1c864cf4ab302e8879d23bab",
+    "approved_early_scope": "cf88824ba112fa3f639a001bf0414d4ad66b50b6eb55d7d0ab47e84c7f849ea3",
+    "native_prompt_source": "8d3469f3d34d58dab84d207d820e0ec3c9c50f2573c47e9a893cc5162469756a",
+    "original_plan": "732260275ca977ccce1b59ea5856701f77a54b0150899acfc17aee2a6484b0ab",
+    "private_analysis": "f8361a5d01a028e7328b2d5c0397b0c6c17680d0e0c229721591037393eacb79",
+    "saved_output": "c59c5362a32a591eb1c7bf5d9858721b97267722d124bd4cb8075bb83ce93c30",
+    "tokenizer": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+    "tokenizer_config": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399"
+  },
+  "full_private_analysis_sha256": "55c7b9f3cb5133e58139c2ef3a3efc4d18b2f56e06ec7539456e2c440ae19dcd",
+  "limitations": [
+    "B28 baseline-only partial likelihood outputs; no U7 comparison or MRI gain is demonstrated.",
+    "First-label oracle checks passed for these nine rows; missing tenth remains a genuine failed gate and cannot be ignored or assigned a score.",
+    "Fixed answer lengths and lexical priors influence mean/raw/first-label margins differently; no calibrated posterior claim.",
+    "Dallas whole-head images retain face/skull/neck/intensity shortcuts; source and task remain confounded.",
+    "Two sequence people and one Dallas cycle support descriptive paired values only; no p-values or independent-patient generalization."
+  ],
+  "margin_definition": {
+    "mri_sequence": "contrast-enhanced T1 minus FLAIR",
+    "mri_visit_correspondence": "same minus different"
+  },
+  "missing_Dallas_no_image": "UNAVAILABLE_FAILED_FROZEN_PREFIX_ORACLE_GATE; not imputed as zero",
+  "new_model_inference_by_analysis": false,
+  "patient_generalization_claimed": false,
+  "planned_records": 10,
+  "primary_score": "Mean label-token log probability margin; raw label sum and prefix-oracle first-label-token margin are separate diagnostics. Candidate preference is not a calibrated class posterior.",
+  "real_image_records": 8,
+  "reviewer": "Codex /root/two_task_admission",
+  "schema": "B28-partial9-early-fixed-prefix-analysis-v1",
+  "sealed_test_used": false,
+  "sequence_no_image_records": 1,
+  "sequence_real_minus_no_image": {
+    "mean_real_minus_no_image_by_class": {
+      "FLAIR": {
+        "first_label": -0.062499927007593215,
+        "mean": -0.011016717507496332,
+        "raw": -0.057502870743547874
+      },
+      "contrast-enhanced T1": {
+        "first_label": 1.6250001471489668,
+        "mean": 0.328916722107519,
+        "raw": 1.6282828903749476
+      }
+    },
+    "no_image_margin": {
+      "first_label": -6.375000209314749,
+      "mean": -1.281400329724434,
+      "raw": -6.410859066469158
+    },
+    "unit_averaged_truth_directed_real_minus_no_image_margin": {
+      "first_label": 0.84375003707828,
+      "mean": 0.16996671980750766,
+      "raw": 0.8428928805592477
+    }
+  },
+  "source_population": "Exploratory repeatedly examined C40 internal-dev subset:2 sequence people and1 Dallas matched two-person cycle",
+  "status": "ACTUAL_PARTIAL9_ONLY",
+  "unit_averaged_paired_separation": {
+    "mri_sequence": {
+      "independent_units": 2,
+      "pairs": 2,
+      "pairs_with_positive_separation": {
+        "first_label": 2,
+        "mean": 2,
+        "raw": 2
+      },
+      "unit": "patient",
+      "unit_averaged_positive_minus_negative_margin": {
+        "first_label": 1.68750007415656,
+        "mean": 0.3399334396150153,
+        "raw": 1.6857857611184954
+      },
+      "units_with_positive_separation": {
+        "first_label": 2,
+        "mean": 2,
+        "raw": 2
+      }
+    },
+    "mri_visit_correspondence": {
+      "independent_units": 1,
+      "pairs": 2,
+      "pairs_with_positive_separation": {
+        "first_label": 1,
+        "mean": 1,
+        "raw": 1
+      },
+      "unit": "matched_two_person_cycle",
+      "unit_averaged_positive_minus_negative_margin": {
+        "first_label": 0.12499974109232426,
+        "mean": 0.12499974109232426,
+        "raw": 0.12499974109232426
+      },
+      "units_with_positive_separation": {
+        "first_label": 1,
+        "mean": 1,
+        "raw": 1
+      }
+    }
+  },
+  "verdict": "PASS_WITH_LIMITATIONS_FOR_NINE_SAVED_ROWS"
+}

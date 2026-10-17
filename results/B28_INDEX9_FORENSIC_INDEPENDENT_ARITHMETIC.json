@@ -1,0 +1,84 @@
+{
+  "aggregate_error_count": 15,
+  "all_captured_logps_finite_nonpositive": true,
+  "candidate_first_minus_short_oracle": [
+    [
+      -0.0005558948032557964,
+      0.12444400787353516
+    ],
+    [
+      -0.0005558948032557964,
+      0.12444400787353516
+    ]
+  ],
+  "candidate_first_vs_oracle_abs_errors": [
+    [
+      0.0005558948032557964,
+      0.12444400787353516
+    ],
+    [
+      0.0005558948032557964,
+      0.12444400787353516
+    ]
+  ],
+  "candidate_margin_minus_oracle_margin": 0.12499990267679095,
+  "candidate_order": [
+    "different",
+    "same"
+  ],
+  "candidate_same_minus_different_margin": -5.37500012293458,
+  "cross_candidate_first_vector_max_abs_error": 0.0,
+  "cross_candidate_prefix_max_abs_error": 0.0,
+  "evidence_tier": "REPRODUCED",
+  "frozen_experiment_completed": false,
+  "frozen_oracle_gate": "FAIL",
+  "input_sha256": {
+    "capture": "094f846a39f5dad9c6ad6dcd299182391bfdb2da58a00644d7c3d72ddf42d64a",
+    "receipt": "8a978426244717c907eb112b44a33ebfeffb04346fc12d21a72e92ad544f4095",
+    "scope": "6405e450fab1d1e948379b2e2e51c53e4a948d36e1d9d0390064b710b8903b88"
+  },
+  "lengths": {
+    "different": {
+      "candidate_model_input_tokens": 129,
+      "first_label_causal_logit_position_zero_based": 125,
+      "independent_oracle_input_tokens": 126,
+      "label_tokens": 1,
+      "prefix_tokens": 11,
+      "prompt_tokens": 115,
+      "suffix_tokens": 3,
+      "target_tokens": 15
+    },
+    "same": {
+      "candidate_model_input_tokens": 129,
+      "first_label_causal_logit_position_zero_based": 125,
+      "independent_oracle_input_tokens": 126,
+      "label_tokens": 1,
+      "prefix_tokens": 11,
+      "prompt_tokens": 115,
+      "suffix_tokens": 3,
+      "target_tokens": 15
+    }
+  },
+  "limitations": [
+    "This verifies arithmetic of captured vectors; no independent native forward/backward run.",
+    "Three captured calls differ in input sequence length; no causal kernel or native GSPO optimizer defect is established.",
+    "The original fixed-tolerance oracle gate remains failed; nine durable outputs do not constitute the ten-record comparison."
+  ],
+  "max_abs_error": 0.12444400787353516,
+  "original_threshold": 0.002,
+  "read_only_receipt": {
+    "adapter_tensors_exact": 504,
+    "critical_safety_condition": false,
+    "native_children_released": true,
+    "optimizer_step": 0,
+    "queue_resume_safe": true,
+    "weight_updates": 0
+  },
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "B28-index9-forensic-independent-arithmetic-v1",
+  "short_oracle_same_minus_different_margin": -5.500000025611371,
+  "source_sha256": "0259c3b1a0c4dcf00997baeac6509c3a772e3ed35b841e0a6354d22a1f861b8e",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_author": "/root/full_arm_execution_contract"
+}

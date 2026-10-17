@@ -59,6 +59,13 @@ def command_base(argv):
   else:out.append(argv[i]);i+=1
  return out
 
+def normalized_command_base(argv,c,executable):
+ lexical=c['original_queue_argv'][0]
+ require(executable==lexical,'Actual interpreter is not reviewed lexical virtualenv')
+ current=list(argv);require(current and current[0] in {lexical,c['observed_python_executable_path']},'Uncertified interpreter argv0')
+ if current[0]==c['observed_python_executable_path']:current[0]=lexical
+ return command_base(current)
+
 def validate_contract(path,primary):
  c=load(path)
  require(c['schema']=='natural-arm-boundary-handoff-contract-v1' and c['primary_root']==str(primary) and
@@ -93,7 +100,7 @@ def validate_lease(path,expected,c,lockpath,fd):
   terminal['full_budget_terminal_verified'] is True and terminal['native_terminal_status'] in {'TOKEN_BUDGET_EXHAUSTED','SCHEDULE_COMPLETE'} and
   receipt['completed_groups']==terminal['completed_groups'] and receipt['optimizer_updates']==terminal['optimizer_updates'],'Actual full-arm terminal boundary differs')
  require(lease['diagnostic_command_base_sha256']==[h(x) for x in c['diagnostic_commands']],'Diagnostic command contract differs')
- current=command_base(sys.orig_argv);require(h(current) in lease['diagnostic_command_base_sha256'],'Current diagnostic command not in reviewed contract')
+ current=normalized_command_base(sys.orig_argv,c,sys.executable);require(h(current) in lease['diagnostic_command_base_sha256'],'Current diagnostic command not in reviewed contract')
  return lease
 
 def verify_review(path,expected,scope):

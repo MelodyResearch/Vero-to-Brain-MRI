@@ -18,6 +18,21 @@ class Fake:
 class Tests(unittest.TestCase):
  def test_identity_birth_reuse(self):self.assertFalse(h.same(E,{**E,'birth':{'sec':1,'usec':3}}))
  def test_identity_command(self):self.assertFalse(h.same(E,{**E,'command':'other'}))
+ def test_ps_birth_disappearance_requires_second_confirmed_absence(self):
+  row='123 1 Sat Oct 17 09:43:17 2026 S python queue.py\n'
+  responses=[subprocess.CompletedProcess([],0,row,''),subprocess.CompletedProcess([],1,'','')]
+  with patch.object(h.subprocess,'run',side_effect=responses) as run,patch.object(h,'birth',side_effect=ValueError('proc_pidinfo vanished')):
+   self.assertIsNone(h.identity(123));self.assertEqual(run.call_count,2)
+ def test_ps_birth_failure_still_present_remains_error(self):
+  row='123 1 Sat Oct 17 09:43:17 2026 S python queue.py\n'
+  responses=[subprocess.CompletedProcess([],0,row,''),subprocess.CompletedProcess([],0,'123\n','')]
+  with patch.object(h.subprocess,'run',side_effect=responses),patch.object(h,'birth',side_effect=ValueError('proc_pidinfo denied')):
+   with self.assertRaises(ValueError):h.identity(123)
+ def test_ps_birth_confirmation_error_is_not_assumed_absence(self):
+  row='123 1 Sat Oct 17 09:43:17 2026 S python queue.py\n'
+  responses=[subprocess.CompletedProcess([],0,row,''),subprocess.CompletedProcess([],2,'','query failed')]
+  with patch.object(h.subprocess,'run',side_effect=responses),patch.object(h,'birth',side_effect=ValueError('proc_pidinfo unknown')):
+   with self.assertRaises(ValueError):h.identity(123)
  def test_wrong_identity_never_signals(self):
   f=Fake();f.now={**E,'command':'other'}
   with self.assertRaises(ValueError):h.retire_at_boundary(E,f,lambda:{},lambda:None)
@@ -51,6 +66,43 @@ class Tests(unittest.TestCase):
   f=Fake();events=[]
   with self.assertRaises(ValueError):h.retire_at_boundary(E,f,lambda:(_ for _ in ()).throw(ValueError('bad')),lambda:None,before_retire=lambda:events.append('alarm_disarmed'))
   self.assertEqual(events,[]);self.assertEqual(f.sent,[signal.SIGSTOP,signal.SIGCONT])
+ def test_darwin_term_can_immediately_reap_parent_without_cont(self):
+  f=Fake();previous=f.signal
+  def deliver(expected,sig):
+   previous(expected,sig)
+   if sig==signal.SIGTERM:f.now=None
+  f.signal=deliver
+  result=h.retire_at_boundary(E,f,lambda:{'done':True},lambda:None)
+  self.assertEqual(result,({'done':True},'PARENT_RETIRED_WITHOUT_CHILD'))
+  self.assertEqual(f.sent,[signal.SIGSTOP,signal.SIGTERM])
+ def test_known_zombie_after_term_is_exited_without_cont(self):
+  f=Fake();previous=f.signal
+  def deliver(expected,sig):
+   previous(expected,sig)
+   if sig==signal.SIGTERM:f.now={**E,'status':'Z','command':'<defunct>'}
+  f.signal=deliver
+  self.assertEqual(h.retire_at_boundary(E,f,lambda:{},lambda:None)[1],'PARENT_RETIRED_WITHOUT_CHILD')
+  self.assertEqual(f.sent,[signal.SIGSTOP,signal.SIGTERM])
+ def test_pid_replacement_after_term_is_not_signalled(self):
+  f=Fake();previous=f.signal
+  def deliver(expected,sig):
+   previous(expected,sig)
+   if sig==signal.SIGTERM:f.now={**E,'birth':{'sec':999,'usec':0}}
+  f.signal=deliver
+  with self.assertRaises(ValueError):h.retire_at_boundary(E,f,lambda:{},lambda:None)
+  self.assertEqual(f.sent,[signal.SIGSTOP,signal.SIGTERM])
+ def test_retired_prepare_refuses_live_parent_and_writes_no_contract(self):
+  with tempfile.TemporaryDirectory() as d:
+   base=Path(d);old=base/'old';old.write_text(json.dumps({'expected_old_parent_identity':E}));config=base/'config';config.write_text(json.dumps({'retired_boundary_recovery':{'failed_contract_path':str(old),'failed_contract_sha256':h.sha(old)}}));output=base/'new'
+   with patch.object(h,'identity',return_value=E),patch.object(h,'guarded_signal') as signals:
+    with self.assertRaises(ValueError):h.prepare_recovery(config,output)
+    signals.assert_not_called();self.assertFalse(output.exists())
+ def test_retired_prepare_has_no_signals_and_preserves_previous_contract(self):
+  with tempfile.TemporaryDirectory() as d:
+   base=Path(d);old=base/'old';old.write_text(json.dumps({'expected_old_parent_identity':E}));before=old.read_bytes();config=base/'config';config.write_text(json.dumps({'retired_boundary_recovery':{'failed_contract_path':str(old),'failed_contract_sha256':h.sha(old)}}));output=base/'new'
+   with patch.object(h,'identity',return_value=None),patch.object(h,'validate_contract'),patch.object(h,'guarded_signal') as signals:
+    result=h.prepare_recovery(config,output);signals.assert_not_called()
+   self.assertEqual(result['status'],'RETIRED_RECOVERY_PREPARED_NOT_EXECUTED');self.assertEqual(before,old.read_bytes())
  def test_no_exit_and_nonzero_exit(self):
   with tempfile.TemporaryDirectory() as d:
    p=Path(d)/'exit';self.assertFalse(h.cheap_terminal(None,{'exit_receipt':str(p)}));p.write_text('{"exit_code":1}')
@@ -81,6 +133,12 @@ class Tests(unittest.TestCase):
    with p.open('a') as a,p.open('a') as b:
     fcntl.flock(a.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB)
     with self.assertRaises(BlockingIOError):fcntl.flock(b.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB)
+ def test_real_self_inventory_is_not_a_descendant(self):
+  self.assertEqual(h.descendants(os.getpid()),[])
+ def test_real_owned_dummy_is_still_a_descendant(self):
+  child=subprocess.Popen([sys.executable,'-c','import time;time.sleep(20)'])
+  try:self.assertIn(child.pid,{x['pid'] for x in h.descendants(os.getpid())})
+  finally:child.terminate();child.wait(timeout=5)
  def test_own_dummy_process_stop_failure_resume(self):
   # Only this test-owned child is signalled; never any real queue/model PID.
   child=subprocess.Popen([sys.executable,'-c','import time; time.sleep(20)'])
