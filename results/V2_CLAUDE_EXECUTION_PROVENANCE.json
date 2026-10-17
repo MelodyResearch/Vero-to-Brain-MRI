@@ -1,0 +1,21 @@
+{
+  "schema": "scoped-cross-model-execution-provenance-v1",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "mission_alignment": "Prepare a separate training-only accepted-group sampling control without changing the original 18-arm Vero-to-MRI comparison.",
+  "evidence_tier": "OBSERVED",
+  "claude_session_id": "80b027c0-ccc5-49a7-beca-dbea6bdc7c00",
+  "actual_turns": 16,
+  "actual_cli_exit_code": 0,
+  "private_cli_result_sha256": "0ac2e15138f8f3b043453e3265679b587a1baaa88d82793fd06b84a9aee0f1c7",
+  "normal_permission_denials": {"Bash": 4, "Write": 2},
+  "claude_source_reading": "Partial permitted source inspection only",
+  "claude_implementation_executed": false,
+  "claude_tests_executed": false,
+  "denied_source_copied_or_executed": false,
+  "implementation_author": "Codex /root, independently from researcher requirements; src/mri_rl/v2_effective_balance.py",
+  "cpu_review_operator": "Codex /root/full_arm_execution_contract",
+  "cpu_review_receipt": "results/V2_EFFECTIVE_BALANCE_CPU_INDEPENDENT_REVIEW.json",
+  "CROSS_MODEL_REVIEW": "NOT_VERIFIED",
+  "native_V2_training": "NOT_RUN",
+  "limitations": ["Claude's CLI success denotes a completed conversation, not successful writes or tests.", "No denied action was retried through another transport.", "The independently authored Codex implementation and focused CPU review do not establish MRI learning or native V2 checkpoint atomicity."]
+}

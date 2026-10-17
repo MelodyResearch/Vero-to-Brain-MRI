@@ -1,0 +1,55 @@
+{
+  "actual_model_measurements": "NOT_RUN",
+  "approval_index_sha256": "ce201ab1fc92a5b1cf300b7cfcc95bad0a3c79f113008ecff72f1b50ee62bdc5",
+  "boundary_contract_sha256": "851d418ee6228b5e2aacfe829423e8dce2669e329dbacc4c6b8aff0e6a2d2dde",
+  "checkpoint_review_sha256": {
+    "0": "9ea99d8446926aa2d701f5f1f5ded0b84a55b55c74e13e6a1b28390d01aae624",
+    "1": "2e00c6d98ef68e0b4328c8512fc5aec0b669866f7e31b2060fd9b8b7e8b1cc54"
+  },
+  "conditioning_helper_sha256": "9a01c95314564afc8ef6e0fa83089dbef2ccaaccedb83ebf095ac4d7b424660c",
+  "controller_review_sha256": "2e9815b44092480a32ab0bce1dd529d048b8be2bedc03d2b2c91021480fd695f",
+  "controller_sha256": "ead832af718aa671da810228aea8648c05a71a6e3680cc8fed157328706e4cea",
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED",
+  "guard_preservation": [
+    "Originalf471manifest/19GSPO/21SFT source contracts unchanged",
+    "No healthy trainer signalled or originalcursor edited",
+    "Actual childexit0/closedlog/fullterminal verification and inherited originalflock before serial diagnostics",
+    "Existing AC/headroom/pressure/swap/thermal gates",
+    "Critical or unknown native failure never blindly restarted",
+    "Sealedfinal100 inaccessible to this diagnostic"
+  ],
+  "handler_sha256": "17521e2ebce3c711b32c159d7bbe549ed0519e119f59f4f96b2ade932583f076",
+  "limitations": [
+    "Native numerical closeness remains NOT_VERIFIED until actual measurements and independent interpretation.",
+    "Zero pixels retain grid and are OOD; sensitivity is not MRI understanding.",
+    "Only two sequence people and one Dallas cycle; exploratory, no independent-patient generalization.",
+    "Control approval does not establish actual V2 training or MRI improvement."
+  ],
+  "limits": {
+    "additional_native_trajectories_total": 2,
+    "additional_teacherforcings_total": 4,
+    "backward_calls_total": 4,
+    "candidate_forwards_total": 60,
+    "checkpoints": 2,
+    "max_new_tokens_per_native_trajectory": 32,
+    "new_null_greedy_total": 4,
+    "optimizer_updates": 0,
+    "records_per_checkpoint": 10
+  },
+  "mission_alignment": "Test whether the observed Vero-to-MRI negative result reflects answer priors, weak image separation or unresolved native conditioning, without changing the original18 arms.",
+  "one_shot_boundary": "rl:P_raw:13",
+  "original_plan_sha256": "732260275ca977ccce1b59ea5856701f77a54b0150899acfc17aee2a6484b0ab",
+  "research_tag": "EXPLORATORY_DIAGNOSTIC",
+  "reviewer_id": "Codex /root; independent of the three implementation agents",
+  "reviewer_kind": "isolated_codex",
+  "root_exact_native_venv_scope_regeneration": true,
+  "root_focused_tests": {
+    "conditioning": 13,
+    "controller": 16,
+    "handler": 6
+  },
+  "schema": "C40-early-conditioning-scoped-review-v1",
+  "status": "ARMED_WAITING_NATURAL_ARM_BOUNDARY",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

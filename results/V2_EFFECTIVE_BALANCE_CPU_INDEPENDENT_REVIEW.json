@@ -1,0 +1,52 @@
+{
+  "correction_verified": {
+    "elapsed_seconds": 0.05,
+    "failed": 0,
+    "independent_command": "PYTHONPATH=src python3 -m pytest -q tests/test_v2_effective_balance.py tests/test_v2_effective_balance_independent.py",
+    "native_imports_observed": false,
+    "passed": 12,
+    "production_change": "Only fail() guards: fresh READY pending; rederive complete assessment and require exact digest; reservation fallback; bounded single debit"
+  },
+  "cross_model_review": "NOT_VERIFIED_FOR_THIS_COMPONENT",
+  "evidence_tier": "REPRODUCED",
+  "implementation_author": "Codex root; independently authored controller",
+  "limitations": [
+    "Native checkpoint integration NOT_VERIFIED; mandatory persistence callback is an interface, not an independently verified atomic model/optimizer/RNG/controller implementation.",
+    "No native V2 model launch, gradient, weight update or model improvement is approved or claimed by this receipt.",
+    "Synthetic-backend optimizer step verification does not independently prove native gradients or tensor updates.",
+    "This is a separately named accepted-update exposure ablation; it does not replace or alter frozen original Vero arms.",
+    "No MRI understanding, patient generalization or effectiveness claim follows from CPU controller checks."
+  ],
+  "models_launched": 0,
+  "original_defect": {
+    "confirmed_counterexamples": [
+      "negative unauthenticated failed-attempt cost lowered ledger",
+      "repeated failure charged identical reservation twice",
+      "unrelated minimal assessment cost accepted"
+    ],
+    "red_tests": 3,
+    "source_sha256": "cad94c2d444e34e065e394f2e1ae71b183c5f775444aba7000231e884542ace1",
+    "verdict": "FAIL"
+  },
+  "real_queue_signals": 0,
+  "research_tag": "EXPLORATORY_DIAGNOSTIC",
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "v2-effective-balance-focused-independent-review-v1",
+  "scope": [
+    "remaining-accepted-quota task selection",
+    "per-task targets 32 full / 4 pilot with global finite caps 8*169216 / 169216",
+    "rejected-attempt token charging",
+    "RNG/pool/pending controller state continuation",
+    "existing task-informative predicate and rewards/advantages reused",
+    "native callback route and optimizer step-count interface using synthetic backend",
+    "failure debt authenticated and charged exactly once"
+  ],
+  "source_sha256": {
+    "src/mri_rl/v2_effective_balance.py": "b615b483c4d89a6a76999cb66a9b50231a0977f61ad2474e7d110b37ef079561",
+    "tests/test_v2_effective_balance.py": "ea4bbda57975a91193a3e9e84331883361e7e3929620a2675761d0ff77b1b70f",
+    "tests/test_v2_effective_balance_independent.py": "6e048de9c1c8b9a554144a21ddbc49919de1b05181af4e8cfc7c8c836c63368e"
+  },
+  "status": "TESTED_CPU",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

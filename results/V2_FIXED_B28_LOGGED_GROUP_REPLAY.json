@@ -1,0 +1,155 @@
+{
+  "actual_new_optimizer_updates": 0,
+  "author": "Codex /root",
+  "calibration_proof_sha256": "83a0aab154c06a2b2d51a024c3624d29be5a78cdf6bd34a2a0129d174c934652",
+  "controller_source_sha256": "b615b483c4d89a6a76999cb66a9b50231a0977f61ad2474e7d110b37ef079561",
+  "evidence_tier": "CPU_REPLAY_OF_AUTHENTICATED_TRAINING_ONLY_LOGGED_GROUPS",
+  "fixed_policy_case_support": {
+    "mri_sequence": {
+      "accepted_fixed_groups": 3,
+      "not_all_full_format": 5,
+      "rows": 28,
+      "zero_accuracy_variance": 22
+    },
+    "mri_visit_correspondence": {
+      "accepted_fixed_groups": 7,
+      "not_all_full_format": 12,
+      "rows": 48,
+      "zero_accuracy_variance": 33
+    }
+  },
+  "frozen_original_training_changed": false,
+  "limitations": [
+    "Repeated cases reuse their original fixed-B28 four responses; accepted logged groups are not actual updates or independent draws.",
+    "No learned policy is simulated; no causal MRI benefit, true future V2 feasibility or patient generalization is established.",
+    "The callback native/controller checkpoint integration still requires separate review and real restore evidence before any V2 training."
+  ],
+  "new_model_generations": 0,
+  "private_trace_sha256": "f4706a03e7c681a5d960c0330867ba634e01c293162d7ecb4118436ebf802149",
+  "replays": [
+    {
+      "accepted_logged_groups": {
+        "mri_sequence": 4,
+        "mri_visit_correspondence": 4
+      },
+      "actual_new_optimizer_updates": 0,
+      "attempted_logged_groups": {
+        "mri_sequence": 39,
+        "mri_visit_correspondence": 14
+      },
+      "configuration": "pilot",
+      "controller_state_sha256": "163e67f5174c01d2a73780e2258ba8cd62052f66bbf327458368a7b20a3a9c10",
+      "new_model_generations": 0,
+      "replayed_complete_groups": 53,
+      "replayed_token_cost": 59601,
+      "seed": 7,
+      "target_per_task": 4,
+      "terminal": "QUOTAS_COMPLETE",
+      "token_cap": 169216
+    },
+    {
+      "accepted_logged_groups": {
+        "mri_sequence": 4,
+        "mri_visit_correspondence": 4
+      },
+      "actual_new_optimizer_updates": 0,
+      "attempted_logged_groups": {
+        "mri_sequence": 41,
+        "mri_visit_correspondence": 24
+      },
+      "configuration": "pilot",
+      "controller_state_sha256": "08c11c894d1306f4cc554c5bb4dfc8fbc7e4831a9db76f648cf54c5d90725567",
+      "new_model_generations": 0,
+      "replayed_complete_groups": 65,
+      "replayed_token_cost": 78315,
+      "seed": 11,
+      "target_per_task": 4,
+      "terminal": "QUOTAS_COMPLETE",
+      "token_cap": 169216
+    },
+    {
+      "accepted_logged_groups": {
+        "mri_sequence": 4,
+        "mri_visit_correspondence": 4
+      },
+      "actual_new_optimizer_updates": 0,
+      "attempted_logged_groups": {
+        "mri_sequence": 41,
+        "mri_visit_correspondence": 30
+      },
+      "configuration": "pilot",
+      "controller_state_sha256": "3944ad8a344756048cfd936b04ed9fafba35ea12b69b1af617ded7a9fb5def45",
+      "new_model_generations": 0,
+      "replayed_complete_groups": 71,
+      "replayed_token_cost": 88473,
+      "seed": 13,
+      "target_per_task": 4,
+      "terminal": "QUOTAS_COMPLETE",
+      "token_cap": 169216
+    },
+    {
+      "accepted_logged_groups": {
+        "mri_sequence": 32,
+        "mri_visit_correspondence": 32
+      },
+      "actual_new_optimizer_updates": 0,
+      "attempted_logged_groups": {
+        "mri_sequence": 297,
+        "mri_visit_correspondence": 225
+      },
+      "configuration": "full_predeclared",
+      "controller_state_sha256": "fc6b6a66bc5d27fd421cdae14bc5663abe8a2b849f2b60962f4c2adef43f3d66",
+      "new_model_generations": 0,
+      "replayed_complete_groups": 522,
+      "replayed_token_cost": 653667,
+      "seed": 7,
+      "target_per_task": 32,
+      "terminal": "QUOTAS_COMPLETE",
+      "token_cap": 1353728
+    },
+    {
+      "accepted_logged_groups": {
+        "mri_sequence": 32,
+        "mri_visit_correspondence": 32
+      },
+      "actual_new_optimizer_updates": 0,
+      "attempted_logged_groups": {
+        "mri_sequence": 292,
+        "mri_visit_correspondence": 214
+      },
+      "configuration": "full_predeclared",
+      "controller_state_sha256": "ae7fbe7b7c37fd2e1e8f677178735e23721a6335e79c3ad0344a09b28c0f96db",
+      "new_model_generations": 0,
+      "replayed_complete_groups": 506,
+      "replayed_token_cost": 630493,
+      "seed": 11,
+      "target_per_task": 32,
+      "terminal": "QUOTAS_COMPLETE",
+      "token_cap": 1353728
+    },
+    {
+      "accepted_logged_groups": {
+        "mri_sequence": 32,
+        "mri_visit_correspondence": 32
+      },
+      "actual_new_optimizer_updates": 0,
+      "attempted_logged_groups": {
+        "mri_sequence": 290,
+        "mri_visit_correspondence": 218
+      },
+      "configuration": "full_predeclared",
+      "controller_state_sha256": "8018fbf424716b80b8dd445d57970b08ad062d56ace9971b1acb7c1af6c5ffc1",
+      "new_model_generations": 0,
+      "replayed_complete_groups": 508,
+      "replayed_token_cost": 635396,
+      "seed": 13,
+      "target_per_task": 32,
+      "terminal": "QUOTAS_COMPLETE",
+      "token_cap": 1353728
+    }
+  ],
+  "schema": "V2-fixed-common-B28-training-group-replay-v1",
+  "script_sha256": "278df91e7332ba28a69e3f0909963bf3704e6ec76dc6ec47ff67067a53fedd91",
+  "sealed_test_used": false,
+  "training_manifest_sha256": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c"
+}

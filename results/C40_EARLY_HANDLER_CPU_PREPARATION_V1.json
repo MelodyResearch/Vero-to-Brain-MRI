@@ -1,0 +1,52 @@
+{
+  "actual_native_probe": "NOT_RUN",
+  "author": "Codex /root/likelihood_finish_reviewer",
+  "boundary_contract_sha256": "58ff0ba742b39b126ac702da87d511d705b65df1854d699e5278bda23db1eeec",
+  "changed": "Separately reviewed actual natural-arm boundary eligibility instead of all21complete; all original image/prompt/label/candidate/numeric contracts unchanged.",
+  "early_plan_sha256": "c72098d476f9434de01e6e1a570531350808350c08ac776abda08bf7c17d8a35",
+  "exact_command_bases_sha256": "8619eb34e76240160a3ab3e1d3d94d72c796bf71007e70039c38eb866d76799e",
+  "focused_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_c40_early_visual_probe_v1.py",
+    "native_imports": false,
+    "result": "6 passed in0.04s"
+  },
+  "guards": [
+    "Exact independent review digest and flat scope before native import.",
+    "Runtime lease external hash, controller/old-parent identity and actual native exit/log/boundary/cursor hashes.",
+    "Original global lock inherited only; no unlock, no cursor mutation.",
+    "PacedGate AC/pressure/swap/thermal/concurrency unchanged.",
+    "Each completed output flush+fsync, exact native numeric route validation, durable prefix identity.",
+    "Critical or unknown native failure never marks automatic queue resume safe."
+  ],
+  "handler_sha256": "17521e2ebce3c711b32c159d7bbe549ed0519e119f59f4f96b2ade932583f076",
+  "independent_review": "NOT_VERIFIED by implementer; exact scope files ready for root independent review",
+  "model_launches": 0,
+  "original_cursor_writes": 0,
+  "original_helper_sha256": "e29e6c3c13af834efe6705405727ffa1c51f5599ca2dd19f6b9847ee674de94c",
+  "original_plan_sha256": "732260275ca977ccce1b59ea5856701f77a54b0150899acfc17aee2a6484b0ab",
+  "original_primary_sources_modified": false,
+  "process_signals": 0,
+  "protocol": {
+    "candidate_forwards": 60,
+    "checkpoints": [
+      "B28",
+      "U_raw_seed7"
+    ],
+    "new_null_greedy_generations": 4,
+    "optional_conditioning_probe_enabled": false,
+    "original_records_unchanged": 10,
+    "real_greedy_reused": 16,
+    "weight_updates": 0
+  },
+  "schema": "C40-early-handler-CPU-preparation-v1",
+  "scientific_model_result": "NOT_RUN",
+  "scope_files_sha256": {
+    "B28": "0a423c628ca49eaa36df46447dae5d45b93be0504b4519a5dec25811354d6398",
+    "U_raw_seed7": "47f07ddf5c6948b1581ae28eee594c8af5cf8c1901f8388258b6eb75c18a5597"
+  },
+  "status": [
+    "IMPLEMENTED",
+    "TESTED_CPU"
+  ],
+  "tests_sha256": "6dcd63d006cd3cbea7b59a68dc1ec54ab6f546a63e6c8a5a7b3a347d633d835f"
+}
