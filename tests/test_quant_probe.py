@@ -109,3 +109,23 @@ def test_over_budget_peak_stops_after_receipt(tmp_path):
 def test_module_import_has_no_native_runtime():
     import sys
     assert 'mlx.core' not in sys.modules
+
+
+def test_persistent_policy_catches_rising_swap_trace_that_fresh_policies_missed():
+    """Codex counterexample: avail 3.5 GiB, pressure 14%, swap 4.0/4.1/4.2 GiB at t=0/1/2."""
+    from mri_rl.resource_supervisor import ResourcePolicy
+    trace = [healthy(available_gib=3.5, pressure_free_percent=14, swap_used_gib=4.0 + 0.1 * i,
+                     monotonic_seconds=float(i)) for i in range(3)]
+    shared = ResourcePolicy()
+    qp.gate_check(lambda: trace[0], shared); qp.gate_check(lambda: trace[1], shared)
+    with pytest.raises(RuntimeError):
+        qp.gate_check(lambda: trace[2], shared)
+
+
+def test_run_uses_one_policy_across_units_and_stops_on_trace(tmp_path):
+    seq = iter(healthy(available_gib=3.5, pressure_free_percent=14, swap_used_gib=4.0 + 0.1 * i,
+                       monotonic_seconds=float(i)) for i in range(10))
+    b = FakeBackend()
+    with pytest.raises(RuntimeError):
+        qp.run(entries(tmp_path), tmp_path / 'o', b, lambda: next(seq))
+    assert len(b.log) <= 1  # stopped before the second tensor completed any work

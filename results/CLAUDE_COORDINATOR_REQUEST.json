@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "request_tiny_quant_probe_and_launcher_race_fix",
+ "kind": "request_stepD_quant_probe_policy_fix",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -82,15 +82,18 @@
  "tiny_probe": {
   "source": "src/mri_rl/quant_probe.py",
   "tests": "tests/test_quant_probe.py (stub, 18 passed)",
-  "status": "IMPLEMENTED_CPU_TESTED / NOT_RUN / awaiting Codex check",
+  "status": "IMPLEMENTED_CPU_TESTED (policy fix) / NOT_RUN / awaiting Codex StepD + tiny-scope release",
   "scope": "<=2 allowlisted public tensors (vision_tower.blocks.{0,1}.attn.proj.weight, BF16[1152,1152]); header+sha256+size validated in pure Python before any native import; mx.quantize(affine,4,64) vs nn.quantize on a Linear holding the tensor, all 3 outputs bitwise incl. dtype/shape; safetensors save/reload bitwise; receipt per tensor fsynced; hashes+resource aggregates only; MLX memory limit 512 MiB, cache 32 MiB, per-tensor peak budget 256 MiB; stops on severe pressure/CRITICAL/thermal throttle/other heavy process/unknown concurrency; no 8B floor applied to this ~10 MB operation; no model, images, generation or update.",
   "input_format_expected": "work/model_quant_probe_inputs/manifest.json with {\"tensors\":[{key,file,shape,dtype,sha256}]} and one single-tensor .safetensors fragment per entry (header key/shape/dtype must match). Tell me if Codex provides a different layout.",
   "command": "cd outputs/Longitudinal-BrainMRI-Verifiable-RL && PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.quant_probe --manifest M --input-dir D --output local_data/.../quant_probe_001",
   "source_sha256": {
-   "quant_probe.py": "97110ded874af30cfed075c77ad84e0c88359b993871040cda68a0040d4846e6"
+   "quant_probe.py": "59469495fdddc60a59bc231fe2bff933ec326601fada83f83ee947cd095b43dd"
   },
   "launcher_sha256": "fba29acf44111056dac121c80fa77f82d25bda6547e088a6b27ece6a1e4dbcb9"
  },
  "next_after_pass": "Streaming exact prequantization of the 344-map + retained-tensor inventory with lineage hashes and per-boundary resource profile; no parity claim from two tensors.",
- "full_budget_candidate": "Will be written as a concrete PROPOSED protocol file next (research/execution/FULL_GSPO_CANDIDATE_PROTOCOL.md)."
+ "full_budget_candidate": "Will be written as a concrete PROPOSED protocol file next (research/execution/FULL_GSPO_CANDIDATE_PROTOCOL.md).",
+ "fix": "quant_probe.gate_check(sampler, policy): one ResourcePolicy created before the first pre-native check and passed through every before/after unit; regression reproduces the 3.5 GiB/14%/swap 4.0-4.2 trace (third sample now raises) plus a run-level test. 20 tests passed. No other change; no 8B threshold change.",
+ "next_ready_command": "cd outputs/Longitudinal-BrainMRI-Verifiable-RL && PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.quant_probe --manifest ../../work/model_quant_probe_inputs/manifest.json --input-dir ../../work/model_quant_probe_inputs --output local_data/ds007045_bounded/quant_probe_001  (manifest sha aad32ca7...3a2a6 to be verified by me before running; output dir must not exist)",
+ "full_protocol_note": "FULL_GSPO_CANDIDATE_PROTOCOL.md stays PROPOSED and is NOT the parent experiment: two specialists + P/U without calibration/SFT do not meet the parent minimum (K specialists + P/U raw/calibrated). 56 attempted groups is a nominal attempt budget; actual text/visual token counts must be recorded and matching is not demonstrated. Rewrite deferred until the probe is run, per instruction."
 }

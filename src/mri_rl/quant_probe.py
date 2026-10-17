@@ -53,13 +53,12 @@ def validate_inputs(manifest_path, base_dir):
     return out
 
 
-def gate_check(sampler):
+def gate_check(sampler, policy):
     """Tiny-op gate: stop only on conditions that matter for any native work; no 8B load floor here."""
     from mri_rl.paced_resources import decisions
-    from mri_rl.resource_supervisor import ResourcePolicy
     s = sampler()
     action, reasons = decisions(s, loading=False)
-    level, _ = ResourcePolicy().observe(s)
+    level, _ = policy.observe(s)  # ONE persistent policy: swap trend and critical counters must survive
     stop = (action == 'STOP' or level == 'CRITICAL' or s.thermal_state == 'THROTTLED' or
             bool(s.other_heavy_processes) or s.other_heavy_processes is None)
     if stop:
@@ -74,13 +73,15 @@ def resource_view(s, backend):
             'mlx_active_mib': backend.active_mib(), 'mlx_peak_mib': backend.peak_mib()}
 
 
-def run(entries, out_dir, backend, sampler):
+def run(entries, out_dir, backend, sampler, policy=None):
     """Process tensors serially; the receipt of each completed tensor is on disk before the next starts."""
+    from mri_rl.resource_supervisor import ResourcePolicy
+    policy = policy or ResourcePolicy()
     out_dir = Path(out_dir); out_dir.mkdir(parents=True, exist_ok=False)
     receipts = out_dir / 'probe_receipts.jsonl'
     results = []
     for e in entries:
-        before = resource_view(gate_check(sampler), backend)
+        before = resource_view(gate_check(sampler, policy), backend)
         w = backend.load(e['path'], e['key'])
         ref = backend.quantize_ref(w)            # mx.quantize
         via = backend.quantize_module(w)         # nn.quantize on a Linear holding w (the real library path)
@@ -90,7 +91,7 @@ def run(entries, out_dir, backend, sampler):
         backend.save(saved, dict(zip(names, ref)))
         back = backend.reload(saved)
         reload_same = {n: backend.bitwise_equal(ref[i], back[n]) for i, n in enumerate(names)}
-        after = resource_view(gate_check(sampler), backend)
+        after = resource_view(gate_check(sampler, policy), backend)
         receipt = {'key': e['key'], 'source_sha256': e['sha256'], 'quantization': QUANT,
                    'shapes': {n: backend.shape(a) for n, a in zip(names, ref)},
                    'dtypes': {n: backend.dtype(a) for n, a in zip(names, ref)},
@@ -143,15 +144,16 @@ class NativeBackend:
 def main():
     import argparse
     from pathlib import Path as P
-    from mri_rl.resource_supervisor import sample_macos
+    from mri_rl.resource_supervisor import ResourcePolicy, sample_macos
     p = argparse.ArgumentParser()
     p.add_argument('--manifest', type=P, required=True)
     p.add_argument('--input-dir', type=P, required=True)
     p.add_argument('--output', type=P, required=True)
     a = p.parse_args()
     entries = validate_inputs(a.manifest, a.input_dir)
-    gate_check(sample_macos)
-    print(json.dumps(run(entries, a.output, NativeBackend(), sample_macos)))
+    policy = ResourcePolicy()  # shared from the pre-native check through every unit
+    gate_check(sample_macos, policy)
+    print(json.dumps(run(entries, a.output, NativeBackend(), sample_macos, policy)))
 
 
 if __name__ == '__main__':
