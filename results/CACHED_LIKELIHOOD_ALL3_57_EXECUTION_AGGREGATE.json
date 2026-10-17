@@ -1,0 +1,53 @@
+{
+ "kind": "cached_likelihood_all_three_57_aggregate",
+ "executed_by": "authentic Claude Code session 94ff5023 via reviewed V2/V4 orchestrators",
+ "status": "A28,B28,A0 each 57/57 rows; NOT yet independently numerically verified for B28/A0; no scientific analysis performed by Claude here",
+ "stages": {
+  "A28": {
+   "rows_before": 42,
+   "rows_after": 57,
+   "exit_code": 0,
+   "seconds": 300,
+   "attempt": 2,
+   "stops": 0,
+   "hold_events": 0,
+   "max_swap_growth_gib": 0.231,
+   "min_available_gib": 5.68,
+   "min_pressure_free_percent": 30,
+   "max_mlx_peak_gib": 5.606
+  },
+  "B28": {
+   "rows_before": 3,
+   "rows_after": 57,
+   "exit_code": 0,
+   "seconds": 868,
+   "attempt": "3 (V4)",
+   "stops": 0,
+   "hold_events": 14,
+   "max_swap_growth_gib": 1.01,
+   "min_available_gib": 5.48,
+   "min_pressure_free_percent": 27,
+   "max_mlx_peak_gib": 5.606
+  },
+  "A0": {
+   "rows_before": 3,
+   "rows_after": 57,
+   "exit_code": 0,
+   "seconds": 695,
+   "attempt": "3 (V4)",
+   "stops": 0,
+   "hold_events": 2,
+   "max_swap_growth_gib": 0.0,
+   "min_available_gib": 5.49,
+   "min_pressure_free_percent": 28,
+   "max_mlx_peak_gib": 5.606
+  }
+ },
+ "notes": [
+  "OS pressure level seen: 1 and 2 only (never 4).",
+  "B28 had 14 HOLD/HOLD_RECOVERY events and A0 had 2: the memory-warning wait engaged, no unload/reload, no STOP.",
+  "Earlier attempts: A28 attempt 1 stopped on the 1 GiB stage swap cap; B28 attempt 2 stopped on the 30% pressure floor; both with 0 rows and preserved logs.",
+  "Raw outputs/logs remain in ignored private storage."
+ ],
+ "next": "Root independent numerical verification of B28/A0, then the three-checkpoint paired analysis (A0 vs A28 vs B28, FLAIR/T1, no-image, pair separation, prior shift), then GSPO."
+}
