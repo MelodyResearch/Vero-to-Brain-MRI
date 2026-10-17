@@ -7,10 +7,9 @@ import time
 from mri_rl.paced_resources import decisions
 from mri_rl.resource_supervisor import ResourcePolicy, sample_macos
 
-BATTERY_POLICY = {'version':'read-only-likelihood-battery-v3-duration-warning', 'runner':'answer_likelihood_v1',
-    'start_min_percent':75, 'stop_percent':65, 'initial_sample_gap_seconds':31,
-    'rapid_drain_min_seconds':60, 'rapid_drain_min_points':2, 'rapid_drain_points_per_minute':1,
-    'stage_max_drain_points':5, 'stage_max_swap_growth_gib':1,
+BATTERY_POLICY = {'version':'read-only-likelihood-battery-v4-low-reserve-only', 'runner':'answer_likelihood_v1',
+    'stop_percent':20, 'initial_sample_gap_seconds':31,
+    'stage_max_swap_growth_gib':1,
     'rate_warning_min_seconds':30, 'rate_warning_min_observations':2,
     'warning_hold_rechecks':3,'warning_hold_seconds':15,'warning_recovery_samples':2,
     'power_watts':'UNAVAILABLE; battery-percent trend is a coarse proxy', 'weight_updates':0}
@@ -49,20 +48,11 @@ class BatteryDiagnosticGate:
         effective=replace(s,power_source='AC') if known else s
         action,reasons=decisions(effective,loading=loading,supervisor_reasons=reasons)
         if s.battery_percent is None:reasons.append('battery_sensor_unknown')
-        elif starting and s.battery_percent<BATTERY_POLICY['start_min_percent']:reasons.append('battery_stage_start_below_75')
-        elif s.battery_percent<=BATTERY_POLICY['stop_percent']:reasons.append('battery_stop_at_65')
+        elif s.battery_percent<=BATTERY_POLICY['stop_percent']:reasons.append('battery_low_reserve_stop')
         if s.swap_used_gib is None:reasons.append('swap_sensor_unknown')
         if self.initial is not None:
             if s.swap_used_gib is not None and s.swap_used_gib-self.initial.swap_used_gib>=BATTERY_POLICY['stage_max_swap_growth_gib']:
                 reasons.append('stage_swap_growth')
-            if s.battery_percent is not None and self.initial.battery_percent-s.battery_percent>=BATTERY_POLICY['stage_max_drain_points']:
-                reasons.append('stage_battery_budget')
-            for prior in self.history:
-                dt=s.monotonic_seconds-prior.monotonic_seconds
-                if s.battery_percent is not None and prior.battery_percent is not None:
-                    drop=prior.battery_percent-s.battery_percent
-                    if dt>=60 and drop>=2 and drop/(dt/60)>=1:
-                        reasons.append('rapid_battery_drain');break
         if level!='NORMAL' and not rate_only_level:reasons.append('supervisor_not_normal')
         if reasons:
             if reasons==['sustained_swap_growth']:

@@ -14,7 +14,7 @@ def test_exception_is_diagnostic_only_and_global_training_stays_ac():
     assert decisions(healthy(),loading=True)[0]=='HOLD'
     with pytest.raises(ValueError):BatteryDiagnosticGate('/tmp/unused',runner='training')
 
-@pytest.mark.parametrize('sample', [healthy(battery=74),replace(healthy(),battery_percent=None),
+@pytest.mark.parametrize('sample', [healthy(battery=20),replace(healthy(),battery_percent=None),
     replace(healthy(),other_heavy_processes=1),replace(healthy(),available_gib=3),
     replace(healthy(),power_source='SENSOR_UNAVAILABLE')])
 def test_start_rejects_low_unknown_or_unsafe(tmp_path,sample):
@@ -22,19 +22,17 @@ def test_start_rejects_low_unknown_or_unsafe(tmp_path,sample):
     gate=BatteryDiagnosticGate(tmp_path/'r',sampler=lambda:sample,sleep=lambda _:None)
     with pytest.raises(RuntimeError):gate.before_unit('start',loading=True)
 
-def test_initial_two_samples_and_durable_stop_at_65(tmp_path):
+def test_initial_two_samples_and_durable_low_reserve_stop_at_20(tmp_path):
     from mri_rl.likelihood_battery import BatteryDiagnosticGate
-    samples=iter([healthy(),healthy(31),healthy(300,65)])
+    samples=iter([healthy(),healthy(31),healthy(300,20)])
     sleeps=[];p=tmp_path/'r'
     gate=BatteryDiagnosticGate(p,sampler=lambda:next(samples),sleep=sleeps.append)
     gate.before_unit('start',loading=True)
     assert sleeps==[31]
-    with pytest.raises(RuntimeError,match='battery_stop'):gate.before_unit('next')
+    with pytest.raises(RuntimeError,match='battery_low_reserve_stop'):gate.before_unit('next')
     assert json.loads(p.read_text().splitlines()[-1])['action']=='STOP'
 
-@pytest.mark.parametrize('later,reason',[(healthy(120,89),'rapid_battery_drain'),
-    (healthy(1200,86),'stage_battery_budget'),
-    (replace(healthy(60),swap_used_gib=7.0),'stage_swap_growth')])
+@pytest.mark.parametrize('later,reason',[(replace(healthy(60),swap_used_gib=7.0),'stage_swap_growth')])
 def test_runtime_limits(tmp_path,later,reason):
     from mri_rl.likelihood_battery import BatteryDiagnosticGate
     samples=iter([healthy(),healthy(31),later])
@@ -106,7 +104,7 @@ def test_phase_change_does_not_carry_loading_transient_or_reset_budget(tmp_path)
     assert sleeps==[31] and gate.initial.swap_used_gib==5.7
     with pytest.raises(RuntimeError,match='stage_swap_growth'):gate.before_unit('budget')
 
-@pytest.mark.parametrize('later', [hold_sample(77,6.8),hold_sample(77,battery=65),replace(hold_sample(77),other_heavy_processes=1)])
+@pytest.mark.parametrize('later', [hold_sample(77,6.8),hold_sample(77,battery=20),replace(hold_sample(77),other_heavy_processes=1)])
 def test_sustained_hold_stops_immediately_on_hard_deterioration(tmp_path,later):
     from mri_rl.likelihood_battery import BatteryDiagnosticGate
     samples=iter([healthy(),healthy(31),hold_sample(32),hold_sample(62,6.1),later])
@@ -171,3 +169,14 @@ def test_unattributed_supervisor_warning_cannot_be_reclassified(tmp_path):
     gate.before_unit('start')
     gate.policy.level='WARNING'  # No rate-only episode established in this gate.
     with pytest.raises(RuntimeError,match='supervisor_not_normal'):gate.before_unit('next')
+
+def test_battery_drain_and_mid_charge_no_longer_gate_read_only_inference(tmp_path):
+    from mri_rl.likelihood_battery import BatteryDiagnosticGate
+    # Start at 60% (previously <75% rejected); drop 40 points in 2 minutes (previously rapid/stage stop).
+    samples=iter([healthy(0,60),healthy(31,60),healthy(151,25)])
+    p=tmp_path/'r'
+    gate=BatteryDiagnosticGate(p,sampler=lambda:next(samples),sleep=lambda _:None)
+    gate.before_unit('start',loading=True)
+    gate.before_unit('next')
+    last=json.loads(p.read_text().splitlines()[-1])
+    assert last['action']=='CONTINUE' and last['sample']['battery_percent']==25
