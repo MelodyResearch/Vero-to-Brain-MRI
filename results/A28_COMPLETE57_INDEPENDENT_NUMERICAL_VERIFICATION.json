@@ -1,0 +1,630 @@
+{
+  "actual_cached_attempt_resource_metrics": {
+    "OScritical4": false,
+    "base1438_and_adapter504_parity": "Successful1438base check implied by cache_parameters_verified;504adapter equality implied by reaching before_record under reviewed fail-closed code. No separate504tensor-count receipt exists.",
+    "cache_parameters_verified_boundary": true,
+    "duration_seconds": 297.2014057080087,
+    "events": 151,
+    "generations": 15,
+    "max_load_growth_gib": 0.2307714843749995,
+    "max_mlx_peak_gib": 5.605650939047337,
+    "max_resident_net_growth_gib": 0.0,
+    "maximum_other_heavy_processes": 0,
+    "minimum_available_gib": 5.676971435546875,
+    "new_records": 15,
+    "os_pressure_levels": [
+      1,
+      2
+    ],
+    "power_sources": [
+      "AC"
+    ],
+    "pressure_free_percent_range": [
+      30.0,
+      48.0
+    ],
+    "release_active_gib": 9.94652509689331e-07,
+    "resident_baseline_swap_gib": 8.0103125,
+    "thermal_states": [
+      "SENSOR_UNAVAILABLE"
+    ],
+    "total_swap_growth_gib": 0.2307714843749995
+  },
+  "additional_descriptive_metrics": {
+    "length_normalized_candidate_class_accuracy": {
+      "FLAIR": 1.0,
+      "contrast-enhanced T1": 0.21428571428571427
+    },
+    "paired_true_label_logp_real_minus_other_same_patient_image": {
+      "first_token": {
+        "FLAIR": {
+          "max": 5.7521884937305,
+          "mean": 0.6557336131310356,
+          "median": 0.0022466847440227866,
+          "min": -0.018890902865678072,
+          "n": 28,
+          "sd_descriptive": 1.3604564164758732
+        },
+        "contrast-enhanced T1": {
+          "max": 9.30870646983385,
+          "mean": 2.5406949575657825,
+          "median": 1.2474262714385986,
+          "min": -1.6061091423034668,
+          "n": 28,
+          "sd_descriptive": 3.1208135743750804
+        }
+      },
+      "mean": {
+        "FLAIR": {
+          "max": 2.87609555816519,
+          "mean": 0.3278669257746683,
+          "median": 0.001123312569696111,
+          "min": -0.00944551103745539,
+          "n": 28,
+          "sd_descriptive": 0.6802284942084156
+        },
+        "contrast-enhanced T1": {
+          "max": 1.8520079446774842,
+          "mean": 0.504381014274266,
+          "median": 0.24649168339619798,
+          "min": -0.3173017193972555,
+          "n": 28,
+          "sd_descriptive": 0.6204990937777838
+        }
+      },
+      "raw": {
+        "FLAIR": {
+          "max": 5.75219111633038,
+          "mean": 0.6557338515493366,
+          "median": 0.002246625139392222,
+          "min": -0.01889102207491078,
+          "n": 28,
+          "sd_descriptive": 1.3604569884168312
+        },
+        "contrast-enhanced T1": {
+          "max": 9.260039723387422,
+          "mean": 2.5219050713713296,
+          "median": 1.2324584169809896,
+          "min": -1.5865085969862776,
+          "n": 28,
+          "sd_descriptive": 3.102495468888919
+        }
+      }
+    },
+    "positive_pair_separation_counts": {
+      "first_token": 22,
+      "mean": 22,
+      "raw": 22
+    },
+    "scoring_token_counts": {
+      "FLAIR": [
+        2
+      ],
+      "contrast-enhanced T1": [
+        5
+      ]
+    },
+    "strict_greedy_class_accuracy": {
+      "FLAIR": 1.0,
+      "contrast-enhanced T1": 0.21428571428571427
+    },
+    "worst_class_strict_greedy_accuracy": 0.21428571428571427
+  },
+  "cached15_tail_exact_reviewed_identity": true,
+  "denominators": {
+    "FLAIR_images": 28,
+    "T1_images": 28,
+    "checkpoint": "A28",
+    "new_cached_tail": 15,
+    "old_prefix_preserved": 42,
+    "real_images": 56,
+    "records": 57,
+    "training_patients": 28,
+    "unique_no_image_reference": 1
+  },
+  "evidence_sha256": {
+    "A28_resource_log": "7cf4eb3f935597bab800dd6cfc07d689454a893f29ad79419a9b804ed122d41e",
+    "approval": "d02c289fbdd4fbb23899208e7da9afaeb7df11da8df4f9f796aee3f51d876a34",
+    "contract": "32c2a636fa1b51b06b2bc4ce576e1084782dd148964e6e662bfd169a60e94e85",
+    "output": "a5e7b5cb31f4ab7fb18b2f9b0a89bb2dc4eba81595dfbde01aab214fc3bb0b71",
+    "primary_aggregate": "a016892a160778a552e41dc1308d8cf30c33cf2d16d2ff4cf3c52d5b63d32929",
+    "private_primary_analysis": "9dcda56ea5ae14b4501d0b33611754a5727f4a5aea5089ea45c44cdcc5b42eaf"
+  },
+  "independent_metrics": {
+    "all_saved_images": {
+      "class_counts": {
+        "FLAIR": 28,
+        "contrast-enhanced T1": 28
+      },
+      "first_token": {
+        "margin": {
+          "max": 5.7499999245628715,
+          "mean": -5.758928570613664,
+          "median": -7.00000016100239,
+          "min": -9.375000409258064,
+          "n": 56,
+          "sd_descriptive": 3.462237055697735
+        },
+        "per_class_margin": {
+          "FLAIR": {
+            "max": -3.750000037252903,
+            "mean": -7.357142855962073,
+            "median": -7.437499969732016,
+            "min": -9.375000409258064,
+            "n": 28,
+            "sd_descriptive": 1.1676988014073826
+          },
+          "contrast-enhanced T1": {
+            "max": 5.7499999245628715,
+            "mean": -4.160714285265255,
+            "median": -5.875000044703484,
+            "min": -9.12499992037192,
+            "n": 28,
+            "sd_descriptive": 4.183547844246717
+          }
+        },
+        "preferred_correct": 34,
+        "signed_margin": {
+          "max": 9.375000409258064,
+          "mean": 1.598214285348409,
+          "median": 4.687500019324943,
+          "min": -9.12499992037192,
+          "n": 56,
+          "sd_descriptive": 6.5267185330290705
+        },
+        "signed_real_minus_no_image_margin": {
+          "max": 15.375000309402822,
+          "mean": 1.598214285348409,
+          "median": 0.125000244443072,
+          "min": -5.875000347587047,
+          "n": 56,
+          "sd_descriptive": 4.937540663195567
+        },
+        "true_label_logp_real_minus_no_image": {
+          "max": 9.619252129457891,
+          "mean": 2.4013754100368323,
+          "median": 0.2492856168973958,
+          "min": -0.02606474349158816,
+          "n": 56,
+          "sd_descriptive": 3.245036070313549
+        }
+      },
+      "greedy": {
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 28,
+            "INVALID_OR_UNPARSED": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 22,
+            "INVALID_OR_UNPARSED": 0,
+            "contrast-enhanced T1": 6
+          }
+        },
+        "full_format": 56,
+        "strict_correct": 34,
+        "termination": {
+          "length": 0,
+          "stop": 56,
+          "unknown": 0
+        }
+      },
+      "images": 56,
+      "mean": {
+        "margin": {
+          "max": 2.8634419432076355,
+          "mean": -1.0684760690548298,
+          "median": -1.4156176825247018,
+          "min": -1.8864965296954466,
+          "n": 56,
+          "sd_descriptive": 0.9619350069699943
+        },
+        "per_class_margin": {
+          "FLAIR": {
+            "max": -0.762027979796278,
+            "mean": -1.484600039079297,
+            "median": -1.5008725120415178,
+            "min": -1.8864965296954466,
+            "n": 28,
+            "sd_descriptive": 0.23265495417804066
+          },
+          "contrast-enhanced T1": {
+            "max": 2.8634419432076355,
+            "mean": -0.6523520990303627,
+            "median": -1.1889530808839766,
+            "min": -1.837764427779635,
+            "n": 28,
+            "sd_descriptive": 1.2042388760986307
+          }
+        },
+        "preferred_correct": 34,
+        "signed_margin": {
+          "max": 2.8634419432076355,
+          "mean": 0.4161239700244671,
+          "median": 1.254489818426765,
+          "min": -1.837764427779635,
+          "n": 56,
+          "sd_descriptive": 1.3761543915376286
+        },
+        "signed_real_minus_no_image_margin": {
+          "max": 4.804545594555307,
+          "mean": 0.4161239700244671,
+          "median": 0.024366050957905783,
+          "min": -1.1790756715513937,
+          "n": 56,
+          "sd_descriptive": 1.2303002465185846
+        },
+        "true_label_logp_real_minus_no_image": {
+          "max": 1.9266701336782717,
+          "mean": 0.4789918562328229,
+          "median": 0.05131230411570864,
+          "min": -0.013032490955040998,
+          "n": 56,
+          "sd_descriptive": 0.6467522755010123
+        }
+      },
+      "raw": {
+        "margin": {
+          "max": 5.683233077727891,
+          "mean": -5.838882360730824,
+          "median": -7.0817385681821605,
+          "min": -9.433484029996208,
+          "n": 56,
+          "sd_descriptive": 3.4453342573742707
+        },
+        "per_class_margin": {
+          "FLAIR": {
+            "max": -3.8495876275256933,
+            "mean": -7.427701822191158,
+            "median": -7.50740324715575,
+            "min": -9.433484029996208,
+            "n": 28,
+            "sd_descriptive": 1.1580939304621451
+          },
+          "contrast-enhanced T1": {
+            "max": 5.683233077727891,
+            "mean": -4.250062899270491,
+            "median": -5.952646919147867,
+            "min": -9.190665114747418,
+            "n": 28,
+            "sd_descriptive": 4.165426769980475
+          }
+        },
+        "preferred_correct": 34,
+        "signed_margin": {
+          "max": 9.433484029996208,
+          "mean": 1.5888194614603333,
+          "median": 4.766410352626792,
+          "min": -9.190665114747418,
+          "n": 56,
+          "sd_descriptive": 6.590791157848591
+        },
+        "signed_real_minus_no_image_margin": {
+          "max": 15.38910159014543,
+          "mean": 1.5888194614603333,
+          "median": 0.12140945762439515,
+          "min": -5.856280884891845,
+          "n": 56,
+          "sd_descriptive": 4.929458668176298
+        },
+        "true_label_logp_real_minus_no_image": {
+          "max": 9.633350668391358,
+          "mean": 2.3971349667218607,
+          "median": 0.2568870834984409,
+          "min": -0.026064981910081997,
+          "n": 56,
+          "sd_descriptive": 3.2321369600879875
+        }
+      }
+    },
+    "checkpoint": "A28",
+    "complete_pairs": {
+      "class_counts": {
+        "FLAIR": 28,
+        "contrast-enhanced T1": 28
+      },
+      "first_token": {
+        "margin": {
+          "max": 5.7499999245628715,
+          "mean": -5.758928570613664,
+          "median": -7.00000016100239,
+          "min": -9.375000409258064,
+          "n": 56,
+          "sd_descriptive": 3.462237055697735
+        },
+        "per_class_margin": {
+          "FLAIR": {
+            "max": -3.750000037252903,
+            "mean": -7.357142855962073,
+            "median": -7.437499969732016,
+            "min": -9.375000409258064,
+            "n": 28,
+            "sd_descriptive": 1.1676988014073826
+          },
+          "contrast-enhanced T1": {
+            "max": 5.7499999245628715,
+            "mean": -4.160714285265255,
+            "median": -5.875000044703484,
+            "min": -9.12499992037192,
+            "n": 28,
+            "sd_descriptive": 4.183547844246717
+          }
+        },
+        "preferred_correct": 34,
+        "signed_margin": {
+          "max": 9.375000409258064,
+          "mean": 1.598214285348409,
+          "median": 4.687500019324943,
+          "min": -9.12499992037192,
+          "n": 56,
+          "sd_descriptive": 6.5267185330290705
+        },
+        "signed_real_minus_no_image_margin": {
+          "max": 15.375000309402822,
+          "mean": 1.598214285348409,
+          "median": 0.125000244443072,
+          "min": -5.875000347587047,
+          "n": 56,
+          "sd_descriptive": 4.937540663195567
+        },
+        "true_label_logp_real_minus_no_image": {
+          "max": 9.619252129457891,
+          "mean": 2.4013754100368323,
+          "median": 0.2492856168973958,
+          "min": -0.02606474349158816,
+          "n": 56,
+          "sd_descriptive": 3.245036070313549
+        }
+      },
+      "greedy": {
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 28,
+            "INVALID_OR_UNPARSED": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 22,
+            "INVALID_OR_UNPARSED": 0,
+            "contrast-enhanced T1": 6
+          }
+        },
+        "full_format": 56,
+        "strict_correct": 34,
+        "termination": {
+          "length": 0,
+          "stop": 56,
+          "unknown": 0
+        }
+      },
+      "images": 56,
+      "mean": {
+        "margin": {
+          "max": 2.8634419432076355,
+          "mean": -1.0684760690548298,
+          "median": -1.4156176825247018,
+          "min": -1.8864965296954466,
+          "n": 56,
+          "sd_descriptive": 0.9619350069699943
+        },
+        "per_class_margin": {
+          "FLAIR": {
+            "max": -0.762027979796278,
+            "mean": -1.484600039079297,
+            "median": -1.5008725120415178,
+            "min": -1.8864965296954466,
+            "n": 28,
+            "sd_descriptive": 0.23265495417804066
+          },
+          "contrast-enhanced T1": {
+            "max": 2.8634419432076355,
+            "mean": -0.6523520990303627,
+            "median": -1.1889530808839766,
+            "min": -1.837764427779635,
+            "n": 28,
+            "sd_descriptive": 1.2042388760986307
+          }
+        },
+        "preferred_correct": 34,
+        "signed_margin": {
+          "max": 2.8634419432076355,
+          "mean": 0.4161239700244671,
+          "median": 1.254489818426765,
+          "min": -1.837764427779635,
+          "n": 56,
+          "sd_descriptive": 1.3761543915376286
+        },
+        "signed_real_minus_no_image_margin": {
+          "max": 4.804545594555307,
+          "mean": 0.4161239700244671,
+          "median": 0.024366050957905783,
+          "min": -1.1790756715513937,
+          "n": 56,
+          "sd_descriptive": 1.2303002465185846
+        },
+        "true_label_logp_real_minus_no_image": {
+          "max": 1.9266701336782717,
+          "mean": 0.4789918562328229,
+          "median": 0.05131230411570864,
+          "min": -0.013032490955040998,
+          "n": 56,
+          "sd_descriptive": 0.6467522755010123
+        }
+      },
+      "raw": {
+        "margin": {
+          "max": 5.683233077727891,
+          "mean": -5.838882360730824,
+          "median": -7.0817385681821605,
+          "min": -9.433484029996208,
+          "n": 56,
+          "sd_descriptive": 3.4453342573742707
+        },
+        "per_class_margin": {
+          "FLAIR": {
+            "max": -3.8495876275256933,
+            "mean": -7.427701822191158,
+            "median": -7.50740324715575,
+            "min": -9.433484029996208,
+            "n": 28,
+            "sd_descriptive": 1.1580939304621451
+          },
+          "contrast-enhanced T1": {
+            "max": 5.683233077727891,
+            "mean": -4.250062899270491,
+            "median": -5.952646919147867,
+            "min": -9.190665114747418,
+            "n": 28,
+            "sd_descriptive": 4.165426769980475
+          }
+        },
+        "preferred_correct": 34,
+        "signed_margin": {
+          "max": 9.433484029996208,
+          "mean": 1.5888194614603333,
+          "median": 4.766410352626792,
+          "min": -9.190665114747418,
+          "n": 56,
+          "sd_descriptive": 6.590791157848591
+        },
+        "signed_real_minus_no_image_margin": {
+          "max": 15.38910159014543,
+          "mean": 1.5888194614603333,
+          "median": 0.12140945762439515,
+          "min": -5.856280884891845,
+          "n": 56,
+          "sd_descriptive": 4.929458668176298
+        },
+        "true_label_logp_real_minus_no_image": {
+          "max": 9.633350668391358,
+          "mean": 2.3971349667218607,
+          "median": 0.2568870834984409,
+          "min": -0.026064981910081997,
+          "n": 56,
+          "sd_descriptive": 3.2321369600879875
+        }
+      }
+    },
+    "complete_patient_pairs": 28,
+    "cross_checkpoint_comparison": "NOT_RUN",
+    "no_image": {
+      "margins": {
+        "first_token": -9.62500038483995,
+        "mean": -1.9411036513476716,
+        "raw": -9.705868512417538
+      },
+      "status": "AVAILABLE",
+      "unique_inputs": 1
+    },
+    "pair_separation": {
+      "first_token": {
+        "max": 12.125000357104,
+        "mean": 3.196428570696818,
+        "median": 1.2499999817227945,
+        "min": -1.6250000451691449,
+        "n": 28,
+        "sd_descriptive": 4.213264147115332
+      },
+      "mean": {
+        "max": 4.107668929400035,
+        "mean": 0.8322479400489342,
+        "median": 0.24777856834061118,
+        "min": -0.3267472304347109,
+        "n": 28,
+        "sd_descriptive": 1.209391983121588
+      },
+      "raw": {
+        "max": 12.076334325912882,
+        "mean": 3.1776389229206665,
+        "median": 1.235032186869816,
+        "min": -1.6053996190611883,
+        "n": 28,
+        "sd_descriptive": 4.19825103383244
+      }
+    },
+    "planned_records": 57,
+    "saved_records": 57,
+    "scope": "TRAINING_PATIENT_SINGLE_CHECKPOINT_DIAGNOSTIC",
+    "status": "FULL_SINGLE_CHECKPOINT",
+    "trailing_images": {
+      "class_counts": {
+        "FLAIR": 0,
+        "contrast-enhanced T1": 0
+      },
+      "first_token": {
+        "margin": null,
+        "per_class_margin": {
+          "FLAIR": null,
+          "contrast-enhanced T1": null
+        },
+        "preferred_correct": 0,
+        "signed_margin": null,
+        "signed_real_minus_no_image_margin": null,
+        "true_label_logp_real_minus_no_image": null
+      },
+      "greedy": {
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 0,
+            "INVALID_OR_UNPARSED": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 0,
+            "INVALID_OR_UNPARSED": 0,
+            "contrast-enhanced T1": 0
+          }
+        },
+        "full_format": 0,
+        "strict_correct": 0,
+        "termination": {
+          "length": 0,
+          "stop": 0,
+          "unknown": 0
+        }
+      },
+      "images": 0,
+      "mean": {
+        "margin": null,
+        "per_class_margin": {
+          "FLAIR": null,
+          "contrast-enhanced T1": null
+        },
+        "preferred_correct": 0,
+        "signed_margin": null,
+        "signed_real_minus_no_image_margin": null,
+        "true_label_logp_real_minus_no_image": null
+      },
+      "raw": {
+        "margin": null,
+        "per_class_margin": {
+          "FLAIR": null,
+          "contrast-enhanced T1": null
+        },
+        "preferred_correct": 0,
+        "signed_margin": null,
+        "signed_real_minus_no_image_margin": null,
+        "true_label_logp_real_minus_no_image": null
+      }
+    },
+    "trailing_unpaired_images": 0
+  },
+  "limitations": [
+    "A28 only; cross-checkpoint A0/A28/B28 causal comparison must await all fixed outputs.",
+    "All28patients are training patients, with prior panel exposure; no independent-patient generalization.",
+    "Candidate mean-token softmax preferences are not calibrated class posteriors; raw and first-token scores are separate estimands.",
+    "Single shared no-image reference and derived same-patient replacement contrasts are not independent new samples or new swapped-generation runs.",
+    "Observed visual discrimination is a training-image diagnostic, not clinical understanding, GSPO improvement or completed Vero transfer.",
+    "Resource telemetry cannot guarantee against a future panic; thermal state unavailable is not proof of normal thermal operation."
+  ],
+  "max_saved_field_recalculation_abs_error": 0.0,
+  "maximum_common_prefix_oracle_disagreement": 0.0,
+  "method": "Independent token-ID partition/causal-index reconstruction, every numeric field recomputed directly from saved logps, independent strict parser,57row and28patient-pair aggregation before reading primary summaries. Python only.",
+  "no_native_imports_or_moving_B28_A0_outputs_read": true,
+  "numeric_fields_recomputed_and_compared": 1539,
+  "old42_prefix_byte_exact": true,
+  "primary_aggregate_and_private_numeric_values_compared": 1460,
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "verdict": "PASS_WITH_LIMITATIONS_A28_COMPLETE57_NUMERICS_AND_RESOURCE_RECEIPTS"
+}
