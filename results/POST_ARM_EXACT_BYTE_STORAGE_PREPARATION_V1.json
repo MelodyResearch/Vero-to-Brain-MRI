@@ -1,0 +1,49 @@
+{
+  "GSPO_critical_sources_changed": false,
+  "actual_checkpoint_storage_changes": false,
+  "actual_models_launched": 0,
+  "author": "isolated Codex /root/full_arm_execution_contract",
+  "checks": {
+    "active_writer_lock_refusal": true,
+    "atomic_hardlink_replace_and_directory_fsync": true,
+    "exact_lexical_virtualenv_verify_only_configs": 11,
+    "idempotent_and_all_original_receipt_SHA_preserved": true,
+    "interrupted_before_and_after_replace_preserves_original_bytes": true,
+    "no_symlink_or_outside_parent": true,
+    "no_unique_or_unknown_data_deleted": true,
+    "original_reviewed_v1_adapter_and_manifest_preserved": true,
+    "private_adapter_guard_tests": 6,
+    "temporary_storage_tests": 8
+  },
+  "evidence_tier": "REPRODUCED_TEMPORARY_CPU_FIXTURES",
+  "limitations": [
+    "Not executed on actual MRI research checkpoints; root must review new private adapter/helper before use.",
+    "Storage estimates are conservative engineering bounds, not a guarantee of full-study disk sufficiency.",
+    "Hardlinked completed files must remain immutable; no future code may overwrite an existing committed boundary.",
+    "No numerical, native-reload, MRI-understanding or full-study completion claim is made by these storage fixture checks."
+  ],
+  "model_arm_scopes_changed": false,
+  "new_artifact_sha256": {
+    "bundle_manifest_storage_v2_PRIVATE.json": "a7c994858f9f3dba0aacf451958585c165340b325b2376baa7db2eaa8486d47a",
+    "completed_arm_storage_PRIVATE.py": "5de00f8ed1119403c7cea3a293ad311d5df8c563aba49a9afbeb8359bf50db59",
+    "run_remaining_raw_queue_storage_v2_PRIVATE.py": "283ae320d4a1ae8ff9699a89c594dd9779949cc5aff60d90db671ff455b03114",
+    "test_completed_arm_storage_PRIVATE.py": "cc29004fc5ccc8b1bda55f006764242dc360c0ca4b95c825b3307fb187b25a98",
+    "test_private_runner_storage_v2_guards.py": "79bfae07c5121627470247cf7ecb096299e6b4de70e91ca1a934cbaddd615e36"
+  },
+  "next_arm_disk_policy": {
+    "bound": "(198+3)*(3*max_optimizer_file_bytes + max_adapter_bytes +1MiB JSON allowance) +1GiB logs/temporary allowance",
+    "does_not_change_compute_or_scientific_budget": true,
+    "measurements": "Largest actual completed native optimizer and adapter file sizes, same frozen architecture/profile",
+    "not_enough_disk": "BLOCKED_DISK_CAPACITY; no next native process; no automatic retry",
+    "reserve_bytes": 21474836480
+  },
+  "preserved_original_artifact_sha256": {
+    "bundle_manifest_PRIVATE.json": "2c93c04100299f7632277917e8360154e332504d763e30118925e77c47711ab8",
+    "run_remaining_raw_queue_PRIVATE.py": "b66b233e56844a4df7b86dd9b5b9cc7b3111eb1c37a54c141421e6c4559b35b1"
+  },
+  "purpose": "Retain every original checkpoint byte and receipt hash while avoiding duplicated physical checkpoint storage between fixed finite raw arms.",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "review_verdict": "NOT_VERIFIED_PENDING_ROOT_FOCUSED_REVIEW",
+  "schema": "post-completed-arm-exact-byte-storage-preparation-v1",
+  "status": "TESTED_CPU_PREPARED_NOT_APPLIED"
+}
