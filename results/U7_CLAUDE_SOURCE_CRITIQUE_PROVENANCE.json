@@ -1,0 +1,49 @@
+{
+  "CLI_exit_code": 0,
+  "Codex_local_artifact_analysis": "Executed independently under existing authorized local workflow, not by executing the denied Claude script.",
+  "Codex_resolutions_and_limits": {
+    "legacy_prompt_concern": "Previously approved C24 bridge binds rendered native prompt/image hashes and B28 identity; denied bridge payload was not sent to Claude. Source-stored prompt JSON alone is not the rendered model input.",
+    "loss_and_causal_offset": "Independent31-case actual-AST CPU gradient fixture passes; native visual backward remains independently unverified.",
+    "optimization_caution": "Uncorrected Adam and possible policy drift are design facts/hypotheses, not a measured random walk or a diagnosed causal failure.",
+    "shortcut_caution": "A constant greedy answer does not prove absence of latent visual or shortcut sensitivity.",
+    "statistical_caution": "Do not use question-level iid binomial probabilities or four-patient nonsignificance to claim equivalence or no image use."
+  },
+  "actual_reviewer": "authenticated Claude Code",
+  "actual_session_id": "681a062c-8624-4960-9727-c1edb25b35ac",
+  "actual_turns": 37,
+  "evidence_sha256": {
+    "original_private_CLI_response": "cfb152bc28e74ba74729aab8b2631d2581cf2870e4cc4c10ecbe3fe9621b517c",
+    "task_scope": "cbaf9f7bc0d70511f95996dfee2d2cf1bee28fa1040ed4fb2f10bba0481dbd2d"
+  },
+  "evidence_tier": "OBSERVED_CLAUDE_SOURCE_CRITIQUE_WITH_CODEX_REPRODUCED_DIAGNOSTICS",
+  "formal_raw_artifact_training_approval": "NOT_VERIFIED",
+  "independent_initial_positions": [
+    "Answer-prior rebalancing and small-sample uncertainty are plausible explanations; not causally established.",
+    "Single on-policy update per rollout group makes the ratio near1 and clipping inactive in this configuration; not by itself a confirmed implementation bug.",
+    "Binary calibrated rewards are a near-invariant mechanism control.",
+    "Baseline legacy-row prompt parity needs evidence unavailable to this Claude session."
+  ],
+  "limitations": [
+    "This is evidence of actual scoped cross-model source critique, not cross-model verification of raw MRI results.",
+    "Claude's original response remains immutable locally; coordinator resolutions are separately attributed."
+  ],
+  "native_model_or_raw_artifact_work_by_Claude": "NOT_RUN",
+  "normal_permission_denials": {
+    "blocked_actions": [
+      "Some additional Bash metadata/aggregate reads, including C24 bridge inspection",
+      "Diagnostic script Write"
+    ],
+    "counts": {
+      "Bash": 3,
+      "Write": 1
+    },
+    "denied_C24_payload_not_resent_by_coordinator_to_Claude": true,
+    "denied_Write_not_retried_via_Bash_or_Codex_copy": true,
+    "denied_script_execution": "NOT_RUN"
+  },
+  "permitted_scope": "Project source and sanitized aggregate results; no patient-linked raw outputs, images, checkpoints or sealed test.",
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "review_status": "SOURCE_AND_SANITIZED_AGGREGATE_REVIEW_COMPLETED",
+  "schema": "U7-negative-Claude-source-critique-provenance-v1",
+  "source_verdict": "NO_CONFIRMED_BUG; two unresolved concerns: rollout-generator versus teacher-forced scorer parity, and native visual backward direction."
+}

@@ -1,0 +1,841 @@
+{
+  "case_count": 31,
+  "cases": [
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": -1.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": 6.938893903907228e-18,
+      "fixture_loss": -0.9977025980677331,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.0023000450090019924,
+        -0.0023000450090019924,
+        -0.0023000450090019924,
+        -0.0023000450090019924
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": 3.469446951953614e-18,
+      "fixture_loss": -0.9997999749986664,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.00020004500900199244,
+        -0.00020004500900199244,
+        -0.00020004500900199244,
+        -0.00020004500900199244
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": 3.469446951953614e-18,
+      "fixture_loss": -1.0002999650018332,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.00029992002132689133,
+        0.00029992002132689133,
+        0.00029992002132689133,
+        0.00029992002132689133
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": -1.0004,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0023999200213268915,
+        0.0023999200213268915,
+        0.0023999200213268915,
+        0.0023999200213268915
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": 2.6469779601696886e-23,
+      "fixture_loss": -6.14421235332821e-06,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -12.0,
+        -12.0,
+        -12.0,
+        -12.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": -1.0004,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        11.0,
+        11.0,
+        11.0,
+        11.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": -0.9996999999999999,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.00030004500900199243,
+        -0.00030004500900199243,
+        -0.00030004500900199243,
+        -0.00030004500900199243
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": -1.0003999999999995,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0003999200213268913,
+        0.0003999200213268913,
+        0.0003999200213268913,
+        0.0003999200213268913
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": -1.0004,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 1.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.9997000000000001,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.0023000450090019924,
+        -0.0023000450090019924,
+        -0.0023000450090019924,
+        -0.0023000450090019924
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": 3.469446951953614e-18,
+      "fixture_loss": 0.9997999749986664,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.00020004500900199244,
+        -0.00020004500900199244,
+        -0.00020004500900199244,
+        -0.00020004500900199244
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": 3.469446951953614e-18,
+      "fixture_loss": 1.0002999650018332,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.00029992002132689133,
+        0.00029992002132689133,
+        0.00029992002132689133,
+        0.00029992002132689133
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": 6.938893903907228e-18,
+      "fixture_loss": 1.0024028021345335,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0023999200213268915,
+        0.0023999200213268915,
+        0.0023999200213268915,
+        0.0023999200213268915
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.9997000000000001,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -12.0,
+        -12.0,
+        -12.0,
+        -12.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 22026.465794806718,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        11.0,
+        11.0,
+        11.0,
+        11.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": 0.9997000000000001,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.00030004500900199243,
+        -0.00030004500900199243,
+        -0.00030004500900199243,
+        -0.00030004500900199243
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": 1.0003999999999995,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0003999200213268913,
+        0.0003999200213268913,
+        0.0003999200213268913,
+        0.0003999200213268913
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": 22026.465794806718,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.0023000450090019924,
+        -0.0023000450090019924,
+        -0.0023000450090019924,
+        -0.0023000450090019924
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.00020004500900199244,
+        -0.00020004500900199244,
+        -0.00020004500900199244,
+        -0.00020004500900199244
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.00029992002132689133,
+        0.00029992002132689133,
+        0.00029992002132689133,
+        0.00029992002132689133
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0023999200213268915,
+        0.0023999200213268915,
+        0.0023999200213268915,
+        0.0023999200213268915
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -12.0,
+        -12.0,
+        -12.0,
+        -12.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": 0.0,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        11.0,
+        11.0,
+        11.0,
+        11.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        -0.00030004500900199243,
+        -0.00030004500900199243,
+        -0.00030004500900199243,
+        -0.00030004500900199243
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0003999200213268913,
+        0.0003999200213268913,
+        0.0003999200213268913,
+        0.0003999200213268913
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "analytic_gradient_max_abs_error": null,
+      "fixture_loss": 0.0,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": true
+    },
+    {
+      "advantages": [
+        -1.2,
+        0.8,
+        1.1,
+        -0.7
+      ],
+      "analytic_gradient_max_abs_error": 3.469446951953614e-18,
+      "fixture_loss": 0.00021236342085090287,
+      "lengths": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "mean_log_ratios": [
+        0.0,
+        0.001,
+        -0.001,
+        0.0001
+      ],
+      "native_vs_official_gradient_max_abs_error": 0.0,
+      "native_vs_official_value_abs_error": 0.0,
+      "nonsmooth_boundary": false
+    }
+  ],
+  "causal_token_fixture": {
+    "actual_logps_AST_sha256": "020b634f250d3cb9df691d11a0caad637727899ec78c1249b7ca76c6c2b9bb05",
+    "correct_response_start_logit": 4,
+    "off_by_one_negative_control_detected": true,
+    "predicted_response_labels": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "prompt_tokens": 5,
+    "response_tokens": 4,
+    "visual_kwargs_preserved": true
+  },
+  "evidence_tier": "REPRODUCED_CPU_AST_FORWARD_AUTODIFF_AND_ANALYTIC",
+  "findings": {
+    "actual_MLX_boundary_subgradient": "UNRESOLVED: this CPU fixture does not execute MLX; exact clipping/cap ties can select backend-specific valid subgradients.",
+    "causal_response_offset": "NOT_FOUND: response labels start at shifted-logit P-1; generated EOS is included when present.",
+    "negative_U7_cause": "UNRESOLVED: formula correctness does not identify why internal-dev accuracy declined; reward/exposure/grounding/uncertainty remain separate.",
+    "old_policy_collection": "DOCUMENTED_DESIGN: old logps are detached current pre-update logps; all K gradients accumulate before one Adam update, with model.eval and identical captured input.",
+    "on_policy_clipping_activity": "DOCUMENTED_DESIGN: ratios at actual one-step group updates are approximately1; clipping is normally inactive. Official dp_actor also has an on-policy old=current.detach branch.",
+    "sequence_ratio_stop_gradient_clipped_surrogate": "NOT_FOUND: exact native AST and pinned official AST agree under stated CPU AD conventions.",
+    "unequal_length_masked_sequence_mean": "NOT_FOUND: native mean per response then mean K agrees with pinned seq-mean-token-mean; padding gradients0."
+  },
+  "limitations": [
+    "NumPy forward-mode AD validates exact source expressions and independent analytic derivatives; it does not execute native MLX visual backward or test model logits.",
+    "At exact nonsmooth ties, the fixture chooses explicit maximum tie.5 and clip/cap boundary1; native backend boundary conventions remain unverified. Actual frozen on-policy updates are near ratio1, away from tiny clip boundaries.",
+    "Finite local LoRA one-update groups are not a full distributed veRL training parity claim. No source changes, model launch, queue intervention, or experimental repair follows from this fixture."
+  ],
+  "max_native_official_gradient_error": 0.0,
+  "max_native_official_value_error": 0.0,
+  "official_commit": "025ca3c800fc95224c86323c1f7fd33dceed3090",
+  "prompt_source_check": {
+    "actual_generate_prepared_ID_equality": "Only generation prompt length is checked by native rollout; this CPU diagnostic does not newly intercept model-generation internals.",
+    "all_dev_systems_match_native_training_contract": true,
+    "assistant_prefix_same": true,
+    "decoding_difference": "Intentional stochastic rollout versus greedy evaluation; not a prompt mismatch.",
+    "dev_projection_rows": 40,
+    "dev_projection_sha256": "b556b70ecd5570bf8f0a814b5a1654a0b60553f1025a123e6e56bfce69187199",
+    "enable_thinking": false,
+    "eval_implicit_add_generation_prompt_default": true,
+    "evaluation_temperature": 0.0,
+    "frozen_contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+    "native_chat_template_helper_sha256": "8d3469f3d34d58dab84d207d820e0ec3c9c50f2573c47e9a893cc5162469756a",
+    "task_question_sets_identical": true,
+    "train_manifest_sha256": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+    "train_rows": 76,
+    "training_temperature": 1.0
+  },
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "independent-GSPO-AST-loss-gradient-diagnostic-v1",
+  "source_sha256": {
+    "fixture": "37b3958a14c3a1906bb8b653c99e2fab0cff62723b0285e5b6f85a120faac3ba",
+    "native_backend": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "native_loss_AST_sha256": "a9d80bac3b29a6d32df22c94aec44fcdaa7f4e00b2f214d1d15218da7bc8680d",
+    "official_loss_AST_subset_sha256": "92fd998eddaf4c647bb50c6dd3fc8d1b7c6113cd589ef23774670ae720e00061",
+    "pinned_official_core_algos": "10a48380469e9529122f9167723008014783c132d6110ddc62c77e2f270e3e67"
+  },
+  "verdict": "NOT_FOUND_FOR_INTERIOR_LOSS_GRADIENT_OR_CAUSAL_TOKEN_OFFSET"
+}

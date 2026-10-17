@@ -1,0 +1,81 @@
+{
+  "CLI_entry": "scripts/run_c40_qwen_visual_probe.py --plan <frozen-private-plan> --checkpoint B28|U_raw_seed7 --output <private-jsonl> --queue-cursor <original-cursor> --expected-queue-sha256 <actual-final-digest> --scope-output <new-private-scope>; execution additionally requires --execute --review-verdict <approved-private-file> --expected-review-sha256 <independently-supplied-digest>.",
+  "actual_native_probe_results": "NOT_RUN",
+  "actual_saved_greedy_controls_sha256": "d1a0c0af16ef51acc8fff537547e0d6f4287f35a0db36bd2cff0483e01b6f3e2",
+  "frozen_helper_unchanged": true,
+  "frozen_plan_sha256": "732260275ca977ccce1b59ea5856701f77a54b0150899acfc17aee2a6484b0ab",
+  "future_compute": {
+    "checkpoints": [
+      "B28",
+      "U_raw_seed7"
+    ],
+    "images_per_checkpoint": 8,
+    "real_image_greedy_reused_per_checkpoint": 8,
+    "total_candidate_plus_prefix_forwards": 60,
+    "total_new_noimage_greedy_generations": 4,
+    "unique_noimage_prompts_per_checkpoint": 2,
+    "weight_updates": 0
+  },
+  "independent_implementation_review": {
+    "independently_executed_native_wrapper_tests": 6,
+    "reviewer_id": "/root",
+    "reviewer_kind": "isolated_codex",
+    "scope": "Source review of native loader/cache API, P-1 target gather, third prefix oracle, task naming/order, completion prerequisite, durable resume. Actual execution-scope approval is withheld until original21 training terminals.",
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "independent_patient_generalization_claimed": false,
+  "launch_conditions": [
+    "Actual authenticated original21 training terminals; all canonical completed exits/logs/checkpoints verified.",
+    "Obtain actual final queue cursor hash, regenerate exact source/output-bound scope in a new private file, and receive independent exact-scope approval.",
+    "Run the prepared CLI for B28 then U_raw_seed7, one heavyweight process, existing global queue lock and AC/resource gates. No automatic launch."
+  ],
+  "limitations": [
+    "Exploratory previously examined internal-dev subset; no independent test or powered biological/clinical validity claim.",
+    "Native wrapper equivalence from actual new B28/U7 forwards remains unverified until the first approved diagnostic finishes.",
+    "Dallas same-minus-different fields are task-named; candidate-relative preferences are not calibrated class probabilities.",
+    "Whole-head nonbrain/intensity/source-domain shortcuts remain; original18RL/3SFT comparisons unchanged.",
+    "Cross-family review of these private artifacts NOT_VERIFIED; actual reviewers are accurately identified Codex agents."
+  ],
+  "local_focused_tests": {
+    "passed": 13,
+    "scope": "Only two new C40 control/probe test files; no broad training audit.",
+    "seconds": 0.21,
+    "tests": 13
+  },
+  "new_generations": 0,
+  "new_model_forwards": 0,
+  "pending_commands_private_sha256": "60a5d91bc71c8d141db23a020af5ceb6389e2f58fb4539fffc4c87089e42144d",
+  "prior_actual_numeric_reuse": {
+    "method": "Preserved target_token_logps and exact original validator/partition/comparison code objects; no new logits/model forward recomputation.",
+    "saved_likelihood_rows_revalidated": 171,
+    "source_report_sha256": "ad6b17b1b5893539cb43b5eaf5e7c9304876ad62e0597efea6fe9736dbb9fcff"
+  },
+  "research_tag": "EXPLORATORY_DIAGNOSTIC",
+  "schema": "C40-visual-probe-pending-execution-v1",
+  "scope_previews": {
+    "B28": {
+      "maximum_candidate_plus_prefix_forwards": 30,
+      "new_noimage_greedy": 2,
+      "original21training_ready": false,
+      "pending_records": 10,
+      "scope_preview_sha256": "98c54d818aa3f7ba97a167e514d521c409232c961e80a8032f032122d26e7a8c"
+    },
+    "U_raw_seed7": {
+      "maximum_candidate_plus_prefix_forwards": 30,
+      "new_noimage_greedy": 2,
+      "original21training_ready": false,
+      "pending_records": 10,
+      "scope_preview_sha256": "ed6081fd1ce852568682196e19df25bcfd2b014a9c5db8b0aa22962ff9477f58"
+    }
+  },
+  "sealed_test_used": false,
+  "source_sha256": {
+    "scripts/analyze_c40_visual_controls.py": "b8852fbd83ee15c2d0d8fffd8ad903f02f106fde3c61b1e416a50fe134098a0a",
+    "scripts/run_c40_qwen_visual_probe.py": "cbeaeb2ce0fa62e10ff7ecf06978737092aedd6c679c38d36355e44180077ace",
+    "src/mri_rl/c40_visual_controls.py": "f2cb9f1d34a622b2ff959f64a36112e3d33ec2989fbff8af2ba2eabd8d1c496b",
+    "src/mri_rl/c40_visual_probe.py": "e29e6c3c13af834efe6705405727ffa1c51f5599ca2dd19f6b9847ee674de94c",
+    "tests/test_c40_visual_controls.py": "5ef280d5a3c110d1259386f205e57996c6d4c94a2049c0f550004a41d69046f2",
+    "tests/test_c40_visual_probe.py": "ca2df5614f0f8af7e17f1bd3061df01701eebef569a3679a60add3b2c95ce269"
+  },
+  "status": "IMPLEMENTED_TESTED_CPU_NATIVE_NOT_RUN"
+}
