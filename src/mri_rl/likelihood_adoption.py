@@ -11,7 +11,7 @@ from pathlib import Path
 from mri_rl.frozen_eval import sha256
 from mri_rl.experiment_contract import canonical_hash
 
-EXECUTION_ONLY={'paced_answer_likelihood','likelihood_battery','likelihood_resident','likelihood_adoption'}
+EXECUTION_ONLY={'paced_answer_likelihood','likelihood_battery','likelihood_resident','likelihood_adoption','likelihood_cache'}
 PROFILE=('contract_sha256','checkpoint','adapter','backend_sources','temperature','max_generation_tokens',
          'lora_rank','lora_alpha','quantization_bits','group_size','weight_updates')
 

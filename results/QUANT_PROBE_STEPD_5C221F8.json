@@ -1,0 +1,48 @@
+{
+  "atomic_same_status_launcher_claim": "RESOLVED_O_EXCL",
+  "focused_cpu_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_quant_probe.py tests/test_launch_when_ready.py",
+    "elapsed_seconds": 0.57,
+    "failed": 0,
+    "native_runtime_imported": false,
+    "passed": 26
+  },
+  "full_model_conversion_approved": false,
+  "heavyweight_training_approved": false,
+  "manifest_sha256": "aad32ca745aba7c94c16a4f4b97f5fd6c95ebda2f4659a4232304a1c24f3a2a6",
+  "max_attempts": 1,
+  "max_file_bytes": 8388608,
+  "max_processes": 1,
+  "max_tensors": 2,
+  "mlx_peak_budget_mib": 256,
+  "original_swap_counterexample": {
+    "accepted_times": [
+      0,
+      1
+    ],
+    "critical_at_time2_rejected": true
+  },
+  "private_review_sha256": "89d3ec0b807d744fff64c2c7fdc32f827e90c3bd06b94d6f5c2b094cb947296d",
+  "quantization": {
+    "bits": 4,
+    "group_size": 64,
+    "mode": "affine"
+  },
+  "required_conditions": [
+    "Recheck exact sources, input files and manifest before launch; one worker only.",
+    "Use existing tiny native entrypoint with shared persistent policy from pre-import through serial units; source-bound fragment shapes/count and resource bounds cannot change.",
+    "Actual critical pressure, thermal throttling, occupied/unknown heavy-worker inventory and persistent critical swap stop affected computation; no8GiB full-model admission requirement for this tiny scope.",
+    "Write outputs only to the fresh approved directory; save per-tensor receipts; no automatic retry if source/resource/native error or instability.",
+    "Tiny bitwise equality alone establishes neither all344layer equivalence nor lower full-model peak/resident fit, MRI learning or GSPO readiness."
+  ],
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "scope": "ONE native2tensor quantizer equivalence probe; no Qwen/full-model load, no MRI inference, no training",
+  "source_commit": "5c221f88f9093228289b708d2081bdef7d1b2041",
+  "source_sha256": {
+    "scripts/launch_when_ready.py": "fba29acf44111056dac121c80fa77f82d25bda6547e088a6b27ece6a1e4dbcb9",
+    "src/mri_rl/paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "src/mri_rl/quant_probe.py": "59469495fdddc60a59bc231fe2bff933ec326601fada83f83ee947cd095b43dd",
+    "src/mri_rl/resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

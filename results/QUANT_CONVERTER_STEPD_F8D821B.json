@@ -1,0 +1,42 @@
+{
+  "automatic_continuation": "No per-unit review; first12 must allPASS and remain resource-admitted, then original750plan may finish with durable per-unit receipts. Completed units never repeated.",
+  "cache_model_loading_approved": false,
+  "first_stage_units": 12,
+  "focused_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_quant_convert.py",
+    "elapsed_seconds": 0.06,
+    "failed": 0,
+    "native_imports": false,
+    "passed": 12
+  },
+  "full_model_admission": false,
+  "gspo_training_approved": false,
+  "largest_unit_forecast_gib": 3.296417236328125,
+  "largest_unit_index": 0,
+  "maximum_total_units": 750,
+  "mlx_peak_cap_mib": 4096,
+  "module_path_equality_required": true,
+  "native_conversion_executed_by_reviewer": false,
+  "native_workers": 1,
+  "original_resource_counterexamples": "Before-load forecast rejection and overpeak resume rejection verified by focused actual converter tests.",
+  "os_pressure": "Wrapper reads actual dispatch mask every sample;WARN2 logged and allowed;CRITICALbit4 stops before next unit. No8GiB fixed floor. Unknown actual OSsignal stops affected conversion.",
+  "plan_file_sha256": "0ee3efbb9e9c13e2d907500f8475b162ae86034cc234fa3952fe08d5c14c1ac5",
+  "plan_internal_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d",
+  "private_review_sha256": "937ba19cc0d6bf609ca163e3d5c5f9be8162cd4fa25f58c1c26930fb047b0612",
+  "quantized_units": 344,
+  "reserve_gib": 2.0,
+  "residual_active_cap_mib": 256,
+  "resume": "Only this exact scope/source/plan; load_done rejects failed/foreign/hash-changed/overpeak receipts. Pure preallocationHeadroomBlock permits later same-plan pending-unit resume after measured sufficiency; no blind retry after native failures/serious instability.",
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "runner_sha256": "c470b20cd0100c4d61027f5ef5b20fe596856e0db084060c99a4eeab6ed2500d",
+  "scientific_limits": "Forecast is an engineering estimate with live checks, not a guarantee. Full344effective-parameter/cache integration parity and resident fit remain separate unverified gates.",
+  "scope": "Exact public-model750-source-tensor incremental conversion, first12 actual validation then automatic continuation only while all unit checks pass. No Qwen construction/inference/training/cache-model loading.",
+  "source_commit": "f8d821bc3728b804cbc704877aefb31f2faf665c",
+  "source_sha256": {
+    "src/mri_rl/paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "src/mri_rl/quant_convert.py": "808682cf79242cf530e6dc67e57ce705ca474a6fb4fe99d2927697c01d21c2d5",
+    "src/mri_rl/quant_probe.py": "59469495fdddc60a59bc231fe2bff933ec326601fada83f83ee947cd095b43dd",
+    "src/mri_rl/resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

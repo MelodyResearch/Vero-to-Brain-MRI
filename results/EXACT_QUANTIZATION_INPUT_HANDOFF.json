@@ -1,0 +1,12 @@
+{
+  "prepared_by": "Codex coordinator independent input preparation",
+  "scope": "Exactly two public base-model tensor fragments; no MRI, patient fields or full native model",
+  "metadata_path": "/Users/vv/Documents/Codex/2026-10-15/files-pasted-by-the-user-codex-2/work/model_quant_probe_inputs/inputs.json",
+  "metadata_sha256": "5092c0fdfac12e53d9c2f321c33fefc47ac053f849117f70d62ff8983828a209",
+  "total_source_tensor_bytes": 5308416,
+  "input_tensors": 2,
+  "native_runtime_imported": false,
+  "quantization_performed": false,
+  "implementation_lead": "Authentic Claude Code",
+  "launch_scope": "Tiny quantizer source and independent review still required; no full model conversion/inference/training approved by this input receipt"
+}

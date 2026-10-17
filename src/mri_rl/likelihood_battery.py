@@ -3,6 +3,7 @@ from dataclasses import asdict, replace
 import json
 import os
 from pathlib import Path
+import subprocess
 import time
 from mri_rl.paced_resources import decisions
 from mri_rl.resource_supervisor import ResourcePolicy, sample_macos
@@ -14,10 +15,18 @@ BATTERY_POLICY = {'version':'read-only-likelihood-battery-v4-low-reserve-only', 
     'warning_hold_rechecks':3,'warning_hold_seconds':15,'warning_recovery_samples':2,
     'power_watts':'UNAVAILABLE; battery-percent trend is a coarse proxy', 'weight_updates':0}
 
+def os_pressure_level():
+    """kern.memorystatus_vm_pressure_level: 1 normal, 2 warn (logged only), 4 critical (stop); None if unavailable."""
+    try:
+        out=subprocess.run(['sysctl','-n','kern.memorystatus_vm_pressure_level'],capture_output=True,text=True,timeout=2,check=False).stdout.strip()
+        return int(out) if out in ('1','2','4') else None
+    except (OSError,subprocess.TimeoutExpired,ValueError):return None
+
+
 class BatteryDiagnosticGate:
-    def __init__(self,path,*,runner='answer_likelihood_v1',sampler=sample_macos,sleep=time.sleep):
+    def __init__(self,path,*,runner='answer_likelihood_v1',sampler=sample_macos,sleep=time.sleep,load_floor_gib=None):
         if runner != BATTERY_POLICY['runner']:raise ValueError('Read-only likelihood exception only')
-        self.path=Path(path);self.sampler=sampler;self.sleep=sleep
+        self.path=Path(path);self.sampler=sampler;self.sleep=sleep;self.load_floor_gib=load_floor_gib
         self.policy=ResourcePolicy();self.initial=None;self.history=[]
         self._rate_start=None;self._rate_count=0;self._rate_phase=None
         self._rate_only_episode=False
@@ -47,6 +56,12 @@ class BatteryDiagnosticGate:
         known=s.power_source in ('AC','BATTERY')
         effective=replace(s,power_source='AC') if known else s
         action,reasons=decisions(effective,loading=loading,supervisor_reasons=reasons)
+        # Cache path only: the generic 8 GiB load heuristic is replaced by the measured cache footprint + critical reserve.
+        if (self.load_floor_gib is not None and loading and action!='STOP' and 'insufficient_memory_headroom' in reasons
+                and s.available_gib is not None and s.available_gib>=self.load_floor_gib):
+            reasons=[r for r in reasons if r!='insufficient_memory_headroom'];action='HOLD' if reasons else 'CONTINUE'
+        os_level=os_pressure_level()
+        if os_level==4:reasons.append('os_memory_pressure_critical')
         if s.battery_percent is None:reasons.append('battery_sensor_unknown')
         elif s.battery_percent<=BATTERY_POLICY['stop_percent']:reasons.append('battery_low_reserve_stop')
         if s.swap_used_gib is None:reasons.append('swap_sensor_unknown')
@@ -60,7 +75,7 @@ class BatteryDiagnosticGate:
             else:action='STOP'
         elif recovering and clean_samples<1:
             action='HOLD_RECOVERY'
-        event={'unit_id':name,'action':action,'reasons':reasons,'supervisor_level':level,
+        event={'unit_id':name,'action':action,'reasons':reasons,'supervisor_level':level,'os_pressure_level':os_level,'load_floor_gib':self.load_floor_gib,
             'sample':asdict(s),'battery_exception':BATTERY_POLICY,
             'phase':phase,'rate_warning_duration_seconds':duration,
             'rate_warning_observations':self._rate_count,

@@ -66,7 +66,11 @@ def verify_review(path,digest,scope):
         or not r.get('reviewer') or r.get('scope')!=scope):raise ValueError('Independent approval scope mismatch')
 
 
-def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_diagnostic=False, resident=False, adoption_path=None):
+# Measured cache footprint 4.7756 GiB + adapter 0.041 GiB + 2 GiB critical reserve (replaces the generic 8 GiB load heuristic on the cache path only).
+CACHE_LOAD_FLOOR_GIB=4.7756+0.0407+2.0
+
+
+def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_diagnostic=False, resident=False, adoption_path=None, cache=None):
     private=Path(__file__).resolve().parents[2]/'local_data'
     if not contract_path.resolve().is_relative_to(private) or not output.resolve().is_relative_to(private):
         raise ValueError('Ignored private contract/output paths required')
@@ -100,6 +104,11 @@ def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_dia
     if (noimage['record_id']!='no_image_unique' or noimage['image'] is not None or noimage['image_sha256'] is not None
         or noimage['prompt']!=[{'role':'system','content':SYSTEM_PROMPT},{'role':'user','content':[{'type':'text','text':q}]}]):raise ValueError('Unique no-image prompt changed')
     sources={name:sha256(Path(__file__).with_name(name+'.py')) for name in ('likelihood_adoption','likelihood_resident','likelihood_loading','likelihood_battery','paced_answer_likelihood','answer_likelihood','paced_resources','resource_supervisor','frozen_eval','paced_frozen_eval','experiment_contract')}
+    if cache:sources['likelihood_cache']=sha256(Path(__file__).with_name('likelihood_cache.py'))
+    cache_binding=None
+    if cache:
+        from mri_rl.likelihood_cache import verify_cache_identity
+        cache_binding=verify_cache_identity(cache['dir'],cache['certificate'],cache['certificate_sha256'],c['model_artifacts'])
     # Installed backend files are pinned before native imports.
     dist=importlib.metadata.distribution('mlx-vlm')
     backend={}
@@ -107,7 +116,7 @@ def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_dia
         p=Path(dist.locate_file('mlx_vlm/'+name))
         if not p.is_file():raise ValueError('Required installed backend source missing: '+name)
         backend[name]=sha256(p)
-    identity=canonical_hash({'contract':sha256(contract_path),'checkpoint':checkpoint,'sources':sources,'backend':backend,'battery_diagnostic':battery_diagnostic})
+    identity=canonical_hash({'contract':sha256(contract_path),'checkpoint':checkpoint,'sources':sources,'backend':backend,'battery_diagnostic':battery_diagnostic,**({'derived_cache':cache_binding} if cache_binding else {})})
     from tokenizers import Tokenizer
     frozen_tokenizer=Tokenizer.from_file(str(Path(c['model'])/'tokenizer.json'))
     class RawTokenizer:
@@ -119,7 +128,7 @@ def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_dia
         'completed_records':completed,'new_record_ids':[r['record_id'] for r in pending],
         'max_new_records':max_new_records,'forwards_per_record':3,'generations_per_record':1,
         'max_generation_tokens':256,'temperature':0,'prefix_tolerance':c['common_prefix_tolerance'],
-        'model_materialization':'serial_parameter_v2','paced_policy':PACED_POLICY,'battery_exception':BATTERY_POLICY if battery_diagnostic else None,'lora_rank':4,'lora_alpha':8,'quantization_bits':4,'group_size':64,'weight_updates':0,'resident':resident}
+        'model_materialization':'serial_parameter_v2_exact_derived_cache' if cache_binding else 'serial_parameter_v2','derived_cache':cache_binding,'paced_policy':PACED_POLICY,'battery_exception':BATTERY_POLICY if battery_diagnostic else None,'lora_rank':4,'lora_alpha':8,'quantization_bits':4,'group_size':64,'weight_updates':0,'resident':resident}
     adoption=None
     if adoption_path is not None:
         from mri_rl.likelihood_adoption import verify_adoption
@@ -133,14 +142,14 @@ def prepare_plan(contract_path, checkpoint, output, max_new_records, battery_dia
 
 
 def run(contract_path,checkpoint,output,approval,approval_digest,max_new_records,battery_diagnostic=False,
-        resident=False,resident_session=None,adoption_path=None):
+        resident=False,resident_session=None,adoption_path=None,cache=None):
     if resident and (resident_session is None or not Path(resident_session).resolve().is_relative_to(Path(__file__).resolve().parents[2]/'local_data')):
         raise ValueError('Resident execution requires a new ignored private session directory')
-    c,pending,scope=prepare_plan(contract_path,checkpoint,output,max_new_records,battery_diagnostic,resident,adoption_path)
+    c,pending,scope=prepare_plan(contract_path,checkpoint,output,max_new_records,battery_diagnostic,resident,adoption_path,cache)
     verify_review(approval,approval_digest,scope)
     if not pending:return {'status':'COMPLETED','new_records':0}
     output.parent.mkdir(parents=True,exist_ok=True)
-    gate=(BatteryDiagnosticGate if battery_diagnostic else PacedGate)(output.with_suffix('.resources.jsonl'));gate.before_unit('before_runtime_import',loading=True)
+    gate=(BatteryDiagnosticGate(output.with_suffix('.resources.jsonl'),load_floor_gib=cache['load_floor_gib']) if (battery_diagnostic and cache) else (BatteryDiagnosticGate if battery_diagnostic else PacedGate)(output.with_suffix('.resources.jsonl')));gate.before_unit('before_runtime_import',loading=True)
     os.environ.setdefault('HF_HUB_OFFLINE','1');os.environ.setdefault('TRANSFORMERS_OFFLINE','1')
     import mlx.core as mx
     import mlx.nn as nn
@@ -155,10 +164,24 @@ def run(contract_path,checkpoint,output,approval,approval_digest,max_new_records
     model=processor=None
     resident_control=None;chunks=None
     try:
-        model,processor=load(c['model'],lazy=True)
         adapter=Path(c['checkpoints'][checkpoint]['path'])
-        model=prepare_model_for_training(model,train_type='lora',lora_rank=4,lora_alpha=8,quantization_bits=4,quantization_group_size=64,checkpoint_path=adapter,verbose=False)
         from mri_rl.likelihood_loading import materialize_serial
+        if cache:
+            # Exact derived cache: installed loader builds the 344 quantized modules from stored tensors (no BF16 staging);
+            # every loaded base parameter is compared with the certified cache bytes BEFORE the adapter is attached.
+            model,processor=load(cache['dir'],lazy=True)
+            materialize_serial(tree_flatten(model.parameters()),evaluate=mx.eval,collect=gc.collect,clear=mx.clear_cache,
+                observe=lambda name:gate.before_unit(name),observe_every=64)
+            from mri_rl.likelihood_cache import verify_loaded_parameters
+            def to_bytes(v):
+                a=np.asarray(v.view(mx.uint16) if v.dtype==mx.bfloat16 else v)
+                return a.tobytes(),('BF16' if v.dtype==mx.bfloat16 else 'U32' if v.dtype==mx.uint32 else str(v.dtype)),a.shape
+            if verify_loaded_parameters(tree_flatten(model.parameters()),cache['dir'],to_bytes)!=1438:raise ValueError('Cache parameter inventory mismatch')
+            gate.before_unit('cache_parameters_verified')
+            model=prepare_model_for_training(model,train_type='lora',lora_rank=4,lora_alpha=8,quantization_bits=None,quantization_group_size=64,checkpoint_path=adapter,verbose=False)
+        else:
+            model,processor=load(c['model'],lazy=True)
+            model=prepare_model_for_training(model,train_type='lora',lora_rank=4,lora_alpha=8,quantization_bits=4,quantization_group_size=64,checkpoint_path=adapter,verbose=False)
         materialize_serial(tree_flatten(model.parameters()),evaluate=mx.eval,collect=gc.collect,clear=mx.clear_cache,
             observe=lambda name:gate.before_unit(name),observe_every=64)
         model.eval();gc.collect();mx.clear_cache();gate.before_unit('quantized_model_ready')
@@ -175,7 +198,7 @@ def run(contract_path,checkpoint,output,approval,approval_digest,max_new_records
         if resident:
             from mri_rl.likelihood_resident import ResidentSession
             def next_plan():
-                next_contract,next_pending,next_scope=prepare_plan(contract_path,checkpoint,output,max_new_records,battery_diagnostic,True,adoption_path)
+                next_contract,next_pending,next_scope=prepare_plan(contract_path,checkpoint,output,max_new_records,battery_diagnostic,True,adoption_path,cache)
                 if next_contract!=c:raise ValueError('Frozen resident contract changed')
                 return next_pending,next_scope
             resident_control=ResidentSession(records=c['records'],initial_pending=pending,initial_scope=scope,
@@ -255,10 +278,14 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--contract',type=Path,required=True);p.add_argument('--checkpoint',choices=['A0','A28','B28'],required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--max-new-records',type=int,default=2)
     p.add_argument('--adopt-prefix',type=Path);p.add_argument('--resident',action='store_true');p.add_argument('--resident-session',type=Path)
-    p.add_argument('--battery-diagnostic',action='store_true');p.add_argument('--approval',type=Path);p.add_argument('--approval-sha256');p.add_argument('--execute',action='store_true');a=p.parse_args()
+    p.add_argument('--cache-dir',type=Path);p.add_argument('--cache-certificate',type=Path);p.add_argument('--cache-certificate-sha256');p.add_argument('--battery-diagnostic',action='store_true');p.add_argument('--approval',type=Path);p.add_argument('--approval-sha256');p.add_argument('--execute',action='store_true');a=p.parse_args()
     args=(a.contract.resolve(),a.checkpoint,a.output.resolve())
-    if not a.execute:print(json.dumps(prepare_plan(*args,a.max_new_records,a.battery_diagnostic,a.resident,a.adopt_prefix)[2],indent=2));return
+    cache=None
+    if a.cache_dir:
+        if not (a.cache_certificate and a.cache_certificate_sha256):p.error('Cache needs --cache-certificate and --cache-certificate-sha256')
+        cache={'dir':str(a.cache_dir.resolve()),'certificate':str(a.cache_certificate.resolve()),'certificate_sha256':a.cache_certificate_sha256,'load_floor_gib':CACHE_LOAD_FLOOR_GIB}
+    if not a.execute:print(json.dumps(prepare_plan(*args,a.max_new_records,a.battery_diagnostic,a.resident,a.adopt_prefix,cache)[2],indent=2));return
     if not a.approval or not a.approval_sha256:p.error('Independent scope approval required')
-    print(json.dumps(run(*args,a.approval,a.approval_sha256,a.max_new_records,a.battery_diagnostic,a.resident,a.resident_session,a.adopt_prefix)))
+    print(json.dumps(run(*args,a.approval,a.approval_sha256,a.max_new_records,a.battery_diagnostic,a.resident,a.resident_session,a.adopt_prefix,cache)))
 
 if __name__=='__main__':main()

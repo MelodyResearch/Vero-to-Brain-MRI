@@ -1,0 +1,51 @@
+{
+  "cause": "gate_check creates a new ResourcePolicy for each sample; previous swap sample and critical counter are discarded.",
+  "confirmed_counterexample": {
+    "actual_gate": "mri_rl.quant_probe.gate_check",
+    "actual_gate_accepted": [
+      true,
+      true,
+      true
+    ],
+    "available_gib": [
+      3.5,
+      3.5,
+      3.5
+    ],
+    "existing_persistent_resource_policy_levels": [
+      "NORMAL",
+      "NORMAL",
+      "CRITICAL"
+    ],
+    "pressure_free_percent": [
+      14,
+      14,
+      14
+    ],
+    "swap_used_gib": [
+      4,
+      4.1,
+      4.2
+    ],
+    "times_seconds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "launcher_evidence": "O_CREAT|O_EXCL claim before sampling, fsynced claim, existing claimed/launching status refuses relaunch; still model-admission policy and not the tiny-probe entrypoint.",
+  "launcher_verdict": "ORIGINAL_ATOMIC_CLAIM_DEFECT_RESOLVED_FOR_SAME_STATUS_PATH",
+  "minimal_correction": "Preserve one ResourcePolicy from initial admission through serial probe operations and use it for every observe; regression on the reproduced sequence. No broad resource-policy change needed.",
+  "model_launched": false,
+  "native_runtime_imported": false,
+  "otherwise_reviewed": "Allowlist2xBF16[1152,1152],max8MiB fragment,size/hash/header validation before native import; no Qwen/model/image imports; actual installed direct vs nn quantizer equality and reload; per-tensor receipts;256MiB MLX peak receipt and stop. Under trusted prepared immutable fragments no other launch-blocking defect identified.",
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "scientific_limit": "Only2tensor conversion/equality diagnostic; no full-model conversion, same-effective-weight certification across344modules, actual resident fit, MRI inference or GSPO approval.",
+  "scope": "Two prospectively selected public BF16 tensors only; trusted immutable manifest/provenance and atomic same-status launcher claim",
+  "source_commit": "dc5d151761f01a7aad8ba91dfdca677642c40def",
+  "sources": {
+    "launch_when_ready.py": "fba29acf44111056dac121c80fa77f82d25bda6547e088a6b27ece6a1e4dbcb9",
+    "quant_probe.py": "97110ded874af30cfed075c77ad84e0c88359b993871040cda68a0040d4846e6"
+  },
+  "verdict": "FAIL_FOR_LOST_SWAP_TREND_STATE"
+}

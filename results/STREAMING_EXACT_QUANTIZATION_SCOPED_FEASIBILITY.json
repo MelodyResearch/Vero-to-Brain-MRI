@@ -1,0 +1,75 @@
+{
+  "actual_results": "NO_NATIVE_QUANTIZATION_EXECUTED; metadata and source feasibility only",
+  "bounded_resource_profile_required_before_probe": {
+    "maximum_input_tensor_bytes": 2654208,
+    "maximum_tensors": 2,
+    "no_retry": "No automatic retry after serious instability. No app closures or system protection/power changes.",
+    "power": "This is bounded diagnostic computation, not permission for SFT/GSPO on battery. Apply actual authorized diagnostic policy.",
+    "pre_and_post_gate": "Check before runtime import, before each native eval/quantization/serialization, and afterward. Stop affected probe on severe pressure, thermal throttling, exceeded bound, sustained/corroborated abnormal swap, actual hang or instability; preserve receipts.",
+    "reserve_rule": "Bounded allocation plus explicit OS reserve, not fixed8GiB model-load admission. Preserve actual critical low-headroom/system-pressure/thermal/concurrent-worker protection. These proposed diagnostic caps require binding in the exact implementation/launch scope.",
+    "serial": true,
+    "suggested_incremental_mlx_allocation_cap_mib": 128,
+    "suggested_post_import_process_rss_growth_cap_mib": 512
+  },
+  "deferred_launcher_review": {
+    "approval": "NOT_APPROVED_FOR_CONCURRENT_OR_TINY_PROBE_USE_UNCHANGED",
+    "confirmed_concurrency_defect": "status_path.exists() is a check followed later by os.replace, not exclusive acquisition. Two simultaneous callers can both pass existence check and invoke runner. No native model launch required to demonstrate source interleaving.",
+    "necessary_minimal_fix": "Acquire an atomic exclusive status/lock claim before admission loop (O_EXCL or exclusive directory), preserve durable LAUNCHING state, reject subsequent callers, never auto-retry child failure. Bind valid positive finite poll/deadline arguments.",
+    "single_invocation": "Finite wait with no retry after child exit, script digest checked before and immediately before launch. Does not operate other apps.",
+    "source_sha256": "013e89b211f944ea1d1930bd06c4a16dbd728c52ac315512025a39b7cb9eed99",
+    "timeout_limit": "The deadline bounds readiness waiting only; subprocess.run has no child timeout. Native child must retain genuine per-operation gates/hang handling.",
+    "tiny_probe_mismatch": "Current decisions(...loading=True) imposes8GiB/AC model policy. It cannot be claimed adaptive to tiny-array bounds unchanged. Keep separate scope-aware admission within existing resource machinery; no new general monitor."
+  },
+  "full_resident_model_fit": "NOT_VERIFIED",
+  "mission_alignment": "ENGINEERING_UNBLOCK: preserve the exact effective Vero-to-MRI weights and frozen likelihood scorer while investigating bounded conversion allocations. Not a new model or training result.",
+  "model_process_launched": false,
+  "native_runtime_imported": false,
+  "per_tensor_estimated_outputs": {
+    "BF16_bias_bytes": 41472,
+    "BF16_scale_bytes": 41472,
+    "assumption": "Actual installed quantizer output dtypes/shapes must be checked; this is not a runtime measurement.",
+    "packed4bit_bytes": 663552,
+    "total_bytes": 746496,
+    "total_mib": 0.7119140625
+  },
+  "proposed_probe": [
+    "Verify immutable original header/selected key/shape/dtype/offset extent and saved4bit/group64/affine map; copy only selected raw tensor bytes into a valid tiny safetensors fragment. Hash copied bytes and fragment. Do not call native mx.load on the full-model source or instantiate Qwen.",
+    "One worker imports installed MLX only; establish post-import baseline active/peak/RSS/system pressure/swap/thermal and reset peak counter if supported by installed public API. Keep all other applications open.",
+    "For one selected tensor at a time, native-load only that tiny fragment. Compare direct installed mx.quantize to installed nn.QuantizedLinear.from_linear for identical tensor/config; hash and bitwise-compare packed weights, scales and biases including shape/dtype. Save outputs; reload and compare exactly.",
+    "Clear references/cache before next selected tensor and persist each result immediately. A nonselected small retained tensor byte-copy/reload check can be scoped separately or use an already-bound fixture; never silently quantize retained parameters.",
+    "Report before/after and per-step actual MLX active/peak and process RSS, exact output artifacts, elapsed time and resource samples. No causal allocation/fit claim from header estimates."
+  ],
+  "prospective_selection_rule": "Select first2 saved-map BF16 weights sorted by(source data byte length, normalized parameter name), before output inspection. Process serially.",
+  "reviewer": "Independent Codex agent likelihood_finish_reviewer",
+  "runtime_peak_saving": "NOT_VERIFIED",
+  "scientific_equivalence_requirements_for_full_derived_artifact": [
+    "Same original source tensors and exact344-layer saved map; retain every other weight unchanged. Same installed quantizer version and parameters.",
+    "All344 resulting weight/scales/bias arrays must equal the old pipeline bitwise; verify shapes/dtypes and retained tensors,504 adapter arrays and LoRA configuration. Tiny2tensor success alone cannot certify all344.",
+    "Create immutable, complete, source/hash-bound packed artifact with strict key coverage and provenance. Derived representation may differ on disk while effective weights stay the same; never substitute another downloaded quantization.",
+    "After permissible actual model load, verify frozen prompt IDs, image preprocessing metadata, answer-token alignment, prefix oracle and likelihood tolerances on existing fixed inputs. Do not rerun completed generations or alter scorer.",
+    "Full conversion and full resident fit require their own measured resource evidence; do not infer either from tiny probe."
+  ],
+  "selected_tensors": [
+    {
+      "dtype": "BF16",
+      "parameter": "vision_tower.blocks.0.attn.proj.weight",
+      "shape": [
+        1152,
+        1152
+      ],
+      "source_bytes": 2654208
+    },
+    {
+      "dtype": "BF16",
+      "parameter": "vision_tower.blocks.1.attn.proj.weight",
+      "shape": [
+        1152,
+        1152
+      ],
+      "source_bytes": 2654208
+    }
+  ],
+  "source_changed": false,
+  "source_only_no_neutral_reduction_claim": "NOT_ESTABLISHED: source-only inspection cannot exclude incremental exact conversion or exact derived packed artifacts.",
+  "verdict": "FEASIBLE_FOR_TINY_SOURCE_TENSOR_PROBE; implementation and exact launch approval NOT_VERIFIED"
+}

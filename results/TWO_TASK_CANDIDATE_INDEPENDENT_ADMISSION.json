@@ -1,0 +1,106 @@
+{
+  "reviewer": "Independent Codex two_task_admission agent",
+  "scope": "Existing authorized training/internal-development records and six internal-dev mask planes; no MRI intensity load, no reserved-patient images/outcomes, no model",
+  "verdict": "PASS_WITH_LIMITATIONS_ENGINEERING_CANDIDATE; PRIMARY_SCIENTIFIC_SPATIAL_ADMISSION_NOT_VERIFIED",
+  "label_families": {
+    "sequence": "Source acquisition identity, independent of tumor mask",
+    "spatial": "Source-reviewed segmentation projected centroid in FLAIR panel",
+    "dependency_correction": "Three tumor routes share a mask; sequence does not. Four routes are not four independent biomedical skills."
+  },
+  "current_records": {
+    "train_rows": 382,
+    "train_patients": 28,
+    "train_category_rows": {
+      "sequence": 168,
+      "tumor_presence": 84,
+      "enhancing_presence": 84,
+      "tumor_grid": 46
+    },
+    "dev_rows": 54,
+    "dev_patients": 4,
+    "dev_category_rows": {
+      "sequence": 24,
+      "tumor_presence": 12,
+      "enhancing_presence": 12,
+      "tumor_grid": 6
+    },
+    "train_dev_patient_overlap": 0
+  },
+  "existing_C_spatial": {
+    "frozen_train_rows_and_patients": 21,
+    "minimum_tumor_pixels": 1000,
+    "minimum_display_grid_boundary_distance": 10,
+    "all_63_common_candidate_image_hashes_verified": true,
+    "clinical_expert_blind_visibility": "NOT_VERIFIED"
+  },
+  "actual_dev_mask_check": {
+    "planes": 6,
+    "patients": 4,
+    "source_centroid_and_grid_reproduced": 6,
+    "large_boundary_stable_rows": 3,
+    "large_boundary_stable_patients": 3,
+    "eligible_grid_labels": {
+      "right-middle": 2,
+      "center-top": 1
+    },
+    "eligible_levels": {
+      "45": 1,
+      "91": 2
+    },
+    "excluded_below1000": 1,
+    "excluded_near_boundary": 2,
+    "MRI_intensities_loaded": false
+  },
+  "minimal_concrete_common_patient_candidate": {
+    "status": "PROPOSED_C_ENGINEERING_ONLY_NOT_CREATED_OR_APPROVED",
+    "training": {
+      "patients": 21,
+      "sequence_rows": 42,
+      "spatial_rows": 21,
+      "total_rows": 63,
+      "sequence_labels": {
+        "FLAIR": 21,
+        "contrast-enhanced T1": 21
+      },
+      "grid_labels": {
+        "left-middle": 8,
+        "right-middle": 7,
+        "center-middle": 3,
+        "center-top": 2,
+        "left-bottom": 1
+      }
+    },
+    "internal_dev": {
+      "patients": 3,
+      "sequence_rows": 6,
+      "spatial_rows": 3,
+      "total_rows": 9
+    },
+    "selection_rule": "Retain the existing frozen21 C training grid rows. Select both existing single-sequence images of exactly the same patient and axial level. Apply unchanged >=1000 tumor pixels and >=10 display-pixel grid-boundary filters to the six original internal-dev grid rows, and select both corresponding sequence rows for each retained patient-level. Do not alter original382/54 manifests or A/B controls.",
+    "natural_task_proportions": {
+      "sequence": "2/3",
+      "spatial": "1/3"
+    },
+    "uniform_task_proportions": {
+      "sequence": "1/2",
+      "spatial": "1/2"
+    },
+    "new_outcome_based_selection": false
+  },
+  "primary_scientific_blockers": [
+    "Existing C contract explicitly requires qualified blind assessment that source-defined tumor extent/centroid is recoverable from unoverlaid inputs; no such assessment exists. Do not invent clinical admission.",
+    "The spatial reward is exact categorical 3x3 projected-mask-centroid agreement, not 2D IoU,3D grounding or anatomical laterality.",
+    "Selected21 training labels cover5of9 grid cells;3 development rows cover2cells. Cohort is small and development patients have already been examined. No confirmatory generalization claim.",
+    "A new C subset is separate from B sequence-exposure control; any full-arm budget/initialization/evaluation freeze is still needed."
+  ],
+  "source_sha256": {
+    "training_rows": "0efb588b328e3d9af2a339d9237836357a5baff5d9db8b376dc716de3d1f10e3",
+    "internal_dev_rows": "b1722c4e7f6c6c463175f14562607b088293f1e7b70aef250003f18640993eb1",
+    "frozen_C_candidate": "f30748c7256c68c325c015f61c4a3b38bfd6fb9de2f7f6cf964d0e047b47cb73",
+    "training_geometry_reference": "8abe468dfe50de53c4da23d31ea00f613ae38df7996677eaff14cdf2f49226b6",
+    "prior_C_spatial_audit": "d8db867850a6d46a96bdfb35c9b11a4d71c80876702b34660dd57c43fbffef2f"
+  },
+  "model_executed": false,
+  "training_executed": false,
+  "source_modified": false
+}

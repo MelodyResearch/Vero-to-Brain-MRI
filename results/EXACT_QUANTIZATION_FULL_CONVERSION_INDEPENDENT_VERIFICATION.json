@@ -1,0 +1,47 @@
+{
+  "MRI_inference_or_training_claim": false,
+  "OS_critical_bit4_observed": false,
+  "OS_pressure_events": 1502,
+  "OS_pressure_masks_observed": [
+    2
+  ],
+  "actual_executor": "Authenticated Claude Code",
+  "independent_unit_hash_inventory_sha256": "8e0fa9f6b74a2f84b1b72c13322fd92fc94644afe17467ed7bdc06ec5c9ed941",
+  "limitations": [
+    "Actual native module-vs-direct bitwise checks are verified saved receipts from reviewed executed code; reviewer did not rerun344 native quantizations.",
+    "Only per-unit derived weights verified. Assembled-cache integration, exact full-model loader effective-parameter parity, resident model fit, MRI likelihood completion and GSPO remain separate unverified outcomes.",
+    "System-wide swap grew; healthy critical-admission checks do not imply zero resource impact or protection against every OS failure."
+  ],
+  "maximum_mlx_active_after_release_mib": 1.2501335144042969,
+  "maximum_per_unit_mlx_peak_mib": 2262.722667694092,
+  "minimum_recorded_available_gib": 5.4209136962890625,
+  "native_probe_or_recompute_by_reviewer": false,
+  "os_events_sha256": "123cb05bcb006d41460bd6e3299cbc14253a7bf5ba80e28095435d138182c1fc",
+  "output_file_hashes_verified": 750,
+  "per_unit_forecast_plus2GiB_before_load_verified": true,
+  "plan_file_sha256": "0ee3efbb9e9c13e2d907500f8475b162ae86034cc234fa3952fe08d5c14c1ac5",
+  "plan_internal_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d",
+  "pressure_free_percent_range": [
+    30.0,
+    53.0
+  ],
+  "quantized_units": 344,
+  "receipts_sha256": "25e725a02f14008d291e7bbe5debcc092a1628d57b7725fb4d8c688bcf9a3d83",
+  "recorded_native_quantizer_module_equality_checks": 344,
+  "recorded_native_reload_checks": 750,
+  "retained_installed_conv_transpose_independently_verified": true,
+  "retained_raw_payload_equal_units": 405,
+  "retained_units": 406,
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "serialized_output_payload_bytes_hashed": 5127598432,
+  "serialized_output_tensor_payload_hashes": 1438,
+  "source_payload_bytes_hashed": 17534247392,
+  "source_range_hashes_verified": 750,
+  "swap_end_gib": 6.7216796875,
+  "swap_net_growth_gib": 1.173095703125,
+  "swap_peak_gib": 6.7294921875,
+  "swap_start_gib": 5.548583984375,
+  "unique_contiguous_plan_bound_pass_receipts": true,
+  "units_verified": 750,
+  "verdict": "PASS_WITH_LIMITATIONS_ACTUAL_INCREMENTAL_CONVERSION"
+}

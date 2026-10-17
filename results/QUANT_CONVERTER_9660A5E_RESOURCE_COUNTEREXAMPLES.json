@@ -1,0 +1,21 @@
+{
+  "actual_largest_unit": {
+    "bytes": 1244659712,
+    "index": 0,
+    "module_type": "embedding",
+    "source_shape": [
+      151936,
+      4096
+    ]
+  },
+  "first12_includes_largest": true,
+  "low_headroom_calls_load_before_any_forecast": true,
+  "native_imports": false,
+  "over_peak_receipt_reused_as_done": true,
+  "plan_file_sha256": "0ee3efbb9e9c13e2d907500f8475b162ae86034cc234fa3952fe08d5c14c1ac5",
+  "plan_internal_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d",
+  "quantized": 344,
+  "source_sha256": "86c56f8466ee08d11021bccd4be6a2115d3255d9693c7e510d02581ff5bede06",
+  "source_tensor_count": 750,
+  "verdict": "FAIL_NATIVE_CONVERSION_ADMISSION_AND_PEAK_RESUME"
+}

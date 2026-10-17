@@ -1,0 +1,133 @@
+{
+  "MRI_inference_or_GSPO_executed_by_probe": false,
+  "all344_equivalence": "NOT_VERIFIED",
+  "checks": [
+    {
+      "input_and_output_hashes_verified": true,
+      "key": "vision_tower.blocks.0.attn.proj.weight",
+      "module_and_reload_bitwise_checks_in_actual_native_receipt": true,
+      "output_sha256": "19bae832d4239699cae0f22dfea499864833f572d85552affecfcdcbe9ce8914",
+      "resource_after": {
+        "available_gib": 7.35443115234375,
+        "battery_percent": 100,
+        "mlx_active_mib": 4.734382629394531,
+        "mlx_peak_mib": 4.812633514404297,
+        "power_source": "AC",
+        "pressure_free_percent": 41.0,
+        "process_rss_gib": 0.043426513671875,
+        "swap_used_gib": 5.548583984375
+      },
+      "resource_before": {
+        "available_gib": 7.42059326171875,
+        "battery_percent": 100,
+        "mlx_active_mib": 0.0,
+        "mlx_peak_mib": 0.0,
+        "power_source": "AC",
+        "pressure_free_percent": 41.0,
+        "process_rss_gib": 0.0357666015625,
+        "swap_used_gib": 5.548583984375
+      },
+      "saved_header_layout_verified": true,
+      "serialized_tensor_payloads": {
+        "biases": {
+          "dtype": "BF16",
+          "payload_bytes": 41472,
+          "payload_sha256": "5582aaf92814f33cf757231922374b72b2751a7d26f8cb0fde289b76ee08b7ba",
+          "shape": [
+            1152,
+            18
+          ]
+        },
+        "scales": {
+          "dtype": "BF16",
+          "payload_bytes": 41472,
+          "payload_sha256": "3885e093c400823cc5ff8a4d55de9e16e02624cf82bf52c5ffb7fd6720be83bc",
+          "shape": [
+            1152,
+            18
+          ]
+        },
+        "weight": {
+          "dtype": "U32",
+          "payload_bytes": 663552,
+          "payload_sha256": "a9aeeab0541a7aaf815f3a350bf22e77d58436dccb03d3ffeb7d0af447b260c7",
+          "shape": [
+            1152,
+            144
+          ]
+        }
+      }
+    },
+    {
+      "input_and_output_hashes_verified": true,
+      "key": "vision_tower.blocks.1.attn.proj.weight",
+      "module_and_reload_bitwise_checks_in_actual_native_receipt": true,
+      "output_sha256": "dcb70fd518648bdcf9206a672213368aebc73c9ca95204d1de31dce3c69c1e25",
+      "resource_after": {
+        "available_gib": 7.3445587158203125,
+        "battery_percent": 100,
+        "mlx_active_mib": 4.734382629394531,
+        "mlx_peak_mib": 7.265632629394531,
+        "power_source": "AC",
+        "pressure_free_percent": 41.0,
+        "process_rss_gib": 0.0488433837890625,
+        "swap_used_gib": 5.548583984375
+      },
+      "resource_before": {
+        "available_gib": 7.342620849609375,
+        "battery_percent": 100,
+        "mlx_active_mib": 4.734382629394531,
+        "mlx_peak_mib": 4.812633514404297,
+        "power_source": "AC",
+        "pressure_free_percent": 41.0,
+        "process_rss_gib": 0.044769287109375,
+        "swap_used_gib": 5.548583984375
+      },
+      "saved_header_layout_verified": true,
+      "serialized_tensor_payloads": {
+        "biases": {
+          "dtype": "BF16",
+          "payload_bytes": 41472,
+          "payload_sha256": "cc003b6c8c97f2e8017fb7194c28c58c923aeea75bb5f151579c0c7d06ebede0",
+          "shape": [
+            1152,
+            18
+          ]
+        },
+        "scales": {
+          "dtype": "BF16",
+          "payload_bytes": 41472,
+          "payload_sha256": "20608ee39752aa1a69783116c2878d4b1deb2310c1b22e53e6cac39767ae7fa4",
+          "shape": [
+            1152,
+            18
+          ]
+        },
+        "weight": {
+          "dtype": "U32",
+          "payload_bytes": 663552,
+          "payload_sha256": "9512f43a893805539ca0b45d89380d487b02d073e71c1366d3ac5d6230ba6d66",
+          "shape": [
+            1152,
+            144
+          ]
+        }
+      }
+    }
+  ],
+  "evidence": "Actual native receipts plus independent Python file hashes/header layouts/input bindings; no concurrent native rerun",
+  "full_model_peak_reduction": "NOT_VERIFIED",
+  "full_model_resident_fit": "NOT_VERIFIED",
+  "independent_native_recomputation": false,
+  "maximum_recorded_mlx_peak_mib": 7.265632629394531,
+  "native_probe_executor": "Authenticated Claude Code, source5c221f8",
+  "observed_swap_growth_gib": 0.0,
+  "pressure_free_percent_range": [
+    41.0,
+    41.0
+  ],
+  "receipts_sha256": "8c9b389b7dedc38ba18fbca3aff2eaad626e7f24978aa5d175e83cd18a0575fe",
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "tensors": 2,
+  "verdict": "PASS_WITH_LIMITATIONS_ACTUAL_TWO_TENSOR_NATIVE_PROBE"
+}

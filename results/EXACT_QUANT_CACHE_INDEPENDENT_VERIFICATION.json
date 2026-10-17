@@ -1,0 +1,41 @@
+{
+  "all_source_nonweight_files_byte_identical": true,
+  "assembled_payload_bytes_verified": 5127598432,
+  "assembled_tensors_verified": 1438,
+  "both_quantization_keys_equal_exact_saved344map": true,
+  "certificate_file_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+  "certificate_matches_actual_cache": true,
+  "index_exact_plan_coverage": true,
+  "installed_top_and_vision_sanitize_idempotent_on_all1438_cached_keys_and_shapes": true,
+  "limitations": [
+    "Pure byte/config/sanitizer integration verification only; no actual cached-model materialization, logits/likelihood parity, MRI inference or GSPO update.",
+    "Array-valued full-model loader behavior remains native scoped execution evidence; shape-only sanitizer idempotence does not substitute for that."
+  ],
+  "loader_predicate_source_evidence": "Installed mlx_vlm.utils load_model_weights uses exact per-module map; fallback quantizes only if corresponding scales tensor exists. Cache exact344scales entries cover exactly savedmap.",
+  "model_loaded": false,
+  "native_runtime_imported": false,
+  "payload_hashes_match_independently_verified_units": true,
+  "plan_file_sha256": "0ee3efbb9e9c13e2d907500f8475b162ae86034cc234fa3952fe08d5c14c1ac5",
+  "plan_units": 750,
+  "quantized_modules": 344,
+  "retained_tensors": 406,
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "sanitizer_test": "Executed only extracted pure sanitizer methods on ShapeOnly stubs; no package/native imports. Required retainedconv no second transpose.",
+  "shard_headers_contiguous_and_complete": true,
+  "shards": {
+    "model-00001-of-00002.safetensors": {
+      "bytes": 4207002792,
+      "sha256": "6a332d4977c95fd6b51ac7155e039016d90041da1bf3cdd3e500192ea00fa626"
+    },
+    "model-00002-of-00002.safetensors": {
+      "bytes": 920772600,
+      "sha256": "2c94dc6761ab4641a4e2c612eb3ff5fd62d939c5704f8301025e741650b9e1e8"
+    }
+  },
+  "source_certifier_defect": "Actual tiny fixture with conflicting8bit/group32 quantization_config is accepted; certify_cache validates only primary quantization. Minimal both-key validation regression needed before relying on generic certificate for future artifacts. Actual current cache has both keys correctly equal.",
+  "source_config_only_delta_keys": [
+    "quantization",
+    "quantization_config"
+  ],
+  "verdict": "PASS_WITH_LIMITATIONS_ACTUAL_CACHE_BYTES_AND_CONFIGURATION"
+}

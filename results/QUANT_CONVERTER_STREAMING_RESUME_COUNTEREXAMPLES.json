@@ -1,0 +1,22 @@
+{
+  "counterexamples": {
+    "actual_NativeConvertBackend_load_and_clear_with_fakeMX": {
+      "all_source_tensors_retained_after_return_deleted_and_cache_clear": 2,
+      "expected_after_release": 0,
+      "retained_in_shard_dictionary": 2
+    },
+    "changed_plan_source_action_output_accepted_as_done": true,
+    "failed_bitwise_receipt_accepted_as_done_on_resume": true
+  },
+  "minimal_fixes": [
+    "Load/evaluate one bounded raw-byte-range fragment at a time rather than retaining evaluated mx.load shard dictionaries. Release per-unit source/output/reloaded/module-reference arrays before next unit; clear allocator cache afterward.",
+    "Bind immutable plan and source provenance to output directory/receipts; compare exact unit identity/action/output/layout/transform and validation policy on resume; require all prior equality/resource checks PASS. Failed evidence is not a completed unit.",
+    "Represent and verify required installed retained-conv canonicalization and position_ids omission in the plan/output. Preserve raw source identity separately from sanitized effective tensor identity."
+  ],
+  "native_imports": false,
+  "retained_conv_source_observation": "Converter has no canonicalization operation; real source conv[1152,3,2,16,16] must transpose(0,2,3,4,1) to installed effective shape[1152,2,16,16,3]. Mapping names alone is insufficient.",
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "scientific_limit": "No full conversion or next native scope approved; prior actual tiny2tensor PASS remains valid.",
+  "source_sha256": "9776c2a18ba30237e6b15cc6e296ec61471bcdbcc1869f27287d60469a910d5f",
+  "verdict": "FAIL_BEFORE_ANY_FULL_CONVERSION"
+}
