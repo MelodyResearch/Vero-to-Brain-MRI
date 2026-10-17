@@ -8,7 +8,21 @@ Independent research inspired by Princeton's [Vero](https://github.com/zlab-prin
 
 **Execution source of truth:** [Vero-to-MRI primary execution contract](research/VERO_TO_MRI_PRIMARY_EXECUTION_CONTRACT.md). Prior literature-review decisions and experiments remain archived as historical evidence. Real-image frozen comparisons, a small SFT update, and three attempted MRI GSPO sampling arms have run. Historical strict Vero-format arms yielded no RL updates; the subsequent post-SFT28 bounded presence diagnostic produced one verified strict task-reward update. No controlled balancing or generalization gain has been demonstrated.
 
-## Current evidence (2026-10-15)
+## Latest execution (2026-10-17)
+
+The project remains active. These results supersede the incomplete cursors in the archived snapshot below.
+
+| Experiment | Actual status | Verified evidence and limits |
+|---|---|---|
+| A0 / historical A28 / balanced B28 likelihood diagnosis | `INFERENCE_COMPLETED`: 57/57 each, 171 total | [Independent numerical verification](results/COMPLETE171_INDEPENDENT_NUMERICAL_VERIFICATION.json), [scientific findings](results/LIKELIHOOD_COMPLETE171_SCIENTIFIC_FINDINGS.md). Training-image diagnostics show a dominant B28 answer-prior shift; they do not establish independent-patient generalization. |
+| Native strict-reward GSPO engineering update | One genuine update on one uncertainty-screened training image | [Independent Adam/weight verification](results/NATIVE_T1_G8_ONE_UPDATE_INDEPENDENT_VERIFICATION.json), [actual fresh native state restore](results/NATIVE_G8_ACTUAL_RESTORE_INDEPENDENT_VERIFICATION.json). All 504 adapter tensors changed; Adam advanced0→1. This selected engineering diagnostic is not a primary training arm or a demonstrated accuracy gain. |
+| Common-B28 two-task internal-development baseline | `INFERENCE_COMPLETED`:24 authenticated original sequence rows + 16 new Dallas rows | [Actual baseline](results/C40_B28_COMMON_START_BASELINE.json): sequence 15/24 (62.5%, 4 patients); correspondence 8/16 (50%, 8 people / 4 cycles); equal-task macro 56.25%; format 40/40. Dallas predicts **different for every case**, matching its class-prior baseline. Old rows retain their original 13 approvals; none were regenerated or relabeled. |
+| First finite two-task GSPO arm: U_raw, seed7 | `IN_PROGRESS`, not completed | [Exact scoped release](results/FIRST_FULL_U_RAW_SEED7_SCOPED_RELEASE.json): common B28, frozen 76-row pool, group 4, 169216 native-input-plus-generated-token cap, maximum 198 occurrences. One resident model saves adapter, full Adam/RNG and a durable receipt after each group. Zero-variance groups are recorded without an update. |
+| Remaining RL arms, same-C-data SFT and final transfer matrix | `NOT_RUN` until their actual receipts exist | [Frozen finite protocol](research/execution/FULL_GSPO_TWO_TASK_FINITE_PROTOCOL_V1.md). CPU implementations, scoped approvals and numerical checks are not completed training. Prospective test pixels remain sealed. |
+
+Authentic Claude Code implemented the new training interfaces; independent Codex reviewers reproduced and checked the corrections. Codex locally executed the new 16 baseline predictions and the current full arm while Claude's session quota was exhausted. No Claude raw-result review or denied-data access is claimed. The MRI correspondence task uses whole-head views and retains face/skull/neck and source-confounding limitations; it does not isolate brain morphology or establish clinical validity. The local language-LoRA/Metal study is not the official distributed Vero CUDA actor/vision configuration, and the token cap is not an exact FLOP match.
+
+## Archived evidence snapshot (2026-10-15)
 
 | Gate | State | Evidence |
 |---|---|---|

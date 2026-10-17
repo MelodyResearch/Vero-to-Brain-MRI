@@ -1,0 +1,31 @@
+{
+  "actual_test_result": "4 passed in 0.14s",
+  "evidence_tier": "REPRODUCED",
+  "findings": {
+    "completed_resume": "Restores used_tokens, charged_groups, imputed_unknown_tokens and included pending directories before the completed-cursor early return; regression preserves actual nonzero committed ledger and update count.",
+    "crash_accounting": "Durable whole-step reservation (run-binding hash, parent/cursor, step/example IDs and exact costs) precedes native work. Pending work is conservatively imputed, separately labeled, before admitting another step; exact-cap regression stops without free replay and repeated recovery does not accumulate an additional charge. Reservation is admitted to the shared atomic file inventory.",
+    "finite_update_order": "Each native loss and gradient norm is checked before accumulation; final summed norm must be finite and positive before optimizer.update. Actual native-method control flow with NumPy NaN stand-ins rejects without any optimizer call.",
+    "image_integrity": "Native expected image hashes are mandatory, checked after per-example resource callback and again after native input preparation; all step images rechecked before any updated boundary publication. Mutation regression preserves only initial checkpoint."
+  },
+  "focused_test_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. python3 -m pytest -q -p no:cacheprovider tests/test_tier_c_sft.py::test_completed_resume_restores_and_reports_the_committed_ledger tests/test_tier_c_sft.py::test_crashed_step_is_charged_once_as_imputed_and_cannot_exceed_the_cap tests/test_tier_c_sft.py::test_image_changed_inside_the_native_callback_is_never_committed tests/test_tier_c_sft.py::test_native_step_rejects_nonfinite_loss_or_gradient_before_any_optimizer_update",
+  "limitations": [
+    "This verdict covers only the four reproduced defects and their corrections; it is not an executable SFT launch approval or a new review of unrelated Tier C hooks.",
+    "No native SFT gradient/model run was performed by the reviewer. Teacher-forced loss-mask numerical parity, actual native resource peak, complete source/data/target/budget/common-initializer launch scope and updated checkpoint restoration must remain explicit in a separate finite admission.",
+    "Crash accounting is conservative IMPUTED cost for unknown partial native work, not a measured token-consumption claim; imputation can end an arm early.",
+    "Successful CPU regression does not establish MRI understanding, held-out generalization, SFT/RL compute equivalence or full Vero transfer."
+  ],
+  "native_imports_or_model_execution": false,
+  "original_failure_report_sha256": "ca451c0edddaf332ba40f7afe527cc12d3821799e3fb5833a549c71b75a5474d",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "review_scope": "Only the four reproduced SFT corrections; not native launch authorization",
+  "reviewed_commit": "9b4d4cab3f85fb0dee30b71c1d288459f4875731",
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "tier-c-sft-four-corrections-independent-step-d-v1",
+  "sft_native_launch_authorized": false,
+  "source_sha256": {
+    "continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "tier_c_sft.py": "0a5858b86f4bfdba6519a10391e2dc93bd1fe28d0121329fae9ee9c6b6449fe6",
+    "two_task_training.py": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
