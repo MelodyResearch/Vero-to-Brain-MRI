@@ -44,7 +44,11 @@ class NativeGSPOBackend:
             self.model,self.processor=load(str(model_path),lazy=True)
             self.model=prepare_model_for_training(self.model,train_type='lora',lora_rank=4,lora_alpha=8,
                 quantization_bits=4,quantization_group_size=64,checkpoint_path=Path(adapter),verbose=False)
-            mx.eval(self.model.parameters());gc.collect();mx.clear_cache()
+            from mri_rl.likelihood_loading import materialize_serial
+            # Same serial_parameter_v2 discipline as the successful read-only loader, not a bulk eval.
+            materialize_serial(tree_flatten(self.model.parameters()),evaluate=mx.eval,collect=gc.collect,
+                clear=mx.clear_cache,observe=before_unit,observe_every=64)
+            gc.collect();mx.clear_cache()
             before_unit('quantized_model_ready')
             enable_gradient_checkpointing(self.model.language_model.layers)
             saved=mx.load(str(adapter));actual=dict(tree_flatten(self.model.trainable_parameters()))

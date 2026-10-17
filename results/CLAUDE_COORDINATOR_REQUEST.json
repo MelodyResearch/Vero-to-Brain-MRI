@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead, session 94ff5023",
- "kind": "scope_review_request_continuous_gspo_pilot",
+ "kind": "scope_review_request_continuous_gspo_pilot_v2_after_codex_counterexample",
  "status": "PROPOSED / NOT_RUN / NOT_APPROVED",
  "correction_accepted": "No claim that 5 GiB swap is a fixed maximum; no new swap-free gate added; 1 GiB stage cap untouched.",
  "loader_remedy": "None justified: likelihood loader already materializes leaves serially with gc/clear_cache each step; observed swap growth is OS eviction of other processes' pages at ~2 GiB MLX active, not a loader defect. Heavy 8B retry stays blocked until measured headroom nears the earlier successful load (13.68 GiB available); no cap change requested.",
@@ -11,9 +11,9 @@
   "reuses": "experiment_contract.require_launch_preflight Tier B diagnostic (<=1 optimizer step, <=3 groups, <=8 rollouts), PacedGate AC/memory policy, continuous_rl atomic boundaries"
  },
  "source_sha256": {
-  "continuous_rl.py": "401f6de30e2c230e7f75f6bc2f7787d072fa6a87a0358f03a95a50da085a6497",
-  "mlx_continuous_gspo.py": "cf5759dafd51efcf1b04c01182b98dd5da807ca55ae06fa0584398d82389ac0e",
-  "continuous_rl_pilot.py": "10e82844e58b03240356008f222f3f59e6e027dd12a93ab4aacd485fdde5834b",
+  "continuous_rl.py": "ddf4ff7f409dd513dfb1e9837b040be3664714030fb623ef87cfae544bcc4e7d",
+  "mlx_continuous_gspo.py": "a216c151c6a25027f11096ced66330d9851ba3c0a2e211864050804cca8d86f1",
+  "continuous_rl_pilot.py": "cc5de7698c788f154e4d623e746eb01d16350417d0e1eba1aaf64a6074d87b2d",
   "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
   "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
   "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
@@ -26,5 +26,19 @@
   "Confirmation that blind visibility/leakage check for the chosen pair is done"
  ],
  "launch_when_approved": "PYTHONPATH=src python3 -m mri_rl.continuous_rl_pilot train --model M --train T --dev D --contract C --adapter A --output local_data/.../pilot --review-verdict V --expected-review-sha256 H --record-ids ID1 ID2 ; then the same with 'reload'",
- "limits": "Local MLX diagnostic profile, not official veRL parity. Task is sequence recognition from acquisition labels: ENGINEERING_ONLY, not an independent biomedical skill. No generalization claim."
+ "limits": "Local MLX diagnostic profile, not official veRL parity. Task is sequence recognition from acquisition labels: ENGINEERING_ONLY, not an independent biomedical skill. No generalization claim.",
+ "fixes": {
+  "budget": "continuous_rl.run(max_optimizer_updates=N) is a TOTAL cap enforced before every rollout and before backend construction on resume; pilot passes MAX_UPDATES=1 (same constant declared to preflight and bound in launch_configuration). max_new_groups=min(len(schedule),3). Regression: 2 informative groups -> 1 update, resume after cap constructs no backend.",
+  "reload_payload": "full greedy text/token ids saved to reload_generation_PRIVATE.json (hash in receipt); stdout counts only",
+  "image_recheck": "reload re-hashes frozen image before and after generation; training path already rechecks after authorize/rollout/post_rollout",
+  "resume": "--resume exposed; driver resume restores committed Adam/RNG/cursor",
+  "reload_scope": "launch_configuration now binds mode and boundary_receipt_sha256 of the actual updated boundary, so reload needs its own approval after the update",
+  "loading": "NativeGSPOBackend constructor now uses likelihood_loading.materialize_serial (observe_every=64, gate per 64 leaves) instead of bulk mx.eval(parameters); order/values tested on CPU fixture only. NOT verified on real Qwen; loading parity with serial_parameter_v2 is by shared helper, not by a run."
+ },
+ "tests": "41 passed, 2 skipped (CPU/synthetic; opt-in native tiny test not rerun after edits)",
+ "remaining_limitations": [
+  "Post-update DEV evaluation is not implemented in this launcher; reload greedy generation on schedule[0] is an engineering check only. Needs the exact development contract/inputs from Codex.",
+  "Real Qwen constructor, rollout and memory behaviour NOT_VERIFIED; heavy retry blocked by headroom.",
+  "Sequence-label task is ENGINEERING_ONLY."
+ ]
 }

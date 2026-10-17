@@ -191,7 +191,7 @@ def _grades(row, raw, config):
 
 
 def run(*, output, schedule, bindings, backend_factory, authorize, max_new_groups,
-        resume=False, starting_adapter=None, config=None):
+        resume=False, starting_adapter=None, config=None, max_optimizer_updates=None):
     """Run at most a fixed number of attempted groups, with one backend/optimizer.
 
     authorize(context) MUST independently validate exact scope and resources;
@@ -200,6 +200,8 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
     arrays before returning state/save operations. Fixture injection is explicit.
     """
     require(callable(authorize), 'Independent authorizer is required')
+    require(max_optimizer_updates is None or (type(max_optimizer_updates) is int and max_optimizer_updates >= 1),
+            'Optimizer update budget must be a positive integer')
     require(type(max_new_groups) is int and 1 <= max_new_groups <= 3, 'Bounded 1–3 group stage required')
     config = json.loads(canonical(PROFILE if config is None else config))
     for key in PROFILE:
@@ -222,6 +224,9 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
         if cursor == len(schedule):
             return {'completed_groups': cursor, 'optimizer_updates': current['optimizer_updates'],
                     'status': 'SCHEDULE_COMPLETE', 'boundary': str(current['path'])}
+        if current and max_optimizer_updates is not None and current['optimizer_updates'] >= max_optimizer_updates:
+            return {'completed_groups': cursor, 'optimizer_updates': current['optimizer_updates'],
+                    'status': 'UPDATE_BUDGET_REACHED', 'boundary': str(current['path'])}
         adapter = current['path'] / 'adapter.safetensors' if current else starting_adapter
         context = {'phase': 'load', 'binding': binding, 'cursor': cursor,
                    'max_new_groups': min(max_new_groups, len(schedule)-cursor),
@@ -242,6 +247,9 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                 current = _publish(output, work, backend, binding, 0, 0, None,
                                    {'updated': False, 'record_id': None, 'schedule_record_id': None})
             for index in range(cursor, min(cursor+max_new_groups, len(schedule))):
+                # Total budget is enforced before any further rollout; a skip never consumes it.
+                if max_optimizer_updates is not None and current['optimizer_updates'] >= max_optimizer_updates:
+                    break
                 authorize({**context, 'phase': 'group', 'cursor': index,
                            'boundary_receipt_sha256': digest(current['path'] / 'receipt.json'),
                            'starting_adapter': str(current['path'] / 'adapter.safetensors')})
@@ -285,7 +293,9 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                     'schedule_record_id': schedule[index]['id'], 'grades': grades, 'advantages': advantages,
                     'optimizer_before_fingerprint': before_state, 'optimizer_after_fingerprint': after_state,
                     'update_evidence': update_evidence})
-            return {'status': 'SCHEDULE_COMPLETE' if current['completed_groups'] == len(schedule) else 'BOUNDED_STAGE_COMPLETE',
+            budget_hit = max_optimizer_updates is not None and current['optimizer_updates'] >= max_optimizer_updates
+            return {'status': 'UPDATE_BUDGET_REACHED' if budget_hit else
+                              'SCHEDULE_COMPLETE' if current['completed_groups'] == len(schedule) else 'BOUNDED_STAGE_COMPLETE',
                     'completed_groups': current['completed_groups'], 'optimizer_updates': current['optimizer_updates'],
                     'boundary': str(current['path']), 'exact_resume_profile': config['profile'],
                     'native_runtime_validation': 'REQUIRES_SEPARATE_EVIDENCE', 'science_claim': False}

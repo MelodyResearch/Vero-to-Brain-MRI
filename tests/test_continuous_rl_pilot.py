@@ -26,3 +26,27 @@ def test_launch_configuration_binds_every_pilot_source(tmp_path):
     assert cfg['schedule_record_ids'] == ['a', 'b']
     changed = pilot.launch_configuration(output=tmp_path, seed=8, record_ids=['a', 'b'], group_size=2, mode='train')
     assert changed != cfg
+
+
+def test_pilot_declared_budget_is_the_enforced_budget():
+    import inspect
+    assert pilot.MAX_UPDATES == 1
+    src = inspect.getsource(pilot.main)
+    assert 'max_optimizer_updates=MAX_UPDATES' in src and 'resume=args.resume' in src
+    assert 'max_new_groups=min(len(schedule), 3)' in src
+
+
+def test_native_constructor_uses_serial_materialization_not_bulk_eval():
+    from pathlib import Path
+    text = (Path(pilot.ROOT) / 'src/mri_rl/mlx_continuous_gspo.py').read_text()
+    assert 'materialize_serial' in text and 'mx.eval(self.model.parameters())' not in text
+
+
+def test_serial_materialization_visits_every_leaf_once_in_order():
+    from mri_rl.likelihood_loading import materialize_serial
+    seen, marks = [], []
+    leaves = [(f'k{i}', i * 1.5) for i in range(130)]
+    materialize_serial(leaves, evaluate=seen.append, collect=lambda: None, clear=lambda: None,
+                       observe=marks.append, observe_every=64)
+    assert seen == [v for _, v in leaves]
+    assert marks == ['materialized:64', 'materialized:128', 'materialized:130']

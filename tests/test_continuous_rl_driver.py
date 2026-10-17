@@ -197,3 +197,28 @@ def test_post_generation_hold_keeps_raw_and_no_update(setup):
     assert list((tmp/'run').glob('.pending-*/rollout_PRIVATE.json'))
     assert not (tmp/'run/boundary_0001').exists()
     assert not any(call[0]=='update' for call in NumericBackend.instances[-1].calls)
+
+
+def test_update_budget_caps_total_updates_and_never_loads_backend_after_cap(setup):
+    m=module();_,_,tmp=setup;NumericBackend.instances=[]
+    rows,bindings,_=setup
+    def go(resume):
+        return m.run(output=tmp/'cap',schedule=rows,bindings=bindings,backend_factory=NumericBackend,
+            authorize=lambda c:None,max_new_groups=3,resume=resume,max_optimizer_updates=1)
+    first=go(False)
+    # group0 spends the single update; no further rollout (even a would-be skip) may start.
+    assert first['status']=='UPDATE_BUDGET_REACHED' and first['optimizer_updates']==1 and first['completed_groups']==1
+    assert [c for c in NumericBackend.instances[0].calls if c[0]=='update']==[('update','synthetic-0')]
+    count=len(NumericBackend.instances)
+    again=go(True)
+    assert again['status']=='UPDATE_BUDGET_REACHED' and again['optimizer_updates']==1
+    assert len(NumericBackend.instances)==count, 'No backend/model may be constructed after the budget is spent'
+
+
+def test_no_budget_keeps_previous_behavior(setup):
+    m=module();_,_,tmp=setup
+    result=run(m,setup,tmp/'nocap',3)
+    assert result['optimizer_updates']==2
+    with pytest.raises(ValueError):
+        m.run(output=tmp/'bad',schedule=setup[0],bindings=setup[1],backend_factory=NumericBackend,
+              authorize=lambda c:None,max_new_groups=1,max_optimizer_updates=0)
