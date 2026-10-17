@@ -1,0 +1,102 @@
+{
+  "evidence_sha256": {
+    "approval": "d72a87ffd3e95a34b43bca1fccb620b5aada2126caae402bdc1dc1faaabd01b1",
+    "boundary_receipts": [
+      "e5a74641ecfac32642c8ec21e6c06f803266b07ad8d8c8cece7149eb0049f0b2",
+      "60a9b0c0200eefb01bc3d380e7ec540b93482d62d7ddcd2ff0b72d32e3354b12",
+      "d78a81ee486ddc107ecbf541b92f3200eb66d5bf040a99d98c758678dc5f5e23"
+    ],
+    "resource_log": "e04f4b43749b557f519fa6549f5403a43b793f9b16fd5b274aae36a803956afd",
+    "stdout": "30e7c3ee8ae6e0d7136a6033d2bf1448b385a66bb804e679231cf2e9566fa159"
+  },
+  "evidence_tier": "REPRODUCED",
+  "limitations": [
+    "Eight responses are from two training images; no independent-patient generalization or learning result.",
+    "Different rewards between separate groups do not provide within-group relative advantages. Both groups correctly skipped updates.",
+    "Native gradient/update and restored native checkpoint computation remain NOT_VERIFIED.",
+    "Process release/exit status must be taken from the coordinator task exit; this local resource log ends before close and cannot prove zero residual MLX allocations."
+  ],
+  "mission_alignment": "Two actual prospectively ordered T1 groups demonstrate deterministic within-group reward saturation and a correct no-update path; this is not successful GSPO optimization.",
+  "observed": {
+    "Adam_moments": "correctly lazy/uninitialized",
+    "B28_weights_and_config_unchanged": true,
+    "MLX_RNG_advances_between_both_groups": true,
+    "RNG_python_valid_MLX_U32x2_persisted": true,
+    "atomic_boundaries": 3,
+    "completed_groups": 2,
+    "final_status": "SCHEDULE_COMPLETE",
+    "gradient_computation": "NOT_RUN",
+    "groups": [
+      {
+        "advantages": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "class_counts": {
+          "FLAIR": 4
+        },
+        "format_pass": 4,
+        "group": 1,
+        "optimizer_updates": 0,
+        "responses": 4,
+        "task_correct": 0,
+        "total_rewards": [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      },
+      {
+        "advantages": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "class_counts": {
+          "contrast-enhanced T1": 4
+        },
+        "format_pass": 4,
+        "group": 2,
+        "optimizer_updates": 0,
+        "responses": 4,
+        "task_correct": 4,
+        "total_rewards": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "optimizer_before_after_equal": true,
+    "optimizer_step_all_boundaries": 0,
+    "optimizer_updates": 0,
+    "responses": 8,
+    "verified_inventory_files": 20
+  },
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "resources": {
+    "READY_hold_events": 0,
+    "STOP_events": 0,
+    "all_holds_naturally_recovered": true,
+    "duration_seconds": 166.66526512500423,
+    "events": 78,
+    "kernel_OS_pressure_bits": "NOT_CAPTURED",
+    "max_MLX_active_gib": 4.822195917367935,
+    "max_MLX_peak_gib": 5.572376334108412,
+    "min_available_gib": 5.9420013427734375,
+    "min_pressure_percent": 30.0,
+    "post_close_MLX_sample": "NOT_CAPTURED",
+    "swap_end_gib": 9.722958984375,
+    "swap_start_gib": 9.722958984375,
+    "thermal": "SENSOR_UNAVAILABLE",
+    "transient_hold_events": 3
+  },
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "native-t1-two-group-independent-verification-v1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
