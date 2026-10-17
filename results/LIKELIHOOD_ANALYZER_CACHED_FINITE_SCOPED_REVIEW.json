@@ -1,0 +1,23 @@
+{
+  "changes": [
+    "Both loaders reconstruct segment identity with optional derived-cache binding via existing shared helper",
+    "Both extent validators preserve ordinary budget<=8 and allow<=57 only explicitfiniteTrue/nonresident/batteryexception"
+  ],
+  "confirmed_original_failure": "Valid synthetic57-row/start42/budget15 finite scope rejected Invalid approved cursor/budget before correction",
+  "focused_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_analyze_answer_likelihood.py::test_cached_execution_scopes_load_without_changing_scores tests/test_analyze_answer_likelihood.py::test_explicit_finite_cached_scope_extent_is_accepted",
+    "elapsed_seconds": 0.1,
+    "failed": 0,
+    "passed": 3
+  },
+  "model_source_or_launch_approval_changed": false,
+  "moving_MRI_outputs_read_or_hashed": false,
+  "native_runtime_imported": false,
+  "numerical_analysis_functions_changed": false,
+  "reviewer": "Independent Codex reviewer likelihood_finish_reviewer",
+  "source_sha256": {
+    "analyze_answer_likelihood.py": "9e998a6a761a81e2c628d1ad6d09a199fb26deae7d069d2e80adcb1f9f7106d9",
+    "analyze_single_checkpoint_likelihood.py": "02593c441b6a9d755c218b4c4307906a0b5e8b8073b563d8f8fb00428afb90f4"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS_ANALYZER_IDENTITY_AND_FINITE_SCOPE_ONLY"
+}

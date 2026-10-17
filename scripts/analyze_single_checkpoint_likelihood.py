@@ -13,6 +13,7 @@ _spec=importlib.util.spec_from_file_location('paired_likelihood_analysis',Path(_
 core=importlib.util.module_from_spec(_spec);_spec.loader.exec_module(core)
 from mri_rl.likelihood_adoption import verify_adoption
 from mri_rl.experiment_contract import canonical_hash
+from mri_rl.likelihood_adoption import segment_identity
 
 
 def stats(values):return core.stats(values) if values else None
@@ -103,8 +104,7 @@ def load(contract_path,output_path,scope_path):
     core.require(all(scope.get(k)==v for k,v in core.FIXED_PROFILE.items()),'Fixed profile mismatch')
     model=scope['checkpoint'];core.require(model in core.MODELS and scope['contract_sha256']==evidence[contract_path] and
         scope['adapter']==c['checkpoints'][model] and Path(scope['output']).resolve()==output_path.resolve(),'Scope/output mismatch')
-    identity=canonical_hash({'contract':scope['contract_sha256'],'checkpoint':model,'sources':scope['source_hashes'],
-        'backend':scope['backend_sources'],'battery_diagnostic':scope.get('battery_exception') is not None})
+    identity=segment_identity(scope)
     core.require(identity==scope['run_identity'],'Identity mismatch')
     if scope.get('adopted_prefix'):
         adoption=verify_adoption(Path(scope['adopted_prefix']['path']),scope)
@@ -112,7 +112,9 @@ def load(contract_path,output_path,scope_path):
     core.completed_prefix(output_path,c['records'],identity,adoption=adoption)
     rows=[json.loads(line) for line in raw.splitlines()]
     start=scope.get('completed_records');budget=scope.get('max_new_records');allowed=scope.get('new_record_ids')
-    core.require(type(start) is int and 0<=start<=len(c['records']) and type(budget) is int and 1<=budget<=8,
+    finite=scope.get('finite_remaining_stage') is True
+    core.require(not finite or (scope.get('resident') is False and scope.get('battery_exception') is not None), 'Invalid finite stage')
+    core.require(type(start) is int and 0<=start<=len(c['records']) and type(budget) is int and 1<=budget<=(57 if finite else 8),
         'Invalid approved cursor/budget')
     expected=[r['record_id'] for r in c['records'][start:start+budget]]
     core.require(allowed==expected and start<=len(rows)<=start+len(expected),'Output extends beyond approved scope')

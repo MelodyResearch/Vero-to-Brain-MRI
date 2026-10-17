@@ -277,3 +277,57 @@ def test_paired_loader_binds_approved_output_extent(fixture,tmp_path,damage):
     else:scope['new_record_ids'][0]='not-frozen'
     scopes['A28'].write_text(json.dumps(scope))
     with pytest.raises(ValueError):m.load_scoped(c,paths,scopes)
+
+
+def test_cached_execution_scopes_load_without_changing_scores(fixture, tmp_path):
+    import json
+    import importlib.util
+    from pathlib import Path
+    from mri_rl.likelihood_adoption import segment_identity
+    m, contract, paths, scopes = scoped_files(fixture, tmp_path)
+    for checkpoint in paths:
+        scope = json.loads(scopes[checkpoint].read_text())
+        scope['derived_cache'] = {'certificate_sha256': 'certified-identical-effective-weights'}
+        scope['run_identity'] = segment_identity(scope)
+        rows = [json.loads(line) for line in paths[checkpoint].read_text().splitlines()]
+        for row in rows:
+            row['run_identity'] = scope['run_identity']
+        paths[checkpoint].write_text(''.join(json.dumps(row) + '\n' for row in rows))
+        scopes[checkpoint].write_text(json.dumps(scope))
+    loaded, outputs, identities = m.load_scoped(contract, paths, scopes)
+    public, _ = m.analyze(loaded, outputs, identities)
+    assert public['checkpoints']['B28']['pairs']['mean']['separation']['mean'] == pytest.approx(.9)
+    path = Path(__file__).parents[1] / 'scripts/analyze_single_checkpoint_likelihood.py'
+    spec = importlib.util.spec_from_file_location('cached_single_analysis', path)
+    single = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(single)
+    _, rows, checkpoint, _ = single.load(contract, paths['A28'], scopes['A28'])
+    assert checkpoint == 'A28' and len(rows) == 5
+
+
+@pytest.mark.parametrize('budget', [15, 54])
+def test_explicit_finite_cached_scope_extent_is_accepted(fixture, tmp_path, budget):
+    import json
+    import importlib.util
+    from pathlib import Path
+    m, contract, paths, scopes = scoped_files(fixture, tmp_path)
+    for checkpoint in paths:
+        scope = json.loads(scopes[checkpoint].read_text())
+        scope.update(max_new_records=budget, finite_remaining_stage=True, resident=False, battery_exception={'stop_percent': 20})
+        from mri_rl.likelihood_adoption import segment_identity
+        scope['run_identity'] = segment_identity(scope)
+        rows = [json.loads(line) for line in paths[checkpoint].read_text().splitlines()]
+        for row in rows:
+            row['run_identity'] = scope['run_identity']
+        paths[checkpoint].write_text(''.join(json.dumps(row) + '\n' for row in rows))
+        scopes[checkpoint].write_text(json.dumps(scope))
+    m.load_scoped(contract, paths, scopes)
+    spec = importlib.util.spec_from_file_location('finite_single_analysis', Path(__file__).parents[1] / 'scripts/analyze_single_checkpoint_likelihood.py')
+    single = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(single)
+    single.load(contract, paths['A28'], scopes['A28'])
+    scope = json.loads(scopes['A28'].read_text())
+    scope['finite_remaining_stage'] = False
+    scopes['A28'].write_text(json.dumps(scope))
+    with pytest.raises(ValueError, match='cursor/budget'):
+        single.load(contract, paths['A28'], scopes['A28'])

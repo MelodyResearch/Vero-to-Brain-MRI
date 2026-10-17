@@ -15,6 +15,7 @@ import statistics
 from mri_rl.answer_likelihood import LABELS,PREFIX,SUFFIX
 from mri_rl.paced_answer_likelihood import validate_numeric_record,completed_prefix
 from mri_rl.experiment_contract import canonical_hash
+from mri_rl.likelihood_adoption import segment_identity
 from mri_rl.vero_mri_reward import _answer_and_format
 
 MODELS=('A0','A28','B28')
@@ -228,7 +229,9 @@ def analyze(contract,outputs,identities,*,pair_count=None):
 def validate_scope_extent(scope,raw,records):
     """Bind saved prefix to this review's cursor and exact permitted next slice."""
     start=scope.get('completed_records');budget=scope.get('max_new_records');allowed=scope.get('new_record_ids')
-    require(type(start) is int and 0<=start<=len(records) and type(budget) is int and 1<=budget<=8,
+    finite=scope.get('finite_remaining_stage') is True
+    require(not finite or (scope.get('resident') is False and scope.get('battery_exception') is not None), 'Invalid finite stage')
+    require(type(start) is int and 0<=start<=len(records) and type(budget) is int and 1<=budget<=(57 if finite else 8),
         'Invalid approved cursor/budget')
     expected=[r['record_id'] for r in records[start:start+budget]]
     lines=raw.splitlines(keepends=True)
@@ -250,8 +253,7 @@ def load_scoped(contract_path,outputs,scopes):
         require(s['checkpoint']==model and s['contract_sha256']==contract_hash and
                 s['adapter']==c['checkpoints'][model] and Path(s['output']).resolve()==outputs[model].resolve(),
                 'Reviewed scope does not bind these contract/output/checkpoint bytes')
-        identity=canonical_hash({'contract':contract_hash,'checkpoint':model,'sources':s['source_hashes'],
-            'backend':s['backend_sources'],'battery_diagnostic':s.get('battery_exception') is not None})
+        identity=segment_identity(s)
         require(identity==s['run_identity'],'Scope run identity cannot be reconstructed')
         profiles.append({k:s[k] for k in ('source_hashes','backend_sources','temperature','max_generation_tokens','lora_rank','lora_alpha','quantization_bits','group_size')})
         adoption=None
