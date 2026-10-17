@@ -71,3 +71,30 @@ def test_script_changed_after_wait_is_refused(tmp_path):
     out = lwr.wait_and_launch(script, sha, status, deadline_seconds=600, poll_seconds=1,
                               sampler=sampler, sleep=sleep, clock=clock, runner=r)
     assert out == 'REFUSED_SCRIPT_CHANGED' and not r.calls
+
+
+def test_simultaneous_invocations_cannot_both_launch(tmp_path):
+    import threading
+    script, sha, status = setup(tmp_path); r = Runner()
+    gate = threading.Barrier(2); outcomes = []
+    def sampler():
+        try: gate.wait(timeout=0.5)
+        except threading.BrokenBarrierError: pass
+        return sample(20)
+    def go():
+        try:
+            outcomes.append(lwr.wait_and_launch(script, sha, status, deadline_seconds=10, poll_seconds=0,
+                sampler=sampler, sleep=lambda s: None, runner=r))
+        except FileExistsError:
+            outcomes.append('CLAIM_REFUSED')
+    threads = [threading.Thread(target=go) for _ in range(2)]
+    [t.start() for t in threads]; [t.join() for t in threads]
+    assert sorted(outcomes) == ['CLAIM_REFUSED', 'LAUNCH_EXITED_0'] and len(r.calls) == 1
+
+
+def test_stale_claim_blocks_relaunch(tmp_path):
+    script, sha, status = setup(tmp_path); status.write_text('{"state": "LAUNCHING"}'); r = Runner()
+    with pytest.raises(FileExistsError):
+        lwr.wait_and_launch(script, sha, status, deadline_seconds=1, poll_seconds=0,
+                            sampler=lambda: sample(20), sleep=lambda s: None, runner=r)
+    assert not r.calls

@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "request_after_full_gspo_directive",
+ "kind": "request_tiny_quant_probe_and_launcher_race_fix",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -76,5 +76,21 @@
   "results/FULL_GSPO_READINESS_AND_MEMORY_ANALYSIS.md"
  ],
  "measurement_request": "Aggregate-only: model dir weight shard byte sizes + dtype + whether config has quantization; and, if available, a per-process swap/compressed-memory metric for the python worker during load (otherwise state unavailable).",
- "decision_request": "Researcher/Codex to freeze numeric full-arm budgets (U updates, N groups, seeds) and confirm task-admission status; I will not invent them. Release A28 scoped launcher digest if the deferred launcher should wait on headroom."
+ "decision_request": "Researcher/Codex to freeze numeric full-arm budgets (U updates, N groups, seeds) and confirm task-admission status; I will not invent them. Release A28 scoped launcher digest if the deferred launcher should wait on headroom.",
+ "correction": "Retract \"no numerically neutral reduction exists\": header totals (16.33 GiB BF16 source, ~4.78 GiB final base) are not peaks, and the 5.98 GiB runtime peak is not minimal weight bytes. An exact derived prequantized artifact is a candidate remedy, unmeasured.",
+ "launcher_race_fix": "scripts/launch_when_ready.py now claims the status path with O_CREAT|O_EXCL before any sampling/launch; stale CLAIMED/LAUNCHING blocks relaunch. Regressions: simultaneous invocations (exactly one launch) and stale claim. 6 tests passed.",
+ "tiny_probe": {
+  "source": "src/mri_rl/quant_probe.py",
+  "tests": "tests/test_quant_probe.py (stub, 18 passed)",
+  "status": "IMPLEMENTED_CPU_TESTED / NOT_RUN / awaiting Codex check",
+  "scope": "<=2 allowlisted public tensors (vision_tower.blocks.{0,1}.attn.proj.weight, BF16[1152,1152]); header+sha256+size validated in pure Python before any native import; mx.quantize(affine,4,64) vs nn.quantize on a Linear holding the tensor, all 3 outputs bitwise incl. dtype/shape; safetensors save/reload bitwise; receipt per tensor fsynced; hashes+resource aggregates only; MLX memory limit 512 MiB, cache 32 MiB, per-tensor peak budget 256 MiB; stops on severe pressure/CRITICAL/thermal throttle/other heavy process/unknown concurrency; no 8B floor applied to this ~10 MB operation; no model, images, generation or update.",
+  "input_format_expected": "work/model_quant_probe_inputs/manifest.json with {\"tensors\":[{key,file,shape,dtype,sha256}]} and one single-tensor .safetensors fragment per entry (header key/shape/dtype must match). Tell me if Codex provides a different layout.",
+  "command": "cd outputs/Longitudinal-BrainMRI-Verifiable-RL && PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.quant_probe --manifest M --input-dir D --output local_data/.../quant_probe_001",
+  "source_sha256": {
+   "quant_probe.py": "97110ded874af30cfed075c77ad84e0c88359b993871040cda68a0040d4846e6"
+  },
+  "launcher_sha256": "fba29acf44111056dac121c80fa77f82d25bda6547e088a6b27ece6a1e4dbcb9"
+ },
+ "next_after_pass": "Streaming exact prequantization of the 344-map + retained-tensor inventory with lineage hashes and per-boundary resource profile; no parity claim from two tensors.",
+ "full_budget_candidate": "Will be written as a concrete PROPOSED protocol file next (research/execution/FULL_GSPO_CANDIDATE_PROTOCOL.md)."
 }

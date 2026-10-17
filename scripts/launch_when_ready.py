@@ -31,8 +31,15 @@ def wait_and_launch(script, expected_sha256, status_path, *, deadline_seconds, p
         tmp = status_path.with_suffix('.tmp')
         tmp.write_text(json.dumps({'state': state, 'script_sha256': expected_sha256, **extra}, sort_keys=True))
         os.replace(tmp, status_path)
-    if status_path.exists():
-        raise FileExistsError('Status exists: a launch was already attempted; inspect it, never auto-retry')
+    # Atomic exclusive claim BEFORE any sampling or launch: two invocations cannot both proceed.
+    # A stale CLAIMED/LAUNCHING file means a prior attempt may have started; never auto-retry.
+    try:
+        fd = os.open(status_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    except FileExistsError:
+        raise FileExistsError('Status exists: a launch was already claimed; inspect it, never auto-retry') from None
+    with os.fdopen(fd, 'w') as claim:
+        claim.write(json.dumps({'state': 'CLAIMED', 'script_sha256': expected_sha256}))
+        claim.flush(); os.fsync(claim.fileno())
     if sha256(script) != expected_sha256:
         write('REFUSED_SCRIPT_HASH_MISMATCH'); return 'REFUSED_SCRIPT_HASH_MISMATCH'
     end = clock() + deadline_seconds; checks = 0; last = None
