@@ -15,7 +15,7 @@ import statistics
 from mri_rl.answer_likelihood import LABELS,PREFIX,SUFFIX
 from mri_rl.paced_answer_likelihood import validate_numeric_record,completed_prefix
 from mri_rl.experiment_contract import canonical_hash
-from mri_rl.likelihood_adoption import segment_identity
+from mri_rl.likelihood_adoption import segment_identity, EXECUTION_ONLY
 from mri_rl.vero_mri_reward import _answer_and_format
 
 MODELS=('A0','A28','B28')
@@ -246,7 +246,7 @@ def load_scoped(contract_path,outputs,scopes):
     require(all(path.exists() for path in paths),'Missing likelihood output/contract/scope')
     snapshots={path:path.read_bytes() for path in paths}
     hashes={path:hashlib.sha256(raw).hexdigest() for path,raw in snapshots.items()}
-    c=json.loads(snapshots[contract_path]);contract_hash=hashes[contract_path];identities={};data={};profiles=[]
+    c=json.loads(snapshots[contract_path]);contract_hash=hashes[contract_path];identities={};data={};profiles=[];source_versions=[];verified_adoptions=[]
     for model in MODELS:
         scope_doc=json.loads(snapshots[scopes[model]]);s=scope_doc.get('scope',scope_doc)
         require(all(s.get(key)==value for key,value in FIXED_PROFILE.items()),'Execution profile differs from frozen diagnostic')
@@ -255,7 +255,10 @@ def load_scoped(contract_path,outputs,scopes):
                 'Reviewed scope does not bind these contract/output/checkpoint bytes')
         identity=segment_identity(s)
         require(identity==s['run_identity'],'Scope run identity cannot be reconstructed')
-        profiles.append({k:s[k] for k in ('source_hashes','backend_sources','temperature','max_generation_tokens','lora_rank','lora_alpha','quantization_bits','group_size')})
+        profile={k:s[k] for k in ('backend_sources','temperature','max_generation_tokens','lora_rank','lora_alpha','quantization_bits','group_size')}
+        profile['source_hashes']={k:v for k,v in s['source_hashes'].items() if k not in EXECUTION_ONLY}
+        profile['derived_cache']=s.get('derived_cache')
+        profiles.append(profile);source_versions.append(s['source_hashes'])
         adoption=None
         if s.get('adopted_prefix'):
             from mri_rl.likelihood_adoption import verify_adoption
@@ -263,12 +266,15 @@ def load_scoped(contract_path,outputs,scopes):
             adoption=verify_adoption(bridge,s)
             require(adoption['binding']==s['adopted_prefix'],'Adoption scope digest/profile mismatch')
             hashes[bridge]=s['adopted_prefix']['sha256']
+        verified_adoptions.append(adoption is not None)
         completed_prefix(outputs[model],c['records'],identity,adoption=adoption)
         validate_scope_extent(s,snapshots[outputs[model]],c['records'])
         require(outputs[model].exists(),'Missing output: '+model)
         data[model]=[json.loads(line) for line in snapshots[outputs[model]].splitlines()]
         identities[model]=(adoption['identities']+[identity]*(len(data[model])-len(adoption['identities']))) if adoption else identity
     require(all(profile==profiles[0] for profile in profiles),'Nonmatching model/prompt implementation profiles')
+    if any(version!=source_versions[0] for version in source_versions):
+        require(all(verified_adoptions),'Different execution versions require verified immutable-prefix and numerical-loop adoption')
     require(all(sha(path)==value for path,value in hashes.items()),'Likelihood evidence changed during validation')
     return c,data,identities
 
