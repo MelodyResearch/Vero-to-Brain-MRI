@@ -1,0 +1,63 @@
+{
+  "counterexample_tests_failed_as_expected": 7,
+  "counterexamples": [
+    {
+      "component": "continuous_rl._partial_cost / run crash recovery",
+      "consequence": "Retrying interrupted rollout work receives free unrecorded compute and invalidates matched-budget inference; no silent exact-cost claim is justified.",
+      "id": "C1",
+      "minimal_correction": "Persist exact attempt/scope/image/input-cost/group reservation before native rollout. Recover unknown in-flight work conservatively from the bound reservation or stop for explicit cost reconciliation; do not infer zero from missing progress. Preserve charged-once identities across resumes.",
+      "numbers": "Group4 fixture: resumed group costs856. With unknown first in-flight generation, total recorded856 (<1325 conservative lower bound). With one saved response plus unknown next, recorded1070 (<1539 bound).",
+      "observed": "A crash during first generation before a progress file charges zero prior cost; after one completed response and a crash in the next response, only the saved response is charged.",
+      "severity": "P1"
+    },
+    {
+      "component": "continuous_rl.run ledger/config/schedule admission",
+      "consequence": "Native work can start under inconsistent reservations; failures occur after computation or update instead of preflight, and the declared finite comparison bound is not enforced by the hook interface.",
+      "id": "C2",
+      "minimal_correction": "Before backend construction, require ledger group/max-token values match actual config; enforce compiled maximum attempted groups and schedule length; validate bounded integer costs and bind the exact plan.",
+      "observed": "Backend construction is reached for group4 ledger with group_size2 runtime, max256 ledger with max512 runtime, and a199-row schedule despite plan maximum198.",
+      "severity": "P1"
+    },
+    {
+      "component": "continuous_rl.run resume binding",
+      "consequence": "The same nominal experiment can silently gain more budget across resumes.",
+      "id": "C3",
+      "minimal_correction": "Include immutable ledger-plan identity and relevant hook/calibration identities in launch/run binding; reject cap/config drift before constructing the backend.",
+      "observed": "Doubling the compiled token cap on resume under identical run bindings reaches backend construction. Prior ledger cap is ignored.",
+      "severity": "P1"
+    },
+    {
+      "component": "continuous_rl._partial_cost pending artifact validation",
+      "consequence": "Crash accounting does not authenticate the partial work against the frozen image/attempt/group; malformed or unrelated pending data can corrupt cost accounting.",
+      "id": "C4",
+      "minimal_correction": "Validate partial attempt binding, current occurrence/group, image hash, expected prompt/policy provenance where available, response count and bounded integer token lists. Preserve malformed evidence and fail closed rather than treating it as valid or free work.",
+      "observed": "A pending progress file using a known schedule record but deliberately wrong image_sha256 is accepted and charged without error.",
+      "severity": "P1"
+    }
+  ],
+  "evidence_tier": "REPRODUCED_CPU_COUNTEREXAMPLES",
+  "failing_test_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src OPENBLAS_NUM_THREADS=1 python3 -m pytest -q -p no:cacheprovider --tb=short tests/test_two_task_driver_review_regressions.py",
+  "implementation_commits": [
+    "ad1e971864a64faf64253a1fad71ebc3f7c05ac3",
+    "1aa63615d053e94bb6ba0b8a003a365335d7e433"
+  ],
+  "native_model_loaded": false,
+  "next_review": "One focused corrected-code and counterexample rerun plus new exact CLI/scope review; do not repeat unchanged legacy/literature audits.",
+  "nonblocking_integration_notes": [
+    "The exact Codex pinned-class sampler wrapper is now present; duplicate semantic-only sampler implementation need not be reviewed again.",
+    "input_tokens_by_source documents id/record_id input, while actual native76 measurements use record_sha256; the new CLI must provide a verified join to frozen source IDs rather than pass those rows directly.",
+    "Caller/CLI still must bind grader/row-validator source, raw/calibrated profile, exact calibration statistics and compiled-plan digest to the independent launch scope; this was not yet verified without its new source.",
+    "make_grader preserves raw_accuracy and applies existing Eq3 before unchanged format mixing; finite train-only statistics and zero-IQR blocking remain required.",
+    "These findings block the affected new full-arm ledger configuration, not independent CPU tasks, completed inference, approved read-only restore or legacy pilot science claims."
+  ],
+  "production_sources_modified_by_reviewer": false,
+  "reviewer": "Independent Codex full_arm_execution_contract agent",
+  "schema": "two-task-tier-c-hooks-independent-review-v1",
+  "scope": "New Tier-C token-ledger, source-routing and schedule hooks in continuous_rl.py/two_task_training.py; unchanged GSPO optimization math and legacy native pilots were not re-audited.",
+  "source_sha256": {
+    "src/mri_rl/continuous_rl.py": "303f59597b93c166d7333442bc42fd46f49803e1eee62b54a045e9e73fc59516",
+    "src/mri_rl/two_task_training.py": "7bcda15734099b6c7962d7df3b4c60ddf9f663ca8eea3a6b76209079b832b881",
+    "tests/test_two_task_driver_review_regressions.py": "5fc7c61dc7f5a08cdb2a3db9fb37ac3c6072a85990f5e5e222e56584aae55273"
+  },
+  "verdict": "FAIL"
+}

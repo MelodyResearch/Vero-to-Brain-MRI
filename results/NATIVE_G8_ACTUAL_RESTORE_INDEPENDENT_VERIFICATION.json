@@ -1,0 +1,56 @@
+{
+  "evidence_sha256": {
+    "generation": "499fb84f4d17c5a22b97388708b6346307f7f540b2bbf26178852ffe55766190",
+    "native_receipt": "a049145a96ab0129b29f5d00c1626b191623ebc5b61448faf63fd6f80507be3a",
+    "resources": "14e0bd7b6d1d65da342b816174f74db91ea018726f22c51f3be88f29da6b66ac",
+    "restored_inventory": "f72ad59a339819df05b44d959fc3ef71e1c9de0a20b9a20535de0fa72910b422",
+    "review": "b846b17be26623c9a90328ff2a63756bf59280467622ba4a891dcba7b8d687c0",
+    "script": "4074233ce8b2ed5541bb2544f96a113ba31107abe3c9f3976143ac603f4137be"
+  },
+  "evidence_tier": "REPRODUCED",
+  "limitations": [
+    "Actual state restoration and one greedy generation do not establish next-update equivalence with an uninterrupted trajectory.",
+    "One outcome-informed selected training image and one update do not establish MRI learning, held-out generalization, cross-task transfer or official Vero numerical parity.",
+    "The unrelated newly added Tier C driver hooks/full-arm interfaces remain outside this review and require their own scoped verification.",
+    "Thermal state remains unavailable and no kernel pressure bits were captured by this historical gate; no guarantee against hardware instability."
+  ],
+  "mission_alignment": "A fresh native process restored the actual updated adapter and complete saved Adam/RNG state and generated once read-only, supplying engineering checkpoint evidence before separately reviewed full training.",
+  "observed": {
+    "adapter_tensors_reloaded_byte_exact": 504,
+    "greedy_answer": "contrast-enhanced T1",
+    "greedy_correct_on_this_training_reference": true,
+    "native_next_update_equivalence": "NOT_RUN",
+    "native_restore_receipt_status": "NATIVE_RESTORE_AND_GREEDY_COMPLETED",
+    "native_saved_vs_restored_signatures_exact": true,
+    "new_weight_updates": 0,
+    "one_greedy_generation_tokens": 20,
+    "optimizer_native_array_count_restored": 1010,
+    "optimizer_step": 1,
+    "post_close_MLX_active_gib": 9.853392839431763e-07,
+    "saved_Python_MLX_RNG_signature_recomputed": true,
+    "saved_boundary_receipt_sha256": "fb5c5c182f215498074fe08c5cdc678a863bbc284d2cb8ba4e2e35d65bd750f9",
+    "saved_state_inventory_recomputed_from_actual_payloads": true,
+    "strict_format_credit": 1.0,
+    "weights_and_Adam_unchanged_after_generation": true
+  },
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "resources": {
+    "HOLD_events": 0,
+    "STOP_events": 0,
+    "duration_seconds": 106.05284229200333,
+    "events": 61,
+    "kernel_OS_pressure_bits": "NOT_CAPTURED",
+    "max_MLX_active_gib": 4.899676788598299,
+    "max_MLX_peak_gib": 5.649857084266841,
+    "min_available_gib": 6.344085693359375,
+    "min_pressure_percent": 35.0,
+    "swap_end_gib": 10.0408984375,
+    "swap_start_gib": 10.0408984375,
+    "thermal_states": [
+      "SENSOR_UNAVAILABLE"
+    ]
+  },
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "actual-native-g8-state-restore-independent-verification-v1",
+  "verdict": "PASS_WITH_LIMITATIONS_ACTUAL_NATIVE_RESTORE"
+}
