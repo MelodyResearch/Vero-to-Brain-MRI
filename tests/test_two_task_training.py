@@ -117,3 +117,24 @@ def test_ledger_reserves_whole_groups_and_charges_actual_cost():
     led.used = 169216 - 4 * (405 + 256) + 1
     assert not led.can_start(405)                                                # cannot reserve the whole group
     assert led.state()['charged_groups'] == 1
+
+
+def test_import_and_scoring_work_where_nibabel_is_absent_but_rendering_still_fails_loudly():
+    import subprocess, sys, textwrap
+    code = textwrap.dedent("""
+        import sys
+        sys.modules['nibabel'] = None            # simulate the MLX venv: import nibabel -> ImportError
+        sys.path.insert(0, 'src')
+        from mri_rl import two_task_training as tt
+        assert tt.DALLAS_SOURCE == 'OpenNeuro_ds004856'
+        g = tt.make_grader()
+        from mri_rl import visit_correspondence as vc
+        assert 'nibabel' in sys.modules and sys.modules['nibabel'] is None      # stub was removed again
+        try:
+            vc.render_volume('x')
+        except Exception as exc:
+            print(type(exc).__name__)
+    """)
+    out = subprocess.run([sys.executable, '-c', code], capture_output=True, text=True, cwd=str(Path(__file__).parents[1]))
+    assert out.returncode == 0, out.stderr
+    assert out.stdout.strip() != ''

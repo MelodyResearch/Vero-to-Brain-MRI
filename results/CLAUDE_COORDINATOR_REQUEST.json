@@ -1,5 +1,5 @@
 {
- "kind": "current_state_and_requests (supersedes all earlier content of this file; obsolete 42/3/3 and 0-update claims removed)",
+ "kind": "GSPO_fixes_applied_freeze_ready_narrow_review_request",
  "stages": {
   "likelihood": "A0/A28/B28 complete 57/57 each, independently verified (Codex), not rerun",
   "gspo_engineering_updates": "FLAIR g2: 0 updates (zero variance); T1 g4 x2: 0 updates; uncertainty-screened T1 g8: 1 real update, independently verified, fresh native read-only restore verified. G8 adapter is NOT the common start.",
@@ -17,5 +17,60 @@
   "SFT uses contract.system_instruction (same prompt as RL training/evaluation), NOT the old B28 SFT_SYSTEM_PROMPT; targets stay \"<think>Visible MRI evidence.</think><answer>\\boxed{label}</answer>\"",
   "natural-proportional exposure (epochs of permutations of the 76 rows) rather than the 198-cap category sampler, because 169216 teacher-forcing tokens allow more than 198 examples",
   "cost = measured prompt + tokenized target tokens (teacher forcing), not generation+backprop FLOPs; reported, not claimed equal"
- ]
+ ],
+ "gspo_residuals": {
+  "applied_to": [
+   "continuous_rl.py",
+   "tier_c_entry.py",
+   "two_task_training.py (nibabel-free import for the MLX venv; stub only during import, restored after)"
+  ],
+  "red_green": "tests/test_tier_c_crash_accounting_review.py 9 RED -> GREEN (+3 healthy controls), driver regressions 7, entry regressions 8 (positive fixture adapted by Claude to carry the new runtime scope key; Codex-owned file, untracked, not staged by me)",
+  "focused_suite": "run after apply: continuous|tier_c|two_task|full_arm|dev_eval|mlx_continuous|crash",
+  "R1": "reservation bound to run-binding hash + parent boundary receipt + index/record/occurrence image/input tokens/group size/max tokens, fsynced file+dir+parent BEFORE generation; cross-run copy, wrong index/group/max rejected",
+  "R2": "strict counts, token-id integers and bounds on progress/rollout",
+  "R3": "durable complete rollout_PRIVATE.json authoritative (measured, no imputation, consistency vs progress); otherwise recorded responses measured + ONE imputed in-flight response kept separate; exactly-once via included-dir list",
+  "runtime_binding": "scope computed AFTER verify_runtime_artifacts with runtime block: contract file sha, measured contract sha, semantic bridge (file-identical or prompt-semantics-identical), runtime prompt semantics sha, adapter_config sha, mlx/mlx-vlm versions (null if absent), common bindings recomputed == plan, dynamic evidence file hashes (G8 update verification, restore aggregate); scope/train must both run under ../../work/mlx-venv/bin/python",
+  "critical_source_sha256": {
+   "tier_c_entry.py": "84e2581dc8b1065301f2ce1e7098db5a213a6b1c29b002c2fb8de6db7b5ddaf8",
+   "two_task_training.py": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd",
+   "continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+   "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+   "continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+   "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+   "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+   "visit_correspondence.py": "ccaaa7c4cf2ed75afae93cb44a2728d128b9943e8bba9296dd9904d7875d0bd5",
+   "vero_category_sampler.py": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3",
+   "full_arm_protocol.py": "b0ab1f99baba5131ee3ced994a2d5d7041bd53d051bbf505de152d8e743310b1",
+   "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+   "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+   "vero_official_launch.py": "ccc3cd3e5ab8d26890ae1062bd79bf7c4f1e5b8e6de34fff923c7388c5ba911f",
+   "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+   "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+   "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+   "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+   "reward_replay.py": "32a511c9a9c223766f889720af23fcd3d96e3e1482c57f024c4aaf962a8757f5",
+   "two_task_pool.py": "b06d9278599b7ef08655137f8405cfd190a324807cc0b8777801833e07770053"
+  },
+  "continuous_rl_sha256": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39"
+ },
+ "plan_v3": {
+  "plan_sha256": "68921ba47ee00b646a607edfa788fdd2ac6b1b58b54416b95390a8d7ed150a66",
+  "file_sha256": "14ea3afe1a6ab74a8efc31fd2e581fedd66df2ac20bc16d01d73e3ea8cbdbe71",
+  "token_cap": 169216,
+  "max_groups": 198,
+  "group_size": 4,
+  "seeds": [
+   7,
+   11,
+   13
+  ],
+  "arms": 6,
+  "scopes": {
+   "U_raw_seed7": "c994d2f3ca5a6b8c351d2c29b7884c5afc7a4256ad7f14852d5f56bc50c35114",
+   "S_correspondence_seed7": "76fbf66216084d8df78c17128d64156105414f9efe244e0fc5c2b06fdd231084"
+  },
+  "measured_contract": "local_data/ds007045_bounded/continuous_gspo_frozen_flair_candidate_v1/contract.json (sha 9e69a745... == token receipt)",
+  "schedules_unchanged": true
+ },
+ "baseline_c40": "Dallas B28 baseline finished by root session (not Claude): see results/C40_B28_COMMON_START_BASELINE.json; Dallas all 16 DIFFERENT (class prior), sequence 21 FLAIR / 3 T1 predictions; no claims here"
 }

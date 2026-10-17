@@ -87,7 +87,7 @@ def common_bindings(measurements, adapter, cache_certificate_sha256):
             'reward_source_sha256': hashlib.sha256(canonical(reward).encode()).hexdigest()}
 
 
-def review_scope(prepared, *, output):
+def review_scope(prepared, *, output, runtime=None):
     """Exact scope an independent reviewer must bind (Tier C: substantial training, whole compiled budget)."""
     b = prepared['bindings']
     return {'kind': 'tier_c_arm_v1', 'execution_tier': 'C', 'phase': 'continuation', 'arm': prepared['arm'], 'seed': prepared['seed'],
@@ -95,7 +95,8 @@ def review_scope(prepared, *, output):
             'schedule_ids_sha256': prepared['realized']['schedule_sha256'], 'common': b['common'],
             'calibration_sha256': b['calibration_sha256'], 'source_image_sha256': b['source_image_sha256'], 'budget': prepared['ledger_plan']['budget'],
             'group_size': prepared['ledger_plan']['group_size'], 'max_attempted_groups': prepared['max_groups'],
-            'output': str(Path(output).resolve()), 'source_sha256': source_hashes()}
+            'output': str(Path(output).resolve()), 'source_sha256': source_hashes(),
+            **({'runtime': runtime} if runtime is not None else {})}
 
 
 def measurements_sha256(measurements):
@@ -118,14 +119,31 @@ def verify_runtime_artifacts(plan, measurements, adapter, contract_path, load_co
     if plan.get('adapter_config_sha256') is not None:
         if not config.is_file() or hashlib.sha256(config.read_bytes()).hexdigest() != plan['adapter_config_sha256']:
             raise ValueError('Adapter config / persisted quantization map differs from the compiled plan')
+    recomputed = common_bindings(measurements, adapter, plan['common_bindings']['cache_certificate_sha256'])
+    if recomputed != plan['common_bindings']:
+        raise ValueError('Common bindings recomputed from the current files/sources differ from the compiled plan')
     runtime_sha = hashlib.sha256(Path(contract_path).read_bytes()).hexdigest()
     measured_sha = measurements['prompt_contract_sha256']
-    if runtime_sha != measured_sha:
+    if runtime_sha == measured_sha:
+        bridge = 'identical_contract_file'
+    else:
         if measurement_contract_path is None or hashlib.sha256(Path(measurement_contract_path).read_bytes()).hexdigest() != measured_sha:
             raise ValueError('Runtime contract differs from the measured contract and no matching measurement contract was supplied')
         if prompt_semantics(load_contract(measurement_contract_path)) != prompt_semantics(load_contract(contract_path)):
             raise ValueError('Runtime prompt semantics differ from the measured prompt semantics')
-    return {'runtime_contract_sha256': runtime_sha, 'measured_contract_sha256': measured_sha}
+        bridge = 'identical_prompt_semantics_via_measurement_contract'
+    config = Path(adapter).parent / 'adapter_config.json'
+    versions = {}
+    for name in ('mlx', 'mlx-vlm'):
+        try:
+            import importlib.metadata as md
+            versions[name] = md.version(name)
+        except Exception:
+            versions[name] = None            # interpreter without the package: recorded, never invented
+    return {'runtime_contract_sha256': runtime_sha, 'measured_contract_sha256': measured_sha, 'semantic_bridge': bridge,
+            'runtime_prompt_semantics_sha256': _sha(prompt_semantics(load_contract(contract_path))),
+            'adapter_config_sha256': hashlib.sha256(config.read_bytes()).hexdigest() if config.is_file() else None,
+            'common_bindings_recomputed_equal_plan': True, 'installed_versions': versions}
 
 
 def main():
@@ -142,6 +160,7 @@ def main():
     ap.add_argument('--calibration', type=Path)
     ap.add_argument('--output', type=Path)
     ap.add_argument('--model', type=Path); ap.add_argument('--contract', type=Path)
+    ap.add_argument('--dynamic-evidence', type=Path, nargs='*', default=[])
     ap.add_argument('--cache-dir', type=Path); ap.add_argument('--cache-certificate', type=Path)
     ap.add_argument('--review-verdict', type=Path); ap.add_argument('--expected-review-sha256')
     ap.add_argument('--measurement-contract', type=Path)
@@ -162,13 +181,15 @@ def main():
     rows = [json.loads(l) for l in a.train.read_text().splitlines() if l.strip()]
     calibration = json.loads(a.calibration.read_text()) if a.calibration else None
     prepared = prepare_arm(plan, a.arm, a.seed, rows, meas['rows'], calibration)
-    scope = review_scope(prepared, output=a.output)
+    from mri_rl.experiment_contract import load_contract as _load_contract
+    runtime = verify_runtime_artifacts(plan, meas, a.adapter, a.contract, _load_contract, a.measurement_contract)
+    runtime['dynamic_evidence_sha256'] = {Path(f).name: hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in a.dynamic_evidence}
+    scope = review_scope(prepared, output=a.output, runtime=runtime)
     if a.command == 'scope':
         print(json.dumps({'scope_sha256': _sha(scope), 'schedule_sha256': prepared['realized']['schedule_sha256'],
                           'category_counts': prepared['realized']['category_counts'], 'plan_sha256': prepared['bindings']['plan_sha256']}))
         return
     from mri_rl.experiment_contract import _check_review, load_contract
-    verify_runtime_artifacts(plan, meas, a.adapter, a.contract, load_contract, a.measurement_contract)
     require_local = a.output.resolve().is_relative_to(ROOT / 'local_data')
     if not require_local:
         raise ValueError('Outputs must stay under ignored local_data')

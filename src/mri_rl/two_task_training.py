@@ -16,8 +16,34 @@ from collections import Counter
 from mri_rl.full_arm_protocol import can_start_group, charge_group
 from mri_rl.reward_replay import _logistic
 from mri_rl.vero_mri_reward import compute_score_from_data_source
-from mri_rl.visit_correspondence import SOURCE as DALLAS_SOURCE, score_visit_correspondence
 
+def _load_visit_correspondence():
+    """Import the Dallas helper where nibabel (needed only by its volume RENDERING code, never by scoring/validation) is absent,
+    e.g. the MLX venv. A throwaway stub is installed only for the duration of the import and then removed, so any later
+    attempt to render volumes still fails loudly with the real ImportError."""
+    import sys
+    import types
+    try:
+        import nibabel  # noqa: F401
+    except ImportError:
+        missing = object()
+        previous = sys.modules.get('nibabel', missing)
+        sys.modules['nibabel'] = types.ModuleType('nibabel')
+        try:
+            import mri_rl.visit_correspondence as module
+        finally:
+            if previous is missing:
+                del sys.modules['nibabel']
+            else:
+                sys.modules['nibabel'] = previous
+        return module
+    import mri_rl.visit_correspondence as module
+    return module
+
+
+_vc = _load_visit_correspondence()
+DALLAS_SOURCE = _vc.SOURCE
+score_visit_correspondence = _vc.score_visit_correspondence
 SEQ_SOURCE = 'OpenNeuro_ds007045'
 ROUTES = {'mri_sequence': SEQ_SOURCE, 'mri_visit_correspondence': DALLAS_SOURCE}
 

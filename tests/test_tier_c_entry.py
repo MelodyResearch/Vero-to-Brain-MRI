@@ -73,7 +73,7 @@ def test_common_bindings_come_from_files_and_sources_not_free_text(tmp_path):
     assert cb['starting_adapter_sha256'] == hashlib.sha256(b'weights').hexdigest() and set(cb) == set(__import__('mri_rl.full_arm_protocol', fromlist=['x']).BINDINGS)
 
 
-def test_runtime_contract_may_differ_in_file_hash_only_with_identical_prompt_semantics(tmp_path):
+def test_runtime_contract_may_differ_in_file_hash_only_with_identical_prompt_semantics(tmp_path, monkeypatch):
     import hashlib
     from types import SimpleNamespace
     def mk(name, system='S', extra=''):
@@ -83,10 +83,25 @@ def test_runtime_contract_may_differ_in_file_hash_only_with_identical_prompt_sem
     measured, same, other = mk('m.json', extra='old split'), mk('r.json', extra='new split'), mk('o.json', system='DIFFERENT')
     adapter = tmp_path / 'a.safetensors'; adapter.write_bytes(b'w')
     meas = {'prompt_contract_sha256': hashlib.sha256(measured.read_bytes()).hexdigest()}
-    pl = {'measurements_sha256': te.measurements_sha256(meas), 'common_bindings': {'starting_adapter_sha256': hashlib.sha256(b'w').hexdigest()}}
+    pl = {'measurements_sha256': te.measurements_sha256(meas), 'common_bindings': {'starting_adapter_sha256': hashlib.sha256(b'w').hexdigest(), 'cache_certificate_sha256': 'b' * 64}}
+    monkeypatch.setattr(te, 'common_bindings', lambda m, a, c: pl['common_bindings'])      # recomputation is covered by the real-file test
     assert te.verify_runtime_artifacts(pl, meas, adapter, same, load, measured)['runtime_contract_sha256'] != meas['prompt_contract_sha256']
     with pytest.raises(ValueError): te.verify_runtime_artifacts(pl, meas, adapter, same, load)               # differing file, no measured contract
     with pytest.raises(ValueError): te.verify_runtime_artifacts(pl, meas, adapter, other, load, measured)    # different prompt semantics
     (tmp_path / 'adapter_config.json').write_text('{}')
     pl['adapter_config_sha256'] = '0' * 64
     with pytest.raises(ValueError): te.verify_runtime_artifacts(pl, meas, adapter, measured, load)           # persisted quant map/config differs
+
+
+def test_common_bindings_recomputed_from_current_sources_must_equal_the_plan(tmp_path):
+    import hashlib
+    from types import SimpleNamespace
+    adapter = tmp_path / 'a.safetensors'; adapter.write_bytes(b'w'); contract = tmp_path / 'c.json'; contract.write_text('{}')
+    meas = {'prompt_contract_sha256': hashlib.sha256(contract.read_bytes()).hexdigest()}
+    cb = te.common_bindings(meas, adapter, 'b' * 64)
+    pl = {'measurements_sha256': te.measurements_sha256(meas), 'common_bindings': dict(cb)}
+    load = lambda p: SimpleNamespace(system_instruction='s', assistant_prefix='a', enable_thinking=False, generation={})
+    out = te.verify_runtime_artifacts(pl, meas, adapter, contract, load)
+    assert out['semantic_bridge'] == 'identical_contract_file' and out['common_bindings_recomputed_equal_plan'] is True
+    pl['common_bindings']['native_backend_sha256'] = '0' * 64                       # a reviewed source changed after the plan was compiled
+    with pytest.raises(ValueError): te.verify_runtime_artifacts(pl, meas, adapter, contract, load)

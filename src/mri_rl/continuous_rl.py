@@ -195,32 +195,65 @@ def _grades(row, raw, config, grader=None):
     return grades
 
 
-def _partial_cost(pending, schedule_by_id, input_tokens, max_tokens=256):
-    """(measured, imputed) token cost of a crashed attempt.
+def _int_list_ok(ids, max_tokens):
+    return (isinstance(ids, list) and 0 < len(ids) <= max_tokens and
+            all(type(t) is int and t >= 0 for t in ids))
 
-    measured = responses whose generated ids were durably recorded (their image binding is verified here);
-    imputed  = ONE conservative in-flight response (input + max_tokens) when the attempt had a durable reservation but
-               fewer recorded responses than the group size. Unobserved work is never presented as actual consumption."""
+
+def _validated_responses(raw, group_size, max_tokens):
+    responses = raw.get('responses')
+    require(isinstance(responses, list) and len(responses) <= group_size, 'Pending work has more responses than the group size')
+    for r in responses:
+        require(isinstance(r, dict) and isinstance(r.get('text', ''), str) and _int_list_ok(r.get('token_ids'), max_tokens),
+                'Pending work has malformed or overlong token ids')
+    return responses
+
+
+def _partial_cost(pending, schedule_by_id, input_tokens, max_tokens=256, context=None):
+    """(measured, imputed) token cost of a crashed attempt, trusting nothing the pending directory says about itself.
+
+    context binds the attempt to THIS run: run-binding hash, the existing boundary receipts (digest -> completed groups),
+    the frozen schedule, image bindings and the runtime group size / max tokens. A complete durable rollout_PRIVATE.json is
+    authoritative (measured, no imputation); otherwise recorded progress responses are measured and ONE conservative
+    in-flight response is imputed when the reservation shows a started attempt with fewer recorded responses than the group."""
+    require(context is not None, 'Pending work cannot be charged without the run context')
     reservation = pending / 'attempt_reservation.json'
     progress = pending / 'rollout_progress_PRIVATE.json'
-    raw = json.loads(progress.read_text()) if progress.is_file() else None
-    reserved = json.loads(reservation.read_text()) if reservation.is_file() else None
-    if raw is None and reserved is None:
+    complete = pending / 'rollout_PRIVATE.json'
+    if not (reservation.is_file() or progress.is_file() or complete.is_file()):
         return 0, 0
-    record_id = (raw or reserved).get('record_id')
-    row = schedule_by_id.get(record_id)
-    require(row is not None, 'Crashed attempt references an unknown schedule record')
-    expected_image = digest(row['images'][0])
-    if raw is not None:
-        require(raw.get('image_sha256') == expected_image, 'Crashed attempt image binding differs from the frozen input')
-    if reserved is not None:
-        require(reserved.get('record_id') == record_id and reserved.get('input_tokens') == input_tokens(row),
-                'Crashed attempt reservation differs from the frozen schedule')
-    responses = (raw or {}).get('responses', [])
+    require(reservation.is_file(), 'Pending work lacks its bound attempt reservation')
+    reserved = json.loads(reservation.read_text())
+    parent = reserved.get('parent_receipt_sha256')
+    require(reserved.get('schema') == 'attempt-reservation-v1' and reserved.get('run_binding_sha256') == context['binding_sha256']
+            and parent in context['boundary_groups'], 'Pending attempt belongs to a different run, policy or boundary chain')
+    index = reserved.get('index')
+    require(type(index) is int and index == context['boundary_groups'][parent] and 0 <= index < len(context['schedule']),
+            'Pending attempt index differs from its parent boundary cursor')
+    row = context['schedule'][index]
+    require(reserved.get('record_id') == row['id'] and reserved.get('image_sha256') == context['image_sha256'][row['id']]
+            and reserved.get('input_tokens') == input_tokens(row) and reserved.get('group_size') == context['group_size']
+            and reserved.get('max_tokens') == context['max_tokens'],
+            'Pending reservation differs from the frozen schedule, image or runtime policy')
+    group_size, cap = context['group_size'], context['max_tokens']
+    def checked(raw):
+        require(raw.get('record_id') == row['id'] and raw.get('group_index') == index
+                and raw.get('image_sha256') == context['image_sha256'][row['id']],
+                'Pending rollout record/index/image binding differs from its reservation')
+        return _validated_responses(raw, group_size, cap)
+    full = checked(json.loads(complete.read_text())) if complete.is_file() else None
+    part = checked(json.loads(progress.read_text())) if progress.is_file() else None
+    if full is not None:
+        require(len(full) == group_size, 'Durable complete rollout has an incomplete group')
+        if part is not None:
+            require(len(part) <= len(full) and all(a['token_ids'] == b['token_ids'] for a, b in zip(part, full)),
+                    'Progress and complete rollout disagree')
+        responses, imputed_needed = full, False
+    else:
+        responses = part or []
+        imputed_needed = len(responses) < group_size
     measured = len(responses) * input_tokens(row) + sum(len(r['token_ids']) for r in responses)
-    group = (reserved or {}).get('group_size')
-    imputed = (input_tokens(row) + (reserved.get('max_tokens') if reserved else max_tokens)) \
-        if (reserved is not None and len(responses) < group) else 0
+    imputed = (input_tokens(row) + cap) if imputed_needed else 0
     return measured, imputed
 
 
@@ -311,9 +344,14 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                 ledger.imputed = prior.get('imputed_unknown_tokens', 0)
                 included = set(prior.get('partial_dirs_included', []))
                 by_id = {r['id']: r for r in schedule}
+                pending_context = {'binding_sha256': hashlib.sha256(canonical(binding).encode()).hexdigest(),
+                                   'boundary_groups': {digest(b / 'receipt.json'): json.loads((b / 'receipt.json').read_text())['completed_groups']
+                                                       for b in sorted(output.glob('boundary_*'))},
+                                   'schedule': schedule, 'image_sha256': binding['image_sha256'],
+                                   'group_size': config['group_size'], 'max_tokens': config['max_tokens']}
                 for pending in sorted(output.glob('.pending-*')):      # crashed attempts: charge their generated work once
                     if pending.name not in included:
-                        measured, imputed = _partial_cost(pending, by_id, input_tokens, config['max_tokens'])
+                        measured, imputed = _partial_cost(pending, by_id, input_tokens, config['max_tokens'], pending_context)
                         ledger.used += measured
                         ledger.charge_imputed(imputed)
                         included.add(pending.name)
@@ -332,8 +370,12 @@ def run(*, output, schedule, bindings, backend_factory, authorize, max_new_group
                 require(before_step == current['optimizer_updates'], 'Optimizer counter lost continuity')
                 work = Path(tempfile.mkdtemp(prefix='.pending-', dir=output))
                 if ledger is not None:   # durable bound attempt reservation BEFORE any generation
-                    write_json(work / 'attempt_reservation.json', {'record_id': row['id'], 'index': index,
-                        'input_tokens': input_tokens(row), 'group_size': config['group_size'], 'max_tokens': config['max_tokens']})
+                    write_json(work / 'attempt_reservation.json', {'schema': 'attempt-reservation-v1',
+                        'run_binding_sha256': hashlib.sha256(canonical(binding).encode()).hexdigest(),
+                        'parent_receipt_sha256': digest(current['path'] / 'receipt.json'), 'record_id': row['id'], 'index': index,
+                        'image_sha256': expected_image, 'input_tokens': input_tokens(row),
+                        'group_size': config['group_size'], 'max_tokens': config['max_tokens']})
+                    sync_dir(work); sync_dir(output)       # reservation + directory entries durable BEFORE any generation
                 before_state = state_fingerprint(backend, backend.optimizer_state(), work / 'optimizer_before.safetensors')
                 raw = backend.rollout(row, index, work)
                 write_json(work / 'rollout_PRIVATE.json', raw)
