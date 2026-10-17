@@ -104,7 +104,7 @@ def inspect_boundaries(output, expected_binding):
         require(type(receipt['optimizer_updates']) is int and 0 <= receipt['optimizer_updates'] <= index,
                 'Boundary update counter mismatch')
         for name, sha in receipt['files_sha256'].items():
-            require(name in {'adapter.safetensors', 'optimizer/manifest.json', 'optimizer/state.safetensors',
+            require(name in {'adapter.safetensors', 'adapter_config.json', 'optimizer/manifest.json', 'optimizer/state.safetensors',
                              'rollout_PRIVATE.json', 'rollout_progress_PRIVATE.json',
                              'optimizer_before.safetensors', 'optimizer_after.safetensors'},
                     'Unexpected bundle inventory')
@@ -153,7 +153,7 @@ def _publish(output, work, backend, binding, completed, updates, parent, evidenc
         optimizer_updates=updates, save_arrays=backend.save_arrays)
     files = {str(p.relative_to(work)): digest(p) for p in work.rglob('*') if p.is_file()}
     # Backend partial rollout logs are not automatically admitted as a completed bundle.
-    allowed = {'adapter.safetensors', 'optimizer/manifest.json', 'optimizer/state.safetensors',
+    allowed = {'adapter.safetensors', 'adapter_config.json', 'optimizer/manifest.json', 'optimizer/state.safetensors',
                'rollout_PRIVATE.json', 'rollout_progress_PRIVATE.json',
                'optimizer_before.safetensors', 'optimizer_after.safetensors'}
     require(set(files) <= allowed, 'Unexpected backend output in atomic bundle')

@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "request_scoped_review_cached_training_interface",
+ "kind": "request_after_native_artifact_fix_adapter_config",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -303,5 +303,15 @@
  "open_items": [
   "post-update dev evaluation entrypoint (continuous_rl_dev_eval) still loads the BF16 model; a cache option there is a small separate change after the pilot",
   "Dallas typed route: waiting for Codex helper contract; I own driver/backend/config only"
- ]
+ ],
+ "native_artifact_fix": {
+  "defect": "save_trainable_weights writes sibling adapter_config.json; continuous_rl allowed-set (inspect_boundaries and _publish) excluded it -> boundary_0000 raised \"Unexpected backend output in atomic bundle\" before any rollout; the previous CPU fake wrote only weights.",
+  "red": "test_native_faithful_first_publish_keeps_adapter_config_in_the_atomic_boundary and test_tampered_or_missing_adapter_config_fails_boundary_inspection_and_resume FAILED with ValueError: Unexpected backend output in atomic bundle (CPU stub whose save_adapter emits weights + adapter_config.json like mlx_vlm).",
+  "fix": "continuous_rl.py: 'adapter_config.json' added to the two allowed-name sets only. It is hashed into receipt files_sha256 (rglob), fsynced with all payload files, committed atomically and never removed; the persisted quant map/LoRA metadata are the backend's own, not synthesized.",
+  "green": "both tests pass: every boundary keeps adapter_config.json equal to the backend config and its receipt digest; a tampered or deleted config fails boundary inspection on resume. Focused replay 48 passed, 1 skipped (driver, pilot, native-opt-in, mlx_continuous, dev_eval files).",
+  "new_source_sha256": {
+   "continuous_rl.py": "ce5c06e793f845416857aa005c24b9225fb38e362528f18fd317dc09814febb1"
+  },
+  "consequences": "driver_source_sha256 in the run binding changes -> candidate scope must be regenerated; boundaries now DO contain adapter_config.json, so the exported dev-eval adapter can use the boundary config byte-exactly (the earlier \"copy original B28 config\" step is only a fallback and should equal it); reload (_read_checkpoint) finds the config beside the boundary adapter."
+ }
 }

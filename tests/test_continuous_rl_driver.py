@@ -222,3 +222,36 @@ def test_no_budget_keeps_previous_behavior(setup):
     with pytest.raises(ValueError):
         m.run(output=tmp/'bad',schedule=setup[0],bindings=setup[1],backend_factory=NumericBackend,
               authorize=lambda c:None,max_new_groups=1,max_optimizer_updates=0)
+
+
+class NativeLikeBackend(NumericBackend):
+    """save_adapter faithfully mimics mlx_vlm save_trainable_weights: weights PLUS sibling adapter_config.json."""
+    CONFIG = {'fine_tune_type': 'lora', 'base_quantization': {'language_model.lm_head': {'bits': 4, 'group_size': 64, 'mode': 'affine'}},
+              'lora_parameters': {'rank': 4, 'scale': 2.0}}
+    def save_adapter(self, path):
+        super().save_adapter(path)
+        (Path(path).parent / 'adapter_config.json').write_text(json.dumps(self.CONFIG, sort_keys=True))
+
+
+def test_native_faithful_first_publish_keeps_adapter_config_in_the_atomic_boundary(setup):
+    m = module(); _, _, tmp = setup
+    r = run(m, setup, tmp / 'nat', 2, factory=NativeLikeBackend)             # RED before the fix: 'Unexpected backend output'
+    assert r['completed_groups'] == 2 and r['optimizer_updates'] >= 1
+    for b in sorted((tmp / 'nat').glob('boundary_*')):
+        cfg = b / 'adapter_config.json'
+        assert cfg.is_file() and json.loads(cfg.read_text()) == NativeLikeBackend.CONFIG      # persisted quant map / LoRA metadata
+        receipt = json.loads((b / 'receipt.json').read_text())
+        assert receipt['files_sha256']['adapter_config.json'] == m.digest(cfg)
+
+
+def test_tampered_or_missing_adapter_config_fails_boundary_inspection_and_resume(setup):
+    m = module(); _, rows_bindings, tmp = setup
+    rows, bindings, _ = setup
+    run(m, setup, tmp / 'nat2', 1, factory=NativeLikeBackend)
+    boundary = sorted((tmp / 'nat2').glob('boundary_*'))[-1]
+    (boundary / 'adapter_config.json').write_text('{"tampered": true}')
+    with pytest.raises(ValueError):
+        run(m, setup, tmp / 'nat2', 1, resume=True, factory=NativeLikeBackend)
+    (boundary / 'adapter_config.json').unlink()
+    with pytest.raises(ValueError):
+        run(m, setup, tmp / 'nat2', 1, resume=True, factory=NativeLikeBackend)

@@ -106,3 +106,32 @@ def test_strict_reward_source_bound_and_format_preserved(target,answer,want):
     assert m.score_visit_correspondence('OpenNeuro_ds004856', '\\boxed{'+answer+'}', target, {'reward_type':'mri_visit_correspondence'})['score']==0
     with pytest.raises(ValueError): m.score_visit_correspondence('OpenNeuro_ds007045',response,target,{'reward_type':'mri_visit_correspondence'})
     with pytest.raises(ValueError): m.score_visit_correspondence('OpenNeuro_ds004856',response,'yes',{'reward_type':'mri_visit_correspondence'})
+
+
+def test_real_render_split_persists_exact_rows_and_is_idempotent(tmp_path):
+    m=module(); p=plan_fixture(); source=tmp_path/'source'; out=tmp_path/'out'
+    for i,person in enumerate(p['selected_people_PRIVATE'].values()):
+        for v,item in enumerate(person['images']):
+            a=np.arange(12*14*16,dtype=np.float32).reshape(12,14,16)+1+10*i+v
+            path=source/item['relative_path'];path.parent.mkdir(parents=True,exist_ok=True)
+            nib.save(nib.Nifti1Image(a,np.eye(4)),path)
+            item['bytes']=path.stat().st_size;item['sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
+    summary=m.render_split(p,'train',source,out,'a'*64)
+    assert (summary['rows'],summary['source_volumes'],summary['people'],summary['cycles'])==(4,4,2,1)
+    assert summary['blank_or_low_contrast_tile_warnings']==0
+    assert not (out/'test.verl.jsonl').exists()
+    first=(out/'train.verl.jsonl').read_bytes()
+    assert m.render_split(p,'train',source,out,'a'*64)['manifest_sha256']==summary['manifest_sha256']
+    assert first==(out/'train.verl.jsonl').read_bytes()
+    # A changed known source cannot silently become a new render at the same frozen path.
+    item=p['selected_people_PRIVATE']['secret-a']['images'][0]
+    with (source/item['relative_path']).open('ab') as f:f.write(b'changed')
+    with pytest.raises(ValueError,match='payload changed'): m.render_split(p,'train',source,out,'a'*64)
+
+
+def test_train_only_threshold_and_dev_fixed_scoring():
+    m=module()
+    result=m.fit_train_threshold([-2.,-1.,1.,2.],['different','different','same','same'])
+    assert result['threshold']==0 and result['train_accuracy']==1
+    assert m.fixed_threshold_metrics([-1.,1.],['same','different'],result['threshold'])['accuracy']==0
+    assert m.fixed_threshold_metrics([1.,-1.],['same','different'],result['threshold'])['accuracy']==1
