@@ -1,0 +1,46 @@
+{
+  "approval_sha256": "5a418cff47ea9e2db0f933f2741a9c8a0938cbd5e39d3f2731f2a105570778d6",
+  "current_preflight": "PASS",
+  "evidence_tier": "REPRODUCED",
+  "findings": [
+    "No source change: all ten pilot and twelve contract source hashes match the independently reviewed two-T1-group pilot; cached READY classification and original native resource checks unchanged.",
+    "Recomputed all twelve remaining T1 candidates from the hash-verified immutable C pool and completed B28 raw likelihood output: absolute common-prefix first-answer-token T1-minus-FLAIR margin ranking and lexical tie-break exactly match the frozen selection receipt. Prior two sampled T1 rows excluded.",
+    "Exact scope binds one selected training-only image, group8, seed7, fresh B28 initializer/Adam, maximum one total optimizer update, eight-rollout Tier B bound, certified cache, unchanged contract and unused output.",
+    "This is explicitly outcome-informed TRAINING likelihood screening for engineering gradient diagnosis; it is not random sampling, a matched primary arm, independent-patient evaluation, or evidence that full sampled reasoning answers will vary."
+  ],
+  "launcher_sha256": "a5770cbf79fe9e8879e82acab0d52816d7ae8d05dbc555e2c8a45dfed172afbe",
+  "limitations": [
+    "TRAIN mode only, one frozen training group of eight sampled responses, maximum one total optimizer update; no replacement image, repeated sampling, continuation, reload or dev evaluation under this approval.",
+    "Keep ordinary training AC/memory/pressure/swap/thermal/concurrency gates and hard stops. No new inference exception. Actual gradient memory peak remains unmeasured.",
+    "An uninformative or ineligible group must skip the update unchanged; preserve the negative result. Never modify rewards or filter generated answers to force task variance.",
+    "Selection uses a fixed teacher-prefix first-token margin, which does not guarantee diverse free-running generations; do not interpret an update from this screened example as measured MRI improvement or unbiased primary-arm evidence.",
+    "Native nonzero gradients, actual weight changes and subsequent exact native checkpoint reload remain NOT_VERIFIED before this run; full Vero transfer and generalization remain untested."
+  ],
+  "mission_alignment": "One finite screened training-only engineering diagnostic seeks a genuine reward-varied update required before matched full-recipe transfer experiments. It does not alter primary arms.",
+  "model_training": "NOT_RUN",
+  "new_tests": "NONE: source unchanged; reused exact source-bound prior review",
+  "pilot_source_sha256": {
+    "continuous_rl.py": "ce5c06e793f845416857aa005c24b9225fb38e362528f18fd317dc09814febb1",
+    "continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+    "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8"
+  },
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "uncertain-t1-group8-scoped-independent-review-v1",
+  "selection": {
+    "B28_likelihood_sha256": "ef0742b58ed76af520621c0d23eb30f4f06fe331153b74dd68e3f34f10c4e74a",
+    "C_pool_sha256": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+    "absolute_margin_rank": 1,
+    "eligible_unrun_training_T1_rows": 12,
+    "rule_verified": true,
+    "teacher_prefix_first_answer_token_margin": 0.6249999701976776
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
