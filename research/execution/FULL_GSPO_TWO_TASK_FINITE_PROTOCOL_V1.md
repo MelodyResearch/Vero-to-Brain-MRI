@@ -1,0 +1,72 @@
+# Finite two-task Vero-to-MRI comparison — configured design, NOT_RUN
+
+**Scope:** `PRIMARY_VERO_TRANSFER`, evidence `PROPOSED`. This preserves the historical four-route/G56 proposal and immutable A/B controls. It specifies the next two-task C comparison; it is not approval to launch or a claim that data admission/training is complete. The finite compiler is `mri_rl.full_arm_protocol`.
+
+## Mission alignment and frozen contrasts
+
+1. **Question:** Does task-balanced, task-routed GSPO preserve both acquisition recognition and cross-visit person correspondence better than proportional mixing and specialists under a common practical token budget?
+2. **Falsifier:** Uniform mixing has no reproducible macro benefit, harms either task, or gains match a no-image/shortcut or calibrated/active-group explanation. Report negative transfer, rather than removing its matrix cell.
+3. **Isolation:** C uses a new task pool. All six RL arms and additional same-C-data SFT start from the identical B28 adapter and exact certified four-bit Qwen base; each starts fresh Adam once, then preserves moments/RNG/cursor. B28 is the common-start reference, not the same-C-data SFT control. Historical A0/A28 remain diagnostic references, not interchangeable initializers.
+4. **Provenance:** Exact training manifests, image hashes, prompt/processor, source code, cache certificate and adapter SHA256 must bind the compiled plan before launch. Tokenization is measured using those actual renders and the installed frozen processor, not copied from older mask grids.
+5. **Controls:** Fixed-answer, no-image, panel/image swap, non-brain/intensity nuisance baselines; same-data SFT, both specialists, proportional/uniform and the full 2×2 raw/calibrated factorial. No clinical-change or FreeSurfer requirement is introduced for correspondence.
+6. **Execution:** One AC-powered native model; response microbatch1, full group4, max256 generated tokens/response. Atomic completed-group checkpoints, resident continuation, immutable budgets, scoped independent interface review. An engineering PASS does not establish visual validity or patient generalization.
+
+## Two real task families; target and split boundaries
+
+- `mri_sequence`, `OpenNeuro_ds007045`: source-acquisition label FLAIR/contrast-enhanced T1, using existing paired, uncaptioned single images. Candidate full pool is168 training records/28 patients and24 internal-development records/4 patients, preserving all three levels; blind technical visual/shortcut checks precede admission. Do not silently substitute the earlier C63 mask cohort or B's14/14 sequence schedule.
+- `mri_visit_correspondence`, `OpenNeuro_ds004856`: hidden source-subject equality for wave2 query versus wave1 candidate, one same and one matched different candidate per query. Prospectively frozen40 new people:24 train/8 internal-dev/8 sealed test,48/16/16 cases. Every visit and candidate reference remains in its source patient split; matched two-person cycles are leakage and statistical clusters. All80 actual T1 payloads are acquired, but task rendering/QC is still a separate admission step.
+
+The compiler derives proportions from the finally admitted manifests. If the168+48 pool passes unchanged, proportional weights are7/9 sequence and2/9 correspondence; uniform is1/2 each. Counts are not treated as independent patients. Each record carries immutable source ID and a distinct **schedule occurrence ID** on every repetition; repeated occurrences do not create new data. Category choice and rendered prompts never expose hidden IDs, filenames, dates or targets.
+
+This is **task-plus-source/domain transfer**: the two families come from different clinical/acquisition populations. Within-source patient splits and cross-source lineage checks are required; differently named BIDS subjects alone do not prove global person independence. Source/task effects cannot be separated with these two cohorts. No longitudinal biological-change, native3D-encoder or clinical utility claim follows.
+
+## Exact arm list and effort budget
+
+Run each of the following at seeds **7,11,13**, paired across arms:
+
+| Arm | Sampling | Accuracy transform before unchanged format/length mixing |
+|---|---|---|
+| S_sequence | sequence only | raw |
+| S_correspondence | correspondence only | raw |
+| P_raw | pool-size proportional | raw |
+| U_raw | equal category | raw |
+| P_calibrated | same proportional schedule as P_raw | MedGRPO Eq3 |
+| U_calibrated | same uniform schedule as U_raw | MedGRPO Eq3 |
+
+All use identical local optimizer/profile: LoRA r4/a8 on frozen four-bit base, language-only gradients, persistent Adam1e-5, betas(.9,.999), eps1e-8, bias correctionFalse, constant LR, GSPO-token sequence value/token gradient, clip(.0003,.0004), sample-standardized group advantage with epsilon1e-6. This differs from official Vero's group8, batch256, vision training and CUDA/veRL scale; do not call it exact veRL parity.
+
+**Numeric budget definition fixed before training:** Let `L_max` and `L_min` be the measured maximum/minimum **native input token counts including expanded visual tokens** across every frozen training row, for the actual processor/chat template. Per arm/seed,
+
+`B = 64 × 4 × (L_max + 256)` text-plus-visual tokens.
+
+Before a group, reserve `4 × (L_row + 256)`; do not start it if it cannot fit the remaining B. After all four rollouts, charge `4 × L_row + sum(actual_generated_lengths)`. No partial group, new-response optimization or budget credit for an inactive group. Finite safety bound is `floor(B/(4×L_min))` attempted groups/updates. Persist used cost and RNG/sampler state with every completed group; a recoverable retry must account for already generated work, not receive free compute. A native failure before group commitment requires a charged partial-work receipt or explicit cost reconciliation before resume.
+
+**B is not yet a numeric frozen launch budget:** Dallas train/dev renders now exist; exact processor measurements are pending. The compiler refuses empty/unmeasured/mixed-split inputs. Its tests use clearly labelled synthetic costs and are not actual MRI token measurements. Compile the exact numeric B and full schedules **before any arm outcome**, then bind the resulting JSON in a single scoped launch approval. No old154/360 grid-token estimate is substituted.
+
+The token ledger is a practical compute proxy, not exact FLOPs, GPU-hours or gradient-compute equality. Report actual input/visual/generated tokens separately, attempted/active groups, optimizer updates, elapsed time and per-patient exposure. Whole-group reservation leaves a known unused remainder; report it and the maximal final-group cost. Do not claim exact equal consumed cost. A specialist may expose fewer unique patients by design; report this instead of silently duplicating or capping away the sampling intervention.
+
+Sampling follows the pinned Vero `PerBatchDomainSampler` recipe: commit `025ca3c800fc95224c86323c1f7fd33dceed3090`, `vero-rl/verl/utils/dataset/rl_dataset.py` lines168ff. Use a **256-prompt logical scheduling block**, floor/largest-remainder category counts, shuffled category pools, exhaustion reshuffle and within-block shuffle. Execute its groups serially; microbatching does not change a group. Use NumPy's pinned generator/order for parity, record state and predetermined schedule; avoid an IID category coin flip or batch_size1 rounding that eliminates the minority category. A final token-limited prefix has reported realized weights. No per-batch approval/reload is required.
+
+## Calibration and active groups: falsifiable rather than nominal controls
+
+Use the existing `reward_replay._logistic`: `sigmoid(3*(accuracy-p50)/IQR)`, with per-task statistics from **common-initializer training-only calibration rollouts**, frozen and shared by all arms. The callback remains `0.8*transformed_accuracy+0.2*format+overlong`; apply before group advantages, preserve raw/decomposed totals in receipts. Calibration is not taken from development/test or separately fitted to each arm's eventual outcomes. Zero IQR blocks that calibrated configuration; no unpublished arbitrary floor is invented. Charge shared calibration costs separately, equally attributed.
+
+The current diagnostic active rule requires all format scores1, differing accuracy and equal overlong. At max256 direct-Vero overlong is0 (onset16384); admitted active groups for these two categorical tasks consequently have only raw totals0.2/1. Rejected groups may have additional format-related support. Record **all** accuracy/format/overlong/total support, not just active groups. With two active reward levels, a monotone mapping is a positive affine map on that support, so its standardized advantages have no new nonlinear shape; epsilon1e-6 can cause small scale differences. Group4 alone does not solve this. Treat calibrated arms as a **mechanistic null control** when observed active support is binary, not a validation of MedGRPO's claimed mechanism or a faithful full training replication. A genuine nonlinear-mechanism claim requires ≥3 distinct within-active-group reward levels and a separately admitted graded task, not manufactured partial credit.
+
+All six primary arms retain the same active gate and log nominal versus accepted task shares. That common filter is an implementation control; it does **not** by itself control its task-dependent change in effective exposure. Predefined secondary **U_active_ratio** control: target32 accepted groups/category (64 updates), same start/group size/profile, proportional remaining accepted quotas, hard attempted-cost cap **8B**, fully charged skips, no forcing ties into updates. It is update-matched/extra-cost sensitivity, never the compute-matched primary result. If quotas cannot be reached within8B, preserve the finite negative outcome. Before attributing benefit to balance, inspect whether this control accounts for it. This secondary controller is NOT_IMPLEMENTED by the compiler or existing driver and needs a focused implementation review; it must not be listed as an executed arm.
+
+## Same-data SFT, evaluation and stopping
+
+Same-C-data SFT starts from the common B28 base/adapter, uses exactly the admitted training pool and approved answer/format targets (no invented medical reasoning), proportional schedule, persisted optimizer/RNG/sampler, and a **B processed input+target-token cap** per seed. Teacher-forcing cost differs from online generation/backpropagation; report actual costs, not a false exact-FLOP match. Evaluate frozen B28 before training, all final SFT/RL checkpoints and both specialists on **both tasks** using identical native prompts, precision, greedy decoding and strict parser. Released Vero versus matched base remains a separately labelled prior-training comparison, not a randomized causal arm.
+
+The selected checkpoint is the final budget-bound checkpoint, never the best development score. No reward-based early stop. Missing/invalid predictions score0 in primary accuracy; conditional answered accuracy is secondary. Report patient-averaged task accuracy, equal-task macro, worst task, off-diagonal specialist transfer, format/invalid, candidate probabilities only if separately contracted, active-group fractions and shortcut effects. No-image and swap controls use the same targets transformed correctly; they are not new patients.
+
+Dallas inference uncertainty resamples matched two-person cycles, with patient/question averages inside cycles; sequence resamples patients. Resample separately by source/task for a macro; report all three seed outcomes and ranges. Internal-dev results (4 sequence patients/4 Dallas cycles) are **descriptive**. Existing examined sequence dev is not an independent sealed test. Final test requires a separately frozen, uninspected sequence-patient set plus the8 sealed Dallas people/4cycles; if unavailable, mark independent final test NOT_VERIFIED, not complete. No clinical significance/power is asserted. Exploratory engineering decision margins, fixed here: macro+0.05 and worst-task noninferiority−0.05, with no-image skill reduction≥0.10 required to support image use. Report intervals; these are operational feasibility margins, not clinically validated thresholds or a powered confirmatory endpoint.
+
+**Completion ledger:** all six RL arms×3seeds + same-data SFT×3seeds + secondary active-control runs if claiming its mechanism controlled; budget-complete durable checkpoints, actual LoRA changes/Adam continuity/reload, both-task final matrix, exact test status and independent numerical review. A zero-update budget-complete arm is a negative training-attempt outcome, not successful GSPO optimization. Missing graded/open-ended data remains an explicit limitation: this two-category matrix cannot establish full open-ended retention. No `GSPO_TRAINING_COMPLETED` for pilot-only, missing arms, fake optimizer updates or missing final evaluation.
+
+## Compiler invocation and remaining concrete gates
+
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m mri_rl.full_arm_protocol --measurements TRAIN_TOKEN_RECEIPT.json --bindings EXACT_COMMON_BINDINGS.json --output NEW_FINITE_PLAN.json`
+
+Remaining gates are task QC/admission, full token receipts, explicit two-source routing, repeated occurrence IDs without duplicate source inflation, persistent native budget ledger, calibrated hook/statistics, same-data SFT schedule, native gradient/resume proof and AC/resources. These block their affected new arm, not the already approved pilot or independent CPU/data work. The compiler creates a finite bound, not a new resource supervisor, model process, launch permission or result.

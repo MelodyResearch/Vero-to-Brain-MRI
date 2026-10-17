@@ -1,0 +1,9 @@
+{
+  "scope": "Authorship clarification for shared-workspace commit d4172be",
+  "claude_code": ["continuous_rl.py native adapter_config.json whitelist fix", "native-like boundary regression tests", "coordinator request update"],
+  "codex_data_agent_two_task_admission": ["visit_correspondence.py", "test_visit_correspondence.py", "build_dallas_correspondence.py", "Dallas preprocessing and data receipts"],
+  "codex_agent_full_arm_execution_contract": ["full_arm_protocol.py", "test_full_arm_protocol.py", "FULL_GSPO_TWO_TASK_FINITE_PROTOCOL_V1.md", "independent Dallas technical review"],
+  "note": "Claude's commit also staged other agents' safe source files from the shared workspace. Committer identity does not establish authorship or independent review. No raw images or patient-linked records were included.",
+  "root_focused_verification": "20 passed in 0.15s: full_arm_protocol and visit_correspondence",
+  "native_training_claim": false
+}
