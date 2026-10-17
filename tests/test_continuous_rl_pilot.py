@@ -119,3 +119,36 @@ def test_reload_guard_failure_still_closes_backend(tmp_path):
     with pytest.raises(ValueError):
         pilot.guarded_reload_generation(B(), {'images': [str(image)]}, expected)
     assert B.closed and not B.generated
+
+
+def test_cache_option_is_optional_bound_into_scope_and_sourced():
+    import inspect
+    assert 'likelihood_cache.py' in pilot.SOURCES
+    cfg = pilot.launch_configuration(output='/x', seed=7, record_ids=['a'], group_size=2, mode='train',
+                                     cache_binding={'certificate_sha256': 'z'})
+    assert cfg['derived_cache'] == {'certificate_sha256': 'z'}
+    assert pilot.launch_configuration(output='/x', seed=7, record_ids=['a'], group_size=2, mode='train')['derived_cache'] is None
+    src = inspect.getsource(pilot.main)
+    assert 'cache=cache' in src and 'cache_binding_for(args)' in src and src.index('cache_binding_for') < src.index('preflight(args')
+
+
+def test_cache_binding_requires_certificate_and_matches_original_non_weight_files(tmp_path, monkeypatch):
+    from pathlib import Path
+    from types import SimpleNamespace
+    from tests.test_likelihood_cache import certified
+    c, cp, sha, arts, _ = certified(tmp_path, monkeypatch)
+    model = Path(next(iter(arts))).parent           # synthetic "original model dir" with config/tokenizer/chat template
+    args = SimpleNamespace(cache_dir=c, cache_certificate=cp, cache_certificate_sha256=sha, model=model)
+    assert pilot.cache_binding_for(args)['certificate_sha256'] == sha
+    assert pilot.cache_binding_for(SimpleNamespace(cache_dir=None)) is None
+    with pytest.raises(ValueError): pilot.cache_binding_for(SimpleNamespace(cache_dir=c, cache_certificate=None, cache_certificate_sha256=None, model=model))
+    with pytest.raises(ValueError): pilot.cache_binding_for(SimpleNamespace(cache_dir=c, cache_certificate=cp, cache_certificate_sha256='0' * 64, model=model))
+
+
+def test_native_constructor_cache_branch_is_serial_parity_checked_and_restores_saved_map():
+    import inspect
+    from mri_rl import mlx_continuous_gspo as g
+    text = inspect.getsource(g.NativeGSPOBackend.__init__)
+    assert 'verify_loaded_parameters' in text and 'quantization_bits=None' in text and "load(str(cache['dir'])" in text
+    assert text.index("before_unit('cache_parameters_verified')") < text.index('quantization_bits=None')
+    assert "load(str(model_path),lazy=True)" in text      # uncached path unchanged

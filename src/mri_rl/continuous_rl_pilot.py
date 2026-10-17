@@ -15,7 +15,7 @@ from mri_rl.paced_resources import PacedGate
 
 MAX_UPDATES = 1  # Tier B diagnostic ceiling declared to preflight AND enforced by the driver
 ROOT = Path(__file__).resolve().parents[2]
-SOURCES = ('continuous_rl.py', 'mlx_continuous_gspo.py', 'continuous_rl_pilot.py',
+SOURCES = ('likelihood_cache.py', 'continuous_rl.py', 'mlx_continuous_gspo.py', 'continuous_rl_pilot.py',
            'optimizer_checkpoint.py', 'vero_mri_reward.py', 'paced_resources.py',
            'resource_supervisor.py', 'mlx_gspo_smoke.py', 'likelihood_loading.py')
 
@@ -36,12 +36,12 @@ def load_schedule(train, record_ids):
     return [rows[i] for i in record_ids]
 
 
-def launch_configuration(*, output, seed, record_ids, group_size, mode, boundary_receipt_sha256=None):
+def launch_configuration(*, output, seed, record_ids, group_size, mode, boundary_receipt_sha256=None, cache_binding=None):
     return {'runner': 'continuous_rl_pilot', 'mode': mode, 'seed': seed,
             'output': str(Path(output).resolve()), 'schedule_record_ids': list(record_ids),
             'profile': PROFILE['profile'], 'group_size': group_size,
             'max_optimizer_updates': MAX_UPDATES, 'boundary_receipt_sha256': boundary_receipt_sha256,
-            'source_sha256': source_hashes()}
+            'derived_cache': cache_binding, 'source_sha256': source_hashes()}
 
 
 def guarded_reload_generation(backend, row, expected_image):
@@ -62,6 +62,17 @@ def boundary_receipt(output):
     return digest(boundaries[-1] / 'receipt.json')
 
 
+def cache_binding_for(args):
+    """Pure-Python binding of the certified exact derived cache against the original model dir's non-weight files."""
+    if args.cache_dir is None:
+        return None
+    require(args.cache_certificate is not None and args.cache_certificate_sha256, 'Cache needs certificate path and digest')
+    from mri_rl.likelihood_cache import verify_cache_identity
+    originals = {str(p): sha256_file(p) for p in sorted(args.model.iterdir())
+                 if p.is_file() and p.suffix != '.safetensors' and p.name != 'model.safetensors.index.json'}
+    return verify_cache_identity(args.cache_dir, args.cache_certificate, args.cache_certificate_sha256, originals)
+
+
 def preflight(args, record_ids):
     contract = load_contract(args.contract)
     require_launch_preflight(
@@ -75,7 +86,7 @@ def preflight(args, record_ids):
         expected_review_sha256=args.expected_review_sha256, expected_temperature=1.0,
         launch_configuration=launch_configuration(output=args.output, seed=args.seed,
             record_ids=record_ids, group_size=args.group_size, mode=args.command,
-            boundary_receipt_sha256=args.approved_boundary))
+            boundary_receipt_sha256=args.approved_boundary, cache_binding=args.cache_binding))
     return contract
 
 
@@ -87,14 +98,20 @@ def main():
     p.add_argument('--expected-review-sha256', required=True)
     p.add_argument('--record-ids', nargs='+', required=True)
     p.add_argument('--resume', action='store_true')
+    p.add_argument('--cache-dir', type=Path)
+    p.add_argument('--cache-certificate', type=Path)
+    p.add_argument('--cache-certificate-sha256')
     p.add_argument('--seed', type=int, default=7)
     p.add_argument('--group-size', type=int, default=2)
     args = p.parse_args()
-    for name in ('model', 'train', 'dev', 'contract', 'adapter', 'output', 'review_verdict'):
-        setattr(args, name, getattr(args, name).resolve())
+    for name in ('model', 'train', 'dev', 'contract', 'adapter', 'output', 'review_verdict', 'cache_dir', 'cache_certificate'):
+        if getattr(args, name) is not None:
+            setattr(args, name, getattr(args, name).resolve())
     require(args.output.is_relative_to(ROOT / 'local_data'), 'Outputs must stay under ignored local_data')
     # The boundary digest is captured ONCE; the approved value is what must be loaded.
     args.approved_boundary = boundary_receipt(args.output) if args.command == 'reload' else None
+    args.cache_binding = cache_binding_for(args)
+    cache = {'dir': str(args.cache_dir)} if args.cache_binding else None
     contract = preflight(args, args.record_ids)
     schedule = load_schedule(args.train, args.record_ids)
     config = {**PROFILE, 'group_size': args.group_size, 'max_tokens': contract.generation['max_tokens']}
@@ -103,11 +120,12 @@ def main():
         gate.before_unit(name, loading=name in {'native_model_load', 'quantized_model_ready'})
     from mri_rl.mlx_continuous_gspo import backend_factory, NativeGSPOBackend
     bindings = {'adapter_sha256': sha256_file(args.adapter), 'contract_id': contract.identity(),
-                'seed': args.seed, 'source_sha256': source_hashes(), 'model_dir': str(args.model)}
+                'seed': args.seed, 'source_sha256': source_hashes(), 'model_dir': str(args.model),
+                'derived_cache_certificate_sha256': args.cache_certificate_sha256 if args.cache_binding else None}
     if args.command == 'train':
         result = run(output=args.output, schedule=schedule, bindings=bindings,
             backend_factory=backend_factory(model_path=args.model, contract=contract, seed=args.seed,
-                                            before_unit=before_unit),
+                                            before_unit=before_unit, cache=cache),
             authorize=lambda context: before_unit('authorize_' + context['phase']),
             max_new_groups=min(len(schedule), 3), resume=args.resume,
             starting_adapter=args.adapter, config=config, max_optimizer_updates=MAX_UPDATES)
@@ -121,7 +139,7 @@ def main():
     adapter = last['path'] / 'adapter.safetensors'
     require(digest(adapter) != bindings['adapter_sha256'], 'Updated adapter equals starting adapter')
     backend = NativeGSPOBackend(adapter, config, model_path=args.model, contract=contract,
-                                seed=args.seed, before_unit=before_unit)
+                                seed=args.seed, before_unit=before_unit, cache=cache)
     expected_image = binding['image_sha256'][schedule[0]['id']]
     out = guarded_reload_generation(backend, schedule[0], expected_image)
     # Full text/token ids stay private so the answer can be scored later; stdout gets counts only.

@@ -18,7 +18,7 @@ from mri_rl.paced_resources import PACED_POLICY
 
 
 class NativeGSPOBackend:
-    def __init__(self, adapter, config, *, model_path, contract, seed, before_unit):
+    def __init__(self, adapter, config, *, model_path, contract, seed, before_unit, cache=None):
         require(callable(before_unit), 'Explicit resource authorizer required')
         require(adapter is not None and Path(adapter).is_file(), 'Exact starting adapter required')
         before_unit('native_model_load')  # Must precede even the runtime imports.
@@ -41,10 +41,28 @@ class NativeGSPOBackend:
         mx.set_cache_limit(PACED_POLICY['cache_limit_mib'] * 1024**2)
         random.seed(seed);mx.random.seed(seed)
         try:
-            self.model,self.processor=load(str(model_path),lazy=True)
-            self.model=prepare_model_for_training(self.model,train_type='lora',lora_rank=4,lora_alpha=8,
-                quantization_bits=4,quantization_group_size=64,checkpoint_path=Path(adapter),verbose=False)
             from mri_rl.likelihood_loading import materialize_serial
+            if cache:
+                # Certified exact derived 4-bit cache (no BF16 staging): load, materialize serially, compare ALL base
+                # parameters byte-for-byte with the certified payload, THEN attach the exact starting adapter.
+                import numpy as np
+                from mri_rl.likelihood_cache import verify_loaded_parameters
+                self.model,self.processor=load(str(cache['dir']),lazy=True)
+                materialize_serial(tree_flatten(self.model.parameters()),evaluate=mx.eval,collect=gc.collect,
+                    clear=mx.clear_cache,observe=before_unit,observe_every=64)
+                def to_bytes(v):
+                    a=np.asarray(v.view(mx.uint16) if v.dtype==mx.bfloat16 else v)
+                    return a.tobytes(),('BF16' if v.dtype==mx.bfloat16 else 'U32' if v.dtype==mx.uint32 else str(v.dtype)),a.shape
+                before_unit('before_cache_parameter_parity')
+                require(verify_loaded_parameters(tree_flatten(self.model.parameters()),cache['dir'],to_bytes)==1438,
+                        'Cache parameter inventory mismatch')
+                before_unit('cache_parameters_verified')
+                self.model=prepare_model_for_training(self.model,train_type='lora',lora_rank=4,lora_alpha=8,
+                    quantization_bits=None,quantization_group_size=64,checkpoint_path=Path(adapter),verbose=False)
+            else:
+                self.model,self.processor=load(str(model_path),lazy=True)
+                self.model=prepare_model_for_training(self.model,train_type='lora',lora_rank=4,lora_alpha=8,
+                    quantization_bits=4,quantization_group_size=64,checkpoint_path=Path(adapter),verbose=False)
             # Same serial_parameter_v2 discipline as the successful read-only loader, not a bulk eval.
             materialize_serial(tree_flatten(self.model.parameters()),evaluate=mx.eval,collect=gc.collect,
                 clear=mx.clear_cache,observe=before_unit,observe_every=64)
@@ -246,11 +264,11 @@ class NativeGSPOBackend:
         if hasattr(self,'mx'):self.mx.clear_cache()
 
 
-def backend_factory(*,model_path,contract,seed,before_unit):
+def backend_factory(*,model_path,contract,seed,before_unit,cache=None):
     """Inject into continuous_rl.run only behind independently reviewed authorize.
 
     Native callers bind this source, backend versions, model/contract files and
     initial adapter hash into run(bindings=...). No preflight is supplied here.
     """
     return lambda adapter,config:NativeGSPOBackend(adapter,config,model_path=model_path,
-        contract=contract,seed=seed,before_unit=before_unit)
+        contract=contract,seed=seed,before_unit=before_unit,cache=cache)
