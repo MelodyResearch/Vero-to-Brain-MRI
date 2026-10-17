@@ -1,0 +1,44 @@
+{
+  "actual_case_private_file_sha256": "182b9501a5ad789416641b30b72b4e16b5785216337612001de3ad6cfc7cd35b",
+  "actual_native_streaming_texts_matched": 468,
+  "affected_cases": [
+    {
+      "boundary": 117,
+      "finish_reason": "length",
+      "format": 0.0,
+      "raw_accuracy": 0.0,
+      "response_index": 3,
+      "response_sha256": "0207fbb4b6a92fbc1f2d444ffc93fb73acac735283a98e2468092b3eb1fafec8",
+      "tokens": 256,
+      "updated": false
+    }
+  ],
+  "authoritative_tokenizer_utils_sha256": "7fb64819e0577e7e960c8b8eb247644b4a70046c117fa5eb4a00d30c0f9c645f",
+  "closed_native_log_sha256": "ad6be6bf30b7a8a762a71d27b39f6d5635b3b271070b80d3a8558724af52841d",
+  "corrected_verifier_source_sha256": "947e39893ddc5a658f7d291a2b993ba940ed724220b1a2e1c823f01465405689",
+  "failed_verifier_source_sha256": "e85d9d9270a975f364abbed4b33c2db507a17fa4f3771f33377bb206642bf5ba",
+  "focused_tests": "10 PASS; observed decoder and fixed-native-path RED failures first",
+  "independent_source_review": {
+    "Claude_review_claimed": false,
+    "actual_native_streaming_texts_independently_reproduced": 468,
+    "focused_tests": 10,
+    "naive_decoder_mismatches": 1,
+    "parser_or_reward_differences": 0,
+    "reviewer": "/root",
+    "reviewer_kind": "isolated_codex",
+    "source_sha256": "947e39893ddc5a658f7d291a2b993ba940ed724220b1a2e1c823f01465405689",
+    "test_seconds": 0.332,
+    "test_source_sha256": "e22b31667a73e045c61d91316464d86ab6d14912c46ca7eeee55aad5ea501cb8",
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "method": "AST-extracted frozen BPEStreamingDetokenizer plus actual frozen dispatch EOS/default special-token semantics; no runtime MLX import, text normalization or scoring changes.",
+  "native_backward_or_model_reload": "NOT_RUN",
+  "native_vs_naive_parser_or_reward_differences": 0,
+  "prior_naive_decoder_mismatches": 1,
+  "reviewer": "/root/two_task_admission",
+  "schema": "independent-decoder-correction-v1",
+  "scope": "CPU decoder correction only; root independently approved corrected source before the full completed-arm proof rerun.",
+  "test_source_sha256": "e22b31667a73e045c61d91316464d86ab6d14912c46ca7eeee55aad5ea501cb8",
+  "unchanged_parser_reward_transform_Adam_function_AST": true,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
