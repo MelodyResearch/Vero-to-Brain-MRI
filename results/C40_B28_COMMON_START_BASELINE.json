@@ -1,0 +1,214 @@
+{
+  "C40_eval_manifest_sha256": "b556b70ecd5570bf8f0a814b5a1654a0b60553f1025a123e6e56bfce69187199",
+  "adapter_config_sha256": "032becabb7cbb6d2af6f3451eb127e5f944551d42eb51eaee3e8d75b839b2f6a",
+  "analysis_script_sha256": "8e82864f91344bb26c6483159daf5f1a6bb0485c4a3502269b4018d36a6b3525",
+  "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+  "common_adapter_sha256": "b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572",
+  "components": {
+    "legacy_sequence": {
+      "bridge_sha256": "b6ab832fd4923fd6ab6beb28f4d62ef19cb764e59cc129bbc7a60f9a7e73a9d6",
+      "new_generations": 0,
+      "original_scoped_approvals": 13,
+      "original_whole_output_sha256": "6f7a3bf69600aa424693e31c68a5026edc38f866df09c67048da3a37ba84017b",
+      "preserved_original_rows_sha256": "cacd934ad769c4ebf78d11a5d158755701e8d17aec594945af91ff0e78c2d2cc",
+      "rows": 24
+    },
+    "new_dallas": {
+      "launch_review_sha256": "ba76d6df4c2c6cfef723cf1e5a2378890fe590e6428e3a47cde10c29a1c8f329",
+      "new_generations": 16,
+      "output_sha256": "5d82fca9c88dce0b2143ba06bbae98ce33ef6dd0f0cad2e0db52fbd61703c52c",
+      "rows": 16,
+      "scope_sha256": "c0e59277e60959b25d514242910267f0a40c6eafae45a4b4be6e6af2f8275b2e"
+    }
+  },
+  "confusion_counts": {
+    "mri_sequence": {
+      "FLAIR": {
+        "flair": 12
+      },
+      "contrast-enhanced T1": {
+        "contrast-enhanced t1": 3,
+        "flair": 9
+      }
+    },
+    "mri_visit_correspondence": {
+      "different": {
+        "different": 8
+      },
+      "same": {
+        "different": 8
+      }
+    }
+  },
+  "evidence_tier": "REPRODUCED_NUMERICAL_SCORING_OF_SAVED_NATIVE_MODEL_OUTPUTS",
+  "independent_private_receipt_sha256": "32ce2cd88a9d316e94f75177eb8c6c36e33bcd351fe4028ed9e88aa3c26dda8f",
+  "legacy_rows_relabelled_as_new_generation": false,
+  "limitations": [
+    "This is a common-initializer inference baseline, not full GSPO/SFT arms or a completed transfer matrix.",
+    "Sequence dev was previously examined; Dallas dev is8people/4matchedcycles. No sealed-test, independent-patient-generalization, powered clinical or method-innovation claim.",
+    "Dallas panels retain face/neck/skull; whole-head correspondence cannot be attributed specifically to brain morphology.",
+    "Frozen CPU controls retain nuisance information: spatial dev12/16 and nonspatial intensity/foreground11/16, with only4cycles; do not interpret an answer-prior or format gain as brain understanding.",
+    "Two source cohorts confound task and domain; namespace keys do not establish global cross-source person independence."
+  ],
+  "model_precision": "Source-bound identical certified4bit/group64base and B28r4/a8adapter; old24 keep original on-the-fly quantization scopes, new16 keep cached-native scope.",
+  "observed_resources": {
+    "actual_native_execution": {
+      "actions": {
+        "CONTINUE": 74
+      },
+      "available_memory_gib_observed_min": 6.2796630859375,
+      "battery_percent_observed_range": [
+        100,
+        100
+      ],
+      "events": 74,
+      "mlx_active_gib_observed_max": 4.818377980962396,
+      "mlx_peak_gib_reported_max": 5.855238723568618,
+      "other_heavy_processes_observed_max": 0,
+      "power_sources_observed": [
+        "AC"
+      ],
+      "pressure_free_percent_observed_min": 32.0,
+      "process_rss_gib_observed_max": 5.8158721923828125,
+      "provenance": "Corrected root Codex native worker; exit0,16 completed predictions. Excludes the earlier two-event failed-launch prefix.",
+      "reason_counts": {},
+      "resource_sample_observation_span_seconds": 162.01666116699926,
+      "supervisor_levels": {
+        "NORMAL": 74
+      },
+      "swap_gib_first": 10.0408984375,
+      "swap_gib_last": 10.0408984375,
+      "swap_gib_observed_max": 10.0408984375,
+      "thermal_telemetry": {
+        "SENSOR_UNAVAILABLE": 74
+      }
+    },
+    "combined_file_events": 76,
+    "combined_file_observation_span_seconds": 441.33806308399653,
+    "limits": "Sampled headroom/RSS may miss transient peaks; thermal telemetry unavailable; no kernel/system safety guarantee.",
+    "pre_native_failed_prefix": {
+      "actions": {
+        "CONTINUE": 1,
+        "HOLD": 1
+      },
+      "available_memory_gib_observed_min": 7.9958038330078125,
+      "battery_percent_observed_range": [
+        100,
+        100
+      ],
+      "events": 2,
+      "mlx_active_gib_observed_max": null,
+      "mlx_peak_gib_reported_max": null,
+      "other_heavy_processes_observed_max": 0,
+      "power_sources_observed": [
+        "AC"
+      ],
+      "pressure_free_percent_observed_min": 45.0,
+      "process_rss_gib_observed_max": 0.034149169921875,
+      "provenance": "Two events from the failed system-Python launch, before the corrected native worker. No successful model execution attributed to this prefix.",
+      "reason_counts": {
+        "insufficient_memory_headroom": 1
+      },
+      "resource_sample_observation_span_seconds": 15.078948916998343,
+      "supervisor_levels": {
+        "NORMAL": 2
+      },
+      "swap_gib_first": 10.0408984375,
+      "swap_gib_last": 10.0408984375,
+      "swap_gib_observed_max": 10.0408984375,
+      "thermal_telemetry": {
+        "SENSOR_UNAVAILABLE": 2
+      }
+    },
+    "resource_event_sha256": "4f770a949603cf253186335e8430b650fa486b9cf9ccca7887e8af05d4045f69",
+    "runtime_claim": "No event span is asserted to be total native runtime; events delimit resource observations and exclude unobserved work/cleanup.",
+    "status": "RESOURCE_FILE_INCLUDES_TWO_ATTEMPTS_SEPARATED_BY_EXECUTOR_PROVENANCE"
+  },
+  "optimizer_updates_by_this_baseline": 0,
+  "pre_resource_safe_aggregate_sha256": "64af403580acafe7f547dc9a34646a6cf3a064ce45bf037fe2953c927c3ec0a4",
+  "prediction_counts": {
+    "mri_sequence": {
+      "contrast-enhanced t1": 3,
+      "flair": 21
+    },
+    "mri_visit_correspondence": {
+      "different": 16
+    }
+  },
+  "primary_metrics": {
+    "accuracy_contract": "Existing native tag-gated categorical accuracy; tagged unboxed answer may earn format0.5 and task accuracy1. Full-format accuracy is reported separately.",
+    "clinical_or_method_transfer_claimed": false,
+    "descriptive_only": true,
+    "equal_task_macro_full_format_accuracy": 0.5625,
+    "equal_task_macro_native_accuracy": 0.5625,
+    "independent_patient_generalization_claimed": false,
+    "missing_or_invalid_accuracy": 0,
+    "split": "internal_dev",
+    "status": "SCORED_NORMALIZED_TEXT_BINDINGS_REQUIRE_CALLER_VERIFICATION",
+    "tasks": {
+      "mri_sequence": {
+        "descriptive_only": true,
+        "full_format_accuracy": 0.625,
+        "full_format_rate": 1.0,
+        "independent_units": 4,
+        "invalid_answers": 0,
+        "mean_format_score": 1.0,
+        "missing_predictions": 0,
+        "native_task_accuracy": 0.625,
+        "patients": 4,
+        "question_native_task_accuracy": 0.625,
+        "questions": 24,
+        "unit": "patient"
+      },
+      "mri_visit_correspondence": {
+        "descriptive_only": true,
+        "full_format_accuracy": 0.5,
+        "full_format_rate": 1.0,
+        "independent_units": 4,
+        "invalid_answers": 0,
+        "mean_format_score": 1.0,
+        "missing_predictions": 0,
+        "native_task_accuracy": 0.5,
+        "patients": 8,
+        "question_native_task_accuracy": 0.5,
+        "questions": 16,
+        "unit": "matched_two_person_cycle"
+      }
+    },
+    "worst_task_native_accuracy": 0.5
+  },
+  "resource_provenance_correction": "Original combined76-event interpretation corrected before commit: failed-launch prefix2 and actual-native74 explicitly separated. Prior aggregate/receipt retained privately.",
+  "resource_receipt_sha256": "5e5ede31e72deec4b101a75f1196c7ab265b316a8400547534130496c16d0b82",
+  "reviewer": "Codex independent data/statistics agent; root Codex executes new native baseline after the separate Claude filesystem action was denied. No Claude raw-result review or execution claimed.",
+  "scoring_source_sha256": {
+    "two_task_analysis.py": "c0ad66b5a9ba6ce78539389dc7efcd5b7c58637ad24db9fbb24412ad0e8cfa43",
+    "two_task_native_results.py": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "visit_correspondence.py": "ccaaa7c4cf2ed75afae93cb44a2728d128b9943e8bba9296dd9904d7875d0bd5"
+  },
+  "sealed_test_content_used": false,
+  "source_verl_manifest_sha256": "95a489d0182c917657042f542868c629bcda827fe8d396bac562bc5318e5cd09",
+  "status": "C40_BASELINE_INFERENCE_COMPLETED_FROM_AUTHENTICATED_24_LEGACY_PLUS_16_NEW",
+  "training_class_prior_controls": {
+    "mri_sequence": {
+      "binary_balanced_chance_reference": 0.5,
+      "deterministic_majority_unit_accuracy": 0.5,
+      "majority_tie_rule": "Lexicographic class label, fixed from training labels only",
+      "training_class_counts": {
+        "FLAIR": 14,
+        "contrast-enhanced T1": 14
+      },
+      "training_majority_label": "FLAIR"
+    },
+    "mri_visit_correspondence": {
+      "binary_balanced_chance_reference": 0.5,
+      "deterministic_majority_unit_accuracy": 0.5,
+      "majority_tie_rule": "Lexicographic class label, fixed from training labels only",
+      "training_class_counts": {
+        "different": 24,
+        "same": 24
+      },
+      "training_majority_label": "different"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "counterexamples": {
+    "completed_resume_reports_zero_ledger": {
+      "completed_resume_status": "SCHEDULE_COMPLETE",
+      "completed_resume_used_tokens": 0,
+      "original_used_tokens": 2664
+    },
+    "crashed_SFT_partial_example_is_free_on_resume": {
+      "actual_fixture_measured_tokens": 3093,
+      "declared_cap": 2664,
+      "reported_used_tokens": 2664,
+      "status": "SCHEDULE_COMPLETE",
+      "unaccounted_partial_tokens": 429
+    },
+    "image_change_inside_native_callback_is_committed": {
+      "completed_steps": 1,
+      "image_changed_after_runner_precheck": true,
+      "optimizer_updates": 1
+    },
+    "native_nonfinite_loss_gradient_updates_before_validation": {
+      "optimizer_update_called": true,
+      "reason": "Native sft_step invokes optimizer.update before run_sft checks finite evidence",
+      "returned_gradient_finite": false,
+      "returned_losses_finite": false
+    }
+  },
+  "launch_authorized": false,
+  "native_model_imported": false,
+  "required_minimal_corrections": [
+    "Restore and validate committed ledger before any completed-resume early return.",
+    "Durably reserve known teacher-forcing example/step cost before native work; conservatively charge unresolved in-flight work on resume without silently resetting imputed totals or exceeding the frozen cap.",
+    "Recheck each approved image hash after resource callbacks and immediately before native preparation, and recheck all step images before publishing updated state.",
+    "Validate each native loss/gradient and final finite positive norm before optimizer.update; keep update counter/weights unchanged on rejected nonfinite evidence."
+  ],
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "tier-c-sft-focused-independent-counterexamples-v1",
+  "scope": "New src/mri_rl/tier_c_sft.py only, not current live baseline inference or previously verified native GSPO",
+  "source_sha256": "53168cb8c407a385d364c3aea010a27a5b64fed7feba44cad46db432ad8b9425",
+  "verdict": "FAIL"
+}

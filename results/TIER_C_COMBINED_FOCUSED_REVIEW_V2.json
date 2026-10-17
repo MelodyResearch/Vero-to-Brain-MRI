@@ -1,0 +1,62 @@
+{
+  "confirmed_passes": [
+    "Known partial3 responses plus one conservative469-token in-flight charge persist separately and are not recounted after a successful boundary and another resume.",
+    "Native-faithful complete progress followed by post-rollout failure or save failure measures856 prior tokens plus856 retried tokens with zero imputation.",
+    "Original configuration/cap/resume-drift and basic image-hash counterexamples now reject as required.",
+    "Original runtime adapter/contract/image/measurement CLI counterexamples now reject, with unchanged positive control passing."
+  ],
+  "deeper_requested_crash_checks": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src OPENBLAS_NUM_THREADS=1 python3 -m pytest -q -p no:cacheprovider --tb=short tests/test_tier_c_crash_accounting_review.py",
+    "model_or_native_runtime_loaded": false,
+    "passed": 3,
+    "production_edits_by_reviewer": false,
+    "red": 9
+  },
+  "durability_note": "write_json fsyncs the reservation file, but the new directory/entry is not explicitly sync_dir-ed before rollout. Reuse existing sync_dir on pending and output after creating the attempt; no new framework is needed. No actual OS crash or guarantee was tested.",
+  "evidence_tier": "REPRODUCED_CPU_REGRESSIONS_AND_CRASH_TRANSITIONS",
+  "next_action": "Correct R1/R2/R3 in one focused pass; rerun original30 and new12 checks; then finalize the exact combined CLI/source/config release. No broader audit requested.",
+  "old_findings": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src OPENBLAS_NUM_THREADS=1 python3 -m pytest -q -p no:cacheprovider --tb=short tests/test_two_task_driver_review_regressions.py tests/test_tier_c_entry_review_regressions.py tests/test_tier_c_entry.py tests/test_two_task_training.py",
+    "focused_corrected_tests": 30,
+    "original_fourteen_counterexamples": "RESOLVED_IN_TESTED_SOURCE"
+  },
+  "release_limits": [
+    "Current runtime contract semantic checks permit a separately hashed C dataset contract only when prompt semantics equal the measured contract, preserving truthful old/new hashes.",
+    "Prior actual native G8 update and fresh read-only restore were independently verified by root; a resumed full-Qwen next-gradient trajectory remains NOT_RUN and must not be claimed from these CPU fixtures.",
+    "This FAIL gates only the affected new full-arm crash/accounting release; baseline/read-only work and independent CPU tasks may continue."
+  ],
+  "residuals": [
+    {
+      "component": "continuous_rl._partial_cost / attempt_reservation",
+      "id": "R1",
+      "minimal_fix": "Bind reservation to canonical run, current parent receipt, occurrence/source, index, image, ledger plan and config; validate all of these during recovery against expected values. Current record_id/input_tokens alone do not authenticate an attempt.",
+      "reproduced": "Reservation index99, group_size1 or max_tokens0 is accepted, as is progress group_index99. A pending attempt copied from a different run/policy binding is also accepted.",
+      "severity": "P1"
+    },
+    {
+      "component": "continuous_rl._partial_cost response validation",
+      "id": "R2",
+      "minimal_fix": "Validate responses are a bounded prefix of the exact group and every persisted token is a nonnegative integer within max_tokens. Keep malformed evidence and reject it rather than converting it into accounting.",
+      "reproduced": "Five responses for group4,257-token response for max256, and noninteger token IDs are accepted.",
+      "severity": "P1"
+    },
+    {
+      "component": "continuous_rl._partial_cost authoritative completed raw file",
+      "id": "R3",
+      "minimal_fix": "Prefer and authenticate complete rollout_PRIVATE.json where present; cross-check against progress/reservation and charge actual complete tokens with zero imputation.",
+      "reproduced": "When the driver durably writes a complete rollout_PRIVATE.json and then fails, but no backend progress file exists, recovery ignores the complete file and imputes one response. Recorded total1325 vs measured total1712.",
+      "scope_qualification": "The current native backend normally also writes full progress, whose corresponding failure tests pass. The driver interface nevertheless already has an authoritative completed artifact and must not ignore it.",
+      "severity": "P1"
+    }
+  ],
+  "reviewer": "Independent Codex full_arm_execution_contract agent",
+  "schema": "tier-c-combined-focused-review-v2",
+  "scope": "Combined review of the same Tier-C driver/ledger/CLI release after Claude030 corrections; unchanged native optimization math and prior G8 results are not re-audited.",
+  "source_sha256": {
+    "src/mri_rl/continuous_rl.py": "3808fcf622d26629455e77c851a540eea2f6e28441d4ec033aa3f3de9d28a7b6",
+    "src/mri_rl/tier_c_entry.py": "cd8afa04f8b8a3f3cb3dbd952b9b590629ac29e6d73c23d625c3565356ebf199",
+    "src/mri_rl/two_task_training.py": "31b0d2886200470abb0bec10ba5de13752c4f09f5f7883c7bafd0dc8d759d4d4",
+    "tests/test_tier_c_crash_accounting_review.py": "60003151135816dfbadba401c7c12734a7e6cbbf263cf32dcc6607b0df706a54"
+  },
+  "verdict": "FAIL"
+}

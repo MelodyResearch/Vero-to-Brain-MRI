@@ -11,7 +11,19 @@
     "Exact B28 adapter/config, original full model-file inventory, template/config/manifest hashes, certified cache, subset IDs/images, seed7, greedy temperature0/max256 and absent starting output are scope-bound. One model remains resident for the entire selected subset; each output is flushed/fsynced.",
     "Prior twenty-four sequence baseline reuse is a separately authenticated bridge; this native approval does not rewrite, regenerate or re-identify any old row."
   ],
-  "launcher_sha256": "8966711b466360a811eeffc00ad0d36bec985f9d9b1542e80ac2ebfb857090b9",
+  "launcher_interpreter_correction": {
+    "cause": "Path.resolve dereferenced the virtual-environment interpreter symlink; the first launch failed before model loading or prediction writes.",
+    "cpu_probe": {
+      "executable": "/Users/vv/Documents/Codex/2026-10-15/files-pasted-by-the-user-codex-2/work/mlx-venv/bin/python",
+      "mlx_imported": false,
+      "mlx_spec": "_NamespacePath(['/Users/vv/Documents/Codex/2026-10-15/files-pasted-by-the-user-codex-2/work/mlx-venv/lib/python3.13/site-packages/mlx'])",
+      "native_core_imported": false,
+      "prefix": "/Users/vv/Documents/Codex/2026-10-15/files-pasted-by-the-user-codex-2/work/mlx-venv"
+    },
+    "fix": "Preserve lexical absolute virtual-environment interpreter path using os.path.abspath; scientific scope and independent approval unchanged.",
+    "native_imported": false
+  },
+  "launcher_sha256": "a9c165cee7f3b0c7deecda0d42e16b2c68440593620064cb96a7a311531eaca4",
   "limitations": [
     "Exactly sixteen new greedy Dallas internal-dev predictions, zero weight updates, one common B28 baseline. No new sequence prediction, repeated generation, prompt selection, training, or full-arm Tier C approval.",
     "Internal-development subjects and previously used sequence dev do not provide a sealed-test or cross-source global-person independence claim. Whole-head correspondence retains face/skull/neck shortcut risks.",
