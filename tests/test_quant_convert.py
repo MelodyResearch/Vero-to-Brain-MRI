@@ -132,9 +132,6 @@ def test_shared_policy_stops_rising_swap_trace_and_over_budget_peak(tmp_path):
     b = Fake(); b.cur_shape = [64, 64]
     with pytest.raises(RuntimeError):
         qc.convert(plan, src, tmp_path / 'o', b, lambda: next(seq))
-    (tmp_path / 'p').mkdir(); plan2, src2 = make(tmp_path / 'p')
-    with pytest.raises(RuntimeError):
-        run(plan2, src2, tmp_path / 'p/o', Fake(peak=99999))
 
 
 def _st(path, tensors):
@@ -160,7 +157,7 @@ def test_assemble_cache_streams_exact_bytes_names_and_refuses_partial(tmp_path):
         lines.append(json.dumps({'index': u['index'], 'plan_sha256': plan['plan_sha256'], 'unit_hash': qc.unit_hash(plan, u),
             'output_file': f, 'output_file_sha256': qc.sha_file(out / f), 'reload_bitwise_equal': True,
             'module_path_bitwise_equal': True if u['action'] == 'quantize' else None,
-            'retained_bitwise_equal': True if u['action'] == 'retain' else None, 'residual_within_budget': True}))
+            'retained_bitwise_equal': True if u['action'] == 'retain' else None, 'residual_within_budget': True, 'peak_within_budget': True}))
     (out / 'receipts.jsonl').write_text('\n'.join(lines[:2]) + '\n')
     with pytest.raises(ValueError):
         qc.assemble_cache(plan, out, tmp_path / 'c0')
@@ -171,3 +168,36 @@ def test_assemble_cache_streams_exact_bytes_names_and_refuses_partial(tmp_path):
     shard = tmp_path / 'c' / idx['m1.weight']; header, base = qc._read_st_header(shard)
     meta = header['m1.weight']; raw = shard.read_bytes()[base + meta['data_offsets'][0]: base + meta['data_offsets'][1]]
     assert raw == bytes([1] * 16)
+
+
+def test_forecast_plus_reserve_is_enforced_before_any_load(tmp_path):
+    big = {'action': 'quantize', 'nbytes': 1187 * 1024**2, 'transform': None}
+    assert 3.2 < qc.forecast_gib(big) < 3.5          # ~ the documented largest-unit forecast
+    plan, src = make(tmp_path)
+    plan['units'][0]['nbytes'] = 1187 * 1024**2
+    plan['units'][0]['source_shape'] = [64, 64]
+    plan['plan_sha256'] = qc.sha_bytes(qc.canonical({k: v for k, v in plan.items() if k != 'plan_sha256'}).encode())
+    src_big = tmp_path / 'src'; (src_big / 'a.safetensors').write_bytes(b'x' * 1000)
+    plan['source_shards']['a.safetensors']['bytes'] = 2 * 1024**3
+    plan['plan_sha256'] = qc.sha_bytes(qc.canonical({k: v for k, v in plan.items() if k != 'plan_sha256'}).encode())
+    b = Fake(); b.cur_shape = [64, 64]
+    with pytest.raises(qc.HeadroomBlock):   # Codex repro: 2.1 GiB available, 40% pressure-free
+        qc.convert(plan, src, tmp_path / 'o', b, lambda: healthy(available_gib=2.1))
+    assert b.loaded == [] and not (tmp_path / 'o/receipts.jsonl').exists()
+    with pytest.raises(qc.HeadroomBlock):
+        qc.convert(plan, src, tmp_path / 'o', b, lambda: healthy(available_gib=None))
+    assert b.loaded == []
+    ok = qc.convert(plan, src, tmp_path / 'o', b, lambda: healthy(available_gib=3.3 + qc.RESERVE_GIB + 0.1))
+    assert ok['complete']
+
+
+def test_over_budget_peak_receipt_is_not_passed_and_blocks_resume(tmp_path):
+    plan, src = make(tmp_path)
+    with pytest.raises(qc.BlockedUnit):
+        run(plan, src, tmp_path / 'o', Fake(peak=99999))
+    line = json.loads((tmp_path / 'o/receipts.jsonl').read_text().splitlines()[0])
+    assert line['peak_within_budget'] is False and line['passed'] is False
+    b = Fake()
+    with pytest.raises(qc.BlockedUnit):  # never auto-retried or skipped
+        run(plan, src, tmp_path / 'o', b)
+    assert b.loaded == []

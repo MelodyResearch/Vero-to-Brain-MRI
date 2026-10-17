@@ -19,6 +19,8 @@ QUANT = {'bits': 4, 'group_size': 64, 'mode': 'affine'}
 DTYPES = {'BF16': 'bfloat16'}
 MAX_UNIT_PEAK_MIB = 4096        # >= ~3x the largest source tensor (1187 MiB)
 MAX_RESIDUAL_ACTIVE_MIB = 256   # active MLX bytes after a unit's release + cache clear; larger means a leak
+RESERVE_GIB = 2.0               # severe reserve kept free on top of the per-unit forecast
+QUANT_OUT_FRACTION = 0.28125    # packed 4-bit weight 0.25 + bf16 scales/biases 1/32 of the bf16 source bytes
 CHUNK = 64 * 1024 * 1024
 VISION_CANON = 'installed_vision_sanitize'
 
@@ -37,6 +39,21 @@ def sha_file(path):
         for chunk in iter(lambda: f.read(1 << 20), b''):
             h.update(chunk)
     return h.hexdigest()
+
+
+class HeadroomBlock(RuntimeError):
+    """Measured headroom cannot cover this unit's forecast plus the severe reserve; no work was started."""
+
+
+def forecast_gib(unit):
+    """Upper-bound allocation for one unit from trusted byte counts (not a blind fixed floor).
+
+    quantize: source fragment buffer + MLX copy + three live quantized sets (result, module-path reference, reload).
+    retain:   fragment + MLX copy + reload (+ one transform copy for the canonicalized conv)."""
+    n = unit['nbytes']
+    if unit['action'] == 'quantize':
+        return n * (2 + 3 * QUANT_OUT_FRACTION) / 1024**3
+    return n * (4 if unit['transform'] else 3) / 1024**3
 
 
 class BlockedUnit(RuntimeError):
@@ -131,7 +148,7 @@ def gate(sampler, policy):
 
 
 def _passed(r):
-    return bool(r['reload_bitwise_equal']) and r['module_path_bitwise_equal'] in (True, None) and \
+    return bool(r.get('peak_within_budget')) and bool(r['reload_bitwise_equal']) and r['module_path_bitwise_equal'] in (True, None) and \
         r['retained_bitwise_equal'] in (True, None) and bool(r['residual_within_budget'])
 
 
@@ -174,6 +191,10 @@ def convert(plan, source_dir, out_dir, backend, sampler, policy=None, *, verify_
         if max_units is not None and converted >= max_units:
             break
         s = gate(sampler, policy)
+        need = forecast_gib(u) + RESERVE_GIB
+        if s.available_gib is None or s.available_gib < need:
+            raise HeadroomBlock('Unit %d needs %.2f GiB (forecast + %.1f reserve); available %s. Cursor saved, nothing started.'
+                                % (u['index'], need, RESERVE_GIB, s.available_gib))
         backend.begin_unit()
         w, raw_sha = backend.load_unit(Path(source_dir) / u['source_file'], u)
         if u['transform'] == VISION_CANON:
@@ -209,6 +230,7 @@ def convert(plan, source_dir, out_dir, backend, sampler, policy=None, *, verify_
              'reload_bitwise_equal': reload_ok, 'module_path_bitwise_equal': module_ok, 'retained_bitwise_equal': retained_ok,
              'mlx_peak_mib': peak, 'mlx_active_after_release_mib': residual,
              'residual_within_budget': residual <= MAX_RESIDUAL_ACTIVE_MIB,
+             'peak_within_budget': peak <= MAX_UNIT_PEAK_MIB, 'forecast_gib': forecast_gib(u),
              'swap_used_gib': [s.swap_used_gib, s2.swap_used_gib], 'available_gib': [s.available_gib, s2.available_gib],
              'pressure_free_percent': [s.pressure_free_percent, s2.pressure_free_percent]}
         r['passed'] = _passed(r)
@@ -217,8 +239,6 @@ def convert(plan, source_dir, out_dir, backend, sampler, policy=None, *, verify_
         converted += 1
         if not r['passed']:
             raise BlockedUnit('Check failed in unit %d (evidence preserved; unit blocked)' % u['index'])
-        if peak > MAX_UNIT_PEAK_MIB:
-            raise RuntimeError('Unit exceeded its memory budget; stopping')
     finished = len(done) + converted
     return {'units_total': len(units), 'units_done': finished, 'converted_this_call': converted,
             'complete': finished == len(units)}
