@@ -1,0 +1,37 @@
+{
+ "config_cached_sha256": "24001c9cf5029833dae04ea8dcc8dbecae91b067b3532c816716e1384d5e2e2b",
+ "config_delta_keys": [
+  "quantization",
+  "quantization_config"
+ ],
+ "config_source_sha256": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+ "non_weight_files_identical": {
+  ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+  "README.md": "6d5d06e0c3f069097002445d30dce9ee107db3afaf15563f09e6df49b8dcb4d7",
+  "chat_template.json": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+  "generation_config.json": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+  "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+  "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+  "tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+  "tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+  "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+  "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+ },
+ "payload_bytes_equal_to_verified_units": true,
+ "plan_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d",
+ "quantized_modules": 344,
+ "retained_tensors": 406,
+ "scope": "bytes+lineage only; no model load, no inference; effective-weight loader parity needs the measured cached-load profile",
+ "shards": {
+  "model-00001-of-00002.safetensors": {
+   "bytes": 4207002792,
+   "sha256": "6a332d4977c95fd6b51ac7155e039016d90041da1bf3cdd3e500192ea00fa626"
+  },
+  "model-00002-of-00002.safetensors": {
+   "bytes": 920772600,
+   "sha256": "2c94dc6761ab4641a4e2c612eb3ff5fd62d939c5704f8301025e741650b9e1e8"
+  }
+ },
+ "tensors_checked": 1438,
+ "units": 750
+}

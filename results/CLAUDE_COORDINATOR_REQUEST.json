@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "request_stepD_two_resource_fixes_then_750_envelope",
+ "kind": "conversion_completed_cache_certified_request_cached_load_profile",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -160,5 +160,42 @@
   "rest": "same without --max-units; I run it as a background Bash task (run_in_background, long timeout) and re-invoke to resume after any interruption; HeadroomBlock/BlockedUnit stop it with the cursor saved.",
   "note": "Each invocation re-verifies the four source shard sha256 (about 9 s) before native work."
  },
- "after_conversion": "Config/tokenizer integration and parameter-parity certificate against the frozen base config + exact 344 map; no 4.8 GB in-memory assembly. Cached 8B load only after a measured materialization profile."
+ "after_conversion": "Config/tokenizer integration and parameter-parity certificate against the frozen base config + exact 344 map; no 4.8 GB in-memory assembly. Cached 8B load only after a measured materialization profile.",
+ "conversion_result": {
+  "runner_sha256": "c470b20c...2500d (verified before run)",
+  "units": 750,
+  "passed": 750,
+  "quantized": 344,
+  "retained": 406,
+  "module_path_bitwise_equal": 344,
+  "retained_bitwise_equal": 406,
+  "max_unit_mlx_peak_mib": 2262.7,
+  "max_residual_active_after_release_mib": 1.25,
+  "swap_gib_range": [
+   5.5486,
+   6.7295
+  ],
+  "min_available_gib_observed": 5.42,
+  "exit": 0,
+  "note": "Observed by me from receipts; swap rose ~1.18 GiB over the whole 750-unit run; Codex to verify receipts independently."
+ },
+ "cache": {
+  "location": "work/exact_quant_cache/cache (ignored local; not in Git)",
+  "shards": 2,
+  "tensors": 1438,
+  "size_gib": 4.7756,
+  "certificate": "results/EXACT_QUANT_CACHE_CERTIFICATE.json (sha256 8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160)",
+  "certified": "index == plan-derived inventory (344x3 quantized parts + 406 retained); 1438 tensors byte-equal to the verified unit payloads; shard headers contiguous/size-consistent; config.json differs from source ONLY in quantization/quantization_config (the exact 344-module affine-4bit-g64 map); config_source.json and all non-weight files byte-identical to source",
+  "not_certified": "effective-weight parity through the installed loader (no model was loaded); preprocessing/tokenizer behavior unchanged by construction (byte-identical files), not exercised"
+ },
+ "proposed_cached_load_path": {
+  "steps": [
+   "load(cache_dir, lazy=True) -> installed loader reads config.quantization (per-module map) and builds QuantizedLinear/Embedding for the 344 modules from stored weight/scales/biases (no BF16->4bit conversion)",
+   "materialize_serial over parameters with the same observer cadence",
+   "prepare_model_for_training(lora r4/a8, quantization_bits=None, checkpoint_path=adapter): restores via adapter base_quantization; _restore_quantization verifies each module already matches the saved map",
+   "assert_weights on the 504 adapter tensors unchanged"
+  ],
+  "forecast": "resident ~4.78 GiB cache + 0.04 GiB adapter + activations; no BF16 staging; peak expected well below the 5.98 GiB prior; exact value must be measured",
+  "ask": "Review one measured cached-load profile (single load, serial materialization, existing persistent supervisor, forecast+2 GiB reserve at load) and, if it passes, release A28 from record 43 using the cached model path. A prefix-oracle comparison on an already-saved record (labeled validation, not a redo) is the equivalence check before expanding."
+ }
 }
