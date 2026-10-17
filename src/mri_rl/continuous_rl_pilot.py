@@ -17,7 +17,7 @@ MAX_UPDATES = 1  # Tier B diagnostic ceiling declared to preflight AND enforced 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCES = ('continuous_rl.py', 'mlx_continuous_gspo.py', 'continuous_rl_pilot.py',
            'optimizer_checkpoint.py', 'vero_mri_reward.py', 'paced_resources.py',
-           'resource_supervisor.py', 'mlx_gspo_smoke.py')
+           'resource_supervisor.py', 'mlx_gspo_smoke.py', 'likelihood_loading.py')
 
 
 def source_hashes():
@@ -64,7 +64,7 @@ def preflight(args, record_ids):
         expected_review_sha256=args.expected_review_sha256, expected_temperature=1.0,
         launch_configuration=launch_configuration(output=args.output, seed=args.seed,
             record_ids=record_ids, group_size=args.group_size, mode=args.command,
-            boundary_receipt_sha256=boundary_receipt(args.output) if args.command == 'reload' else None))
+            boundary_receipt_sha256=args.approved_boundary))
     return contract
 
 
@@ -82,6 +82,8 @@ def main():
     for name in ('model', 'train', 'dev', 'contract', 'adapter', 'output', 'review_verdict'):
         setattr(args, name, getattr(args, name).resolve())
     require(args.output.is_relative_to(ROOT / 'local_data'), 'Outputs must stay under ignored local_data')
+    # The boundary digest is captured ONCE; the approved value is what must be loaded.
+    args.approved_boundary = boundary_receipt(args.output) if args.command == 'reload' else None
     contract = preflight(args, args.record_ids)
     schedule = load_schedule(args.train, args.record_ids)
     config = {**PROFILE, 'group_size': args.group_size, 'max_tokens': contract.generation['max_tokens']}
@@ -103,6 +105,8 @@ def main():
     binding = _binding(schedule, bindings, config)
     last = inspect_boundaries(args.output, binding)
     require(last is not None and last['optimizer_updates'] >= 1, 'Reload check needs a committed update')
+    require(digest(last['path'] / 'receipt.json') == args.approved_boundary,
+            'Latest boundary differs from the approved boundary; refusing to load a different state')
     adapter = last['path'] / 'adapter.safetensors'
     require(digest(adapter) != bindings['adapter_sha256'], 'Updated adapter equals starting adapter')
     backend = NativeGSPOBackend(adapter, config, model_path=args.model, contract=contract,
@@ -110,7 +114,7 @@ def main():
     expected_image = binding['image_sha256'][schedule[0]['id']]
     require(digest(schedule[0]['images'][0]) == expected_image, 'Frozen image changed before reload generation')
     try:  # constructor already asserts exact loaded-vs-saved adapter tensor equality
-        out = backend.greedy_generate(schedule[0])
+        out = backend.greedy_generate(schedule[0], expected_image)
     finally:
         backend.close()
     require(digest(schedule[0]['images'][0]) == expected_image, 'Frozen image changed during reload generation')

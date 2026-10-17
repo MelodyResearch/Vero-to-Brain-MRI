@@ -196,9 +196,14 @@ class NativeGSPOBackend:
                 'optimizer_profile':'persistent Adam 1e-5; no bias correction; no scheduler change',
                 'checkpoint_reload':'Required at next backend construction; not separately inferred'}
 
-    def greedy_generate(self,row):
-        """Deterministic reload-check generation from the loaded adapter; no gradient or state change."""
+    def greedy_generate(self,row,expected_image_sha256):
+        """Deterministic reload-check generation from the loaded adapter; no gradient or state change.
+
+        The frozen image hash is checked immediately after the resource callback (which may
+        pause/mutate the world) and before generation, then again after generation."""
+        require(isinstance(expected_image_sha256,str) and len(expected_image_sha256)==64,'Frozen image hash required')
         self.model.eval();self.before_unit('reload_greedy_generation')
+        require(digest(row['images'][0])==expected_image_sha256,'Frozen image changed after resource callback')
         messages=[{'role':'system','content':self.contract.system_instruction},
                   {'role':'user','content':row['extra_info']['question']}]
         prompt=self.template(self.processor,self.model.config,messages,add_generation_prompt=True,
@@ -207,9 +212,10 @@ class NativeGSPOBackend:
                 'Native image placeholder/assistant prefix mismatch')
         result=self.generate(self.model,self.processor,prompt,image=[row['images'][0]],
             max_tokens=self.config['max_tokens'],temperature=0.,verbose=False)
+        require(digest(row['images'][0])==expected_image_sha256,'Frozen image changed during generation')
         self.mx.clear_cache()
         return {'record_id':row['id'],'text':result.text,'token_ids':list(result.token_ids or []),
-                'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest()}
+                'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest(),'image_sha256':expected_image_sha256}
 
     def close(self):
         self.active=None;self.model=None;self.processor=None

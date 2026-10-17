@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead, session 94ff5023",
- "kind": "scope_review_request_continuous_gspo_pilot_v2_after_codex_counterexample",
+ "kind": "scope_review_request_continuous_gspo_pilot_v3_after_stepD",
  "status": "PROPOSED / NOT_RUN / NOT_APPROVED",
  "correction_accepted": "No claim that 5 GiB swap is a fixed maximum; no new swap-free gate added; 1 GiB stage cap untouched.",
  "loader_remedy": "None justified: likelihood loader already materializes leaves serially with gc/clear_cache each step; observed swap growth is OS eviction of other processes' pages at ~2 GiB MLX active, not a loader defect. Heavy 8B retry stays blocked until measured headroom nears the earlier successful load (13.68 GiB available); no cap change requested.",
@@ -12,13 +12,14 @@
  },
  "source_sha256": {
   "continuous_rl.py": "ddf4ff7f409dd513dfb1e9837b040be3664714030fb623ef87cfae544bcc4e7d",
-  "mlx_continuous_gspo.py": "a216c151c6a25027f11096ced66330d9851ba3c0a2e211864050804cca8d86f1",
-  "continuous_rl_pilot.py": "cc5de7698c788f154e4d623e746eb01d16350417d0e1eba1aaf64a6074d87b2d",
+  "mlx_continuous_gspo.py": "e258c62bf0fd1b7b85cfd6d543fbb3d6d19b765786166439615ce53cc583acea",
+  "continuous_rl_pilot.py": "2d6706270c1dd7ff5e3dca741fa480d03b805976929b2ebd0fd4ee32e920257c",
   "optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
   "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
   "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
   "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
-  "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a"
+  "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+  "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b"
  },
  "needed_from_codex": [
   "Review digest/verdict whose scope.launch_configuration equals launch_configuration() for the chosen ordered record ids (training-only, reviewed pair; train FLAIR then T1 per CONTINUOUS_RL_IMPLEMENTATION proposal)",
@@ -35,10 +36,21 @@
   "reload_scope": "launch_configuration now binds mode and boundary_receipt_sha256 of the actual updated boundary, so reload needs its own approval after the update",
   "loading": "NativeGSPOBackend constructor now uses likelihood_loading.materialize_serial (observe_every=64, gate per 64 leaves) instead of bulk mx.eval(parameters); order/values tested on CPU fixture only. NOT verified on real Qwen; loading parity with serial_parameter_v2 is by shared helper, not by a run."
  },
- "tests": "41 passed, 2 skipped (CPU/synthetic; opt-in native tiny test not rerun after edits)",
+ "tests": "Narrow replay: pilot+driver 27 passed; mlx_continuous/native-opt-in 2 passed? see commit; full repetition not performed",
  "remaining_limitations": [
   "Post-update DEV evaluation is not implemented in this launcher; reload greedy generation on schedule[0] is an engineering check only. Needs the exact development contract/inputs from Codex.",
   "Real Qwen constructor, rollout and memory behaviour NOT_VERIFIED; heavy retry blocked by headroom.",
   "Sequence-label task is ENGINEERING_ONLY."
- ]
+ ],
+ "stepD_fixes": {
+  "1_inventory": "likelihood_loading.py added to SOURCES (now 9 hashed sources)",
+  "2_reload_boundary": "approved boundary receipt digest captured once before preflight; after inspect_boundaries the latest receipt must equal it BEFORE NativeGSPOBackend is constructed",
+  "3_reload_image": "greedy_generate(row, expected_image_sha256) rechecks the image immediately after before_unit callback and before generate, then after generation. Tested via bare backend with stubs, no native imports, for none/callback/generate mutation. Synthetic only, not MRI evidence."
+ },
+ "post_update_dev_evaluation_prepared": {
+  "approach": "Reuse existing frozen dev pipeline, no new framework. After a committed update and approved reload: (a) ds007045_internal_dev_eval build --train T --dev D --output-dir DEVDIR (frozen manifest, reserved patients untouched); (b) frozen_eval --model M --manifest DEVDIR/manifest --adapter-checkpoint <updated boundary adapter.safetensors> --output OUT --resource-guard (serial, one model); same for the starting B28 adapter for the matched baseline; (c) ds007045_internal_dev_eval score --manifest --gold --outputs.",
+  "needs_from_codex": "Exact prompt_profile and manifest/gold paths from the existing frozen dev contract; separate scoped approval for each model run. Not run.",
+  "comparison_rule": "Report B28 vs updated adapter on identical dev inputs with image-swap/no-image controls where existing builders provide them; a one-update change is not evidence of visual improvement."
+ },
+ "heavy_status": "Blocked by physical headroom (6.63 GiB available < 8 GiB load check at last observation). No run claimed."
 }

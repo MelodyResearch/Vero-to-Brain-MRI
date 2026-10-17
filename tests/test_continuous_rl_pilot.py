@@ -50,3 +50,58 @@ def test_serial_materialization_visits_every_leaf_once_in_order():
                        observe=marks.append, observe_every=64)
     assert seen == [v for _, v in leaves]
     assert marks == ['materialized:64', 'materialized:128', 'materialized:130']
+
+
+def test_loader_helper_is_in_source_inventory():
+    assert 'likelihood_loading.py' in pilot.SOURCES and 'likelihood_loading.py' in pilot.source_hashes()
+
+
+def test_reload_refuses_boundary_that_differs_from_approved_digest():
+    import inspect
+    src = inspect.getsource(pilot.main)
+    assert src.index("args.approved_boundary = boundary_receipt") < src.index('preflight(args')
+    assert "== args.approved_boundary" in src
+    assert src.index("== args.approved_boundary") < src.index('NativeGSPOBackend(adapter')
+
+
+def _bare_backend(order, mutate):
+    import hashlib
+    from types import SimpleNamespace
+    from mri_rl.mlx_continuous_gspo import NativeGSPOBackend
+    b = NativeGSPOBackend.__new__(NativeGSPOBackend)
+    b.model = SimpleNamespace(eval=lambda: None, config=None)
+    b.processor = None
+    b.contract = SimpleNamespace(system_instruction='s', assistant_prefix='A', enable_thinking=False)
+    b.config = {'max_tokens': 16}
+    b.mx = SimpleNamespace(clear_cache=lambda: None)
+    b.template = lambda *a, **k: 'x<|image_pad|>A'
+    def before(name):
+        order.append('callback')
+        if mutate == 'callback':
+            image.write_bytes(b'CHANGED')
+    b.before_unit = before
+    def gen(*a, **k):
+        order.append('generate')
+        if mutate == 'generate':
+            image.write_bytes(b'CHANGED')
+        return SimpleNamespace(text='t', token_ids=[1])
+    b.generate = gen
+    return b
+
+
+def test_greedy_generate_rechecks_image_after_callback_before_generate_and_after(tmp_path):
+    global image
+    import hashlib
+    image = tmp_path / 'i.png'
+    row = {'id': 'r', 'images': [str(image)], 'extra_info': {'question': 'q'}}
+    for mutate, must_generate in ((None, True), ('callback', False), ('generate', True)):
+        image.write_bytes(b'ORIGINAL')
+        expected = hashlib.sha256(b'ORIGINAL').hexdigest()
+        order = []
+        b = _bare_backend(order, mutate)
+        if mutate:
+            with pytest.raises(ValueError):
+                b.greedy_generate(row, expected)
+        else:
+            assert b.greedy_generate(row, expected)['image_sha256'] == expected
+        assert ('generate' in order) == must_generate
