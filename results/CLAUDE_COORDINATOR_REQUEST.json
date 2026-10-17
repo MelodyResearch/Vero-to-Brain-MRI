@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "request_stepD_quant_probe_policy_fix",
+ "kind": "tiny_probe_executed_and_converter_request",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -95,5 +95,29 @@
  "full_budget_candidate": "Will be written as a concrete PROPOSED protocol file next (research/execution/FULL_GSPO_CANDIDATE_PROTOCOL.md).",
  "fix": "quant_probe.gate_check(sampler, policy): one ResourcePolicy created before the first pre-native check and passed through every before/after unit; regression reproduces the 3.5 GiB/14%/swap 4.0-4.2 trace (third sample now raises) plus a run-level test. 20 tests passed. No other change; no 8B threshold change.",
  "next_ready_command": "cd outputs/Longitudinal-BrainMRI-Verifiable-RL && PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.quant_probe --manifest ../../work/model_quant_probe_inputs/manifest.json --input-dir ../../work/model_quant_probe_inputs --output local_data/ds007045_bounded/quant_probe_001  (manifest sha aad32ca7...3a2a6 to be verified by me before running; output dir must not exist)",
- "full_protocol_note": "FULL_GSPO_CANDIDATE_PROTOCOL.md stays PROPOSED and is NOT the parent experiment: two specialists + P/U without calibration/SFT do not meet the parent minimum (K specialists + P/U raw/calibrated). 56 attempted groups is a nominal attempt budget; actual text/visual token counts must be recorded and matching is not demonstrated. Rewrite deferred until the probe is run, per instruction."
+ "full_protocol_note": "FULL_GSPO_CANDIDATE_PROTOCOL.md stays PROPOSED and is NOT the parent experiment: two specialists + P/U without calibration/SFT do not meet the parent minimum (K specialists + P/U raw/calibrated). 56 attempted groups is a nominal attempt budget; actual text/visual token counts must be recorded and matching is not demonstrated. Rewrite deferred until the probe is run, per instruction.",
+ "tiny_probe_result": {
+  "executed": true,
+  "source_sha256_verified": "59469495...b43dd",
+  "manifest_sha256_verified": "aad32ca7...3a2a6",
+  "tensors": 2,
+  "all_bitwise_equal": true,
+  "per_tensor": "direct mx.quantize == nn.quantize module path (weight/scales/biases) and save/reload, dtype+shape equal; weight uint32[1152,144], scales/biases bf16[1152,18]",
+  "mlx_peak_mib": [
+   4.81,
+   7.27
+  ],
+  "swap_gib_before_after": "5.5486 -> 5.5486 (unchanged)",
+  "available_gib_after": 7.34,
+  "pressure_free_percent": 41,
+  "limits": "two tensors only; no claim about the 344 modules or full-model parity"
+ },
+ "converter": {
+  "source": "src/mri_rl/quant_convert.py (+tests/test_quant_convert.py)",
+  "status": "IMPLEMENTED_CPU_TESTED / NOT_RUN",
+  "sha256": "9776c2a18ba30237e6b15cc6e296ec61471bcdbcc1869f27287d60469a910d5f",
+  "design": "hash-bound PLAN of 750 units (344 quantize, rest retain) -> per-unit outputs; one tensor at a time; persistent ResourcePolicy; per-unit receipt fsynced; resume skips verified units, rejects tampered outputs; reload bitwise check, nn.quantize module-path bitwise check on every quantized unit, retained bitwise check; stops on mismatch, critical resources, or >4096 MiB unit peak; no model construction.",
+  "needs_from_codex": "The PLAN JSON (750 entries: source_key, source_file, action, module_type linear|embedding, shape, dtype, output_key in the loader key space produced by the 344-module map and sanitize renames) and its sha256; local base model dir (shards). I will not guess key renames.",
+  "next": "Request one focused conversion-profile check; then run a bounded first slice (--max-units N) before the full pass. Identity of the 344+retained cache to the loader path remains to be certified before any loader change."
+ }
 }
