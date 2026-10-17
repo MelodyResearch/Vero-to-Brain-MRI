@@ -114,3 +114,21 @@ def test_one_patient_or_cycle_does_not_invent_a_bootstrap_interval():
     for task in contrast['tasks'].values():
         assert task['independent_units']==1 and task['paired_interval']['confidence_interval'] is None
         assert task['paired_interval']['status']=='NOT_ESTIMATED_TOO_FEW_UNITS'
+
+
+def test_change_in_worst_task_accuracy_differs_from_worst_individual_task_drop():
+    m=mod();rows=rows_fixture();base=predictions(rows);candidate=copy.deepcopy(base)
+    # Dallas stays the worst task at .5. Sequence falls1->.5, so the
+    # minimum-across-tasks accuracy stays .5 despite one task dropping .5.
+    for key in ('daa','dab','dba','dbb'):
+        base[key]['response']='invalid';candidate[key]['response']='invalid'
+    candidate['s4']['response']='invalid'
+    a=m.score_predictions(rows,base);b=m.score_predictions(rows,candidate)
+    assert a['public']['worst_task_native_accuracy']==b['public']['worst_task_native_accuracy']==.5
+    contrast=m.compare_scores(a,b,n_bootstrap=20)
+    assert contrast['worst_task_delta']==0.
+    assert contrast['worst_individual_task_delta']==-.5
+    matrix=m.build_matrix({('B28',7):a,('U_raw',7):b},training_task_by_arm={'B28':None,'U_raw':None},n_bootstrap=20)
+    summary=next(x for x in matrix['arm_seed_summary'] if x['arm']=='U_raw')
+    assert summary['worst_task_delta_from_common_start']==0.
+    assert summary['worst_individual_task_delta_from_common_start']==-.5

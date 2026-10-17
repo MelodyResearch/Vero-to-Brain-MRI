@@ -125,7 +125,10 @@ def compare_scores(base,candidate,*,n_bootstrap=2000,seed=0,explicit_control_tar
         contrasts[task]={'paired_delta_from_common_start':estimate,'independent_units':len(paired),
                          'paired_interval':interval,'descriptive_only':True}
     return {'tasks':contrasts,'equal_task_macro_delta':mean(x['paired_delta_from_common_start'] for x in contrasts.values()),
-            'worst_task_delta':min(x['paired_delta_from_common_start'] for x in contrasts.values()),
+            'worst_task_delta':min(mean(x['native_task_accuracy'] for x in units.values()) for units in candidate['private']['units'].values())
+                               -min(mean(x['native_task_accuracy'] for x in units.values()) for units in base['private']['units'].values()),
+            'worst_individual_task_delta':min(x['paired_delta_from_common_start'] for x in contrasts.values()),
+            'worst_task_delta_definition':'min(candidate task accuracy) minus min(common-start task accuracy); worst_individual_task_delta is the minimum paired per-task delta.',
             'control_targets':'explicit_frozen_transformed_reference' if explicit_control_targets is not None else 'identical_reference',
             'interval_scope':'Existing percentile cluster bootstrap per task only; no simultaneous macro/worst-task coverage or training-seed uncertainty claim.',
             'descriptive_only':True}
@@ -147,7 +150,8 @@ def build_matrix(runs,*,baseline_arm='B28',training_task_by_arm,n_bootstrap=2000
         summaries.append({'arm':arm,'seed':seed,'equal_task_macro_native_accuracy':scored['public']['equal_task_macro_native_accuracy'],
             'worst_task_native_accuracy':scored['public']['worst_task_native_accuracy'],
             'macro_delta_from_common_start':comparison['equal_task_macro_delta'],
-            'worst_task_delta_from_common_start':comparison['worst_task_delta']})
+            'worst_task_delta_from_common_start':comparison['worst_task_delta'],
+            'worst_individual_task_delta_from_common_start':comparison['worst_individual_task_delta']})
     by_arm={}
     for arm in sorted({x['arm'] for x in summaries}):
         group=[x for x in summaries if x['arm']==arm]
