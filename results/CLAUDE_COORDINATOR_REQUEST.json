@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "tiny_probe_executed_and_converter_request",
+ "kind": "request_converter_fix_and_full_conversion_profile",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -67,7 +67,7 @@
   "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
   "continuous_rl.py": "ddf4ff7f409dd513dfb1e9837b040be3664714030fb623ef87cfae544bcc4e7d"
  },
- "tests": "At 4a1bf3e: tests/test_continuous_rl_dev_eval.py 9 passed; with test_continuous_rl_pilot.py 19 passed; earlier driver+pilot+dev-eval replay 34 passed (before the binding additions). CPU stubs/synthetic only. Opt-in native tiny test not rerun after edits; no Qwen run.",
+ "tests": "tests/test_quant_convert.py 10 passed (real-metadata plan, the three Codex counterexamples, leak guard, assembly byte-exactness, partial refusal, policy trace). Native NOT_RUN.",
  "baseline_reuse": "NOT_VERIFIED until Codex verifies B28 baseline prompt/native format/precision/adapter/model artifacts; matching row metadata is not proof of numerical equivalence. No reruns done.",
  "scientific_status": "Task is sequence recognition from acquisition labels: ENGINEERING_ONLY. Codex CPU technical visibility check = PASS_WITH_LIMITATIONS for the frozen pair; clinical blind assessment NOT_VERIFIED. Dev set 54 questions / 4 previously used patients; reserved patients excluded. No generalization claim.",
  "priority": "Likelihood first: on release of the existing scoped launcher and recovered headroom, Claude executes A28 from record 43, then B28 from 4, then A0 from 4. GSPO not started ahead of this.",
@@ -119,5 +119,32 @@
   "design": "hash-bound PLAN of 750 units (344 quantize, rest retain) -> per-unit outputs; one tensor at a time; persistent ResourcePolicy; per-unit receipt fsynced; resume skips verified units, rejects tampered outputs; reload bitwise check, nn.quantize module-path bitwise check on every quantized unit, retained bitwise check; stops on mismatch, critical resources, or >4096 MiB unit peak; no model construction.",
   "needs_from_codex": "The PLAN JSON (750 entries: source_key, source_file, action, module_type linear|embedding, shape, dtype, output_key in the loader key space produced by the 344-module map and sanitize renames) and its sha256; local base model dir (shards). I will not guess key renames.",
   "next": "Request one focused conversion-profile check; then run a bounded first slice (--max-units N) before the full pass. Identity of the 344+retained cache to the loader path remains to be certified before any loader change."
+ },
+ "converter_fixes": {
+  "1_memory": "No mx.load shard dictionaries: NativeConvertBackend.load_unit reads ONE tensor fragment by header offset (chunked readinto into a preallocated buffer, raw sha256 on the fly); per-unit release (del + clear_cache); receipt records MLX peak and active-after-release; active-after-release >256 MiB is a leak failure that blocks the unit. Not yet measured natively.",
+  "2_resume": "Output dir bound to plan_sha256; every receipt carries plan_sha256 + unit_hash (plan, offset, action, key, shape, transform); resume rejects foreign/changed plans or units, FAILED receipts (BlockedUnit, evidence preserved, unit not skipped), and changed output hashes.",
+  "3_canonicalization": "patch_embed.proj.weight unit has transform installed_vision_sanitize: the installed mlx_vlm VisionModel.sanitize is CALLED (transpose 0,2,3,4,1 -> [1152,2,16,16,3]); position_ids absent (count 0, plan builder rejects any). All other retained units are raw-byte-checked against the source fragment sha256."
+ },
+ "plan": {
+  "path": "work/exact_quant_cache/plan.json",
+  "file_sha256": "0ee3efbb9e9c13e2d907500f8475b162ae86034cc234fa3952fe08d5c14c1ac5",
+  "plan_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d",
+  "units": 750,
+  "quantized": 344,
+  "built_by": "quant_convert plan from the public metadata (pure Python)"
+ },
+ "cache_assembly": "quant_convert assemble: pure-Python streaming byte copy of per-unit tensors into <=4 GiB safetensors shards + model.safetensors.index.json + cache_manifest.json; refuses partial conversion. Config/tokenizer integration and loader identity certification (prepare_model_for_training currently expects the BF16 base + saved quant map) are NOT done and need review.",
+ "forecast_and_profile": {
+  "largest_unit": "embed_tokens/lm_head 1187 MiB BF16",
+  "per_unit_peak_forecast_gib": "<= ~3.5 (1.19 numpy fragment + 1.19 MLX copy + 3x 0.33 quantized outputs/reference/reload); typical units far smaller",
+  "reserve": "require available >= forecast + 2 GiB severe reserve (~5.5 GiB for the largest units); persistent ResourcePolicy retained (swap trend, pressure, thermal, concurrency); MAX_UNIT_PEAK 4096 MiB; one worker; no 8B model construction.",
+  "first_slice": "--max-units 12 from plan order (includes embed_tokens, the largest), then continue all 750 under one reviewed envelope with durable per-unit resume"
+ },
+ "source_sha256": {
+  "quant_convert.py": "86c56f8466ee08d11021bccd4be6a2115d3255d9693c7e510d02581ff5bede06"
+ },
+ "commands": {
+  "verify_and_convert_slice": "PYTHONPATH=src ../../work/mlx-venv/bin/python -m mri_rl.quant_convert convert --plan ../../work/exact_quant_cache/plan.json --expected-plan-sha256 71e2ca27...a68d --source-dir local_data/models/qwen3vl8b-base --output ../../work/exact_quant_cache/units --max-units 12",
+  "assemble": "... assemble --plan ... --expected-plan-sha256 ... --output ../../work/exact_quant_cache/units --cache-dir ../../work/exact_quant_cache/cache"
  }
 }
