@@ -72,5 +72,17 @@
   "measured_contract": "local_data/ds007045_bounded/continuous_gspo_frozen_flair_candidate_v1/contract.json (sha 9e69a745... == token receipt)",
   "schedules_unchanged": true
  },
- "baseline_c40": "Dallas B28 baseline finished by root session (not Claude): see results/C40_B28_COMMON_START_BASELINE.json; Dallas all 16 DIFFERENT (class prior), sequence 21 FLAIR / 3 T1 predictions; no claims here"
+ "baseline_c40": "Dallas B28 baseline finished by root session (not Claude): see results/C40_B28_COMMON_START_BASELINE.json; Dallas all 16 DIFFERENT (class prior), sequence 21 FLAIR / 3 T1 predictions; no claims here",
+ "sft_defects_fixed": {
+  "file": "src/mri_rl/tier_c_sft.py",
+  "sha256": "0a5858b86f4bfdba6519a10391e2dc93bd1fe28d0121329fae9ee9c6b6449fe6",
+  "red_green": "4 new regressions RED on the previous file -> GREEN; tests/test_tier_c_sft.py 9 passed; your counterexample script now trips its own bug-existence assertion (fixed behavior)",
+  "fixes": [
+   "completed-resume restores the committed ledger (used/charged/imputed/included dirs) BEFORE the early return",
+   "durable bound sft-attempt-reservation (run binding, parent receipt, index, step id, example ids and per-example costs) fsynced with dir+parent BEFORE native work; crashed step charged once as IMPUTED full reserved step; a resumed run cannot exceed the frozen cap (TOKEN_BUDGET_EXHAUSTED), imputed total persisted and never double-charged",
+   "native sft_step requires the approved image hashes and re-hashes after each resource callback and after native preparation; runner re-hashes every step image after sft_step and before publish",
+   "native step validates every example loss and gradient norm finite and the final norm finite>0 BEFORE optimizer.update (no update, counter and weights unchanged on rejection)"
+  ],
+  "status": "CPU only; no SFT native launch authorized"
+ }
 }

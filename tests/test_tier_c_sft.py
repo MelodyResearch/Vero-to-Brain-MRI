@@ -100,3 +100,67 @@ def test_native_backend_class_defers_mlx_and_targets_match_the_rl_answer_format(
     assert 'mlx.core' not in sys.modules
     t = sft.sft_target(ROWS[0])
     assert t.startswith('<think>') and t.endswith('</answer>') and ROWS[0]['reward_model']['ground_truth'] in t
+
+
+# ---- independent SFT counterexample regressions (results/TIER_C_SFT_INDEPENDENT_FAILURE_REVIEW.json) ----
+def test_completed_resume_restores_and_reports_the_committed_ledger(tmp_path):
+    steps, _ = sft.build_steps(ROWS, 7, 10**6, IN, TGT, max_steps=2)
+    first, led = run(tmp_path, steps, name='done')
+    again, led2 = run(tmp_path, steps, name='done', resume=True)
+    assert again['status'] == 'SCHEDULE_COMPLETE' and again['ledger']['used_tokens'] == first['ledger']['used_tokens'] > 0
+    assert led2.used == led.used and again['optimizer_updates'] == 2
+
+
+def test_crashed_step_is_charged_once_as_imputed_and_cannot_exceed_the_cap(tmp_path):
+    steps, _ = sft.build_steps(ROWS, 7, 10**6, IN, TGT, max_steps=2)
+    costs = [sum(IN(ROWS[i]) + TGT[ROWS[i]['id']] for i in s) for s in steps]; cap = sum(costs)
+    class Crash(SFTBackend):
+        calls = 0
+        def sft_step(self, examples, work):
+            Crash.calls += 1
+            if Crash.calls == 2:
+                raise RuntimeError('crash after the first teacher-forced example')
+            return super().sft_step(examples, work)
+    with pytest.raises(RuntimeError, match='crash'):
+        run(tmp_path, steps, cap=cap, name='p', factory=Crash)
+    r, led = run(tmp_path, steps, cap=cap, name='p', resume=True)
+    assert led.imputed == costs[1] and led.used == costs[0] + costs[1]                      # reserved step charged conservatively, separate
+    assert r['status'] == 'TOKEN_BUDGET_EXHAUSTED' and r['completed_steps'] == 1 and led.used <= cap
+    r2, led2 = run(tmp_path, steps, cap=cap, name='p', resume=True)
+    assert led2.imputed == costs[1] and led2.used == led.used                                # not charged a second time
+
+
+def test_image_changed_inside_the_native_callback_is_never_committed(tmp_path):
+    steps, _ = sft.build_steps(ROWS, 7, 10**6, IN, TGT, max_steps=1)
+    image = Path(ROWS[steps[0][1]]['images'][0]); old = image.read_bytes()
+    class Mutate(SFTBackend):
+        def sft_step(self, examples, work):
+            Path(examples[1]['images'][0]).write_bytes(b'MUTATED AFTER THE RUNNER PRECHECK')
+            return super().sft_step(examples, work)
+    try:
+        with pytest.raises(ValueError, match='image'):
+            run(tmp_path, steps, name='m', factory=Mutate)
+        assert len(list((tmp_path / 'm').glob('boundary_*'))) == 1                         # only the initial boundary; no updated state
+    finally:
+        image.write_bytes(old)
+
+
+def test_native_step_rejects_nonfinite_loss_or_gradient_before_any_optimizer_update(tmp_path):
+    import types, math, hashlib
+    cls = sft.native_backend_class(); b = cls.__new__(cls); called = []
+    b.mx = types.SimpleNamespace(array=np.array, float32=np.float32, eval=lambda *x: None, clear_cache=lambda: None, sum=np.sum)
+    b.nn = types.SimpleNamespace(value_and_grad=lambda model, fn: lambda *a: (np.array(float('nan')), {'g': np.array([float('nan')], dtype=np.float32)}))
+    b.model = types.SimpleNamespace(eval=lambda: None, config=types.SimpleNamespace(model_type='fixture'), trainable_parameters=lambda: {})
+    b.contract = types.SimpleNamespace(system_instruction='s', enable_thinking=False, assistant_prefix='END')
+    b.processor = types.SimpleNamespace(tokenizer=types.SimpleNamespace(encode=lambda *a, **k: [3]))
+    b.template = lambda *a, **k: '<|image_pad|>END'; b.prepare_inputs = lambda *a, **k: {'input_ids': np.array([[1, 2]], dtype=np.int64)}
+    b.special_tokens = lambda *a: False; b.before_unit = lambda name: None
+    b.tree_map = lambda fn, *t: {k: fn(*(x[k] for x in t)) for k in t[0]}; b.tree_flatten = lambda d: list(d.items())
+    b.optimizer = types.SimpleNamespace(update=lambda m, g: called.append(g), state={})
+    ex = ROWS[:4]
+    b.expected_images = {r['id']: hashlib.sha256(Path(r['images'][0]).read_bytes()).hexdigest() for r in ex}
+    with pytest.raises(ValueError, match='Nonfinite'):
+        b.sft_step(ex, tmp_path)
+    assert called == []
+    with pytest.raises(ValueError, match='Approved image hashes'):
+        del b.expected_images; b.sft_step(ex, tmp_path)

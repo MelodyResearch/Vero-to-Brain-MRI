@@ -66,6 +66,11 @@ def step_rows(rows, steps):
     return out
 
 
+def _images_unchanged(step, image_hashes):
+    for e in step['examples']:
+        require(digest(e['images'][0]) == image_hashes[e['id']], 'Frozen image changed after review/precheck')
+
+
 def _validate_step(step):
     require(step.get('ability') == 'sft_step' and len(step['examples']) == EXAMPLES_PER_STEP, 'Malformed SFT step')
     for e in step['examples']:
@@ -74,6 +79,27 @@ def _validate_step(step):
 
 def step_cost(step, input_tokens, target_tokens):
     return sum(input_tokens(e) + target_tokens[e['id']] for e in step['examples'])
+
+
+def _pending_step_cost(pending, ctx, input_tokens, target_tokens):
+    """Conservative IMPUTED cost of a crashed SFT step: its whole reserved step (progress inside a native step is not
+    durable, so the actual consumption is unknown and is never presented as measured)."""
+    reservation = pending / 'attempt_reservation.json'
+    if not reservation.is_file():
+        require(not [p for p in pending.iterdir() if p.name != 'optimizer_before.safetensors'],
+                'Pending SFT work lacks its bound attempt reservation')
+        return 0
+    r = json.loads(reservation.read_text())
+    parent = r.get('parent_receipt_sha256')
+    require(r.get('schema') == 'sft-attempt-reservation-v1' and r.get('run_binding_sha256') == ctx['binding_sha256']
+            and parent in ctx['boundary_groups'], 'Pending SFT attempt belongs to a different run or boundary chain')
+    index = r.get('index')
+    require(type(index) is int and index == ctx['boundary_groups'][parent] and 0 <= index < len(ctx['steps']), 'Pending SFT index differs from its parent cursor')
+    step = ctx['steps'][index]
+    costs = [input_tokens(e) + target_tokens[e['id']] for e in step['examples']]
+    require(r.get('step_id') == step['id'] and r.get('example_ids') == [e['id'] for e in step['examples']] and
+            r.get('example_costs') == costs and r.get('reserved_cost') == sum(costs), 'Pending SFT reservation differs from the frozen step')
+    return sum(costs)
 
 
 def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, input_tokens, target_tokens,
@@ -99,8 +125,13 @@ def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, inpu
         current = cr.inspect_boundaries(output, binding)
         require(not resume or current is not None, 'No complete boundary to resume')
         cursor = current['completed_groups'] if current else 0
+        prior = (current.get('ledger') or {}) if current else {}
+        ledger.used, ledger.charged_groups = prior.get('used_tokens', 0), prior.get('charged_groups', 0)
+        ledger.imputed = prior.get('imputed_unknown_tokens', 0)
+        included = set(prior.get('partial_dirs_included', []))
         if cursor == len(steps):
-            return {'status': 'SCHEDULE_COMPLETE', 'completed_steps': cursor, 'ledger': ledger.state()}
+            return {'status': 'SCHEDULE_COMPLETE', 'completed_steps': cursor, 'optimizer_updates': current['optimizer_updates'],
+                    'ledger': {**ledger.state(), 'partial_dirs_included': sorted(included)}}
         adapter = current['path'] / 'adapter.safetensors' if current else starting_adapter
         authorize({'phase': 'load', 'binding': binding, 'cursor': cursor})
         backend = backend_factory(adapter, config)
@@ -110,14 +141,20 @@ def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, inpu
                 state, rng, _ = load_optimizer_checkpoint(current['path'] / 'optimizer', expected_bindings=expected,
                                                           load_arrays=backend.load_arrays)
                 backend.restore(state, rng)
-                prior = current.get('ledger') or {}
-                ledger.used, ledger.charged_groups = prior.get('used_tokens', 0), prior.get('charged_groups', 0)
             else:
                 require(cr._step(backend) == 0, 'Fresh run requires initial optimizer')
                 work = Path(tempfile.mkdtemp(prefix='.pending-', dir=output))
                 current = cr._publish(output, work, backend, binding, 0, 0, None,
                                       {'updated': False, 'record_id': None, 'schedule_record_id': None,
-                                       'ledger': ledger.state()})
+                                       'ledger': {**ledger.state(), 'partial_dirs_included': []}})
+            backend.expected_images = image_hashes            # native sft_step re-hashes against these after every resource callback
+            ctx = {'binding_sha256': hashlib.sha256(canonical(binding).encode()).hexdigest(), 'steps': steps,
+                   'boundary_groups': {digest(b / 'receipt.json'): json.loads((b / 'receipt.json').read_text())['completed_groups']
+                                       for b in sorted(output.glob('boundary_*'))}}
+            for pending in sorted(output.glob('.pending-*')):          # crashed attempts: charge their reserved step once
+                if pending.name not in included:
+                    ledger.charge_imputed(_pending_step_cost(pending, ctx, input_tokens, target_tokens))
+                    included.add(pending.name)
             stopped = None
             for index in range(cursor, len(steps)):
                 step = steps[index]
@@ -129,8 +166,15 @@ def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, inpu
                 before_step = cr._step(backend)
                 require(before_step == current['optimizer_updates'], 'Optimizer counter lost continuity')
                 work = Path(tempfile.mkdtemp(prefix='.pending-', dir=output))
+                costs = [input_tokens(e) + target_tokens[e['id']] for e in step['examples']]
+                write_json(work / 'attempt_reservation.json', {'schema': 'sft-attempt-reservation-v1',
+                    'run_binding_sha256': ctx['binding_sha256'], 'parent_receipt_sha256': digest(current['path'] / 'receipt.json'),
+                    'index': index, 'step_id': step['id'], 'example_ids': [e['id'] for e in step['examples']],
+                    'example_costs': costs, 'reserved_cost': sum(costs)})
+                cr.sync_dir(work); cr.sync_dir(output)             # durable BEFORE any native work
                 before_state = cr.state_fingerprint(backend, backend.optimizer_state(), work / 'optimizer_before.safetensors')
                 evidence = backend.sft_step(step['examples'], work)
+                _images_unchanged(step, image_hashes)             # again, immediately before anything is published
                 prompts, targets = evidence['prompt_tokens'], evidence['target_tokens']
                 require(len(prompts) == len(targets) == EXAMPLES_PER_STEP and
                         all(p == input_tokens(e) and 0 < t <= TARGET_CAP and t == target_tokens[e['id']]
@@ -152,10 +196,11 @@ def run_sft(*, output, steps, bindings, backend_factory, authorize, ledger, inpu
                                       {'updated': True, 'record_id': step['id'], 'schedule_record_id': step['id'],
                                        'loss_terms': losses, 'gradient_l2': norm,
                                        'optimizer_before_fingerprint': before_state, 'optimizer_after_fingerprint': after_state,
-                                       'ledger': ledger.state()})
+                                       'ledger': {**ledger.state(), 'partial_dirs_included': sorted(included)}})
             status = stopped or ('SCHEDULE_COMPLETE' if current['completed_groups'] == len(steps) else 'BOUNDED_STAGE_COMPLETE')
             return {'status': status, 'completed_steps': current['completed_groups'],
-                    'optimizer_updates': current['optimizer_updates'], 'ledger': ledger.state(), 'science_claim': False}
+                    'optimizer_updates': current['optimizer_updates'], 'ledger': {**ledger.state(), 'partial_dirs_included': sorted(included)},
+                    'science_claim': False}
         finally:
             backend.close()
 
@@ -176,9 +221,12 @@ def native_backend_class():
                 chosen = mx.take_along_axis(nn.log_softmax(logits, axis=-1), labels[..., None], axis=-1)[..., 0]
                 return -mx.mean(chosen[0, prompt_ids.shape[-1] - 1:])
             vg = nn.value_and_grad(self.model, loss_fn)
+            expected = getattr(self, 'expected_images', None)
+            require(isinstance(expected, dict), 'Approved image hashes are required by the native SFT step')
             self.model.eval(); grad_sum = None; losses = []; prompts = []; targets = []
             for row in examples:
                 self.before_unit('sft_example')
+                require(digest(row['images'][0]) == expected[row['id']], 'Frozen image changed after the resource callback')
                 messages = [{'role': 'system', 'content': self.contract.system_instruction},
                             {'role': 'user', 'content': row['extra_info']['question']}]
                 prompt = self.template(self.processor, self.model.config, messages, add_generation_prompt=True, num_images=1,
@@ -188,16 +236,21 @@ def native_backend_class():
                 prepared = self.prepare_inputs(self.processor, images=[row['images'][0]], prompts=prompt,
                     image_token_index=getattr(self.model.config, 'image_token_index', None),
                     add_special_tokens=self.special_tokens(self.model.config.model_type, self.processor))
+                require(digest(row['images'][0]) == expected[row['id']], 'Frozen image changed during native preparation')
                 prompt_ids = prepared['input_ids']
                 target_ids = mx.array(self.processor.tokenizer.encode(sft_target(row), add_special_tokens=False), dtype=prompt_ids.dtype)
                 kwargs = {k: v for k, v in prepared.items() if k not in {'input_ids', 'attention_mask', 'pixel_values'}}
                 loss, grad = vg(self.model, prompt_ids, target_ids, prepared.get('pixel_values'), kwargs)
                 mx.eval(loss, grad)
-                losses.append(float(loss.item())); prompts.append(int(prompt_ids.shape[-1])); targets.append(int(target_ids.size))
+                value = float(loss.item())
+                grad_norm = math.sqrt(sum(float(mx.sum(g.astype(mx.float32) ** 2).item()) for _, g in self.tree_flatten(grad)))
+                require(math.isfinite(value) and math.isfinite(grad_norm), 'Nonfinite SFT loss or gradient; no optimizer update')
+                losses.append(value); prompts.append(int(prompt_ids.shape[-1])); targets.append(int(target_ids.size))
                 scaled = self.tree_map(lambda x: x / len(examples), grad)
                 grad_sum = scaled if grad_sum is None else self.tree_map(lambda a, b: a + b, grad_sum, scaled)
                 mx.eval(grad_sum); mx.clear_cache()
             norm = math.sqrt(sum(float(mx.sum(g.astype(mx.float32) ** 2).item()) for _, g in self.tree_flatten(grad_sum)))
+            require(math.isfinite(norm) and norm > 0, 'Final SFT gradient is not finite and positive; no optimizer update')
             self.before_unit('optimizer_update')
             self.optimizer.update(self.model, grad_sum)
             mx.eval(self.model.trainable_parameters(), self.optimizer.state); mx.clear_cache()
