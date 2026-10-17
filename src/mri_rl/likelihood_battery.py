@@ -15,6 +15,11 @@ BATTERY_POLICY = {'version':'read-only-likelihood-battery-v4-low-reserve-only', 
     'warning_hold_rechecks':3,'warning_hold_seconds':15,'warning_recovery_samples':2,
     'power_watts':'UNAVAILABLE; battery-percent trend is a coarse proxy', 'weight_updates':0}
 
+# Cache path only: corroborated memory WARNINGS that wait via the existing bounded HOLD instead of unloading.
+MEMORY_WARNING_REASONS=frozenset({'low_available_memory_with_pressure','memory_pressure'})
+MEMORY_HOLD_MIN_PRESSURE_FREE=15
+
+
 def cache_required_gib(profile,name,mlx_active_gib):
     """Phase-aware available-memory requirement from the measured cache footprint.
 
@@ -42,6 +47,7 @@ class BatteryDiagnosticGate:
         self.policy=ResourcePolicy();self.initial=None;self.history=[]
         self._rate_start=None;self._rate_count=0;self._rate_phase=None
         self._rate_only_episode=False
+        self._mem_episode=False   # attributable memory-only warning episode (cache path); never resets initial/history/policy
         self.resident_start=None   # captured exactly once, only after an ADMITTED quantized_model_ready (cache path)
 
     def _check(self,name,loading,starting,*,recovering=False,clean_samples=0):
@@ -101,7 +107,18 @@ class BatteryDiagnosticGate:
                     if net_growth>=cap:reasons.append('stage_swap_growth')
                     if total_growth>=packed+cap:reasons.append('total_swap_growth_budget')
         if level!='NORMAL' and not rate_only_level:reasons.append('supervisor_not_normal')
-        if reasons:
+        mem_hold=False
+        if self.cache_profile is not None:
+            core=[r for r in reasons if r!='supervisor_not_normal']
+            gates_ok=(os_level in (1,2) and level!='CRITICAL' and s.pressure_free_percent is not None
+                      and s.pressure_free_percent>MEMORY_HOLD_MIN_PRESSURE_FREE)
+            if gates_ok and core and set(core)<=MEMORY_WARNING_REASONS:
+                mem_hold=True;self._mem_episode=True           # wait (no native op) through the existing bounded HOLD
+            elif gates_ok and not core and level=='WARNING' and self._mem_episode and 'supervisor_not_normal' in reasons:
+                reasons=[]                                       # attributable historical policy WARNING only; actual reasons are clear
+            elif level=='NORMAL' and not core:self._mem_episode=False
+        if mem_hold:action='HOLD'
+        elif reasons:
             if reasons==['sustained_swap_growth']:
                 # Cache load phase: a rate-only warning under otherwise healthy gates is logged and continues (no dwell/HOLD).
                 if self.cache_profile is not None and cache_phase=='load' and not recovering:action='WARNING'
@@ -115,7 +132,7 @@ class BatteryDiagnosticGate:
             'sample':asdict(s),'battery_exception':BATTERY_POLICY,
             'phase':phase,'rate_warning_duration_seconds':duration,
             'rate_warning_observations':self._rate_count,
-            'rate_only_supervisor_warning':rate_only_level,
+            'rate_only_supervisor_warning':rate_only_level,'memory_warning_hold':mem_hold,'memory_episode_open':self._mem_episode,
             'admitted':action in ('CONTINUE','WARNING')}
         with self.path.open('a') as f:
             f.write(json.dumps(event,sort_keys=True)+'\n');f.flush();os.fsync(f.fileno())

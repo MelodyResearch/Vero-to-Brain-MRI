@@ -191,7 +191,8 @@ def test_segment_identity_is_position_bound(fixture):
     with pytest.raises(ValueError,match='identity'):m.analyze(c,changed,expected)
 
 @pytest.mark.parametrize('damage',[None,'tail_identity','prefix_bytes','bridge_digest'])
-def test_scoped_adoption_end_to_end_preserves_prefix_and_checks_tail(fixture,tmp_path,monkeypatch,damage):
+@pytest.mark.parametrize('resource_versions',[False,True])
+def test_scoped_adoption_end_to_end_preserves_prefix_and_checks_tail(fixture,tmp_path,monkeypatch,damage,resource_versions):
     """Synthetic reviewed pilot + new tail through the real adoption validator."""
     import json
     import mri_rl.likelihood_adoption as adoption_module
@@ -218,6 +219,7 @@ def test_scoped_adoption_end_to_end_preserves_prefix_and_checks_tail(fixture,tmp
             'audit_path':str(audit),'audit_sha256':m.sha(audit),'records':3,
             'numeric_loop_sha256':adoption_module.numerical_loop_sha256()}))
         current={**old,'source_hashes':{**old['source_hashes'],'paced_answer_likelihood':'new'}}
+        if resource_versions:current['source_hashes']['likelihood_battery']='resource-only-version-'+model
         current['run_identity']=canonical_hash({'contract':current['contract_sha256'],'checkpoint':model,
             'sources':current['source_hashes'],'backend':current['backend_sources'],'battery_diagnostic':False})
         current['adopted_prefix']=verify(bridge,current,private_root=tmp_path)['binding']
@@ -279,7 +281,8 @@ def test_paired_loader_binds_approved_output_extent(fixture,tmp_path,damage):
     with pytest.raises(ValueError):m.load_scoped(c,paths,scopes)
 
 
-def test_cached_execution_scopes_load_without_changing_scores(fixture, tmp_path):
+@pytest.mark.parametrize('cache_mismatch',[False,True])
+def test_cached_execution_scopes_load_without_changing_scores(fixture, tmp_path, cache_mismatch):
     import json
     import importlib.util
     from pathlib import Path
@@ -288,12 +291,16 @@ def test_cached_execution_scopes_load_without_changing_scores(fixture, tmp_path)
     for checkpoint in paths:
         scope = json.loads(scopes[checkpoint].read_text())
         scope['derived_cache'] = {'certificate_sha256': 'certified-identical-effective-weights'}
+        if cache_mismatch and checkpoint=='B28':scope['derived_cache']['certificate_sha256']='different-model-payload'
         scope['run_identity'] = segment_identity(scope)
         rows = [json.loads(line) for line in paths[checkpoint].read_text().splitlines()]
         for row in rows:
             row['run_identity'] = scope['run_identity']
         paths[checkpoint].write_text(''.join(json.dumps(row) + '\n' for row in rows))
         scopes[checkpoint].write_text(json.dumps(scope))
+    if cache_mismatch:
+        with pytest.raises(ValueError,match='profiles'):m.load_scoped(contract,paths,scopes)
+        return
     loaded, outputs, identities = m.load_scoped(contract, paths, scopes)
     public, _ = m.analyze(loaded, outputs, identities)
     assert public['checkpoints']['B28']['pairs']['mean']['separation']['mean'] == pytest.approx(.9)

@@ -225,3 +225,72 @@ def test_critical_protections_remain_in_load_phase(tmp_path, monkeypatch, kw, le
     monkeypatch.setattr(lb, 'os_pressure_level', lambda: level)
     g, _ = phased_gate(tmp_path, 'e%d' % abs(hash(str(kw))), [6.0] * 6, **kw)
     with pytest.raises(RuntimeError): g.before_unit('before_runtime_import', loading=True)
+
+
+# ---- cache-path corroborated memory WARNING waits via bounded HOLD (no unload) ----
+def mem_gate(tmp_path, name, pressures, *, profile=True, os_level=2, **kw):
+    """Scripted pressure-free sequence for the post-preflight samples; first two are healthy preflight samples."""
+    from mri_rl import likelihood_battery as lb
+    from mri_rl.paced_answer_likelihood import CACHE_PROFILE as P
+    d = tmp_path / name; d.mkdir(); it = iter([50, 50, *pressures]); clock = [0.0]; slept = []; n = [0]
+    def sampler():
+        clock[0] += 31.0; n[0] += 1
+        return healthy(monotonic_seconds=clock[0], pressure_free_percent=next(it), swap_used_gib=6.0,
+                       available_gib=9.0 if n[0] <= 2 else 5.4, **(kw if n[0] > 2 else {}))
+    g = lb.BatteryDiagnosticGate(d / 'r.jsonl', sampler=sampler, sleep=slept.append, cache_profile=P if profile else None)
+    g.before_unit('before_runtime_import', loading=True)
+    g.resident_start = g.initial
+    return g, d, slept
+
+
+def test_real_case_27_31_32_waits_two_clean_samples_then_resumes(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
+    g, d, slept = mem_gate(tmp_path, 'a', [27, 31, 32])
+    assert g.before_unit('candidate:x:FLAIR')                       # returns only after the memory reasons cleared
+    ev = [json.loads(l) for l in (d / 'r.jsonl').read_text().splitlines()][2:]
+    assert [e['action'] for e in ev] == ['HOLD', 'HOLD_RECOVERY', 'CONTINUE'] and slept[-2:] == [15, 15]
+    assert ev[0]['memory_warning_hold'] is True and ev[0]['reasons']
+
+
+def test_unresolved_27_27_27_times_out_with_stop_and_progress_preserved(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
+    g, d, slept = mem_gate(tmp_path, 'b', [27, 27, 27, 27])
+    with pytest.raises(RuntimeError, match='warning_hold_not_recovered'): g.before_unit('candidate:x:FLAIR')
+    assert slept[-3:] == [15, 15, 15] and slept.count(15) == 3         # bounded: exactly the existing 3 checks
+
+
+def test_attributable_historical_policy_warning_does_not_force_unload_when_reasons_are_clear(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
+    g, d, _ = mem_gate(tmp_path, 'c', [31, 31, 31])
+    g.policy.level = 'WARNING'; g.policy._recovery = 0; g._mem_episode = True                 # policy still WARNING after an attributable memory episode
+    assert g.before_unit('candidate:x:FLAIR')                          # actual memory reasons clear -> no unload, no new HOLD
+    last = json.loads((d / 'r.jsonl').read_text().splitlines()[-1])
+    assert last['action'] == 'CONTINUE' and last['reasons'] == [] and last['supervisor_level'] == 'WARNING'
+    g2, _, _ = mem_gate(tmp_path, 'c2', [31, 31, 31])
+    g2.policy.level = 'WARNING'; g2.policy._recovery = 0                 # WARNING NOT attributable to a memory episode: still stops
+    with pytest.raises(RuntimeError): g2.before_unit('candidate:x:FLAIR')
+
+
+@pytest.mark.parametrize('case', ['os4', 'below_phase_headroom', 'swap_budget', 'thermal', 'battery', 'concurrency', 'pressure_le_15'])
+def test_any_other_reason_during_memory_hold_stops(tmp_path, monkeypatch, case):
+    from mri_rl import likelihood_battery as lb
+    level = [2]
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: level[0])
+    kw = {'thermal': dict(thermal_state='THROTTLED'), 'battery': dict(battery_percent=15), 'concurrency': dict(other_heavy_processes=1)}.get(case, {})
+    g, d, _ = mem_gate(tmp_path, case, [12 if case == 'pressure_le_15' else 27, 27, 27], **kw)
+    if case == 'below_phase_headroom':
+        g.sampler = (lambda inner=g.sampler: replace(inner(), available_gib=2.5))
+    if case == 'swap_budget':
+        base = g.sampler; g.sampler = lambda: replace(base(), swap_used_gib=6.0 + 0.0 + 1.0)   # resident net >= 1 GiB
+    level[0] = 4 if case == 'os4' else 2
+    with pytest.raises(RuntimeError): g.before_unit('candidate:x:FLAIR')
+
+
+def test_generic_non_cache_path_has_no_memory_hold(tmp_path, monkeypatch):
+    from mri_rl import likelihood_battery as lb
+    monkeypatch.setattr(lb, 'os_pressure_level', lambda: 2)
+    g, d, slept = mem_gate(tmp_path, 'g', [27, 31, 32], profile=False)
+    with pytest.raises(RuntimeError): g.before_unit('candidate:x:FLAIR')

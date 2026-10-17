@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "A28_complete_57_B28_pressure_stop_request",
+ "kind": "freeze_request_memory_warning_hold_v3_B28_A0_plans",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -253,18 +253,11 @@
   "alternative": "unchanged-gate rerun of B28 at a later time (not blind: the model is released and pressure is transient), if you judge that acceptable."
  },
  "change": {
-  "file": "likelihood_battery.py only (+focused tests)",
-  "generic_path": "cache_profile None -> legacy 1 GiB stage cap exactly as before",
-  "cache_path": [
-   "load phase until an ADMITTED quantized_model_ready; load swap growth from the ORIGINAL initial sample must stay < packed 4.8163 GiB (load_swap_growth_budget STOP); the 1.073 GiB healthy case logs and continues",
-   "rate-only sustained_swap_growth warning in the load phase -> WARNING (log+continue), no HOLD/dwell; any non-rate reason or policy CRITICAL still STOPs",
-   "resident_start captured exactly once, only after quantized_model_ready was admitted (load budget evaluated first; a stopped ready cannot capture; second ready cannot reset); original initial/history/ResourcePolicy never reset",
-   "resident: net growth from resident_start < 1 GiB AND total from initial < packed + 1 (4.8163+1) else STOP; old resident rate policy retained",
-   "events log cache_phase, swap_growth_total_gib, swap_growth_resident_net_gib, resident_start_swap_gib, swap_limits_gib"
-  ],
-  "unchanged": "OS level 4 stop, unknown sensors, forecast+2 GiB headroom (cache_required_gib), pressure-free floors, corroborated critical swap rate, thermal, other heavy, battery 20%, no training exception; numerical record loop AST fc51dfd7...0cb31",
-  "note": "The packed+1 total limit is implied by (load < packed) AND (net < 1); kept as specified and tested at the edge.",
-  "tests": "43 passed (cache + battery files only): 1.073 healthy load continues w/o hold; load>=packed STOP; failed ready no baseline; second ready no reset; resident net 0.99 ok / 1.0 STOP; generic 1 GiB unchanged; pressure/thermal/concurrency/battery/OS4 still stop."
+  "file": "likelihood_battery.py only",
+  "sha256": "269d3452405d50fb0817a137f05b20ea1e014c12469263a4f54a9f6dd9a9b00c",
+  "behavior": "Cache path only. An attributable memory-only episode (core reasons subset of {low_available_memory_with_pressure, memory_pressure}; phase headroom passed; OS level 1/2; policy not CRITICAL; pressure-free > 15%; no swap budget/battery/thermal/concurrency/unknown/other reason) returns HOLD, so the existing _admit loop waits (3 x 15 s max, no native op) and proceeds only after 2 genuinely clean samples (first = HOLD_RECOVERY). supervisor_not_normal alone is ignored only while a memory episode is open and the actual reasons are clear; any new non-memory reason or CRITICAL STOPs. Original initial/history/ResourcePolicy never reset; the 30% unit floor and all limits unchanged; 27,27,27 unresolved -> existing warning_hold_not_recovered STOP; generic path unchanged.",
+  "tests": "54 passed (cache+battery files only): real 27->31->32 resumes after two clean, 27x4 times out after exactly 3 checks, historical WARNING no-unload and non-attributable WARNING stops, OS4 / below phase headroom / swap budget / thermal / battery / concurrency / pressure<=15 stop, generic path unchanged. Record loop AST fc51dfd7... unchanged.",
+  "note": "With a policy that has already reached WARNING (3 low observations) the outer needs 2 clean samples within the 3 rechecks, which cannot complete; that case ends in the existing STOP by design."
  },
  "new_private_plans": {
   "dir": "local_data/ds007045_bounded/likelihood_exact_cache_v1",
@@ -286,5 +279,20 @@
   },
   "script": "work/exact_quant_cache/make_plans.py (prepare_plan only; prints counts/hashes)"
  },
- "next": "Root supplies new approval hashes once; I set them in work/exact_quant_cache/run_cached_likelihood.py (REVIEW_SHA) and execute A28->B28->A0; old hashes cannot match the changed source."
+ "next": "Root supplies new approval hashes once; I set them in work/exact_quant_cache/run_cached_likelihood.py (REVIEW_SHA) and execute A28->B28->A0; old hashes cannot match the changed source.",
+ "plans_v3": {
+  "files": "local_data/ds007045_bounded/likelihood_exact_cache_v1/plan_{B28,A0}_v3_PRIVATE.json",
+  "sha256": {
+   "B28": "1fe935094457c390999fca9a420b9a10dde10368f3e30cd6de25f14ffac3e86e",
+   "A0": "ca7b92523925d5d710a5b5976a68c480ebac3f00c4211a6bf7d18749c4ba0f14"
+  },
+  "prefix": {
+   "B28": 3,
+   "A0": 3
+  },
+  "new_records": 54,
+  "A28": "complete 57/57, not re-planned, never rerun",
+  "script": "work/exact_quant_cache/make_plans_remaining.py"
+ },
+ "orchestrator": "work/exact_quant_cache/run_cached_likelihood_remaining.py (ORDER B28 then A0, review_{ck}_v3_PRIVATE.json, attempt3 logs/status; refuses to start until approval hashes are set; not launched)"
 }
