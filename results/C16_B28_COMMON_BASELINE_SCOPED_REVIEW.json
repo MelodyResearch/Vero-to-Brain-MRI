@@ -1,0 +1,44 @@
+{
+  "actual_model_execution": "NOT_RUN",
+  "adapter_sha256": "b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572",
+  "approval_sha256": "ba76d6df4c2c6cfef723cf1e5a2378890fe590e6428e3a47cde10c29a1c8f329",
+  "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+  "evidence_tier": "REPRODUCED",
+  "findings": [
+    "Focused cached dev-entry review: optional certificate/cache identity is checked before review/native imports, full derived cache binding enters scope, exact cached base parity precedes adapter restoration, and already-reviewed cache-only READY classification is reused.",
+    "The newly imported cache_binding_for provider continuous_rl_pilot.py is now included in the actual source-hash inventory; all other inference source/config checks remain unchanged.",
+    "Independently checked the hash-frozen C40 projection against all original dev rows: exact original images/categories/order and system-contract plus unchanged user-question messages. New execution selects only the sixteen Dallas correspondence records in manifest order; all selected image hashes match the frozen projection inventory.",
+    "Exact B28 adapter/config, original full model-file inventory, template/config/manifest hashes, certified cache, subset IDs/images, seed7, greedy temperature0/max256 and absent starting output are scope-bound. One model remains resident for the entire selected subset; each output is flushed/fsynced.",
+    "Prior twenty-four sequence baseline reuse is a separately authenticated bridge; this native approval does not rewrite, regenerate or re-identify any old row."
+  ],
+  "launcher_sha256": "8966711b466360a811eeffc00ad0d36bec985f9d9b1542e80ac2ebfb857090b9",
+  "limitations": [
+    "Exactly sixteen new greedy Dallas internal-dev predictions, zero weight updates, one common B28 baseline. No new sequence prediction, repeated generation, prompt selection, training, or full-arm Tier C approval.",
+    "Internal-development subjects and previously used sequence dev do not provide a sealed-test or cross-source global-person independence claim. Whole-head correspondence retains face/skull/neck shortcut risks.",
+    "The source/data/cache scope must remain frozen through native imports and the model stages; resource gates remain unchanged AC/initial8/resident6/pressure/swap/thermal/concurrency safeguards.",
+    "Outputs alone are not correctness or generalization results. Typed correspondence scoring and the old24 bridge must be independently verified before a combined40 baseline is reported.",
+    "Thermal sensor unavailability is not proof of normal thermal operation; no hardware stability guarantee."
+  ],
+  "manifest_sha256": "b556b70ecd5570bf8f0a814b5a1654a0b60553f1025a123e6e56bfce69187199",
+  "mission_alignment": "Obtain an actual frozen common-start baseline on the second eligible MRI task while independent full-training interface fixes proceed.",
+  "new_predictions": 16,
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "reused_sequence_predictions": "Separately bound bridge required; no mutation of old rows",
+  "reviewer": "isolated Codex /root/likelihood_finish_reviewer",
+  "schema": "C16-common-B28-cached-baseline-scoped-review-v1",
+  "source_sha256": {
+    "continuous_rl.py": "3808fcf622d26629455e77c851a540eea2f6e28441d4ec033aa3f3de9d28a7b6",
+    "continuous_rl_dev_eval.py": "096da2be1b00a86b54f2716b198913f6ea0d1b72c3c9d71775548ebccc3529f9",
+    "continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+    "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+    "frozen_eval.py": "878f29aa2d0bf7f023b76b3aa46256e7f0cc48d0175964f0153b927632181859",
+    "likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+    "likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+    "mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af"
+  },
+  "subset_ids_sha256": "cbe4634eb4be1385c288ff87ec369b9765ed64f1e8f76cdc7ded1080f05910b9",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "weight_updates": 0
+}
