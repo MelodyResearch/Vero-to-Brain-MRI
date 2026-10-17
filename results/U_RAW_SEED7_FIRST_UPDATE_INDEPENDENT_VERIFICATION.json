@@ -1,0 +1,124 @@
+{
+  "accepted_update_groups_by_task": {
+    "mri_sequence": 0,
+    "mri_visit_correspondence": 1
+  },
+  "attempted_groups_by_task": {
+    "mri_sequence": 4,
+    "mri_visit_correspondence": 3
+  },
+  "cap": 169216,
+  "checks": {
+    "all_saved_file_hashes_verified": 67,
+    "completed_occurrence_ids_unique": true,
+    "every_completed_atomic_parent_chain_cursor_verified": true,
+    "image_bytes_verified": true,
+    "independent_native_accuracy_format_rewards_and_sample_std_advantages_recomputed": true,
+    "independent_response_recomputations": 28,
+    "native_prompts_and_expanded_input_ids_match_frozen_processor_capture": true,
+    "same_source_reexposure_is_not_additional_people": true,
+    "source_manifest_and_occurrence_schedule_binding_verified": true
+  },
+  "completed_groups": 7,
+  "distinct_matched_cycles_by_task": {
+    "mri_visit_correspondence": 3
+  },
+  "distinct_source_people_by_task": {
+    "mri_sequence": 4,
+    "mri_visit_correspondence": 3
+  },
+  "evidence_sha256": {
+    "completed_receipt_chain": [
+      "d13be5b321ffe656aa34104b84d8c98764e6662352eb7cee5bbfcbfe606540e2",
+      "4711fb5086df1ae89771c7f5134c030960fb8504a000058c9efc2517269a4a63",
+      "9f389d238b95d1b5660b40a7f6c4d66e2ae55d4998e2fd8ce17186d1318a931a",
+      "98b847a5a409eb9e3e437eff75c8754b8d0a66e29be19c913ec7332d35be6d2f",
+      "825032741cef258424d76f40f6805911451445c49413907ef80bbfe6115c21fc",
+      "4b7a16c685c757ad0093f63ce02d3e7bfc559cdf25262d5c266a3af4a90a6449",
+      "78fbed1de77fdc8e5cf79bcb20f0ad33e18859a9f82f09a089575f9259f5e66e",
+      "5b0cbb90d84241160da76ba0592e0668ecbb2591c45d35ca4eda8abbeee9283e"
+    ],
+    "frozen_native_inputs": "582dd574f82315417206fa9a4f42edcb6abca06b039cbf8d94c71850e15165f6",
+    "initial_adapter": "b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572",
+    "milestone_adapter": "018f6267d9837cdbb46687e5520f4f33005a4954bb6e18ebe5d5ed117abdf59e",
+    "plan_canonical": "68921ba47ee00b646a607edfa788fdd2ac6b1b58b54416b95390a8d7ed150a66",
+    "training_manifest": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+    "verifier_source": "c0bce1cbb58fa677589b955fa0035aadbb3bbd8f02826c74dc9047f47061f65a"
+  },
+  "evidence_tier": "REPRODUCED_CPU_FROM_ACTUAL_NATIVE_CHECKPOINTS",
+  "first_update_reconstruction": {
+    "adapter_delta_l2": 0.10172901691981491,
+    "adapter_tensors": 504,
+    "all_moments_finite_and_shape_matched": true,
+    "changed_adapter_elements": 10910875,
+    "changed_adapter_tensors": 504,
+    "gradient_l2_reconstructed": 2.1706127370158996,
+    "gradient_l2_saved": 2.1706127411289566,
+    "max_abs_Adam_weight_error": 0.0,
+    "max_abs_adapter_delta": 3.162305802106857e-05,
+    "max_abs_second_moment_error": 1.2427315256637603e-12,
+    "model_backward_independently_recomputed": false,
+    "native_restore": "NOT_RUN",
+    "optimizer_step_after": 1,
+    "optimizer_step_before": 0,
+    "second_moments_nonnegative": true,
+    "status": "FIRST_UPDATE_ADAM_AND_WEIGHT_RECURRENCE_RECONSTRUCTED_CPU",
+    "total_adapter_elements": 10911744
+  },
+  "full_arm_completed": false,
+  "limitations": [
+    "Training rollout responses are repeated stochastic attempts, not independent patients or evaluation accuracy.",
+    "This first-update prefix is not a budget-complete arm or a learning/generalization result.",
+    "Task-balanced proposed sampling can yield different accepted-update shares because the common informative-group gate is task dependent.",
+    "CPU moment/weight reconstruction verifies saved Adam update consistency; it does not recompute the native visual backward pass, prove loss improvement, or replace native reload verification.",
+    "Dallas images retain face/skull/neck and intensity shortcuts; no brain-only understanding or clinical claim."
+  ],
+  "optimizer_updates": 1,
+  "raw_response_counts_and_correctness_by_task": {
+    "mri_sequence": {
+      "answer:contrast-enhanced t1": 4,
+      "answer:flair": 12,
+      "full_format": 16,
+      "full_format_correct": 12.0,
+      "invalid": 0,
+      "native_correct": 12.0,
+      "responses": 16
+    },
+    "mri_visit_correspondence": {
+      "answer:different": 11,
+      "answer:same": 1,
+      "full_format": 12,
+      "full_format_correct": 1.0,
+      "invalid": 0,
+      "native_correct": 1.0,
+      "responses": 12
+    }
+  },
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "reviewer": "isolated Codex /root/two_task_admission",
+  "sampler_reconstruction_environment": {
+    "CPU_numpy": "2.3.2",
+    "complete_schedule_and_rng_binding_reproduced": true,
+    "native_numpy_metadata": "2.5.4",
+    "sole_declared_environment_field_substitution": "numpy_version; original actual native version read from installed package METADATA; no draws/order replaced"
+  },
+  "schema": "u-raw7-first-update-independent-cpu-verification-v1",
+  "token_decomposition": {
+    "mri_sequence:generated": 285,
+    "mri_sequence:input": 3408,
+    "mri_visit_correspondence:generated": 195,
+    "mri_visit_correspondence:input": 4860
+  },
+  "unique_source_rows_by_task": {
+    "mri_sequence": 4,
+    "mri_visit_correspondence": 3
+  },
+  "used_tokens_recomputed": 8748,
+  "variance_diagnostics": {
+    "mri_sequence:task_varies": 0,
+    "mri_sequence:zero_total_variance": 4,
+    "mri_visit_correspondence:task_varies": 1,
+    "mri_visit_correspondence:zero_total_variance": 2
+  },
+  "verdict": "PASS_WITH_LIMITATIONS_SAVED_BOUNDARIES_AND_ACTUAL_FIRST_UPDATE"
+}
