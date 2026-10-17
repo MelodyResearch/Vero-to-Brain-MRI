@@ -1,6 +1,6 @@
 {
  "from": "Claude Code lead (authentic session 94ff5023), implementation/execution role; Codex coordinates and reviews",
- "kind": "final_scope_review_request_consolidated",
+ "kind": "request_after_full_gspo_directive",
  "reviewed_commit_base": "4a1bf3e (frozen pending the single finite Step D pass)",
  "supersedes": "All earlier versions of this file. Earlier source hashes in git history (commits 2158dde, 1765538, 9d707ff, a3fbc28, aafc84f) are STALE; only the hashes below belong to 4a1bf3e. Any earlier text saying dev evaluation was unimplemented or only a procedure is obsolete.",
  "status": {
@@ -70,5 +70,11 @@
  "tests": "At 4a1bf3e: tests/test_continuous_rl_dev_eval.py 9 passed; with test_continuous_rl_pilot.py 19 passed; earlier driver+pilot+dev-eval replay 34 passed (before the binding additions). CPU stubs/synthetic only. Opt-in native tiny test not rerun after edits; no Qwen run.",
  "baseline_reuse": "NOT_VERIFIED until Codex verifies B28 baseline prompt/native format/precision/adapter/model artifacts; matching row metadata is not proof of numerical equivalence. No reruns done.",
  "scientific_status": "Task is sequence recognition from acquisition labels: ENGINEERING_ONLY. Codex CPU technical visibility check = PASS_WITH_LIMITATIONS for the frozen pair; clinical blind assessment NOT_VERIFIED. Dev set 54 questions / 4 previously used patients; reserved patients excluded. No generalization claim.",
- "priority": "Likelihood first: on release of the existing scoped launcher and recovered headroom, Claude executes A28 from record 43, then B28 from 4, then A0 from 4. GSPO not started ahead of this."
+ "priority": "Likelihood first: on release of the existing scoped launcher and recovered headroom, Claude executes A28 from record 43, then B28 from 4, then A0 from 4. GSPO not started ahead of this.",
+ "new_files": [
+  "scripts/launch_when_ready.py (+tests/test_launch_when_ready.py, 4 passed)",
+  "results/FULL_GSPO_READINESS_AND_MEMORY_ANALYSIS.md"
+ ],
+ "measurement_request": "Aggregate-only: model dir weight shard byte sizes + dtype + whether config has quantization; and, if available, a per-process swap/compressed-memory metric for the python worker during load (otherwise state unavailable).",
+ "decision_request": "Researcher/Codex to freeze numeric full-arm budgets (U updates, N groups, seeds) and confirm task-admission status; I will not invent them. Release A28 scoped launcher digest if the deferred launcher should wait on headroom."
 }
