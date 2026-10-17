@@ -105,3 +105,17 @@ def test_greedy_generate_rechecks_image_after_callback_before_generate_and_after
         else:
             assert b.greedy_generate(row, expected)['image_sha256'] == expected
         assert ('generate' in order) == must_generate
+
+
+def test_reload_guard_failure_still_closes_backend(tmp_path):
+    import hashlib
+    image = tmp_path / 'i.png'; image.write_bytes(b'ORIGINAL')
+    expected = hashlib.sha256(b'ORIGINAL').hexdigest()
+    image.write_bytes(b'CHANGED BY CONSTRUCTOR CALLBACK')
+    class B:
+        closed = False; generated = False
+        def greedy_generate(self, row, sha): B.generated = True; return {}
+        def close(self): B.closed = True
+    with pytest.raises(ValueError):
+        pilot.guarded_reload_generation(B(), {'images': [str(image)]}, expected)
+    assert B.closed and not B.generated

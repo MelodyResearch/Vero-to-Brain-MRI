@@ -44,6 +44,17 @@ def launch_configuration(*, output, seed, record_ids, group_size, mode, boundary
             'source_sha256': source_hashes()}
 
 
+def guarded_reload_generation(backend, row, expected_image):
+    """All post-constructor work is inside try/finally so a failed guard still closes the model."""
+    try:
+        require(digest(row['images'][0]) == expected_image, 'Frozen image changed before reload generation')
+        out = backend.greedy_generate(row, expected_image)
+        require(digest(row['images'][0]) == expected_image, 'Frozen image changed during reload generation')
+        return out
+    finally:
+        backend.close()
+
+
 def boundary_receipt(output):
     """Digest of the latest committed boundary so a reload approval binds the actual updated state."""
     boundaries = sorted(Path(output).glob('boundary_*'))
@@ -112,12 +123,7 @@ def main():
     backend = NativeGSPOBackend(adapter, config, model_path=args.model, contract=contract,
                                 seed=args.seed, before_unit=before_unit)
     expected_image = binding['image_sha256'][schedule[0]['id']]
-    require(digest(schedule[0]['images'][0]) == expected_image, 'Frozen image changed before reload generation')
-    try:  # constructor already asserts exact loaded-vs-saved adapter tensor equality
-        out = backend.greedy_generate(schedule[0], expected_image)
-    finally:
-        backend.close()
-    require(digest(schedule[0]['images'][0]) == expected_image, 'Frozen image changed during reload generation')
+    out = guarded_reload_generation(backend, schedule[0], expected_image)
     # Full text/token ids stay private so the answer can be scored later; stdout gets counts only.
     (args.output / 'reload_generation_PRIVATE.json').write_text(json.dumps(out, sort_keys=True))
     receipt = {'kind': 'continuous_rl_reload_v1', 'boundary_receipt_sha256': digest(last['path'] / 'receipt.json'),

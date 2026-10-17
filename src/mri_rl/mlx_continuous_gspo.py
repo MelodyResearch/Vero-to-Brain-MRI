@@ -217,6 +217,28 @@ class NativeGSPOBackend:
         return {'record_id':row['id'],'text':result.text,'token_ids':list(result.token_ids or []),
                 'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest(),'image_sha256':expected_image_sha256}
 
+    def generate_record(self,record,expected_image_sha256,max_tokens):
+        """Greedy dev generation with frozen_eval's prompt rendering (enable_thinking=False).
+
+        Image hash is rechecked after the resource callback, before generation, and after it."""
+        self.model.eval();self.before_unit('dev_'+record['record_id'])
+        image=record.get('image')
+        require((digest(image)==expected_image_sha256) if image else expected_image_sha256 is None,
+                'Frozen image changed after resource callback')
+        prompt=self.template(self.processor,self.model.config,record['prompt'],
+                             num_images=1 if image else 0,enable_thinking=False)
+        placeholders=prompt.count('<|image_pad|>')
+        require(placeholders==(1 if image else 0),'Image placeholder count mismatch')
+        result=self.generate(self.model,self.processor,prompt,image=[str(image)] if image else None,
+            max_tokens=max_tokens,temperature=0,verbose=False)
+        require((digest(image)==expected_image_sha256) if image else True,'Frozen image changed during generation')
+        self.mx.clear_cache()
+        tokens=list(result.token_ids or [])
+        return {'response':result.text,'token_ids':tokens,'image_placeholder_count':placeholders,
+                'generation_tokens':getattr(result,'generation_tokens',len(tokens)),
+                'finish_reason':getattr(result,'finish_reason',None),
+                'hit_max_tokens':len(tokens)>=max_tokens}
+
     def close(self):
         self.active=None;self.model=None;self.processor=None
         if hasattr(self,'optimizer'):del self.optimizer
