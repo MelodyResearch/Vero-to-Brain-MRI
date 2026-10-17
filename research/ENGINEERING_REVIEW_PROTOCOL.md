@@ -1,6 +1,6 @@
 # Independent engineering review and scoped execution
 
-Policy version: `mri-execution-tiers-v1`. Codex implements and executes. A separate reviewer inspects source and permitted raw evidence before seeing the implementer's preferred diagnosis where feasible. Claude Code is a desired independent reviewer when authenticated and the exact payload is permitted. The researcher's 2026-10-15 correction explicitly permits an isolated Codex reviewer for local work when Claude is unavailable. A review pass never establishes MRI scientific generalization.
+Policy version: `mri-execution-tiers-v1`. **The researcher-designated lead, Claude Code or Codex, implements and executes.** A distinct reviewer inspects source and permitted raw evidence before seeing the lead's preferred diagnosis where feasible. Claude may act as execution lead or independent reviewer when currently authenticated and legitimately authorized for the exact materials. The researcher's 2026-10-15 correction explicitly permits an isolated Codex reviewer for local work when Claude is unavailable. A review pass never establishes MRI scientific generalization.
 
 ## Execution tiers
 
@@ -25,7 +25,7 @@ This is a trusted orchestration boundary, not cryptographic reviewer identity ag
 
 ## Sharing and historical reviewer status
 
-An earlier attempt to send unpublished ds007045 design material to Claude was rejected by automatic approval review before execution. Do not evade that denied sharing route or attribute a local review to Claude. Only independently permitted payloads can be considered separately. The prior `claude auth status` check reported `loggedIn: false`; later checks must record their actual result. External authentication or sharing limitations do not block separately authorized local Tier B review.
+An earlier automatic approval review rejected one specific attempted outbound disclosure of **unpublished ds007045 research material** to Claude before that run executed. It is **not** a general prohibition against accessing genuinely public OpenNeuro ds007045 data, participating as a newly authorized Claude Code lead, or obtaining legitimate renewed approval through the normal mechanism. For each proposed private payload or transfer, verify current Claude authentication and applicable approvals; do not circumvent an active denial, conceal rejected content, or attribute a nonexistent review to Claude. The earlier `loggedIn: false` result was local to that prior task environment; a later authenticated Claude public-source review exists. Keep exact scope/provenance. Where access is not granted, report the particular blocker and continue all other authorized local B/C work.
 
 ## Current audit ledger
 
