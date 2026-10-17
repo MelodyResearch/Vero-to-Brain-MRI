@@ -36,7 +36,7 @@
   "reload_scope": "launch_configuration now binds mode and boundary_receipt_sha256 of the actual updated boundary, so reload needs its own approval after the update",
   "loading": "NativeGSPOBackend constructor now uses likelihood_loading.materialize_serial (observe_every=64, gate per 64 leaves) instead of bulk mx.eval(parameters); order/values tested on CPU fixture only. NOT verified on real Qwen; loading parity with serial_parameter_v2 is by shared helper, not by a run."
  },
- "tests": "Narrow replay: pilot+driver 27 passed; mlx_continuous/native-opt-in 2 passed? see commit; full repetition not performed",
+ "tests": "Narrow replay only: test_continuous_rl_pilot + test_continuous_rl_driver 27 passed; test_mlx_continuous_gspo + opt-in native file 6 passed, 1 skipped (native tiny test not run). Full suite not repeated.",
  "remaining_limitations": [
   "Post-update DEV evaluation is not implemented in this launcher; reload greedy generation on schedule[0] is an engineering check only. Needs the exact development contract/inputs from Codex.",
   "Real Qwen constructor, rollout and memory behaviour NOT_VERIFIED; heavy retry blocked by headroom.",
