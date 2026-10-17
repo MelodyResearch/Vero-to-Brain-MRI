@@ -25,3 +25,4 @@ results/private/
 work/
 *.panic
 *.ips
+.worktrees/
