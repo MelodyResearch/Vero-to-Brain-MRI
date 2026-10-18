@@ -1,0 +1,110 @@
+{
+  "GREEN": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_paired_prior_contrast_v3.py",
+    "implementer": {
+      "actual_exit": 0,
+      "passed": 7,
+      "seconds": 0.07
+    },
+    "independent_root": {
+      "actual_exit": 0,
+      "passed": 7,
+      "seconds": 0.08
+    }
+  },
+  "RED": {
+    "actual_exit": 1,
+    "actual_logged_loss_mean": 0.693505656841559,
+    "actual_optimized_two_pair_mean": 1.387011313683118,
+    "deselected": 6,
+    "failed": 1,
+    "focused_test": "test_native_loss_receipt_mean_matches_actual_two_pair_objective"
+  },
+  "V3_native_approval": "NOT_VERIFIED",
+  "accuracy_improvement_claim": false,
+  "entry_safety_limitation": {
+    "finding": "Remote V2 training entry acquires only output-local .writer.lock; no global remaining20.lock is acquired. Do not launch it unchanged alongside original queue.",
+    "native_check": "NOT_RUN",
+    "source_path": "src/mri_rl/paired_sequence_accuracy_v2_entry.py",
+    "source_ref": "origin/experiment/paired-mri-visual-accuracy-v2-20261017",
+    "source_sha256": "61aee9e67f3843a6d08c9da48b378f9bc812b20e4912b76ee04d1c1d7e25ec6a"
+  },
+  "independent_reviewer": "Codex /root",
+  "limitations": [
+    "Receipt-scale correction cannot improve predictions or weights.",
+    "Remote branch documents native training and accuracy benefit NOT_RUN; this review does not authorize native V3.",
+    "Pair-ranking bias cancellation does not establish MRI anatomical grounding or greedy accuracy gains.",
+    "Original remote V3, primary and active V2 worktree preserved; no merge performed."
+  ],
+  "native_execution": false,
+  "new_model_weights": false,
+  "objective_equivalence": {
+    "actual_CPU_cases": [
+      {
+        "absolute_difference": 5.551115123125783e-17,
+        "m_flair": -4,
+        "m_t1": 1,
+        "remote_V2_loss": 0.17242115620713436,
+        "remote_V3_loss": 0.1724211562071343
+      },
+      {
+        "absolute_difference": 0.0,
+        "m_flair": 0,
+        "m_t1": 0,
+        "remote_V2_loss": 1.3862943611198906,
+        "remote_V3_loss": 1.3862943611198906
+      },
+      {
+        "absolute_difference": 3.552713678800501e-15,
+        "m_flair": 1.5,
+        "m_t1": -2.3,
+        "remote_V2_loss": 5.870603587745233,
+        "remote_V3_loss": 5.8706035877452365
+      },
+      {
+        "absolute_difference": 0.0,
+        "m_flair": 13,
+        "m_t1": 20,
+        "remote_V2_loss": 6.500912597647777,
+        "remote_V3_loss": 6.500912597647777
+      },
+      {
+        "absolute_difference": 0.0,
+        "m_flair": -1.6,
+        "m_t1": 0.4,
+        "remote_V2_loss": 0.47538600768711836,
+        "remote_V3_loss": 0.47538600768711836
+      },
+      {
+        "absolute_difference": 0.0,
+        "m_flair": 2,
+        "m_t1": 2,
+        "remote_V2_loss": 1.820075191602918,
+        "remote_V3_loss": 1.820075191602918
+      }
+    ],
+    "coefficient": "class_weight=1; contrast_weight=1",
+    "interpretation": "Remote V2 pair-ranking objective and V3 objective are equivalent; neither is a distinct objective ablation. Both differ from actual B independent per-image two-candidate CE.",
+    "maximum_absolute_difference": 3.552713678800501e-15,
+    "remote_V2_commit": "1f76ad1653bf9d95eafeac6917887c30467731c3",
+    "remote_V2_source_path": "src/mri_rl/paired_sequence_accuracy_v2.py",
+    "remote_V2_source_sha256": "7783daab6eaf552afaafff5be4f2b92d276fa55b51d1ec348fd0bdf25dfd363e",
+    "remote_V3_commit": "139c59d7f4da36da74fa920ffe24df3097a7db78",
+    "remote_V3_source_path": "src/mri_rl/paired_prior_contrast_v3.py",
+    "remote_V3_source_sha256": "169e27681c6bceb6428b89bd8279ca1120e881722dccd5341edea2acf396c767",
+    "shared_formula": "0.5*(softplus(m_F)+softplus(-m_T))+softplus(m_F-m_T)"
+  },
+  "review_provenance": "Parent independently read exact two-file diff and ran seven focused CPU tests; explicit approval delivered in collaboration messages. No Claude review claimed.",
+  "reviewer_kind": "isolated_codex",
+  "schema": "V3-logging-only-scoped-independent-review-v1",
+  "scope": "Reported scalar loss scale only; no objective, coefficient, gradient, model or training change.",
+  "source_author": "Codex /root/two_task_admission",
+  "source_sha256": {
+    "corrected_source": "3ac382f303858827b9bc26cd483ff85ac7074b5b0495267f61ae1206f1938dac",
+    "regression_test": "3d7bce5b24ca0678a50894bf8b905b17198615343f59815502a73073b2656eef",
+    "remote_V3_before": "169e27681c6bceb6428b89bd8279ca1120e881722dccd5341edea2acf396c767"
+  },
+  "training_executed": false,
+  "unchanged_AST_after_reversing_only_logging_statement": true,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

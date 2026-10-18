@@ -197,7 +197,8 @@ def native_backend_class(primary):
                                                  CONTRAST_WEIGHT))
                 c_f, c_t = margin_coefficients(mf, mt, CONTRAST_WEIGHT)
                 coeffs.extend((c_f / 2.0, c_t / 2.0))  # two-pair mean
-                loss_terms.extend((pair_loss / 2.0, pair_loss / 2.0))
+                # Four image slots average to the actual mean of two pair losses.
+                loss_terms.extend((pair_loss, pair_loss))
                 pair_separations.append(mt - mf)
 
             # Pass 2: one image graph at a time; no simultaneous pair graphs.

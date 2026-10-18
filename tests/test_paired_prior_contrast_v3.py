@@ -99,3 +99,35 @@ def test_stable_sigmoid_and_invalid_input_fail_closed():
             m.margin_coefficients(inp, 0.)
     with pytest.raises(ValueError):
         m.pair_objective(0., 1., np, -1.)
+
+
+def test_native_loss_receipt_mean_matches_actual_two_pair_objective():
+    """Execute only the production scalar loop; never import native runtime."""
+    import ast
+
+    m = module()
+    source = Path(m.__file__).read_text()
+    tree = ast.parse(source)
+    factory = next(n for n in tree.body if isinstance(n, ast.FunctionDef)
+                   and n.name == "native_backend_class")
+    backend = next(n for n in factory.body if isinstance(n, ast.ClassDef))
+    step = next(n for n in backend.body if isinstance(n, ast.FunctionDef)
+                and n.name == "sft_step")
+    scalar_loop = next(n for n in step.body if isinstance(n, ast.For)
+                       and isinstance(n.target, ast.Name)
+                       and n.target.id == "offset")
+    margins = [-2.0, 1.0, 0.4, -0.8]
+    ns = {"all_margins": margins, "coeffs": [], "loss_terms": [],
+          "pair_separations": [], "pair_objective": m.pair_objective,
+          "margin_coefficients": m.margin_coefficients,
+          "math_ops": m.math_ops, "CONTRAST_WEIGHT": m.CONTRAST_WEIGHT}
+    exec(compile(ast.Module(body=[scalar_loop], type_ignores=[]),
+                 m.__file__, "exec"), ns)
+    pair_losses = [m.pair_objective(*margins[i:i + 2], m.math_ops)
+                   for i in (0, 2)]
+    assert len(ns["loss_terms"]) == 4
+    assert sum(ns["loss_terms"]) / 4 == pytest.approx(sum(pair_losses) / 2)
+    expected_coeffs = [v / 2 for i in (0, 2)
+                       for v in m.margin_coefficients(*margins[i:i + 2])]
+    assert ns["coeffs"] == pytest.approx(expected_coeffs)
+    assert ns["pair_separations"] == pytest.approx([3.0, -1.2])
