@@ -162,9 +162,9 @@ def make_released_loader(*,release_bundle,sequence_registry,dallas_registry,dall
         require(len(questions)==1,'Sequence question reference is not unique')
         sequence=load_json(sequence_registry);by_sha=validate_sequence_registry(sequence,next(iter(questions)))
         plan=load_json(dallas_plan);cases=vc.build_cases(plan)['test'];validate_dallas_registry(load_json(dallas_registry),cases)
-        destination=_private(destination)
+        render_destination=_private(destination)
         rows=_render_sequence(sequence,by_sha,sequence_renderer_source,bindings['sequence_registry_sha256'],bindings['sequence_renderer_source_sha256'])
-        rows+=_render_dallas(cases,dallas_source_root,destination/'dallas_assets',bindings['dallas_metadata_plan_sha256'])
+        rows+=_render_dallas(cases,dallas_source_root,render_destination/'dallas_assets',bindings['dallas_metadata_plan_sha256'])
         _test_counts(rows)
         # Namespace-level overlap check supplements the already frozen raw-source
         # reserve audit; it is not a claim of cross-source global identity proof.

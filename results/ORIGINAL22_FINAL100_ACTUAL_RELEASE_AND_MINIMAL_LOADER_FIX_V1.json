@@ -1,0 +1,63 @@
+{
+  "actual_native_test_predictions": 0,
+  "actual_release": {
+    "cases": 100,
+    "cross_source_global_independence_verified": false,
+    "dallas_cycles": 4,
+    "dallas_people": 8,
+    "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+    "image_inventory_sha256": "1a7bf9be48bf437313d22b98ab7484eeec15d01e1a80422a317eb2a25f603c2d",
+    "sequence_people": 14,
+    "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+    "status": "RELEASED_FINAL_TEST_PROJECTION_FROZEN",
+    "whole_head_correspondence_not_brain_only": true
+  },
+  "actual_release_exit_sha256": "240a3b72bd806faac6b7eccbcd43988afc96f8dab3a47a4049947b3475e5f817",
+  "adaptive_or_brief_prompt_inserted": false,
+  "as_of_utc": "2026-10-18T08:53:16.281651+00:00",
+  "cases_per_checkpoint": 100,
+  "checkpoints": 22,
+  "corrected_loader_sha256": "28757c00a678ad46fb6dc27019dfcb30c354e8f629fff5b2de39269077c6cd3f",
+  "evidence_tier": "OBSERVED_SOURCE_FIXED_AND_ACTUAL_CPU_RELEASE",
+  "fixed_inventory_sha256": "e42e619424e7e6c9c8f110e9864b464f08556404e62b88258bc010bf0325aec8",
+  "future_tuning_on_final100_permitted": false,
+  "generation": {
+    "max_tokens": 256,
+    "original_prompt_and_strict_scorer_unchanged": true,
+    "temperature": 0
+  },
+  "limitations": [
+    "Release approval is distinct from actual22 model launch approval.",
+    "No final model outcome, accuracy, generalization or causal transfer result follows from rendering.",
+    "Source-namespace train/dev patient separation passed; global cross-source patient independence remains unverified.",
+    "Patient-linked manifests, targets and pixels remain private."
+  ],
+  "method_freeze_sha256": "35e69aed73cfd120d659cb28fbd63ab49f959a61b0e7dcafe228d7c5af3a4658",
+  "native_test_accuracy": "NOT_RUN",
+  "prior_attempts_preserved": [
+    {
+      "attempt": 1,
+      "closed_log_sha256": "51c02f041c1b998f2460e26d2509dfd7df95d59688d042e9d69aca0e5c6991cb",
+      "result": "Missing nibabel after registry byte-hash checks, before target parsing or rendering."
+    },
+    {
+      "attempt": 2,
+      "closed_log_sha256": "623d37abfda9cd41cc8a53515cfc65662667f1104e0c74b3818722b80fc804df",
+      "result": "Closure error after approved registry parsing, before any test image rendering or native prediction."
+    }
+  ],
+  "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "runtime_correction": "CPU renderer uses existing system Python with numpy2.3.2/Pillow11.3.0/nibabel5.4.2; no install. MLX native interpreter for later model children unchanged.",
+  "schema": "ORIGINAL22_FINAL100_ACTUAL_RELEASE_AND_MINIMAL_LOADER_FIX_V1",
+  "source_correction": {
+    "actual_factory_regression": "RED reproduced original exception; same synthetic fixture GREEN after two-line fix; independently rerun.",
+    "corrected_release_review_canonical_sha256": "8698ebe45e2acb4be8315050160f8c7cc235b12cbabffd0ea192bbfbbfe79a83",
+    "corrected_release_review_file_sha256": "c221e4cf1927c2b5df0cd2401ab511f2c4629f06be68295ab17ae80f36144223",
+    "independent_reviewer": "Codex /root/full_arm_execution_contract",
+    "minimal_correction": "Two destination-to-render_destination local references only. Rendering, patients, cases, splits, prompts and scoring unchanged.",
+    "reproduced_failure": "Nested loader destination assignment shadowed outer captured destination, causing UnboundLocalError before rendering."
+  },
+  "status": "100_FIXED_CASES_RELEASED_PROJECTED_NATIVE22_APPROVAL_PENDING",
+  "thin_executor_sha256": "c3d249fa1127eb7edecfd1249163a70e27932b4fbacbf98d8884fa623beee9e9"
+}
