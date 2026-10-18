@@ -1,0 +1,604 @@
+{
+  "Adam60_standard256_invalid_decomposition": {
+    "configured_EOS_unclosed_think_no_answer": 2,
+    "length256_unclosed_think_no_answer": 4
+  },
+  "actual_adapter_sha256": "1741ff2feb2f569cfe062b92cb79b62f61f83463e6683a928d2c458a5f547310",
+  "actual_aggregate_sha256": "2967ed4f8021c697da63ac37c947de83dce3164b3147228c33565e5d572a4d47",
+  "actual_backward_calls": 0,
+  "actual_costs": {
+    "Adam60_original_512": {
+      "actual_generation_call_wall_seconds_mean": 5.138201340439547,
+      "actual_generation_call_wall_seconds_sum": 210.66625495802145,
+      "actual_new_greedy_queries": 41,
+      "actual_saved_generated_tokens": 3086
+    },
+    "Adam60_short_reason_256": {
+      "actual_candidate_call_wall_seconds_sum": 85.908286083024,
+      "actual_generation_call_wall_seconds_mean": 3.0151612734153765,
+      "actual_generation_call_wall_seconds_sum": 123.62161221003043,
+      "actual_new_candidate_records": 25,
+      "actual_new_greedy_queries": 41,
+      "actual_saved_generated_tokens": 1307,
+      "explicit_candidate_forwards": 75
+    }
+  },
+  "actual_full_spec_sha256": "028ac84b2766819e5f0c5e1e0d6e16ca706ef490a8c6ccef1eb39e15b18fb27f",
+  "actual_null_supplement_sha256": "fb854c7311d5b912c0772d568c83de4b11e5481f538206a5276664000783ca8b",
+  "actual_updates": 0,
+  "baseline4capped_still_capped_at512": 4,
+  "control_evidence_sha256": {
+    "closed_log": "8b9af5ecb35cb6fe173013fdbd926d4396ae01fb3671a7f35b3816f0f2a7dc56",
+    "completion": "40d82a0d4a5e837399986bdd08192c984367e0ed43bf67ac0f0ce54085f3a5d9",
+    "exit_receipt": "f9ffeee5bb3f3c243acd6747d080111229e3b9a963519cb7fa8ae7ffa6995be0",
+    "resource_log": "f4aeab5a1043249eeb256485a562be784c45883c74fcba5d75a68a2e36a78b91",
+    "scope": "886ee947e922556eaf1e21776b18a3de09ddf07f6d5c2cc2909086c6798132c5"
+  },
+  "first_divergence_position_counts": {},
+  "limitations": [
+    "Saved numerical/privacy proof only; actual model forward/backward not independently re-executed and no native parameter-value audit rerun.",
+    "Repeated internaldev4sequencepeople/4Dallascycles; prespecified controls still exploratory and not independent-patient/scanner/clinical/anatomical generalization.",
+    "One null query per cohort is not24independent null samples; unchanged nullclass and changed margins do not prove image grounding.",
+    "Candidate scoring and strict generation remain separate readouts; no causal optimizer/admission/sampler benefit or method novelty follows from a prompt-only control.",
+    "No automatic training, reward/decoder changes, sealed evaluation or further model experiment approved by this receipt."
+  ],
+  "native_models_or_new_forwards_by_reviewer": 0,
+  "native_release_verified": true,
+  "new_candidate_records_verified": 25,
+  "new_greedy_generations_verified": 82,
+  "new_training_or_joint_learning_GO": false,
+  "null_supplement_independently_recomputed": {
+    "Adam52": {
+      "actual_emitted_null_token_count": null,
+      "real_sequence_invalid": 7,
+      "strict_no_image_answer": "FLAIR",
+      "strict_no_image_format_score": 1.0,
+      "unique_no_image_queries": 1,
+      "valid_real_sequence_answers_different_from_null": 7,
+      "valid_real_sequence_answers_equal_to_null": 10
+    },
+    "Adam56": {
+      "actual_emitted_null_token_count": null,
+      "real_sequence_invalid": 7,
+      "strict_no_image_answer": "FLAIR",
+      "strict_no_image_format_score": 1.0,
+      "unique_no_image_queries": 1,
+      "valid_real_sequence_answers_different_from_null": 8,
+      "valid_real_sequence_answers_equal_to_null": 9
+    },
+    "Adam60": {
+      "actual_emitted_null_token_count": null,
+      "real_sequence_invalid": 6,
+      "strict_no_image_answer": "FLAIR",
+      "strict_no_image_format_score": 1.0,
+      "unique_no_image_queries": 1,
+      "valid_real_sequence_answers_different_from_null": 7,
+      "valid_real_sequence_answers_equal_to_null": 11
+    },
+    "Adam60_original_512": {
+      "actual_emitted_null_token_count": 24,
+      "real_sequence_invalid": 6,
+      "strict_no_image_answer": "FLAIR",
+      "strict_no_image_format_score": 1.0,
+      "unique_no_image_queries": 1,
+      "valid_real_sequence_answers_different_from_null": 7,
+      "valid_real_sequence_answers_equal_to_null": 11
+    },
+    "Adam60_short_reason_256": {
+      "actual_emitted_null_token_count": 21,
+      "real_sequence_invalid": 1,
+      "strict_no_image_answer": "FLAIR",
+      "strict_no_image_format_score": 1.0,
+      "unique_no_image_queries": 1,
+      "valid_real_sequence_answers_different_from_null": 8,
+      "valid_real_sequence_answers_equal_to_null": 15
+    },
+    "B28": {
+      "actual_emitted_null_token_count": 17,
+      "real_sequence_invalid": 0,
+      "strict_no_image_answer": "FLAIR",
+      "strict_no_image_format_score": 1.0,
+      "unique_no_image_queries": 1,
+      "valid_real_sequence_answers_different_from_null": 3,
+      "valid_real_sequence_answers_equal_to_null": 21
+    }
+  },
+  "observed_cap_prefix_counts": {
+    "baseline_capped_records": 4,
+    "baseline_tokens_are_complete_prefix_of_control": 40,
+    "capped_baseline_shared_prefix_identical": 4,
+    "completed_baseline_records": 36,
+    "completed_baseline_strict_label_unchanged": 36,
+    "completed_baseline_text_unchanged": 36,
+    "shared_prefix_identical": 40
+  },
+  "outcomes": {
+    "Adam60": {
+      "first_label": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "mean": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "raw": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "strict_greedy": {
+        "mri_sequence": {
+          "balanced_accuracy": 0.41666666666666663,
+          "class_recall": {
+            "FLAIR": 0.5,
+            "contrast-enhanced T1": 0.3333333333333333
+          },
+          "confusion": {
+            "FLAIR": {
+              "FLAIR": 6,
+              "INVALID": 3,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 5,
+              "INVALID": 3,
+              "contrast-enhanced T1": 4
+            }
+          },
+          "correct": 10,
+          "independent_units": 4,
+          "question_accuracy": 0.4166666666666667,
+          "questions": 24,
+          "unit_macro_accuracy": 0.4166666666666667
+        },
+        "mri_visit_correspondence": {
+          "balanced_accuracy": 0.4375,
+          "class_recall": {
+            "different": 0.875,
+            "same": 0.0
+          },
+          "confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 7,
+              "same": 1
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "correct": 7,
+          "independent_units": 4,
+          "question_accuracy": 0.4375,
+          "questions": 16,
+          "unit_macro_accuracy": 0.4375
+        }
+      }
+    },
+    "Adam60_original_512": {
+      "first_label": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "mean": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "raw": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "strict_greedy": {
+        "mri_sequence": {
+          "balanced_accuracy": 0.41666666666666663,
+          "class_recall": {
+            "FLAIR": 0.5,
+            "contrast-enhanced T1": 0.3333333333333333
+          },
+          "confusion": {
+            "FLAIR": {
+              "FLAIR": 6,
+              "INVALID": 3,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 5,
+              "INVALID": 3,
+              "contrast-enhanced T1": 4
+            }
+          },
+          "correct": 10,
+          "independent_units": 4,
+          "question_accuracy": 0.4166666666666667,
+          "questions": 24,
+          "unit_macro_accuracy": 0.4166666666666667
+        },
+        "mri_visit_correspondence": {
+          "balanced_accuracy": 0.4375,
+          "class_recall": {
+            "different": 0.875,
+            "same": 0.0
+          },
+          "confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 7,
+              "same": 1
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "correct": 7,
+          "independent_units": 4,
+          "question_accuracy": 0.4375,
+          "questions": 16,
+          "unit_macro_accuracy": 0.4375
+        }
+      }
+    },
+    "Adam60_short_reason_256": {
+      "first_label": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "mean": {
+        "balanced_accuracy": 0.5833333333333333,
+        "class_recall": {
+          "FLAIR": 0.9166666666666666,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 11,
+            "INVALID": 0,
+            "contrast-enhanced T1": 1
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 14,
+        "independent_units": 4,
+        "question_accuracy": 0.5833333333333334,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5833333333333333
+      },
+      "raw": {
+        "balanced_accuracy": 0.625,
+        "class_recall": {
+          "FLAIR": 1.0,
+          "contrast-enhanced T1": 0.25
+        },
+        "confusion": {
+          "FLAIR": {
+            "FLAIR": 12,
+            "INVALID": 0,
+            "contrast-enhanced T1": 0
+          },
+          "contrast-enhanced T1": {
+            "FLAIR": 9,
+            "INVALID": 0,
+            "contrast-enhanced T1": 3
+          }
+        },
+        "correct": 15,
+        "independent_units": 4,
+        "question_accuracy": 0.625,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "strict_greedy": {
+        "mri_sequence": {
+          "balanced_accuracy": 0.7083333333333334,
+          "class_recall": {
+            "FLAIR": 0.8333333333333334,
+            "contrast-enhanced T1": 0.5833333333333334
+          },
+          "confusion": {
+            "FLAIR": {
+              "FLAIR": 10,
+              "INVALID": 1,
+              "contrast-enhanced T1": 1
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 5,
+              "INVALID": 0,
+              "contrast-enhanced T1": 7
+            }
+          },
+          "correct": 17,
+          "independent_units": 4,
+          "question_accuracy": 0.7083333333333334,
+          "questions": 24,
+          "unit_macro_accuracy": 0.7083333333333334
+        },
+        "mri_visit_correspondence": {
+          "balanced_accuracy": 0.5,
+          "class_recall": {
+            "different": 1.0,
+            "same": 0.0
+          },
+          "confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "correct": 8,
+          "independent_units": 4,
+          "question_accuracy": 0.5,
+          "questions": 16,
+          "unit_macro_accuracy": 0.5
+        }
+      }
+    }
+  },
+  "paired_bootstrap_comparisons_independently_checked": 10,
+  "prior_four_checkpoint_independent_proof_sha256": "f9b59c74e42e68aadd1f0a5fd3c3ef9fb1cb00c1305ed147604cacaae78c9a8c",
+  "public_aggregate_and_supplement_privacy": "PASS: aggregate scalar/category metrics only; no raw text, token arrays, patient/record IDs or absolutepaths.",
+  "reviewed_analyzer_sha256": "f3b7a0a0e00feadd56d1ed1e40ef2950e06a4974d358cabd76f40cabbdfb05ed",
+  "reviewer_findings": [
+    "Actual complete control exit0/review/scope/log and all five output hashes authenticated. SameAdam60 weights, unchanged scorer/parser and0update/backward confirmed by source-bound native receipt; no new baseline calls inferred.",
+    "Strictsequence original256/512/short256=10/10/17 of24;Dallas7/7/8 of16. Shortprompt improves this internal-dev generation readout at fixed weights, not model learning.",
+    "Mean-label candidate15/15reference/14 of24; raw/first remain15 each. Generation-only improvement is not joint candidate-readout or GSPO learning gain and does not authorize training expansion.",
+    "All40original512 trajectories preserve original256prefixes;36completedbaseline responses/text/strictlabels unchanged and all4length256caps remain length512caps. No generation was rescued by cap extension.",
+    "One actual null per six cohorts independently parsed; allstrictFLAIR. Historical missing emitted null tokens remainNone; standardAdam60 invalid6 splits4lengthcaps and2configuredEOS early-ended unclosedthinking/noanswer.",
+    "Actual emitted-token and measured monotonic call-time sums verified; candidate time separate. Per-call timing includes internal guards/waits and resource spans include allwork, not isolated GPU compute/FLOPs."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_reproducer_sha256": "3ede7ce296c20c225e45cc79187ec126a499bdb6d39b04a7995c2e2d0f2f7678",
+  "schema": "ADAM60_GENERATION_CONTROLS_AND_NULL_SUPPLEMENT_INDEPENDENT_SAVED_REVIEW_V1",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "visual_controls": {
+    "Adam60": {
+      "first_label": {
+        "mean_real_minus_null_margin": 5.13020841919509,
+        "null_margin": -10.250000122963684,
+        "patient_mean_paired_separation": 4.364583283744045,
+        "patient_pair_separation_range": [
+          1.3333332910939741,
+          7.124999857095342
+        ],
+        "real_mean_margin": -5.119791703768594
+      },
+      "mean": {
+        "mean_real_minus_null_margin": 1.3641182506645446,
+        "null_margin": -2.0507889579454095,
+        "patient_mean_paired_separation": 1.537849467391849,
+        "patient_pair_separation_range": [
+          0.26891226582559585,
+          2.239536876376937
+        ],
+        "real_mean_margin": -0.6866707072808649
+      },
+      "raw": {
+        "mean_real_minus_null_margin": 5.131361250552694,
+        "null_margin": -10.254074960639635,
+        "patient_mean_paired_separation": 4.365443334508071,
+        "patient_pair_separation_range": [
+          1.333710247696369,
+          7.126683735093178
+        ],
+        "real_mean_margin": -5.12271371008694
+      }
+    },
+    "Adam60_original_512": {
+      "first_label": {
+        "mean_real_minus_null_margin": 5.13020841919509,
+        "null_margin": -10.250000122963684,
+        "patient_mean_paired_separation": 4.364583283744045,
+        "patient_pair_separation_range": [
+          1.3333332910939741,
+          7.124999857095342
+        ],
+        "real_mean_margin": -5.119791703768594
+      },
+      "mean": {
+        "mean_real_minus_null_margin": 1.3641182506645446,
+        "null_margin": -2.0507889579454095,
+        "patient_mean_paired_separation": 1.537849467391849,
+        "patient_pair_separation_range": [
+          0.26891226582559585,
+          2.239536876376937
+        ],
+        "real_mean_margin": -0.6866707072808649
+      },
+      "raw": {
+        "mean_real_minus_null_margin": 5.131361250552694,
+        "null_margin": -10.254074960639635,
+        "patient_mean_paired_separation": 4.365443334508071,
+        "patient_pair_separation_range": [
+          1.333710247696369,
+          7.126683735093178
+        ],
+        "real_mean_margin": -5.12271371008694
+      }
+    },
+    "Adam60_short_reason_256": {
+      "first_label": {
+        "mean_real_minus_null_margin": 4.020833579656028,
+        "null_margin": -8.375000187254045,
+        "patient_mean_paired_separation": 4.37499997728446,
+        "patient_pair_separation_range": [
+          1.5416665343703546,
+          7.166666667733807
+        ],
+        "real_mean_margin": -4.354166607598017
+      },
+      "mean": {
+        "mean_real_minus_null_margin": 1.159976549765371,
+        "null_margin": -1.676546317622916,
+        "patient_mean_paired_separation": 1.555812699206881,
+        "patient_pair_separation_range": [
+          0.31902413078180825,
+          2.27590513227721
+        ],
+        "real_mean_margin": -0.516569767857545
+      },
+      "raw": {
+        "mean_real_minus_null_margin": 4.022621573054824,
+        "null_margin": -8.383285451615905,
+        "patient_mean_paired_separation": 4.3764892370394515,
+        "patient_pair_separation_range": [
+          1.542737727525181,
+          7.16987417938784
+        ],
+        "real_mean_margin": -4.3606638785610805
+      }
+    }
+  }
+}
