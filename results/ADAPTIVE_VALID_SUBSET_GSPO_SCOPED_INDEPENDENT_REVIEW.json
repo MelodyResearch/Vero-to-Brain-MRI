@@ -1,0 +1,43 @@
+{
+  "actual_native_execution": "NOT_RUN_AT_REVIEW",
+  "exact_scope_sha256": "c7dae27c861f0ebcb51f22df1991d8a1cff840c12f4e51e5a900e780bc7b000d",
+  "findings": [
+    "Independent new gate/driver/entry read and driver diff inspected against unchanged original continuous_rl. Only eligibility, isolated parent bootstrap and absolute/native versus local/journal accounting are changed; GSPO loss/advantages/rewards/calibration/LR/precision/K4 remain inherited.",
+    "New eligibility matches narrow historical replay on all114saved grades:52strict\u219267narrow eligible,seq7\u219212/Dallas45\u219255; rejects16naive-only groups lacking variation among format-valid responses. This is replay, not a new policy result.",
+    "Eightfocused synthetic CPU tests independently passed0.27s: exact Adam52/cursor114 continuation, splitresume moments/RNG, parent tamper rejection, finite update cap, inactive middle group53-step preservation, partial absolute index114 vs local0 rejection and once-only crash debt. Native MLX restore/backward not independently run.",
+    "Parent source/config/optimizer receipt bindings authenticated by frozen parent anchor; full198occurrence originalpropseed13 schedule reconstructed and exactly next16occurrences114:130 selected. No new subjects/prompts/images, no SFT or vision adaptation.",
+    "Actual partial-index defect found during review is fixed: pending raw group index uses local reservationindex+immutable parent114 offset. Absolute native Adamstep52+n and sampler114+n are retained while new atomic journal counts local groups/updates.",
+    "Exact finite envelope:16attempts, at most4newacceptedupdates,36160new text/visual rollout tokens,K4,max256 per response. Skips and interrupted work are charged; original exhausted parent budget is not relabeled.",
+    "Existing globalremaining20lock, one heavyweight model, AC/memory/pressure/thermal protection and source-bound native loader remain required. Parent-readonly baseline98aa approval is separate and must complete/release before training."
+  ],
+  "focused_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_adaptive_accuracy_gate_v1.py tests/test_adaptive_accuracy_independent_guards_v1.py",
+    "native_models": 0,
+    "passed": 8,
+    "seconds": 0.27
+  },
+  "limitations": [
+    "Approval applies only to copied exact scope/current empty child state/source hashes; no original18arm files/results are changed. Native pilot execution/results remain NOT_RUN at review.",
+    "Synthetic Adam52/RNG/resume proof is not an actual native restored-update proof. Validate actual child boundary0 against parent state and every native update/checkpoint before expansion.",
+    "New finite budget is additional continuation compute. A matched strict-eligibility continuation from the same parent is NOT_RUN, so a before/after gain cannot by itself isolate causal superiority of the eligibility change.",
+    "Mixed-format groups still receive the existing0.2format reward; the valid-subset guard reduces a specific confound without proving brain-grounded understanding.",
+    "Use same-parent pre/post fixed40greedy and25sequencecandidate contract/readouts; one null query,12pairs4people and4Dallascycles. No sealedfinal tuning or independent-patient generalization claim.",
+    "Preserve zero/negative results; no automatic extension or dev-driven checkpoint selection. After actual model release, resume exact original queue from preserved handoff lease."
+  ],
+  "maximum_new_attempts": 16,
+  "maximum_new_tokens": 36160,
+  "maximum_new_updates": 4,
+  "narrow_replay_sha256": "d54c948130d65bd8ca5ab258b1ae105924f91973f654fc9b12be484d2975ecc3",
+  "new_sources_sha256": {
+    "adaptive_accuracy_driver_v1.py": "85735f948b65bddde4ed1d6d0df6ef176f7902be7de19be735f1bd88bbcd7d8e",
+    "adaptive_accuracy_entry_v1.py": "d59754498a0606ac06b545790f951eb35cff01d52e6c7519fd3dbba7e3ec98d5",
+    "adaptive_accuracy_gate_v1.py": "6b4066652274d3fd90026da56f30992de9358c9b02f3152a47226fc6ed93d1c5"
+  },
+  "parent_groups": 114,
+  "parent_native_Adam_step": 52,
+  "private_exact_review_sha256": "2c87d1142b77e390fc760c4e7a1229c4768fc039c50d3656d422e9e21d692e7c",
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ADAPTIVE_VALID_SUBSET_GSPO_SCOPED_CPU_INDEPENDENT_REVIEW_V1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
