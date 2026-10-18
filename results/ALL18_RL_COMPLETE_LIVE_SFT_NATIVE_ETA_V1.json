@@ -1,0 +1,57 @@
+{
+  "RL_complete": 18,
+  "RL_remaining": 0,
+  "SFT_current_process_complete_interupdate_intervals": 77,
+  "SFT_seconds_per_interval": {
+    "mean": 18.5909906266236,
+    "median": 19.420418708992656,
+    "p90_observed": 21.641804416984087
+  },
+  "as_of_utc": "2026-10-18T06:37:21.656948+00:00",
+  "conditional_remaining_hours": {
+    "conservative": {
+      "deferred_uniform_eval_hours": 0.4,
+      "original_final22_eval_hours": 17.22058585437029,
+      "remaining_SFT_rate_seconds": 27.05225552123011,
+      "remaining_SFT_training_and_loading_hours": 2.519093349163025,
+      "total_remaining_hours": 20.889679203533316,
+      "verification_registry_analysis_hours": 0.75
+    },
+    "normal": {
+      "deferred_uniform_eval_hours": 0.25,
+      "original_final22_eval_hours": 8.644788994471698,
+      "remaining_SFT_rate_seconds": 19.420418708992656,
+      "remaining_SFT_training_and_loading_hours": 1.7212661322044247,
+      "total_remaining_hours": 11.016055126676124,
+      "verification_registry_analysis_hours": 0.4
+    },
+    "optimistic": {
+      "deferred_uniform_eval_hours": 0.17,
+      "original_final22_eval_hours": 5.703289618056103,
+      "remaining_SFT_rate_seconds": 18.5909906266236,
+      "remaining_SFT_training_and_loading_hours": 1.556294265752182,
+      "total_remaining_hours": 7.6295838838082854,
+      "verification_registry_analysis_hours": 0.2
+    }
+  },
+  "evidence_tier": "OBSERVED_NATIVE_TIMING_WITH_CONDITIONAL_FORECAST",
+  "last_RL_native_elapsed_seconds": 1518.3539259433746,
+  "limitations": [
+    "Seed7 still active; read-only snapshot is not a completed-SFT proof.",
+    "Optimistic/normal use lower/higher mean/median; conservative uses1.25*observedp90. Added0.1/0.2/0.4h for remaining model loads and transition overhead; not independently measured future work.",
+    "Future SFTseeds may have different costs; real resource holds and extra research iterations excluded.",
+    "Final22*100 estimate retains prior development-output length scenarios; no sealed payload/outcomes read.",
+    "Uniform child accuracy remains NOT_RUN, queued after original training. Final release still requires method freeze and all21training proofs."
+  ],
+  "live_SFT_completed_steps": 79,
+  "live_SFT_remaining_steps_seed7": 41,
+  "live_SFT_seed": 7,
+  "other_SFT_remaining_steps": [
+    120,
+    121
+  ],
+  "privacy": "No image IDs, targets, patient keys, raw generations or checkpoint tensors.",
+  "remaining_SFT_total_steps": 282,
+  "sampled_interval_definition": "Monotonic optimizer_update resource sample to next optimizer_update sample, same resumed native process only; includes intervening native compute/checkpoint/pacing, not Git timestamps.",
+  "schema": "all18RL-complete-live-SFT-native-ETA-v1"
+}
