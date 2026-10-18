@@ -1,0 +1,94 @@
+{
+  "absolute_completed_groups": 121,
+  "absolute_optimizer_updates": 56,
+  "all_Adam_reconstructions": [
+    {
+      "absolute_step_after": 53,
+      "absolute_step_before": 52,
+      "changed_tensors": 504,
+      "gradient_l2_reconstructed": 1.1318021374924863,
+      "gradient_l2_saved": 1.131802138234492,
+      "max_second_moment_error": 1.6147191900630145e-11,
+      "max_weight_error": 0.0
+    },
+    {
+      "absolute_step_after": 54,
+      "absolute_step_before": 53,
+      "changed_tensors": 504,
+      "gradient_l2_reconstructed": 0.7672743083129894,
+      "gradient_l2_saved": 0.7672742985156872,
+      "max_second_moment_error": 8.609637227327896e-12,
+      "max_weight_error": 0.0
+    },
+    {
+      "absolute_step_after": 55,
+      "absolute_step_before": 54,
+      "changed_tensors": 504,
+      "gradient_l2_reconstructed": 0.5343396817983187,
+      "gradient_l2_saved": 0.5343396799930383,
+      "max_second_moment_error": 1.0303913836528719e-11,
+      "max_weight_error": 0.0
+    },
+    {
+      "absolute_step_after": 56,
+      "absolute_step_before": 55,
+      "changed_tensors": 504,
+      "gradient_l2_reconstructed": 0.8307365336746066,
+      "gradient_l2_saved": 0.8307365323252445,
+      "max_second_moment_error": 1.5814357608818705e-11,
+      "max_weight_error": 0.0
+    }
+  ],
+  "completed_groups": 7,
+  "completed_rollout_tokens": 11785,
+  "evidence_sha256": {
+    "boundary_receipts": [
+      "28d2fe2e0d0dc79e2e938298845a7e64e619f054af6019c8a05087f9ba26c02f",
+      "e0d3ecc84136fb18ed8f4a70e8d229d43a71f20ee944a1de15dc3ae7e9c0b5a3",
+      "c2cffe0df3ada853f8e9f686e583cbfb7aef58296df89b36e7f0dab355382447",
+      "ba531247f9243228ccab2c97b5fe522d73cca307f0172049d774243a14a5ff6f",
+      "f31f9498de9e124a79beea610100c4930a11be3fbd262a7c9ba2613a8e013aa7",
+      "240a30a8e280676453aa47efbbc4bb5088dca2687d7ae1c21e194fbe68c7f2f2",
+      "f82af6abeeb3cdf1eecfaff40d67a47a91439a5132fd8de11e37230dab6261ff",
+      "547ec55a19490b401cf140772a087d1656e0deabf2831cf1923697b4059e8bf0"
+    ],
+    "closed_native_log": "7006562217fcd86769610ea9049e02f7a591f21697804b7e0acc5f733842edd6",
+    "external_exit": "24bd378fecf7058b6e16024c94415b8943f6b9ebf2ab77e8d5cab850f257811a",
+    "native_complete": "975ab8bedf7367764302063c5b8bd67586bb4e0fdf979d7f6b950fd4a242c700",
+    "parent_proof": "a5d5cd1faf58492b173177668175e84cc2ffc94b13e15dff4705d6bf5d7f59cb",
+    "parent_receipt": "e0696a8186d413b2bb35034b5c5eb2568ddc0b05e1b719778de42fa491cc882a",
+    "review": "2c87d1142b77e390fc760c4e7a1229c4768fc039c50d3656d422e9e21d692e7c",
+    "reviewed_math_source": "0c3408940bc36a646dfc97eb37c27c5964c0eba331f8435b636dce3e714df048",
+    "scope": "c7dae27c861f0ebcb51f22df1991d8a1cff840c12f4e51e5a900e780bc7b000d",
+    "this_verifier": "5c092071439b3268cb81997127b7dbadc9a85a09e34ec0f662d9636e25c03c5d"
+  },
+  "final_adapter_sha256": "23b6ce522f770bf39acbadd9b66ccf00529de7822a5bb4173e7c4b96cd8618a7",
+  "inactive_groups_with_unchanged_weights_and_optimizer": 3,
+  "ledger": {
+    "cap": 36160,
+    "charged_groups": 7,
+    "imputed_unknown_tokens": 0,
+    "partial_dirs_included": [],
+    "used_tokens": 11785
+  },
+  "limitations": [
+    "Focused parent-state and saved Adam/weight consistency proof only; parent114 groups are not re-executed.",
+    "Native backward/loss/logprob and raw-response task grades are not independently recomputed; saved-grade admission and sample-std group advantages are checked.",
+    "RNG preservation across initial restore is checked exactly; later RNG must be valid and saved, not necessarily changed.",
+    "New-stage token ledger is separate from exhausted parent cap; any partial-work debt requires separate reconciliation if nonzero.",
+    "No MRI accuracy, independent-patient generalization or admission-rule benefit follows from more updates."
+  ],
+  "maximum_saved_onpolicy_alignment_error": 0.0,
+  "new_optimizer_updates": 4,
+  "optimizer_RNG_states_verified": 8,
+  "parent_native_step": 52,
+  "partial_work_debt_tokens": 0,
+  "preserved_initial_parent_state": true,
+  "reviewer": "Codex /root",
+  "reviewer_kind": "isolated_codex",
+  "schema": "adaptive-continuation-focused-CPU-proof-v1",
+  "terminal_boundary_receipt_sha256": "547ec55a19490b401cf140772a087d1656e0deabf2831cf1923697b4059e8bf0",
+  "used_tokens": 11785,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verified_files": 67
+}
