@@ -1,0 +1,55 @@
+{
+  "RL_arms": 18,
+  "RL_independent_aggregate_sha256": "d80c8c53e5e6130169847ba15a870cfaca6a4bfc6f93f9a63171ea39bf537a03",
+  "SFT_charged_tokens_total": 505105,
+  "SFT_controls": [
+    {
+      "charged_tokens": 167878,
+      "completed_steps": 120,
+      "final_adapter_sha256": "59c0c8a9ae3c9a767aaea59680f4b98c1e1eff9b846df11de0a4922d9cd0d106",
+      "independent_reviewer_id": "/root/two_task_admission",
+      "optimizer_updates": 120,
+      "proof_sha256": "0e510def967f1435dbf572e12a0e0a66d5ce88d6f3de0e562824e61fee974767",
+      "seed": 7
+    },
+    {
+      "charged_tokens": 168439,
+      "completed_steps": 120,
+      "final_adapter_sha256": "19d8b37686a74243776ef2ae974246cb2c4710d6fd986cdf70bdcfd6ae673db1",
+      "independent_reviewer_id": "/root/two_task_admission",
+      "optimizer_updates": 120,
+      "proof_sha256": "88b8fdd12f14e426d7cc64b553e281d59ca9896ed11d6796f935f0a13a96cddc",
+      "seed": 11
+    },
+    {
+      "charged_tokens": 168788,
+      "completed_steps": 121,
+      "final_adapter_sha256": "22ed9b81a0e9e879f974a44505e1ca2c8ab35e5fc6ab1f7fe5e4633cf393b027",
+      "independent_reviewer_id": "/root/two_task_admission",
+      "optimizer_updates": 121,
+      "proof_sha256": "d384a9b6b7bceebbe9edc87dececf0950f9746b127a4ff582797f052074bb432",
+      "seed": 13
+    }
+  ],
+  "SFT_updates_total": 361,
+  "accuracy_status": "Adam60_same_protocol_evaluation_started_after_original_training_finished; no result claimed yet",
+  "all21_training_cursor_entries_done": true,
+  "as_of_utc": "2026-10-18T08:14:16.845781+00:00",
+  "calibration_cursor_done": true,
+  "completed_stages_repeated": false,
+  "evidence_tier": "OBSERVED_WITH_INDEPENDENT_SAVED_ARTIFACT_NUMERICAL_PROOFS",
+  "frozen_manifest_sha256": "f47169577b285d03e21dafe904244d77be83c10edcf730f3b72a7a129cd1bd01",
+  "limitations": [
+    "Training completion and verified saved optimizer/RNG arithmetic do not establish accuracy or image understanding.",
+    "Original arms are independent common-B28 controls; adaptive Adam52/56/60 is a separate inherited-weight chain.",
+    "Final100 remains sealed during exploratory method selection.",
+    "CROSS_MODEL_REVIEW=NOT_VERIFIED for current private outcomes; reviewers truthfully identified as Codex."
+  ],
+  "original_queue_actual_exit_sha256": "f194988bdb217a8c0f4af485c4fc0e862b806742be3f1da655a5fc5a7c9ea7f7",
+  "original_queue_closed_log_sha256": "53d99b4d131b0c4be6a3ef0d9fcb72960f89ace94d2c2c8840b0a9d693d17a31",
+  "original_sources_changed": false,
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "schema": "ORIGINAL21_TRAINING_ACTUAL_COMPLETION_V1",
+  "sealed_final100_released": false,
+  "status": "ALL18_RL_AND3_SFT_TRAINING_COMPLETE_ACCURACY_NOT_INFERRED"
+}
