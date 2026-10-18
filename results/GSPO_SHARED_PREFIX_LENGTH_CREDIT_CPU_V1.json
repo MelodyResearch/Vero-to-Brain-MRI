@@ -1,0 +1,42 @@
+{
+  "evidence_tier": "EXACT_SAVED_TRAIN_ARITHMETIC_NOT_NATIVE_TOKEN_GRADIENT_DECOMPOSITION",
+  "final100_access": false,
+  "formula": "On-policy surrogate at ratio1: per-token loss derivative coefficient = -sum_i advantage_i/(K*response_length_i). Sum advantages0 alone does not cancel common-prefix derivatives when response lengths differ.",
+  "groups": [
+    {
+      "response_lengths": [
+        17,
+        21,
+        18,
+        21
+      ],
+      "shared_response_prefix_tokens": 3,
+      "shared_token_loss_coefficient": -0.002392617734608783,
+      "sum_advantages": -6.661338147750939e-16,
+      "task": "mri_sequence"
+    },
+    {
+      "response_lengths": [
+        17,
+        18,
+        16,
+        16
+      ],
+      "shared_response_prefix_tokens": 1,
+      "shared_token_loss_coefficient": 0.0013276110600573274,
+      "sum_advantages": -6.661338147750939e-16,
+      "task": "mri_visit_correspondence"
+    }
+  ],
+  "limitations": [
+    "Exact saved lengths/advantages/prefixes; no new model call or training.",
+    "This is an expected sequence-mean property, not a confirmed GSPO formula bug.",
+    "Shared prefixes have identical mathematical causal contexts; native per-token gradients and dominance were not independently measured.",
+    "Remainder from label projection also includes nonclass label text and is not format-only."
+  ],
+  "optimizer_updates": 0,
+  "reviewer_id": "Codex /root",
+  "schema": "gspo-shared-prefix-length-credit-v1",
+  "scope_sha256": "c6f52c5c86ddcea5d3d0dca1b98894e9ba3af7dd1ae201917fc4efb242a0d115",
+  "training": 0
+}

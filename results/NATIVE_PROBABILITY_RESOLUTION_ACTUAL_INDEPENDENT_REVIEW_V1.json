@@ -1,0 +1,221 @@
+{
+  "B2_outcome": "NUMERIC_ACCEPTABLE",
+  "B3_status": "NOT_RUN_NOT_AUTHORIZED_BY_THIS_REVIEW",
+  "actual_calls": {
+    "language_model_calls": 55,
+    "text_embedding_identity_checks": 1,
+    "vision_embedding_calls": 2
+  },
+  "actual_exit_sha256": "3900a16b6d1129254ed051f3e9a604a32518448a475769bced831bbd1f27614d",
+  "backward_calls": 0,
+  "closed_stdout_sha256": "8f33bbba66d7a8c3d090aa0ade977b4f4b831989e2b3979b0657243eaf6fbe56",
+  "comparisons": {
+    "F32_SHARED_EXPLICIT_CHUNKED_KV_F32_vs_BASELINE_FULL": {
+      "max_JS": 0.003876477328767348,
+      "max_KL_left_right": 0.016265492579231614,
+      "max_KL_right_left": 0.014879022370652605,
+      "max_TV": 0.07279554072169078,
+      "max_centered_logit_delta": 1.1939812827447944,
+      "max_centered_probability_weighted_RMS": 1.1939723017007933,
+      "max_full_vocab_normalized_logp_delta": 1.9107135171378573,
+      "max_raw_logit_delta": 1.1432228088378906,
+      "max_selected_normalized_logp_delta": 0.09937250534445674,
+      "max_top2_margin_delta": 0.4433479309082031,
+      "mean_top5_overlap": 0.9647058823529411,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    },
+    "F32_SHARED_EXPLICIT_CHUNKED_KV_NATIVE_RENORMALIZED_vs_SAME_LOGITS_F32": {
+      "max_JS": 8.694080811590004e-17,
+      "max_KL_left_right": 4.569772110449428e-16,
+      "max_KL_right_left": 4.551426166207968e-16,
+      "max_TV": 7.56884551061671e-10,
+      "max_centered_logit_delta": 1.929036159253883e-06,
+      "max_centered_probability_weighted_RMS": 2.8153750983130133e-08,
+      "max_full_vocab_normalized_logp_delta": 1.9073709367489755e-06,
+      "max_raw_logit_delta": 42.779672622680664,
+      "max_selected_normalized_logp_delta": 2.2308693087280673e-11,
+      "max_top2_margin_delta": 0.0,
+      "mean_top5_overlap": 1.0,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    },
+    "F32_SHARED_KV_vs_F32_SHARED_FULL": {
+      "max_JS": 1.503394186144674e-10,
+      "max_KL_left_right": 6.013492803553014e-10,
+      "max_KL_right_left": 6.013670255216737e-10,
+      "max_TV": 1.299527775881635e-05,
+      "max_centered_logit_delta": 0.00016882158550375644,
+      "max_centered_probability_weighted_RMS": 0.0001608937853906159,
+      "max_full_vocab_normalized_logp_delta": 0.0002762997822287616,
+      "max_raw_logit_delta": 0.000156402587890625,
+      "max_selected_normalized_logp_delta": 2.10125356377433e-05,
+      "max_top2_margin_delta": 0.00011444091796875,
+      "mean_top5_overlap": 1.0,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    },
+    "INSTALLED_CHUNKED_KV_F32_vs_BASELINE_FULL": {
+      "max_JS": 0.00018001052960699664,
+      "max_KL_left_right": 0.0007251202759175825,
+      "max_KL_right_left": 0.000715850478365838,
+      "max_TV": 0.008235239825400142,
+      "max_centered_logit_delta": 0.48905483916599585,
+      "max_centered_probability_weighted_RMS": 0.299167258330678,
+      "max_full_vocab_normalized_logp_delta": 0.624999790138709,
+      "max_raw_logit_delta": 0.51953125,
+      "max_selected_normalized_logp_delta": 0.007352204619475083,
+      "max_top2_margin_delta": 0.25,
+      "mean_top5_overlap": 1.0,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    },
+    "INSTALLED_CHUNKED_KV_NATIVE_RENORMALIZED_vs_SAME_LOGITS_F32": {
+      "max_JS": 6.165217927430446e-07,
+      "max_KL_left_right": 2.466154625300686e-06,
+      "max_KL_right_left": 2.4662614579669875e-06,
+      "max_TV": 7.923748589725536e-05,
+      "max_centered_logit_delta": 0.2494395622401413,
+      "max_centered_probability_weighted_RMS": 0.00223028175897485,
+      "max_full_vocab_normalized_logp_delta": 0.24999999999990052,
+      "max_raw_logit_delta": 43.625,
+      "max_selected_normalized_logp_delta": 2.4117731099310147e-06,
+      "max_top2_margin_delta": 0.0,
+      "mean_top5_overlap": 1.0,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    },
+    "LEGACY_WHOLE_PROMPT_KV_F32_vs_BASELINE_FULL": {
+      "max_JS": 0.00017138015714902443,
+      "max_KL_left_right": 0.000694953209571878,
+      "max_KL_right_left": 0.0006768226734099319,
+      "max_TV": 0.009957546522027592,
+      "max_centered_logit_delta": 0.3983597015517135,
+      "max_centered_probability_weighted_RMS": 0.25846808452329756,
+      "max_full_vocab_normalized_logp_delta": 0.49999999386677274,
+      "max_raw_logit_delta": 0.380859375,
+      "max_selected_normalized_logp_delta": 0.00973260942153853,
+      "max_top2_margin_delta": 0.25,
+      "mean_top5_overlap": 0.9882352941176471,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    },
+    "LEGACY_WHOLE_PROMPT_KV_NATIVE_RENORMALIZED_vs_SAME_LOGITS_F32": {
+      "max_JS": 5.915038085409688e-07,
+      "max_KL_left_right": 2.3675918494744845e-06,
+      "max_KL_right_left": 2.3646702103526873e-06,
+      "max_TV": 8.391858555445495e-05,
+      "max_centered_logit_delta": 0.2494449409763746,
+      "max_centered_probability_weighted_RMS": 0.0021767346608799407,
+      "max_full_vocab_normalized_logp_delta": 0.25000000000017053,
+      "max_raw_logit_delta": 43.625,
+      "max_selected_normalized_logp_delta": 1.792833620598358e-05,
+      "max_top2_margin_delta": 0.0,
+      "mean_top5_overlap": 1.0,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    },
+    "WHOLE_vs_INSTALLED_CHUNKED": {
+      "max_JS": 0.0001093896279940242,
+      "max_KL_left_right": 0.0004427378082385729,
+      "max_KL_right_left": 0.0004329042467389554,
+      "max_TV": 0.0057611261343524,
+      "max_centered_logit_delta": 0.4899176534958868,
+      "max_centered_probability_weighted_RMS": 0.10643421304811598,
+      "max_full_vocab_normalized_logp_delta": 0.4999981516522922,
+      "max_raw_logit_delta": 0.5,
+      "max_selected_normalized_logp_delta": 0.004649689743410623,
+      "max_top2_margin_delta": 0.125,
+      "mean_top5_overlap": 0.9882352941176471,
+      "positions": 17,
+      "top1_equal_fraction": 1.0,
+      "vocabulary": 151936
+    }
+  },
+  "direct_AR_F32_vs_centered_scorer_F32": {
+    "max_full_vocab_logp_delta": 0.000274658203125,
+    "max_selected_logp_delta": 2.0265579223632812e-05
+  },
+  "generation_calls": 0,
+  "launch_review_sha256": "a8647cce23af711a1efe4cbe10b4b70fb1bd5457be64a991c25c631d64422bff",
+  "legacy_reproduction": {
+    "frozen_scorer_selected_max_abs_delta": 0.0,
+    "native_selected_max_abs_delta": 0.0,
+    "stable_selected_max_abs_delta": 0.0
+  },
+  "limits": [
+    "Mathematical score-implied categorical probabilities, not observed sampled frequencies.",
+    "F32/shared/explicit-position numerical control is bundled; no unique kernel cause or historical sampler distribution inferred.",
+    "This proof authenticates saved fingerprints and arrays, not an independently rerun model/backward.",
+    "No MRI accuracy/grounding/generalization claim, B3 approval or training authorization."
+  ],
+  "native_logp_mass": {
+    "BASELINE_FULL_TF": {
+      "maximum_sum_exp_native_logps": 1.1055620093517495,
+      "minimum_sum_exp_native_logps": 0.9321889390798044
+    },
+    "F32_SHARED_EXPLICIT_CHUNKED_KV": {
+      "maximum_sum_exp_native_logps": 1.0000015984733888,
+      "minimum_sum_exp_native_logps": 0.999998905142966
+    },
+    "F32_SHARED_FULL_TF": {
+      "maximum_sum_exp_native_logps": 1.00000193502654,
+      "minimum_sum_exp_native_logps": 0.9999989049770822
+    },
+    "INSTALLED_CHUNKED_KV": {
+      "maximum_sum_exp_native_logps": 1.105561777332445,
+      "minimum_sum_exp_native_logps": 0.9321862214792054
+    },
+    "LEGACY_WHOLE_PROMPT_KV": {
+      "maximum_sum_exp_native_logps": 1.1055426320295338,
+      "minimum_sum_exp_native_logps": 0.9321877958267172
+    }
+  },
+  "observed_F32_cache_and_logits": true,
+  "optimizer_updates": 0,
+  "private_detail_sha256": "8504b194f1babd1508d3a6ca6bfb62f8dbfa4bc1660143c6ff110a260d433bbc",
+  "recorded_resource_actions": {
+    "action": {
+      "CONTINUE": 119
+    },
+    "supervisor_level": {
+      "NORMAL": 119
+    }
+  },
+  "reviewer_final100_access": false,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_model_loads": 0,
+  "reviewer_native_imports": 0,
+  "reviewer_optimizer_updates": 0,
+  "same_logits_F32_normalizers": {
+    "BASELINE_FULL_TF": {
+      "max_full_vocab_logp_delta": 7.62939453125e-06,
+      "max_selected_logp_delta": 1.4305614968179725e-06
+    },
+    "F32_SHARED_FULL_TF": {
+      "max_full_vocab_logp_delta": 3.814697265625e-06,
+      "max_selected_logp_delta": 1.8775463104248047e-06
+    }
+  },
+  "schema": "native-probability-resolution-actual-independent-review-v1",
+  "scope_file_sha256": "cd2d3f43355c7ceca558a8738aa01079d47d8b4038cdb5a96b4a4dd242c0bad8",
+  "scope_sha256": "11c373f1b570c1d4c13c6c41e12e19f35a39000aa9d9ee87d96e746832782618",
+  "state": {
+    "adapter504_and_Adam_Python_MLX_RNG_unchanged": true,
+    "all1942_parameters_unchanged": true,
+    "all_parameter_digest": "4d68d4d142d1ee391efe58d8ed2ebab6153afec6d2ce4dcdaca78e5c713daa2b",
+    "release_active_MLX_bytes": 1050,
+    "release_model_none": true
+  },
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_source_sha256": "31a069a98e3db603804d97352f5aa68e2e17c0f5937cf312f7b2c0b370acf1bc"
+}

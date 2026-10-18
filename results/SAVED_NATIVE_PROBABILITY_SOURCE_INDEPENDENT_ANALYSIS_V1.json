@@ -1,0 +1,182 @@
+{
+  "CPU_actual_KV_buffer_AST_check": {
+    "claim": "NumPy execution of actual buffer/cursor AST; not native storage-precision or attention parity.",
+    "no_missing_or_duplicate_prefix_values": true,
+    "offsets": [
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223,
+      224,
+      225,
+      226,
+      227,
+      228,
+      229
+    ]
+  },
+  "CPU_actual_RoPE_mask_AST_check": {
+    "all_ones_mask_equals_no_padding_positions": true,
+    "causal_allowed_contexts_equal": true,
+    "claim": "Actual get_rope_index/create_causal_mask AST executed with NumPy; real native cache/position tensors were not persisted in old run.",
+    "full_and_prompt_rope_delta_equal": true,
+    "full_prefix_and_prefill_positions_equal": true,
+    "grid_value_sha_authenticated": true,
+    "implicit_decode_positions_match_full_for_16_inputs": true,
+    "prompt_length": 213,
+    "response_length": 17,
+    "rope_delta": -140
+  },
+  "CPU_actual_neutral_sampler_AST_check": {
+    "additional_filters_called": 0,
+    "categorical_argument_equals_input_at_temperature1": true,
+    "distribution_scope": "F64 renormalization describes mathematical categorical probabilities of recorded scores, not empirical finite-precision random draws or sampled frequencies.",
+    "native_cast_semantics": "NOT_EXECUTED; source adds no explicit cast here; CPU compile decorator is an identity stub",
+    "native_random_draws": 0,
+    "parameters": {
+      "min_p": 0.0,
+      "p_less": false,
+      "temperature": 1.0,
+      "top_k": 0,
+      "top_n_sigma": 0.0,
+      "top_p": 1.0,
+      "typical_p": 1.0
+    }
+  },
+  "analysis_source_sha256": "6f7ed93e14e6ff3e3660077070be93291d0cec8a5af9303021855cc9f3c5a351",
+  "bounded_falsifiers_for_separate_native_scope": [
+    "One existing saved TRAIN response/checkpoint only; no generation/backward/update. Compare original direct213 prefill, source-derived ordinary212+1 prefill and full TF using identical conditioning. Save actual cache offsets/position tensors and policy flags, not only assumed counts.",
+    "At each of17 contexts persist private full-vocabulary logits/logps or sufficient distribution statistics: common-shift-centered differences, normalized probabilities, KL/JS, top-k and selected score. Keep .002 gate unchanged and distinguish returned-logp error from categorical difference.",
+    "Precision control must retain prefill schedule, complete position/rope/mask metadata and equal represented embedding/deepstack values. Verify full future positions equal implicit offset+delta and shared feature prefixes equal before upcast; otherwise attribute change to a combined functional path intervention, not precision alone.",
+    "Only if numerical gate passes and a separately reviewed actual scope admits it may B3 run. No native launch, automatic retry, tolerance relaxation or training permission is created by this CPU analysis."
+  ],
+  "confirmed_source_route_difference": {
+    "fresh_native_runtime_policy_verification_required": true,
+    "historical_runtime_prefill_metadata": "NOT_SAVED",
+    "installed_default_prefill_step_size": 2048,
+    "old_direct_probe_prefill_lengths": [
+      213
+    ],
+    "old_probe_not_exact_AR_prefill_schedule": true,
+    "ordinary_no_draft_policy_enabled": true,
+    "source_derived_actual_AR_prefill_lengths": [
+      212,
+      1
+    ]
+  },
+  "decomposition_positions_verified": 17,
+  "evidence_sha256": {
+    "config_metadata": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+    "old_closed_stdout": "1c564679a0f8b5eda94958a95f5b89d0d56adf36949b3d09a6e82e2b76fd65ff",
+    "old_external_exit": "2e170223fa700c93f44b0ff2f25ce0a93647535ae87256e42e5eee829c996626",
+    "old_scope": "c6f52c5c86ddcea5d3d0dca1b98894e9ba3af7dd1ae201917fc4efb242a0d115",
+    "prepared_tensor_identity": "be0e17bc19f3205fde29dbf12239f2b1b0a85af319be0044846f056ad7d332e6",
+    "saved17record": "c27e74c3c5001de4d5059911e2700507114900cc1ef70ef56652ba71eb0d9a1b"
+  },
+  "evidence_tier": "SAVED_SELECTED_LOGPS_AND_CPU_EXECUTED_PINNED_AST",
+  "execution": {
+    "backwards": 0,
+    "final100_access": false,
+    "generated_tokens": 0,
+    "images_opened": 0,
+    "model_or_optimizer_loads": 0,
+    "native_forwards": 0,
+    "native_imports": 0,
+    "optimizer_updates": 0
+  },
+  "limitations": [
+    "Grid integers were recovered from a finite factor enumeration and authenticated against saved raw-int64 SHA; no pixels were decoded.",
+    "NumPy source-AST replay validates indexing/metadata algebra, not MLX storage, fused attention, mutable runtime state or gradient parity.",
+    "common/base/quantized-linear source hashes are current inspected dependencies; their digests were not all included in the old25-file scope. Runtime/historical identity should not be invented.",
+    "No MRI accuracy/generalization or unique root-cause claim."
+  ],
+  "mission_alignment": "Isolate concrete policy/scorer path differences before interpreting Vero MRI GSPO learning; no new model or optimizer work.",
+  "native_execution_approved": false,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "saved-native-probability-independent-source-analysis-v1",
+  "selected_logp_arithmetic": {
+    "native_to_TF": {
+      "distribution_equivalence": "NOT_IDENTIFIABLE_FROM_SELECTED_ONLY",
+      "hypothetical_exp_mean_selected_ratio": 0.9982000599895822,
+      "max_abs_delta": 0.10035387426614761,
+      "mean_abs_delta": 0.017341758463978733,
+      "mean_signed_delta": -0.0018015618488718133,
+      "not_a_vocabulary_offset_test": "Different response positions have different causal contexts; one selected token per context is not a vocabulary vector.",
+      "positions": 17,
+      "positions_exceeding_002": 9
+    },
+    "native_to_stable_same_KV": {
+      "distribution_equivalence": "NOT_IDENTIFIABLE_FROM_SELECTED_ONLY",
+      "hypothetical_exp_mean_selected_ratio": 0.996974706050591,
+      "max_abs_delta": 0.10033798217773438,
+      "mean_abs_delta": 0.01722279716940487,
+      "mean_signed_delta": -0.0030298794017118566,
+      "not_a_vocabulary_offset_test": "Different response positions have different causal contexts; one selected token per context is not a vocabulary vector.",
+      "positions": 17,
+      "positions_exceeding_002": 9
+    },
+    "stable_to_TF": {
+      "distribution_equivalence": "NOT_IDENTIFIABLE_FROM_SELECTED_ONLY",
+      "hypothetical_exp_mean_selected_ratio": 1.0012290722438137,
+      "max_abs_delta": 0.009733378887176514,
+      "mean_abs_delta": 0.0012734010297137388,
+      "mean_signed_delta": 0.0012283175528400433,
+      "not_a_vocabulary_offset_test": "Different response positions have different causal contexts; one selected token per context is not a vocabulary vector.",
+      "positions": 17,
+      "positions_exceeding_002": 3
+    }
+  },
+  "source_alignment_check": {
+    "all_input_tokens_and_masks_equal": true,
+    "claim": "CPU identity-marker execution of actual indexing AST; not native attention/logit computation.",
+    "first_causal_logit_position": 212,
+    "full_TF_input_length": 229,
+    "last_causal_logit_position": 228,
+    "positions_verified": 17
+  },
+  "source_interpretation": [
+    "Off-by-one is NOT_FOUND in actual _logps identity-marker execution for all17 saved targets. Hash-authenticated grid and actual get_rope_index AST give identical prefix/full positions and decode offset+delta; buffer/cursor and causal-mask AST checks likewise agree. These checks do not prove native kernels executed that state.",
+    "A concrete implementation-level comparison mismatch is CONFIRMED in inspected current source: ordinary AR default2048 chunks213 prompt tokens as212+1, whereas old forced-KV probe used213 in one prefill. This is a versioned diagnostic route mismatch, not an established historical training defect or proven explanation of .009733.",
+    "Source Qwen projections/output head use shape-dependent quantized matmul and attention calls fast SDPA with different query lengths in full and incremental paths. Output logits are BF16 in saved evidence; F32 normalization cannot undo upstream rounding. Attention/GEMM precision or shape effects are plausible, not localized or proven kernel causes.",
+    "Frozen GSPO update recomputes old logps with the same F32 full-TF scorer as fresh; it does not consume saved generation KV logps. Hypothetical exp(mean selected differences) above are not recorded historical importance ratios or evidence that clipping actually occurred.",
+    "Only one selected vocabulary element per changing causal context was saved. Complete distribution equality, KL/JS, top-k, vocabulary-centered shift and gradient impact are NOT_IDENTIFIABLE from these vectors. The synthetic64/63 common-offset fixture does not establish actual distribution equivalence."
+  ],
+  "source_sha256": {
+    "ar": "c38f86a5d94924daf819f4bfd206a7c874526bd15e8dd3447921621ee7850050",
+    "attention_base": "a7cfa38413bea057946c5d56c9edd34dbcceb33f6613529f5201ca2ad5b41120",
+    "cache": "852466aae4478e6f1f2b44f772f176a385ed53a47071938ede184924fec97fd7",
+    "categorical_API": "cc48e32ebb1a266e7af981c83e400cf880c3f7d0ed4a3296ab7d08c722d724b0",
+    "common": "c69e7e38a09990404d299b0a8d4be55c8220e60652e67a2456e8177633813ba0",
+    "dispatch": "f7dcec326a4d2aff1286b1abd4419f8ec533189d1d26b0ac69002513ba45dab8",
+    "frozen_backend": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "old_forced_KV_helper": "f24a4567b5b85fe59896aedf123e833e9c535820701a49126afda97130071718",
+    "quantized_linear": "8ca4574a212f14cbec4c446826474583ef0bf1e2cb1630574fd730c77af03b33",
+    "qwen_language": "2ebeacac837db9417e683780b94d24cdee563fa340a9638b0965a6c0bfcde056",
+    "qwen_model": "12f0393421918eb1cbaa6daa447d93a405762e997f688676688e5c71d987d3ee",
+    "sampler": "56b3d5043fe9d9c3e95e184412f694d62669d5865dca6c6d11f5897beac12f7e"
+  },
+  "status": "CPU_ANALYSIS_COMPLETED_NATIVE_RESIDUAL_NOT_RESOLVED",
+  "synthetic_common_offset": {
+    "fixture": "Synthetic exact-BF16 logits64/63; not patient data or native kernel execution",
+    "implication": "Absolute returned-logp error need not alter categorical probabilities.",
+    "max_categorical_delta": 0.0,
+    "old_normalized": [
+      0.7310585786300049,
+      0.2689414213699951
+    ],
+    "old_probability_sum": 0.8296608198610632,
+    "reference_normalized": [
+      0.7310585786300049,
+      0.2689414213699951
+    ]
+  },
+  "training_readiness": "NO"
+}

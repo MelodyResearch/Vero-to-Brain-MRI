@@ -1,0 +1,338 @@
+{
+  "actual_calls": {
+    "backward_calls": 24,
+    "detached_old_forwards": 16,
+    "full_scoring_forwards": 40
+  },
+  "actual_exit_sha256": "aed198e747b3c2e48c240791ec6edf40455b611cb783994d83e0055dbaffed93",
+  "additional_inventory_detail_sha256": "0dc493ba005a6478f335f0212c1deaea4142874a4034691bf974e33863572c90",
+  "closed_stdout_sha256": "a06e9b731ed40ad6b79d1e0d9a754bba963ee86cf6d56f692acebc58a7675d66",
+  "final_saved_file_inventory_and_native_loss_check": {
+    "actual_native_loss_AST_sha256": "a9d80bac3b29a6d32df22c94aec44fcdaa7f4e00b2f214d1d15218da7bc8680d",
+    "additional_native_calls": 0,
+    "all_group_positive_negative_sums_exact_F32": true,
+    "groups_checked": 2,
+    "maximum_sum_error": 0.0,
+    "reviewer_id": "Codex /root/full_arm_execution_contract",
+    "saved_gradient_files": 42,
+    "scoring_backward_calls": 24,
+    "source_sha256": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "tensor_entries_dtype_F32_finite_shape504": 21168
+  },
+  "generation_calls": 0,
+  "groups": [
+    {
+      "actual_calls": {
+        "backward_calls": 12,
+        "detached_old_forwards": 8,
+        "full_scoring_forwards": 20
+      },
+      "directions": {
+        "group_l2": 1.6463262827620115,
+        "group_response_sum_closure_max_abs": 4.6566128730773926e-09,
+        "group_to_sum_individual_norms": 0.649572985107694,
+        "label_group_l2": 0.25733970381407906,
+        "label_plus_remainder_closure_max_abs": 5.421010862427522e-20,
+        "label_remainder_cosine": 0.3963924105578555,
+        "maximum_float32_sum_roundoff_bound": 2.8377104180492368e-08,
+        "negative_l2": 1.479997760014434,
+        "positive_l2": 0.5811438653308009,
+        "positive_negative_cosine": 0.10595886720478755,
+        "remainder_group_l2": 1.5272782390056714,
+        "responses": [
+          {
+            "advantage": 0.4999987500031249,
+            "direction_matches_strict_saved_correctness": true,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.09601128511488585,
+            "group_dot_scaled_response_gradient": 0.007429573014861902,
+            "label_supported_directional_derivative": 0.7680922011447893,
+            "mean_logp_directional_derivative": 0.059436732710355517,
+            "remainder_directional_derivative": -0.7086554684344337,
+            "response_index": 0,
+            "scaled_label_gradient_l2": 0.10936479567266853,
+            "scaled_response_gradient_l2": 0.24679995287779122,
+            "strict_saved_correct": true
+          },
+          {
+            "advantage": -1.4999962500093753,
+            "direction_matches_strict_saved_correctness": true,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.0,
+            "group_dot_scaled_response_gradient": 2.2815277031857706,
+            "label_supported_directional_derivative": -0.0,
+            "mean_logp_directional_derivative": -6.084089085346742,
+            "remainder_directional_derivative": -6.084089085346742,
+            "response_index": 1,
+            "scaled_label_gradient_l2": 0.0,
+            "scaled_response_gradient_l2": 1.479997760014434,
+            "strict_saved_correct": false
+          },
+          {
+            "advantage": 0.4999987500031249,
+            "direction_matches_strict_saved_correctness": true,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.059253152639303544,
+            "group_dot_scaled_response_gradient": 0.22837150280652924,
+            "label_supported_directional_derivative": 0.4740264061774812,
+            "mean_logp_directional_derivative": 1.8269765898822903,
+            "remainder_directional_derivative": 1.352950183704809,
+            "response_index": 2,
+            "scaled_label_gradient_l2": 0.06936569279601898,
+            "scaled_response_gradient_l2": 0.3817190253942001,
+            "strict_saved_correct": true
+          },
+          {
+            "advantage": 0.4999987500031249,
+            "direction_matches_strict_saved_correctness": true,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.0667531288117304,
+            "group_dot_scaled_response_gradient": 0.1930614502137741,
+            "label_supported_directional_derivative": 0.5340263655564195,
+            "mean_logp_directional_derivative": 1.5444954629391974,
+            "remainder_directional_derivative": 1.010469097382778,
+            "response_index": 3,
+            "scaled_label_gradient_l2": 0.08214023838164211,
+            "scaled_response_gradient_l2": 0.425957940473597,
+            "strict_saved_correct": true
+          }
+        ],
+        "tensors": 504
+      },
+      "exact_directional_formula_verified": true,
+      "parameters1942_and_state_unchanged": true,
+      "ratio_evidence": {
+        "REAL/FULL": {
+          "exact_ratio1_from_zero_alignment": true,
+          "loss_inferred_ratios_F32_rounded": [
+            1.000000056203455,
+            1.00000003633519,
+            0.9999999369938674,
+            0.9999999965986611
+          ],
+          "old_current_max_abs": 0.0
+        },
+        "REAL/STRICT_LABEL_DERIVATIVE": {
+          "exact_ratio1_from_zero_alignment": true,
+          "loss_inferred_ratios_F32_rounded": [
+            1.000000056203455,
+            1.00000003633519,
+            0.9999999369938674,
+            0.9999999965986611
+          ],
+          "old_current_max_abs": 0.0
+        },
+        "ZERO_NORMALIZED_PIXELS/FULL": {
+          "exact_ratio1_from_zero_alignment": true,
+          "loss_inferred_ratios_F32_rounded": [
+            1.000000056203455,
+            1.00000003633519,
+            0.9999999369938674,
+            0.9999999965986611
+          ],
+          "old_current_max_abs": 0.0
+        }
+      },
+      "real_vs_zero_group_gradient": {
+        "cosine": 0.7978703475050538,
+        "difference_l2": 1.0091671704512715,
+        "left_l2": 1.6463262827620115,
+        "max_abs_difference": 0.023314026184380054,
+        "right_l2": 1.4964611430716657,
+        "tensors": 504
+      },
+      "scorer_F32_context_records": 20,
+      "task": "mri_sequence",
+      "zero_positive_vs_negative_gradient": {
+        "cosine": -0.694236407443831,
+        "difference_l2": 3.414759503314191,
+        "left_l2": 1.6501390641421996,
+        "max_abs_difference": 0.381373792886734,
+        "right_l2": 2.055974289335117,
+        "tensors": 504
+      }
+    },
+    {
+      "actual_calls": {
+        "backward_calls": 12,
+        "detached_old_forwards": 8,
+        "full_scoring_forwards": 20
+      },
+      "directions": {
+        "group_l2": 1.5256006966637996,
+        "group_response_sum_closure_max_abs": 3.725290298461914e-09,
+        "group_to_sum_individual_norms": 0.4913930653081576,
+        "label_group_l2": 0.9852183322641143,
+        "label_plus_remainder_closure_max_abs": 5.421010862427522e-20,
+        "label_remainder_cosine": -0.05878549661568255,
+        "maximum_float32_sum_roundoff_bound": 2.9036513645751056e-08,
+        "negative_l2": 1.7236886621414242,
+        "positive_l2": 1.0125362085200704,
+        "positive_negative_cosine": -0.47810616694804225,
+        "remainder_group_l2": 1.224174089136682,
+        "responses": [
+          {
+            "advantage": 0.4999987500031249,
+            "direction_matches_strict_saved_correctness": false,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.00019554049524005273,
+            "group_dot_scaled_response_gradient": -0.010950626229402188,
+            "label_supported_directional_derivative": 0.001564327872730327,
+            "mean_logp_directional_derivative": -0.0876052288477421,
+            "remainder_directional_derivative": -0.08916955672047243,
+            "response_index": 0,
+            "scaled_label_gradient_l2": 0.0003728093561423259,
+            "scaled_response_gradient_l2": 0.5204524908273049,
+            "strict_saved_correct": true
+          },
+          {
+            "advantage": 0.4999987500031249,
+            "direction_matches_strict_saved_correctness": true,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.20548914776182778,
+            "group_dot_scaled_response_gradient": 0.14906403797504225,
+            "label_supported_directional_derivative": 1.6439172918775777,
+            "mean_logp_directional_derivative": 1.1925152850810976,
+            "remainder_directional_derivative": -0.4514020067964801,
+            "response_index": 1,
+            "scaled_label_gradient_l2": 0.2346711723142728,
+            "scaled_response_gradient_l2": 0.5663723963468368,
+            "strict_saved_correct": true
+          },
+          {
+            "advantage": 0.4999987500031249,
+            "direction_matches_strict_saved_correctness": true,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.013623404961444072,
+            "group_dot_scaled_response_gradient": 0.05267881587915252,
+            "label_supported_directional_derivative": 0.10898751215965183,
+            "mean_logp_directional_derivative": 0.4214315806095378,
+            "remainder_directional_derivative": 0.3124440684498859,
+            "response_index": 2,
+            "scaled_label_gradient_l2": 0.016874213689318462,
+            "scaled_response_gradient_l2": 0.2941307860844057,
+            "strict_saved_correct": true
+          },
+          {
+            "advantage": -1.4999962500093753,
+            "direction_matches_strict_saved_correctness": true,
+            "flat": false,
+            "group_dot_scaled_label_gradient": 0.6804471304698541,
+            "group_dot_scaled_response_gradient": 2.136665257811071,
+            "label_supported_directional_derivative": -1.814530217567147,
+            "mean_logp_directional_derivative": -5.697788265264574,
+            "remainder_directional_derivative": -3.883258047697427,
+            "response_index": 3,
+            "scaled_label_gradient_l2": 0.7457083563249137,
+            "scaled_response_gradient_l2": 1.7236886621414242,
+            "strict_saved_correct": false
+          }
+        ],
+        "tensors": 504
+      },
+      "exact_directional_formula_verified": true,
+      "parameters1942_and_state_unchanged": true,
+      "ratio_evidence": {
+        "REAL/FULL": {
+          "exact_ratio1_from_zero_alignment": true,
+          "loss_inferred_ratios_F32_rounded": [
+            1.000000056203455,
+            0.9999999369938674,
+            0.9999999965986611,
+            1.00000003633519
+          ],
+          "old_current_max_abs": 0.0
+        },
+        "REAL/STRICT_LABEL_DERIVATIVE": {
+          "exact_ratio1_from_zero_alignment": true,
+          "loss_inferred_ratios_F32_rounded": [
+            1.000000056203455,
+            0.9999999369938674,
+            0.9999999965986611,
+            1.00000003633519
+          ],
+          "old_current_max_abs": 0.0
+        },
+        "ZERO_NORMALIZED_PIXELS/FULL": {
+          "exact_ratio1_from_zero_alignment": true,
+          "loss_inferred_ratios_F32_rounded": [
+            1.000000056203455,
+            0.9999999369938674,
+            0.9999999965986611,
+            1.00000003633519
+          ],
+          "old_current_max_abs": 0.0
+        }
+      },
+      "real_vs_zero_group_gradient": {
+        "cosine": 0.8485300350660298,
+        "difference_l2": 0.8175447522140482,
+        "left_l2": 1.5256006966637996,
+        "max_abs_difference": 0.03968661278486252,
+        "right_l2": 1.4237419316806517,
+        "tensors": 504
+      },
+      "scorer_F32_context_records": 20,
+      "task": "mri_visit_correspondence",
+      "zero_positive_vs_negative_gradient": {
+        "cosine": -0.6254098992096708,
+        "difference_l2": 2.621652553001789,
+        "left_l2": 1.0631961142452055,
+        "max_abs_difference": 0.10795197263360023,
+        "right_l2": 1.8219949564519171,
+        "tensors": 504
+      }
+    }
+  ],
+  "limitations": [
+    "Independent saved-array arithmetic/state/source verification, not independently rerun native backward or finite differences.",
+    "NEW F32 policy on fixed historical BF16 samples; no historical BF16 gradient reconstruction/on-policy claim.",
+    "Dallas F32 KV parity not measured; generalization beyond these two groups unverified.",
+    "Direction is infinitesimal mean-response/label-supported logp, not finite accuracy or MRI-understanding gain.",
+    "Positive/negative norms from response sums; remainder defined by difference is not format-only.",
+    "Scorer API counters exclude extra gradient-checkpoint internal layer recomputation.",
+    "Cross-model review NOT_VERIFIED; isolated Codex reviewer."
+  ],
+  "optimizer_updates": 0,
+  "private_detail_sha256": "8b195188b6bec6938c4884f03e45a0abd0b85dac81d77a66b898ea189762cb56",
+  "recorded_resources": {
+    "MLX_active_missing_samples": 2,
+    "MLX_peak_missing_samples": 2,
+    "action": {
+      "CONTINUE": 103
+    },
+    "all_AC_and_no_other_heavy": true,
+    "maximum_MLX_active_gib": 4.950911914929748,
+    "maximum_MLX_peak_gib": 10.206414211541414,
+    "minimum_available_gib": 8.855056762695312,
+    "minimum_pressure_free_percent": 46.0,
+    "sample_count": 103,
+    "supervisor_level": {
+      "NORMAL": 103
+    },
+    "swap_used_gib_max": 12.385859375,
+    "swap_used_gib_min": 12.385859375,
+    "thermal_state": {
+      "SENSOR_UNAVAILABLE": 103
+    }
+  },
+  "review_sha256": "bd0d75f8ead46dd368321eafd57c12c33bbd3f503243075d6cd2c24198f51056",
+  "reviewer_final100_access": false,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_model_loads": 0,
+  "reviewer_native_imports": 0,
+  "schema": "conditional-f32-gspo-actual-independent-review-v1",
+  "scope_file_sha256": "4d21c523c1eebe050466d21f450aac6b5f4e747e98afba993b9e1b024ab510f7",
+  "scope_sha256": "cfa336c3bb8fecbb24157619e96b924d7676348592fa9f1826bc3cbcb1e5829e",
+  "state": {
+    "active_MLX_bytes_after_release": 1052,
+    "all1942_parameters_unchanged": true,
+    "all_parameter_digest": "4d68d4d142d1ee391efe58d8ed2ebab6153afec6d2ce4dcdaca78e5c713daa2b",
+    "group_Adam_Python_MLX_RNG_unchanged": true,
+    "model_is_none": true
+  },
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_source_sha256": "77aa00fecf80b91637d1c0c97b440cf131c44bf82af4ada2078df464af7e96fb"
+}

@@ -1,0 +1,42 @@
+{
+  "actual_root_focused_tests": {
+    "failed": 0,
+    "passed": 16
+  },
+  "all214_original_prompts_images_targets_metadata_unchanged": true,
+  "all_metadata_contingencies_recomputed": true,
+  "author_id": "Codex /root/rc_data",
+  "candidate_sha256": "cb7f94b5ac185c5ce35f824423b5b0d3146da5afbf8df08dde00f84ff5097cbf",
+  "cross_model_review": "NOT_VERIFIED",
+  "expert_packet_cases": 84,
+  "final100_access": false,
+  "independent_plane_partition": {
+    "CAVITY_RIM_ETIOLOGY_ADJUDICATION": 4,
+    "COVERAGE_UNANSWERABLE": 1,
+    "MASK_NEGATIVE_MRI_APPARENT_DISCORDANCE": 5,
+    "MASK_NEGATIVE_NEEDS_EXPERT_NEGATIVE_ADJUDICATION": 32,
+    "MASK_POSITIVE_MRI_NOT_CONSPICUOUS": 5,
+    "POSITIVE_GEOMETRY_COMPLEXITY_ADJUDICATION": 22,
+    "SPATIAL_REVIEW_CANDIDATE_EXPERT_PENDING": 15
+  },
+  "limitations": [
+    "No new image/expert adjudication or clinical visibility gold. Same-source mask routes are not independent tasks.",
+    "Source README supports preoperative cohort and neuroradiologist-reviewed/corrected masks, not explicit numeric label3 mapping.",
+    "Matched control indices are not completed inference controls; TRAIN contingencies are not generalization."
+  ],
+  "matched_control_pairs": {
+    "all_original_grid_rows": 14,
+    "strict_spatial_review_candidates": 4
+  },
+  "model_loads": 0,
+  "new_training": 0,
+  "optimizer_updates": 0,
+  "report_sha256": "2cc1c6786fe1e85677e252a5a929f7a6daaa1164b21d956039928b8830cbc7e3",
+  "reviewer_id": "Codex /root",
+  "schema": "second-task-eligibility-independent-review-v1",
+  "scientific_admission": false,
+  "spatial_priority_rows": 15,
+  "subset_sha256": "549751aee8bfb1f963f2e2475fc15194cd0fd88178304a48e8fd8a7d72e8f7a2",
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

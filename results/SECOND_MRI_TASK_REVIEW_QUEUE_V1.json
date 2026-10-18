@@ -1,0 +1,349 @@
+{
+  "Dallas": {
+    "missing": "Validated brain-only input plus independently verified identity answerability; prior fixed ROI is not skull stripping.",
+    "new_crops_or_models": 0,
+    "rows": 48,
+    "status": "ENGINEERING_ONLY",
+    "training_authorized": false
+  },
+  "actual_matched_shortcut_control_index": {
+    "all_original_grid_rows": {
+      "covered_rows": 28,
+      "metadata_only_pair_ceiling": 0.5,
+      "model_or_expert_control_execution": "NOT_RUN; deterministic existing-TRAIN index only",
+      "pairs": 14,
+      "unmatched_rows": 18
+    },
+    "strict_spatial_review_candidates": {
+      "covered_rows": 8,
+      "metadata_only_pair_ceiling": 0.5,
+      "model_or_expert_control_execution": "NOT_RUN; deterministic existing-TRAIN index only",
+      "pairs": 4,
+      "unmatched_rows": 7
+    }
+  },
+  "candidate_rows": 214,
+  "candidate_task_counts": {
+    "mri_enhancing_presence": 84,
+    "mri_tumor_grid": 46,
+    "mri_tumor_presence": 84
+  },
+  "code_sha256": {
+    "builder": "373a793f69f30f6c783742c017ae781abdc850ffe539eb8dc5ced2e551fd2cfd",
+    "helper": "bd808a8b76953735b5190d998345cbd0f5fc5277c36610b5a5a95c3a6a0e2911",
+    "tests": "5149e633ba4a8336d6e6ff5fff353a7e397bb207e4ae2cd1599ea37aff346a79"
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED_SAVED_TRAIN_SOURCE_AND_NONEXPERT_EVIDENCE",
+  "expert_packet": {
+    "MRI_only_first_pass_cases": 84,
+    "adjudication_completed": false,
+    "blank_expert_fields": true,
+    "independent_expert_records_created": 0,
+    "prior_sheets_reused": 7,
+    "second_pass_reference_key_separate": true
+  },
+  "input_sha256": {
+    "Dallas_TRAIN": "6adf06674050e395b704e4b76103f067166b905016920195603e271690de4f14",
+    "MRI_TRAIN": "0efb588b328e3d9af2a339d9237836357a5baff5d9db8b376dc716de3d1f10e3",
+    "MRI_only_notes": "6edb737d44b64f50e7a7286ae7c71cf8a27478a2b7288c564e3ad83d28f5fb37",
+    "TRAIN_source_metadata": "eca155b538b5f83fdcc6b6242f113aebdbfac9210511b68f4a6c01bc53571390",
+    "crosscheck": "6bb02193ae5a15ad3d13b6b5b68d326f3517cbed939ecddfe3a3cf8eeebb0c39",
+    "original_renderer": "4d7a353c4b6da53bd9781a0073544fb610cc8012512e31fdf68024f9cc31588e",
+    "plane_geometry": "889620f2b147523273dbb3ccbc84b3e7a9b676664ff16c33ac1ff9b3e3512dc1",
+    "qualification": "219cd2bbe4fc336085378da5d0a22ff7a9092e57774bd497ac2ee8ddc5934944",
+    "source_README": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+    "source_description": "748fb52a1d943c6f50bb6e4795082e973c4a8694e01a287383a9bf1f20fff763"
+  },
+  "limitations": [
+    "A clean geometry screen is not evidence of a visible lesion or an independently valid second task.",
+    "Mask components are not clinical multifocal tumors; cavity/rim lexical flags are review prompts, not postoperative diagnoses.",
+    "Thresholds1000 native pixels/10 display pixels inherit earlier engineering screens and are not clinically calibrated.",
+    "Metadata majority values are TRAIN resubstitution contingencies, not held-out predictive accuracy; control pairs are indices, not completed model experiments."
+  ],
+  "manifest_sha256": "cb7f94b5ac185c5ce35f824423b5b0d3146da5afbf8df08dde00f84ff5097cbf",
+  "mission_alignment": {
+    "claim_falsifier": "A deterministic existing-source geometry/nonexpert screen identifies a smaller review queue; exact source labels and counts must reproduce or the build fails.",
+    "isolation": "Only new qualification metadata and expert packet; existing images, tasks, hidden labels, weights and reviews remain frozen.",
+    "link": "Resolve the second heterogeneous image-grounded task requirement for Vero-to-MRI transfer.",
+    "provenance": "Pinned TRAIN notes, geometry, registries, metadata, renderer and README hashes.",
+    "resources_decision": "Single-thread text/JSON/hash work; zero image decoding/rendering/model work. No scientific admission or training authorization.",
+    "shortcut": "Compute training site/level/scanner/patient contingencies and build actual same-site/same-level/different-person/different-label control pairs."
+  },
+  "new_concrete_fix": "Replace undifferentiated214-row lesion eligibility with source-preserving deterministic plane/row review queues, a strict spatial priority subset and a ready-to-fill84-case expert adjudication packet.",
+  "per_task": {
+    "mri_enhancing_presence": {
+      "blocking_reason_counts": {
+        "CAVITY_RIM_ETIOLOGY_UNADJUDICATED": 5,
+        "CENTROID_NEAR_GRID_BOUNDARY": 15,
+        "CENTROID_OFF_MASK": 2,
+        "EXPERT_FRAME_VISIBILITY_NOT_ADJUDICATED": 84,
+        "INSUFFICIENT_ANATOMICAL_COVERAGE": 1,
+        "MASK_NEGATIVE_IS_NOT_EXPERT_VISIBLE_NEGATIVE": 53,
+        "MASK_ZERO_NOT_VISIBLE_NEGATIVE_GOLD": 38,
+        "MULTICOMPONENT_MASK_NOT_MULTIFOCAL_DIAGNOSIS": 14,
+        "QUESTION_ANNOTATION_ENDPOINT_ALIGNMENT_NOT_ADJUDICATED": 84,
+        "SMALL_SOURCE_MASK_REQUIRES_REVIEW": 10,
+        "SOURCE_NUMERIC_LABEL3_ENHANCING_MAPPING_NOT_EXPLICIT_IN_LOCAL_SOURCE_DOCS": 84
+      },
+      "labels": {
+        "no": 53,
+        "yes": 31
+      },
+      "metadata_contingencies": {
+        "level": {
+          "groups": 3,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 61,
+          "resubstitution_ceiling": 0.7261904761904762,
+          "rows": 84
+        },
+        "patient": {
+          "groups": 28,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 58,
+          "resubstitution_ceiling": 0.6904761904761905,
+          "rows": 84
+        },
+        "scanner": {
+          "groups": 9,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 53,
+          "resubstitution_ceiling": 0.6309523809523809,
+          "rows": 84
+        },
+        "site": {
+          "groups": 8,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 53,
+          "resubstitution_ceiling": 0.6309523809523809,
+          "rows": 84
+        },
+        "site+level": {
+          "groups": 24,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 64,
+          "resubstitution_ceiling": 0.7619047619047619,
+          "rows": 84
+        }
+      },
+      "primary_queue_rows": {
+        "CAVITY_RIM_ETIOLOGY_ADJUDICATION": 4,
+        "COVERAGE_UNANSWERABLE": 1,
+        "MASK_NEGATIVE_MRI_APPARENT_DISCORDANCE": 5,
+        "MASK_NEGATIVE_NEEDS_EXPERT_NEGATIVE_ADJUDICATION": 32,
+        "MASK_POSITIVE_MRI_NOT_CONSPICUOUS": 5,
+        "POSITIVE_GEOMETRY_COMPLEXITY_ADJUDICATION": 22,
+        "SPATIAL_REVIEW_CANDIDATE_EXPERT_PENDING": 15
+      },
+      "rows": 84
+    },
+    "mri_tumor_grid": {
+      "blocking_reason_counts": {
+        "CAVITY_RIM_ETIOLOGY_UNADJUDICATED": 4,
+        "CENTROID_NEAR_GRID_BOUNDARY": 15,
+        "CENTROID_OFF_MASK": 2,
+        "EXPERT_FRAME_VISIBILITY_NOT_ADJUDICATED": 46,
+        "MULTICOMPONENT_MASK_NOT_MULTIFOCAL_DIAGNOSIS": 14,
+        "QUESTION_ANNOTATION_ENDPOINT_ALIGNMENT_NOT_ADJUDICATED": 46,
+        "SMALL_SOURCE_MASK_REQUIRES_REVIEW": 10
+      },
+      "labels": {
+        "center-bottom": 1,
+        "center-middle": 12,
+        "center-top": 3,
+        "left-bottom": 1,
+        "left-middle": 18,
+        "right-middle": 11
+      },
+      "metadata_contingencies": {
+        "level": {
+          "groups": 3,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 24,
+          "resubstitution_ceiling": 0.5217391304347826,
+          "rows": 46
+        },
+        "patient": {
+          "groups": 28,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 41,
+          "resubstitution_ceiling": 0.8913043478260869,
+          "rows": 46
+        },
+        "scanner": {
+          "groups": 9,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 23,
+          "resubstitution_ceiling": 0.5,
+          "rows": 46
+        },
+        "site": {
+          "groups": 8,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 22,
+          "resubstitution_ceiling": 0.4782608695652174,
+          "rows": 46
+        },
+        "site+level": {
+          "groups": 19,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 29,
+          "resubstitution_ceiling": 0.6304347826086957,
+          "rows": 46
+        }
+      },
+      "primary_queue_rows": {
+        "CAVITY_RIM_ETIOLOGY_ADJUDICATION": 4,
+        "MASK_POSITIVE_MRI_NOT_CONSPICUOUS": 5,
+        "POSITIVE_GEOMETRY_COMPLEXITY_ADJUDICATION": 22,
+        "SPATIAL_REVIEW_CANDIDATE_EXPERT_PENDING": 15
+      },
+      "rows": 46
+    },
+    "mri_tumor_presence": {
+      "blocking_reason_counts": {
+        "CAVITY_RIM_ETIOLOGY_UNADJUDICATED": 5,
+        "CENTROID_NEAR_GRID_BOUNDARY": 15,
+        "CENTROID_OFF_MASK": 2,
+        "EXPERT_FRAME_VISIBILITY_NOT_ADJUDICATED": 84,
+        "INSUFFICIENT_ANATOMICAL_COVERAGE": 1,
+        "MASK_NEGATIVE_IS_NOT_EXPERT_VISIBLE_NEGATIVE": 38,
+        "MASK_ZERO_NOT_VISIBLE_NEGATIVE_GOLD": 38,
+        "MULTICOMPONENT_MASK_NOT_MULTIFOCAL_DIAGNOSIS": 14,
+        "QUESTION_ANNOTATION_ENDPOINT_ALIGNMENT_NOT_ADJUDICATED": 84,
+        "SMALL_SOURCE_MASK_REQUIRES_REVIEW": 10
+      },
+      "labels": {
+        "no": 38,
+        "yes": 46
+      },
+      "metadata_contingencies": {
+        "level": {
+          "groups": 3,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 60,
+          "resubstitution_ceiling": 0.7142857142857143,
+          "rows": 84
+        },
+        "patient": {
+          "groups": 28,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 56,
+          "resubstitution_ceiling": 0.6666666666666666,
+          "rows": 84
+        },
+        "scanner": {
+          "groups": 9,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 50,
+          "resubstitution_ceiling": 0.5952380952380952,
+          "rows": 84
+        },
+        "site": {
+          "groups": 8,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 48,
+          "resubstitution_ceiling": 0.5714285714285714,
+          "rows": 84
+        },
+        "site+level": {
+          "groups": 24,
+          "interpretation": "Training contingency only; not a fitted classifier, unseen-patient score or evidence that a VLM used metadata",
+          "majority_correct": 63,
+          "resubstitution_ceiling": 0.75,
+          "rows": 84
+        }
+      },
+      "primary_queue_rows": {
+        "CAVITY_RIM_ETIOLOGY_ADJUDICATION": 4,
+        "COVERAGE_UNANSWERABLE": 1,
+        "MASK_NEGATIVE_MRI_APPARENT_DISCORDANCE": 5,
+        "MASK_NEGATIVE_NEEDS_EXPERT_NEGATIVE_ADJUDICATION": 32,
+        "MASK_POSITIVE_MRI_NOT_CONSPICUOUS": 5,
+        "POSITIVE_GEOMETRY_COMPLEXITY_ADJUDICATION": 22,
+        "SPATIAL_REVIEW_CANDIDATE_EXPERT_PENDING": 15
+      },
+      "rows": 84
+    }
+  },
+  "plane_partition": {
+    "people": 28,
+    "planes": 84,
+    "primary_queue_counts": {
+      "CAVITY_RIM_ETIOLOGY_ADJUDICATION": 4,
+      "COVERAGE_UNANSWERABLE": 1,
+      "MASK_NEGATIVE_MRI_APPARENT_DISCORDANCE": 5,
+      "MASK_NEGATIVE_NEEDS_EXPERT_NEGATIVE_ADJUDICATION": 32,
+      "MASK_POSITIVE_MRI_NOT_CONSPICUOUS": 5,
+      "POSITIVE_GEOMETRY_COMPLEXITY_ADJUDICATION": 22,
+      "SPATIAL_REVIEW_CANDIDATE_EXPERT_PENDING": 15
+    }
+  },
+  "primary_queue_row_counts": {
+    "CAVITY_RIM_ETIOLOGY_ADJUDICATION": 12,
+    "COVERAGE_UNANSWERABLE": 2,
+    "MASK_NEGATIVE_MRI_APPARENT_DISCORDANCE": 10,
+    "MASK_NEGATIVE_NEEDS_EXPERT_NEGATIVE_ADJUDICATION": 64,
+    "MASK_POSITIVE_MRI_NOT_CONSPICUOUS": 15,
+    "POSITIVE_GEOMETRY_COMPLEXITY_ADJUDICATION": 66,
+    "SPATIAL_REVIEW_CANDIDATE_EXPERT_PENDING": 45
+  },
+  "read_scope": {
+    "classifier_fits": 0,
+    "dev_or_final100_files_read": 0,
+    "existing_TRAIN_JSON_and_source_docs_only": true,
+    "image_files_decoded": 0,
+    "mask_or_MRI_NIfTI_files_opened": 0,
+    "models_loaded": 0,
+    "new_renders": 0,
+    "optimizer_updates": 0,
+    "prior_sheet_files_hashed_only": 7,
+    "repeated_blind_judgments": 0
+  },
+  "remaining_decisive_blocker": "Independent expert frame-level visibility and question/annotation endpoint adjudication; enhancement route additionally needs source numeric-label semantics confirmation.",
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "rules_sha256": "5440b6471759e557d1c7700a66454a9dbe529826a90b26c863426cacf969dd7e",
+  "schema": "second-mri-task-review-queue-v1",
+  "scientifically_admitted_second_task_rows": 0,
+  "source_annotation_semantics": {
+    "dataset_release": "OpenNeuro ds007045 v2.0.1",
+    "local_renderer_endpoints": {
+      "mri_enhancing_presence": "any(mask==3), numeric semantic mapping NOT_VERIFIED locally",
+      "mri_tumor_grid": "global centroid of np.rot90(mask>0),legacy doubled display coordinate,3x3 FLAIR-panel grid",
+      "mri_tumor_presence": "any(mask>0)"
+    },
+    "not_supported_by_these_source_docs": [
+      "Per-plane visible tumor/absence/enhancement gold at the exact frozen 2D rendering.",
+      "An explicit numeric0/1/2/3 dictionary confirming local mask==3 enhancement semantics.",
+      "Per-subject manual correction/QC completeness, independent wholly hand-traced masks, or postoperative diagnoses from cavity-like MRI."
+    ],
+    "scientific_consequence": "Programmatic source-mask arithmetic is reproducible. Image-only clinical visibility and precise endpoint interpretation still require independent expert adjudication.",
+    "source_metadata_commit": "283007b96977b5b3285bd22cd67b7d97114b1eed",
+    "supported_by_pinned_README": [
+      "Adults with histologically confirmed primary glioblastoma; preoperative MRI before surgery.",
+      "SegResNet-initialized tumor masks following BraTS convention, subsequently reviewed/corrected by neuroradiologists.",
+      "Segmentation masks correspond spatially to preprocessed MRI; N4/MNI152/skull stripping are existing derivatives."
+    ]
+  },
+  "spatial_priority_review_subset": {
+    "definition": "Single-component robust whole-mask-centroid geometry plus prior MRI-only apparent abnormality and no cavity/rim lexical concern; expert pending, not visual or clinical gold.",
+    "labels": {
+      "center-middle": 1,
+      "left-bottom": 1,
+      "left-middle": 8,
+      "right-middle": 5
+    },
+    "levels": {
+      "45": 8,
+      "91": 7
+    },
+    "manifest_sha256": "549751aee8bfb1f963f2e2475fc15194cd0fd88178304a48e8fd8a7d72e8f7a2",
+    "people": 13,
+    "rows": 15,
+    "sites": 6,
+    "training_authorized": false
+  },
+  "status": "ACTUAL_CPU_VERSIONED_REVIEW_CANDIDATES_BUILT_SCIENTIFIC_ADMISSION_HOLD",
+  "training_authorized": false
+}

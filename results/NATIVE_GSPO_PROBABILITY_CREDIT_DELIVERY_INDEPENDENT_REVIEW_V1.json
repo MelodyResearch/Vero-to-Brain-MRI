@@ -1,0 +1,63 @@
+{
+  "AGENTS_sha256": "53b8cfe3a47a249e0531b3fc4a50aedd6031e489209bfbba69bd68c8cedbc357",
+  "checks": {
+    "actual_backward_calls": 24,
+    "actual_generation_calls": 0,
+    "actual_language_model_API_forwards": 95,
+    "actual_model_loads_including_preserved_failed_load": 3,
+    "actual_new_training": 0,
+    "actual_optimizer_updates": 0,
+    "all_public_evidence_hashes_match": true,
+    "all_three_actual_native_wall_seconds": 378.678813748993,
+    "no_individual_case_keys_images_paths_tokens_or_gradient_arrays_in_reviewed_delivery": true,
+    "report_and_summary_match": true,
+    "successful_native_wall_seconds": 312.98128658300266
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "findings": [
+    "New F32 shared/explicit path acceptance is correctly limited to one17-position sequence context; original BF16 FAIL and historical categorical/accuracy causal uncertainty remain explicit. Combined intervention is not a unique kernel-cause proof.",
+    "Actual B3 is clearly a newF32 fixed-historical-sample surrogate with condition-own old reference, not originalBF16 gradient reconstruction or F32 on-policy rollout. DallasKV and broader contexts remain unqualified.",
+    "Saved gradient arithmetic confirms all own-old errors exactly0 and ratio1 despite rounded scalar loss-inferred r near1. The reported local direction signs/magnitudes match saved arrays and strict class/nonclass handling; no finite class-margin or MRI accuracy claim is made.",
+    "Sequence negative response is strictnonclass with labelmask0. Full-minus-label remainder is defined by difference, not isolatedformat-only credit. Norm ratios are explicitly not orthogonal contribution percentages.",
+    "Preserved pre-scorer failure, missing failed-group Adam/RNG audit, one corrected load, all1942 unchanged completed-state evidence and post-release1052bytes are accurately distinguished. The separate pre-native launcher KeyError is not counted as a model attempt.",
+    "Both successful measurements, one failed load and closed-tool wall sums reconcile to95LM API calls,24backwards,3loads,0generation/updates. Checkpoint internal recomputation is not miscounted as a fixed number ofphysicalpasses.",
+    "Report includes103NORMAL/CONTINUE samples,2missing MLX active/peak samples,10.206GiB valid peak and unavailable thermal telemetry; no hard wall-time or hardware-safety guarantee is claimed.",
+    "Task qualification claims remain candidate-only: expertadjudication0, numericmask3 ontology/endpoints unresolved, secondheterogeneousscientifictaskadmission0. Existing source evidence and matched indices are not invented clinical/native outcomes.",
+    "No final100-guided selection or training permission is asserted. Future Adam60 is literalcontinuity only, B28 baseline preserved; future paireddata intervention is conditional on common numerical-contract/task qualification, a new independent patient design and separate researcher authorization.",
+    "Reviewed public report/evidence contain aggregate statistics and digest provenance, not MRI images, patient/study identifiers, token IDs, fullvocab arrays, per-response tensor payloads, checkpoints, optimizer/RNG payloads or rawlogs."
+  ],
+  "limitations": [
+    "This final text/privacy review does not rerun any native model, backward, clinical adjudication or historical experiment. It does not independently certify actual sampling frequencies or finite accuracy improvements.",
+    "Different underlying model-family review was not performed: CROSS_MODEL_REVIEW=NOT_VERIFIED.",
+    "Root reported50focusedCPUtests; this delivery check binds that reported aggregate and does not misattribute a new independent50-test rerun. Scoped component test/numerical reviews retain their own exact evidence.",
+    "Original historical artifacts/final100 were not used to choose new inputs, labels, prompts or parent weights in this review; no final100 was opened.",
+    "Readiness remainsNO. Passing launch/numerical/delivery review is not permission for new training or further native experiments."
+  ],
+  "public_evidence_sha256": {
+    "results/CONDITIONAL_GSPO_GRADIENT_ACTUAL_INDEPENDENT_REVIEW_V2.json": "7bc865f8307dbae7e1e869b7584229e75052ae98d582d4a6f31455b63eae044f",
+    "results/CONDITIONAL_GSPO_PRE_SCORER_FAILURE_INDEPENDENT_REVIEW_V1.json": "5476c84d5559fb2ab6b6122f15c6cb5bb4312445414420e3b381113b03ade219",
+    "results/GSPO_SHARED_PREFIX_LENGTH_CREDIT_CPU_V1.json": "f2c330f9325b38c7c413375a471a637984651e68f6c06f806c9601b9dba4774c",
+    "results/NATIVE_GSPO_ROOT_CAUSE_RESOLUTION_ACTUAL_SUMMARY_V1.json": "c7549bbc138fcb538336ca4463832bd8d6db3fefdd90f50710e444bf95132581",
+    "results/NATIVE_PROBABILITY_DISTRIBUTION_INDEPENDENT_REVIEW_V1.json": "e4767b2f230b14549bf6cbaa5f102eb773d064034f04b48db8277a3a5ce5f0d5",
+    "results/NATIVE_PROBABILITY_RESOLUTION_ACTUAL_INDEPENDENT_REVIEW_V1.json": "3f6298bd3d6d353fd71832f59cdd54c4d95ae5130836629e252bcf7a17515221",
+    "results/SAVED_NATIVE_PROBABILITY_SOURCE_INDEPENDENT_ANALYSIS_V1.json": "a61a9da3dd3eb8287ccccc74798281b00044092ea5ae488af03737449d403692",
+    "results/SECOND_MRI_TASK_REVIEW_QUEUE_V1.json": "2cc1c6786fe1e85677e252a5a929f7a6daaa1164b21d956039928b8830cbc7e3",
+    "results/SECOND_TASK_ELIGIBILITY_INDEPENDENT_REVIEW_V1.json": "6d05cdf60592cf00c709afb08faa22fc8c5918d2a341b4e73089bb10bb536992"
+  },
+  "report": {
+    "path": "research/NATIVE_GSPO_PROBABILITY_AND_CREDIT_RESOLUTION_2026-10-18.md",
+    "sha256": "d8880453e144346be930ff7c2fee4f18b2515ef9395bf5150f0b19ee6371b6d1"
+  },
+  "reviewed_utc": "2026-10-18T23:51:40.364985+00:00",
+  "reviewer_final100_access": false,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_new_model_loads": 0,
+  "reviewer_new_native_calls": 0,
+  "reviewer_new_optimizer_updates": 0,
+  "schema": "native-gspo-probability-credit-delivery-independent-review-v1",
+  "scope": "Final frozen report/guardrails/public-evidence arithmetic, claim boundary and privacy check; no repeated component/native audit",
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

@@ -1,0 +1,49 @@
+{
+  "actual_exit_code": 1,
+  "actual_exit_sha256": "5b800a623e9c0de92fd50a5f705e460285a2212b928f7591f6a44d4668ad1ffa",
+  "actual_wall_seconds": 65.69752716599032,
+  "backward_calls": 0,
+  "closed_stdout_sha256": "e3d6ba76a04d1f17f6d5d76e984021c0539dab0db7e3726204ac713f931c5109",
+  "counter_evidence": "Zero scorer/backward is derived from authenticated failure trace and source control flow; no worker counter receipt was saved before this preamble failure.",
+  "experiment_verdict": "FAILED_BEFORE_FIRST_SCORER",
+  "failure": {
+    "actual_AST_CPU_reproduction": true,
+    "completed_groups": 0,
+    "location": "visible_decode(empty_token_prefix) called by strict label_support",
+    "type": "IndexError"
+  },
+  "generation_calls": 0,
+  "limits": [
+    "This is a saved-evidence/source review of a failed native attempt, not completed B3 measurements.",
+    "No group-final Adam/RNG fingerprint was saved because the failing preamble was outside group try/finally. Do not infer that missing audit from unchanged parameters.",
+    "A separate earlier CPU launcher KeyError occurred before subprocess/native creation; it is not another native attempt or native budget consumption.",
+    "No actual hardware instability is evidenced by these NORMAL/CONTINUE resource receipts; they cannot exclude all hardware risks.",
+    "Reviewer performed no MLX/model/backward/generation/final100 access; cross-model review NOT_VERIFIED."
+  ],
+  "optimizer_updates": 0,
+  "private_detail_sha256": "e3e4a83488f20aa46924eaded13a2b7043554c32464d909a376b8a3567f6e2cc",
+  "resources": {
+    "action": {
+      "CONTINUE": 61
+    },
+    "supervisor_level": {
+      "NORMAL": 61
+    }
+  },
+  "review_sha256": "92dab1e18c8871df592f5f52958198aa8c83aba4617a6d58aaba0eda5d3539f4",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "conditional-gspo-pre-scorer-failure-independent-review-v1",
+  "scope_file_sha256": "e5e88ff13582d2651e163c77a81a631e5419875038570d47bc0208215903686e",
+  "scorer_forwards": 0,
+  "source_sha256": "1f766b426b9e22e6e3ee107097f97fb944b1fa91c01f52edd2776711aa2801a8",
+  "state": {
+    "all1942_parameter_fingerprints_equal": true,
+    "all_parameter_digest": "4d68d4d142d1ee391efe58d8ed2ebab6153afec6d2ce4dcdaca78e5c713daa2b",
+    "group_after_Adam_Python_MLX_RNG_audit": "NOT_VERIFIED_MISSING_GROUP_EXIT_RECEIPT",
+    "release_active_MLX_bytes": 1032,
+    "release_model_none": true
+  },
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

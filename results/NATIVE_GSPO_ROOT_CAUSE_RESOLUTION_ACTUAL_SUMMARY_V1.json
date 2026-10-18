@@ -1,0 +1,57 @@
+{
+  "accuracy_improvement": "NOT_MEASURED_NO_GENERATION_OR_UPDATES",
+  "actual_backward_calls": 24,
+  "actual_language_model_API_forwards": 95,
+  "actual_two_successful_native_wall_seconds": 312.98128658300266,
+  "all_three_actual_native_wall_seconds": 378.678813748993,
+  "base_branch": "research/vero-mri-native-path-qualification-v1",
+  "base_commit": "80b0128ea4e81b6507a8189673df405c7adf623c",
+  "cross_model_review": "NOT_VERIFIED_ISOLATED_CODEX_REVIEWERS",
+  "delivery_branch": "research/vero-mri-native-probability-resolution-v1",
+  "evidence_tier": "ACTUAL_NATIVE_READONLY_PLUS_INDEPENDENT_SAVED_NUMERICAL_RECOMPUTATION",
+  "expert_adjudications": 0,
+  "failed_B3_group_final_Adam_RNG": "NOT_VERIFIED_NO_GROUP_FINALLY_RECEIPT; preserved source/trace proves no scorer/backward; global1942 exact and release verified",
+  "final100_reads_for_this_phase": 0,
+  "generation_calls": 0,
+  "gradient_B3": "PASS_WITH_LIMITATIONS_FIXED_HISTORICAL_SAMPLES_NEW_F32_SURROGATE",
+  "historical_BF16_B2": "FAIL_PRESERVED",
+  "limitations": [
+    "No historical BF16 gradient reconstruction or F32 on-policy rollout.",
+    "Dallas KV/full parity and contexts beyond first17 sequence tokens NOT_VERIFIED.",
+    "Group-local mean-logp direction is not finite accuracy, class-margin or generalization.",
+    "Second heterogeneous MRI scientific task remains blocked; metadata control indices are not native or expert outcomes.",
+    "No automatic training authorization; new independent patient holdout not yet established."
+  ],
+  "mission_alignment": "ENGINEERING_UNBLOCK: diagnose Vero-style multi-task GSPO visual learning without training or final100-guided selection",
+  "model_loads_including_preserved_pre_score_failure": 3,
+  "new_training": 0,
+  "next_single_training_factor_if_later_authorized": "Sequence sample composition: existing paired same-patient/same-level modalities, only after task eligibility and common numeric-contract qualification; no simultaneous reward/LR/sampler/LoRA change",
+  "numerical_B2": "PASS_WITH_LIMITATIONS_NEW_F32_MATCHED_PATH_ONLY",
+  "operator": "Codex /root",
+  "optimizer_updates": 0,
+  "preserved_pre_score_failure_wall_seconds": 65.69752716599032,
+  "public_proof_sha256": {
+    "CONDITIONAL_GSPO_GRADIENT_ACTUAL_INDEPENDENT_REVIEW_V2.json": "7bc865f8307dbae7e1e869b7584229e75052ae98d582d4a6f31455b63eae044f",
+    "CONDITIONAL_GSPO_PRE_SCORER_FAILURE_INDEPENDENT_REVIEW_V1.json": "5476c84d5559fb2ab6b6122f15c6cb5bb4312445414420e3b381113b03ade219",
+    "GSPO_SHARED_PREFIX_LENGTH_CREDIT_CPU_V1.json": "f2c330f9325b38c7c413375a471a637984651e68f6c06f806c9601b9dba4774c",
+    "NATIVE_PROBABILITY_DISTRIBUTION_INDEPENDENT_REVIEW_V1.json": "e4767b2f230b14549bf6cbaa5f102eb773d064034f04b48db8277a3a5ce5f0d5",
+    "NATIVE_PROBABILITY_RESOLUTION_ACTUAL_INDEPENDENT_REVIEW_V1.json": "3f6298bd3d6d353fd71832f59cdd54c4d95ae5130836629e252bcf7a17515221",
+    "SAVED_NATIVE_PROBABILITY_SOURCE_INDEPENDENT_ANALYSIS_V1.json": "a61a9da3dd3eb8287ccccc74798281b00044092ea5ae488af03737449d403692",
+    "SECOND_MRI_TASK_REVIEW_QUEUE_V1.json": "2cc1c6786fe1e85677e252a5a929f7a6daaa1164b21d956039928b8830cbc7e3",
+    "SECOND_TASK_ELIGIBILITY_INDEPENDENT_REVIEW_V1.json": "6d05cdf60592cf00c709afb08faa22fc8c5918d2a341b4e73089bb10bb536992"
+  },
+  "report": {
+    "path": "research/NATIVE_GSPO_PROBABILITY_AND_CREDIT_RESOLUTION_2026-10-18.md",
+    "sha256": "d8880453e144346be930ff7c2fee4f18b2515ef9395bf5150f0b19ee6371b6d1"
+  },
+  "root_focused_CPU_tests": {
+    "failed": 0,
+    "passed": 50
+  },
+  "schema": "native-gspo-root-cause-resolution-actual-summary-v1",
+  "scientific_second_MRI_task_admission": 0,
+  "spatial_review_priority_candidates": 15,
+  "state_completed_runs": "ALL1942_MODEL_PARAMETERS_ADAPTER504_GROUP_ADAM_AND_PYTHON_MLX_RNG_UNCHANGED",
+  "training_authorized": false,
+  "training_readiness": "NO"
+}
