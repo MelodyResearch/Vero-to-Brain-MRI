@@ -1,0 +1,115 @@
+{
+  "actual_SFT_first_step": {
+    "actual_step_samples": 1,
+    "first_example_to_before_optimizer_seconds": 21.51277129200753,
+    "limitation": "One actual original-control step only; excludes subsequent Adam/checkpoint completion, so SFT ETAs use declared20/27/40 second scenarios, not a measured median."
+  },
+  "actual_post2_evaluation_timings": {
+    "greedy_intervals": 39,
+    "greedy_mean_seconds": 3.6925420875896893,
+    "greedy_median_seconds": 3.7895968329976313,
+    "greedy_p90_seconds": 4.173596141999587,
+    "model_load_seconds": 121.82384041600744,
+    "whole_41greedy_75candidate_sampled_seconds": 381.11622366600204
+  },
+  "as_of_utc": "2026-10-18T04:28:35.948461+00:00",
+  "completed_original_RL": {
+    "actual_Adam_updates": 355,
+    "arms": 17,
+    "charged_tokens_including_one_time_debts": 2844873,
+    "committed_groups": 2161,
+    "independent_arms_not_one_continuous_model": true
+  },
+  "conditional_scenarios": {
+    "conservative": {
+      "final2200_greedy_hours": 5.0,
+      "one_adaptive_round_hours": 0.85,
+      "remaining_360_SFT_hours": 4.0,
+      "remaining_RL_hours": 2.4,
+      "resume_registry_analysis_hours": 0.75,
+      "total_hours": 13.0
+    },
+    "normal": {
+      "final2200_greedy_hours": 3.3,
+      "one_adaptive_round_hours": 0.6,
+      "remaining_360_SFT_hours": 2.7,
+      "remaining_RL_hours": 1.0,
+      "resume_registry_analysis_hours": 0.4,
+      "total_hours": 8.0
+    },
+    "optimistic": {
+      "final2200_greedy_hours": 2.7,
+      "one_adaptive_round_hours": 0.4,
+      "remaining_360_SFT_hours": 2.0,
+      "remaining_RL_hours": 0.5,
+      "resume_registry_analysis_hours": 0.2,
+      "total_hours": 5.8
+    }
+  },
+  "evidence_sha256": {
+    "P_calibrated_seed13": "3b2af0b8b5b6572e56397d186a6d74845905211a022761a8a9fe58df52900dfa",
+    "U_calibrated_seed11": "c43ae3a7694471a60aed53985297d5a80080f77406b0e7e12bce5378240d389f",
+    "U_calibrated_seed7": "09539949db85f6e7d8ef5c85da91e695b9fa71915edbb8ac89e1be4bdbb98eb4",
+    "first_SFT7_resource": "ecd3f67b4e5034b825e62688934420f572a269ffc82955f56f38cc4dd1be1240",
+    "post2_resource": "3ef895f3e2805e62f8d074a4bdadf6e4c9b3549152ea2f0ec385eca58a69314a"
+  },
+  "forecast_assumptions": [
+    "One heavyweight model and unchanged observed short-answer behavior; all training remains AC-only and existing gates apply.",
+    "RL effective-update fraction and seed change runtime; no exact remaining update count is forecast.",
+    "Final2200 estimate scales actual native greedy intervals plus22 model loads; final100 has not been opened.",
+    "One bounded adaptive round includes parent and post evaluation, at most16 rollout groups and4 accepted updates, not an open-ended sweep.",
+    "Original queue restart authentication observed at about11minutes; bookkeeping/resume allowance is explicit.",
+    "Further methodological iterations, prolonged resource/power holds or hardware instability are not bounded by this forecast.",
+    "Final test cannot start during ongoing method selection; freeze/release prerequisites remain mandatory."
+  ],
+  "native_commit_times_used": false,
+  "native_group_timings": {
+    "P_calibrated_seed13": {
+      "includes": "successive native rollout-group start intervals: generation, conditional updates, checkpoint and resource overhead; last30 completed intervals",
+      "intervals": 30,
+      "mean_seconds": 60.25638277083344,
+      "median_seconds": 66.28620237550058,
+      "p90_seconds": 87.46427087110933
+    },
+    "U_calibrated_seed11": {
+      "includes": "successive native rollout-group start intervals: generation, conditional updates, checkpoint and resource overhead; last30 completed intervals",
+      "intervals": 30,
+      "mean_seconds": 17.245035024999137,
+      "median_seconds": 17.677197500001057,
+      "p90_seconds": 18.453212008389528
+    },
+    "U_calibrated_seed7": {
+      "includes": "successive native rollout-group start intervals: generation, conditional updates, checkpoint and resource overhead; last30 completed intervals",
+      "intervals": 30,
+      "mean_seconds": 21.844258198599952,
+      "median_seconds": 22.39111554149713,
+      "p90_seconds": 24.222624200009157
+    }
+  },
+  "operator": "Codex /root",
+  "remaining_original": {
+    "RL_arm": "U_calibrated_seed13",
+    "RL_arms": 1,
+    "RL_budget_tokens": 169216,
+    "RL_max_attempted_groups": 198,
+    "RL_typical_groups_from_completed_uniform_calibrated_seeds": [
+      126,
+      125
+    ],
+    "SFT7_first_step_not_repeated": true,
+    "SFT_arms": 3,
+    "SFT_steps_remaining": [
+      119,
+      120,
+      121
+    ],
+    "SFT_total_remaining_steps": 360,
+    "exact_remaining_RL_groups": "NOT_KNOWN_BEFORE_VARIABLE_LENGTH_ROLLOUTS",
+    "frozen_final_cases_each": 100,
+    "frozen_final_checkpoints": 22,
+    "frozen_final_greedy_records": 2200,
+    "sealed_final_accessed_for_estimate": false
+  },
+  "schema": "finite-study-native-events-ETA-v1",
+  "status": "OBSERVED_TIMINGS_WITH_CONDITIONAL_FORECAST"
+}
