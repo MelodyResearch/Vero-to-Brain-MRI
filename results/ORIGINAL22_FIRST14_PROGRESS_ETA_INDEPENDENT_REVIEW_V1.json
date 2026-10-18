@@ -1,0 +1,39 @@
+{
+  "accuracy_scored": false,
+  "active_stage_output_opened": false,
+  "as_of_utc": "2026-10-18T10:07:45.922389+00:00",
+  "completed_record_bindings": 1400,
+  "completed_stages": 14,
+  "limitations": [
+    "This verifies the 14-stage snapshot, not current remaining-stage completion.",
+    "Durations use logged launch UTC plus local cursor filesystem mtimes and include loading, hashing, checkpoint/progress overhead and guards; they are not pure GPU or generation times.",
+    "Cursor content hashes do not cryptographically bind filesystem mtimes; timestamp reproduction is local provenance, not a portable signed runtime measurement.",
+    "The 1.5x multiplier, 0.5h allowance and historical per-case/load coefficients are planning assumptions; historical coefficients were not rederived in this narrow check.",
+    "No probabilistic completion interval, hardware availability guarantee, remaining-model accuracy estimate or MRI generalization claim."
+  ],
+  "models_or_tensors_loaded": false,
+  "native_launch_receipt_sha256": "b3acb1ce74660318a44fd05e167f6250dded37ab3e59d4918c94a54abf17e6d5",
+  "normal_multiplier_declared_assumption": 1.5,
+  "per_stage_duration_reconstructions": 14,
+  "privacy": "Aggregate is safe: no case/patient IDs, private paths, raw responses, token arrays, targets or accuracy values.",
+  "private_detail_receipt_sha256": "99724a25e2c02fb8bf0e824c215a39cc5e2c59e4a55663b2c350913b1175bd2a",
+  "recomputed_conditional_hours": {
+    "conservative_historical_slow_RL": 3.6435955555555553,
+    "normal_planning": 1.4776709370953696,
+    "optimistic": 1.1517806247302462
+  },
+  "recomputed_observed_seconds": {
+    "observed_average_model_pipeline_seconds": 293.30128112861087,
+    "observed_max_model_pipeline_seconds": 343.1815013885498,
+    "observed_median_model_pipeline_seconds": 276.6726095676422,
+    "observed_min_model_pipeline_seconds": 268.3066680431366
+  },
+  "reference_labels_parsed": false,
+  "remaining_stages_at_reviewed_snapshot": 8,
+  "reviewed_aggregate_sha256": "776c48af63fc92d5288f444f4d7b6940ff2a6f23534c508034814d7a7b2d6dca",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ORIGINAL22_FIRST14_PROGRESS_ETA_INDEPENDENT_REVIEW_V1",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification_planning_allowance_hours": 0.5
+}
