@@ -1,0 +1,21 @@
+{
+  "B28_displayed_rows": 1,
+  "SVG_sha256": "abe30b939fd5f1207e2d899f2633c95cf3330a1265378fb318f9b8a49d4cf425",
+  "as_of_utc": "2026-10-18T11:12:19.744582+00:00",
+  "canonical_result_sha256": "4ce5a22c5594a12f0c8711c4f921a337b7bc63cb2636575ae52af2e1fbd02512",
+  "distinct_displayed_checkpoint_rows": 22,
+  "limitations": [
+    "Checks SVG annotations and labels against already independently verified canonical aggregate only; no new model/image read or independent visual rendering review.",
+    "Rounded two-decimal display preserves underlying full-precision canonical result; descriptive finite original22 study, no seed selection or stable transfer/generalization claim."
+  ],
+  "new_statistics_or_scoring_performed": false,
+  "patient_case_images_or_raw_outputs_included": false,
+  "plot_source_sha256": "be9cec914acf6de2db81cb5bb59e5941c66a73c50abd6f063896a85174766b72",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ORIGINAL22_FINAL100_AGGREGATE_FIGURE_INDEPENDENT_REVIEW_V1",
+  "strict_baseline_subtraction_percentage_point_annotations_verified": 44,
+  "strict_full_format_accuracy_annotations_verified": 44,
+  "total_numeric_annotations_verified": 88,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

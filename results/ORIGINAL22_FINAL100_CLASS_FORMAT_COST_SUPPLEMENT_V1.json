@@ -1,0 +1,3260 @@
+{
+  "actual_analysis_spec_sha256": "f620c0d723f604c3029c42c3927013cf52cce8050bb305a09d949defe2655acf",
+  "additional_forwards": 0,
+  "baseline_model_runs": 1,
+  "bootstrap_repeated": false,
+  "canonical_actual_test_execution_false_semantics": "The reused adapter flag describes its saved-only analysis operation, not absence of native evaluation. Exact all22 exit0/closed-log/output witnesses and canonical execution receipt bind already executed native final100 outputs.",
+  "canonical_matrix_task_cells": 48,
+  "canonical_result_sha256": "4ce5a22c5594a12f0c8711c4f921a337b7bc63cb2636575ae52af2e1fbd02512",
+  "cost_contract": "Actual stored token_ids and elapsed_seconds only. Timed generate_record spans include its prompt/image/hash/cache work and inside-call resource callbacks or HOLD waits; initial model loading and outer JSON write/flush overhead are excluded. These are elapsed call times, not pure GPU time. Missing elapsed data remains unavailable. EOS stop at the cap is not classified as length truncation.",
+  "evidence_tier": "OBSERVED",
+  "generalization_limitations": "Question/class recount is descriptive. Canonical patient/cycle and between-seed limitations remain unchanged; no clinical or global cross-source independence claim.",
+  "metric_contract": "Existing _answer_and_format: native correctness requires format>0 and exact allowed label ignoring case; full-format correctness additionally requires format==1. No parser or threshold change.",
+  "models": {
+    "B28": {
+      "output_sha256": "cab18724f8fe077cec8cda72b462f9190aced478b5fc68a2d1b912a36a775305",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9167023809523809,
+            "actual_elapsed_seconds_sum": 161.003,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 16,
+            "records_with_actual_token_ids": 84,
+            "sum": 1459
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.593,
+            "actual_elapsed_seconds_sum": 41.488,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:P_calibrated:11": {
+      "output_sha256": "acb434b7673a5266655c7b93ed2b3843efba629b655e4007040f401182113d05",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9153095238095237,
+            "actual_elapsed_seconds_sum": 160.886,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1458
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5911875,
+            "actual_elapsed_seconds_sum": 41.459,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:P_calibrated:13": {
+      "output_sha256": "09322379b1e2628dca52363b809dbf5c740d601ff5a65fe452f94664663dc0a7",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 8.253761904761905,
+            "actual_elapsed_seconds_sum": 693.316,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 17,
+              "full_format_recall": 0.40476190476190477,
+              "native_correct": 17,
+              "native_recall": 0.40476190476190477,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 16,
+              "full_format_recall": 0.38095238095238093,
+              "native_correct": 16,
+              "native_recall": 0.38095238095238093,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "length": 37,
+            "stop": 47
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "0.0": 38,
+            "1.0": 46
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 17,
+              "INVALID": 22,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 10,
+              "INVALID": 16,
+              "contrast-enhanced T1": 16
+            }
+          },
+          "full_format_correct": 33,
+          "full_format_question_accuracy": 0.39285714285714285,
+          "invalid_answers": 38,
+          "length_truncated_records": 37,
+          "literal_hit_max_tokens_records": 37,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 17,
+              "INVALID": 22,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 10,
+              "INVALID": 16,
+              "contrast-enhanced T1": 16
+            }
+          },
+          "native_correct": 33,
+          "native_question_accuracy": 0.39285714285714285,
+          "questions": 84,
+          "tokens": {
+            "max": 256,
+            "median": 101.5,
+            "min": 10,
+            "records_with_actual_token_ids": 84,
+            "sum": 11920
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.638125,
+            "actual_elapsed_seconds_sum": 42.21,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 17,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 16,
+            "sum": 272
+          }
+        }
+      }
+    },
+    "rl:P_calibrated:7": {
+      "output_sha256": "1a5484bd43909d51087890440c4ae50f969413e75041388209f86a4b3ebec072",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.1060119047619046,
+            "actual_elapsed_seconds_sum": 176.905,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 41,
+              "full_format_recall": 0.9761904761904762,
+              "native_correct": 41,
+              "native_recall": 0.9761904761904762,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 41,
+              "INVALID": 0,
+              "contrast-enhanced T1": 1
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 51,
+          "full_format_question_accuracy": 0.6071428571428571,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 41,
+              "INVALID": 0,
+              "contrast-enhanced T1": 1
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 51,
+          "native_question_accuracy": 0.6071428571428571,
+          "questions": 84,
+          "tokens": {
+            "max": 24,
+            "median": 21.0,
+            "min": 16,
+            "records_with_actual_token_ids": 84,
+            "sum": 1783
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5798125,
+            "actual_elapsed_seconds_sum": 41.277,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:P_raw:11": {
+      "output_sha256": "0c1c867c54e94bfd47511db31510119667cc6f7c4d768a10c790036e785cf7bd",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9456309523809523,
+            "actual_elapsed_seconds_sum": 163.433,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 5,
+              "full_format_recall": 0.11904761904761904,
+              "native_correct": 5,
+              "native_recall": 0.11904761904761904,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 37,
+              "INVALID": 0,
+              "contrast-enhanced T1": 5
+            }
+          },
+          "full_format_correct": 47,
+          "full_format_question_accuracy": 0.5595238095238095,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 37,
+              "INVALID": 0,
+              "contrast-enhanced T1": 5
+            }
+          },
+          "native_correct": 47,
+          "native_question_accuracy": 0.5595238095238095,
+          "questions": 84,
+          "tokens": {
+            "max": 21,
+            "median": 18.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1514
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5803125,
+            "actual_elapsed_seconds_sum": 41.285,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:P_raw:13": {
+      "output_sha256": "ac14294c6c4d1694c82abf1722bd76cecd51dfd66bf99a268dd7a31900e705ed",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.326654761904762,
+            "actual_elapsed_seconds_sum": 195.439,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 38,
+              "full_format_recall": 0.9047619047619048,
+              "native_correct": 38,
+              "native_recall": 0.9047619047619048,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 15,
+              "full_format_recall": 0.35714285714285715,
+              "native_correct": 15,
+              "native_recall": 0.35714285714285715,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 38,
+              "INVALID": 0,
+              "contrast-enhanced T1": 4
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 27,
+              "INVALID": 0,
+              "contrast-enhanced T1": 15
+            }
+          },
+          "full_format_correct": 53,
+          "full_format_question_accuracy": 0.6309523809523809,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 38,
+              "INVALID": 0,
+              "contrast-enhanced T1": 4
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 27,
+              "INVALID": 0,
+              "contrast-enhanced T1": 15
+            }
+          },
+          "native_correct": 53,
+          "native_question_accuracy": 0.6309523809523809,
+          "questions": 84,
+          "tokens": {
+            "max": 28,
+            "median": 28.0,
+            "min": 18,
+            "records_with_actual_token_ids": 84,
+            "sum": 2145
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.7295,
+            "actual_elapsed_seconds_sum": 43.672,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 1,
+              "full_format_recall": 0.125,
+              "native_correct": 1,
+              "native_recall": 0.125,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 1,
+              "same": 7
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "full_format_correct": 9,
+          "full_format_question_accuracy": 0.5625,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 1,
+              "same": 7
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "native_correct": 9,
+          "native_question_accuracy": 0.5625,
+          "questions": 16,
+          "tokens": {
+            "max": 19,
+            "median": 19.0,
+            "min": 19,
+            "records_with_actual_token_ids": 16,
+            "sum": 304
+          }
+        }
+      }
+    },
+    "rl:P_raw:7": {
+      "output_sha256": "ec3e272b855e187e81f803167a1cbfbece4fa95cdfee751d8214d073fb579105",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5136666666666665,
+            "actual_elapsed_seconds_sum": 211.148,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 39,
+              "full_format_recall": 0.9285714285714286,
+              "native_correct": 39,
+              "native_recall": 0.9285714285714286,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 13,
+              "full_format_recall": 0.30952380952380953,
+              "native_correct": 13,
+              "native_recall": 0.30952380952380953,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 39,
+              "INVALID": 0,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 29,
+              "INVALID": 0,
+              "contrast-enhanced T1": 13
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 39,
+              "INVALID": 0,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 29,
+              "INVALID": 0,
+              "contrast-enhanced T1": 13
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 51,
+            "median": 27.5,
+            "min": 22,
+            "records_with_actual_token_ids": 84,
+            "sum": 2457
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.91075,
+            "actual_elapsed_seconds_sum": 46.572,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 23,
+            "median": 22.0,
+            "min": 22,
+            "records_with_actual_token_ids": 16,
+            "sum": 359
+          }
+        }
+      }
+    },
+    "rl:S_correspondence:11": {
+      "output_sha256": "498f83f92353f12767d86352d82c56efb6c957faddcddb1fab76a3d2fc1f8430",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9101190476190475,
+            "actual_elapsed_seconds_sum": 160.45,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1459
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.583125,
+            "actual_elapsed_seconds_sum": 41.33,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:S_correspondence:13": {
+      "output_sha256": "ebb8c2c2af0a0e4b133cdb82e79433ce32ea67d9c4f55022189fe6153fbbe3a3",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9132380952380952,
+            "actual_elapsed_seconds_sum": 160.712,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1463
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5811875,
+            "actual_elapsed_seconds_sum": 41.299,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:S_correspondence:7": {
+      "output_sha256": "281723ffe3f206f5f160e164b2815a79df2ee2440bd9dc7e5d8f3245cea035c4",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9110595238095238,
+            "actual_elapsed_seconds_sum": 160.529,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1459
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5786875,
+            "actual_elapsed_seconds_sum": 41.259,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:S_sequence:11": {
+      "output_sha256": "d9ed9982e2e04892530a4f352d293a7596ab4da938d0219128a22f752e83630c",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.405904761904762,
+            "actual_elapsed_seconds_sum": 202.096,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 2,
+              "full_format_recall": 0.047619047619047616,
+              "native_correct": 2,
+              "native_recall": 0.047619047619047616,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 40,
+              "full_format_recall": 0.9523809523809523,
+              "native_correct": 40,
+              "native_recall": 0.9523809523809523,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 2,
+              "INVALID": 0,
+              "contrast-enhanced T1": 40
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 2,
+              "INVALID": 0,
+              "contrast-enhanced T1": 40
+            }
+          },
+          "full_format_correct": 42,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 2,
+              "INVALID": 0,
+              "contrast-enhanced T1": 40
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 2,
+              "INVALID": 0,
+              "contrast-enhanced T1": 40
+            }
+          },
+          "native_correct": 42,
+          "native_question_accuracy": 0.5,
+          "questions": 84,
+          "tokens": {
+            "max": 37,
+            "median": 26.0,
+            "min": 20,
+            "records_with_actual_token_ids": 84,
+            "sum": 2266
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.909,
+            "actual_elapsed_seconds_sum": 46.544,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 1,
+              "full_format_recall": 0.125,
+              "native_correct": 1,
+              "native_recall": 0.125,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 1,
+              "same": 7
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "full_format_correct": 9,
+          "full_format_question_accuracy": 0.5625,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 1,
+              "same": 7
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "native_correct": 9,
+          "native_question_accuracy": 0.5625,
+          "questions": 16,
+          "tokens": {
+            "max": 22,
+            "median": 22.0,
+            "min": 19,
+            "records_with_actual_token_ids": 16,
+            "sum": 349
+          }
+        }
+      }
+    },
+    "rl:S_sequence:13": {
+      "output_sha256": "7bc5e5b4502428892bc72714393112644ac7fd6ed07fb642f3624a62b24a8675",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.8131666666666666,
+            "actual_elapsed_seconds_sum": 152.306,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 40,
+              "full_format_recall": 0.9523809523809523,
+              "native_correct": 40,
+              "native_recall": 0.9523809523809523,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 11,
+              "full_format_recall": 0.2619047619047619,
+              "native_correct": 11,
+              "native_recall": 0.2619047619047619,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 40,
+              "INVALID": 0,
+              "contrast-enhanced T1": 2
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 31,
+              "INVALID": 0,
+              "contrast-enhanced T1": 11
+            }
+          },
+          "full_format_correct": 51,
+          "full_format_question_accuracy": 0.6071428571428571,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 40,
+              "INVALID": 0,
+              "contrast-enhanced T1": 2
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 31,
+              "INVALID": 0,
+              "contrast-enhanced T1": 11
+            }
+          },
+          "native_correct": 51,
+          "native_question_accuracy": 0.6071428571428571,
+          "questions": 84,
+          "tokens": {
+            "max": 18,
+            "median": 15.0,
+            "min": 15,
+            "records_with_actual_token_ids": 84,
+            "sum": 1300
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.480625,
+            "actual_elapsed_seconds_sum": 39.69,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 14,
+            "median": 14.0,
+            "min": 14,
+            "records_with_actual_token_ids": 16,
+            "sum": 224
+          }
+        }
+      }
+    },
+    "rl:S_sequence:7": {
+      "output_sha256": "0718ce9b39b2a29d8e578c022eef17d4c72c25dfaf0c145738d69f5523fa4069",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.2946666666666666,
+            "actual_elapsed_seconds_sum": 192.752,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 39,
+              "full_format_recall": 0.9285714285714286,
+              "native_correct": 39,
+              "native_recall": 0.9285714285714286,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 12,
+              "full_format_recall": 0.2857142857142857,
+              "native_correct": 12,
+              "native_recall": 0.2857142857142857,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 39,
+              "INVALID": 0,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 30,
+              "INVALID": 0,
+              "contrast-enhanced T1": 12
+            }
+          },
+          "full_format_correct": 51,
+          "full_format_question_accuracy": 0.6071428571428571,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 39,
+              "INVALID": 0,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 30,
+              "INVALID": 0,
+              "contrast-enhanced T1": 12
+            }
+          },
+          "native_correct": 51,
+          "native_question_accuracy": 0.6071428571428571,
+          "questions": 84,
+          "tokens": {
+            "max": 29,
+            "median": 24.5,
+            "min": 21,
+            "records_with_actual_token_ids": 84,
+            "sum": 2076
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.8981875,
+            "actual_elapsed_seconds_sum": 46.371,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 22,
+            "median": 22.0,
+            "min": 21,
+            "records_with_actual_token_ids": 16,
+            "sum": 348
+          }
+        }
+      }
+    },
+    "rl:U_calibrated:11": {
+      "output_sha256": "d2807335dbccdc59f8d6c29db52856e2134be4262fe17ce1277fbfdf3d60c2d1",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9119523809523808,
+            "actual_elapsed_seconds_sum": 160.60399999999998,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 40,
+              "full_format_recall": 0.9523809523809523,
+              "native_correct": 40,
+              "native_recall": 0.9523809523809523,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 40,
+              "INVALID": 0,
+              "contrast-enhanced T1": 2
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 50,
+          "full_format_question_accuracy": 0.5952380952380952,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 40,
+              "INVALID": 0,
+              "contrast-enhanced T1": 2
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 50,
+          "native_question_accuracy": 0.5952380952380952,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 16,
+            "records_with_actual_token_ids": 84,
+            "sum": 1462
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5688125,
+            "actual_elapsed_seconds_sum": 41.101,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 15,
+            "records_with_actual_token_ids": 16,
+            "sum": 252
+          }
+        }
+      }
+    },
+    "rl:U_calibrated:13": {
+      "output_sha256": "df64731a31d4e277887a814c6e000932d2fdac777770912a600881f8175d1296",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.912297619047619,
+            "actual_elapsed_seconds_sum": 160.633,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1464
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5820625,
+            "actual_elapsed_seconds_sum": 41.313,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:U_calibrated:7": {
+      "output_sha256": "b633e44f95ec732631e4a89cb33641d14f215fc9532eb6b0d3f985fb5aa1ddf6",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.0139761904761904,
+            "actual_elapsed_seconds_sum": 169.174,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 40,
+              "full_format_recall": 0.9523809523809523,
+              "native_correct": 40,
+              "native_recall": 0.9523809523809523,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 40,
+              "INVALID": 0,
+              "contrast-enhanced T1": 2
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 50,
+          "full_format_question_accuracy": 0.5952380952380952,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 40,
+              "INVALID": 0,
+              "contrast-enhanced T1": 2
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 50,
+          "native_question_accuracy": 0.5952380952380952,
+          "questions": 84,
+          "tokens": {
+            "max": 22,
+            "median": 19.0,
+            "min": 19,
+            "records_with_actual_token_ids": 84,
+            "sum": 1632
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.838,
+            "actual_elapsed_seconds_sum": 45.408,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 21,
+            "median": 21.0,
+            "min": 21,
+            "records_with_actual_token_ids": 16,
+            "sum": 336
+          }
+        }
+      }
+    },
+    "rl:U_raw:11": {
+      "output_sha256": "86e640d8e417ad21fa84764d6d5d4f2a00e58ebc49c53ac6dbd5f29d1bed908d",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9081547619047619,
+            "actual_elapsed_seconds_sum": 160.285,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 42,
+              "full_format_recall": 1.0,
+              "native_correct": 42,
+              "native_recall": 1.0,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 9,
+              "full_format_recall": 0.21428571428571427,
+              "native_correct": 9,
+              "native_recall": 0.21428571428571427,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 33,
+              "INVALID": 0,
+              "contrast-enhanced T1": 9
+            }
+          },
+          "full_format_correct": 51,
+          "full_format_question_accuracy": 0.6071428571428571,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 42,
+              "INVALID": 0,
+              "contrast-enhanced T1": 0
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 33,
+              "INVALID": 0,
+              "contrast-enhanced T1": 9
+            }
+          },
+          "native_correct": 51,
+          "native_question_accuracy": 0.6071428571428571,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1456
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5785625,
+            "actual_elapsed_seconds_sum": 41.257,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "rl:U_raw:13": {
+      "output_sha256": "0dea0fa56d8a3180ce6935197b4191ce600ec09e7dbcc428802f16a24a336de7",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.962404761904762,
+            "actual_elapsed_seconds_sum": 164.842,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 41,
+              "full_format_recall": 0.9761904761904762,
+              "native_correct": 41,
+              "native_recall": 0.9761904761904762,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 10,
+              "full_format_recall": 0.23809523809523808,
+              "native_correct": 10,
+              "native_recall": 0.23809523809523808,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 41,
+              "INVALID": 0,
+              "contrast-enhanced T1": 1
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "full_format_correct": 51,
+          "full_format_question_accuracy": 0.6071428571428571,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 41,
+              "INVALID": 0,
+              "contrast-enhanced T1": 1
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 32,
+              "INVALID": 0,
+              "contrast-enhanced T1": 10
+            }
+          },
+          "native_correct": 51,
+          "native_question_accuracy": 0.6071428571428571,
+          "questions": 84,
+          "tokens": {
+            "max": 21,
+            "median": 18.0,
+            "min": 18,
+            "records_with_actual_token_ids": 84,
+            "sum": 1545
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.4784375,
+            "actual_elapsed_seconds_sum": 39.655,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 14,
+            "median": 14.0,
+            "min": 14,
+            "records_with_actual_token_ids": 16,
+            "sum": 224
+          }
+        }
+      }
+    },
+    "rl:U_raw:7": {
+      "output_sha256": "78f66279d3fa823ea296782b6fabf47faa30010a170c099da1853b72d035555f",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.654404761904762,
+            "actual_elapsed_seconds_sum": 222.97,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 31,
+              "full_format_recall": 0.7380952380952381,
+              "native_correct": 31,
+              "native_recall": 0.7380952380952381,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 22,
+              "full_format_recall": 0.5238095238095238,
+              "native_correct": 22,
+              "native_recall": 0.5238095238095238,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 31,
+              "INVALID": 0,
+              "contrast-enhanced T1": 11
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 20,
+              "INVALID": 0,
+              "contrast-enhanced T1": 22
+            }
+          },
+          "full_format_correct": 53,
+          "full_format_question_accuracy": 0.6309523809523809,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 31,
+              "INVALID": 0,
+              "contrast-enhanced T1": 11
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 20,
+              "INVALID": 0,
+              "contrast-enhanced T1": 22
+            }
+          },
+          "native_correct": 53,
+          "native_question_accuracy": 0.6309523809523809,
+          "questions": 84,
+          "tokens": {
+            "max": 41,
+            "median": 32.0,
+            "min": 24,
+            "records_with_actual_token_ids": 84,
+            "sum": 2694
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 3.0395,
+            "actual_elapsed_seconds_sum": 48.632,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 27,
+            "median": 25.0,
+            "min": 24,
+            "records_with_actual_token_ids": 16,
+            "sum": 401
+          }
+        }
+      }
+    },
+    "sft:11": {
+      "output_sha256": "82143a187242b3663d1939fc42e84e7ec224dfbe30fa63ce8bd073ffc7a0737f",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9509404761904763,
+            "actual_elapsed_seconds_sum": 163.879,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 34,
+              "full_format_recall": 0.8095238095238095,
+              "native_correct": 34,
+              "native_recall": 0.8095238095238095,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 23,
+              "full_format_recall": 0.5476190476190477,
+              "native_correct": 23,
+              "native_recall": 0.5476190476190477,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 34,
+              "INVALID": 0,
+              "contrast-enhanced T1": 8
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 19,
+              "INVALID": 0,
+              "contrast-enhanced T1": 23
+            }
+          },
+          "full_format_correct": 57,
+          "full_format_question_accuracy": 0.6785714285714286,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 34,
+              "INVALID": 0,
+              "contrast-enhanced T1": 8
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 19,
+              "INVALID": 0,
+              "contrast-enhanced T1": 23
+            }
+          },
+          "native_correct": 57,
+          "native_question_accuracy": 0.6785714285714286,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1521
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.58,
+            "actual_elapsed_seconds_sum": 41.28,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 8,
+              "same": 0
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "sft:13": {
+      "output_sha256": "52dbd3d8db12aefd52d968f2b522f521e4a1525ab8b6686394794e0b499c16a7",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.928642857142857,
+            "actual_elapsed_seconds_sum": 162.006,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 37,
+              "full_format_recall": 0.8809523809523809,
+              "native_correct": 37,
+              "native_recall": 0.8809523809523809,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 15,
+              "full_format_recall": 0.35714285714285715,
+              "native_correct": 15,
+              "native_recall": 0.35714285714285715,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 37,
+              "INVALID": 0,
+              "contrast-enhanced T1": 5
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 27,
+              "INVALID": 0,
+              "contrast-enhanced T1": 15
+            }
+          },
+          "full_format_correct": 52,
+          "full_format_question_accuracy": 0.6190476190476191,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 37,
+              "INVALID": 0,
+              "contrast-enhanced T1": 5
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 27,
+              "INVALID": 0,
+              "contrast-enhanced T1": 15
+            }
+          },
+          "native_correct": 52,
+          "native_question_accuracy": 0.6190476190476191,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1488
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.5781875000000003,
+            "actual_elapsed_seconds_sum": 41.251000000000005,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 0,
+              "full_format_recall": 0.0,
+              "native_correct": 0,
+              "native_recall": 0.0,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 8,
+              "full_format_recall": 1.0,
+              "native_correct": 8,
+              "native_recall": 1.0,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "full_format_correct": 8,
+          "full_format_question_accuracy": 0.5,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "native_correct": 8,
+          "native_question_accuracy": 0.5,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    },
+    "sft:7": {
+      "output_sha256": "454c855537c3a7a48d9ac2a70be17943c34e885c404119134c49fc9f8a5f41d2",
+      "tasks": {
+        "mri_sequence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 1.9265595238095239,
+            "actual_elapsed_seconds_sum": 161.831,
+            "records_with_actual_elapsed": 84,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "FLAIR": {
+              "full_format_correct": 38,
+              "full_format_recall": 0.9047619047619048,
+              "native_correct": 38,
+              "native_recall": 0.9047619047619048,
+              "questions": 42
+            },
+            "contrast-enhanced T1": {
+              "full_format_correct": 16,
+              "full_format_recall": 0.38095238095238093,
+              "native_correct": 16,
+              "native_recall": 0.38095238095238093,
+              "questions": 42
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 84
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 84
+          },
+          "full_format_confusion": {
+            "FLAIR": {
+              "FLAIR": 38,
+              "INVALID": 0,
+              "contrast-enhanced T1": 4
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 26,
+              "INVALID": 0,
+              "contrast-enhanced T1": 16
+            }
+          },
+          "full_format_correct": 54,
+          "full_format_question_accuracy": 0.6428571428571429,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "FLAIR": {
+              "FLAIR": 38,
+              "INVALID": 0,
+              "contrast-enhanced T1": 4
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 26,
+              "INVALID": 0,
+              "contrast-enhanced T1": 16
+            }
+          },
+          "native_correct": 54,
+          "native_question_accuracy": 0.6428571428571429,
+          "questions": 84,
+          "tokens": {
+            "max": 20,
+            "median": 17.0,
+            "min": 17,
+            "records_with_actual_token_ids": 84,
+            "sum": 1488
+          }
+        },
+        "mri_visit_correspondence": {
+          "aggregation": "Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.",
+          "call_time": {
+            "actual_elapsed_seconds_mean": 2.578625,
+            "actual_elapsed_seconds_sum": 41.258,
+            "records_with_actual_elapsed": 16,
+            "records_without_elapsed": 0
+          },
+          "class_counts": {
+            "different": {
+              "full_format_correct": 2,
+              "full_format_recall": 0.25,
+              "native_correct": 2,
+              "native_recall": 0.25,
+              "questions": 8
+            },
+            "same": {
+              "full_format_correct": 5,
+              "full_format_recall": 0.625,
+              "native_correct": 5,
+              "native_recall": 0.625,
+              "questions": 8
+            }
+          },
+          "finish_reason_counts": {
+            "stop": 16
+          },
+          "format_half_records": 0,
+          "format_score_counts": {
+            "1.0": 16
+          },
+          "full_format_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 2,
+              "same": 6
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 3,
+              "same": 5
+            }
+          },
+          "full_format_correct": 7,
+          "full_format_question_accuracy": 0.4375,
+          "invalid_answers": 0,
+          "length_truncated_records": 0,
+          "literal_hit_max_tokens_records": 0,
+          "native_confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 2,
+              "same": 6
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 3,
+              "same": 5
+            }
+          },
+          "native_correct": 7,
+          "native_question_accuracy": 0.4375,
+          "questions": 16,
+          "tokens": {
+            "max": 16,
+            "median": 16.0,
+            "min": 16,
+            "records_with_actual_token_ids": 16,
+            "sum": 256
+          }
+        }
+      }
+    }
+  },
+  "native_models_loaded": 0,
+  "parser_source_sha256": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+  "private_case_identifiers_or_text_included": false,
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "schema": "original22-final-class-format-cost-supplement-v1",
+  "source_sha256": "8ea490c98200ab9c5570af609fef97a88f628c1499db98d91a5eacb6facdecd0",
+  "status": "ACTUAL_SAVED_OUTPUTS_RECOUNTED",
+  "unique_model_runs": 22,
+  "unique_model_task_count_tables": 44
+}
