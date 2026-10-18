@@ -1,0 +1,587 @@
+{
+  "actual_native_models_loaded": 0,
+  "arm_seed_rows": [
+    {
+      "arm": "U_raw",
+      "seed": 7,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 16,
+          "all_overlong_zero_responses": 244,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 2,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 2,
+          "generated_tokens": 5904,
+          "groups": 61,
+          "length_terminated_at256": 2,
+          "responses": 244,
+          "same_saved_group_scaled_penalty_varies": 3
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 23,
+          "all_overlong_zero_responses": 256,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 1,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 1,
+          "generated_tokens": 5515,
+          "groups": 64,
+          "length_terminated_at256": 1,
+          "responses": 256,
+          "same_saved_group_scaled_penalty_varies": 1
+        }
+      }
+    },
+    {
+      "arm": "S_sequence",
+      "seed": 7,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 42,
+          "all_overlong_zero_responses": 700,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 6,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 2,
+          "generated_tokens": 18443,
+          "groups": 175,
+          "length_terminated_at256": 6,
+          "responses": 700,
+          "same_saved_group_scaled_penalty_varies": 7
+        }
+      }
+    },
+    {
+      "arm": "S_correspondence",
+      "seed": 7,
+      "tasks": {
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 2,
+          "all_overlong_zero_responses": 400,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 6235,
+          "groups": 100,
+          "length_terminated_at256": 0,
+          "responses": 400,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "P_raw",
+      "seed": 7,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 10,
+          "all_overlong_zero_responses": 176,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 3,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 3,
+          "generated_tokens": 4492,
+          "groups": 44,
+          "length_terminated_at256": 3,
+          "responses": 176,
+          "same_saved_group_scaled_penalty_varies": 3
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 37,
+          "all_overlong_zero_responses": 292,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 6415,
+          "groups": 73,
+          "length_terminated_at256": 0,
+          "responses": 292,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "S_sequence",
+      "seed": 11,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 40,
+          "all_overlong_zero_responses": 712,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 4,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 4,
+          "generated_tokens": 16365,
+          "groups": 178,
+          "length_terminated_at256": 4,
+          "responses": 712,
+          "same_saved_group_scaled_penalty_varies": 4
+        }
+      }
+    },
+    {
+      "arm": "S_correspondence",
+      "seed": 11,
+      "tasks": {
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 3,
+          "all_overlong_zero_responses": 396,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 6341,
+          "groups": 99,
+          "length_terminated_at256": 0,
+          "responses": 396,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "P_raw",
+      "seed": 11,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 6,
+          "all_overlong_zero_responses": 160,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 2943,
+          "groups": 40,
+          "length_terminated_at256": 0,
+          "responses": 160,
+          "same_saved_group_scaled_penalty_varies": 0
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 2,
+          "all_overlong_zero_responses": 308,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 5205,
+          "groups": 77,
+          "length_terminated_at256": 0,
+          "responses": 308,
+          "same_saved_group_scaled_penalty_varies": 1
+        }
+      }
+    },
+    {
+      "arm": "U_raw",
+      "seed": 11,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 4,
+          "all_overlong_zero_responses": 228,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 1,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 1,
+          "generated_tokens": 4340,
+          "groups": 57,
+          "length_terminated_at256": 1,
+          "responses": 228,
+          "same_saved_group_scaled_penalty_varies": 1
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 1,
+          "all_overlong_zero_responses": 272,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 4451,
+          "groups": 68,
+          "length_terminated_at256": 0,
+          "responses": 272,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "S_sequence",
+      "seed": 13,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 12,
+          "all_overlong_zero_responses": 732,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 1,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 1,
+          "generated_tokens": 11829,
+          "groups": 183,
+          "length_terminated_at256": 1,
+          "responses": 732,
+          "same_saved_group_scaled_penalty_varies": 1
+        }
+      }
+    },
+    {
+      "arm": "S_correspondence",
+      "seed": 13,
+      "tasks": {
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 10,
+          "all_overlong_zero_responses": 396,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 6417,
+          "groups": 99,
+          "length_terminated_at256": 0,
+          "responses": 396,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "P_raw",
+      "seed": 13,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 17,
+          "all_overlong_zero_responses": 172,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 3,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 3,
+          "generated_tokens": 4691,
+          "groups": 43,
+          "length_terminated_at256": 3,
+          "responses": 172,
+          "same_saved_group_scaled_penalty_varies": 3
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 31,
+          "all_overlong_zero_responses": 296,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 5717,
+          "groups": 74,
+          "length_terminated_at256": 0,
+          "responses": 296,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "U_raw",
+      "seed": 13,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 7,
+          "all_overlong_zero_responses": 228,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 4165,
+          "groups": 57,
+          "length_terminated_at256": 0,
+          "responses": 228,
+          "same_saved_group_scaled_penalty_varies": 0
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 1,
+          "all_overlong_zero_responses": 272,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 3977,
+          "groups": 68,
+          "length_terminated_at256": 0,
+          "responses": 272,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "P_calibrated",
+      "seed": 7,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 7,
+          "all_overlong_zero_responses": 176,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 1,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 1,
+          "generated_tokens": 3886,
+          "groups": 44,
+          "length_terminated_at256": 1,
+          "responses": 176,
+          "same_saved_group_scaled_penalty_varies": 2
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 2,
+          "all_overlong_zero_responses": 300,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 1,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 1,
+          "generated_tokens": 5149,
+          "groups": 75,
+          "length_terminated_at256": 1,
+          "responses": 300,
+          "same_saved_group_scaled_penalty_varies": 1
+        }
+      }
+    },
+    {
+      "arm": "U_calibrated",
+      "seed": 7,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 8,
+          "all_overlong_zero_responses": 244,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 4607,
+          "groups": 61,
+          "length_terminated_at256": 0,
+          "responses": 244,
+          "same_saved_group_scaled_penalty_varies": 0
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 7,
+          "all_overlong_zero_responses": 260,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 4738,
+          "groups": 65,
+          "length_terminated_at256": 0,
+          "responses": 260,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "P_calibrated",
+      "seed": 11,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 5,
+          "all_overlong_zero_responses": 160,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 2904,
+          "groups": 40,
+          "length_terminated_at256": 0,
+          "responses": 160,
+          "same_saved_group_scaled_penalty_varies": 0
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 2,
+          "all_overlong_zero_responses": 308,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 5152,
+          "groups": 77,
+          "length_terminated_at256": 0,
+          "responses": 308,
+          "same_saved_group_scaled_penalty_varies": 1
+        }
+      }
+    },
+    {
+      "arm": "U_calibrated",
+      "seed": 11,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 7,
+          "all_overlong_zero_responses": 228,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 2,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 1,
+          "generated_tokens": 4532,
+          "groups": 57,
+          "length_terminated_at256": 2,
+          "responses": 228,
+          "same_saved_group_scaled_penalty_varies": 2
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 1,
+          "all_overlong_zero_responses": 272,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 4382,
+          "groups": 68,
+          "length_terminated_at256": 0,
+          "responses": 272,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    },
+    {
+      "arm": "P_calibrated",
+      "seed": 13,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 7,
+          "all_overlong_zero_responses": 168,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 8,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 8,
+          "generated_tokens": 6182,
+          "groups": 42,
+          "length_terminated_at256": 8,
+          "responses": 168,
+          "same_saved_group_scaled_penalty_varies": 9
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 45,
+          "all_overlong_zero_responses": 288,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 4,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 3,
+          "generated_tokens": 7885,
+          "groups": 72,
+          "length_terminated_at256": 4,
+          "responses": 288,
+          "same_saved_group_scaled_penalty_varies": 4
+        }
+      }
+    },
+    {
+      "arm": "U_calibrated",
+      "seed": 13,
+      "tasks": {
+        "mri_sequence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 5,
+          "all_overlong_zero_responses": 228,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 1,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 1,
+          "generated_tokens": 4559,
+          "groups": 57,
+          "length_terminated_at256": 2,
+          "responses": 228,
+          "same_saved_group_scaled_penalty_varies": 2
+        },
+        "mri_visit_correspondence": {
+          "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+          "accepted_updates": 2,
+          "all_overlong_zero_responses": 272,
+          "capped_full_format": 0,
+          "capped_missing_answer_open": 0,
+          "capped_native_correct": 0,
+          "capped_unclosed_think_no_answer": 0,
+          "generated_tokens": 4303,
+          "groups": 68,
+          "length_terminated_at256": 0,
+          "responses": 272,
+          "same_saved_group_scaled_penalty_varies": 0
+        }
+      }
+    }
+  ],
+  "as_of_utc": "2026-10-18T07:47:38.709669+00:00",
+  "completed_groups": 2286,
+  "evidence_tier": "OBSERVED_SAVED_COMPLETED_ROLLOUTS_CPU_COUNTS",
+  "historical_training_or_rewards_changed": false,
+  "limitations": [
+    "Training responses contain repeated people/images and are not held-out MRI accuracy.",
+    "Length termination is distinct from missing answer, full format and correctness; all are reported separately.",
+    "All direct_overlong components were actually zero; accuracy/format components can still supply penalties or gate rejection.",
+    "No conclusion that extending cap or scaled penalty improves MRI correctness.",
+    "No sealed final data accessed."
+  ],
+  "manifest_sha256": "f47169577b285d03e21dafe904244d77be83c10edcf730f3b72a7a129cd1bd01",
+  "native_inputs_sha256": "582dd574f82315417206fa9a4f42edcb6abca06b039cbf8d94c71850e15165f6",
+  "original_arms": 18,
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "responses": 9144,
+  "scaled_penalty_replay_interpretation": "Only same-saved-group equality-clause replay, using hypothetical256max/buffer128 penalty. Counts are not a counterfactual training trajectory or a tested reward improvement.",
+  "schema": "completed-original-RL18-length-contract-CPU-audit-v1",
+  "source_sha256": {
+    "continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a"
+  },
+  "task_totals": {
+    "mri_sequence": {
+      "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+      "accepted_updates": 193,
+      "all_overlong_zero_responses": 4556,
+      "capped_full_format": 0,
+      "capped_missing_answer_open": 32,
+      "capped_native_correct": 0,
+      "capped_unclosed_think_no_answer": 27,
+      "generated_tokens": 99842,
+      "groups": 1139,
+      "length_terminated_at256": 33,
+      "responses": 4556,
+      "same_saved_group_scaled_penalty_varies": 37
+    },
+    "mri_visit_correspondence": {
+      "accepted_groups_that_would_fail_scaled_equal_overlong_clause": 0,
+      "accepted_updates": 169,
+      "all_overlong_zero_responses": 4588,
+      "capped_full_format": 0,
+      "capped_missing_answer_open": 6,
+      "capped_native_correct": 0,
+      "capped_unclosed_think_no_answer": 5,
+      "generated_tokens": 81882,
+      "groups": 1147,
+      "length_terminated_at256": 6,
+      "responses": 4588,
+      "same_saved_group_scaled_penalty_varies": 8
+    }
+  },
+  "train_manifest_sha256": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+  "weights_optimizer_or_images_read": false
+}
