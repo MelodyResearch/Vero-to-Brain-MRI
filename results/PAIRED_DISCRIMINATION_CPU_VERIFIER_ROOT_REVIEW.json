@@ -1,0 +1,25 @@
+{
+  "actual_proof_sha256": "2767b7e52c7e31a4bdb9670ae0cffb1b896eab18dacab6a2da61bfa848411963",
+  "focused_tests": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONPATH=src python3 -m pytest -q tests/test_verify_paired_discrimination_v2.py",
+    "passed": 3
+  },
+  "limitations": [
+    "CPU saved-artifact verification only; native candidate logits/backward are not independently recomputed.",
+    "Nonzero updates are not MRI accuracy evidence.",
+    "Post2 accuracy evaluation is a separate actual job."
+  ],
+  "reused_Adam_math_source_sha256": "0c3408940bc36a646dfc97eb37c27c5964c0eba331f8435b636dce3e714df048",
+  "reviewer_id": "Codex /root",
+  "reviewer_kind": "isolated_codex",
+  "root_checks": [
+    "Read complete verifier and exact SFT run bindings before actual proof.",
+    "Independently ran three focused tests.",
+    "Authenticated actual native exit0, closed log, exact public/private proof bytes and all3 boundary receipt hashes.",
+    "Reconciled Adam0->1->2,3688token ledger and zero duplicate/partial debt with durable actual checkpoints."
+  ],
+  "schema": "paired-discrimination-CPU-verifier-root-review-v1",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_author": "Codex /root/two_task_admission",
+  "verifier_sha256": "5a8ebc13a34e7e0095e6d09431db1168661a6f119be2a4d1919c2cb7ad462563"
+}
