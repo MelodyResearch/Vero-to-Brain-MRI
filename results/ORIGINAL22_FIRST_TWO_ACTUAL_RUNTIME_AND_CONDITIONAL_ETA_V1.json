@@ -1,0 +1,48 @@
+{
+  "actual_closed_model_runtime": [
+    {
+      "actual_exit_sha256": "3311953a70f14333852daa5d829f703fa9e9088bdab3839c75f4f4f98df1304d",
+      "actual_pipeline_seconds_from_launch_and_committed_cursor_timestamps": 276.758318901062,
+      "checkpoint_id": "B28",
+      "generation_call_seconds": 202.49099999999999,
+      "length_caps": 0,
+      "output_sha256": "cab18724f8fe077cec8cda72b462f9190aced478b5fc68a2d1b912a36a775305",
+      "records": 100
+    },
+    {
+      "actual_exit_sha256": "583bcf8b7bfbeaf92660cb5db25a586773dfd961b8a80189e6d1d65b1e05c6ec",
+      "actual_pipeline_seconds_from_launch_and_committed_cursor_timestamps": 315.43160605430603,
+      "checkpoint_id": "rl:S_sequence:7",
+      "generation_call_seconds": 239.123,
+      "length_caps": 0,
+      "output_sha256": "0718ce9b39b2a29d8e578c022eef17d4c72c25dfaf0c145738d69f5523fa4069",
+      "records": 100
+    }
+  ],
+  "actual_executor_and_checker": "Codex /root",
+  "as_of_utc": "2026-10-18T09:05:31.214850+00:00",
+  "assumptions": {
+    "conservative_historical_slow_RL": "Use actual earlier sequence mean15.08s, Dallas4.238s, model-load80.09s for every remaining100-case checkpoint; plus0.5h verification.",
+    "extreme_tail": "Use earlier sequencep9031.77s for EVERY remaining sequence case, not a calibrated probabilistic confidence bound.",
+    "first2_sample_limit": "Only2models, both0lengthcaps; cannot establish the runtime distribution of all remaining RL/SFT models.",
+    "holds": "Resource/power holds, unexpected recovery and new method work excluded.",
+    "normal_planning": "1.5x observed first2 pipeline mean to allow longer remaining RL generations; plus0.5h verification. This multiplier is a declared planning assumption, not an observed remaining-model mean.",
+    "optimistic": "All remaining checkpoints match mean actual first2 pipelines; add0.5h saved-result verification/push.",
+    "timing_source": "Actual process-launch UTC and committed cursor file timestamps plus recorded native elapsed_seconds; never Git commit times."
+  },
+  "completed_models": 2,
+  "conditional_remaining_hours": {
+    "conservative_historical_slow_RL": 8.358988888888888,
+    "extreme_historical_p90_every_sequence_case": 16.147655555555556,
+    "normal_planning": 2.967458020647367,
+    "optimistic": 2.144972013764911
+  },
+  "current_stage": "rl:S_sequence:11",
+  "new_weight_updates": 0,
+  "no_accuracy_scored_or_used_for_selection": true,
+  "observed_average_model_pipeline_seconds": 296.094962477684,
+  "remaining_models_including_current": 20,
+  "schema": "ORIGINAL22_FIRST_TWO_ACTUAL_RUNTIME_AND_CONDITIONAL_ETA_V1",
+  "status": "FORMAL_EVALUATION_RUNNING_NOT_SCORED",
+  "total_models": 22
+}
