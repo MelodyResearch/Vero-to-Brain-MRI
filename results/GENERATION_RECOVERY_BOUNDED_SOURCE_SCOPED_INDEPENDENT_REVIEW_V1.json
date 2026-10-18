@@ -1,0 +1,46 @@
+{
+  "actual_native_or_model_execution": false,
+  "conditional_preview_sha256": "a60c0dd665a39d72344a2048302ed80c97887032407383b6518d635cff50b3fb",
+  "focused_tests": [
+    {
+      "path": "tests/test_generation_recovery_v1.py",
+      "sha256": "d10d510f704e8404eed67d1b751e0cf2b849de18082e664355863cbed6cd5bf3"
+    },
+    {
+      "path": "tests/test_generation_recovery_independent_guards_v1.py",
+      "sha256": "4e9ba4c4718ef18f48ece83498cd03e6e1762333ef41ccac5030db10db7772f4"
+    }
+  ],
+  "focused_tests_passed": 6,
+  "limitations": [
+    "Source/CPU review only. Final exact runtime scope approval must bind actualAdam60 baseline outputs/exit/review and current empty/resume journals after baseline finishes.",
+    "Native generation/scoring and actual memory release have not been run or independently measured for these controls.",
+    "Neither longer generation nor a brief-reasoning instruction is proven to improve accuracy; all strict incorrect/invalid outcomes must remain reported.",
+    "Strict fullVero format/EOS/template/parser and prefixoracle thresholds are unchanged; descriptive salvage cannot replace the original metric.",
+    "Same repeated4sequencepeople/4Dallascycles, one null percondition; no sealed test or independent generalization claim.",
+    "No training, hidden decoder settings, stopping-rule change or algorithm novelty approved by this source review."
+  ],
+  "preview_ready": false,
+  "resolved_concrete_defect": {
+    "after": "Length termination now requires len(savedtokenIDs)==requestedcap; EOSstop at exactcap remains allowed.",
+    "before": "A finish_reason length with one token under cap256 was accepted.",
+    "evidence": "Independent RED1/PASS1 reproduced, corrected combined6testsPASS."
+  },
+  "reviewer_findings": [
+    "Inspected complete new runner/helper and four authored tests plus two independent guards, with pinned unchanged native score_record/generate_record call interfaces.",
+    "Exactly two prespecified inference controls on same actualAdam60: original prompt512 versus reused originalprompt256 baseline, and appended fixed short instruction256 versus reused originalprompt256 baseline. System prompt, question/labels/truth/image identity, chat-template and scoring code remain unchanged.",
+    "Short condition appends only fixed user instruction, including identical null query; image IDs/grid binding and causal candidate partition/raw tokenizer boundary are checked by unchanged native scorer, maxP2048 and prefixoracle.002 retained.",
+    "Originalprompt candidates are references to complete Adam60baseline; only shortprompt25candidate/75forwards added. Each condition has40real+1nullgreedy, maximum31488newgenerationtokens,0updates and0backwardcalls.",
+    "Per-record append is flushed+fsynced; resume validates expected metadata, runidentity, finite numbers, cap and numeric route. Failed configuration marker blocks blind retry; progress is excluded from stable run identity but bound into exact runtime review scope.",
+    "Globaloriginal flock/PacedGate and certifiedcache precede one resident model; sources rechecked after lock. Weights compared across504LoRA tensors and optimizer step0 required; exception traceback frames cleared, backend closed and activeMLX below128MiB before completion.",
+    "Actual complete Adam60baseline is mandatory before readiness/execute; source-only pending preview does not authorize a model launch or count as actual output."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "GENERATION_RECOVERY_BOUNDED_SOURCE_SCOPED_INDEPENDENT_REVIEW_V1",
+  "source_sha256": {
+    "helper": "c63d397029f8b586848687fcba23471f36899b531d0fcbaebb1b2a94aaee3433",
+    "runner": "bbbc9590b4241828e8136b724f3153d0312ec173915884fc1cf39e82db56d4d6"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

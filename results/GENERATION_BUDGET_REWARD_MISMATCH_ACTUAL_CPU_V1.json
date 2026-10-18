@@ -1,0 +1,55 @@
+{
+  "actual_reward_profile": "direct_vero",
+  "as_of_utc": "2026-10-18T07:35:13.503980+00:00",
+  "direct_penalty_buffer": 2048,
+  "direct_penalty_maximum": 18432,
+  "evidence_tier": "REPRODUCED_SOURCE_AST_AND_PREVIOUSLY_VERIFIED_SAVED_OUTPUTS",
+  "exhaustive_CPU_checks": {
+    "native_models_loaded": 0,
+    "response_lengths0_to256_all_zero": true,
+    "response_lengths0_to512_all_zero": true,
+    "trainer_source_changed": false
+  },
+  "limitations": [
+    "No causal claim that an active length penalty would improve MRI correctness.",
+    "A capped incomplete answer need not become correct with a longer budget.",
+    "Generation control must separately report strict correctness, invalid rate, class/task regression and token/time cost.",
+    "No sealed-final inputs or outcomes accessed."
+  ],
+  "native_generation_cap": 256,
+  "penalty_negative_start_token": 16385,
+  "penalty_zero_through_token": 16384,
+  "proposed_inference_control": {
+    "baseline": "Reuse exact same frozen40 standard256 Adam60 post-evaluation outputs, once actual completed",
+    "condition_A": "Original prompt, max_tokens512 only",
+    "condition_B": "Append fixed short reasoning instruction, max_tokens256 only",
+    "decoding_gain_is_weight_gain": false,
+    "parent": "Fixed existing Adam60 terminal, selected for continuity before new outcomes",
+    "status": "NOT_RUN_PENDING_ORIGINAL_TRAINING_AND_ADAM60_BASELINE",
+    "strict_Vero_parser": "Unchanged",
+    "weight_updates": 0
+  },
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "saved_output_evidence": {
+    "all_invalid_stop_by_length_256_unclosed_think_no_answer": true,
+    "both_checkpoints_sequence_invalid": 7,
+    "diagnosis_sha256": "9873420422dbcab918fa1174164791ab716b6fdbb9ccb5f15e16dc5d90daf9fb",
+    "normal_stop_cases": 66,
+    "normal_stop_with_valid_EOS": 66,
+    "sequence_cases_per_checkpoint": 24
+  },
+  "schema": "generation-budget-reward-mismatch-actual-CPU-v1",
+  "source_sha256": {
+    "src/mri_rl/adaptive_accuracy_driver_v1.py": "85735f948b65bddde4ed1d6d0df6ef176f7902be7de19be735f1bd88bbcd7d8e",
+    "src/mri_rl/continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "src/mri_rl/mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "src/mri_rl/uniform_balance_continuation_driver_v1.py": "9b3d050b4298c424cbba8844ea247979a8d90fc2478a01d0ea363f021f36032c"
+  },
+  "training_impact": {
+    "accuracy_and_format_components": "Still vary and can penalize missing answers through low task/format scores; zero overlong penalty does not mean all capped outputs receive no adverse group advantage.",
+    "changing_only_to_scaled_smoke_is_not_validated_fix": "Existing admission requires equal overlong penalties. A variable length penalty can reject otherwise informative groups; length-driven reward can also compete with MRI correctness. No such reward change was applied.",
+    "length_component_at256_or512": "Always zero; supplies no direct length-dependent reward or within-group variance.",
+    "strict_original_admission": "Requires all full format and task accuracy variation; incomplete capped outputs can instead block the whole group.",
+    "unique_causal_explanation_of_low_accuracy": "NOT_ESTABLISHED"
+  }
+}
