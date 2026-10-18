@@ -258,7 +258,7 @@ def score_internal_dev(*,rows,backend,output,contract,max_tokens=256,resume=Fals
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("command",choices=("plan","scope","train","eval"))
+    p.add_argument("command",choices=("plan","scope","train","eval-scope","eval"))
     for a in ("train","dev","model","contract","adapter","output"):
         p.add_argument("--"+a,type=Path,required=True)
     for a in ("scope-output","review-verdict","cache-dir","cache-certificate","evaluation-adapter"):
@@ -288,11 +288,11 @@ def main():
                    "Contract must bind the exact patient-disjoint V2 training/dev source manifests")
     cache_binding=cache_binding_for(args)
     cache={"dir":str(args.cache_dir)} if cache_binding else None
-    chosen_adapter=args.evaluation_adapter if args.command=="eval" else args.adapter
+    chosen_adapter=args.evaluation_adapter if args.command in ("eval","eval-scope") else args.adapter
     paired.require(chosen_adapter is not None and chosen_adapter.is_file(),"Exact native adapter required")
     binding=run_binding(prepared,train=args.train,dev=args.dev,adapter=args.adapter,
                         seed=args.seed,model=args.model,contract=args.contract)
-    if args.command=="eval":
+    if args.command in ("eval","eval-scope"):
         partial_sha=paired.sha(args.output) if args.resume and args.output.is_file() else None
         scope={"kind":"paired-MRI-visual-accuracy-V2", "execution":"READ_ONLY_DEV_CANDIDATE_AND_GREEDY",
                "binding_sha256":hashlib.sha256(json.dumps(binding,sort_keys=True,separators=(",",":")).encode()).hexdigest(),
@@ -304,7 +304,7 @@ def main():
     else:
         scope=training_scope(binding,output=args.output,resume=args.resume,
                              max_new_steps=args.max_new_steps,cache_binding=cache_binding)
-    if args.command=="scope":
+    if args.command in ("scope","eval-scope"):
         paired.require(args.scope_output is not None and args.scope_output.is_relative_to(ROOT/"local_data"),
                        "Reviewed scope must be saved privately")
         with args.scope_output.open("x") as f:json.dump(scope,f,indent=2,sort_keys=True);f.write("\n")
