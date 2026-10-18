@@ -1,5 +1,9 @@
 # Project guardrails
 
+## Current phase — researcher-directed CPU-only root-cause work (2026-10-18)
+
+On `research/vero-mri-root-cause-cpu-v1`, the latest researcher instruction prohibits all new model training, SFT/RL/GSPO continuation, optimizer updates, model reinitialization, all model loading and inference (including new diagnostic inference), and repeated completed experiments. Use existing TRAIN records and lightweight CPU source/numerical fixtures only. Never access final100 to design or select a method. Preserve historical checkpoints, adapters, optimizer/RNG and frozen source. Candidate manifests and passing CPU checks do not authorize training: report the evidence and wait for a new researcher decision. This phase-specific restriction supersedes older local-experiment permissions below; it is not a permanent machine-wide policy. See `research/ROOT_CAUSE_CPU_FIXES_2026-10-18.md` for actual findings and remaining gates.
+
 ## Mandatory research covenant and independent model-family review
 
 Before changing MRI task design, SFT sampling, GSPO optimization, evaluation baselines, research conclusions or model-launch scope, read and apply [research/VERO_MRI_RESEARCH_COVENANT.md](research/VERO_MRI_RESEARCH_COVENANT.md) alongside the authoritative Vero-to-MRI execution contract. Keep the primary objective locked to actual Vero-style task-balanced verifiable RL transfer, under matched MRI tasks/weights/budgets and an honest transfer matrix. Record a concise Mission Alignment Check and evidence-tier label for every consequential new result. B = sequence-label-controlled SFT; C = distinct slice-aware scientific task/data redesign; do not collapse them or reinterpret the historical record. Novel architecture, new research storyline, unverified statistics and hallucinated completed experiments are disallowed without evidence and explicit researcher approval for any scope pivot.

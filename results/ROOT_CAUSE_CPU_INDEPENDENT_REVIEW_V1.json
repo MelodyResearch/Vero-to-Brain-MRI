@@ -1,0 +1,90 @@
+{
+  "CROSS_MODEL_REVIEW": "NOT_VERIFIED",
+  "as_of_utc": "2026-10-18T20:44:19.804330+00:00",
+  "evidence_tier": "REPRODUCED_CPU_AST_SOURCE_AND_MATHEMATICS",
+  "findings": {
+    "active_group_filter": "Local all-full-format/task-varies/equal-overlong restriction is additional to the inspected official reward gate that zeros accuracy at format0. Attempted task balance need not imply accepted-update balance.",
+    "future_contract_fix": "Enabled unreachable256/18432/2048 is rejected; onset32-8=24 has penalty0 and firstnegative25 must be reachable. Explicit disabled mode is allowed. Historical interfaces are not retroactively guarded.",
+    "official_default_minibatches": "For default256prompts,K8,8ranks,SP1: rollout256responses/rank; actor mini128*8/8=128responses/rank;2minibatches and ppo_epochs1. Actual authors resolved runtime is not recovered.",
+    "official_length_config": "Pinned shared reward max_resp_len16384/buffer2048 implies firstnegative14337; Qwen3 data maxresponse18432 does not itself override that separate reward max. Local direct maximum18432 gives firstnegative16385.",
+    "ratio_one_loss_zero": "CONFIRMED: scalar loss0 and forward ratios1 can coexist with gradient-1.5; detached forward factors retain current-logp derivatives. No zero-gradient bug follows from loss0 alone.",
+    "sequence_credit": "Response-token means dilute a label-only sensitivity when invariant wrapper tokens are added; expected in both inspected expressions, not a newly proved bug.",
+    "source_formula_scope": "Native and pinned official extracted expressions agree in inspected tiny CPU fixtures; this does not establish full native MLX/CUDA or visual rollout/scorer parity.",
+    "visual_credit": "Signed group advantages can cancel nonzero per-response image/CE derivatives; existing CE sensitivity cannot certify full visual GSPO credit."
+  },
+  "limitations": [
+    "This verdict is scoped CPU/source correctness, not model-launch authorization, native backend parity, optimizer equivalence or improved MRI accuracy.",
+    "Nonsmooth backend-specific clip boundary derivatives, generation-vs-teacher-force prompt/token/KV identity and full visual backward remain NOT_VERIFIED.",
+    "K/LR/optimizer/LoRA/vision/minibatch/length differences are source-supported distinctions, not isolated causal explanations for historical negative learning.",
+    "The trusted CPU AD helper is explicitly hash-bound here in addition to the source ledger loss AST hashes.",
+    "No final100 outputs, labels, prior final report, patient records, raw MRI payload or model tensors were opened during this review.",
+    "Reward replay and new task/data qualification are separate pending reviews."
+  ],
+  "local_source_sha256": {
+    "scripts/check_root_cause_gspo_parity_v1.py": "d11a39198194832164f48aada6ba72760acc291cd65fec93eae7cf5b11f9d083",
+    "scripts/diagnose_gspo_loss_cpu.py": "37b3958a14c3a1906bb8b653c99e2fab0cff62723b0285e5b6f85a120faac3ba",
+    "src/mri_rl/continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "src/mri_rl/mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "src/mri_rl/mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "src/mri_rl/root_cause_gspo_parity_v1.py": "a211ede197babf039ba665cfe8a0212f41f5e3b1680ad53bfdf4487e8f6fa36a",
+    "src/mri_rl/root_cause_rollout_contract_v1.py": "101fe852d546ff89df5df0fe879ca6fe5bb52b26d6583bc84364790497e5fce2",
+    "tests/test_root_cause_gspo_parity_v1.py": "92717763a9ad53243801c98fd414902b1a98b313ab3690e4f9098c8f9808db90",
+    "tests/test_root_cause_rollout_contract_v1.py": "05edba9eaf9a792c01f1c137e92fcfd2bb1739fe6d095013d546661794a5e959"
+  },
+  "mission_alignment": {
+    "falsifier": "Actual extracted derivative or official source contradicts stated mechanism; no such contradiction found in these scoped checks.",
+    "isolation": "New CPU audit/validator only; no historical source or experiment redefinition.",
+    "main_question": "Identify implementation/recipe distinctions relevant to systematic Vero-to-MRI transfer before further model work.",
+    "provenance": "Pinned source hashes,16CPUtests,tiny AST/math fixtures; no MRI images/weights/test outcomes.",
+    "resource_decision": "CPU one thread only; models0,inference0,optimizerupdates0.",
+    "shortcut_limit": "Format and CE-sensitivity evidence do not establish MRI understanding or reward-grounded visual credit."
+  },
+  "official_checkout_clean": true,
+  "official_source_sha256": {
+    "vero-rl/examples/model_runs/config/gspo_llmjudge_shared.yaml": "7ff7ef05103f5bfb555229c0983c2d7a4589212b57cdc8e58d6362bc7c825a27",
+    "vero-rl/examples/model_runs/config/gspo_qwen3vl.yaml": "597c5780e7b9540c568f173c63576d1df65811f3d9d1f4a2e1bdfc2b31abbe2c",
+    "vero-rl/examples/model_runs/run_gspo_qwen3vl_instruct_mix_all_llmjudge.sh": "d2535ac6836c548aeab3af5c1d06719d06401e00ec71b475849d74cda72662d0",
+    "vero-rl/verl/trainer/config/actor/actor.yaml": "902e0d9f384c0b150b6950e6e654871aae818c2bbdef8d53b72367ecbbd6692b",
+    "vero-rl/verl/trainer/ppo/core_algos.py": "10a48380469e9529122f9167723008014783c132d6110ddc62c77e2f270e3e67",
+    "vero-rl/verl/trainer/ppo/ray_trainer.py": "7178efa5f435edb5c6fef02cdb8f2fd36eaf681976408189892a2c2fd798d080",
+    "vero-rl/verl/workers/actor/dp_actor.py": "cb5a32500d48b510cdc15b369875cfad908345e95637690a3ccc9fb1bbb8fb45",
+    "vero-rl/verl/workers/fsdp_workers.py": "6460471aa5a0c0b90b22356c91b29d3cb758dfe82568e5359af62e858c750d2a",
+    "vero-rl/verl/workers/reward_manager/vero_vllm_judge.py": "d43531f68fc0c08042608d8cd136e8841f8061ddc842a4c5ea7b3c84b82dcfd7",
+    "vero-rl/vero_reward/math_verify_reward_type_boxed.py": "27f8842b30c1a10f05603fae6b7678f9704d12b89bbef8db5caa1f6b29d00920"
+  },
+  "pinned_official_head": "025ca3c800fc95224c86323c1f7fd33dceed3090",
+  "private_detail_receipt_sha256": "8313812d9ab0290b12a76aa27d17b96f283b83f0ed4817c77c2d293b28f4e7da",
+  "readiness_reasons": [
+    "No task-qualified two-category admission or new native rollout/scorer/visual-GSPO evidence is supplied by this scoped CPU review.",
+    "Latest researcher restriction forbids all model/training/inference/optimizer actions; any future run requires separate explicit approval."
+  ],
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "retraining_readiness": "NO",
+  "reviewed_results_sha256": {
+    "ROOT_CAUSE_GSPO_PARITY_V1.json": "baa75045fe28a9a913d7b5f0233f4333ec84858c4df1e83f6acf6778760c732e",
+    "ROOT_CAUSE_ROLLOUT_CONTRACT_FIX_V1.json": "f914a3e169eaa32439c775fd7109dc18e7a1fd4b2bfeba02b24b5b8b8076242d"
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ROOT_CAUSE_CPU_INDEPENDENT_REVIEW_V1",
+  "scope": "Only GSPO source/mechanism parity and future rollout-length contract consistency. No reward-replay/data-admission verdict yet.",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "actual_AST_gradient_for_unequal_lengths": -1.9166666666666667,
+    "actual_AST_gradient_for_unfavorable_movement": -1.4995007499167288,
+    "actual_inference_calls": 0,
+    "actual_models_loaded": 0,
+    "actual_optimizer_updates": 0,
+    "final100_accessed": false,
+    "focused_GSPO_tests_passed": 9,
+    "focused_rollout_contract_tests_passed": 7,
+    "historical_all257_penalties_zero": true,
+    "historical_frozen_sources_modified_by_reviewer": false,
+    "historical_penalty_lengths_0_through_256_recalculated_from_actual_pure_AST": 257,
+    "pytest_elapsed_seconds": 0.1,
+    "saved_parity_report_reconstructed_exactly_without_runner_output_overwrite": true,
+    "total_focused_CPU_tests_passed": 16,
+    "unequal_response_length_analytic_gradient": -1.9166666666666667,
+    "unfavorable_unclipped_movement_analytic_gradient": -1.4995007499167292
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "accepted_updates_with_positive_finite_saved_gradient_norm": 362,
+  "arm_seed_task_rows": [
+    {
+      "arm": "P_calibrated",
+      "gradient_l2_max": 2.4851460009370565,
+      "gradient_l2_median": 1.716187059421143,
+      "gradient_l2_min": 0.9938188482926136,
+      "seed": 7,
+      "task": "mri_sequence",
+      "updates": 7
+    },
+    {
+      "arm": "P_calibrated",
+      "gradient_l2_max": 2.107981452972498,
+      "gradient_l2_median": 2.005409915142791,
+      "gradient_l2_min": 1.9028383773130841,
+      "seed": 7,
+      "task": "mri_visit_correspondence",
+      "updates": 2
+    },
+    {
+      "arm": "P_calibrated",
+      "gradient_l2_max": 2.3039569915395113,
+      "gradient_l2_median": 1.6562682857220308,
+      "gradient_l2_min": 1.2757504654539829,
+      "seed": 11,
+      "task": "mri_sequence",
+      "updates": 5
+    },
+    {
+      "arm": "P_calibrated",
+      "gradient_l2_max": 2.8974762678523653,
+      "gradient_l2_median": 2.7417765316807357,
+      "gradient_l2_min": 2.586076795509106,
+      "seed": 11,
+      "task": "mri_visit_correspondence",
+      "updates": 2
+    },
+    {
+      "arm": "P_calibrated",
+      "gradient_l2_max": 1.8088312324343354,
+      "gradient_l2_median": 1.4941478509554347,
+      "gradient_l2_min": 1.082709929141292,
+      "seed": 13,
+      "task": "mri_sequence",
+      "updates": 7
+    },
+    {
+      "arm": "P_calibrated",
+      "gradient_l2_max": 2.1027609454228484,
+      "gradient_l2_median": 1.042963323077458,
+      "gradient_l2_min": 0.7355894606864418,
+      "seed": 13,
+      "task": "mri_visit_correspondence",
+      "updates": 45
+    },
+    {
+      "arm": "P_raw",
+      "gradient_l2_max": 1.7295796167296529,
+      "gradient_l2_median": 1.3690564119590105,
+      "gradient_l2_min": 0.8490161080409211,
+      "seed": 7,
+      "task": "mri_sequence",
+      "updates": 10
+    },
+    {
+      "arm": "P_raw",
+      "gradient_l2_max": 2.5866569142079214,
+      "gradient_l2_median": 0.9919550626066865,
+      "gradient_l2_min": 0.7745925878657018,
+      "seed": 7,
+      "task": "mri_visit_correspondence",
+      "updates": 37
+    },
+    {
+      "arm": "P_raw",
+      "gradient_l2_max": 2.1224637546091047,
+      "gradient_l2_median": 1.9027576325704638,
+      "gradient_l2_min": 1.2764141891496978,
+      "seed": 11,
+      "task": "mri_sequence",
+      "updates": 6
+    },
+    {
+      "arm": "P_raw",
+      "gradient_l2_max": 2.0342035299769217,
+      "gradient_l2_median": 1.9240164097908066,
+      "gradient_l2_min": 1.8138292896046915,
+      "seed": 11,
+      "task": "mri_visit_correspondence",
+      "updates": 2
+    },
+    {
+      "arm": "P_raw",
+      "gradient_l2_max": 1.8636621351643496,
+      "gradient_l2_median": 1.2468008571748508,
+      "gradient_l2_min": 0.9494331126379798,
+      "seed": 13,
+      "task": "mri_sequence",
+      "updates": 17
+    },
+    {
+      "arm": "P_raw",
+      "gradient_l2_max": 1.8451821754210964,
+      "gradient_l2_median": 1.2123849221593126,
+      "gradient_l2_min": 1.0060220434192488,
+      "seed": 13,
+      "task": "mri_visit_correspondence",
+      "updates": 31
+    },
+    {
+      "arm": "S_correspondence",
+      "gradient_l2_max": 1.836069298501665,
+      "gradient_l2_median": 1.695934320009441,
+      "gradient_l2_min": 1.5557993415172169,
+      "seed": 7,
+      "task": "mri_visit_correspondence",
+      "updates": 2
+    },
+    {
+      "arm": "S_correspondence",
+      "gradient_l2_max": 2.078831438280578,
+      "gradient_l2_median": 1.9666084126200654,
+      "gradient_l2_min": 1.4505603571396077,
+      "seed": 11,
+      "task": "mri_visit_correspondence",
+      "updates": 3
+    },
+    {
+      "arm": "S_correspondence",
+      "gradient_l2_max": 3.8501212910185987,
+      "gradient_l2_median": 2.0882387051036746,
+      "gradient_l2_min": 1.5897459088158485,
+      "seed": 13,
+      "task": "mri_visit_correspondence",
+      "updates": 10
+    },
+    {
+      "arm": "S_sequence",
+      "gradient_l2_max": 2.0609360108086614,
+      "gradient_l2_median": 1.3544917656944464,
+      "gradient_l2_min": 0.8359038625189698,
+      "seed": 7,
+      "task": "mri_sequence",
+      "updates": 42
+    },
+    {
+      "arm": "S_sequence",
+      "gradient_l2_max": 2.03316505474961,
+      "gradient_l2_median": 1.1448675068586827,
+      "gradient_l2_min": 0.7196126233625347,
+      "seed": 11,
+      "task": "mri_sequence",
+      "updates": 40
+    },
+    {
+      "arm": "S_sequence",
+      "gradient_l2_max": 2.254515393643252,
+      "gradient_l2_median": 1.7265019526255536,
+      "gradient_l2_min": 1.098678789985298,
+      "seed": 13,
+      "task": "mri_sequence",
+      "updates": 12
+    },
+    {
+      "arm": "U_calibrated",
+      "gradient_l2_max": 1.7960618962932315,
+      "gradient_l2_median": 1.614971407223933,
+      "gradient_l2_min": 1.3238634158822549,
+      "seed": 7,
+      "task": "mri_sequence",
+      "updates": 8
+    },
+    {
+      "arm": "U_calibrated",
+      "gradient_l2_max": 3.004425748185617,
+      "gradient_l2_median": 1.7033294872560703,
+      "gradient_l2_min": 1.6201070873924528,
+      "seed": 7,
+      "task": "mri_visit_correspondence",
+      "updates": 7
+    },
+    {
+      "arm": "U_calibrated",
+      "gradient_l2_max": 3.0440692711595796,
+      "gradient_l2_median": 2.020146422188026,
+      "gradient_l2_min": 1.6803976251481194,
+      "seed": 11,
+      "task": "mri_sequence",
+      "updates": 7
+    },
+    {
+      "arm": "U_calibrated",
+      "gradient_l2_max": 1.4091035923136976,
+      "gradient_l2_median": 1.4091035923136976,
+      "gradient_l2_min": 1.4091035923136976,
+      "seed": 11,
+      "task": "mri_visit_correspondence",
+      "updates": 1
+    },
+    {
+      "arm": "U_calibrated",
+      "gradient_l2_max": 2.2636160335795275,
+      "gradient_l2_median": 1.5060485692847227,
+      "gradient_l2_min": 1.2672732170597805,
+      "seed": 13,
+      "task": "mri_sequence",
+      "updates": 5
+    },
+    {
+      "arm": "U_calibrated",
+      "gradient_l2_max": 2.873970164129999,
+      "gradient_l2_median": 2.332122384409818,
+      "gradient_l2_min": 1.7902746046896372,
+      "seed": 13,
+      "task": "mri_visit_correspondence",
+      "updates": 2
+    },
+    {
+      "arm": "U_raw",
+      "gradient_l2_max": 2.3647154685954193,
+      "gradient_l2_median": 1.409832456170172,
+      "gradient_l2_min": 0.8854843826215398,
+      "seed": 7,
+      "task": "mri_sequence",
+      "updates": 16
+    },
+    {
+      "arm": "U_raw",
+      "gradient_l2_max": 2.1706127411289566,
+      "gradient_l2_median": 1.3614111937422024,
+      "gradient_l2_min": 0.8790995588893306,
+      "seed": 7,
+      "task": "mri_visit_correspondence",
+      "updates": 23
+    },
+    {
+      "arm": "U_raw",
+      "gradient_l2_max": 2.587993790458251,
+      "gradient_l2_median": 1.9120711549845026,
+      "gradient_l2_min": 1.256261102282417,
+      "seed": 11,
+      "task": "mri_sequence",
+      "updates": 4
+    },
+    {
+      "arm": "U_raw",
+      "gradient_l2_max": 1.4095380658625472,
+      "gradient_l2_median": 1.4095380658625472,
+      "gradient_l2_min": 1.4095380658625472,
+      "seed": 11,
+      "task": "mri_visit_correspondence",
+      "updates": 1
+    },
+    {
+      "arm": "U_raw",
+      "gradient_l2_max": 3.1312574033063734,
+      "gradient_l2_median": 1.9600105287116072,
+      "gradient_l2_min": 1.2503159712328056,
+      "seed": 13,
+      "task": "mri_sequence",
+      "updates": 7
+    },
+    {
+      "arm": "U_raw",
+      "gradient_l2_max": 1.789638149543455,
+      "gradient_l2_median": 1.789638149543455,
+      "gradient_l2_min": 1.789638149543455,
+      "seed": 13,
+      "task": "mri_visit_correspondence",
+      "updates": 1
+    }
+  ],
+  "group_ledger_sha256": "c202d7d7481092838f1cb5255f3c8bca28a018d10ebc9baccb3abc88e300f2d8",
+  "limits": [
+    "Saved scalar norms only; no vector gradient, parameter or Adam tensor reread.",
+    "Norms do not establish net per-task direction, visual dependence, causal task contribution or learning.",
+    "No new gradient, optimizer update, model or final100 read."
+  ],
+  "model_loads": 0,
+  "optimizer_updates_performed": 0,
+  "read_inventory_sha256": "75a89b53f9985a1fd9e7d5d9c6d656707483ae9412d8ea00986e11b38b3ddefd",
+  "schema": "root-cause-saved-gradient-norms-v1",
+  "source_sha256": "225be36f2dff875217c8f365cf4c3616a6720ed53c996c9b8af794cb8ce98daa",
+  "status": "REPRODUCED_CPU_METADATA"
+}

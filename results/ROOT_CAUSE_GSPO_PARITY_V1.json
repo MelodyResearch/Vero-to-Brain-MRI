@@ -1,0 +1,249 @@
+{
+  "counterexamples": {
+    "format_only_group_normalization": {
+      "format_only_advantages": [
+        -0.8660179038493899,
+        0.8660179038493899,
+        -0.8660179038493899,
+        0.8660179038493899
+      ],
+      "interpretation": "A varying .2 format term can produce near-unit standardized credit even when task accuracy is fixed. Tier C all-full-format/task-varies gate excludes this fixture; historical/unfiltered groups differ.",
+      "max_difference": 5.624939108272997e-06,
+      "task_only_advantages": [
+        -0.8660235287884982,
+        0.8660235287884982,
+        -0.8660235287884982,
+        0.8660235287884982
+      ]
+    },
+    "group_size_active_probability": {
+      "assumption": "IID binary task success, all full format, equal overlong; analytic illustration only",
+      "binary_label_information_upper_bound_bits": 1.0,
+      "interpretation": "K changes mixed-success probability. Requiring every response full-format can make K8 LESS eligible than K4 under independent q=.8; uniform attempted categories can yield unequal active updates. Binary categorical label entropy is at most1bit, which does not bound the image reasoning difficulty. These are not observed MRI rates.",
+      "p_0_1_K4": 0.3438,
+      "p_0_1_K8": 0.5695327799999998,
+      "p_0_5_K4": 0.875,
+      "p_0_5_K8": 0.9921875,
+      "strict_all_format_q_0_8_p_0_5_K4": 0.35840000000000005,
+      "strict_all_format_q_0_8_p_0_5_K8": 0.1664614400000001,
+      "strict_gate_assumption": "Each response full-format independently with probability q=.8, independent of IID binary success p=.5; eligibility=q^K*[1-p^K-(1-p)^K].",
+      "uniform_attempts_active_share_p_0_1_vs_0_5_K4": 0.28208073514932724
+    },
+    "image_derivative_does_not_prove_rl_signal": {
+      "ast_sha256": {
+        "native_loss_AST_sha256": "a9d80bac3b29a6d32df22c94aec44fcdaa7f4e00b2f214d1d15218da7bc8680d",
+        "official_loss_AST_subset_sha256": "92fd998eddaf4c647bb50c6dd3fc8d1b7c6113cd589ef23774670ae720e00061"
+      },
+      "forward_ratios": [
+        1.0,
+        1.0
+      ],
+      "gradient": 0.0,
+      "individual_logp_image_derivatives": [
+        1.0,
+        1.0
+      ],
+      "interpretation": "A nonzero per-response/CE image derivative can cancel under signed group advantages. CE evidence cannot establish full visual GSPO credit.",
+      "loss": 0.0,
+      "native_official_gradient_error": 0.0,
+      "single_target_ce_image_derivative": -1.0
+    },
+    "ratio_one_loss_zero_gradient_nonzero": {
+      "ast_sha256": {
+        "native_loss_AST_sha256": "a9d80bac3b29a6d32df22c94aec44fcdaa7f4e00b2f214d1d15218da7bc8680d",
+        "official_loss_AST_subset_sha256": "92fd998eddaf4c647bb50c6dd3fc8d1b7c6113cd589ef23774670ae720e00061"
+      },
+      "forward_ratios": [
+        1.0,
+        1.0
+      ],
+      "frozen_detach_finite_difference": -1.5000000000431335,
+      "gradient": -1.5,
+      "interpretation": "Forward ratio=1 and mean advantage=0 do not imply zero gradient. Current logp derivative survives detach; clipping is inactive.",
+      "loss": 0.0,
+      "naive_redetach_each_perturbation_loss": 0.0,
+      "native_official_gradient_error": 0.0
+    },
+    "sequence_credit_dilution": {
+      "factor": 5.0,
+      "interpretation": "Holding only label-token sensitivity nonzero, adding invariant wrapper tokens dilutes label gradient by response length. This is expected seq-mean-token-mean behavior in both sources.",
+      "length10": -0.1,
+      "length2": -0.5
+    },
+    "stale_minibatch_clipping_counterexample": {
+      "ast_sha256": {
+        "native_loss_AST_sha256": "a9d80bac3b29a6d32df22c94aec44fcdaa7f4e00b2f214d1d15218da7bc8680d",
+        "official_loss_AST_subset_sha256": "92fd998eddaf4c647bb50c6dd3fc8d1b7c6113cd589ef23774670ae720e00061"
+      },
+      "forward_ratios": [
+        1.0010005001667084,
+        0.999000499833375
+      ],
+      "gradient": 0.0,
+      "interpretation": "For favorable movement of 0.001 in mean logp, both examples clip and gradient=0; the matching on-policy fixture has gradient=-1.5. Scheduling can matter, but no local bug is established.",
+      "loss": -0.00034999999999996145,
+      "native_official_gradient_error": 0.0
+    },
+    "teacher_force_identity_blind_spot": {
+      "equal_length_check_passes": true,
+      "generation_prompt_ids": [
+        1,
+        2,
+        3
+      ],
+      "interpretation": "Equal prompt length plus recomputed old=current cannot detect different generation inputs. This is a synthetic counterexample to sufficiency of checks, not evidence actual generation inputs differ.",
+      "old_current_recompute_error": 0.0,
+      "teacher_force_prompt_ids": [
+        1,
+        9,
+        3
+      ]
+    }
+  },
+  "evidence_tier": "SOURCE_AUDIT_AND_TINY_CPU_AST_COUNTEREXAMPLES",
+  "fix_decision": "NO_FROZEN_SOURCE_EDIT: no native loss defect proved by these fixtures.",
+  "limitations": [
+    "CPU AD preserves source stop-gradient expressions but does not execute MLX/CUDA backward or nonsmooth backend ties.",
+    "Recomputed old/current logp alignment cannot certify sampling-distribution logp, KV-cache equivalence, generation prompt token identity, processor equivalence or visual gradient paths.",
+    "Teacher-forced scoring includes captured visual kwargs and causal response positions; real generation/teacher-force equality requires a separately authorized runtime intervention.",
+    "CE image-gradient evidence does not prove signed advantage-weighted full visual GSPO credit.",
+    "K/LR/LoRA/vision/batching/token differences are documented recipe differences, not established causes of past MRI negative results.",
+    "No model weights, patient records, final100 or heldout test content accessed; no real optimizer update, inference or training performed."
+  ],
+  "minimal_proven_fixes": [],
+  "mission_alignment": {
+    "baseline": "Actual pinned official loss AST versus actual native loss AST plus analytic finite differences.",
+    "claim_falsifier": "On-policy ratio1 can have nonzero gradient; falsified by zero extracted derivative for heterogeneous response sensitivities.",
+    "isolation": "New audit files only; historical/frozen sources and experiments unchanged.",
+    "main_question": "Separate Vero recipe mismatch from mathematical GSPO defects before controlled MRI transfer.",
+    "provenance": "Pinned source hashes and toy fixtures; no medical or evaluation rows read.",
+    "resource_decision": "CPU one-thread only; no heavyweight runtime, inference, optimizer update or training."
+  },
+  "native_rollout_scorer_visual_gspo_end_to_end": "NOT_VERIFIED",
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "schema": "root-cause-gspo-parity-v1",
+  "source_ledger": {
+    "actual_official_head": "025ca3c800fc95224c86323c1f7fd33dceed3090",
+    "historical_training_contract_sha": "025ca3c800fc95224c86323c1f7fd33dceed3090",
+    "local_sha256": {
+      "src/mri_rl/continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+      "src/mri_rl/mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+      "src/mri_rl/mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+      "src/mri_rl/tier_c_entry.py": "84e2581dc8b1065301f2ce1e7098db5a213a6b1c29b002c2fb8de6db7b5ddaf8",
+      "src/mri_rl/two_task_training.py": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd",
+      "src/mri_rl/vero_category_sampler.py": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3"
+    },
+    "records": [
+      {
+        "claim": "Sequence geometric mean ratio, current derivative with detached forward value; asymmetric clipping; sequence mean aggregation",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "FORMULA_PARITY under CPU AD; real MLX visual backward NOT_VERIFIED",
+        "local_source": "src/mri_rl/mlx_continuous_gspo.py:update.loss_fn",
+        "official_location": "vero-rl/verl/trainer/ppo/core_algos.py:1037",
+        "official_source_sha256": "10a48380469e9529122f9167723008014783c132d6110ddc62c77e2f270e3e67",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/verl/trainer/ppo/core_algos.py#L1037"
+      },
+      {
+        "claim": "Official on-policy fast path needs one minibatch and one epoch",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Official default has 256 prompts /128 prompt minibatch=2 minibatches, ppo_epochs1; local one K-group per update. Clipping initially inactive locally; gradient survives.",
+        "local_source": "src/mri_rl/mlx_continuous_gspo.py:update",
+        "official_location": "vero-rl/verl/workers/actor/dp_actor.py:491",
+        "official_source_sha256": "cb5a32500d48b510cdc15b369875cfad908345e95637690a3ccc9fb1bbb8fb45",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/verl/workers/actor/dp_actor.py#L491"
+      },
+      {
+        "claim": "Official minibatch size normalized by K and data parallel world size",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Default8 GPUs/K8 gives128 response minibatch per rank; 256 response rollout per rank ->2 actor minibatches. No CUDA run performed.",
+        "local_source": "src/mri_rl/tier_c_entry.py:train_arm",
+        "official_location": "vero-rl/verl/workers/fsdp_workers.py:249",
+        "official_source_sha256": "6460471aa5a0c0b90b22356c91b29d3cb758dfe82568e5359af62e858c750d2a",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/verl/workers/fsdp_workers.py#L249"
+      },
+      {
+        "claim": "K8, LR1e-6, warmup40, uniform six categories, freeze_vision_tower=false",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Local K4 (plan), LR1e-5 constant, language LoRA4/alpha8 frozen4bit base; engineering differences, not proven defects.",
+        "local_source": "src/mri_rl/tier_c_entry.py:train_arm",
+        "official_location": "vero-rl/examples/model_runs/config/gspo_llmjudge_shared.yaml:28",
+        "official_source_sha256": "7ff7ef05103f5bfb555229c0983c2d7a4589212b57cdc8e58d6362bc7c825a27",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/examples/model_runs/config/gspo_llmjudge_shared.yaml#L28"
+      },
+      {
+        "claim": "Official AdamW, weight decay defaults .01, constant schedule with warmup",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Local Adam no bias correction, no decay/scheduler; materially different update geometry. No optimizer steps in audit.",
+        "local_source": "src/mri_rl/mlx_continuous_gspo.py:__init__",
+        "official_location": "vero-rl/verl/workers/fsdp_workers.py:565",
+        "official_source_sha256": "6460471aa5a0c0b90b22356c91b29d3cb758dfe82568e5359af62e858c750d2a",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/verl/workers/fsdp_workers.py#L565"
+      },
+      {
+        "claim": "Category floor/largest-remainder blocks with exhaustion reshuffle",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Tier C uses256-prompt logical blocks; serial updates are not distributed minibatch parity; prefix realized balance must be reported.",
+        "local_source": "src/mri_rl/vero_category_sampler.py; two_task_training.py:build_schedule",
+        "official_location": "vero-rl/verl/utils/dataset/rl_dataset.py:168",
+        "official_source_sha256": "ef923e2aedfd5de07073fcadf53db47f99403260c6c39adefc765e3dfdd96164",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/verl/utils/dataset/rl_dataset.py#L168"
+      },
+      {
+        "claim": "Data curation removes exclusively binary, <1k examples and avg<200k pixels",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Original general-vision data heuristics not satisfied merely by binary MRI verifier validity; recipe transfer is restricted, not official data parity.",
+        "local_source": "MRI task-design distinction",
+        "official_location": "docs/DATA.md:92",
+        "official_source_sha256": "5b4e28bbc41c86cb1591bf575cd08f70220b08650fec142050a210b47d3ca2ec",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/docs/DATA.md#L92"
+      },
+      {
+        "claim": "Accuracy gated to zero when format=0",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Local reward routes are MRI-specific; Tier C adds all-full-format/task-varies/equal-overlong update filter. Uniform attempted categories need not mean uniform active updates.",
+        "local_source": "src/mri_rl/vero_mri_reward.py; continuous_rl.py",
+        "official_location": "vero-rl/vero_reward/math_verify_reward_type_boxed.py:1127",
+        "official_source_sha256": "27f8842b30c1a10f05603fae6b7678f9704d12b89bbef8db5caa1f6b29d00920",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/vero_reward/math_verify_reward_type_boxed.py#L1127"
+      },
+      {
+        "claim": "Official Qwen3 max pixels16,777,216 and prompt/response18432",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Local prompt bound2048; generation max_tokens supplied by plan, visual processing token counts require actual runtime receipt. Response loss averages only response tokens; prompt/image count does not enter its denominator.",
+        "local_source": "src/mri_rl/mlx_continuous_gspo.py:rollout/_logps",
+        "official_location": "vero-rl/examples/model_runs/config/gspo_qwen3vl.yaml:10",
+        "official_source_sha256": "597c5780e7b9540c568f173c63576d1df65811f3d9d1f4a2e1bdfc2b31abbe2c",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/examples/model_runs/config/gspo_qwen3vl.yaml#L10"
+      },
+      {
+        "claim": "Official configured overlong reward uses max_resp_len16384 minus2048 buffer, independently of data response cap18432",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "SOURCE_CONFIG_DISCREPANCY: shared reward max16384 => first negative14337; Qwen3 data cap18432 does not override reward max. Local direct profile18432 => first negative16385. Both zero for current local short caps. No historical length rerun; no frozen edits.",
+        "local_source": "src/mri_rl/mlx_gspo_smoke.py:overlong_penalty",
+        "official_location": "vero-rl/verl/workers/reward_manager/vero_vllm_judge.py:974",
+        "official_source_sha256": "d43531f68fc0c08042608d8cd136e8841f8061ddc842a4c5ea7b3c84b82dcfd7",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/verl/workers/reward_manager/vero_vllm_judge.py#L974"
+      },
+      {
+        "claim": "Qwen3 launcher selects gspo_qwen3vl without reward max length CLI override",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Direct source observation of default launcher, not a recovered resolved Hydra config from original authors training.",
+        "local_source": "src/mri_rl/tier_c_entry.py:train_arm",
+        "official_location": "vero-rl/examples/model_runs/run_gspo_qwen3vl_instruct_mix_all_llmjudge.sh:32",
+        "official_source_sha256": "d2535ac6836c548aeab3af5c1d06719d06401e00ec71b475849d74cda72662d0",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/examples/model_runs/run_gspo_qwen3vl_instruct_mix_all_llmjudge.sh#L32"
+      },
+      {
+        "claim": "Training documentation summarizes source recipe",
+        "evidence_state": "DIRECT_SOURCE_OBSERVATION",
+        "judgment": "Historical local VERO_SHA constant and docs URLs match actual clean official HEAD025ca3; no newer source substituted.",
+        "local_source": "scripts/diagnose_gspo_loss_cpu.py",
+        "official_location": "docs/TRAINING.md:66",
+        "official_source_sha256": "077662e423d10b1ce038fcda117ceb692b25cccd67de038ef2de6c40aef63495",
+        "official_url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/docs/TRAINING.md#L66"
+      }
+    ],
+    "same_historical_and_actual_head": true
+  },
+  "status": "TESTED_CPU"
+}

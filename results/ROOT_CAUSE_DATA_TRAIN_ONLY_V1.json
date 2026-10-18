@@ -1,0 +1,258 @@
+{
+  "Dallas": {
+    "cycles": 12,
+    "labels": {
+      "different": 24,
+      "same": 24
+    },
+    "people": 24,
+    "query_identity_majority_ceiling": 0.5,
+    "render_and_source_panel_checks": {
+      "pair_compositions_exact": 48,
+      "panel_bytes_read": 2729523,
+      "qc_files_read": 48,
+      "raw_NIfTI_rerender": "NOT_RUN; source hash to saved panel QC verified, upstream NIfTI bytes not reopened",
+      "render_contract": {
+        "axes": [
+          "sagittal",
+          "coronal",
+          "axial"
+        ],
+        "crop": "none",
+        "fractions": [
+          0.35,
+          0.5,
+          0.65
+        ],
+        "orientation": "RAS",
+        "pair_order": "query-left_candidate-right",
+        "registration": "none",
+        "tile_pixels": 128,
+        "version": "canonical-independent-multiview-v1",
+        "window_positive_percentiles": [
+          1,
+          99
+        ]
+      },
+      "render_contract_sha256": "06d7295209f30a138c4ba3934d46593ef455787163cd2112edc8c2486cf597f8",
+      "scanner_model_and_site": "UNVERIFIED; manufacturer/protocol matching in original builder is not verified site control",
+      "technical_tile_warning_volumes": 0,
+      "train_source_panels": 48
+    },
+    "rows": 48,
+    "scanner_site": "UNVERIFIED; manufacturer is not site",
+    "scientifically_qualified_rows": 0,
+    "statistical_unit": "two_person_matched_cycle",
+    "task_scope": "cross_visit_BIDS_identity_not_clinical_change",
+    "visual_qualification": "NOT_VERIFIED"
+  },
+  "candidate_pool": {
+    "Dallas_uncertain_rows": 48,
+    "candidate_manifest_sha256": "e33259ef98ecdb4e8931edcf8648d2044cbc80cecbee15554551e65d5234e258",
+    "new_images_downloaded": 0,
+    "new_people_added": 0,
+    "qualified_manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rows": 216,
+    "scientifically_qualified_rows": 0,
+    "sequence_rows": 168,
+    "training_ready": false
+  },
+  "controls": {
+    "Dallas_brain_only_vs_whole_head_control": "NOT_VERIFIED",
+    "blank_or_no_image_model_control": "NOT_RUN in this CPU-only build",
+    "new_VLM_generations": 0,
+    "new_classifier_fits": 0,
+    "new_model_or_optimizer_steps": 0,
+    "patient_target_confounding": {
+      "causal_limit": "This does not establish that a VLM used identity, improved accuracy, or removed site/protocol/intensity shortcuts.",
+      "confirmed_design_defect": "Global14/14 balance leaves each original training person paired with only one modality truth; the same-person three-level two-modality candidate removes this specific contingency confound.",
+      "original28": {
+        "conditional_label_entropy_bits": 0.0,
+        "interpretation": "Exact training contingency ceiling; not fitted model accuracy, unseen-patient generalization or proof of a VLM shortcut.",
+        "label_counts": {
+          "FLAIR": 14,
+          "contrast-enhanced T1": 14
+        },
+        "patient_majority_resubstitution_accuracy": 1.0,
+        "patient_majority_resubstitution_correct": 28,
+        "people": 28,
+        "rows": 28,
+        "single_label_patients": 28
+      },
+      "paired168": {
+        "conditional_label_entropy_bits": 1.0,
+        "interpretation": "Exact training contingency ceiling; not fitted model accuracy, unseen-patient generalization or proof of a VLM shortcut.",
+        "label_counts": {
+          "FLAIR": 84,
+          "contrast-enhanced T1": 84
+        },
+        "patient_majority_resubstitution_accuracy": 0.5,
+        "patient_majority_resubstitution_correct": 84,
+        "people": 28,
+        "rows": 168,
+        "single_label_patients": 0
+      }
+    },
+    "query_identity_majority_ceiling_Dallas": 0.5,
+    "same_patient_modality_swap_model_control": "NOT_RUN; both modalities are paired within all84 patient-level units",
+    "source_site_level_majority_ceiling_sequence": 0.5
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED_EXISTING_TRAIN_PNG_AND_REGISTRY_CHECKS",
+  "excluded_engineering_routes": {
+    "mri_enhancing_presence": {
+      "geometry_positive_planes": 31,
+      "independent_mask_reread": "NOT_RUN; saved train-only geometry receipt verified",
+      "labels": {
+        "no": 53,
+        "yes": 31
+      },
+      "level_counts": {
+        "136": 28,
+        "45": 28,
+        "91": 28
+      },
+      "missing_evidence": [
+        "Independent image-linked visual adjudication and ambiguity/abstention labels",
+        "Source/site/level shortcut controls and clinically justified negatives",
+        "Visible lesion evidence distinct from mask area"
+      ],
+      "rows": 84,
+      "status": "ENGINEERING_ONLY_NOT_ADMITTED",
+      "visible_lesion_evidence": "NOT_VERIFIED"
+    },
+    "mri_tumor_grid": {
+      "geometry_positive_planes": 46,
+      "independent_mask_reread": "NOT_RUN; saved train-only geometry receipt verified",
+      "labels": {
+        "center-bottom": 1,
+        "center-middle": 12,
+        "center-top": 3,
+        "left-bottom": 1,
+        "left-middle": 18,
+        "right-middle": 11
+      },
+      "level_counts": {
+        "136": 7,
+        "45": 14,
+        "91": 25
+      },
+      "missing_evidence": [
+        "Independent image-linked visual adjudication and ambiguity/abstention labels",
+        "Source/site/level shortcut controls and clinically justified negatives",
+        "Frame-aware localization target and centroid/multifocal/boundary ambiguity adjudication"
+      ],
+      "rows": 46,
+      "status": "ENGINEERING_ONLY_NOT_ADMITTED",
+      "visible_lesion_evidence": "NOT_VERIFIED"
+    },
+    "mri_tumor_presence": {
+      "geometry_positive_planes": 46,
+      "independent_mask_reread": "NOT_RUN; saved train-only geometry receipt verified",
+      "labels": {
+        "no": 38,
+        "yes": 46
+      },
+      "level_counts": {
+        "136": 28,
+        "45": 28,
+        "91": 28
+      },
+      "missing_evidence": [
+        "Independent image-linked visual adjudication and ambiguity/abstention labels",
+        "Source/site/level shortcut controls and clinically justified negatives",
+        "Visible lesion evidence distinct from mask area"
+      ],
+      "rows": 84,
+      "status": "ENGINEERING_ONLY_NOT_ADMITTED",
+      "visible_lesion_evidence": "NOT_VERIFIED"
+    }
+  },
+  "limitations": [
+    "Candidate construction does not prove visual answerability, anatomical grounding, improved accuracy or scientific training readiness.",
+    "Sequence source file name/modality identity and saved train image hashes agree; upstream source MRI rerender and source byte-to-PNG reconstruction were not repeated.",
+    "Dallas equality is source BIDS identity across visits, not biological change or a clinical label; whole-head face/skull/neck cues may answer it.",
+    "Dallas manufacturer/TR/TE matching is an existing construction rule; scanner model/site and brain-only answerability are unverified here.",
+    "Lesion/localization labels remain mask-derived engineering evidence. A nonzero mask is not independently adjudicated visible lesion evidence.",
+    "Cross-source global patient linkage is unverified. The candidate stays within immutable preexisting TRAIN registries; no heldout independence claim is newly established."
+  ],
+  "mission_alignment": {
+    "change_isolation": "Candidate expands original28 sequence exposures to168 at the same28 patients; Dallas48 are unchanged. This is a distinct C candidate, not matched-budget B or an accuracy result.",
+    "claim_falsifier": "168 source-linked sequence PNGs cover the same28 train patients at three levels and both modalities; any missing pair, changed target, split, pixel hash or prompt rejects the build.",
+    "evidence_provenance": "Pinned preexisting train registries and image hashes; private candidate and public aggregate hashes.",
+    "main_question_link": "Prepare admissible image-linked task candidates for the locked Vero-to-MRI transfer experiment.",
+    "resources_decision": "One thread, bounded PNG/QC reads only; zero models/optimizer updates. HOLD scientific training admission pending independent visual and shortcut qualification.",
+    "shortcut_baseline": "Site/level and query identity class-majority ceilings computed from matched train counts; no classifier fitted; Dallas whole-head/intensity/protocol shortcuts remain unresolved."
+  },
+  "original_pool": {
+    "Dallas_rows": 48,
+    "rows": 76,
+    "sequence_labels": {
+      "FLAIR": 14,
+      "contrast-enhanced T1": 14
+    },
+    "sequence_levels": {
+      "045": 28
+    },
+    "sequence_rows": 28
+  },
+  "read_scope": {
+    "cross_source_global_patient_identity": "UNVERIFIED",
+    "exploratory_inspection_outside_builder": {
+      "disclosure": "During source discovery the complete bytes of mixed source-provenance JSON were parsed. The ds007045 source receipt includes unused source-heldout mask-QC summaries; the Dallas safe receipt includes unused internal-development controls. Only train records and train control fields were selected for inspection. Exploration must not be described as zero mixed-metadata bytes read.",
+      "downstream_builder": "Excludes all four mixed metadata files; reproducible candidate depends solely on pinned TRAIN resources.",
+      "final_test_released_projection_final100_or_test_prediction_files_opened": false,
+      "fully_train_only": false,
+      "mixed_metadata_files_parsed": [
+        "ds007045 visual_prompts/private_manifest.json",
+        "ds007045 private_receipt_40.json",
+        "Dallas metadata_plan_PRIVATE.json",
+        "Dallas task_receipt_SAFE.json"
+      ],
+      "nontrain_pixels_or_predictions_used_for_design": false
+    },
+    "internal_dev_content_or_outcomes_read_by_builder": false,
+    "runtime_sources": "Only five pinned TRAIN resources plus Dallas TRAIN source panels/QC and existing train images",
+    "test_content_or_outcomes_read_by_builder": false,
+    "upstream_NIfTI_arrays_read_by_builder": 0
+  },
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "schema": "root-cause-data-train-only-v1",
+  "sequence": {
+    "blank_constant_images": 0,
+    "gray_std_min": 6.786440216708174,
+    "labels": {
+      "FLAIR": 84,
+      "contrast-enhanced T1": 84
+    },
+    "levels": {
+      "136": 56,
+      "45": 56,
+      "91": 56
+    },
+    "nonzero_fraction_min": 0.019218167153946975,
+    "nonzero_under_5percent_warning_rows": 2,
+    "patient_level_pairs": 84,
+    "people": 28,
+    "rows": 168,
+    "scientifically_qualified_rows": 0,
+    "source_patient_independence": "WITHIN_SOURCE_TRAIN_REGISTRY_ONLY; cross_source_global_identity_UNVERIFIED",
+    "source_site_level_majority_ceiling": 0.5,
+    "source_sites": 8,
+    "sparse_foreground_flag_scope": "Descriptive engineering warning, not a clinical eligibility threshold or source-label change",
+    "visual_qualification": "NOT_VERIFIED"
+  },
+  "source_code_sha256": {
+    "builder": "9ed3be2b90311217aafe9fe71a3c2807ecde23ffa2d12f7d7abd3df64a336fc9",
+    "helper": "5c64d99d0adf6c7b40af59c6efff4e69a4cf2fab9b7faa0d606571037799242e",
+    "tests": "8fca9aea6384f9697e46bace632182b0131a41d2f5fd604b3b65560add51f830"
+  },
+  "source_train_registry_sha256": {
+    "dallas_train": "6adf06674050e395b704e4b76103f067166b905016920195603e271690de4f14",
+    "original_train": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+    "sequence_inventory": "260082c4b2ea27357bbb708caf1afdf50679a9142cf2bbfa1de3f7c46277d400",
+    "sequence_train": "0efb588b328e3d9af2a339d9237836357a5baff5d9db8b376dc716de3d1f10e3",
+    "train_geometry": "8abe468dfe50de53c4da23d31ea00f613ae38df7996677eaff14cdf2f49226b6"
+  },
+  "status": "TESTED_CPU_TECHNICAL_CANDIDATE_VISUAL_ADMISSION_PENDING"
+}

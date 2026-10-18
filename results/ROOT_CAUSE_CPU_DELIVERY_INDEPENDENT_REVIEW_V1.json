@@ -1,0 +1,54 @@
+{
+  "AGENTS_sha256": "9292fb7967be5cc8806d21b003d213bb4560c9393490eaa2554af1e0c2ff8f66",
+  "CROSS_MODEL_REVIEW": "NOT_VERIFIED",
+  "as_of_utc": "2026-10-18T21:00:51.445897+00:00",
+  "checks": {
+    "CONFIRMED_preparation_mechanisms_distinguished_from_LIKELY_causes_and_UNVERIFIED_native_paths": true,
+    "CPU_phase_model_training_inference_updates_reported_zero": true,
+    "PNG_pixel_composition_distinguished_from_file_byte_hash": true,
+    "README_unchanged_from_base": true,
+    "accepted362_partition_348_14_preserved": true,
+    "existing_frozen_source_and_model_state_preservation_clear": true,
+    "format_rejected392_partition_101_287_4_preserved": true,
+    "intensity_modality_recognition_not_automatically_disqualified": true,
+    "mixed_metadata_exploration_disclosure_preserved": true,
+    "no_final100_rerun_or_method_selection_authorized": true,
+    "phase_all_model_loading_inference_training_updates_explicitly_forbidden": true,
+    "public_document_privacy_and_no_accuracy_improvement_claim": true,
+    "scoped_Codex_review_not_false_Claude_or_full_native_parity": true,
+    "technical_candidates216_qualified0_not_all_images_invalid": true
+  },
+  "component_tests_repeated_in_delivery_review": false,
+  "evidence_tier": "FINAL_DOCUMENT_AND_ALREADY_REVIEWED_PUBLIC_EVIDENCE_CONSISTENCY",
+  "existing_independent_review_sha256": {
+    "ROOT_CAUSE_CPU_INDEPENDENT_REVIEW_V1.json": "957d8548fb609da2942d75dcffb10fd3b1900b99c410ff26857e49b494dea881",
+    "ROOT_CAUSE_DATA_TRAIN_ONLY_INDEPENDENT_REVIEW_V1.json": "026f9b3c7ff2d4e50d743b678b8bc429317e6b3f9e22152cdecc308f3c7b4f88",
+    "ROOT_CAUSE_REWARD_REPLAY_INDEPENDENT_REVIEW_V1.json": "5bea7a8e65ca109c773628a7dbb207270cd8cd8c98b7a28c29046a7a925196cf"
+  },
+  "images_models_or_new_native_outputs_read_in_delivery_review": false,
+  "limitations": [
+    "Final delivery wording/hash consistency only; this does not repeat component audits or establish a unique causal explanation for past learning failures.",
+    "New candidate qualification, visual dependence, native rollout/scorer/GSPO parity and improved MRI accuracy remain unverified.",
+    "Future checkpoint continuity is a predeclared candidate rule only, not final100-based selection or an executable launch approval.",
+    "Public artifacts contain code, aggregate counts and source/evidence digests; private images, identifiers, responses, tokens and model/optimizer/RNG state remain local."
+  ],
+  "new_model_inference_calls": 0,
+  "new_model_optimizer_updates": 0,
+  "new_model_training_runs": 0,
+  "public_component_sha256": {
+    "ROOT_CAUSE_DATA_TRAIN_ONLY_V1.json": "cb0dc8d01ae0b85c9fd2c2fa4561b864b3de3207c09ba64c02abc2b14e18a5b2",
+    "ROOT_CAUSE_GSPO_PARITY_V1.json": "baa75045fe28a9a913d7b5f0233f4333ec84858c4df1e83f6acf6778760c732e",
+    "ROOT_CAUSE_REWARD_REPLAY_V1.json": "32d4dfd82b477308d52966b3fd86688d95d465e3b967550a3d1ae6786ca435c4",
+    "ROOT_CAUSE_ROLLOUT_CONTRACT_FIX_V1.json": "f914a3e169eaa32439c775fd7109dc18e7a1fd4b2bfeba02b24b5b8b8076242d",
+    "ROOT_CAUSE_SAVED_GRADIENT_NORMS_V1.json": "e3f5e4617e2f3bbd5d5b4029e88d5ffbb86891d5fc1b39d0d7c24634e97b6d5e"
+  },
+  "remaining_requirement": "Report evidence and wait for a new researcher decision; CPU qualification alone cannot authorize model work.",
+  "report_sha256": "a00f352323d8b507d92f6e018315aceed2caf1f9e3c6f287fd827f52c322ad45",
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "retraining_readiness": "NO",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ROOT_CAUSE_CPU_DELIVERY_INDEPENDENT_REVIEW_V1",
+  "training_or_native_launch_approval": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

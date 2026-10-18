@@ -1,0 +1,71 @@
+{
+  "CROSS_MODEL_REVIEW": "NOT_VERIFIED",
+  "as_of_utc": "2026-10-18T20:47:44.171397+00:00",
+  "candidate_manifest_sha256": "e33259ef98ecdb4e8931edcf8648d2044cbc80cecbee15554551e65d5234e258",
+  "checks": {
+    "Dallas_rows": 48,
+    "Dallas_train_people": 24,
+    "Dallas_two_person_cycles": 12,
+    "TRAIN_image_byte_hashes_verified": 216,
+    "TRAIN_image_bytes_hashed": 13065032,
+    "actual_image_pixels_decoded_or_visually_adjudicated_by_reviewer": false,
+    "candidate_rows": 216,
+    "final100_or_dev_outcomes_accessed_by_reviewer": false,
+    "models_loaded": 0,
+    "new_inference_calls": 0,
+    "new_optimizer_updates": 0,
+    "original_patient_label_contingency": {
+      "conditional_label_entropy_bits": 0.0,
+      "patient_majority_resubstitution_accuracy": 1.0,
+      "patient_majority_resubstitution_correct": 28,
+      "people": 28,
+      "rows": 28,
+      "single_label_patients": 28
+    },
+    "paired_patient_label_contingency": {
+      "conditional_label_entropy_bits": 1.0,
+      "patient_majority_resubstitution_accuracy": 0.5,
+      "patient_majority_resubstitution_correct": 84,
+      "people": 28,
+      "rows": 168,
+      "single_label_patients": 0
+    },
+    "qualified_training_manifest_rows": 0,
+    "query_identity_majority_resubstitution_ceiling_Dallas": 0.5,
+    "same_person_same_level_modality_pairs": 84,
+    "sequence_rows": 168,
+    "sequence_train_people": 28,
+    "source_metadata_site_groupings": 8,
+    "source_report_sparse_foreground_warning_rows": 2,
+    "source_site_level_majority_resubstitution_ceiling": 0.5,
+    "training_rows_rejects_nonempty_even_self_attested_flags": true
+  },
+  "disclosure": "Strict train-only reproducible builder is distinguished from previously disclosed exploratory parsing of mixed source metadata by the data author; this review does not claim zero mixed-metadata bytes were ever read.",
+  "evidence_tier": "REPRODUCED_TRAIN_METADATA_AND_IMAGE_BYTE_HASH_CHECKS",
+  "independent_focused_CPU_tests_passed": 16,
+  "limitations": [
+    "Current216 rows are technically linked candidates, not a qualified training dataset or demonstrated accuracy improvement.",
+    "TRAIN PNG bytes and frozen metadata were verified; upstream NIfTI rerender, source-byte-to-PNG reconstruction and clinical/visual answerability were not independently re-executed.",
+    "Two sparse rows are saved engineering foreground warnings, not lesion-negative labels or validated exclusion thresholds; reviewer did not decode/display them.",
+    "Eight sequence site strings are existing source-metadata groupings; Dallas scanner/site is UNVERIFIED and manufacturer is not a verified site identity.",
+    "Intensity/contrast can be legitimate acquisition-modality evidence. Modality recognition eligibility does not require anatomical or lesion reasoning, and this audit does not automatically reject intensity use.",
+    "Per-patient class confounding changed from H0/majority1 to H1/majority0.5; this does not prove a VLM used identity, improve generalization or remove site/protocol shortcuts.",
+    "Dallas is whole-head cross-visit identity correspondence, not clinical change or necessarily brain-only reasoning.",
+    "No new heldout separation/global cross-source identity claim is established; all model work remains forbidden in the current CPU-only phase."
+  ],
+  "private_detail_sha256": "b188e3c9cbb3e8e8695ac1679027e94940481f94714fbc178656c797f3db84d5",
+  "public_data_report_sha256": "cb0dc8d01ae0b85c9fd2c2fa4561b864b3de3207c09ba64c02abc2b14e18a5b2",
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "retraining_readiness": "NO",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ROOT_CAUSE_DATA_TRAIN_ONLY_INDEPENDENT_REVIEW_V1",
+  "scientifically_qualified_rows": 0,
+  "source_sha256": {
+    "builder": "9ed3be2b90311217aafe9fe71a3c2807ecde23ffa2d12f7d7abd3df64a336fc9",
+    "helper": "5c64d99d0adf6c7b40af59c6efff4e69a4cf2fab9b7faa0d606571037799242e",
+    "tests": "8fca9aea6384f9697e46bace632182b0131a41d2f5fd604b3b65560add51f830"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_source_sha256": "473c1ec2b6ac0145b45ecc27b7524e810b531eb7262fac0fbd7b7a7ff3832af9"
+}

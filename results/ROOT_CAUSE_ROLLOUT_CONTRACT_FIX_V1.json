@@ -1,0 +1,43 @@
+{
+  "evidence_tier": "REPRODUCED_CPU_SOURCE_COUNTEREXAMPLE",
+  "explicit_disabled_configuration": {
+    "buffer_tokens": 2048,
+    "effective_penalty_enabled": false,
+    "first_negative_token": 16385,
+    "historical_reward_modified": false,
+    "mode": "disabled_explicit",
+    "penalty_max_tokens": 18432,
+    "reachable": false,
+    "rollout_cap": 256,
+    "scope": "Configuration consistency only; not evidence of better MRI accuracy.",
+    "training_authorized": false
+  },
+  "historical_local_profile": {
+    "all_penalties_zero": true,
+    "buffer_tokens": 2048,
+    "penalty_max_tokens": 18432,
+    "rollout_cap": 256,
+    "tested_lengths": 257
+  },
+  "historical_penalty_source_sha256": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+  "limits": [
+    "No historical reward or training interface modified. New validation must be called by any separately approved future version; this is not a retroactive safeguard.",
+    "No new penalty strength chosen and no demonstrated MRI accuracy improvement.",
+    "CPU mathematical fixtures only; no real optimizer object or model loaded."
+  ],
+  "native_frameworks_loaded": false,
+  "new_enabled_validation": {
+    "error": "enabled length penalty is unreachable within rollout_cap",
+    "rejected": true
+  },
+  "new_model_optimizer_updates": 0,
+  "new_validator_source_sha256": "101fe852d546ff89df5df0fe879ca6fe5bb52b26d6583bc84364790497e5fce2",
+  "red_green": {
+    "observed_after_implementation_pass": 7,
+    "observed_before_implementation": 7
+  },
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "schema": "root-cause-rollout-contract-fix-v1",
+  "status": "TESTED_CPU",
+  "training_runs": 0
+}
