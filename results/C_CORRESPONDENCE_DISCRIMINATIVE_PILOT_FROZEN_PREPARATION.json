@@ -1,0 +1,87 @@
+{
+  "author": "Codex /root/full_arm_execution_contract",
+  "baseline_reconciliation": {
+    "constant_class_and_saved_B28_U7": {
+      "B28_U7_constant": "different",
+      "dev_correct": 8,
+      "dev_rows": 16
+    },
+    "historical_nonspatial_intensity_foreground": {
+      "dev_correct": 11,
+      "dev_rows": 16,
+      "different_recall": 1.0,
+      "same_recall": 0.375
+    },
+    "historical_spatial": {
+      "dev_correct": 12,
+      "dev_rows": 16,
+      "different_recall": 1.0,
+      "method": "96x96 per-panel centered normalized correlation; one scalar threshold selected on48train pairs; fixed direction higher=same",
+      "same_recall": 0.5,
+      "source_sha256": "9bde3e7d21513eda55d4e29b31ef62762efc3b4882e3d0ec5c1b365b1fccea9e",
+      "train_correct": 34,
+      "train_rows": 48
+    },
+    "interpretation": "Same frozen16dev cases, different feature/fitting methods.14/16 does not replicate12/16, establish a VLM gain or brain-specific reasoning. Strong48-train-pair CPU models are descriptive controls, not same8-row-supervision comparisons.",
+    "new_nonspatial_histogram": {
+      "dev_correct": 11,
+      "dev_rows": 16,
+      "different_recall": 0.75,
+      "same_recall": 0.625
+    },
+    "new_spatial": {
+      "dev_correct": 14,
+      "dev_rows": 16,
+      "different_recall": 1.0,
+      "method": "Absolute difference of16x16 grayscale panel thumbnails, train-standardized L2 logistic(C1/liblinear/seed7);48train pairs",
+      "same_recall": 0.75,
+      "source_sha256": "fe9402cc4e1f4bbb2b1eb396922abbabda168f56d624441cc8b2750f2a576cf7"
+    }
+  },
+  "builder_sha256": "55b029b39171c90ce1b25ea30501472e5bc78192c8b8b869de7a9a8f874dd8c0",
+  "checks": {
+    "all64_existing_pair_PNG_hashes_and128_source_panel_halves_verified": true,
+    "full_train48_dev16_cycles_and_people_validated": true,
+    "hidden_source_identity_truth_and_metadata_free_model_prompt_verified": true,
+    "sealed_final_data_read": false,
+    "train_dev_patient_cycle_disjoint": true
+  },
+  "dev": {
+    "different": 8,
+    "matched_cycles": 4,
+    "people": 8,
+    "rows": 16,
+    "same": 8,
+    "sha256": "e4118cf1cd64d6eea1ebc3566b3f6476aceed74958becae55f7216ff4c9f1023"
+  },
+  "frozen_config_sha256": "2f7424e1221f3597ec7d91af559140961de8d3623b3ee05d068111975347f3d6",
+  "image_presentations": 8,
+  "limitations": [
+    "Whole-head source-person correspondence, not clinical longitudinal change. Face/neck/skull and acquisition/intensity identity cues remain.",
+    "Two training cycles are4people, not8patients;4devcycles contain8people with linkednegativepairs.",
+    "Repeatedly examined dev is exploratory; no independent-patient generalization, seed robustness or publication-level accuracy claim.",
+    "No numerical/methodological novelty claimed from applying existing discriminative CE and LoRA.",
+    "Native C adapter/target tokens/input counts/exact budget/independent scope and actual post-update evaluation remain NOT_RUN."
+  ],
+  "maximum_training_candidate_forwards": 16,
+  "maximum_updates": 2,
+  "mission_alignment": {
+    "evidence_tier": "PROPOSED_NATIVE_EXPERIMENT / REPRODUCED_EXISTING_CPU_BASELINES",
+    "falsifier": "No real-null or query-paired separation gain, loss of either class recall, or onlyconstant-answer prior shift contradicts image-discrimination improvement.",
+    "hypothesis": "Matched train-only same/different supervision can improve real-image correspondence beyond answer-prior changes.",
+    "link": "Determine whether task-specific supervised image discrimination repairs collapsed correspondence answers before further VeroRL transfer. Original18RL+3SFT controls unchanged.",
+    "tag": "C_TASK_ELIGIBILITY / EXPLORATORY_DIAGNOSTIC / PRIMARY_VERO_TRANSFER"
+  },
+  "schema": "C_same_different_discriminative_train_only_pilot_v1",
+  "source_pack_sha256": "446808a0203ba1e6dd9f45e7f052a7667420b016ffff5a5b88f295d728fc79ab",
+  "status": "FROZEN_CPU_DATA_ONLY_NATIVE_NOT_RUN",
+  "token_measurement_and_C_native_adapter": "PENDING_NOT_APPROVED_FOR_NATIVE_LAUNCH",
+  "train": {
+    "different": 4,
+    "matched_cycles": 2,
+    "people": 4,
+    "rows": 8,
+    "same": 4,
+    "sha256": "002e79932779556bb69009ac47ce9fbd499cce8fd3a7522578674e25eccedde8"
+  }
+}

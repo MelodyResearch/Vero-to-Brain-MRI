@@ -1,0 +1,57 @@
+{
+  "actual_model_loads_by_reviewer": 0,
+  "actual_training_steps_by_reviewer": 0,
+  "focused_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_paired_pilot_entry_v2.py tests/test_paired_pilot_entry_independent_guards_v2.py",
+    "elapsed_seconds": 0.06,
+    "passed": 8,
+    "test_mode": "CPU/temp fixtures/mocked native modules; no real queue lock or model"
+  },
+  "limitations": [
+    "Actual mean48 numerical evidence and actual changed-weight two-update native pilot/post2 reload/accuracy have NOT_RUN at this review; this PWL is source readiness only and does not authorize pending previews.",
+    "When actual feature proof exists, regenerate exact ready scope and independently bind its digest and actual checkpoint/output state before native execution. Any budget/source change needs focused delta review.",
+    "Native autograd/backward and resource stability were not run by reviewer; no guarantee against hardware failure.",
+    "Repeated internal development four sequence people/four Dallas cycles only; no independent final-patient or clinical generalization claim.",
+    "Same-patient opposite modality image records provide the paired replacement control; blank-image control remains NOT_RUN. Candidate prior changes or constant-class changes do not establish visual grounding.",
+    "Keep original strict numerical candidate guards; any future numerical exception remains a failed affected scope unless separately diagnosed and versioned.",
+    "No new algorithmic novelty or improved MRI accuracy is inferred from source approval, checkpoint persistence or optimizer updates."
+  ],
+  "native_launch_approved": false,
+  "native_launch_status": "NOT_VERIFIED_PENDING_ACTUAL_FEATURE_EVIDENCE_AND_EXACT_READY_SCOPE_REVIEW",
+  "resolved_defects": [
+    {
+      "correction": "resource_gate creates output directory before constructing existing PacedGate; test executes first actual shared-gate sample with a CPU fixture.",
+      "defect": "Training output directory absent before first resource sample tried to append its log",
+      "original_entry_sha256": "d1f79909bb64a7ed4b441ec99d37063cc97821580d0e0546107dea85024a01e5"
+    },
+    {
+      "correction": "Resume checks complete immutable record metadata, zero weight updates, finite JSON and candidate numeric validator; current output SHAs are bound in review scope and rechecked under global flock. Stable run identity excludes only progress fields. Completion checks full counts, output SHAs, checkpoint/adapter/run identity, evaluation contract, zero updates and native release.",
+      "defect": "Resume accepted same-ID malformed/NaN payload and full-length outputs plus invalid completion without checking release/hash/contract",
+      "original_red_cases": 3,
+      "step_D": "Original counterexamples adapted to corrected metadata API; valid completion fixture passes, eight individual binding corruptions rejected."
+    }
+  ],
+  "reviewer_findings": [
+    "Training delegates the frozen two four-image updates to existing label-token discrimination objective and shared NativeSFT atomic checkpoint/Adam/Python+MLX RNG journal; original controls and source79963 remain unchanged.",
+    "Feature completion requires externally supplied exact plan/receipt digests, matching frozen24train/24dev mean48 stage and actual successful release. The current three previews remain ready=false; no exact native approval issued by this source review.",
+    "Evaluation freezes the same full40 greedy development records plus24sequence candidate records and one shared no-image sequence prompt. All24image labels pair within four people at three fixed levels, with no outcome-based subset.",
+    "B28 reuses five authenticated existing candidate records (four real plus one null) and all40saved native greedy responses:20new candidate records/60forwards. Post2 uses25candidate records/75forwards and40real+one null greedy generations, temperature0/max256.",
+    "Scope binds entry/objective/shared sources, common B28, certified cache, contracts, frozen data and actual journal; existing global lock/resource protection retained. Read-only evaluation compares all504 LoRA tensors and optimizer step0, closes model and requires active allocations below128MiB before completion.",
+    "Entry saves raw predictions/scores for later independent class/cycle/patient/real-null and paired-swap arithmetic; a completed training journal alone is not an accuracy improvement."
+  ],
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "PAIRED_DISCRIMINATION_ENTRY_SCOPED_CPU_INDEPENDENT_REVIEW_V1",
+  "scope": "New thin paired pilot entry, exact frozen evaluation contract and changed resume/release guards. No repeated broad training/reward/native math audit.",
+  "source_and_evidence_sha256": {
+    "B28_eval_preview": "b84853338adacae14a7e7a6886e884d09a38600374ae677ea1ea15ec9719620d",
+    "entry": "d0202667c4a580c4ea34cdd22a31a2238fd2de8ad81f26277600f351b5dd152c",
+    "entry_tests": "e0d427b73c31691292cface9fb6b78700a4d00f29a3d4c6dc8480592b4e32cfa",
+    "evaluation_contract": "8c52a40f572393f4a01c6fbd2eb84d044bc14ecd151ae00ef56d9e7600a2539b",
+    "independent_guard_tests": "568430e86b0ad4e796eca44d3b03af0cd44eb28a1c47588160bd8d7735386a53",
+    "objective": "79963d311b4797e8010a5b6c8de81c21f2f0adb1f5088613f2e867afcdfd021e",
+    "post2_eval_preview": "38bdae6a92049f9fb19c438f33c597083992556c7f1f726bd60b5deb0e36c068",
+    "train_preview": "13de2a4a62ed653cc7048b4febf90c69dbf29c95959b24b3c32ee828224d64da"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

@@ -1,0 +1,161 @@
+{
+  "actual_result_sha256": "4a86391af46c945dde4137b79cf32731093aa85a26dd09794af1a1e22bc70987",
+  "additional_independent_alignment": {
+    "B_pilot_plan_sha256": "94aac6d202b050e231c6765449adfe80c856f9ab43606c43c80a13cf0009d748",
+    "C_pilot_plan_sha256": "2f7424e1221f3597ec7d91af559140961de8d3623b3ee05d068111975347f3d6",
+    "actual_helper_sha256": "da2097c1dbcbf465fae1568fc31004418dd7acc65b498d1b267a11ecb91029e1",
+    "actual_training_and_development_units": {
+      "mri_sequence": {
+        "dev_cycles": null,
+        "dev_people": 4,
+        "dev_rows": 24,
+        "train_cycles": null,
+        "train_people": 2,
+        "train_rows": 8
+      },
+      "mri_visit_correspondence": {
+        "dev_cycles": 4,
+        "dev_people": 8,
+        "dev_rows": 16,
+        "train_cycles": 2,
+        "train_people": 4,
+        "train_rows": 8
+      }
+    },
+    "cached_feature_arrays_exactly_reproduced_from_parent_selected_rows_and_full_dev": 12,
+    "dev_rows_byte_semantically_identical_to_parent": true,
+    "execution_script_sha256": "6e031f3feb74b02062db3c880f252ae80370f63604625e6604b2877332e4d1ec",
+    "frozen_train_rows_exactly_equal_B8_plus_C8": true,
+    "unselected_metadata_vocabulary_columns_have_exact_zero_coefficients": true
+  },
+  "all_actual_predictions_exact_integer_classes": true,
+  "dev_sequence_pairs": 12,
+  "exact_image_hash_disjoint": true,
+  "frozen_input_sha256": "97cef2b24358ef0e7a61dfb9d33b93b5e543c3e1a1427f02f2e7b2b914b90cc6",
+  "independent_confusion_and_unit_metrics": {
+    "B28_saved_native": {
+      "mri_sequence": {
+        "correct_questions": 15,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "U7_saved_native": {
+      "mri_sequence": {
+        "correct_questions": 13,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5416666666666666
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "histogram16_L2_logistic": {
+      "mri_sequence": {
+        "correct_questions": 23,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.9583333333333334
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 9,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5625
+      }
+    },
+    "null_training_majority": {
+      "mri_sequence": {
+        "correct_questions": 12,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "source_site_level_L2_logistic": {
+      "mri_sequence": {
+        "correct_questions": 12,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "spatial16_L2_logistic": {
+      "mri_sequence": {
+        "correct_questions": 20,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.8333333333333334
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 9,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5625
+      }
+    },
+    "spatial_head_blank_dev": {
+      "mri_sequence": {
+        "correct_questions": 12,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    }
+  },
+  "limitations": [
+    "Saved feature arrays and head parameters were used; feature pixel extraction was not rerun by this reviewer.",
+    "Current source uses train-only scaling/fitting and fixed C1 with no dev-label search; this is repeated internal development, not untouched preregistered evidence.",
+    "Exactly8added supervised rows per task match B/C pilot row selection only. Existing B28 pretraining/prior supervision, architectures and compute differ; no matched-total-budget or causal VLM gain is established.",
+    "Histogram and whole-head/acquisition shortcuts remain; no brain-specific grounding, clinical generalization or seed robustness is established.",
+    "Only4 sequence people and4 Dallas cycles bootstrap uncertainty; no scanner/seed/sample-selection uncertainty."
+  ],
+  "models_refitted": 0,
+  "native_models_imported": false,
+  "native_saved_ID_prediction_alignment_verified": true,
+  "public_narrative_correction": {
+    "numerical_fields_changed": false,
+    "scope_stale_text_replaced": "Sequence supervision expands28 to168 rows and models/budgets differ from VLM; no causal VLM accuracy gain or Qwen feature-encoder diagnosis follows."
+  },
+  "raw_verifier_proof_sha256": "5972d65bfdbce4ad3b6c17f4a90448971380c04b49edbbf7ca041ca621065e3d",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "saved_head_predictions_reproduced": 6,
+  "schema": "PILOT8_ADDED_SUPERVISION_CPU_SAVED_NUMERICS_INDEPENDENT_V1",
+  "scope": "Six fixed CPU heads trained on exactly frozen B8 and C8 rows; no refit or native model. Original168/48 control result preserved.",
+  "source_sha256": "805f3858c2c1848028efcb95fc53bc126fa5cbc6ada06233ee44562ef02957ee",
+  "train_sequence_pairs": 4,
+  "unit_bootstrap_comparisons_verified": 12,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_author": "/root/full_arm_execution_contract",
+  "within_source_patient_and_cycle_disjoint": true
+}
