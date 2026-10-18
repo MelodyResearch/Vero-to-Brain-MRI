@@ -16,7 +16,16 @@ FLAIR/T1 recall on B28 is 12/12 and 3/12; on U_raw7 it is 7/12 and 6/12; on Adam
 
 The original 18 RL arms are all `TRAINING_COMPLETED` with independently checked final receipts. Across them: 2,286 completed groups, 362 accepted optimizer updates and 3,012,459 charged tokens. These are **training-cost totals, not accuracies**. Of those 18, only U_raw seed7 and P_calibrated seed13 currently have saved full C40 accuracy. The other 16 require native inference and remain `NOT_EVALUATED`; the three same-C-data SFT arms are separate controls, not RL arms. The live queue must finish naturally before any new heavyweight inference. Patient-cluster uncertainty for the full 18+3 matrix is therefore `NOT_AVAILABLE`; no confidence interval can be inferred from reward traces.
 
-Adam60's saved adapter and complete optimizer/RNG continuation have an independent CPU proof, but its accuracy is `NOT_EVALUATED`. An exact read-only evaluation scope has been prepared, with proof SHA-256 `9dcad56048539502c09b3f0307db2f4412405a045da0fe4912b9596d31eed6e0` and scope SHA-256 `860fde061f6dfe106878b1c5bfb50850ccae541460afbf4bb17c2e8fec060a6f`; model execution awaits natural queue idle and exact scope review. It reuses the byte-identical Adam56 output and binds the 40 greedy questions plus candidate readout. Sealed final100 remains unopened.
+| Original RL method | Seed 7 updates / C40 | Seed 11 updates / C40 | Seed 13 updates / C40 | Three-seed charged tokens |
+|---|---|---|---|---:|
+| Sequence specialist | 42 / NOT_EVALUATED | 40 / NOT_EVALUATED | 12 / NOT_EVALUATED | 503,309 |
+| Dallas specialist | 2 / NOT_EVALUATED | 3 / NOT_EVALUATED | 10 / NOT_EVALUATED | 501,753 |
+| Proportional raw | 47 / NOT_EVALUATED | 8 / NOT_EVALUATED | 48 / NOT_EVALUATED | 501,629 |
+| Uniform raw | 39 / 13/24 sequence, 8/16 Dallas | 5 / NOT_EVALUATED | 8 / NOT_EVALUATED | 501,452 |
+| Proportional calibrated | 9 / NOT_EVALUATED | 7 / NOT_EVALUATED | 52 / 9/24 sequence, 8/16 Dallas | 502,475 |
+| Uniform calibrated | 15 / NOT_EVALUATED | 8 / NOT_EVALUATED | 7 / NOT_EVALUATED | 501,841 |
+
+Adam60's saved adapter and complete optimizer/RNG continuation have an independent CPU proof, but its accuracy is `NOT_EVALUATED`. An exact read-only evaluation scope has been prepared, with proof SHA-256 `9dcad56048539502c09b3f0307db2f4412405a045da0fe4912b9596d31eed6e0` and scope SHA-256 `860fde061f6dfe106878b1c5bfb50850ccae541460afbf4bb17c2e8fec060a6f`. An isolated Codex reviewer independently checked all 40 input-image hashes, six prior Adam56 evidence hashes, the no-update evaluator and queue lock, then recorded `PASS_WITH_LIMITATIONS` in an ignored private scope review (SHA-256 `dfbb01bb3e2632ea679655a606a46bbf47cfae34aec1cc0a9183667557c2913f`). The evaluator's own `verify_review` accepted that exact review. Model execution still awaits natural queue idle. The scope reuses byte-identical Adam56 output and binds 40 greedy questions plus candidate readout. Sealed final100 remains unopened.
 
 ## Evidence identities and limitations
 
