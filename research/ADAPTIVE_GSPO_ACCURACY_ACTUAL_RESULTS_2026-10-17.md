@@ -34,11 +34,13 @@
 - 已确认：生成读取和候选读取存在明显差异；父模型7条序列输出达到256-token上限且无效。旧SFT含大量固定格式目标，但静态token比例不能独自证明梯度被格式主导。
 - 已确认：旧严格门控会跳过本轮全部7个已保存组；新门控实际产生4次更新。这个事实只证明准入/有效曝光改变。不同策略后续轨迹并非匹配反事实，不能证明新门控因果优越。
 - 已观察：当前有限续训出现跨任务退化；不能把更多更新等同于MRI学习，也不能将退化唯一归因于某一任务更新。
-- 未决：language-only LoRA 是否充分利用视觉信息、原生图像条件梯度和 rollout/scorer 路径的一致性。已有权重更新和CPU测试不等于这两项原生验证。
+- 已实际测量：在预先指定的一对训练图像上，原生标签CE损失真实配对0.162280，交换像素并固定真值后1.995218，零归一化像素后0.943613；配对分离度分别为+3.665878、−3.665878、0。交换后的候选分数矩阵精确反转，说明这条标签损失路径真实使用了图像。
+- 该原生诊断执行6次串行单图梯度、12次候选前向、零次更新。真实/交换/零像素梯度范数分别1.485867/15.114225/3.191291，后两者相对真实的cosine为−0.886774/−0.363174。独立CPU复算全部3×504梯度张量，并直接将504权重和1011 optimizer/RNG指纹与Adam56快照字节核对；状态未变，进程exit0，释放后MLX活动分配1032 bytes。
+- 未决：language-only LoRA 的总体容量是否充分、完整GSPO损失的图像信用分配以及 rollout/scorer 一致性。单训练配对的标签CE梯度敏感性不等于GSPO原生有限差分验证、MRI准确率改善或泛化证明；目前没有依据直接解冻整个视觉编码器。
 
 ## 决定与后续执行
 
-本段未通过“提高准确率且没有明显任务退化”的继续条件，停止沿该配置盲目扩训；保留父和子全部状态。下一项是对已有训练图像做真实/交换/零归一化像素的原生标签损失梯度诊断，区分视觉条件路径与答案/格式信用分配问题。它不更新权重，必须实际运行后才能报告结果；原始对照队列保持可恢复。
+本段未通过“提高准确率且没有明显任务退化”的继续条件，停止沿该配置盲目扩训；保留父和子全部状态。上述原生梯度诊断已实际完成。下一项有限配置控制正在准备：从已有Adam56权重继续，仅将类别采样从proportional切换为既有uniform配方，数据、loss、reward、LoRA保持不变；最多16组/4次更新，必须独立精确批准后才能执行。它不是原始U_calibrated13独立对照臂，也尚无新准确率结果。原始对照队列保持可恢复。
 
 本轮数值复核为真实独立 Codex 执行；没有声称 Claude 读取或核验这些私有原始结果。跨模型原始结果审查仍为 NOT_VERIFIED。
 
@@ -50,5 +52,6 @@
 - `results/ADAPTIVE_ACCURACY_GATE_PARENT_CHILD_SAVED_OUTCOME_INDEPENDENT_VERIFICATION_FINAL.json`
 - `results/ADAPTIVE_PARENT_PCAL13_ACTUAL_BASELINE_INDEPENDENT.json`
 - `results/ADAPTIVE_ACTUAL_COMPLETION_AND_REMAINING_ETA_V1.json`
+- `results/PAIRED_NATIVE_LABEL_CE_GRADIENT_ACTUAL_SAVED_INDEPENDENT_VERIFICATION_V1.json`
 
 原生快照：独立 accuracy 分支的 `local_data/adaptive_accuracy_gate_v1/run/boundary_0007/`；adapter SHA256 `23b6ce522f770bf39acbadd9b66ccf00529de7822a5bb4173e7c4b96cd8618a7`，完整 optimizer/RNG 位于同目录的 `optimizer/`。医学图像、患者关联原始输出和权重不进入 Git。
