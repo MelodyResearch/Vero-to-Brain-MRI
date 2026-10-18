@@ -1,0 +1,651 @@
+{
+  "actual_recount_closed_stdout_sha256": "c9e8fef79509b47fcdc84311e04151b6fb9054942a87281172fb127042a1d169",
+  "actual_recount_exit_sha256": "6678de2cf2ac84e77f370bfca9289a0e19648cb792416b5b768a10a071921749",
+  "actual_response_rows_reparsed": 2200,
+  "all_model_task_outcomes_preserved": [
+    {
+      "checkpoint_id": "B28",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 161.003,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 1459,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "B28",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.488,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_sequence:7",
+      "class_recall": {
+        "FLAIR": 0.9285714285714286,
+        "contrast-enhanced T1": 0.2857142857142857
+      },
+      "elapsed_seconds": 192.752,
+      "full_format_correct": 51,
+      "invalid": 0,
+      "native_correct": 51,
+      "task": "mri_sequence",
+      "tokens": 2076,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_sequence:7",
+      "class_recall": {
+        "different": 0.0,
+        "same": 1.0
+      },
+      "elapsed_seconds": 46.371,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 348,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_sequence:11",
+      "class_recall": {
+        "FLAIR": 0.047619047619047616,
+        "contrast-enhanced T1": 0.9523809523809523
+      },
+      "elapsed_seconds": 202.096,
+      "full_format_correct": 42,
+      "invalid": 0,
+      "native_correct": 42,
+      "task": "mri_sequence",
+      "tokens": 2266,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_sequence:11",
+      "class_recall": {
+        "different": 0.125,
+        "same": 1.0
+      },
+      "elapsed_seconds": 46.544,
+      "full_format_correct": 9,
+      "invalid": 0,
+      "native_correct": 9,
+      "task": "mri_visit_correspondence",
+      "tokens": 349,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_sequence:13",
+      "class_recall": {
+        "FLAIR": 0.9523809523809523,
+        "contrast-enhanced T1": 0.2619047619047619
+      },
+      "elapsed_seconds": 152.306,
+      "full_format_correct": 51,
+      "invalid": 0,
+      "native_correct": 51,
+      "task": "mri_sequence",
+      "tokens": 1300,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_sequence:13",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 39.69,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 224,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_correspondence:7",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 160.529,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 1459,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_correspondence:7",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.259,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_correspondence:11",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 160.45,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 1459,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_correspondence:11",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.33,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_correspondence:13",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 160.712,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 1463,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:S_correspondence:13",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.299,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_raw:7",
+      "class_recall": {
+        "FLAIR": 0.9285714285714286,
+        "contrast-enhanced T1": 0.30952380952380953
+      },
+      "elapsed_seconds": 211.148,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 2457,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_raw:7",
+      "class_recall": {
+        "different": 0.0,
+        "same": 1.0
+      },
+      "elapsed_seconds": 46.572,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 359,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_raw:11",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.11904761904761904
+      },
+      "elapsed_seconds": 163.433,
+      "full_format_correct": 47,
+      "invalid": 0,
+      "native_correct": 47,
+      "task": "mri_sequence",
+      "tokens": 1514,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_raw:11",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.285,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_raw:13",
+      "class_recall": {
+        "FLAIR": 0.9047619047619048,
+        "contrast-enhanced T1": 0.35714285714285715
+      },
+      "elapsed_seconds": 195.439,
+      "full_format_correct": 53,
+      "invalid": 0,
+      "native_correct": 53,
+      "task": "mri_sequence",
+      "tokens": 2145,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_raw:13",
+      "class_recall": {
+        "different": 0.125,
+        "same": 1.0
+      },
+      "elapsed_seconds": 43.672,
+      "full_format_correct": 9,
+      "invalid": 0,
+      "native_correct": 9,
+      "task": "mri_visit_correspondence",
+      "tokens": 304,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_raw:7",
+      "class_recall": {
+        "FLAIR": 0.7380952380952381,
+        "contrast-enhanced T1": 0.5238095238095238
+      },
+      "elapsed_seconds": 222.97,
+      "full_format_correct": 53,
+      "invalid": 0,
+      "native_correct": 53,
+      "task": "mri_sequence",
+      "tokens": 2694,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_raw:7",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 48.632,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 401,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_raw:11",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.21428571428571427
+      },
+      "elapsed_seconds": 160.285,
+      "full_format_correct": 51,
+      "invalid": 0,
+      "native_correct": 51,
+      "task": "mri_sequence",
+      "tokens": 1456,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_raw:11",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.257,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_raw:13",
+      "class_recall": {
+        "FLAIR": 0.9761904761904762,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 164.842,
+      "full_format_correct": 51,
+      "invalid": 0,
+      "native_correct": 51,
+      "task": "mri_sequence",
+      "tokens": 1545,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_raw:13",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 39.655,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 224,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_calibrated:7",
+      "class_recall": {
+        "FLAIR": 0.9761904761904762,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 176.905,
+      "full_format_correct": 51,
+      "invalid": 0,
+      "native_correct": 51,
+      "task": "mri_sequence",
+      "tokens": 1783,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_calibrated:7",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.277,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_calibrated:11",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 160.886,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 1458,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_calibrated:11",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.459,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:P_calibrated:13",
+      "class_recall": {
+        "FLAIR": 0.40476190476190477,
+        "contrast-enhanced T1": 0.38095238095238093
+      },
+      "elapsed_seconds": 693.316,
+      "full_format_correct": 33,
+      "invalid": 38,
+      "native_correct": 33,
+      "task": "mri_sequence",
+      "tokens": 11920,
+      "truncated": 37
+    },
+    {
+      "checkpoint_id": "rl:P_calibrated:13",
+      "class_recall": {
+        "different": 0.0,
+        "same": 1.0
+      },
+      "elapsed_seconds": 42.21,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 272,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_calibrated:7",
+      "class_recall": {
+        "FLAIR": 0.9523809523809523,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 169.174,
+      "full_format_correct": 50,
+      "invalid": 0,
+      "native_correct": 50,
+      "task": "mri_sequence",
+      "tokens": 1632,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_calibrated:7",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 45.408,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 336,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_calibrated:11",
+      "class_recall": {
+        "FLAIR": 0.9523809523809523,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 160.604,
+      "full_format_correct": 50,
+      "invalid": 0,
+      "native_correct": 50,
+      "task": "mri_sequence",
+      "tokens": 1462,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_calibrated:11",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.101,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 252,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_calibrated:13",
+      "class_recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.23809523809523808
+      },
+      "elapsed_seconds": 160.633,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 1464,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "rl:U_calibrated:13",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.313,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "sft:7",
+      "class_recall": {
+        "FLAIR": 0.9047619047619048,
+        "contrast-enhanced T1": 0.38095238095238093
+      },
+      "elapsed_seconds": 161.831,
+      "full_format_correct": 54,
+      "invalid": 0,
+      "native_correct": 54,
+      "task": "mri_sequence",
+      "tokens": 1488,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "sft:7",
+      "class_recall": {
+        "different": 0.25,
+        "same": 0.625
+      },
+      "elapsed_seconds": 41.258,
+      "full_format_correct": 7,
+      "invalid": 0,
+      "native_correct": 7,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "sft:11",
+      "class_recall": {
+        "FLAIR": 0.8095238095238095,
+        "contrast-enhanced T1": 0.5476190476190477
+      },
+      "elapsed_seconds": 163.879,
+      "full_format_correct": 57,
+      "invalid": 0,
+      "native_correct": 57,
+      "task": "mri_sequence",
+      "tokens": 1521,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "sft:11",
+      "class_recall": {
+        "different": 1.0,
+        "same": 0.0
+      },
+      "elapsed_seconds": 41.28,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "sft:13",
+      "class_recall": {
+        "FLAIR": 0.8809523809523809,
+        "contrast-enhanced T1": 0.35714285714285715
+      },
+      "elapsed_seconds": 162.006,
+      "full_format_correct": 52,
+      "invalid": 0,
+      "native_correct": 52,
+      "task": "mri_sequence",
+      "tokens": 1488,
+      "truncated": 0
+    },
+    {
+      "checkpoint_id": "sft:13",
+      "class_recall": {
+        "different": 0.0,
+        "same": 1.0
+      },
+      "elapsed_seconds": 41.251,
+      "full_format_correct": 8,
+      "invalid": 0,
+      "native_correct": 8,
+      "task": "mri_visit_correspondence",
+      "tokens": 256,
+      "truncated": 0
+    }
+  ],
+  "as_of_utc": "2026-10-18T11:15:00.476349+00:00",
+  "exact_input_spec_sha256": "4a9d2c51376c87fb5a3ba2172a346bb61fcf51e37553747c5c4784682b880cc6",
+  "global_saved_counts_and_costs": {
+    "actual_tokens": 53650,
+    "confirmed_length_truncated": 37,
+    "elapsed_seconds_decimal": "5252.810",
+    "native_invalid": 38,
+    "response_records": 2200
+  },
+  "limitations": [
+    "Reuses frozen parser only; counts/confusions/recalls/token distributions/cost decimal sums independently rebuilt from authenticated saved rows.",
+    "Call times include inside-call preprocessing and resource waits, exclude initial model loading and outer JSON flush; no pure GPU/FLOP claim.",
+    "Class/question descriptions supplement rather than replace patient/cycle uncertainty; all seeds retained, no final-test tuning/selection.",
+    "No clinical, brain-only anatomy, absent pretraining exposure or global cross-source identity claim."
+  ],
+  "model_task_tables_recomputed": 44,
+  "new_bootstrap_or_statistics_or_model_calls": false,
+  "numeric_leaf_comparisons": 1850,
+  "private_recount_receipt_sha256": "9044784785d96d11af49bd86efe56026f4753badcc40acba43bb662851c02167",
+  "public_supplement_privacy_passed": true,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ORIGINAL22_FINAL100_CLASS_FORMAT_COST_NUMERICAL_INDEPENDENT_REVIEW_V1",
+  "source_sha256": "8ea490c98200ab9c5570af609fef97a88f628c1499db98d91a5eacb6facdecd0",
+  "supplement_sha256": "9cd855ea076def78c2ae912fb162a7702691efdc23e8c96a8ea336662437c2f9",
+  "unique_models_recomputed": 22,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_source_sha256": "bb9e96e23a8630c48111c101979e9cd1af60ff92a11a8af471fb3d420c59f984"
+}

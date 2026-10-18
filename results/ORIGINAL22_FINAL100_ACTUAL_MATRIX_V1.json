@@ -1,0 +1,1748 @@
+{
+  "actual_test_execution": false,
+  "adaptive_or_short_prompt_arms_included": false,
+  "analyzer_sha256": "95d9d2b0c4709498c103334b3d95c6a9634d8877a7e77ed60ddeb6045a5d4e4a",
+  "baseline_reuse_note": "The canonical B28 seed-indexed rows repeat one immutable common initializer output, not three independent inference or training runs. Observed training-seed ranges do not add patients.",
+  "bootstrap_replicates": 2000,
+  "common_B28_inference_runs": 1,
+  "common_B28_seed_rows": 3,
+  "common_B28_training_seed_replicates": 0,
+  "common_baseline_reuse_is_not_extra_runs": true,
+  "distinct_model_inference_runs": 22,
+  "evidence_tier": "OBSERVED",
+  "file_binding_proofs": {
+    "B28:11": {
+      "adapter_checkpoint_sha256": "b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572",
+      "approved_scope_sha256": "f15f09ae3a0b0386be12676dd56cba736bbe3c913ed06439b23ee42d32ec89ca",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "cab18724f8fe077cec8cda72b462f9190aced478b5fc68a2d1b912a36a775305",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "B28:13": {
+      "adapter_checkpoint_sha256": "b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572",
+      "approved_scope_sha256": "f15f09ae3a0b0386be12676dd56cba736bbe3c913ed06439b23ee42d32ec89ca",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "cab18724f8fe077cec8cda72b462f9190aced478b5fc68a2d1b912a36a775305",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "B28:7": {
+      "adapter_checkpoint_sha256": "b316db3d5eadf2e1fc0cbe80ccc93c7f7405858769f7d32b39a137dea3d6c572",
+      "approved_scope_sha256": "f15f09ae3a0b0386be12676dd56cba736bbe3c913ed06439b23ee42d32ec89ca",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "cab18724f8fe077cec8cda72b462f9190aced478b5fc68a2d1b912a36a775305",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "P_calibrated:11": {
+      "adapter_checkpoint_sha256": "eb126a05ec336234ea9004cdc6284f50a030e4b2fbf95b93110a95f1f69465ca",
+      "approved_scope_sha256": "1961c2f1cf7c0e15c3b8a473e865c852cb296a255372736e6e8d4a747ad93e84",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "acb434b7673a5266655c7b93ed2b3843efba629b655e4007040f401182113d05",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "P_calibrated:13": {
+      "adapter_checkpoint_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+      "approved_scope_sha256": "434a9eb7d77efabfa4dfa126dde87bf64ecc6f10ef02ed2236707acd3e2e48ea",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "09322379b1e2628dca52363b809dbf5c740d601ff5a65fe452f94664663dc0a7",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "P_calibrated:7": {
+      "adapter_checkpoint_sha256": "726996aeae1cd217dd821d4090c8dc6e5af98d27cfc5a41815c0b5cbf78a4a72",
+      "approved_scope_sha256": "1ebff262c76710ad491fbedcba1b1d77cbb147a7a1ee25623bf4f0e32e8afbcb",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "1a5484bd43909d51087890440c4ae50f969413e75041388209f86a4b3ebec072",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "P_raw:11": {
+      "adapter_checkpoint_sha256": "d24e1598c2e35024e3e91816e58e7cedc5a0d8af323f492807678f9d263b7500",
+      "approved_scope_sha256": "226ce69bb51306e60c3800723c84f8e8d2cbda3dc8b73d2befdf9af870b90bf8",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "0c1c867c54e94bfd47511db31510119667cc6f7c4d768a10c790036e785cf7bd",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "P_raw:13": {
+      "adapter_checkpoint_sha256": "88e9a07c1a0f7d736a385758e95e1a3fc3562e8d0f312bd01645fd5bf1fa86a5",
+      "approved_scope_sha256": "26315d07b3f4ea1be35913a1bb7fdb451f903a4123516e874ab53fbcd374c902",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "ac14294c6c4d1694c82abf1722bd76cecd51dfd66bf99a268dd7a31900e705ed",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "P_raw:7": {
+      "adapter_checkpoint_sha256": "645cfd8d21f008af1baacacb8745605c57376f7c1ce7eff48f8820cf676582ec",
+      "approved_scope_sha256": "2821043fb3530eca0d90d43909519ef357745cf11dff09fe4d9058781772191b",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "ec3e272b855e187e81f803167a1cbfbece4fa95cdfee751d8214d073fb579105",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "S_correspondence:11": {
+      "adapter_checkpoint_sha256": "f858065c99aca595a4f12a868e2b4479f0665f9b2462b9f6952c3a484473f828",
+      "approved_scope_sha256": "8849587ae45b87fab1ad8b0b38218dc2b91824ec5f350339f6134a4c9c6960b2",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "498f83f92353f12767d86352d82c56efb6c957faddcddb1fab76a3d2fc1f8430",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "S_correspondence:13": {
+      "adapter_checkpoint_sha256": "ef22aa55178b93094a4eb2d29a60277f02dfb73805966a760148cbf6d2cb3582",
+      "approved_scope_sha256": "1ed1742069f4c313fb753cd9a9d5405ead4c8b89431417bba9a549d8976a4f99",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "ebb8c2c2af0a0e4b133cdb82e79433ce32ea67d9c4f55022189fe6153fbbe3a3",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "S_correspondence:7": {
+      "adapter_checkpoint_sha256": "e726e4639ec84e48452077b8bbaa2bda7ac6daf3503cbd18971a5a00632b6283",
+      "approved_scope_sha256": "775348819a3a58053ce026a554e1e96939b622130c23524ff0cb2367e98aaade",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "281723ffe3f206f5f160e164b2815a79df2ee2440bd9dc7e5d8f3245cea035c4",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "S_sequence:11": {
+      "adapter_checkpoint_sha256": "cda81439be87691f27d3709654561397554b63068fe59b149f0261482c7848e2",
+      "approved_scope_sha256": "b059d3fd89f772bb5ec511d1d10814bb384fcebdf406ba7b47779b300c6573a3",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "d9ed9982e2e04892530a4f352d293a7596ab4da938d0219128a22f752e83630c",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "S_sequence:13": {
+      "adapter_checkpoint_sha256": "7c429aaf2007ea99bb04583c926a4e6ce6fd8c74d178b82a6527c147b265ba26",
+      "approved_scope_sha256": "900f131219f23213743a02b5a31ac0f2aa4cdd96dc5689d8b4e273d827d2d253",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "7bc5e5b4502428892bc72714393112644ac7fd6ed07fb642f3624a62b24a8675",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "S_sequence:7": {
+      "adapter_checkpoint_sha256": "597ebc5301e0987740065a6162afa6a3ad76a9c11743a3b9a9cf00bf36f6e9c6",
+      "approved_scope_sha256": "5df84c88f6a1b3778dcaec119906375feab620a26ea8cb1e5c52ac083a73cf7a",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "0718ce9b39b2a29d8e578c022eef17d4c72c25dfaf0c145738d69f5523fa4069",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "U_calibrated:11": {
+      "adapter_checkpoint_sha256": "e0c921894e33dc5e945010b08f7d44e4284d652f9a28c56f57b09fb7ec7eca99",
+      "approved_scope_sha256": "698263c3e2a9fb3a2ba82a620d399f9d4ff0f968db2f6c8cf18dd25bcee813b6",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "d2807335dbccdc59f8d6c29db52856e2134be4262fe17ce1277fbfdf3d60c2d1",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "U_calibrated:13": {
+      "adapter_checkpoint_sha256": "47b31f8e8ad4b12145eca864ab83e23076b62aa6cdab5fd309e31a90bbe926aa",
+      "approved_scope_sha256": "c58a0e56d2b47ca13683b91e8d87a312692e435167064111e2f88e686def0af9",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "df64731a31d4e277887a814c6e000932d2fdac777770912a600881f8175d1296",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "U_calibrated:7": {
+      "adapter_checkpoint_sha256": "5e8101cd6662a873d853c19edb72c79b5ed62533f0d5c6fe158410fe9bf0e54a",
+      "approved_scope_sha256": "d0a34f664c5158cf3fd1e2e2376e0e5792d63e6e146ebed2d7aae67b66060b56",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "b633e44f95ec732631e4a89cb33641d14f215fc9532eb6b0d3f985fb5aa1ddf6",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "U_raw:11": {
+      "adapter_checkpoint_sha256": "4105a47ad9b97bb9baf63a206ec3716321b8aa516f3a23a50f7452e7c4fc1421",
+      "approved_scope_sha256": "60c88ff1f01efa52f5e6ba8cc765aa135763166d64eac4d10f394ec16e21871f",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "86e640d8e417ad21fa84764d6d5d4f2a00e58ebc49c53ac6dbd5f29d1bed908d",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "U_raw:13": {
+      "adapter_checkpoint_sha256": "d59548fb3ade5e194bd6a9cea8023a601d355c2421e6ffbf2e0675ee87153f3c",
+      "approved_scope_sha256": "c557ed80a852218a2a2befe0dbc9b66292c32f4169c22011be0ab3c0bdc18d16",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "0dea0fa56d8a3180ce6935197b4191ce600ec09e7dbcc428802f16a24a336de7",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "U_raw:7": {
+      "adapter_checkpoint_sha256": "ebf414aa2a20208357fd65a3e28fb2d15bb242e4999d57363174cc789538fe16",
+      "approved_scope_sha256": "f047644a4bb09b29165f500cbf05fe64f28ba983d4fabec63df559ce193039ce",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "78f66279d3fa823ea296782b6fabf47faa30010a170c099da1853b72d035555f",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "same_C_SFT:11": {
+      "adapter_checkpoint_sha256": "19d8b37686a74243776ef2ae974246cb2c4710d6fd986cdf70bdcfd6ae673db1",
+      "approved_scope_sha256": "10404dc29ce91a0f9403bb460d6f7bdda702e3b9defef7a149977f4e636f8d7c",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "82143a187242b3663d1939fc42e84e7ec224dfbe30fa63ce8bd073ffc7a0737f",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "same_C_SFT:13": {
+      "adapter_checkpoint_sha256": "22ed9b81a0e9e879f974a44505e1ca2c8ab35e5fc6ab1f7fe5e4633cf393b027",
+      "approved_scope_sha256": "f90b7b51695a70784439cd6219f3ea8118e395f089a58c380eb5c92078bf67d7",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "52dbd3d8db12aefd52d968f2b522f521e4a1525ab8b6686394794e0b499c16a7",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    },
+    "same_C_SFT:7": {
+      "adapter_checkpoint_sha256": "59c0c8a9ae3c9a767aaea59680f4b98c1e1eff9b846df11de0a4922d9cd0d106",
+      "approved_scope_sha256": "381af94dfc5994d573d391d4e23f8f089d29840ac9f8dd58f396f0346281507c",
+      "cache_certificate_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+      "eval_manifest_sha256": "d08b265327fd7a85886b76d21bfcd3403e0f678cf448a270397f29ce52397fb2",
+      "legacy_rows_relabelled": false,
+      "output_sha256": "454c855537c3a7a48d9ac2a70be17943c34e885c404119134c49fc9f8a5f41d2",
+      "precision_scope": "Exact certified cache object/source config plus adapter_config SHA and approved native source scope; no invented per-row cache or precision field.",
+      "projection_receipt_sha256": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+      "review_authorization_created": false,
+      "rows": 100,
+      "scope_supplies_omitted_contract_cache_precision_binding": true,
+      "source_sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+      "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+      "status": "REAL_NATIVE_CLI_OUTPUT_BOUND_AND_NORMALIZED"
+    }
+  },
+  "input_evidence_sha256": {
+    "bundle": "0b2d466dbbaf40ab931921668797e05a0348e86dd86e284f22507d6be4bed126",
+    "native_review_set": "dae617c02f000b6ea5da2d92e007df7ce20b2ebb723169aef2fb53d7ab52ca2b",
+    "release_review": "c221e4cf1927c2b5df0cd2401ab511f2c4629f06be68295ab17ae80f36144223",
+    "scope_set": "b54b44ce0a59a16d404b0eb1bcf7d717af303e18f1ada2f588df39e645050379"
+  },
+  "interpretation": "Sequence14 patients and Dallas4 two-person cycles analyzed separately; no global cross-source independence or brain-only/clinical claim.",
+  "matrix": {
+    "arm_seed_summary": [
+      {
+        "arm": "B28",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "B28",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "B28",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "P_calibrated",
+        "equal_task_macro_native_accuracy": 0.5535714285714286,
+        "macro_delta_from_common_start": -0.005952380952380951,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": -0.011904761904761902,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "P_calibrated",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "P_calibrated",
+        "equal_task_macro_native_accuracy": 0.4464285714285714,
+        "macro_delta_from_common_start": -0.1130952380952381,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": -0.2261904761904762,
+        "worst_task_delta_from_common_start": -0.10714285714285715,
+        "worst_task_native_accuracy": 0.39285714285714285
+      },
+      {
+        "arm": "P_raw",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "P_raw",
+        "equal_task_macro_native_accuracy": 0.5297619047619048,
+        "macro_delta_from_common_start": -0.029761904761904764,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": -0.05952380952380953,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "P_raw",
+        "equal_task_macro_native_accuracy": 0.5967261904761905,
+        "macro_delta_from_common_start": 0.03720238095238095,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": 0.011904761904761902,
+        "worst_task_delta_from_common_start": 0.0625,
+        "worst_task_native_accuracy": 0.5625
+      },
+      {
+        "arm": "S_correspondence",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "S_correspondence",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "S_correspondence",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "S_sequence",
+        "equal_task_macro_native_accuracy": 0.5535714285714286,
+        "macro_delta_from_common_start": -0.005952380952380951,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": -0.011904761904761902,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "S_sequence",
+        "equal_task_macro_native_accuracy": 0.53125,
+        "macro_delta_from_common_start": -0.02827380952380952,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": -0.11904761904761904,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "S_sequence",
+        "equal_task_macro_native_accuracy": 0.5535714285714286,
+        "macro_delta_from_common_start": -0.005952380952380951,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": -0.011904761904761902,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "U_calibrated",
+        "equal_task_macro_native_accuracy": 0.5476190476190477,
+        "macro_delta_from_common_start": -0.011904761904761902,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": -0.023809523809523805,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "U_calibrated",
+        "equal_task_macro_native_accuracy": 0.5476190476190477,
+        "macro_delta_from_common_start": -0.011904761904761902,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": -0.023809523809523805,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "U_calibrated",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "U_raw",
+        "equal_task_macro_native_accuracy": 0.5654761904761905,
+        "macro_delta_from_common_start": 0.005952380952380955,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "U_raw",
+        "equal_task_macro_native_accuracy": 0.5535714285714286,
+        "macro_delta_from_common_start": -0.005952380952380951,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": -0.011904761904761902,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "U_raw",
+        "equal_task_macro_native_accuracy": 0.5535714285714286,
+        "macro_delta_from_common_start": -0.005952380952380951,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": -0.011904761904761902,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "same_C_SFT",
+        "equal_task_macro_native_accuracy": 0.5401785714285714,
+        "macro_delta_from_common_start": -0.019345238095238096,
+        "seed": 7,
+        "worst_individual_task_delta_from_common_start": -0.0625,
+        "worst_task_delta_from_common_start": -0.0625,
+        "worst_task_native_accuracy": 0.4375
+      },
+      {
+        "arm": "same_C_SFT",
+        "equal_task_macro_native_accuracy": 0.5892857142857143,
+        "macro_delta_from_common_start": 0.02976190476190476,
+        "seed": 11,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      },
+      {
+        "arm": "same_C_SFT",
+        "equal_task_macro_native_accuracy": 0.5595238095238095,
+        "macro_delta_from_common_start": 0.0,
+        "seed": 13,
+        "worst_individual_task_delta_from_common_start": 0.0,
+        "worst_task_delta_from_common_start": 0.0,
+        "worst_task_native_accuracy": 0.5
+      }
+    ],
+    "between_seed_summary": {
+      "B28": {
+        "macro_native_accuracy_mean": 0.5595238095238095,
+        "macro_native_accuracy_range": [
+          0.5595238095238095,
+          0.5595238095238095
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      },
+      "P_calibrated": {
+        "macro_native_accuracy_mean": 0.5198412698412699,
+        "macro_native_accuracy_range": [
+          0.4464285714285714,
+          0.5595238095238095
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      },
+      "P_raw": {
+        "macro_native_accuracy_mean": 0.5620039682539683,
+        "macro_native_accuracy_range": [
+          0.5297619047619048,
+          0.5967261904761905
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      },
+      "S_correspondence": {
+        "macro_native_accuracy_mean": 0.5595238095238095,
+        "macro_native_accuracy_range": [
+          0.5595238095238095,
+          0.5595238095238095
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      },
+      "S_sequence": {
+        "macro_native_accuracy_mean": 0.5461309523809524,
+        "macro_native_accuracy_range": [
+          0.53125,
+          0.5535714285714286
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      },
+      "U_calibrated": {
+        "macro_native_accuracy_mean": 0.5515873015873016,
+        "macro_native_accuracy_range": [
+          0.5476190476190477,
+          0.5595238095238095
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      },
+      "U_raw": {
+        "macro_native_accuracy_mean": 0.5575396825396826,
+        "macro_native_accuracy_range": [
+          0.5535714285714286,
+          0.5654761904761905
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      },
+      "same_C_SFT": {
+        "macro_native_accuracy_mean": 0.5629960317460317,
+        "macro_native_accuracy_range": [
+          0.5401785714285714,
+          0.5892857142857143
+        ],
+        "seed_uncertainty": "Observed per-seed values/range only; seeds are not additional patients.",
+        "seeds": [
+          7,
+          11,
+          13
+        ],
+        "training_seeds": 3
+      }
+    },
+    "cells": [
+      {
+        "arm": "B28",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "B28",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "B28",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "B28",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "B28",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "B28",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "P_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6071428571428571,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6071428571428571,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.011904761904761902,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.035714285714285705,
+            0.0
+          ],
+          "mean_difference": -0.011904761904761902,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "P_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "P_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "P_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "P_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.39285714285714285,
+        "independent_units": 14,
+        "native_task_accuracy": 0.39285714285714285,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.2261904761904762,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.32142857142857145,
+            -0.14285714285714285
+          ],
+          "mean_difference": -0.22619047619047622,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "P_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "P_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.04761904761904761,
+            0.04761904761904761
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "P_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "P_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.5595238095238095,
+        "independent_units": 14,
+        "native_task_accuracy": 0.5595238095238095,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.05952380952380953,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.10714285714285714,
+            -0.023809523809523805
+          ],
+          "mean_difference": -0.05952380952380953,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "P_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "P_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6309523809523809,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6309523809523809,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.011904761904761902,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.04761904761904761,
+            0.07142857142857141
+          ],
+          "mean_difference": 0.011904761904761902,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "P_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5625,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5625,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0625,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.1875
+          ],
+          "mean_difference": 0.0625,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "S_correspondence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": true,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": "mri_visit_correspondence"
+      },
+      {
+        "arm": "S_correspondence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": false,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": "mri_visit_correspondence"
+      },
+      {
+        "arm": "S_correspondence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": true,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": "mri_visit_correspondence"
+      },
+      {
+        "arm": "S_correspondence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": false,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": "mri_visit_correspondence"
+      },
+      {
+        "arm": "S_correspondence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": true,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": "mri_visit_correspondence"
+      },
+      {
+        "arm": "S_correspondence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": false,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": "mri_visit_correspondence"
+      },
+      {
+        "arm": "S_sequence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6071428571428571,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6071428571428571,
+        "off_diagonal": false,
+        "paired_delta_from_common_start": -0.011904761904761902,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.059523809523809514,
+            0.035714285714285705
+          ],
+          "mean_difference": -0.011904761904761902,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": "mri_sequence"
+      },
+      {
+        "arm": "S_sequence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": true,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": "mri_sequence"
+      },
+      {
+        "arm": "S_sequence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 14,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": false,
+        "paired_delta_from_common_start": -0.11904761904761904,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.19047619047619047,
+            -0.04761904761904762
+          ],
+          "mean_difference": -0.11904761904761904,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": "mri_sequence"
+      },
+      {
+        "arm": "S_sequence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5625,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5625,
+        "off_diagonal": true,
+        "paired_delta_from_common_start": 0.0625,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.1875
+          ],
+          "mean_difference": 0.0625,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": "mri_sequence"
+      },
+      {
+        "arm": "S_sequence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6071428571428571,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6071428571428571,
+        "off_diagonal": false,
+        "paired_delta_from_common_start": -0.011904761904761902,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.04761904761904761,
+            0.023809523809523805
+          ],
+          "mean_difference": -0.011904761904761902,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": "mri_sequence"
+      },
+      {
+        "arm": "S_sequence",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": true,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": "mri_sequence"
+      },
+      {
+        "arm": "U_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.5952380952380952,
+        "independent_units": 14,
+        "native_task_accuracy": 0.5952380952380952,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.023809523809523805,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.059523809523809514,
+            0.0
+          ],
+          "mean_difference": -0.023809523809523805,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "U_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "U_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.5952380952380952,
+        "independent_units": 14,
+        "native_task_accuracy": 0.5952380952380952,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.023809523809523805,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.059523809523809514,
+            0.0
+          ],
+          "mean_difference": -0.023809523809523805,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "U_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "U_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "U_calibrated",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "U_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6309523809523809,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6309523809523809,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.01190476190476191,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.07142857142857141,
+            0.09523809523809525
+          ],
+          "mean_difference": 0.01190476190476191,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "U_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "U_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6071428571428571,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6071428571428571,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.011904761904761902,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.035714285714285705,
+            0.0
+          ],
+          "mean_difference": -0.011904761904761902,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "U_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "U_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6071428571428571,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6071428571428571,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.011904761904761902,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.035714285714285705,
+            0.0
+          ],
+          "mean_difference": -0.011904761904761902,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "U_raw",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "same_C_SFT",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6428571428571428,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6428571428571428,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.023809523809523805,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.035714285714285705,
+            0.08333333333333333
+          ],
+          "mean_difference": 0.023809523809523805,
+          "subjects": 14
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "same_C_SFT",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.4375,
+        "independent_units": 4,
+        "native_task_accuracy": 0.4375,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": -0.0625,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.1875,
+            0.0
+          ],
+          "mean_difference": -0.0625,
+          "subjects": 4
+        },
+        "seed": 7,
+        "training_task": null
+      },
+      {
+        "arm": "same_C_SFT",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6785714285714286,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6785714285714286,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.05952380952380952,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.011904761904761902,
+            0.13095238095238093
+          ],
+          "mean_difference": 0.05952380952380952,
+          "subjects": 14
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "same_C_SFT",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 11,
+        "training_task": null
+      },
+      {
+        "arm": "same_C_SFT",
+        "descriptive_only": true,
+        "evaluation_task": "mri_sequence",
+        "full_format_accuracy": 0.6190476190476191,
+        "independent_units": 14,
+        "native_task_accuracy": 0.6190476190476191,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            -0.059523809523809514,
+            0.059523809523809514
+          ],
+          "mean_difference": 0.0,
+          "subjects": 14
+        },
+        "seed": 13,
+        "training_task": null
+      },
+      {
+        "arm": "same_C_SFT",
+        "descriptive_only": true,
+        "evaluation_task": "mri_visit_correspondence",
+        "full_format_accuracy": 0.5,
+        "independent_units": 4,
+        "native_task_accuracy": 0.5,
+        "off_diagonal": null,
+        "paired_delta_from_common_start": 0.0,
+        "paired_interval": {
+          "confidence_interval": [
+            0.0,
+            0.0
+          ],
+          "mean_difference": 0.0,
+          "subjects": 4
+        },
+        "seed": 13,
+        "training_task": null
+      }
+    ],
+    "descriptive_only": true,
+    "independent_patient_generalization_claimed": false,
+    "scope": "Core consumes normalized outputs only; actual file/image/prompt/model binding checks belong to the reviewed raw-output adapter.",
+    "status": "DESCRIPTIVE_MATCHED_MATRIX"
+  },
+  "mission_alignment": "Frozen original Vero-to-MRI specialist/proportional/uniform/raw/calibrated/SFT cross-task comparison; no method or endpoint selected after final-test outcomes.",
+  "native_models_loaded_by_analysis": 0,
+  "research_tag": "PRIMARY_VERO_TRANSFER",
+  "schema": "original22-final-saved-result-v1",
+  "sealed_outcomes_used_to_select_methods": false,
+  "source_sha256": {
+    "experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+    "experiments.py": "c3a87cc33a522e330505874c8c5f224013035b3f8242df36d4e276a5bb8a3d5d",
+    "final_test_release.py": "d5c67b299bcb783ebb190ae0218ed0df03d81b9385e81a8567a50d00ef64c244",
+    "original22_final_eval.py": "c3d249fa1127eb7edecfd1249163a70e27932b4fbacbf98d8884fa623beee9e9",
+    "two_task_analysis.py": "c599226e756438624468f3fc5dfd07dcf3e180cfb156a503d0cac386734a76c7",
+    "two_task_evaluation.py": "81119d879866a53e98ee49f478c12b962f06e3207dd94670e2edb90ac524d4ff",
+    "two_task_native_results.py": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a",
+    "two_task_pool.py": "b06d9278599b7ef08655137f8405cfd190a324807cc0b8777801833e07770053",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8"
+  },
+  "source_verl_manifest_sha256": "e0cc22c54c70ed26fcb087b7af3a5bea5af8fb69d27fd617b326330bef00f131",
+  "status": "ALL22_ACTUAL_OUTPUTS_AUTHENTICATED_AND_SCORED"
+}
