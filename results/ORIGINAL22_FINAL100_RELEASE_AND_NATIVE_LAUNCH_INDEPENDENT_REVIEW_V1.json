@@ -1,0 +1,50 @@
+{
+  "CPU_release_actual_exit_code": 0,
+  "actual_native_evaluation_execution": "NOT_RUN_AT_REVIEW",
+  "all22_exact_native_reviews_validated": true,
+  "as_of_utc": "2026-10-18T08:53:21.572721+00:00",
+  "closure_fix": "Two-site destination to render_destination local-variable rename; registry, payload, split, renderer and scientific guards unchanged. Prior failures preserved.",
+  "conditions": [
+    "Parent must launch the exact reviewed serial executor with externally supplied native review-set file digest.",
+    "One child and existing global native flock/resources/AC/thermal/memory safeguards remain required.",
+    "No method or checkpoint selection may depend on final100 outcomes."
+  ],
+  "dallas_cases": 16,
+  "dallas_matched_cycles": 4,
+  "dallas_people": 8,
+  "evidence_sha256": {
+    "actual_native_scope_set": "b54b44ce0a59a16d404b0eb1bcf7d717af303e18f1ada2f588df39e645050379",
+    "actual_projection_receipt": "a308867703ea11efa03503bcac42614c5c10fbbb43bbf16c8f9da71a4bca0fda",
+    "closure_fixed_bundle": "0b2d466dbbaf40ab931921668797e05a0348e86dd86e284f22507d6be4bed126",
+    "corrected_loader_source": "28757c00a678ad46fb6dc27019dfcb30c354e8f629fff5b2de39269077c6cd3f",
+    "executor_source": "c3d249fa1127eb7edecfd1249163a70e27932b4fbacbf98d8884fa623beee9e9",
+    "independent_native_review_set": "dae617c02f000b6ea5da2d92e007df7ce20b2ebb723169aef2fb53d7ab52ca2b",
+    "method_freeze": "35e69aed73cfd120d659cb28fbd63ab49f959a61b0e7dcafe228d7c5af3a4658",
+    "release_v3_actual_exit": "240a3b72bd806faac6b7eccbcd43988afc96f8dab3a47a4049947b3475e5f817"
+  },
+  "final_targets_or_outcomes_inspected_by_reviewer": false,
+  "independent_actual_factory_regression_passed": 1,
+  "limitations": [
+    "Engineering/input-contract approval only; no final test accuracy or generalization result is implied.",
+    "All22 original checkpoints and all100 fixed cases must run with unchanged strict original prompt256/temp0 and verifier; no adaptive, brief prompt, seed selection or test-driven change.",
+    "One native child at a time under existing global flock and unchanged PacedGate/AC/memory/thermal/swap safeguards; stop affected workload on a real critical condition.",
+    "Persist each completed output; serial executor refuses automatic retry of failed/partial stages. Any recovery requires exact evidence preservation and separately scoped review.",
+    "Sequence14 patients and Dallas4 matched two-person cycles require source-specific clustered uncertainty; no cross-source global identity, absent pretraining exposure, clinical or brain-only morphology claim."
+  ],
+  "max_tokens_per_generation": 256,
+  "maximum_generated_tokens": 563200,
+  "model_or_native_runtime_imported_by_reviewer": false,
+  "native_case_generations": 2200,
+  "native_launch_approved_checkpoint_count": 22,
+  "native_source_files_verified": 10,
+  "original22_checkpoint_mapping_and_all100_actual_image_hashes_checked": true,
+  "release_cases": 100,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ORIGINAL22_FINAL100_RELEASE_AND_NATIVE_LAUNCH_INDEPENDENT_REVIEW_V1",
+  "sequence_cases": 84,
+  "sequence_people": 14,
+  "temperature": 0,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "weight_updates": 0
+}

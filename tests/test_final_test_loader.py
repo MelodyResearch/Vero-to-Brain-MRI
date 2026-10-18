@@ -113,3 +113,32 @@ def test_sequence_io_uses_each_synthetic_volume_once_and_persists_all_frozen_vie
     assert len(loaded)==2 and sorted(z_used)==[45,45,91,91,136,136] and len(rows)==6
     assert all(Path(r['images'][0]).is_file() for r in rows)
     assert all(r['extra_info']['internal_split']=='test' for r in rows)
+
+
+def test_actual_factory_closure_reaches_render_after_synthetic_approved_checks(monkeypatch,tmp_path):
+    """Exercise nested closure, not _render_sequence directly; no real registry I/O."""
+    import json
+    m=module();from mri_rl import visit_correspondence as vc
+    bindings={k:'f'*64 for k in ('released_row_loader_source_sha256','sequence_registry_sha256',
+        'dallas_registry_sha256','dallas_metadata_plan_sha256','sequence_renderer_source_sha256','dallas_renderer_source_sha256')}
+    training=tmp_path/'synthetic_train.jsonl'
+    training.write_text(json.dumps({'ability':'mri_sequence','extra_info':{'question':'Synthetic frozen question'}})+'\n')
+    reached=[];private_checks=[]
+    monkeypatch.setattr(m,'validate_release',lambda *a,**k:None)  # Explicit synthetic approval fixture only.
+    monkeypatch.setattr(m,'sha',lambda path:'f'*64)
+    monkeypatch.setattr(m,'load_json',lambda path:{'synthetic':True})
+    monkeypatch.setattr(m,'validate_sequence_registry',lambda *a:{})
+    monkeypatch.setattr(m,'validate_dallas_registry',lambda *a:None)
+    monkeypatch.setattr(vc,'build_cases',lambda plan:{'test':[]})
+    def private(path):private_checks.append(path);return Path(path)
+    monkeypatch.setattr(m,'_private',private)
+    def before_render(*args):reached.append(True);raise RuntimeError('synthetic render boundary reached')
+    monkeypatch.setattr(m,'_render_sequence',before_render)
+    destination=tmp_path/'synthetic_render_destination'
+    loader=m.make_released_loader(release_bundle={'plan':{'manifest_sha256':'f'*64},'inventory':[],
+        'bindings':bindings,'approval':{},'expected_approval_sha256':'fixture-only'},
+        sequence_registry=tmp_path/'seq',dallas_registry=tmp_path/'dallas',dallas_plan=tmp_path/'plan',
+        dallas_source_root=tmp_path/'source',destination=destination,sequence_renderer_source=tmp_path/'renderer',
+        training_manifest=training)
+    with pytest.raises(RuntimeError,match='synthetic render boundary reached'):loader()
+    assert reached==[True] and private_checks==[destination]
