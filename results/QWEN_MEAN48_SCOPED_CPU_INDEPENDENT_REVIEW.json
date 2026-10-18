@@ -1,0 +1,50 @@
+{
+  "budget": {
+    "backwards": 0,
+    "completed_records": 0,
+    "generations": 0,
+    "language_forwards": 0,
+    "max_model_loads": 1,
+    "mode": "EXTRACT_REMAINING_AND_FINALIZE",
+    "new_vision_forwards": 48,
+    "weight_updates": 0
+  },
+  "exact_review_contract_check": "PASS",
+  "findings": [
+    "Independently read final runner/helper/tests and exact v4 scope; reviewed code binds the actual imported worktree and primary source bytes, including the three newly added direct dependencies.",
+    "Fixed selection is four lexically selected training patients and four frozen internal-dev patients, each with paired modalities at three fixed levels:24train and24dev images. Train and dev patients are disjoint; no Dallas or sealed final data are admitted.",
+    "Native branch calls only the vision tower for each remaining record, with exact existing adapter/cache/runtime/prompt and immediate per-record immutable persistence. Source has no language forward, generation, backward or optimizer update call; the shared backend does construct its normal optimizer object.",
+    "Resume verifies contiguous record indices, run identity, source image SHA, finite4096-feature and feature SHA; completed records are not recomputed.48records without completion allow only independently scoped zero-forward integrity finalization; successful completion permits CPU-only analysis.",
+    "Finalization compares all504 adapter tensors and optimizer step0, clears retained arrays, closes model and requires active MLX allocations below128MiB before saving native completion. CPU-only fixtures verify rejection of missing release and bad step/tensor/record binding.",
+    "CPU heads use train-only standardization and fixed alpha1 dual ridge with24x24 Gram; same24train/24dev rows for mean/pixel/histogram heads. No dev hyperparameter selection is present.",
+    "Ten focused CPU regressions independently passed (0.07s); no native/model imports, model launch, real process signals or queue changes were performed by reviewer."
+  ],
+  "focused_tests": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONPATH=src python3 -m pytest -q tests/test_v2_qwen_feature_probe.py",
+    "elapsed_seconds": 0.07,
+    "native_execution": false,
+    "passed": 10
+  },
+  "limitations": [
+    "Approval applies only to the exact v4 scope, hashes,48vision-forward maximum, one model load, existing global queue lock and unchanged resource/power protections. Parent must choose an eligible slot; this review did not execute the extractor.",
+    "Native execution, actual48feature values, final504-tensor equality and post-close MLX memory release are NOT_VERIFIED until actual receipts and process exit are independently checked.",
+    "Four repeatedly examined internal-dev patients give descriptive evidence only; no independent-patient generalization, clinical claim, robust seed effect or anatomical grounding is established.",
+    "Mean pooling discards spatial positions and excludes deepstack outputs; a poor mean-feature result cannot establish inadequacy of the complete Qwen visual encoder.",
+    "CPU ridge and saved B28/U7 native outputs are reference comparisons with different supervision/models/budgets; they do not demonstrate a matched-budget VLM improvement.",
+    "Acquisition and intensity shortcuts remain unresolved; no Dallas feature extraction, full216+40 extraction, language training or sealed final100 access is approved."
+  ],
+  "private_exact_review_sha256": "82148169b59665b58e66e9fd7b361e4b6a8462b736d336e112abc0cef9bc4eb7",
+  "resolved_defect": "Superseded v3 scope omitted experiments.py, two_task_pool.py and vero_mri_reward.py. v4 binds all3 primary/worktree bytes and focused tampering test rejects each mismatch; no numerical/native/release behavior changed.",
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "QWEN_MEAN48_SCOPED_CPU_INDEPENDENT_REVIEW_V1",
+  "scope": "Read-only B28 Qwen vision merged mean48; NOT_RUN at review",
+  "source_and_scope_sha256": {
+    "feature_helper": "01127773780070ef4824cf2ebe1b9c4308b9e48bc8b9d272e770216d13ea55fc",
+    "plan": "c901ea1a691d87a1a3e3a39482dca14717b7a409724ccbae760e72589111c8fc",
+    "runner": "2f6418829aac434f5c91c5559962c4a1bd574a9843eb35aac6e1459127ef8963",
+    "scope": "96c3720b7402993b7d8ced5b56cf901e723b0ee5863c43a9e006e3e03dce0fe8",
+    "tests": "8cbb785cd81bef47345fdc44a9844bb842bbab2b3b8f3afb4e707ac2ea6f28fe"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
