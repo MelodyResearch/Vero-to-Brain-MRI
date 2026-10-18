@@ -1,0 +1,86 @@
+{
+  "actual_source_result_sha256": {
+    "adaptive_signal_result": "98e4e0c33711eb3cd072dd79bf681cd94a55202c4d3f8da3c9ac748e91cc5ac9",
+    "adaptive_signal_source": "a9f14f67dac79c398e0723c19d0d92bb748f2cdb8f3a63d0af19c17b290ab2b5",
+    "generation_result": "9873420422dbcab918fa1174164791ab716b6fdbb9ccb5f15e16dc5d90daf9fb",
+    "generation_source": "cc6ffbce04d1380067af75c60baf16d2b6237a69a8b4a5a857a9e5d43aa8a669"
+  },
+  "additional_strict_transition_decomposition": {
+    "mri_sequence": {
+      "invalid_to_correct": 2,
+      "valid_wrong_to_correct": 0,
+      "valid_wrong_to_invalid": 2
+    },
+    "mri_visit_correspondence": {
+      "invalid_to_correct": 0,
+      "valid_wrong_to_correct": 1,
+      "valid_wrong_to_invalid": 0
+    }
+  },
+  "independently_recomputed_greedy_transitions": {
+    "mri_sequence": {
+      "correct_to_incorrect": 0,
+      "incorrect_to_correct": 2,
+      "invalid_in_both": 5,
+      "parent_invalid_child_valid": 2,
+      "parent_valid_child_invalid": 2
+    },
+    "mri_visit_correspondence": {
+      "correct_to_incorrect": 2,
+      "incorrect_to_correct": 1,
+      "invalid_in_both": 0,
+      "parent_invalid_child_valid": 0,
+      "parent_valid_child_invalid": 0
+    }
+  },
+  "limitations": [
+    "Saved evidence arithmetic/source and aggregate privacy only; no native/model/tensor replay, changed decoder or new experiment.",
+    "A cap-limited incomplete answer does not establish that a longer cap would produce a correct answer; descriptive salvage is not strict accuracy.",
+    "Gate replay on the same groups is not the counterfactual trajectory of a strict-gate policy; overlap reason marginals are not disjoint causal attribution.",
+    "Norms and work intervals do not provide per-task vector interference, actual FLOPs or causal learning credit.",
+    "Adam56 state continuity does not establish superiority to Adam52; dev-only descriptive findings are not independent-patient generalization."
+  ],
+  "privacy_review": "PASS: public artifacts contain task/condition aggregates, hashes, generic code references and four update scalar summaries; no patient/record identifiers, absolute source paths, raw responses/token IDs, case table or per-image arrays.",
+  "reviewer_findings": [
+    "Independently re-parsed80saved greedy outputs and raw token decoding; all14invalid sequence generations are256-token length exits with unclosed think and no answer tag, each255tokens after the opening think token.",
+    "All66stop records retain configured final EOS IDs; no saved count/text/prefix inconsistency or earlier EOS observed. No invalid capped case has a salvaged box.",
+    "Both checkpoints retain7invalid sequence outputs; overlap5,2invalid-to-valid and2valid-to-invalid. Sequence+2strict correct comes from2invalid-to-correct; previously valid-wrong-to-correct0 and valid-wrong-to-invalid2.",
+    "Independently mapped7saved groups to typed frozen76train rows:3sequence attempts/1update and4Dallas attempts/3updates,11785tokens total. K4format/correct histograms, variance/length/reason marginals, norms-to-task/token/time mapping and copied raw12facts match.",
+    "All7groups lack all-four-full-format; only4pass the new valid-subset variation gate. Saved-gradient norm sums cannot identify net task contribution or unique Dallas-regression cause."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_reproducer_sha256": "6c6ec17dd488c4b7ba5e95deda8da1e3bc16c5203632b43e848306e4880ea3ff",
+  "schema": "SAVED_GENERATION_AND_ADAPTIVE_SIGNAL_COMBINED_INDEPENDENT_REVIEW_V1",
+  "task_signal_counts": {
+    "mri_sequence": {
+      "accepted_groups": 1,
+      "attempted_groups": 3,
+      "completed_tokens": 4013,
+      "full_format_response_count": 4,
+      "raw_correct_response_count": 3,
+      "valid_subset_varying_groups": 1,
+      "zero_total_variance_groups": 1
+    },
+    "mri_visit_correspondence": {
+      "accepted_groups": 3,
+      "attempted_groups": 4,
+      "completed_tokens": 7772,
+      "full_format_response_count": 12,
+      "raw_correct_response_count": 8,
+      "valid_subset_varying_groups": 3,
+      "zero_total_variance_groups": 0
+    }
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification_counts": {
+    "completed_group_json_pairs": 7,
+    "completed_training_tokens": 11785,
+    "confirmed_256token_length_terminations": 14,
+    "exact_token_text_and_monotonic_prefixes": 80,
+    "mapped_actual_Adam_updates": 4,
+    "model_or_big_tensor_files_read": 0,
+    "saved_greedy_rows_reparsed": 80,
+    "stop_records_with_terminal_configured_EOS": 66
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "EOS_semantics_from_bound_source": {
+    "EOS_not_added_to_visible_detokenized_text": true,
+    "finish_reason_length_comes_from_exhausted_generate_step_budget": true,
+    "finish_reason_stop_comes_from_stopping_criteria": true,
+    "generated_token_ids_include_sampled_EOS": true,
+    "hit_max_tokens_alone_not_truncation_proof": "An EOS at token256 is stop even if len>=max_tokens."
+  },
+  "additional_processor_stop_ids": "Not instantiated live; all observed stop-token IDs are checked against source-derived configured/tokenizer IDs.",
+  "artifact_sha256": {
+    "chat_template": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+    "frozen_evaluation_contract": "8c52a40f572393f4a01c6fbd2eb84d044bc14ecd151ae00ef56d9e7600a2539b",
+    "generation_config": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+    "installed_dispatch": "f7dcec326a4d2aff1286b1abd4419f8ec533189d1d26b0ac69002513ba45dab8",
+    "installed_utils": "d38eabab88d5d6b835d4ab703cdac2e30924fc04463be8134d12ae5406e50b0c",
+    "model_config": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+    "native_generate_record": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "reward": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "tokenizer": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+    "tokenizer_config": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+    "verified_candidate_and_greedy_aggregate": "6d5313e8da010ec4acc5392851faf18726132676de4b4d592e1e57b0a2c6ab14"
+  },
+  "checkpoint_artifact_sha256": {
+    "P_calibrated13_parent": {
+      "closed_log": "dd9ebac11a69899b1db1e6790666a82e2c3cb3dcdc7006f3a7d1a6bf76ab2795",
+      "eval_receipt": "3eabebf1df3c71363d9a50af31127cfb9de975124c2e1e8e49af62b6f915a621",
+      "exit_receipt": "47e8cc0c986a39732d185dd8b0c9d82bdd685c92bea37e014eab5d24c526b297",
+      "greedy_output": "d20584fe6deacb695c60383568bf28ddb2901f6b1d2061d4e726924a12bea225",
+      "scope": "cc57a97ec4e5825d5cd86a691ec35b13ffac18cf520e187b39a2c8765d1c1d31"
+    },
+    "adaptive_Adam56": {
+      "closed_log": "5781ffd5df55a1a3c302c9fb02ad7c320156a6cf8b20a15ad5460f0cf4a0c5c6",
+      "eval_receipt": "2fde141b0fcff71a02aed4b7e214c4082f867a4a8c5d21b35a59b8b1a0d8f517",
+      "exit_receipt": "fb767854489dc2f006a0c20a97e1bfbb35e179b86c778113329f63ad933f2596",
+      "greedy_output": "852bbcf33361a0b7788d3b404a1d04b6a14d97099cb8753e2472802439b48b0c",
+      "scope": "022c97281506fce016d8dc74dcec983c0aa52797f34c92baf02c4189717a84f8"
+    }
+  },
+  "checkpoints": {
+    "P_calibrated13_parent": {
+      "mri_sequence": {
+        "descriptive_salvage_NOT_STRICT_ACCURACY": {
+          "canonical_complete_answer_span_correct": 9,
+          "invalid_with_correct_complete_answer_span": 0,
+          "invalid_with_correct_one_box_anywhere": 0,
+          "one_canonical_box_anywhere_correct": 9
+        },
+        "empty_answer_records": 0,
+        "eos_consistency_failures": 0,
+        "exact_token_text_matches": 24,
+        "finish_reason_counts": {
+          "length": 7,
+          "stop": 17
+        },
+        "generated_token_counts": {
+          "max": 256,
+          "median": 67.5,
+          "min": 19
+        },
+        "generation_count_mismatches": 0,
+        "invalid_finish_reason_counts": {
+          "length": 7
+        },
+        "invalid_format_flags": {
+          "missing_or_repeated_tags": 7
+        },
+        "invalid_no_answer_open_tag": 7,
+        "invalid_terminal_eos_present": 0,
+        "invalid_think_not_closed": 7,
+        "length_terminated": 7,
+        "length_terminated_invalid": 7,
+        "records": 24,
+        "stop_records_with_terminal_eos": 17,
+        "strict_correct": 9,
+        "strict_invalid": 7,
+        "think_close_completed_at_tokens": {
+          "median_of_observed": 24,
+          "observed": 17
+        },
+        "token_offset_verified_records": 24,
+        "unclosed_think_token_lower_bounds": {
+          "max": 255,
+          "min": 255,
+          "observed": 7
+        }
+      },
+      "mri_visit_correspondence": {
+        "descriptive_salvage_NOT_STRICT_ACCURACY": {
+          "canonical_complete_answer_span_correct": 8,
+          "invalid_with_correct_complete_answer_span": 0,
+          "invalid_with_correct_one_box_anywhere": 0,
+          "one_canonical_box_anywhere_correct": 8
+        },
+        "empty_answer_records": 0,
+        "eos_consistency_failures": 0,
+        "exact_token_text_matches": 16,
+        "finish_reason_counts": {
+          "stop": 16
+        },
+        "generated_token_counts": {
+          "max": 17,
+          "median": 17.0,
+          "min": 17
+        },
+        "generation_count_mismatches": 0,
+        "invalid_finish_reason_counts": {},
+        "invalid_format_flags": {},
+        "invalid_no_answer_open_tag": 0,
+        "invalid_terminal_eos_present": 0,
+        "invalid_think_not_closed": 0,
+        "length_terminated": 0,
+        "length_terminated_invalid": 0,
+        "records": 16,
+        "stop_records_with_terminal_eos": 16,
+        "strict_correct": 8,
+        "strict_invalid": 0,
+        "think_close_completed_at_tokens": {
+          "median_of_observed": 7.0,
+          "observed": 16
+        },
+        "token_offset_verified_records": 16,
+        "unclosed_think_token_lower_bounds": {
+          "max": null,
+          "min": null,
+          "observed": 0
+        }
+      }
+    },
+    "adaptive_Adam56": {
+      "mri_sequence": {
+        "descriptive_salvage_NOT_STRICT_ACCURACY": {
+          "canonical_complete_answer_span_correct": 11,
+          "invalid_with_correct_complete_answer_span": 0,
+          "invalid_with_correct_one_box_anywhere": 0,
+          "one_canonical_box_anywhere_correct": 11
+        },
+        "empty_answer_records": 0,
+        "eos_consistency_failures": 0,
+        "exact_token_text_matches": 24,
+        "finish_reason_counts": {
+          "length": 7,
+          "stop": 17
+        },
+        "generated_token_counts": {
+          "max": 256,
+          "median": 29.5,
+          "min": 19
+        },
+        "generation_count_mismatches": 0,
+        "invalid_finish_reason_counts": {
+          "length": 7
+        },
+        "invalid_format_flags": {
+          "missing_or_repeated_tags": 7
+        },
+        "invalid_no_answer_open_tag": 7,
+        "invalid_terminal_eos_present": 0,
+        "invalid_think_not_closed": 7,
+        "length_terminated": 7,
+        "length_terminated_invalid": 7,
+        "records": 24,
+        "stop_records_with_terminal_eos": 17,
+        "strict_correct": 11,
+        "strict_invalid": 7,
+        "think_close_completed_at_tokens": {
+          "median_of_observed": 9,
+          "observed": 17
+        },
+        "token_offset_verified_records": 24,
+        "unclosed_think_token_lower_bounds": {
+          "max": 255,
+          "min": 255,
+          "observed": 7
+        }
+      },
+      "mri_visit_correspondence": {
+        "descriptive_salvage_NOT_STRICT_ACCURACY": {
+          "canonical_complete_answer_span_correct": 7,
+          "invalid_with_correct_complete_answer_span": 0,
+          "invalid_with_correct_one_box_anywhere": 0,
+          "one_canonical_box_anywhere_correct": 7
+        },
+        "empty_answer_records": 0,
+        "eos_consistency_failures": 0,
+        "exact_token_text_matches": 16,
+        "finish_reason_counts": {
+          "stop": 16
+        },
+        "generated_token_counts": {
+          "max": 23,
+          "median": 17.0,
+          "min": 17
+        },
+        "generation_count_mismatches": 0,
+        "invalid_finish_reason_counts": {},
+        "invalid_format_flags": {},
+        "invalid_no_answer_open_tag": 0,
+        "invalid_terminal_eos_present": 0,
+        "invalid_think_not_closed": 0,
+        "length_terminated": 0,
+        "length_terminated_invalid": 0,
+        "records": 16,
+        "stop_records_with_terminal_eos": 16,
+        "strict_correct": 7,
+        "strict_invalid": 0,
+        "think_close_completed_at_tokens": {
+          "median_of_observed": 7.0,
+          "observed": 16
+        },
+        "token_offset_verified_records": 16,
+        "unclosed_think_token_lower_bounds": {
+          "max": null,
+          "min": null,
+          "observed": 0
+        }
+      }
+    }
+  },
+  "evidence_tier": "OBSERVED_SAVED_OUTPUTS_AND_INSTALLED_SOURCE",
+  "existing_candidate_accuracy_reference": "Both checkpoints15/24 for mean/raw/first; candidate readout is not greedy decoding accuracy.",
+  "limitations": [
+    "Think/token marker bounds are reported only when raw-token decoding exactly reproduces the stored visible text and prefix offsets are consistent.",
+    "Length termination proves the answer was not completed within this cap; it does not prove a longer cap would yield the correct answer.",
+    "A correct candidate preference or salvaged label cannot replace strict generation performance.",
+    "No native generation, tensor replay, new decoder setting or training was run."
+  ],
+  "matched_record_transitions": {
+    "mri_sequence": {
+      "correct_to_incorrect": 0,
+      "incorrect_to_correct": 2,
+      "invalid_in_both": 5,
+      "parent_invalid_child_valid": 2,
+      "parent_valid_child_invalid": 2
+    },
+    "mri_visit_correspondence": {
+      "correct_to_incorrect": 2,
+      "incorrect_to_correct": 1,
+      "invalid_in_both": 0,
+      "parent_invalid_child_valid": 0,
+      "parent_valid_child_invalid": 0
+    }
+  },
+  "native_generation_contract": {
+    "custom_eos_or_stopping_criteria_passed": false,
+    "enable_thinking_template_argument": false,
+    "max_tokens": 256,
+    "temperature": 0
+  },
+  "native_models_loaded": 0,
+  "salvage_limits": "Descriptive extraction from existing text only; it is not the frozen strict metric, new model output, or evidence of an accuracy improvement.",
+  "schema": "saved-generation-format-diagnosis-v1",
+  "script_sha256": "cc6ffbce04d1380067af75c60baf16d2b6237a69a8b4a5a857a9e5d43aa8a669",
+  "sealed_final100_used": false,
+  "source_derived_configured_EOS_ids": [
+    151643,
+    151645
+  ],
+  "source_evidence_references": {
+    "configured_EOS_merge_and_union": "mlx_vlm/utils.py:89-104,2129-2149",
+    "installed_dispatch": "mlx_vlm/generate/dispatch.py:1088-1096 append-before-stop;1112 length;1147 returned token_ids",
+    "native_call": "mri_rl/mlx_continuous_gspo.py:251-270 temperature0/max_tokens argument/enable_thinkingFalse"
+  },
+  "spec_sha256": "544204cbabe0a1ba9a00cf092457acd7f533409aff7d6d6f5300be75e90d6762",
+  "strict_parser_changed": false
+}
