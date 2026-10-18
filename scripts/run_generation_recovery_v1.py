@@ -1,6 +1,6 @@
 """Finite read-only Adam60 generation controls. Preparation reads receipts/config/source only; no weights or cache shards."""
 from __future__ import annotations
-import argparse,fcntl,gc,hashlib,importlib.util,json,os,sys,traceback
+import argparse,fcntl,gc,hashlib,importlib.util,json,math,os,sys,time,traceback
 from pathlib import Path
 W=Path(__file__).resolve().parents[1]
 _helper_spec=importlib.util.spec_from_file_location('generation_recovery_pure_helpers',W/'src/mri_rl/generation_recovery_v1.py')
@@ -18,6 +18,11 @@ def module(path,name,expected):
 
 def dependencies(primary):
  v=Path(primary)/'.worktrees/vero-mri-v2-controls';entry=module(v/'scripts/run_paired_discrimination_pilot_v2.py','recovery_frozen_evaluator',ENTRY_SHA);early=module(v/'scripts/run_c40_early_visual_probe_v1.py','recovery_native_loader','8cafacbf3a9086160c8e257673c6f933070df208bffc5c32dec38bc0e1e82e06');return entry,early,early.primary_api(Path(primary))
+
+def timed_row(call,field):
+ start=time.monotonic();row=call();elapsed=time.monotonic()-start
+ require(math.isfinite(elapsed) and elapsed>=0,"Invalid monotonic duration")
+ return {**row,field:elapsed}
 
 def files(output):
  result=controls.output_paths(output);result['completion']=Path(output)/'complete_SAFE.json';result['failure']=Path(output)/'failure_PRIVATE.json';return result
@@ -63,14 +68,14 @@ def execute(primary,output,review,review_sha):
    for name,plan in plans.items():
     key='original' if name=='original_512' else 'short';cap=plan['max_tokens'];grows=controls.durable_prefix(paths[key+'_greedy'],plan['greedy'],scope['run_identity'],lambda r:controls.validate_greedy(r,cap))
     for record in plan['greedy'][len(grows):]:
-     generated=backend.generate_record(record,record['image_sha256'],cap);controls.validate_greedy(generated,cap);controls.append(paths[key+'_greedy'],{**record,**generated,'run_identity':scope['run_identity'],'weight_updates':0});before('recovery_greedy_saved')
+     generated=timed_row(lambda:backend.generate_record(record,record['image_sha256'],cap),'generation_wall_seconds');controls.validate_greedy(generated,cap);controls.append(paths[key+'_greedy'],{**record,**generated,'run_identity':scope['run_identity'],'weight_updates':0});before('recovery_greedy_saved')
     null=next(r for r in plan['candidates'] if r['condition']=='no_image');nrows=controls.durable_prefix(paths[key+'_null'],[null],scope['run_identity'],lambda r:controls.validate_greedy(r,cap))
     if not nrows:
-     generated=backend.generate_record(null,None,cap);controls.validate_greedy(generated,cap);controls.append(paths[key+'_null'],{**null,**generated,'run_identity':scope['run_identity'],'weight_updates':0});before('recovery_null_saved')
+     generated=timed_row(lambda:backend.generate_record(null,None,cap),'generation_wall_seconds');controls.validate_greedy(generated,cap);controls.append(paths[key+'_null'],{**null,**generated,'run_identity':scope['run_identity'],'weight_updates':0});before('recovery_null_saved')
     if name=='short_reason_256':
      crows=controls.durable_prefix(paths['short_candidates'],plan['candidates'],scope['run_identity'],api.validate_numeric_route)
      for index,record in enumerate(plan['candidates'][len(crows):],len(crows)):
-      row=api.score_record(backend,record,index);row.update(run_identity=scope['run_identity'],weight_updates=0);api.validate_numeric_route(row,backend.processor.tokenizer);controls.append(paths['short_candidates'],row);gc.collect();backend.mx.clear_cache();before('recovery_candidate_saved')
+      row=timed_row(lambda:api.score_record(backend,record,index),'candidate_wall_seconds');row.update(run_identity=scope['run_identity'],weight_updates=0);api.validate_numeric_route(row,backend.processor.tokenizer);controls.append(paths['short_candidates'],row);gc.collect();backend.mx.clear_cache();before('recovery_candidate_saved')
    disk=backend.mx.load(scope['adapter']['path']);actual=dict(backend.tree_flatten(backend.model.trainable_parameters()));require(len(actual)==504 and set(disk)==set(actual) and all(bool(backend.mx.array_equal(v,actual[k]).item()) for k,v in disk.items()) and int(backend.optimizer_state()['step'].item())==0,'Read-only recovery changed weights/optimizer');del disk,actual
   except BaseException as exc:
    error={'exception_type':type(exc).__name__,'message_sha256':hashlib.sha256(str(exc).encode()).hexdigest()};traceback.clear_frames(exc.__traceback__);exc.__traceback__=None

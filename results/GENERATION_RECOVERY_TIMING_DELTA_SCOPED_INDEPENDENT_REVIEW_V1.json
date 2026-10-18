@@ -1,0 +1,22 @@
+{
+  "focused_test_sha256": "4e980a188a0f9b2418a58999aef0177b5d469541807c032b9f969273e87a9095",
+  "focused_tests_passed": 2,
+  "helper_sha256": "c63d397029f8b586848687fcba23471f36899b531d0fcbaebb1b2a94aaee3433",
+  "limitations": [
+    "Source-only delta review; final exact scope approval still requires completed Adam60baseline and current output/source bindings.",
+    "Failed calls do not produce successful-row timing; incomplete work must not be assigned zero cost.",
+    "No native execution, performance gain, MRI accuracy or new training authorized."
+  ],
+  "previous_source_review_sha256": "2f61463f6947edff173af79371a4da884eacc1400244aa6b80364fe5f8eb44d3",
+  "reviewer_findings": [
+    "Inspected actual diff: only math/time imports, timed_row monotonic measurement and immediate wrappers around existing real/null generation and short-candidate calls.",
+    "timed_row executes each call exactly once, preserves all scientific fields and appends finite nonnegative elapsed seconds. No cap/template/EOS/prompt/model/scorer/strict parser or call-budget change.",
+    "Two focused CPU tests independently passed: actual monotonic interval/field preservation/single invocation and backwards-clock rejection.",
+    "Per-call duration excludes later persistence and may include resource waiting inside an existing call; it is not model FLOPs or isolated GPU compute time."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "runner_sha256": "4c875b04618d0ceabda4e701c64677613b46d4daf923bb545e4e5e878fd35da4",
+  "schema": "GENERATION_RECOVERY_TIMING_ONLY_DELTA_SCOPED_INDEPENDENT_REVIEW_V1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
