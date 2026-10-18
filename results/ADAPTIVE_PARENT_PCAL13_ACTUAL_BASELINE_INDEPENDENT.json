@@ -1,0 +1,312 @@
+{
+  "checkpoint": "P_calibrated13",
+  "evidence_sha256": {
+    "actual_exit": "47e8cc0c986a39732d185dd8b0c9d82bdd685c92bea37e014eab5d24c526b297",
+    "candidates25": "933d1a171678952c8a1afae7c2d17573f546cb184704c11a44477aedfd5bf5a9",
+    "closed_log": "dd9ebac11a69899b1db1e6790666a82e2c3cb3dcdc7006f3a7d1a6bf76ab2795",
+    "completion": "3eabebf1df3c71363d9a50af31127cfb9de975124c2e1e8e49af62b6f915a621",
+    "greedy40": "d20584fe6deacb695c60383568bf28ddb2901f6b1d2061d4e726924a12bea225",
+    "resource_log": "b7a314368943276c5bbd7bb5ae36d2b419fdcdb9cd9757472c5fa7f89fbd8f21",
+    "review": "98aa56eaf33bbbe17e99dea0e6ede0d44e43e6634c0f3c5ef770abb3bb37f159",
+    "scope": "cc57a97ec4e5825d5cd86a691ec35b13ffac18cf520e187b39a2c8765d1c1d31",
+    "this_analysis": "65284ed3b8df39e2a4b3c178bd339ad84a3b39c2b03d95b4b75cb5b36c267e6d"
+  },
+  "greedy": {
+    "full_format_strict": {
+      "descriptive_internal_dev_only": true,
+      "equal_task_unit_macro": 0.4375,
+      "tasks": {
+        "mri_sequence": {
+          "balanced_accuracy": 0.375,
+          "class_recall": {
+            "FLAIR": 0.4166666666666667,
+            "contrast-enhanced T1": 0.3333333333333333
+          },
+          "confusion": {
+            "FLAIR": {
+              "FLAIR": 5,
+              "INVALID": 4,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 5,
+              "INVALID": 3,
+              "contrast-enhanced T1": 4
+            }
+          },
+          "independent_units": 4,
+          "patients": 4,
+          "question_accuracy": 0.375,
+          "questions": 24,
+          "unit": "patient",
+          "unit_macro_accuracy": 0.375
+        },
+        "mri_visit_correspondence": {
+          "balanced_accuracy": 0.5,
+          "class_recall": {
+            "different": 0.0,
+            "same": 1.0
+          },
+          "confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "independent_units": 4,
+          "patients": 8,
+          "question_accuracy": 0.5,
+          "questions": 16,
+          "unit": "matched_two_person_cycle",
+          "unit_macro_accuracy": 0.5
+        }
+      },
+      "worst_task_accuracy": 0.375
+    },
+    "native_task_accuracy": {
+      "descriptive_internal_dev_only": true,
+      "equal_task_unit_macro": 0.4375,
+      "tasks": {
+        "mri_sequence": {
+          "balanced_accuracy": 0.375,
+          "class_recall": {
+            "FLAIR": 0.4166666666666667,
+            "contrast-enhanced T1": 0.3333333333333333
+          },
+          "confusion": {
+            "FLAIR": {
+              "FLAIR": 5,
+              "INVALID": 4,
+              "contrast-enhanced T1": 3
+            },
+            "contrast-enhanced T1": {
+              "FLAIR": 5,
+              "INVALID": 3,
+              "contrast-enhanced T1": 4
+            }
+          },
+          "independent_units": 4,
+          "patients": 4,
+          "question_accuracy": 0.375,
+          "questions": 24,
+          "unit": "patient",
+          "unit_macro_accuracy": 0.375
+        },
+        "mri_visit_correspondence": {
+          "balanced_accuracy": 0.5,
+          "class_recall": {
+            "different": 0.0,
+            "same": 1.0
+          },
+          "confusion": {
+            "different": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            },
+            "same": {
+              "INVALID": 0,
+              "different": 0,
+              "same": 8
+            }
+          },
+          "independent_units": 4,
+          "patients": 8,
+          "question_accuracy": 0.5,
+          "questions": 16,
+          "unit": "matched_two_person_cycle",
+          "unit_macro_accuracy": 0.5
+        }
+      },
+      "worst_task_accuracy": 0.375
+    }
+  },
+  "limitations": [
+    "Repeated internaldev4sequence people/4Dallas cycles; no independent generalization.",
+    "Full-format strict and native task accuracy are reported separately; candidate score is a separate readout.",
+    "One null query is not24 independent controls.",
+    "No adaptive child outcome or causal admission-rule improvement is inferred.",
+    "Intensity/acquisition and whole-head shortcuts remain; no anatomical or clinical claim."
+  ],
+  "native_release_verified": true,
+  "native_timing": {
+    "actions": {
+      "CONTINUE": 225
+    },
+    "available_gib": {
+      "max": 15.560531616210938,
+      "min": 7.5567474365234375
+    },
+    "candidates25_plus_one_null_greedy_observed_seconds": 107.85072037499049,
+    "greedy_hit256": 7,
+    "greedy_seconds_mean": 10.743093282300105,
+    "greedy_seconds_median": 4.5059823539922945,
+    "greedy_seconds_p90_nearest_rank": 31.70737454202026,
+    "greedy_token_max": 256,
+    "greedy_token_median": 25.0,
+    "greedy_token_min": 17,
+    "levels": {
+      "NORMAL": 225
+    },
+    "mlx_peak_gib": {
+      "max": 5.855241843499243,
+      "min": 0.050770021975040436
+    },
+    "model_load_to_first_greedy_seconds": 80.08893354199245,
+    "pressure_free_percent": {
+      "max": 71.0,
+      "min": 41.0
+    },
+    "real40_greedy_generation_tokens": 3041,
+    "real40_greedy_seconds": 429.72373129200423,
+    "resource_samples": 225,
+    "sampled_total_seconds": 617.7178806669835,
+    "swap_used_gib": {
+      "max": 16.0112890625,
+      "min": 15.8941015625
+    },
+    "timing_limit": "Actual monotonic event intervals; total excludes final checkpoint comparison/release/process exit after last resource sample.40real greedy interval includes preprocessing/guards/saving. Null generation count1 but tokens discarded by original evaluator."
+  },
+  "operator": "Codex /root/two_task_admission",
+  "parent_Adam_updates": 52,
+  "schema": "adaptive-parent-actual-baseline-independent-v1",
+  "sequence_candidate": {
+    "first_label": {
+      "balanced_accuracy": 0.625,
+      "confusion": {
+        "FLAIR": {
+          "FLAIR": 12,
+          "INVALID": 0,
+          "contrast-enhanced T1": 0
+        },
+        "contrast-enhanced T1": {
+          "FLAIR": 9,
+          "INVALID": 0,
+          "contrast-enhanced T1": 3
+        }
+      },
+      "exploratory_internal_dev_only": true,
+      "invalid": 0,
+      "patient_macro_accuracy": 0.6249999999999999,
+      "people": 4,
+      "question_accuracy": 0.625,
+      "recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.25
+      },
+      "rows": 24
+    },
+    "mean": {
+      "balanced_accuracy": 0.625,
+      "confusion": {
+        "FLAIR": {
+          "FLAIR": 12,
+          "INVALID": 0,
+          "contrast-enhanced T1": 0
+        },
+        "contrast-enhanced T1": {
+          "FLAIR": 9,
+          "INVALID": 0,
+          "contrast-enhanced T1": 3
+        }
+      },
+      "exploratory_internal_dev_only": true,
+      "invalid": 0,
+      "patient_macro_accuracy": 0.6249999999999999,
+      "people": 4,
+      "question_accuracy": 0.625,
+      "recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.25
+      },
+      "rows": 24
+    },
+    "raw": {
+      "balanced_accuracy": 0.625,
+      "confusion": {
+        "FLAIR": {
+          "FLAIR": 12,
+          "INVALID": 0,
+          "contrast-enhanced T1": 0
+        },
+        "contrast-enhanced T1": {
+          "FLAIR": 9,
+          "INVALID": 0,
+          "contrast-enhanced T1": 3
+        }
+      },
+      "exploratory_internal_dev_only": true,
+      "invalid": 0,
+      "patient_macro_accuracy": 0.6249999999999999,
+      "people": 4,
+      "question_accuracy": 0.625,
+      "recall": {
+        "FLAIR": 1.0,
+        "contrast-enhanced T1": 0.25
+      },
+      "rows": 24
+    }
+  },
+  "sequence_controls": {
+    "first_label": {
+      "constant_class_reference_balanced_accuracy": 0.5,
+      "null_margin": -10.124999764811946,
+      "null_preferred_class": "FLAIR",
+      "null_unique_queries": 1,
+      "pairs": 12,
+      "patient_mean_paired_separation": 4.437499956555864,
+      "patient_separation_range": [
+        1.5416666785798345,
+        7.04166642750594
+      ],
+      "people": 4,
+      "positive_direction_pairs": 10,
+      "real_mean_margin": -4.812499947828049
+    },
+    "mean": {
+      "constant_class_reference_balanced_accuracy": 0.5,
+      "null_margin": -2.026426685747359,
+      "null_preferred_class": "FLAIR",
+      "null_unique_queries": 1,
+      "pairs": 12,
+      "patient_mean_paired_separation": 1.564465131142638,
+      "patient_separation_range": [
+        0.3136229112881095,
+        2.2357342036024246
+      ],
+      "people": 4,
+      "positive_direction_pairs": 10,
+      "real_mean_margin": -0.6181012547264806
+    },
+    "null_strict_greedy": {
+      "answer": "FLAIR",
+      "format_score": 1.0,
+      "token_count": "NOT_RECORDED_BY_ORIGINAL_EVALUATOR",
+      "unique_queries": 1
+    },
+    "raw": {
+      "constant_class_reference_balanced_accuracy": 0.5,
+      "null_margin": -10.132254123296669,
+      "null_preferred_class": "FLAIR",
+      "null_unique_queries": 1,
+      "pairs": 12,
+      "patient_mean_paired_separation": 4.438319869988404,
+      "patient_separation_range": [
+        1.543091614624404,
+        7.043323596158904
+      ],
+      "people": 4,
+      "positive_direction_pairs": 10,
+      "real_mean_margin": -4.817692945472406
+    }
+  },
+  "status": "ACTUAL_FULL40_GREEDY_25_CANDIDATES_AUTHENTICATED",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "weight_updates_during_evaluation": 0
+}
