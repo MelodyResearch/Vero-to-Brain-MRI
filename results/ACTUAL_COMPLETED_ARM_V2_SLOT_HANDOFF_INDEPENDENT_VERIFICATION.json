@@ -1,0 +1,33 @@
+{
+  "actual_closed_training_log_sha256": "1f3a9ef42abeaa485fc2158f849e4455332653e04d7f506733aa2eabd4f22635",
+  "actual_completed_exit_sha256": "48bd1de0d3ced2fd89789520473e942f582a70df0c4d4d54e87531a4e3e935dd",
+  "actual_lease_sha256": "a9a486cec342406a596a3ec0f2da6505c0739ed1f1b6e9ac3ad4601d1be6f42c",
+  "actual_model_slot_execution": "Mean48 execution coordinated separately by root; this handoff proof does not verify its outcome.",
+  "boundary_stage": "rl:P_calibrated:13",
+  "canonical_cursor_unchanged_since_handoff": true,
+  "completed_groups": 114,
+  "contract_sha256": "2400dcac8ae15fbc63bc36373c0e7e7b81936929984c50ddc98fa7492d51a20c",
+  "evidence_tier": "OBSERVED_ACTUAL_LEASE_AND_READ_ONLY_PROCESS_ABSENCE_RECONCILIATION",
+  "exact_original_resume_argv_preserved": true,
+  "final_boundary_receipt_sha256": "e0696a8186d413b2bb35034b5c5eb2568ddc0b05e1b719778de42fa491cc882a",
+  "independent_full_numeric_proof_sha256": "a5d5cd1faf58492b173177668175e84cc2ffc94b13e15dff4705d6bf5d7f59cb",
+  "independent_review_sha256": "2cabcc895d31e85861739d49b3ab50b1577ef233a1e73a2f73d92c98a4dd39ea",
+  "limitations": [
+    "No durable handoff stdout/OS-signal trace was produced by the one-off source. Actual published lease plus current target-PID disappearance and unchanged cursor were independently checked; successful low-level no-child/identity checks are source-execution-receipt bound.",
+    "This was one explicitly user-authorized completed-arm slot; no permission to interrupt a healthy native worker is implied.",
+    "Original queue must resume with exact preserved argv after actual V2 native release and resource gates.",
+    "No model launch, signals, lock manipulation or cursor edits performed by this reviewer."
+  ],
+  "native_models_started_by_handoff": 0,
+  "no_RUNNING_original_stage": true,
+  "optimizer_updates": 52,
+  "original_queue_resume_required_after_V2_release": true,
+  "paused_cursor_sha256": "1e1b282304639150a729bfe18d9017bada0bfd14c0be85cd06d49faff9cd9d72",
+  "read_only_ps_exit_code": 1,
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "ACTUAL_ONE_COMPLETED_ARM_V2_SLOT_HANDOFF_INDEPENDENT_V1",
+  "source_sha256": "04e6d72af87289103da22b5f5ff01a305b0009a8cc36782e303a4a4175d78742",
+  "target_parent_pid_currently_absent": true,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
