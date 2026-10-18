@@ -1,0 +1,39 @@
+{
+  "actual_numeric_verifier_source_sha256": "805f3858c2c1848028efcb95fc53bc126fa5cbc6ada06233ee44562ef02957ee",
+  "actual_result_sha256": "fe9402cc4e1f4bbb2b1eb396922abbabda168f56d624441cc8b2750f2a576cf7",
+  "actual_saved_numeric_verification_sha256": "a55781ceada72601fc7b38537d2aea4fee73641fdaee7ad0d4af9778964c44cb",
+  "api_defect": {
+    "actual_saved_result_affected": false,
+    "minimal_correction_verified": true,
+    "original_fractional_guard": "FAIL_REPRODUCED"
+  },
+  "current_guard_corrected_helper_sha256": "da2097c1dbcbf465fae1568fc31004418dd7acc65b498d1b267a11ecb91029e1",
+  "evidence_tier": "REPRODUCED",
+  "independent_regression_test_sha256": "9aec6b805b9e962e8c8eb24e31807fb3f3836c0a3e0e50da6fe5a3fbf5c6ee16",
+  "interpretation_limits": [
+    "Allows only descriptive repeatedly examined internal-dev pixel-head baseline reporting.",
+    "Sequence168-row supervision differs from original28 and model families/compute differ; no matched-budget VLM or GSPO improvement claimed.",
+    "No Qwen frozen visual features were extracted, so this is not an encoder-bottleneck test.",
+    "Spatial and histogram sequence accuracy both22/24: no demonstrated spatial advantage for that task. Dallas14/16 versus histogram11/16 remains whole-head/acquisition confounded.",
+    "Only4 sequence people and4 Dallas cycles; bootstrap is conditional exploratory uncertainty, not seed/scanner/clinical generalization.",
+    "No native feature-extraction/training launch approval or sealed-test use follows from this source review."
+  ],
+  "models_refitted_by_reviewer": 0,
+  "native_models_imported": 0,
+  "old_actual_execution_helper_sha256": "889fd0135135aeb3fb68fb21e0b0b07c6975eb6d6250fc7e7070d83215d1cfaa",
+  "original_test_sha256": "ded6b9e24e4a59879e02893c490c17e4d724890b899daf78760b753c5811a61e",
+  "queue_or_controller_interactions": 0,
+  "review_findings": [
+    "Train-only fixed-C regularized fitting and scaling inspected; six saved heads independently reproduced without refitting.",
+    "Same-patient same-level sequence pairs and same/different Dallas query pairs validated; within-source train/dev patient/cycle and exact image-hash sets disjoint.",
+    "Actual saved predictions all exact integer classes; all confusion/recall/unit-macro/worst-task metrics, B28/U7 saved-response ID mapping and twelve paired unit-bootstrap comparisons independently matched.",
+    "Spatial/intensity/source-site-level/train-majority/blank controls explicit. Source and site nuisance fit uses training vocabulary only.",
+    "Reproduced fractional-prediction API bug with one red test; root changed only the int-casting guard. Exact one-line source difference checked against immutable889 snapshot.",
+    "Six focused tests now PASS0.92s; actual integer prediction admission unchanged; original actual result and numerical proof SHA unchanged."
+  ],
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "runner_sha256": "4dc182f4fd21a6bba224c54d39eadb6a4f5771889c253276eeefc8790812bf1f",
+  "schema": "V2-matched-pixel-linear-probe-scoped-independent-review-v1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

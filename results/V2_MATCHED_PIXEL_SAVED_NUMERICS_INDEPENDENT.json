@@ -1,0 +1,127 @@
+{
+  "actual_result_sha256": "fe9402cc4e1f4bbb2b1eb396922abbabda168f56d624441cc8b2750f2a576cf7",
+  "all_actual_predictions_exact_integer_classes": true,
+  "dev_sequence_pairs": 12,
+  "exact_image_hash_disjoint": true,
+  "frozen_input_sha256": "446808a0203ba1e6dd9f45e7f052a7667420b016ffff5a5b88f295d728fc79ab",
+  "independent_confusion_and_unit_metrics": {
+    "B28_saved_native": {
+      "mri_sequence": {
+        "correct_questions": 15,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.625
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "U7_saved_native": {
+      "mri_sequence": {
+        "correct_questions": 13,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5416666666666666
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "histogram16_L2_logistic": {
+      "mri_sequence": {
+        "correct_questions": 22,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.9166666666666666
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 11,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.6875
+      }
+    },
+    "null_training_majority": {
+      "mri_sequence": {
+        "correct_questions": 12,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "source_site_level_L2_logistic": {
+      "mri_sequence": {
+        "correct_questions": 12,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    },
+    "spatial16_L2_logistic": {
+      "mri_sequence": {
+        "correct_questions": 22,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.9166666666666667
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 14,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.875
+      }
+    },
+    "spatial_head_blank_dev": {
+      "mri_sequence": {
+        "correct_questions": 12,
+        "independent_units": 4,
+        "questions": 24,
+        "unit_macro_accuracy": 0.5
+      },
+      "mri_visit_correspondence": {
+        "correct_questions": 8,
+        "independent_units": 4,
+        "questions": 16,
+        "unit_macro_accuracy": 0.5
+      }
+    }
+  },
+  "limitations": [
+    "Saved feature arrays and head parameters were used; feature pixel extraction was not rerun by this reviewer.",
+    "Current source uses train-only scaling/fitting and fixed C1 with no dev-label search; this is repeated internal development, not untouched preregistered evidence.",
+    "Sequence supervision expands28 to168 rows and models/budgets differ from VLM; no causal VLM accuracy gain or Qwen feature-encoder diagnosis follows.",
+    "Histogram and whole-head/acquisition shortcuts remain; no brain-specific grounding, clinical generalization or seed robustness is established.",
+    "Only4 sequence people and4 Dallas cycles bootstrap uncertainty; no scanner/seed/sample-selection uncertainty."
+  ],
+  "models_refitted": 0,
+  "native_models_imported": false,
+  "native_saved_ID_prediction_alignment_verified": true,
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "saved_head_predictions_reproduced": 6,
+  "schema": "V2-CPU-representation-saved-arithmetic-independent-v1",
+  "source_sha256": "805f3858c2c1848028efcb95fc53bc126fa5cbc6ada06233ee44562ef02957ee",
+  "train_sequence_pairs": 84,
+  "unit_bootstrap_comparisons_verified": 12,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_author": "/root/full_arm_execution_contract",
+  "within_source_patient_and_cycle_disjoint": true
+}

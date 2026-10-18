@@ -1,0 +1,1204 @@
+{
+  "accuracy": {
+    "B28": {
+      "equal_task_unit_macro": {
+        "first_label": 0.5,
+        "greedy": 0.5,
+        "mean": 0.5,
+        "raw": 0.5
+      },
+      "tasks": {
+        "mri_sequence": {
+          "first_label": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 0.0
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "greedy": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 0.0
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "mean": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 0.0
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "raw": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 0.0
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          }
+        },
+        "mri_visit_correspondence": {
+          "first_label": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "greedy": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "mean": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "raw": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          }
+        }
+      },
+      "worst_task_accuracy": {
+        "first_label": 0.5,
+        "greedy": 0.5,
+        "mean": 0.5,
+        "raw": 0.5
+      }
+    },
+    "U_raw_seed7": {
+      "equal_task_unit_macro": {
+        "first_label": 0.75,
+        "greedy": 0.625,
+        "mean": 0.75,
+        "raw": 0.75
+      },
+      "tasks": {
+        "mri_sequence": {
+          "first_label": {
+            "accuracy": 1.0,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 1.0
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 0,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 2
+              }
+            },
+            "correct": 4,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 1
+          },
+          "greedy": {
+            "accuracy": 0.75,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 0.5
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 1,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 1
+              }
+            },
+            "correct": 3,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 0.75
+          },
+          "mean": {
+            "accuracy": 1.0,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 1.0
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 0,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 2
+              }
+            },
+            "correct": 4,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 1
+          },
+          "raw": {
+            "accuracy": 1.0,
+            "class_recalls": {
+              "FLAIR": 1.0,
+              "contrast-enhanced T1": 1.0
+            },
+            "confusion": {
+              "FLAIR": {
+                "FLAIR": 2,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 0
+              },
+              "contrast-enhanced T1": {
+                "FLAIR": 0,
+                "INVALID": 0,
+                "TIE": 0,
+                "contrast-enhanced T1": 2
+              }
+            },
+            "correct": 4,
+            "independent_units": 2,
+            "n": 4,
+            "unit_macro_accuracy": 1
+          }
+        },
+        "mri_visit_correspondence": {
+          "first_label": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "greedy": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "mean": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          },
+          "raw": {
+            "accuracy": 0.5,
+            "class_recalls": {
+              "different": 1.0,
+              "same": 0.0
+            },
+            "confusion": {
+              "different": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              },
+              "same": {
+                "INVALID": 0,
+                "TIE": 0,
+                "different": 2,
+                "same": 0
+              }
+            },
+            "correct": 2,
+            "independent_units": 1,
+            "n": 4,
+            "unit_macro_accuracy": 0.5
+          }
+        }
+      },
+      "worst_task_accuracy": {
+        "first_label": 0.5,
+        "greedy": 0.5,
+        "mean": 0.5,
+        "raw": 0.5
+      }
+    }
+  },
+  "accuracy_change_U7_minus_B28": {
+    "mri_sequence": {
+      "first_label": 0.5,
+      "greedy": 0.25,
+      "mean": 0.5,
+      "raw": 0.5
+    },
+    "mri_visit_correspondence": {
+      "first_label": 0.0,
+      "greedy": 0.0,
+      "mean": 0.0,
+      "raw": 0.0
+    }
+  },
+  "accuracy_truth": "Always displayed-image visible_target_PRIVATE, including paired substitutions. Null examples excluded from accuracy.",
+  "analyzer_sha256": "8d79da4907242d3f97d57315b5cfbd1fa1a70b094af400d70a94daf54a8a3c74",
+  "blank_image_controls": "NOT_RUN",
+  "frozen_experiment_completed": false,
+  "input_evidence": {
+    "B28": {
+      "output": "3a0763a4c5b1f9264acc4a5e97b88d340989cc04a136a44e44b12334eb67837f",
+      "receipt": "5a7db9faad1fac3eea402c4d36ca6697d0fb76dbfbe592a30610754e6890357a",
+      "scope": "87bdbf25d0bc2731b91d054256b4bad41039f3fbeb4cb29e7cb1c5bbbf93ef42"
+    },
+    "U_raw_seed7": {
+      "output": "c0ef10eff5931cf517e5a744020be8025f224f69b6af50a023a5364e848625b6",
+      "receipt": "6cf18787ca13536496816b3e6c2e7096ff8b68eb008be4e6852ade1c8a5e5260",
+      "scope": "bc56ce62d9241a608020245cb3b97a633c588456c557908195aa1bb8465620fd"
+    }
+  },
+  "legacy_failure_counts": {
+    "B28": 1,
+    "U_raw_seed7": 0
+  },
+  "limitations": [
+    "Previously examined internal-development subset: two sequence people and one matched Dallas cycle; no independent-patient or clinical-generalization inference.",
+    "Real greedy answers are authenticated saved matching-image answers, not newly generated. Conditional margins are not calibrated class probabilities.",
+    "The versioned shape oracle preserves the legacy failure and original candidate scores. Its support is narrow and does not identify a kernel cause.",
+    "Changed accuracy or paired separation on this subset does not prove robust brain-specific grounding or a training causal mechanism."
+  ],
+  "margins": {
+    "U7_minus_B28": {
+      "mri_sequence": {
+        "first_label": {
+          "delta_no_image_margin": 1.5000000644940883,
+          "delta_unit_averaged_paired_separation": 3.4999999391147867,
+          "delta_unit_averaged_real_minus_no_image_effect": 2.437500013213139,
+          "paired_separation_null_cancellation": "A common additive answer-prior shift cancels between positive and negative images; delta_null is reported separately."
+        },
+        "mean": {
+          "delta_no_image_margin": 0.3087061353365804,
+          "delta_unit_averaged_paired_separation": 1.08957030670158,
+          "delta_unit_averaged_real_minus_no_image_effect": 0.687402344774469,
+          "paired_separation_null_cancellation": "A common additive answer-prior shift cancels between positive and negative images; delta_null is reported separately."
+        },
+        "raw": {
+          "delta_no_image_margin": 1.535725172894466,
+          "delta_unit_averaged_paired_separation": 3.5018130732071313,
+          "delta_unit_averaged_real_minus_no_image_effect": 2.433429014141467,
+          "paired_separation_null_cancellation": "A common additive answer-prior shift cancels between positive and negative images; delta_null is reported separately."
+        }
+      },
+      "mri_visit_correspondence": {
+        "first_label": {
+          "delta_no_image_margin": -2.249999789579306,
+          "delta_unit_averaged_paired_separation": -0.06249969775672071,
+          "delta_unit_averaged_real_minus_no_image_effect": -1.093750276384526,
+          "paired_separation_null_cancellation": "A common additive answer-prior shift cancels between positive and negative images; delta_null is reported separately."
+        },
+        "mean": {
+          "delta_no_image_margin": -2.249999788531568,
+          "delta_unit_averaged_paired_separation": -0.06249969775672071,
+          "delta_unit_averaged_real_minus_no_image_effect": -1.0937502774322638,
+          "paired_separation_null_cancellation": "A common additive answer-prior shift cancels between positive and negative images; delta_null is reported separately."
+        },
+        "raw": {
+          "delta_no_image_margin": -2.249999788531568,
+          "delta_unit_averaged_paired_separation": -0.06249969775672071,
+          "delta_unit_averaged_real_minus_no_image_effect": -1.0937502774322638,
+          "paired_separation_null_cancellation": "A common additive answer-prior shift cancels between positive and negative images; delta_null is reported separately."
+        }
+      }
+    },
+    "checkpoints": {
+      "B28": {
+        "mri_sequence": {
+          "first_label": {
+            "by_true_label": {
+              "FLAIR": {
+                "margins": {
+                  "maximum": -5.6250000656582415,
+                  "mean": -6.437500136322342,
+                  "minimum": -7.250000206986442,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.7500001436565071,
+                  "mean": -0.062499927007593215,
+                  "minimum": -0.8749999976716936,
+                  "n": 2
+                }
+              },
+              "contrast-enhanced T1": {
+                "margins": {
+                  "maximum": -4.125000070780516,
+                  "mean": -4.750000062165782,
+                  "minimum": -5.375000053551048,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 2.250000138534233,
+                  "mean": 1.6250001471489668,
+                  "minimum": 1.0000001557637006,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 2,
+            "no_image_margin": -6.375000209314749,
+            "pair_count": 2,
+            "pair_separation_range": [
+              0.25000001210719347,
+              3.1250001362059265
+            ],
+            "real_image_margins": {
+              "maximum": -4.125000070780516,
+              "mean": -5.593750099244062,
+              "minimum": -7.250000206986442,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 2.250000138534233,
+              "mean": 0.7812501100706868,
+              "minimum": -0.8749999976716936,
+              "n": 4
+            },
+            "unit": "person",
+            "unit_averaged_paired_separation": 1.68750007415656,
+            "unit_averaged_real_minus_no_image_effect": 0.7812501100706868
+          },
+          "mean": {
+            "by_true_label": {
+              "FLAIR": {
+                "margins": {
+                  "maximum": -1.129572628588022,
+                  "mean": -1.2924170472319303,
+                  "minimum": -1.4552614658758387,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.15182770113641197,
+                  "mean": -0.011016717507496332,
+                  "minimum": -0.17386113615140464,
+                  "n": 2
+                }
+              },
+              "contrast-enhanced T1": {
+                "margins": {
+                  "maximum": -0.827117545498578,
+                  "mean": -0.9524836076169151,
+                  "minimum": -1.0778496697352522,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.4542827842258561,
+                  "mean": 0.328916722107519,
+                  "minimum": 0.20355065998918187,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 2,
+            "no_image_margin": -1.281400329724434,
+            "pair_count": 2,
+            "pair_separation_range": [
+              0.051722958852769896,
+              0.6281439203772607
+            ],
+            "real_image_margins": {
+              "maximum": -0.827117545498578,
+              "mean": -1.1224503274244229,
+              "minimum": -1.4552614658758387,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 0.4542827842258561,
+              "mean": 0.15895000230001133,
+              "minimum": -0.17386113615140464,
+              "n": 4
+            },
+            "unit": "person",
+            "unit_averaged_paired_separation": 0.3399334396150153,
+            "unit_averaged_real_minus_no_image_effect": 0.15895000230001133
+          },
+          "raw": {
+            "by_true_label": {
+              "FLAIR": {
+                "margins": {
+                  "maximum": -5.6571633359909015,
+                  "mean": -6.4683619372127055,
+                  "minimum": -7.2795605384345095,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.7536957304782561,
+                  "mean": -0.057502870743547874,
+                  "minimum": -0.8687014719653519,
+                  "n": 2
+                }
+              },
+              "contrast-enhanced T1": {
+                "margins": {
+                  "maximum": -4.164420116534586,
+                  "mean": -4.78257617609421,
+                  "minimum": -5.400732235653834,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 2.2464389499345714,
+                  "mean": 1.6282828903749476,
+                  "minimum": 1.0101268308153237,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 2,
+            "no_image_margin": -6.410859066469158,
+            "pair_count": 2,
+            "pair_separation_range": [
+              0.2564311003370676,
+              3.1151404218999232
+            ],
+            "real_image_margins": {
+              "maximum": -4.164420116534586,
+              "mean": -5.625469056653458,
+              "minimum": -7.2795605384345095,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 2.2464389499345714,
+              "mean": 0.7853900098156998,
+              "minimum": -0.8687014719653519,
+              "n": 4
+            },
+            "unit": "person",
+            "unit_averaged_paired_separation": 1.6857857611184954,
+            "unit_averaged_real_minus_no_image_effect": 0.7853900098156998
+          }
+        },
+        "mri_visit_correspondence": {
+          "first_label": {
+            "by_true_label": {
+              "different": {
+                "margins": {
+                  "maximum": -3.374999951571226,
+                  "mean": -4.062499882653356,
+                  "minimum": -4.749999813735485,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 2.0000001713633537,
+                  "mean": 1.3125002402812243,
+                  "minimum": 0.6250003091990948,
+                  "n": 2
+                }
+              },
+              "same": {
+                "margins": {
+                  "maximum": -3.750000111758709,
+                  "mean": -3.9375001415610313,
+                  "minimum": -4.125000171363354,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 1.625000011175871,
+                  "mean": 1.4374999813735485,
+                  "minimum": 1.2499999515712261,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 1,
+            "no_image_margin": -5.37500012293458,
+            "pair_count": 2,
+            "pair_separation_range": [
+              -0.37500016018748283,
+              0.6249996423721313
+            ],
+            "real_image_margins": {
+              "maximum": -3.374999951571226,
+              "mean": -4.0000000121071935,
+              "minimum": -4.749999813735485,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 2.0000001713633537,
+              "mean": 1.3750001108273864,
+              "minimum": 0.6250003091990948,
+              "n": 4
+            },
+            "unit": "matched_two_person_cycle",
+            "unit_averaged_paired_separation": 0.12499974109232426,
+            "unit_averaged_real_minus_no_image_effect": 1.3750001108273864
+          },
+          "mean": {
+            "by_true_label": {
+              "different": {
+                "margins": {
+                  "maximum": -3.374999951571226,
+                  "mean": -4.062499882653356,
+                  "minimum": -4.749999813735485,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 2.0000001713633537,
+                  "mean": 1.3125002402812243,
+                  "minimum": 0.6250003091990948,
+                  "n": 2
+                }
+              },
+              "same": {
+                "margins": {
+                  "maximum": -3.750000111758709,
+                  "mean": -3.9375001415610313,
+                  "minimum": -4.125000171363354,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 1.625000011175871,
+                  "mean": 1.4374999813735485,
+                  "minimum": 1.2499999515712261,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 1,
+            "no_image_margin": -5.37500012293458,
+            "pair_count": 2,
+            "pair_separation_range": [
+              -0.37500016018748283,
+              0.6249996423721313
+            ],
+            "real_image_margins": {
+              "maximum": -3.374999951571226,
+              "mean": -4.0000000121071935,
+              "minimum": -4.749999813735485,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 2.0000001713633537,
+              "mean": 1.3750001108273864,
+              "minimum": 0.6250003091990948,
+              "n": 4
+            },
+            "unit": "matched_two_person_cycle",
+            "unit_averaged_paired_separation": 0.12499974109232426,
+            "unit_averaged_real_minus_no_image_effect": 1.3750001108273864
+          },
+          "raw": {
+            "by_true_label": {
+              "different": {
+                "margins": {
+                  "maximum": -3.374999951571226,
+                  "mean": -4.062499882653356,
+                  "minimum": -4.749999813735485,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 2.0000001713633537,
+                  "mean": 1.3125002402812243,
+                  "minimum": 0.6250003091990948,
+                  "n": 2
+                }
+              },
+              "same": {
+                "margins": {
+                  "maximum": -3.750000111758709,
+                  "mean": -3.9375001415610313,
+                  "minimum": -4.125000171363354,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 1.625000011175871,
+                  "mean": 1.4374999813735485,
+                  "minimum": 1.2499999515712261,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 1,
+            "no_image_margin": -5.37500012293458,
+            "pair_count": 2,
+            "pair_separation_range": [
+              -0.37500016018748283,
+              0.6249996423721313
+            ],
+            "real_image_margins": {
+              "maximum": -3.374999951571226,
+              "mean": -4.0000000121071935,
+              "minimum": -4.749999813735485,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 2.0000001713633537,
+              "mean": 1.3750001108273864,
+              "minimum": 0.6250003091990948,
+              "n": 4
+            },
+            "unit": "matched_two_person_cycle",
+            "unit_averaged_paired_separation": 0.12499974109232426,
+            "unit_averaged_real_minus_no_image_effect": 1.3750001108273864
+          }
+        }
+      },
+      "U_raw_seed7": {
+        "mri_sequence": {
+          "first_label": {
+            "by_true_label": {
+              "FLAIR": {
+                "margins": {
+                  "maximum": -2.8749999701976776,
+                  "mean": -4.250000028172508,
+                  "minimum": -5.625000086147338,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 2.0000001746229827,
+                  "mean": 0.6250001166481525,
+                  "minimum": -0.7499999413266778,
+                  "n": 2
+                }
+              },
+              "contrast-enhanced T1": {
+                "margins": {
+                  "maximum": 1.7499999701976776,
+                  "mean": 0.9374999850988388,
+                  "minimum": 0.125,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 6.625000115018338,
+                  "mean": 5.812500129919499,
+                  "minimum": 5.00000014482066,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 2,
+            "no_image_margin": -4.87500014482066,
+            "pair_count": 2,
+            "pair_separation_range": [
+              4.624999940395355,
+              5.750000086147338
+            ],
+            "real_image_margins": {
+              "maximum": 1.7499999701976776,
+              "mean": -1.6562500215368345,
+              "minimum": -5.625000086147338,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 6.625000115018338,
+              "mean": 3.218750123283826,
+              "minimum": -0.7499999413266778,
+              "n": 4
+            },
+            "unit": "person",
+            "unit_averaged_paired_separation": 5.187500013271347,
+            "unit_averaged_real_minus_no_image_effect": 3.218750123283826
+          },
+          "mean": {
+            "by_true_label": {
+              "FLAIR": {
+                "margins": {
+                  "maximum": -0.5583041398050718,
+                  "mean": -0.8410937204716711,
+                  "minimum": -1.1238833011382703,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.4143900545827819,
+                  "mean": 0.13160047391618263,
+                  "minimum": -0.15118910675041664,
+                  "n": 2
+                }
+              },
+              "contrast-enhanced T1": {
+                "margins": {
+                  "maximum": 0.9237873375459195,
+                  "mean": 0.5884100258449244,
+                  "minimum": 0.25303271414392936,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 1.8964815319337731,
+                  "mean": 1.561104220232778,
+                  "minimum": 1.225726908531783,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 2,
+            "no_image_margin": -0.9726941943878537,
+            "pair_count": 2,
+            "pair_separation_range": [
+              1.3769160152821995,
+              1.4820914773509912
+            ],
+            "real_image_margins": {
+              "maximum": 0.9237873375459195,
+              "mean": -0.1263418473133733,
+              "minimum": -1.1238833011382703,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 1.8964815319337731,
+              "mean": 0.8463523470744804,
+              "minimum": -0.15118910675041664,
+              "n": 4
+            },
+            "unit": "person",
+            "unit_averaged_paired_separation": 1.4295037463165954,
+            "unit_averaged_real_minus_no_image_effect": 0.8463523470744804
+          },
+          "raw": {
+            "by_true_label": {
+              "FLAIR": {
+                "margins": {
+                  "maximum": -2.875061362148479,
+                  "mean": -4.250114286780338,
+                  "minimum": -5.625167211412197,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 2.0000725314262127,
+                  "mean": 0.6250196067943534,
+                  "minimum": -0.7500333178375058,
+                  "n": 2
+                }
+              },
+              "contrast-enhanced T1": {
+                "margins": {
+                  "maximum": 1.7499892413833251,
+                  "mean": 0.9374845475452886,
+                  "minimum": 0.12497985370725218,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 6.625123134958017,
+                  "mean": 5.81261844111998,
+                  "minimum": 5.000113747281944,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 2,
+            "no_image_margin": -4.8751338935746915,
+            "pair_count": 2,
+            "pair_separation_range": [
+              4.625050603531804,
+              5.7501470651194495
+            ],
+            "real_image_margins": {
+              "maximum": 1.7499892413833251,
+              "mean": -1.6563148696175247,
+              "minimum": -5.625167211412197,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 6.625123134958017,
+              "mean": 3.218819023957167,
+              "minimum": -0.7500333178375058,
+              "n": 4
+            },
+            "unit": "person",
+            "unit_averaged_paired_separation": 5.187598834325627,
+            "unit_averaged_real_minus_no_image_effect": 3.218819023957167
+          }
+        },
+        "mri_visit_correspondence": {
+          "first_label": {
+            "by_true_label": {
+              "different": {
+                "margins": {
+                  "maximum": -7.250000213098247,
+                  "mean": -7.375000099738827,
+                  "minimum": -7.499999986379407,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.37499969941563904,
+                  "mean": 0.24999981277505867,
+                  "minimum": 0.1249999261344783,
+                  "n": 2
+                }
+              },
+              "same": {
+                "margins": {
+                  "maximum": -7.000000175205059,
+                  "mean": -7.312500056403223,
+                  "minimum": -7.6249999376013875,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.6249997373088263,
+                  "mean": 0.3124998561106622,
+                  "minimum": -2.5087501853704453e-08,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 1,
+            "no_image_margin": -7.624999912513886,
+            "pair_count": 2,
+            "pair_separation_range": [
+              -0.12499995122198015,
+              0.25000003789318725
+            ],
+            "real_image_margins": {
+              "maximum": -7.000000175205059,
+              "mean": -7.343750078071025,
+              "minimum": -7.6249999376013875,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 0.6249997373088263,
+              "mean": 0.28124983444286045,
+              "minimum": -2.5087501853704453e-08,
+              "n": 4
+            },
+            "unit": "matched_two_person_cycle",
+            "unit_averaged_paired_separation": 0.06250004333560355,
+            "unit_averaged_real_minus_no_image_effect": 0.28124983444286045
+          },
+          "mean": {
+            "by_true_label": {
+              "different": {
+                "margins": {
+                  "maximum": -7.250000213098247,
+                  "mean": -7.375000099738827,
+                  "minimum": -7.499999986379407,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.37499969836790115,
+                  "mean": 0.24999981172732078,
+                  "minimum": 0.1249999250867404,
+                  "n": 2
+                }
+              },
+              "same": {
+                "margins": {
+                  "maximum": -7.000000175205059,
+                  "mean": -7.312500056403223,
+                  "minimum": -7.6249999376013875,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.6249997362610884,
+                  "mean": 0.3124998550629243,
+                  "minimum": -2.6135239750146866e-08,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 1,
+            "no_image_margin": -7.624999911466148,
+            "pair_count": 2,
+            "pair_separation_range": [
+              -0.12499995122198015,
+              0.25000003789318725
+            ],
+            "real_image_margins": {
+              "maximum": -7.000000175205059,
+              "mean": -7.343750078071025,
+              "minimum": -7.6249999376013875,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 0.6249997362610884,
+              "mean": 0.28124983339512255,
+              "minimum": -2.6135239750146866e-08,
+              "n": 4
+            },
+            "unit": "matched_two_person_cycle",
+            "unit_averaged_paired_separation": 0.06250004333560355,
+            "unit_averaged_real_minus_no_image_effect": 0.28124983339512255
+          },
+          "raw": {
+            "by_true_label": {
+              "different": {
+                "margins": {
+                  "maximum": -7.250000213098247,
+                  "mean": -7.375000099738827,
+                  "minimum": -7.499999986379407,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.37499969836790115,
+                  "mean": 0.24999981172732078,
+                  "minimum": 0.1249999250867404,
+                  "n": 2
+                }
+              },
+              "same": {
+                "margins": {
+                  "maximum": -7.000000175205059,
+                  "mean": -7.312500056403223,
+                  "minimum": -7.6249999376013875,
+                  "n": 2
+                },
+                "real_minus_no_image": {
+                  "maximum": 0.6249997362610884,
+                  "mean": 0.3124998550629243,
+                  "minimum": -2.6135239750146866e-08,
+                  "n": 2
+                }
+              }
+            },
+            "independent_units": 1,
+            "no_image_margin": -7.624999911466148,
+            "pair_count": 2,
+            "pair_separation_range": [
+              -0.12499995122198015,
+              0.25000003789318725
+            ],
+            "real_image_margins": {
+              "maximum": -7.000000175205059,
+              "mean": -7.343750078071025,
+              "minimum": -7.6249999376013875,
+              "n": 4
+            },
+            "real_minus_no_image_effects": {
+              "maximum": 0.6249997362610884,
+              "mean": 0.28124983339512255,
+              "minimum": -2.6135239750146866e-08,
+              "n": 4
+            },
+            "unit": "matched_two_person_cycle",
+            "unit_averaged_paired_separation": 0.06250004333560355,
+            "unit_averaged_real_minus_no_image_effect": 0.28124983339512255
+          }
+        }
+      }
+    }
+  },
+  "new_real_greedy_generations": 0,
+  "p_values_computed": false,
+  "private_detail_sha256": "19000d2cf65d4915eaf41bf4561992c7890152abd26e5d47f8ead67f58a9943c",
+  "schema": "C40-direct-idle-auxiliary-accuracy-v2",
+  "score_definitions": {
+    "primary": "mean label-token log probability",
+    "secondary": [
+      "raw label-token sum",
+      "independent first-label token"
+    ]
+  },
+  "sealed_test_used": false,
+  "status": "ACTUAL_AUTHENTICATED_AUXILIARY20_ANALYZED",
+  "weight_updates": 0
+}

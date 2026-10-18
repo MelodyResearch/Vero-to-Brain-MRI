@@ -1,0 +1,81 @@
+{
+  "Claude_implementation_or_experiments": false,
+  "actual_exit_code": 0,
+  "adopted_recommendations": [
+    "Patient/cycle grouping and training-only fixed or grouped-selected probe parameters.",
+    "Compare visual heads with pixel, intensity, metadata and prior controls; blank is OOD, not the real-image prior.",
+    "Pair opposite truths at the same patient and level; substitutions use displayed-image truth.",
+    "Report raw accuracy, per-class recall, paired margins and training-only prior recentering separately.",
+    "Correspondence is identity matching, not disease progression; update counts are not accuracy."
+  ],
+  "limitations": [
+    "This is a tool-free methodological consultation, not independent inspection of patient data, source code or actual experimental outcomes.",
+    "Full original critique and exact execution receipt remain private and immutable.",
+    "Clinical/generalization claims and any novel efficacy remain unverified."
+  ],
+  "num_turns": 1,
+  "permission_denials": [],
+  "preserved_disagreements_and_reproducible_counterexamples": [
+    {
+      "Claude_position": "The critique example compares an AUC difference lower bound with0.5+delta.",
+      "numeric_counterexample": {
+        "control_AUC": 0.5,
+        "delta": 0.05,
+        "difference": 0.30000000000000004,
+        "difference_exceeds_delta": true,
+        "difference_exceeds_point5_plus_delta": false,
+        "true_AUC": 0.8
+      },
+      "root_position": "Differences must be compared with delta;0.5 is a reference for an AUC itself. No adoption of the example KILL rule.",
+      "topic": "AUC difference KILL threshold"
+    },
+    {
+      "Claude_position": "The critique proposes bitwise equality and treats non-epsilon-regime differences as defects.",
+      "numeric_counterexample": {
+        "epsilon": 1e-06,
+        "maximum_standardized_difference": 4.4999685000490786e-06,
+        "positive_affine_rewards": [
+          0.2,
+          0.2,
+          0.2,
+          0.6000000000000001
+        ],
+        "raw_rewards": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "success_fraction": 0.25
+      },
+      "root_position": "Finite additive epsilon perturbs every nonzero variance group under rescaling; roundoff also prevents a bitwise-equality requirement. Use algebraic limits and explicit tolerances.",
+      "topic": "Exact binary invariance with epsilon/bitwise test"
+    },
+    {
+      "Claude_position": "A probe matching a strong pixel baseline or failing a positive-CI margin is suggested as a KILL of representation adequacy.",
+      "root_position": "Equal perfect classifiers provide a counterexample to inadequate representation; a wide interval can be inconclusive rather than falsifying. Label NOT_VERIFIED when underpowered.",
+      "topic": "Representation inference and underpowered interval"
+    },
+    {
+      "Claude_position": "Shuffled-label or text-only training is presented as a no-new-supervision baseline.",
+      "root_position": "Retain the unchanged B28 no-update baseline. Shuffled-label training is an additional intervention/control, not the no-new-supervision baseline.",
+      "topic": "Shuffled-label supervision baseline"
+    },
+    {
+      "Claude_position": "The critique suggests gating any RL interpretation on supervised success.",
+      "root_position": "Complete the explicitly frozen original RL study as controls; interpretation remains qualified. Do not cancel or silently alter approved arms.",
+      "topic": "Original RL continuation"
+    }
+  ],
+  "private_MRI_or_unpublished_results_sent": false,
+  "project_files_read_by_Claude": false,
+  "prompt_sha256": "bf7781f1f97ed99cff93816a7ad88b1f6a32471c1cad3c3884ad3c8c3bedefde",
+  "raw_result_or_code_cross_model_approval": "NOT_VERIFIED",
+  "result_sha256": "5a916142d807f6a62e3057517da952240b42b1adcee60b762db4f2b44af3c734",
+  "reviewer": "Codex /root",
+  "schema": "Claude-general-accuracy-critique-provenance-v1",
+  "session_id": "5b83d97b-cc2c-44b7-a0d9-2cdb6a08cf61",
+  "skill_loaded_by_Claude": false,
+  "status": "GENERAL_DESIGN_CRITIQUE_COMPLETED",
+  "tools_disabled": true
+}
