@@ -1,0 +1,90 @@
+{
+  "accepted_updates": 4,
+  "actual_exit_sha256": "24bd378fecf7058b6e16024c94415b8943f6b9ebf2ab77e8d5cab850f257811a",
+  "attempted_groups": 7,
+  "closed_native_log_sha256": "7006562217fcd86769610ea9049e02f7a591f21697804b7e0acc5f733842edd6",
+  "evidence_tier": "OBSERVED_AND_INDEPENDENT_STATE_REPRODUCED",
+  "limitations": [
+    "More accepted updates are not evidence of improved image-grounded accuracy. Actual parent-versus-child fixed evaluation remains pending.",
+    "Strict-predicate replay on these same saved groups is descriptive; optimization trajectories after different admission decisions are not matched counterfactuals.",
+    "Resource timing uses admitted monotonic observations; last-group duration is a lower bound and does not include unsampled save/release time.",
+    "No independent-patient generalization claim; no changes to reward, calibration, category sampling or native optimizer."
+  ],
+  "native_complete_sha256": "975ab8bedf7367764302063c5b8bd67586bb4e0fdf979d7f6b950fd4a242c700",
+  "parent_Adam_step": 52,
+  "partial_work_debt_tokens": 0,
+  "proof_sha256": "39d62aa3d9949b3ec39a52fb9b64fe82eb1233fdafdd63158fb7e0d558a87967",
+  "resource_log_sha256": "9c20a98149993b250d781879529b9047daf6e8fb9908af5b5be7aee07c236b6b",
+  "resources_and_time": {
+    "actions": {
+      "CONTINUE": 139
+    },
+    "available_gib": {
+      "max": 14.696868896484375,
+      "min": 7.6959228515625
+    },
+    "complete_intergroup_intervals_seconds": [
+      74.76845220898394,
+      115.463707582996,
+      102.40396887500538,
+      119.35723962500924,
+      51.019457499991404,
+      20.242889500019373
+    ],
+    "final_group_observed_lower_bound_seconds": 75.58169037499465,
+    "mlx_peak_gib": {
+      "max": 10.315274140797555,
+      "min": 0.050770021975040436
+    },
+    "observed_monotonic_span_seconds": 660.7214123330195,
+    "pressure_free_percent": {
+      "max": 62.0,
+      "min": 37.0
+    },
+    "samples": 139,
+    "supervisor_levels": {
+      "NORMAL": 139
+    },
+    "swap_used_gib": {
+      "max": 17.183837890625,
+      "min": 15.8628515625
+    },
+    "timing_limit": "Each group begins at its first admitted CONTINUE observation; repeated HOLD/recovery samples do not create groups. Observed monotonic sampling span; intergroup intervals include preceding group work/checkpoint/guards. Last-group span is only a lower bound, not full process runtime."
+  },
+  "same_saved_group_admission_replay_aggregate": {
+    "adaptive_accepted_updates": 4,
+    "attempts": 7,
+    "limitations": "Counts evaluate two admission predicates on the same saved groups; they do not reproduce a matched strict continuation trajectory.",
+    "strict_predicate_eligible": 0
+  },
+  "schema": "adaptive-accuracy-gate-actual-training-efficiency-v1",
+  "separate_new_stage_token_cap": 36160,
+  "status": "TRAINING_COMPLETED_ACCURACY_PENDING",
+  "task_counts": {
+    "mri_sequence": {
+      "accepted_updates": 1,
+      "attempts": 3,
+      "completed_generated_tokens": 1457,
+      "completed_input_tokens": 2556,
+      "raw_correct_responses": 3,
+      "responses": 12,
+      "update_rate": 0.3333333333333333,
+      "updates_with_mixed_format_new_admission": 1,
+      "valid_format_responses": 4
+    },
+    "mri_visit_correspondence": {
+      "accepted_updates": 3,
+      "attempts": 4,
+      "completed_generated_tokens": 1292,
+      "completed_input_tokens": 6480,
+      "raw_correct_responses": 8,
+      "responses": 16,
+      "update_rate": 0.75,
+      "updates_with_mixed_format_new_admission": 3,
+      "valid_format_responses": 12
+    }
+  },
+  "terminal_Adam_step": 56,
+  "tokens_per_accepted_update": 2946.25,
+  "used_tokens": 11785
+}
