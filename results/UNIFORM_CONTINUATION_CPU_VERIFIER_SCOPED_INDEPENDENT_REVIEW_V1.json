@@ -1,0 +1,22 @@
+{
+  "focused_tests_passed": 3,
+  "focused_tests_sha256": "d53df7081b8c8f8a6f76d422f0672fb28f51a21c1e2731c6f52904f193fc8c60",
+  "limitations": [
+    "Source/CPU scope approval only; actual uniform continuation proof has not run and cannot be inferred from these tests.",
+    "Saved response task grades/native logits/backward are not independently recomputed by this verifier; saved admission/sample-std advantage and optimizer arithmetic are checked.",
+    "Any nonzero interrupted-work debt requires a separate exact reconciliation and must not be silently approved.",
+    "No MRI accuracy, generalization or causal standard-sampling benefit follows from a saved-state numerical PASS."
+  ],
+  "previous_approved_verifier_sha256": "5c092071439b3268cb81997127b7dbadc9a85a09e34ec0f662d9636e25c03c5d",
+  "reviewer_findings": [
+    "Inspected exact diff against approved5c092 adaptive verifier: only stage identity/paths, expected parent39d proof, nested local7/4 parent and global121/Adam56 offsets and corresponding output fields changed.",
+    "Original CPU Adam math source0c340894, exact optimizer+RNG bootstrap equality, chain/file hashes, inactive weight equality and active504tensor Adam reconstruction preserved.",
+    "Actual external exit/scope/review/log digest guards, finite16group-or4update terminal checks and separate token ledger/zero-debt reconciliation remain present.",
+    "Three focused synthetic CPU tests executed: literal56/RNG equality, absolute terminal counter/boundary and inactive16group terminal; no native imports or execution."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "UNIFORM_CONTINUATION_CPU_VERIFIER_SCOPED_REVIEW_V1",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_sha256": "2b1776b00e87c7d239810a4c498c57ca3316cc57864e0632a21eecbf9c138490"
+}

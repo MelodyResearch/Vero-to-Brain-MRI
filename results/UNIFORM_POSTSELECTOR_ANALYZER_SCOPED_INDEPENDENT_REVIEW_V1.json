@@ -1,0 +1,33 @@
+{
+  "analyzer_sha256": "5e2df139d7ff81d5cb8410b775a6a2d5551ccf62e232b38c1bf01d3d4fe6238d",
+  "focused_tests": [
+    {
+      "path": "tests/test_uniform_post_eval_v1.py",
+      "sha256": "726d7ec3bd97bf0341907ecdd1040a0861ce060cfae1d22356bf353a57896e90"
+    },
+    {
+      "path": "tests/test_analyze_uniform_balance_outcomes_v1.py",
+      "sha256": "d85439cd20b58836e29be0ce55337c2ee8cb73beeeffa4c3321b72ab8b849fee"
+    }
+  ],
+  "focused_tests_passed": 9,
+  "limitations": [
+    "Source/CPU checks only: no actual uniform terminal checkpoint or post-evaluation exists at this review; exact runtime scope approval still required after independently verified actual proof.",
+    "Analyzer relies on externally authenticated independent terminal proof and selector for finite-stage admission; it does not replace the checkpoint verifier.",
+    "No causal sampling benefit from before/after without matched proportional continuation; no independent-patient or MRI-grounding claim.",
+    "Existing Adam56 baseline must be reused byte-exact; no extra baseline model forward is authorized."
+  ],
+  "postselector_sha256": "344758739f14c9fbc7919af367e47798bb79fa1b69545de481067f05a4067edc",
+  "reviewer_findings": [
+    "Inspected only new selector/analyzer against previously reviewed93f818 and8e05 interfaces; no native training source changed.",
+    "Postselector pins completed Adam56 baseline scope022c and all six existing artifact digests, requires exact finite last child boundary/proof/native exit, and does not regenerate baseline.",
+    "Postselector requires16groups or4updates with matching terminal status and global121/Adam56 parent offsets, exact current proof-selected adapter and unchanged adapter configuration.",
+    "Shared d020 evaluator and8c52 full40greedy+1null/25candidate contract remain unchanged; no model load occurs in source review or CPU tests.",
+    "Analyzer pins previous8e05/7c6 and metric sources, reuses strict-format greedy plus same candidate readouts and12pair/fourperson controls; labels identify Adam56baseline/uniform child rather than B28.",
+    "Nine focused CPU tests independently pass: counters/proof tampering, finite last child, baseline immutability, null prior versus paired separation, exact format gating, external hashes and unique monotonic group starts."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "UNIFORM_POSTSELECTOR_ANALYZER_SOURCE_SCOPED_REVIEW_V1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
