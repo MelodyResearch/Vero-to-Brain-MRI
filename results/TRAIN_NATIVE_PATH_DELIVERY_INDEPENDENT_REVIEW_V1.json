@@ -1,0 +1,108 @@
+{
+  "AGENTS_sha256": "ee8b432bee8c759f601de2707e374b860277fc147812ff8a23618c14f0f91421",
+  "actual_this_delivery_review": {
+    "backwards": 0,
+    "component_tests_repeated": false,
+    "final100_access": false,
+    "generated_tokens": 0,
+    "image_reads": 0,
+    "model_or_optimizer_loads": 0,
+    "native_forwards": 0,
+    "native_imports": 0,
+    "optimizer_updates": 0
+  },
+  "added_bundle_check": {
+    "actual_focused_tests": {
+      "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_assemble_train_qualification_bundle_v1.py",
+      "elapsed_seconds_reported": 0.03,
+      "exit_code": 0,
+      "passed": 12
+    },
+    "code_sha256": {
+      "assembler": "2bde47077c23ed41135883a9c782e1394ddb6e638fdf859806c9f03edaba68bf",
+      "tests": "df2e753ed3362b47336c2c8b56affa5114642b45beb4fd00d0fa7b0c5b059c49"
+    },
+    "dual_training_authorized_false": 430,
+    "hidden_reward_and_extra_info_preserved": 430,
+    "manifest_sha256": "1f6d11d6c2ab048dba45eb20692dd3548474236501ef1ed4044856990995c16e",
+    "route_status_counts": {
+      "DALLAS_DOWNGRADED_WHOLEHEAD_IDENTITY_ONLY": 48,
+      "SEQUENCE_NONEXPERT_COVERAGE_CANDIDATE_EXPERT_PENDING": 166,
+      "SEQUENCE_VISUAL_ABSTENTION_HOLD": 2,
+      "TUMOR_MASK_DERIVED_EXPERT_VISIBILITY_HOLD": 214
+    },
+    "rows": 430,
+    "source_ID_unique_coverage": 430,
+    "standard_schema_rows_checked": 430,
+    "task_counts": {
+      "mri_enhancing_presence": 84,
+      "mri_sequence": 168,
+      "mri_tumor_grid": 46,
+      "mri_tumor_presence": 84,
+      "mri_visit_correspondence": 48
+    }
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "findings": [
+    "Final report and AGENTS preserve B2 FAIL/B3 NOT_RUN/overall PARTIAL, zero actual backward/generation/optimizer updates, immutable STOP and no automatic retry merely to consume unused budget.",
+    "The actual native failure is tied to the numerical ValueError; final wording describes observed NORMAL/CONTINUE/AC resource records without excluding unobserved hardware causes. SENSOR_UNAVAILABLE remains explicit.",
+    "Saved same-logit BF16/F32 discrepancy is separated from residual F32 KV/full error .009733378887176514. Future FP32 hook is CPU implemented/tested only, not native integration, full-parity success or MRI accuracy improvement.",
+    "TRAIN model inputs/group selection are distinguished from complete parsing of old mixed probe-plan metadata bytes; historical missing generation logps and full input fingerprints remain PARTIAL. No final100-based new selection is claimed.",
+    "83/83 answered paired judgments and166 answered sides are explicitly nonexpert, conditional one-of-each paired recognition with one abstention; not VLM single-image accuracy, clinical gold or independent-patient generalization.",
+    "Dallas whole-head identity and failed geometric ROI remain engineering-only; mask geometry does not establish visual lesion/negative truth. Fewer than two scientifically admitted heterogeneous tasks remain a training blocker.",
+    "Future Adam60 parent is a conditional lineage rule, not test-selected superiority; B28 historical diagnostic state is separately justified. No continuation configuration is authorized.",
+    "Final430 candidate assembly is now present and source-bound; independently checked430 unique original source records, preserved hidden reward/extra_info, standard schema and dual false authorization flags using JSON only. No images were opened. Sequence168 plusDallas48 plusmask-derived214 remain HOLD, with166/2/48/214 qualification partition.",
+    "Final report/public evidence contains no patient IDs, source-linked patient paths, raw individual targets/responses, token arrays, weights or optimizer/RNG data. Public hashes bind private artifacts without exporting their contents.",
+    "Independent scopes are accurately attributed to Codex; no Claude or clinical-expert review is invented. Existing data reviewer limits and native-review limits remain distinct.",
+    "Independently normalized the two-element IEEE BF16 fixture and its F64 reference: both categorical distributions equal [0.7310585786300049,0.2689414213699951]. Final report correctly separates returned logp arithmetic error from unproven sampling-distribution or historical-accuracy effects; the actual .009733 residual gate outcome is unchanged."
+  ],
+  "limitations": [
+    "This is final reporting verification and a narrow schema/JSON join check, not repeated full source/NIfTI/visual component qualification.",
+    "Original blind-review chronology is inherited from frozen recorded judgments/attestations, not independently recreated retrospectively.",
+    "Clinical expertise, independently admissible two-task evidence, native residual cause and complete GSPO gradient-path validation remain missing.",
+    "No native retry, training, new generation, optimizer update, checkpoint selection or final100 reuse is approved by this review.",
+    "Synthetic common-offset equivalence is specific to that two-logit fixture; saved selected-token comparisons lack complete vocabulary logits, so they do not establish equality or inequality of actual native sampling distributions."
+  ],
+  "native_retry_approved": false,
+  "previous_delivery_review_sha256": "41bf61a1400713daa1888834099db1a8ecf8af8252233db18b6fb25582ab2e31",
+  "public_evidence_sha256": {
+    "results/DALLAS_SPATIAL_QUALIFICATION_V1.json": "6f36481662b8ecdde473bf3091ee655da070809fcca8f61e0100dc47c38b269f",
+    "results/NATIVE_GSPO_PATH_ACTUAL_INDEPENDENT_REVIEW_V1.json": "f08bf596065ec009380c197e86652e36093fc0b9e8a039218ffc641c280c5813",
+    "results/ROLLOUT_FP32_NORMALIZATION_FIX_INDEPENDENT_REVIEW_V2.json": "efe45abc5cb0c43ef9a8e773ff639523a2b325e3995f634c9cf35a38ad138a45",
+    "results/ROLLOUT_FP32_NORMALIZATION_FIX_V2.json": "9cc66c76f3a9e52d1b91cdddc49bdd4382c1b8e405a8ad9c92d7f586fc3417ec",
+    "results/SEQUENCE_QUALIFICATION_V1.json": "25130a6cd71ba1816b0bb74d6062fcc4e0777529bee773bed447a3f85da03112",
+    "results/TRAIN_QUALIFICATION_BUNDLE_V1.json": "c00c03043a28e51aeba6f7df94b3b24b8d06cd883811e9cb963976beaa692d31",
+    "results/TRAIN_TASK_QUALIFICATION_INDEPENDENT_REVIEW_V1.json": "2b4d56a3b4ca4859e40de6375bd0e89c054d23169c4fb7ae0e5ffbc484d0bc69"
+  },
+  "readiness_for_training": "NO",
+  "report_sha256": "0f236e392d76f4c3ecb03aabcf1fd97484dbe3e83f6e1923b51b1d2718b3bdb4",
+  "review_scope": "Final delivery text, evidence bindings, privacy and narrowly added candidate-schema check; prior components were not re-audited or natively rerun.",
+  "reviewed_at_utc": "2026-10-18T21:54:28.743174+00:00",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "revision_scope": "Only final report categorical-shift clarification and its binding; no components, tests, native computation or final100 repeated.",
+  "schema": "train-native-path-delivery-independent-review-v1",
+  "synthetic_categorical_offset_check": {
+    "conclusion": "Returned logp absolute error can be a shared additive constant and does not by itself imply a changed categorical distribution or a historical accuracy cause. Observed stable-F32 KV/full residual still FAILS .002.",
+    "fixture": "Synthetic exactly BF16-representable logits64/63, not patient/model outputs",
+    "maximum_probability_difference": 0.0,
+    "old_logps": [
+      -0.5,
+      -1.5
+    ],
+    "old_minus_reference_common_offset": -0.18673831248177714,
+    "reference_F64_logps": [
+      -0.31326168751822286,
+      -1.3132616875182228
+    ],
+    "renormalized_old_categorical": [
+      0.7310585786300049,
+      0.2689414213699951
+    ],
+    "renormalized_reference_categorical": [
+      0.7310585786300049,
+      0.2689414213699951
+    ]
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

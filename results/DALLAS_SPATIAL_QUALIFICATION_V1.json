@@ -1,0 +1,98 @@
+{
+  "Dallas": {
+    "NIfTI_volumes_reopened": 48,
+    "exact_source_panel_and_pair_reconstructions": 48,
+    "fixed_occlusion": "NOT_VALIDATED_SKULLSTRIP_NOT_BRAIN_ONLY",
+    "nonexpert_wholehead_pairs_actually_viewed": 48,
+    "occlusion_visual_failure": "Actual inspected fixed geometric ROI cuts brain and retains extracranial signal; cannot isolate intracranial cues.",
+    "pairs": 48,
+    "people": 24,
+    "scanner_model_or_site_verified": 0,
+    "source_identity_and_cross_visit_labels_independently_checked": 48,
+    "visual_admission": "HOLD_BRAIN_ONLY_IDENTITY_ANSWERABILITY_NOT_ESTABLISHED",
+    "wholehead_shortcut_status": "UNRESOLVED"
+  },
+  "candidate_manifest_sha256": "219cd2bbe4fc336085378da5d0a22ff7a9092e57774bd497ac2ee8ddc5934944",
+  "candidate_rows": 262,
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED_SOURCE_NIFTI_AND_EXACT_PIXEL_RECONSTRUCTION",
+  "header_checks": {
+    "both_qform_and_sform_present": 104,
+    "qform_sform_disagreement_gt_1e-3_mm": 0,
+    "volumes": 104
+  },
+  "mission_alignment": {
+    "controls": "Wholehead versus fixed geometric cranial ROI occlusion; unvalidated occlusion cannot establish brain-only answerability.",
+    "decision": "HOLD training; technical qualification is not clinical visibility validation.",
+    "falsifier": "Any source hash, image/mask affine, label, or frozen display-pixel mismatch rejects the candidate.",
+    "isolation": "Frozen inputs and all historical models unchanged; new TRAIN-only technical qualification and review assets.",
+    "link": "Qualify actual MRI task evidence for locked Vero-to-MRI task-balanced transfer.",
+    "resources": "One thread, source data only, zero models and zero updates."
+  },
+  "model_loads": 0,
+  "new_downloads": 0,
+  "new_inference": 0,
+  "optimizer_updates": 0,
+  "pre_overlay_observations_sha256": "6edb737d44b64f50e7a7286ae7c71cf8a27478a2b7288c564e3ad83d28f5fb37",
+  "qualified_rows": 0,
+  "read_scope": "Only TRAIN registries, token-filtered TRAIN source NIfTIs and TRAIN frozen images; no mixed source metadata, final100, dev pixels or predictions.",
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "review_assets": {
+    "MRI_only_sheets": 7,
+    "fixed_occlusion_sheets": 8,
+    "image_privacy_limit": "Sheets suppress filenames, patient IDs and labels. Wholehead pixels retain reconstructable face/skull anatomy and are private research data, not guaranteed deidentified MRI.",
+    "mask_overlay_sheets": 7,
+    "truth_keys": "PRIVATE_SEPARATE_FROM_IMAGE_SHEETS",
+    "wholehead_sheets": 8
+  },
+  "schema": "dallas-spatial-qualification-v1-review-v2",
+  "source_code_sha256": {
+    "scripts/adjudicate_dallas_spatial_qualification_v1.py": "b00942818a380a3c5eb4f1127ce521b080615ebdb1f91a5c7ef16af12c2869d2",
+    "scripts/build_dallas_spatial_qualification_v1.py": "614303526a83c6f58b5d145e21b8fa700b3f231d368785eed1b1af5dc8328149",
+    "src/mri_rl/dallas_spatial_qualification_v1.py": "55e3a4cca55135c8777e73566ddfbf0cbfc102130e5c61b97bcd19e95686e440",
+    "tests/test_dallas_spatial_qualification_v1.py": "f9dbe77bc594fe57227a57e120e202fd0e1f6c26e32647c7f86643444bea4932"
+  },
+  "source_registry_sha256": {
+    "Dallas_TRAIN": "6adf06674050e395b704e4b76103f067166b905016920195603e271690de4f14",
+    "tumor_TRAIN": "0efb588b328e3d9af2a339d9237836357a5baff5d9db8b376dc716de3d1f10e3"
+  },
+  "status": "TESTED_CPU_AND_NONEXPERT_VISUAL_REVIEW_ENGINEERING_ONLY",
+  "training_authorized": false,
+  "tumor": {
+    "MRI_only_planes_actually_viewed_before_overlay": 84,
+    "MRI_volumes_reopened": 56,
+    "frame": "np.rot90 native LAS; FLAIR origin(4,28),T1ce origin(384,28);2x bilinear; full728x436 review strip removes titles only",
+    "geometric_flag_row_counts": {
+      "CENTROID_OFF_MASK": 16,
+      "CENTROID_WITHIN10_DISPLAY_PX_OF_GRID_BOUNDARY": 37,
+      "GLOBAL_VS_LARGEST_COMPONENT_GRID_DISAGREEMENT": 2,
+      "MASK_NEGATIVE_NOT_VISUAL_NEGATIVE": 91,
+      "MULTICOMPONENT_MASK_REQUIRES_VISUAL_ADJUDICATION": 40,
+      "SMALL_MASK_AREA_LT1000_NOT_VISIBILITY_THRESHOLD": 46
+    },
+    "geometry_matches_pinned_all_TRAIN_reference_rows": 214,
+    "independent_task_limit": "Three routes share one mask source; no independent clinical gold.",
+    "mask_source_hashes_match_pinned_original_TRAIN_reference": 28,
+    "mask_volumes_reopened": 28,
+    "nonexpert_crosscheck_plane_counts": {
+      "MASK_NEGATIVE_NOT_CLINICALLY_CONFIRMED_NEGATIVE": 33,
+      "MASK_NEGATIVE_WITH_APPARENT_MRI_ABNORMALITY": 5,
+      "MASK_POSITIVE_WITHOUT_CONSPICUOUS_NONEXPERT_MRI_FOCUS": 5,
+      "NONEXPERT_APPARENT_REGION_MASK_POSITIVE_REQUIRES_EXPERT": 41
+    },
+    "overlay_planes_actually_viewed_after_notes_frozen": 84,
+    "people": 28,
+    "planes": 84,
+    "resampling": "NONE",
+    "rows": 214,
+    "same_grid_affine_and_exact_source_pixel_reconstruction": true,
+    "scientific_limit": "Nonexpert apparent abnormality may be cavity, edema, artifact or postoperative change; no independent clinical truth or expert assessment has been invented.",
+    "task_rows": {
+      "mri_enhancing_presence": 84,
+      "mri_tumor_grid": 46,
+      "mri_tumor_presence": 84
+    },
+    "visible_lesion_evidence": "NOT_VERIFIED_MASK_NONZERO_IS_NOT_VISIBILITY",
+    "visual_admission": "HOLD_INDEPENDENT_EXPERT_VISIBILITY_AND_NEGATIVE_ADJUDICATION_MISSING"
+  }
+}

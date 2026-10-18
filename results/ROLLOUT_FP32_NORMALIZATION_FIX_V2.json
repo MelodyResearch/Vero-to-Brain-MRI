@@ -1,0 +1,108 @@
+{
+  "closed_diagnostic": {
+    "Adam_Python_MLX_RNG_unchanged": true,
+    "active_MLX_bytes_after_release": 1050,
+    "all_model_tensors_unchanged": 1942,
+    "completed_groups": 0,
+    "frozen_max_abs_tolerance": 0.002,
+    "historical_generation_distribution": "PARTIAL_NOT_SAVED",
+    "native_KV_full_gate": "FAIL",
+    "native_KV_vs_full_TF": {
+      "max_abs_delta": 0.10035387426614761,
+      "mean_abs_delta": 0.017341758463978733,
+      "tokens": 17
+    },
+    "native_KV_vs_same_logits_stable_F32_KV": {
+      "max_abs_delta": 0.10033798217773438,
+      "mean_abs_delta": 0.01722279716940487,
+      "tokens": 17
+    },
+    "release_verified": true,
+    "responses_observed": 1,
+    "same_logits_F32_branch": "ACTUAL_SAVED_ARITHMETIC_CONTROL; future-hook native execution NOT_RUN",
+    "stable_F32_KV_vs_full_TF": {
+      "max_abs_delta": 0.009733378887176514,
+      "mean_abs_delta": 0.0012734010297137388,
+      "tokens": 17
+    },
+    "stable_KV_full_gate": "FAIL",
+    "tokens_observed": 17
+  },
+  "cpu_BF16_rounding_counterexample": {
+    "bf16_max_abs_logp_error": 0.1867383124817792,
+    "bf16_probability_sum": 0.8296608198610632,
+    "bf16_selected_logps_fixture_only": [
+      -0.5,
+      -1.5
+    ],
+    "hook_fp32_logps_fixture_only": [
+      -0.313262939453125,
+      -1.313262939453125
+    ],
+    "hook_fp32_max_abs_logp_error": 1.2519349041895111e-06,
+    "hook_fp32_probability_sum": 0.9999987480658814,
+    "limitation": "BF16 rounding fixture; no claim of bitwise MLX kernel reproduction or native hook execution.",
+    "logits_exact_in_bf16": [
+      64.0,
+      63.0
+    ],
+    "model_forwards": 0,
+    "native_runtime_executed": false,
+    "optimizer_updates": 0,
+    "reference_float64_logps_fixture_only": [
+      -0.3132616875182208,
+      -1.3132616875182208
+    ],
+    "status": "TESTED_CPU_ARITHMETIC_COUNTEREXAMPLE"
+  },
+  "evidence_sha256": {
+    "all_parameter_integrity_SAFE": "9a761ecf23190404cab5a2967982ba2a935e68dffcb28cd2eea9d37bf5c503b1",
+    "analysis_CLI": "99e7d64be8d4833a7f9a98fe295e477e5e9c6a7b225995db17daff123f6bb8cf",
+    "closed_B2_record_PRIVATE": "c27e74c3c5001de4d5059911e2700507114900cc1ef70ef56652ba71eb0d9a1b",
+    "executed_v3_helper": "f24a4567b5b85fe59896aedf123e833e9c535820701a49126afda97130071718",
+    "executed_v3_runner": "ef3452c0e62d7aaebfd41d6d129dae5a676b85d54ffddcbcdd64a7f5f546191a",
+    "executed_v3_scope_PRIVATE": "c6f52c5c86ddcea5d3d0dca1b98894e9ba3af7dd1ae201917fc4efb242a0d115",
+    "group_exit_integrity_PRIVATE": "a9f939cef0ed027c062388906796a96253d7f4cdfe731f7cc9311718d6edfded",
+    "new_CPU_tests": "2bd704b4daff546a4fb4da28753543b059ec9e4115438c9b349de7d6ad3da2bc",
+    "new_precision_helper": "179f9830d6e568c259e003a2fcfda9c5cf9288afd1e3f645f73a0709ddb75e3a",
+    "original_release_SAFE": "74c588daa03b78adf9cc59a3a14711d55ca3a2a7cd5b001c9c9b193b2ce79f47",
+    "original_run_STOP_PRIVATE": "fafa45734d9da8c23ce82f7cf9128745dfbf7bd175179795fb17439a0a801c21"
+  },
+  "evidence_tier": "OBSERVED_SAVED_LOGIT_BRANCH_AGGREGATES_AND_CPU_FIXTURE",
+  "future_change": {
+    "implementation": "Append FP32LogitsProcessor last in existing AR logits_processors; cast logits only, leave existing ar normalization and sampling code in place.",
+    "native_execution": "NOT_RUN",
+    "new_backwards": 0,
+    "new_generations": 0,
+    "new_model_forwards": 0,
+    "new_optimizer_updates": 0
+  },
+  "interpretation": "Observed same-logit F32 arithmetic removes a substantial normalization discrepancy. It does not remove the saved residual KV/full max error, which still exceeds .002; B3 remains unrun.",
+  "limitations": [
+    "CPU BF16 round-to-nearest-even model is an arithmetic counterexample, not a bitwise reproduction of an MLX reduction kernel.",
+    "FP32 upcast cannot recover precision already lost in model logits; the residual KV/full path mismatch remains unresolved.",
+    "No future generation with this hook was executed and no historical rollout distribution was recovered.",
+    "No MRI accuracy, grounding, training efficacy, full native parity or scientific generalization claim."
+  ],
+  "mission_alignment": {
+    "baseline": "Same-logit BF16 normalization, float32 normalization and separate full teacherforce path.",
+    "claim_falsifier": "BF16 normalization introduces error beyond the model-logit quantization; float32 arithmetic should reduce the same-logit error. Residual KV/full error falsifies full parity.",
+    "isolation": "Future final logits-processor upcast only; v3 source, checkpoints, weights and completed STOP preserved.",
+    "main_question": "Qualify policy logprob precision before interpreting Vero MRI GSPO path diagnostics.",
+    "provenance": "Closed first saved 17-token TRAIN B2 response, same-forward native/F32 branches and original source hashes.",
+    "resources": "CPU source/NumPy arithmetic only, zero native imports, model loads, generation, backward or optimizer updates."
+  },
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "schema": "rollout-fp32-normalization-fix-v2",
+  "source_hook_evidence": {
+    "custom_processor_append_line": 323,
+    "native_hook_execution": "NOT_RUN",
+    "normalization_line": 390,
+    "processor_guard": "len(processors) > 0 and len(y) > 0",
+    "processor_return_line": 386,
+    "scope": "Ordinary generate_step._step with nonempty y and upcast final in custom processors; no batch/speculative/fused-path guarantee.",
+    "source_sha256": "c38f86a5d94924daf819f4bfd206a7c874526bd15e8dd3447921621ee7850050",
+    "verdict": "SOURCE_SUPPORTS_FINAL_UPCAST_BEFORE_ORDINARY_AR_NORMALIZATION"
+  },
+  "status": "CPU_FIX_IMPLEMENTED_AND_TESTED_NATIVE_HOOK_NOT_RUN"
+}

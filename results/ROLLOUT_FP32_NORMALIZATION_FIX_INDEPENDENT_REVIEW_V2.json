@@ -1,0 +1,74 @@
+{
+  "closed_native_evidence": {
+    "B2": "FAIL",
+    "B3": "NOT_RUN",
+    "automatic_retry": false,
+    "frozen_tolerance": 0.002,
+    "native_execution_exit_code": 1,
+    "native_vs_full_max_abs_delta": 0.10035387426614761,
+    "overall": "PARTIAL",
+    "same_KV_native_vs_F32_max_abs_delta": 0.10033798217773438,
+    "stable_F32_KV_vs_full_F32_max_abs_delta": 0.009733378887176514
+  },
+  "evidence_sha256": {
+    "local_data/native_gspo_path_probe_v1/actual_exit_v3_PRIVATE.json": "2e170223fa700c93f44b0ff2f25ce0a93647535ae87256e42e5eee829c996626",
+    "local_data/native_gspo_path_probe_v1/native_v3_stdout_PRIVATE.log": "1c564679a0f8b5eda94958a95f5b89d0d56adf36949b3d09a6e82e2b76fd65ff",
+    "local_data/native_gspo_path_probe_v1/scope_v3_PRIVATE.json": "c6f52c5c86ddcea5d3d0dca1b98894e9ba3af7dd1ae201917fc4efb242a0d115",
+    "results/NATIVE_GSPO_PATH_ACTUAL_INDEPENDENT_REVIEW_V1.json": "f08bf596065ec009380c197e86652e36093fc0b9e8a039218ffc641c280c5813",
+    "scripts/analyze_rollout_precision_fix_v2.py": "99e7d64be8d4833a7f9a98fe295e477e5e9c6a7b225995db17daff123f6bb8cf",
+    "src/mri_rl/rollout_precision_v2.py": "179f9830d6e568c259e003a2fcfda9c5cf9288afd1e3f645f73a0709ddb75e3a",
+    "tests/test_rollout_precision_v2.py": "2bd704b4daff546a4fb4da28753543b059ec9e4115438c9b349de7d6ad3da2bc"
+  },
+  "independent_arithmetic": {
+    "BF16_fixture_probability_sum": 0.8296608198610632,
+    "BF16_rounding_fixture_error": 0.1867383124817772,
+    "FP32_fixture_error": 1.2519349021911097e-06,
+    "FP32_fixture_probability_sum": 0.9999987480658814,
+    "comparison_tolerance_to_saved_CPU_result": 1e-12,
+    "synthetic_logits": [
+      64.0,
+      63.0
+    ]
+  },
+  "independent_checks": [
+    "Read complete helper, analysis CLI and five tests; new component imports no native runtime. Actual independent CPU invocation confirmed no mlx or mlx_vlm modules loaded.",
+    "Processor casts only to supplied float32 dtype, rejects unexpected dtype/shape, returns the result without in-place writes, and append helper copies the caller list with upcast last. Independent float16/float32/float64 NumPy input tests preserved shape and original data even after mutating the returned NumPy array.",
+    "Inspected pinned ordinary AR source hook ordering through actual analyzer AST: custom processors appended after built-ins, processor return replaces logits before direct logsumexp, no intervening logits reassignment. Guard nonempty y and final-processor position are explicit; no general batch/speculative/fused claim.",
+    "Independently derived exact-representable BF16 logits64/63: mathematical logsumexp64+log1p(exp(-1)) rounds to64.5 in IEEE BF16 nearest-even, yielding fixture logps -.5/-1.5. Independent closed-form log1p reference and explicit NumPy F32 subtraction reproduce errors/probability sums within1e-12.",
+    "Executed only the CPU analysis function on already closed evidence and reproduced the complete frozen aggregate exactly, including source hashes, saved17-token differences, .002 failures,1942/504 state-fingerprint claims and1050-byte release.",
+    "Checked public result uses scalar/synthetic aggregates and hashes; it contains no patient identifiers, patient paths, raw response strings, real token IDs or real per-token likelihood vectors."
+  ],
+  "limitations": [
+    "IEEE BF16 nearest-even fixture models arithmetic rounding, not bitwise execution of any MLX reduction kernel. NumPy alias/copy tests establish CPU behavior; no native allocation-ownership guarantee is inferred.",
+    "Future caller must pass this component as the final custom processor in the inspected ordinary AR path. The helper has not been installed into or executed by a native rollout; existing v3/frozen training sources and checkpoints remain unchanged.",
+    "FP32 normalization cannot restore precision already lost in model-produced BF16 logits and does not address KV/full-forward differences. Saved F32 KV/full residual .009733378887176514 still FAILS .002; full parity is not solved.",
+    "Existing historical generation logps and complete historical input fingerprints remain PARTIAL. This component does not recover the historical sampler distribution or prove a historical training failure cause.",
+    "No clinical/MRI accuracy, grounding, task-generalization or training-gain claim. This CPU review does not authorize a native rerun, new backward, optimizer update, generation, modified threshold or training launch."
+  ],
+  "review_scope": "New future processor and CPU arithmetic/saved-evidence analysis only; no native launch or integration approval.",
+  "reviewed_at_utc": "2026-10-18T21:49:34.600812+00:00",
+  "reviewed_result_sha256": "9cc66c76f3a9e52d1b91cdddc49bdd4382c1b8e405a8ad9c92d7f586fc3417ec",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "rollout-fp32-normalization-fix-independent-review-v2",
+  "status": {
+    "full_native_parity": "NOT_VERIFIED",
+    "future_processor": "IMPLEMENTED_CPU_TESTED_NOT_NATIVE_INTEGRATED",
+    "launch_approved": false,
+    "native_hook_execution": "NOT_RUN",
+    "reviewer_backwards": 0,
+    "reviewer_final100_access": false,
+    "reviewer_generated_tokens": 0,
+    "reviewer_model_loads": 0,
+    "reviewer_native_forwards": 0,
+    "reviewer_optimizer_updates": 0,
+    "training_readiness": "NO"
+  },
+  "tests": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider tests/test_rollout_precision_v2.py",
+    "elapsed_seconds_reported": 0.05,
+    "exit_code": 0,
+    "passed": 5
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

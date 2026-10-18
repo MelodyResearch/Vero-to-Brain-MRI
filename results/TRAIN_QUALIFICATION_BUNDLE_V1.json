@@ -1,0 +1,59 @@
+{
+  "checks": {
+    "duplicate_ids": 0,
+    "exact_source_ID_task_split_coverage": true,
+    "hidden_targets_preserved": 430,
+    "independent_expert_review_promotions": 0,
+    "nonTRAIN_rows": 0,
+    "source_SHA_bindings": 4,
+    "training_launchers_created": 0
+  },
+  "code_sha256": {
+    "assembler": "2bde47077c23ed41135883a9c782e1394ddb6e638fdf859806c9f03edaba68bf",
+    "tests": "df2e753ed3362b47336c2c8b56affa5114642b45beb4fd00d0fa7b0c5b059c49"
+  },
+  "evidence_tier": "OBSERVED_CPU",
+  "guard": "Candidate data only. Every row has training_authorized=false; external qualification review and new researcher authorization remain necessary before any future training executor may use it.",
+  "input_sha256": {
+    "Dallas_tumor_qualification": "219cd2bbe4fc336085378da5d0a22ff7a9092e57774bd497ac2ee8ddc5934944",
+    "original_Dallas_TRAIN": "6adf06674050e395b704e4b76103f067166b905016920195603e271690de4f14",
+    "original_MRI_TRAIN": "0efb588b328e3d9af2a339d9237836357a5baff5d9db8b376dc716de3d1f10e3",
+    "sequence_reviewed": "761c1618a455031098eda68c3080808d9d610beb63293bb50af597eea3caaf9b"
+  },
+  "limitations": [
+    "Sequence166 coverage rows remain nonexpert candidates;2 rows retain visual abstention.",
+    "Dallas48 remain downgraded whole-head identity candidates.",
+    "Tumor214 retain mask-derived targets and expert visibility/negative-adjudication HOLD."
+  ],
+  "manifest_sha256": "1f6d11d6c2ab048dba45eb20692dd3548474236501ef1ed4044856990995c16e",
+  "mission_alignment": "Expose existing TRAIN task qualifications as one parseable Vero candidate input without changing targets or authorizing training.",
+  "qualification_namespace": "train_qualification_bundle_v1",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "route_status_counts": {
+    "DALLAS_DOWNGRADED_WHOLEHEAD_IDENTITY_ONLY": 48,
+    "SEQUENCE_NONEXPERT_COVERAGE_CANDIDATE_EXPERT_PENDING": 166,
+    "SEQUENCE_VISUAL_ABSTENTION_HOLD": 2,
+    "TUMOR_MASK_DERIVED_EXPERT_VISIBILITY_HOLD": 214
+  },
+  "rows": 430,
+  "schema": "train-qualification-bundle-v1",
+  "scientific_admission": "HOLD",
+  "standard_vero_fields": [
+    "id",
+    "data_source",
+    "ability",
+    "images",
+    "prompt",
+    "reward_model",
+    "extra_info"
+  ],
+  "status": "TESTED_CPU_SCHEMA_ASSEMBLY_CANDIDATE_ONLY",
+  "task_counts": {
+    "mri_enhancing_presence": 84,
+    "mri_sequence": 168,
+    "mri_tumor_grid": 46,
+    "mri_tumor_presence": 84,
+    "mri_visit_correspondence": 48
+  },
+  "training_authorized": false
+}

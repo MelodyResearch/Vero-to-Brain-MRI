@@ -1,0 +1,371 @@
+{
+  "TRAIN_internal_leave_person_out_retrieval": {
+    "fixed01_intensity_summary": {
+      "accuracy": 0.9047619047619048,
+      "calibration": "No fitting; fixed normalized feature Euclidean1NN, reference-index tie break; all same-patient rows excluded",
+      "confusion": {
+        "0->0": 75,
+        "0->1": 9,
+        "1->0": 7,
+        "1->1": 77
+      },
+      "correct": 152,
+      "fitted_parameters": 0,
+      "label_map": {
+        "0": "FLAIR",
+        "1": "contrast-enhanced T1"
+      },
+      "level_counts": {
+        "136": {
+          "correct": 48,
+          "rows": 56
+        },
+        "45": {
+          "correct": 53,
+          "rows": 56
+        },
+        "91": {
+          "correct": 51,
+          "rows": 56
+        }
+      },
+      "patient_macro": 0.9047619047619048,
+      "rows": 168,
+      "same_patient_fit_overlap": 0,
+      "site_counts": {
+        "BA": {
+          "correct": 5,
+          "rows": 6
+        },
+        "BO": {
+          "correct": 33,
+          "rows": 36
+        },
+        "FO": {
+          "correct": 12,
+          "rows": 18
+        },
+        "JS": {
+          "correct": 16,
+          "rows": 18
+        },
+        "KA": {
+          "correct": 33,
+          "rows": 36
+        },
+        "ME": {
+          "correct": 17,
+          "rows": 18
+        },
+        "NSK": {
+          "correct": 24,
+          "rows": 24
+        },
+        "TO": {
+          "correct": 12,
+          "rows": 12
+        }
+      }
+    },
+    "normalized16bin_histogram": {
+      "accuracy": 0.9107142857142857,
+      "calibration": "No fitting; fixed normalized feature Euclidean1NN, reference-index tie break; all same-patient rows excluded",
+      "confusion": {
+        "0->0": 77,
+        "0->1": 7,
+        "1->0": 8,
+        "1->1": 76
+      },
+      "correct": 153,
+      "fitted_parameters": 0,
+      "label_map": {
+        "0": "FLAIR",
+        "1": "contrast-enhanced T1"
+      },
+      "level_counts": {
+        "136": {
+          "correct": 51,
+          "rows": 56
+        },
+        "45": {
+          "correct": 52,
+          "rows": 56
+        },
+        "91": {
+          "correct": 50,
+          "rows": 56
+        }
+      },
+      "patient_macro": 0.9107142857142857,
+      "rows": 168,
+      "same_patient_fit_overlap": 0,
+      "site_counts": {
+        "BA": {
+          "correct": 6,
+          "rows": 6
+        },
+        "BO": {
+          "correct": 33,
+          "rows": 36
+        },
+        "FO": {
+          "correct": 13,
+          "rows": 18
+        },
+        "JS": {
+          "correct": 16,
+          "rows": 18
+        },
+        "KA": {
+          "correct": 33,
+          "rows": 36
+        },
+        "ME": {
+          "correct": 18,
+          "rows": 18
+        },
+        "NSK": {
+          "correct": 22,
+          "rows": 24
+        },
+        "TO": {
+          "correct": 12,
+          "rows": 12
+        }
+      }
+    }
+  },
+  "blind_review": {
+    "abstained_pairs": 1,
+    "answered_pairs": 83,
+    "answered_sides": 166,
+    "blind_key_sha256": "b72735cb28b26c065d33bc5717b8ecfd1213f5b2e3f24330a0029baa840bc0b0",
+    "blind_manifest_sha256": "d463c12d041d8e6d3b9bd73a116b38a820fe6562b8d49bdf1aeec830b9ec9c97",
+    "case_ids_semantic": false,
+    "clinical_scientific_admission": false,
+    "confidence_counts": {
+      "high": 78,
+      "medium": 5,
+      "none": 1
+    },
+    "correct_answered_pairs": 83,
+    "correct_answered_sides": 166,
+    "coverage_candidate_manifest_sha256": "fafff1dc6e135ae0eb03acd2bf97b3ebc69c9ba60dfdae6fbb80ba8fd4204f53",
+    "coverage_counts": {
+      "adequate": 28,
+      "adequate_inferior": 28,
+      "adequate_superior": 27,
+      "insufficient_tiny_disconnected_fragments": 1
+    },
+    "frozen_blind_judgments_sha256": "382a5379f42d4d4e5d8fc62cfdead6ea64c51c8300c621bc4b632087ad79be56",
+    "incorrect_answered_pairs": 0,
+    "key_separate_PRIVATE": true,
+    "max_pairs_per_sheet": 8,
+    "pairs": 84,
+    "review": "VISUAL_NONEXPERT_REVIEW_COMPLETE_EXPERT_PENDING",
+    "reviewed_manifest_sha256": "761c1618a455031098eda68c3080808d9d610beb63293bb50af597eea3caaf9b",
+    "reviewer_credentials": "NONE; AI visual review, not radiologist adjudication",
+    "scope": "Nonexpert AI paired discrimination with one-of-each design disclosed; not independent isolated-image accuracy or clinical adjudication",
+    "sheets": 11,
+    "source_filenames_or_targets_displayed": false,
+    "source_png_metadata_key_counts": {},
+    "training_authorized": false,
+    "visual_abstention_manifest_sha256": "1bc5d6c20cebdc9754ec3bd08c2b5c0078347e2246dfe1df94354cfd7d0a599c"
+  },
+  "categorical_metadata_resubstitution_majority_ceiling": {
+    "level": 0.5,
+    "patient": 0.5,
+    "scanner": 0.5,
+    "site": 0.5
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "cross_tables_aggregate": {
+    "level": {
+      "136": {
+        "FLAIR": 28,
+        "contrast-enhanced T1": 28
+      },
+      "45": {
+        "FLAIR": 28,
+        "contrast-enhanced T1": 28
+      },
+      "91": {
+        "FLAIR": 28,
+        "contrast-enhanced T1": 28
+      }
+    },
+    "scanner": {
+      "{\"field_T\": 1.5, \"manufacturer\": \"GE\", \"model\": \"Signa HDxt\"}": {
+        "FLAIR": 9,
+        "contrast-enhanced T1": 9
+      },
+      "{\"field_T\": 1.5, \"manufacturer\": \"Philips\", \"model\": \"Achieva dStream\"}": {
+        "FLAIR": 3,
+        "contrast-enhanced T1": 3
+      },
+      "{\"field_T\": 1.5, \"manufacturer\": \"Philips\", \"model\": \"Achieva\"}": {
+        "FLAIR": 6,
+        "contrast-enhanced T1": 6
+      },
+      "{\"field_T\": 1.5, \"manufacturer\": \"Philips\", \"model\": \"Ingenia\"}": {
+        "FLAIR": 12,
+        "contrast-enhanced T1": 12
+      },
+      "{\"field_T\": 1.5, \"manufacturer\": \"Siemens\", \"model\": \"Avanto\"}": {
+        "FLAIR": 6,
+        "contrast-enhanced T1": 6
+      },
+      "{\"field_T\": 1.5, \"manufacturer\": \"Siemens\", \"model\": \"MAGNETOM_ESSENZA\"}": {
+        "FLAIR": 3,
+        "contrast-enhanced T1": 3
+      },
+      "{\"field_T\": 3, \"manufacturer\": \"Philips\", \"model\": \"Ingenia\"}": {
+        "FLAIR": 18,
+        "contrast-enhanced T1": 18
+      },
+      "{\"field_T\": 3, \"manufacturer\": \"Siemens\", \"model\": \"MAGNETOM Vida\"}": {
+        "FLAIR": 12,
+        "contrast-enhanced T1": 12
+      },
+      "{\"field_T\": 3, \"manufacturer\": \"Siemens\", \"model\": \"Skyra\"}": {
+        "FLAIR": 15,
+        "contrast-enhanced T1": 15
+      }
+    },
+    "site": {
+      "BA": {
+        "FLAIR": 3,
+        "contrast-enhanced T1": 3
+      },
+      "BO": {
+        "FLAIR": 18,
+        "contrast-enhanced T1": 18
+      },
+      "FO": {
+        "FLAIR": 9,
+        "contrast-enhanced T1": 9
+      },
+      "JS": {
+        "FLAIR": 9,
+        "contrast-enhanced T1": 9
+      },
+      "KA": {
+        "FLAIR": 18,
+        "contrast-enhanced T1": 18
+      },
+      "ME": {
+        "FLAIR": 9,
+        "contrast-enhanced T1": 9
+      },
+      "NSK": {
+        "FLAIR": 12,
+        "contrast-enhanced T1": 12
+      },
+      "TO": {
+        "FLAIR": 6,
+        "contrast-enhanced T1": 6
+      }
+    }
+  },
+  "evidence_tier": "OBSERVED_CPU",
+  "fitted_classifier_parameters": 0,
+  "future_loader": {
+    "coverage_candidate_manifest_sha256": "fafff1dc6e135ae0eb03acd2bf97b3ebc69c9ba60dfdae6fbb80ba8fd4204f53",
+    "expert_review": "PENDING",
+    "external_review_required": true,
+    "manifest_sha256": "761c1618a455031098eda68c3080808d9d610beb63293bb50af597eea3caaf9b",
+    "nonexpert_coverage_abstained_rows": 2,
+    "nonexpert_coverage_adequate_rows": 166,
+    "opaque_image_paths": true,
+    "rows": 168,
+    "training_authorized": false,
+    "visual_abstention_manifest_sha256": "1bc5d6c20cebdc9754ec3bd08c2b5c0078347e2246dfe1df94354cfd7d0a599c"
+  },
+  "limitations": [
+    "TRAIN-internal retrieval excludes same-person examples but reuses the TRAIN cohort and source protocols; no untouched/dev/final or independent-generalization claim.",
+    "Intensity/histogram association may reflect genuine sequence contrast, normalization, site/protocol or other shortcuts. Retrieval alone cannot distinguish them.",
+    "Automatic source/pixel checks and blinded nonexpert review do not establish clinical validity or authorize training. Sparse high-slice images need explicit visual qualification.",
+    "Full affine/header and actual pixels were checked only for the28 TRAIN people. Cross-source global identity and scanner-independent generalization remain unverified."
+  ],
+  "mission_alignment": {
+    "change_isolation": "Existing168 pixels unchanged; blind copies remove file-name semantics. Fixed TRAIN-only1NN feature diagnostics add no neural or optimizer training.",
+    "claim_falsifier": "Every claimed TRAIN source/patient/modality/level must hash-bind to official annex identity and reproduce PNG pixels exactly; any mismatch remains a blocker.",
+    "decision": "One-thread finite CPU audit; external independent visual/native-path review and researcher approval remain required.",
+    "main_question": "Qualify existing genuine MRI sequence inputs before future Vero transfer comparisons.",
+    "provenance": "Exact candidate/source/code/annex/sidecar/render hashes retained privately; public aggregate hashes only.",
+    "shortcut": "Fixed histogram and intensity retrieval exclude the complete query person; site/scanner/level contingencies are recorded separately."
+  },
+  "new_neural_model_loads": 0,
+  "optimizer_updates": 0,
+  "patient_cross_table_aggregate": {
+    "each_patient_modality_counts": {
+      "FLAIR": 3,
+      "contrast-enhanced T1": 3
+    },
+    "patients": 28,
+    "rows_per_patient": 6
+  },
+  "prompt_and_filename_audit": {
+    "PNG_embedded_text_metadata": {
+      "opaque_assets_reencoded_without_metadata": true,
+      "source_PNG_metadata_key_counts": {}
+    },
+    "canonical_prompt_mismatches": 0,
+    "constant_question_variants": 1,
+    "filename_target_lookup_if_exposed_as_text": {
+      "correct": 168,
+      "interpretation": "Potential direct label exposure if filenames were serialized as model text; inspected native message path does not do so.",
+      "rows": 168
+    },
+    "hidden_reward_targets_and_patient_keys": "Present in PRIVATE training record; excluded from inspected native message construction.",
+    "installed_image_loader": "PILImage.open(path), EXIF transpose, convertRGB; image path text is not converted into image pixels.",
+    "legitimate_contrast": "FLAIR vs post-GdT1 intensity/CSF contrast is task-relevant signal; histogram success alone neither proves leaked metadata nor anatomical reasoning.",
+    "native_GSPO_message_AST_only_question_and_system": true,
+    "native_model_input_filename_as_text": "No evidence in inspected source: filenames passed only as image loader paths; question is constant across targets.",
+    "runtime_token_equivalence": "NOT_RUN here; static source audit is not executed native tokenizer proof",
+    "source_filenames_contain_modality_truth": 168
+  },
+  "read_scope": {
+    "TRAIN_NIfTI_sources": 56,
+    "TRAIN_sidecars": 56,
+    "TRAIN_source_bytes_hashed": 363619843,
+    "candidate_rows": 168,
+    "mask_files_read": 0,
+    "metadata_subject_directory_names_hashed_only": true,
+    "mixed_source_manifest_files_read": false,
+    "model_optimizer_or_checkpoint_files_read": 0,
+    "nontrain_image_sidecar_QC_or_output_files_read": 0
+  },
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "schema": "sequence-qualification-v1",
+  "source_audit": {
+    "TRAIN_source_sha256_matches_official_annex": 56,
+    "display_axes": "For LAS source: displayed right follows source axis0 toward anatomical left; displayed down follows reversed axis1 toward posterior. Upstream MNI/skull stripping is an existing derivative, not this renderer.",
+    "exact_pixel_matches": 168,
+    "images": 168,
+    "max_absolute_pixel_difference": 0,
+    "mismatched_images": 0,
+    "pairs": 84,
+    "people": 28,
+    "people_with_same_scanner_model_field_across_modalities": 28,
+    "render": "SourceLAS182\u00d7218\u00d7182 -> native z045/091/136 ->np.rot90 -> volume nonzero[::16]0.5/99.5 percentile window ->round/clamp uint8 ->2x bilinearRGB364\u00d7436; no new crop/canonicalization/mask overlay.",
+    "same_patient_paired_shape_and_affine": 28,
+    "source_modality_basis": "Pinned official README maps run-02_T1w to post-GdT1; BIDS_FLAIR sidecars and derivative flair/t1ce paths agree with original renderer mapping.",
+    "source_orientations": {
+      "LAS": 56
+    },
+    "volumes": 56
+  },
+  "source_sha256": {
+    "helper": "95aa60d68359bfeda32f30a4ed0124e8284a088e520faa6b29980280c768d1d8",
+    "installed_image_utils": "d38eabab88d5d6b835d4ab703cdac2e30924fc04463be8134d12ae5406e50b0c",
+    "native_GSPO": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "official_README": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+    "original_renderer": "4d7a353c4b6da53bd9781a0073544fb610cc8012512e31fdf68024f9cc31588e",
+    "private_audit": "eca155b538b5f83fdcc6b6242f113aebdbfac9210511b68f4a6c01bc53571390",
+    "runner": "0810fdaaf4b18c1f08bc180bb182cabd95ffe7444276879ce56f68f817bbc3ea",
+    "tests": "abc5c465a9e57372bf0c9e19f7f5fb1e8eab9f1012ac10b048cbbbfa980a5963"
+  },
+  "status": "ACTUAL_CPU_SOURCE_PIXEL_AND_TRAIN_RETRIEVAL_AUDIT_COMPLETE",
+  "training_authorized": false
+}

@@ -1,0 +1,252 @@
+{
+  "Dallas": {
+    "TRAIN_pairs": 48,
+    "TRAIN_people": 24,
+    "brain_only_identity_answerability": "NOT_VERIFIED",
+    "clinical_admission": "HOLD",
+    "fixed_ROI_status": "NOT_VALIDATED_SKULLSTRIP_NOT_BRAIN_ONLY",
+    "source_identity_labels_checked": 48
+  },
+  "checks_passed": 1113,
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "REPRODUCED_SAVED_NUMERICAL_AND_TRAIN_METADATA",
+  "execution": {
+    "NIfTI_payloads_opened": 0,
+    "TRAIN_PNG_files_opened": 12,
+    "dev_final_or_test_content_reads": 0,
+    "model_optimizer_or_checkpoint_reads": 0,
+    "native_model_loads": 0,
+    "new_inference": 0,
+    "optimizer_updates": 0,
+    "threads": 1,
+    "training_steps": 0
+  },
+  "frozen_inputs": {
+    "Dallas_spatial_public_sha256": "6f36481662b8ecdde473bf3091ee655da070809fcca8f61e0100dc47c38b269f",
+    "blind_judgments_sha256": "382a5379f42d4d4e5d8fc62cfdead6ea64c51c8300c621bc4b632087ad79be56",
+    "pre_overlay_notes_sha256": "6edb737d44b64f50e7a7286ae7c71cf8a27478a2b7288c564e3ad83d28f5fb37",
+    "reviewer_source_sha256": "c0f03150e28adaefaaf22581350160f8b272df69448ca59f01e0a2e66d3c409e",
+    "sequence_public_sha256": "25130a6cd71ba1816b0bb74d6062fcc4e0777529bee773bed447a3f85da03112"
+  },
+  "limitations": [
+    "The independent reviewer did not observe original visual-review chronology. Exact frozen judgment/notes hashes and no-prior-key attestations bind the saved unblinding; chronology is reported as recorded procedure, not newly proven retroactively.",
+    "83/84 answered paired decisions exploit the disclosed one-of-each pairing structure; 166/166 answered-side correctness is conditional on abstention and is not isolated-image or untouched-cohort accuracy.",
+    "LOPO excludes all same-person reference rows, but references remain the original TRAIN cohort. No learned head or parameter fitting occurred; 1NN retains labeled reference instances. Site/protocol and intensity associations remain possible.",
+    "168/168 source pixel equality and104 NIfTI header summaries were reaggregated from saved receipts; this review did not independently reread all original NIfTI payloads or repeat rendering. Six PNG feature/copy checks were independently repeated.",
+    "Saved mask geometry is technical label provenance, not visible-lesion or clinical ground truth. Three tumor routes share the same mask source.",
+    "Fixed geometric cranial ROI is unvalidated occlusion, cannot be represented as skull stripping or brain-only input, and leaves Dallas identity grounding unqualified.",
+    "All reviews are AI/nonexpert. No Claude review or radiologist expertise is claimed. PASS does not authorize training or establish scientific task admission."
+  ],
+  "mission_alignment": {
+    "decision": "PASS_WITH_LIMITATIONS numerical evidence; HOLD training and scientific admission pending researcher decision and missing expertise.",
+    "falsifier": "Any recomputed neighbor/confusion/unblind/target/hash/manifest mismatch fails the affected evidence.",
+    "isolation": "Read-only saved TRAIN evidence plus12 small PNG reads; no original component changes.",
+    "link": "Qualify admissible TRAIN evidence before any future Vero-to-MRI task-balanced recipe comparison.",
+    "provenance": "Public aggregates with exact source hashes; private patient/source/prediction details stay ignored.",
+    "shortcut": "Conditional paired judgments and TRAIN-only fixed-feature retrieval cannot establish clinical or independent visual generalization."
+  },
+  "private_details_sha256": "e44828d557655d95e2d9f246314ec7a5c29e88187b2f9b4287ce6cfeac73d8e6",
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "review_scope": "Independent fixed-feature LOPO/neighbor/patient exclusion/confusion/strata recomputation, frozen paired unblinding, TRAIN manifest/source-reference/geometry/header summary checks, six TRAIN PNG feature and opaque-copy spot checks. No full NIfTI reconstruction repeated.",
+  "reviewer": "Codex isolated CPU reviewer rc_replay; same model family; no expert clinical credentials",
+  "saved_header_summary": {
+    "both_qform_and_sform_present": 104,
+    "qform_sform_disagreement_gt_1e-3_mm": 0,
+    "volumes": 104
+  },
+  "schema": "train-task-qualification-independent-review-v1",
+  "sequence": {
+    "PNG_spotchecks": 6,
+    "TRAIN_people": 28,
+    "TRAIN_rows": 168,
+    "blind_unblind": {
+      "abstained_pairs": 1,
+      "answered_pairs": 83,
+      "answered_sides": 166,
+      "confidence_counts": {
+        "high": 78,
+        "medium": 5,
+        "none": 1
+      },
+      "correct_answered_pairs": 83,
+      "correct_answered_sides": 166,
+      "coverage_counts": {
+        "adequate": 28,
+        "adequate_inferior": 28,
+        "adequate_superior": 27,
+        "insufficient_tiny_disconnected_fragments": 1
+      },
+      "pairs": 84
+    },
+    "expert_review": "PENDING",
+    "fitted_parameters": 0,
+    "future_loader_rows": 168,
+    "nonexpert_coverage_candidate_rows": 166,
+    "paired_cases": 84,
+    "retrieval": {
+      "fixed01_intensity_summary": {
+        "accuracy": 0.9047619047619048,
+        "confusion": {
+          "0->0": 75,
+          "0->1": 9,
+          "1->0": 7,
+          "1->1": 77
+        },
+        "correct": 152,
+        "level_counts": {
+          "136": {
+            "correct": 48,
+            "rows": 56
+          },
+          "45": {
+            "correct": 53,
+            "rows": 56
+          },
+          "91": {
+            "correct": 51,
+            "rows": 56
+          }
+        },
+        "patient_macro": 0.9047619047619048,
+        "rows": 168,
+        "site_counts": {
+          "BA": {
+            "correct": 5,
+            "rows": 6
+          },
+          "BO": {
+            "correct": 33,
+            "rows": 36
+          },
+          "FO": {
+            "correct": 12,
+            "rows": 18
+          },
+          "JS": {
+            "correct": 16,
+            "rows": 18
+          },
+          "KA": {
+            "correct": 33,
+            "rows": 36
+          },
+          "ME": {
+            "correct": 17,
+            "rows": 18
+          },
+          "NSK": {
+            "correct": 24,
+            "rows": 24
+          },
+          "TO": {
+            "correct": 12,
+            "rows": 12
+          }
+        }
+      },
+      "normalized16bin_histogram": {
+        "accuracy": 0.9107142857142857,
+        "confusion": {
+          "0->0": 77,
+          "0->1": 7,
+          "1->0": 8,
+          "1->1": 76
+        },
+        "correct": 153,
+        "level_counts": {
+          "136": {
+            "correct": 51,
+            "rows": 56
+          },
+          "45": {
+            "correct": 52,
+            "rows": 56
+          },
+          "91": {
+            "correct": 50,
+            "rows": 56
+          }
+        },
+        "patient_macro": 0.9107142857142857,
+        "rows": 168,
+        "site_counts": {
+          "BA": {
+            "correct": 6,
+            "rows": 6
+          },
+          "BO": {
+            "correct": 33,
+            "rows": 36
+          },
+          "FO": {
+            "correct": 13,
+            "rows": 18
+          },
+          "JS": {
+            "correct": 16,
+            "rows": 18
+          },
+          "KA": {
+            "correct": 33,
+            "rows": 36
+          },
+          "ME": {
+            "correct": 18,
+            "rows": 18
+          },
+          "NSK": {
+            "correct": 22,
+            "rows": 24
+          },
+          "TO": {
+            "correct": 12,
+            "rows": 12
+          }
+        }
+      }
+    },
+    "source_geometry_summary_reaggregated": {
+      "exact_pixel_matches": 168,
+      "images": 168,
+      "max_absolute_pixel_difference": 0,
+      "people": 28,
+      "same_patient_paired_shape_and_affine": 28,
+      "source_orientations": {
+        "LAS": 56
+      },
+      "volumes": 56
+    },
+    "visual_abstention_rows": 2
+  },
+  "training_authorized": false,
+  "tumor": {
+    "MRI_only_mask_crosscheck_recomputed": {
+      "MASK_NEGATIVE_NOT_CLINICALLY_CONFIRMED_NEGATIVE": 33,
+      "MASK_NEGATIVE_WITH_APPARENT_MRI_ABNORMALITY": 5,
+      "MASK_POSITIVE_WITHOUT_CONSPICUOUS_NONEXPERT_MRI_FOCUS": 5,
+      "NONEXPERT_APPARENT_REGION_MASK_POSITIVE_REQUIRES_EXPERT": 41
+    },
+    "TRAIN_planes": 84,
+    "TRAIN_route_rows": 214,
+    "expert_adjudication": "PENDING",
+    "geometric_flag_counts_reaggregated": {
+      "CENTROID_OFF_MASK": 16,
+      "CENTROID_WITHIN10_DISPLAY_PX_OF_GRID_BOUNDARY": 37,
+      "GLOBAL_VS_LARGEST_COMPONENT_GRID_DISAGREEMENT": 2,
+      "MASK_NEGATIVE_NOT_VISUAL_NEGATIVE": 91,
+      "MULTICOMPONENT_MASK_REQUIRES_VISUAL_ADJUDICATION": 40,
+      "SMALL_MASK_AREA_LT1000_NOT_VISIBILITY_THRESHOLD": 46
+    },
+    "independent_clinical_gold": "NOT_VERIFIED",
+    "original_TRAIN_geometry_references_matched": 214,
+    "qualified_training_rows": 0,
+    "recorded_mask_pins_verified_across56_MRI_source_receipts": 56,
+    "task_rows": {
+      "mri_enhancing_presence": 84,
+      "mri_tumor_grid": 46,
+      "mri_tumor_presence": 84
+    },
+    "visible_lesion_gold": "NOT_VERIFIED"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
