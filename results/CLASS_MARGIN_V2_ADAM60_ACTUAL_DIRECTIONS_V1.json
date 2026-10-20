@@ -1,0 +1,435 @@
+{
+  "accuracy_improvement_measured": false,
+  "actual_calls": {
+    "backward_calls": 4,
+    "full_TF_forwards": 11,
+    "teacherforced_positions": 2868
+  },
+  "actual_optimizer_profile": {
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "bias_correction": false,
+    "eps": 1e-08,
+    "learning_rate": 9.999999747378752e-06,
+    "step": 60
+  },
+  "closed_stdout_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+  "conditions": {
+    "BLANK_OPPOSITE_LABEL_PAIR": {
+      "loss_values": {
+        "v1": 0.6931471805599453,
+        "v2": 0.9384922597245546
+      },
+      "versions": {
+        "v1": {
+          "Adam_preview_is_aux_only_not_joint_GSPO_step": true,
+          "alpha": 0.1,
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -0.0,
+              "L2_real_pair": -0.0,
+              "mDallas": 0.0,
+              "mF": 0.0,
+              "mT": 0.0
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.0,
+              "L2_real_pair": -0.0,
+              "mDallas": 0.0,
+              "mF": 0.0,
+              "mT": 0.0
+            }
+          },
+          "gradient_coefficients": [
+            -0.25,
+            -0.25
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.0,
+            "Adam61_total_delta": 0.024864064658620167,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.0
+          },
+          "sum_first_margin_directions": "UNKNOWN_NOT_MEASURED",
+          "unscaled_aux_gradient_l2": 0.0
+        },
+        "v2": {
+          "Adam_preview_is_aux_only_not_joint_GSPO_step": true,
+          "alpha": 0.1,
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -3.289147671367435e-05,
+              "L2_real_pair": -0.004685885444942638,
+              "mDallas": -0.004933432955800525,
+              "mF": -0.015640265388779395,
+              "mT": 0.015774634770488384
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0003170795951561138,
+              "L2_real_pair": -0.0010144531246178879,
+              "mDallas": 0.026920810254606086,
+              "mF": -0.005150869422060714,
+              "mT": 0.003855525052923562
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.004778609537430922,
+              "L2_real_pair": -0.7315055012368981,
+              "mDallas": -0.8566276680261069,
+              "mF": -2.4435129975079444,
+              "mT": 2.463034736059328
+            }
+          },
+          "gradient_coefficients": [
+            -0.09431677411424097,
+            -0.40568322588575906
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.003810358232256079,
+            "Adam61_total_delta": 0.02489166162814749,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.30516054005221127
+          },
+          "sum_first_margin_directions": "UNKNOWN_NOT_MEASURED",
+          "unscaled_aux_gradient_l2": 3.051605347640732
+        }
+      }
+    },
+    "REAL_PAIR": {
+      "loss_values": {
+        "v1": 0.6724979107709034,
+        "v2": 0.8887110314949681
+      },
+      "versions": {
+        "v1": {
+          "Adam_preview_is_aux_only_not_joint_GSPO_step": true,
+          "alpha": 0.1,
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -0.0008829084258915028,
+              "L2_real_pair": -0.001092455762608982,
+              "mDallas": -0.0009440568426842777,
+              "mF": 0.001118319671162976,
+              "mT": 0.0024885679224055106
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": -0.0005329373539766325,
+              "L2_real_pair": 0.0025789765574687827,
+              "mDallas": 0.030910186367906684,
+              "mF": 0.011607715636802428,
+              "mT": -0.009430541794264254
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.11012431757718931,
+              "L2_real_pair": -0.13346960387171505,
+              "mDallas": -0.1335131837718115,
+              "mF": 0.14891040094828165,
+              "mT": 0.30097321457876197
+            }
+          },
+          "gradient_coefficients": [
+            -0.24478401474607484,
+            -0.24478401474607484
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.0015790479643454586,
+            "Adam61_total_delta": 0.02484882117475774,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.10494013457030402
+          },
+          "sum_first_margin_directions": "UNKNOWN_NOT_MEASURED",
+          "unscaled_aux_gradient_l2": 1.0494013277965133
+        },
+        "v2": {
+          "Adam_preview_is_aux_only_not_joint_GSPO_step": true,
+          "alpha": 0.1,
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -0.0010876452349107392,
+              "L2_real_pair": -0.00810814923000117,
+              "mDallas": -0.004066117614011464,
+              "mF": -0.021451768446535947,
+              "mT": 0.02589505383034257
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": -0.0007376741630589745,
+              "L2_real_pair": -0.004436716910075922,
+              "mDallas": 0.027788125597798342,
+              "mF": -0.010962372481067854,
+              "mT": 0.013975944114101965
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.1334696019365179,
+              "L2_real_pair": -1.172657491814002,
+              "mDallas": -0.7867746902343625,
+              "mF": -3.232249641901323,
+              "mT": 3.7775042087690647
+            }
+          },
+          "gradient_coefficients": [
+            -0.09850877183826767,
+            -0.3947215812099012
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.004556155487033982,
+            "Adam61_total_delta": 0.024884930546338658,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.3424408634141395
+          },
+          "sum_first_margin_directions": "UNKNOWN_NOT_MEASURED",
+          "unscaled_aux_gradient_l2": 3.424408574902851
+        }
+      }
+    },
+    "SWAPPED_FIXED_LABEL_PAIR": {
+      "loss_values": {
+        "v1": 0.7142318491559992,
+        "v2": 0.930444969880064
+      },
+      "versions": {
+        "v1": {
+          "Adam_preview_is_aux_only_not_joint_GSPO_step": true,
+          "alpha": 0.1,
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": 0.0009196932897788038,
+              "L2_real_pair": 0.001136699814813002,
+              "mDallas": 0.0009727562146834664,
+              "mF": -0.0011692041905822347,
+              "mT": -0.00258795818267503
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0012696643616040303,
+              "L2_real_pair": 0.004808132134844023,
+              "mDallas": 0.032826999425295024,
+              "mF": 0.009320191775387413,
+              "mT": -0.014507067899308775
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": 0.11481748569397165,
+              "L2_real_pair": 0.13915767844247717,
+              "mDallas": 0.13920311703341928,
+              "mF": -0.1552565143499938,
+              "mT": -0.313799791524705
+            }
+          },
+          "gradient_coefficients": [
+            -0.2552159852539252,
+            -0.2552159852539252
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.001643628199664205,
+            "Adam61_total_delta": 0.024981441837445984,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.10941236835637023
+          },
+          "sum_first_margin_directions": "UNKNOWN_NOT_MEASURED",
+          "unscaled_aux_gradient_l2": 1.094123664381777
+        },
+        "v2": {
+          "Adam_preview_is_aux_only_not_joint_GSPO_step": true,
+          "alpha": 0.1,
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": 0.0007078252099786391,
+              "L2_real_pair": -0.005887539659220575,
+              "mDallas": -0.0021491521506494552,
+              "mF": -0.02372932183521983,
+              "mT": 0.020837690162649636
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0010577962817908074,
+              "L2_real_pair": -0.0022161073390724382,
+              "mDallas": 0.029705091059225565,
+              "mF": -0.013239925868783718,
+              "mT": 0.008918580445602772
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": 0.09147220316879545,
+              "L2_real_pair": -0.9000302565419991,
+              "mDallas": -0.5140584262794937,
+              "mF": -3.5364167259965367,
+              "mT": 3.162731363969594
+            }
+          },
+          "gradient_coefficients": [
+            -0.10527841879009885,
+            -0.4014912281617323
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.0042808328490696245,
+            "Adam61_total_delta": 0.02496571449754452,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.3296775616571021
+          },
+          "sum_first_margin_directions": "UNKNOWN_NOT_MEASURED",
+          "unscaled_aux_gradient_l2": 3.2967755612235905
+        }
+      }
+    }
+  },
+  "external_exit_sha256": "62368691c7ef707ba0df00619efe47fb31cacd5e62e5323195c929d9929bc1db",
+  "external_wall_seconds": 188.9462690000073,
+  "generation_calls": 0,
+  "gradient_comparisons": {
+    "g_mF_vs_negative_g_mT": {
+      "cosine": 0.9239405911405242,
+      "difference_l2": 4.287050110705251,
+      "interpretation": "Gradient similarity/difference only;nonzero norm is not proof of image grounding.",
+      "left_l2": 10.82707692015432,
+      "relative_difference_to_left": 0.3959563732963806,
+      "right_l2": 11.110252768498123,
+      "tensors": 504
+    },
+    "v1_REAL_vs_v2_REAL": {
+      "cosine": 0.37141133766994955,
+      "difference_l2": 3.187228646608611,
+      "interpretation": "Gradient similarity/difference only;nonzero norm is not proof of image grounding.",
+      "left_l2": 1.0494013375160365,
+      "relative_difference_to_left": 3.037187520794355,
+      "right_l2": 3.424408758121313,
+      "tensors": 504
+    },
+    "v2_REAL_vs_BLANK": {
+      "cosine": 0.7000089981336577,
+      "difference_l2": 2.531553051547707,
+      "interpretation": "Gradient similarity/difference only;nonzero norm is not proof of image grounding.",
+      "left_l2": 3.424408758121313,
+      "relative_difference_to_left": 0.7392671933640769,
+      "right_l2": 3.0516054107794846,
+      "tensors": 504
+    },
+    "v2_REAL_vs_SWAPPED": {
+      "cosine": 0.7972272236692557,
+      "difference_l2": 2.143525055352626,
+      "interpretation": "Gradient similarity/difference only;nonzero norm is not proof of image grounding.",
+      "left_l2": 3.424408758121313,
+      "relative_difference_to_left": 0.6259547871640765,
+      "right_l2": 3.2967755891313275,
+      "tensors": 504
+    }
+  },
+  "holdout_or_final_access": false,
+  "human_authorization_sha256": "98ae44f4205000fa3330298a76d102771f52df1f754979db99e3d6d7c5b9f580",
+  "independent_actual_review": "SEPARATE_SAVED_ONLY_REVIEW_REQUIRED",
+  "interpretation": [
+    "V2 has nonzero parameter gradient and differs from blank/swapped controls on this ONE TRAIN pair; substantial shared/prior components remain.",
+    "V2 real Euclidean and retained-Adam directions favor T1 but weaken FLAIR; the no-class-tradeoff criterion is NOT_MET.",
+    "Dallas auxiliary increment is negative despite positive total Adam direction from old momentum; negative-transfer risk remains.",
+    "T1 starts negative and its first-order Adam preview remains negative; no observed correct-class crossing or accuracy improvement.",
+    "All directions are local dot products, not evaluated finite steps, trained checkpoint predictions or recall changes.",
+    "Only mean-margin gradients measured; sum/first directional effects UNKNOWN. Adam preview is auxiliary-only, not joint GSPO+aux."
+  ],
+  "native_wall_seconds": 188.712869415991,
+  "optimizer_updates": 0,
+  "original_correct_margins": {
+    "DALLAS_REAL": {
+      "first": -0.6436691582202911,
+      "mean": -0.6436691582202911,
+      "sum": -0.6436691582202911
+    },
+    "F_REAL": {
+      "first": 7.024005855899304,
+      "mean": 1.4050400870726698,
+      "sum": 7.026790678671212
+    },
+    "T_REAL": {
+      "first": -6.607452202937566,
+      "mean": -1.321572210302478,
+      "sum": -6.61010741780229
+    }
+  },
+  "parameter_perturbations": 0,
+  "private_complete_sha256": "d6b5c202c74bdb1c035e2af74684c132206853b95c9d727a0e23ec277de5a95b",
+  "raw_patient_images_text_tokens_gradients_optimizer_RNG_in_public_output": false,
+  "resource_summary": {
+    "actions": {
+      "CONTINUE": 77,
+      "HOLD": 5
+    },
+    "final_swap_GiB": 16.6215234375,
+    "initial_swap_GiB": 10.306943359375,
+    "maximum_MLX_peak_GiB": 15.562322989106178,
+    "minimum_available_GiB": 5.4563446044921875,
+    "minimum_battery_percent": 80,
+    "minimum_pressure_free_percent": 30.0,
+    "reasons": {
+      "insufficient_memory_headroom": 1,
+      "sustained_swap_growth": 5
+    },
+    "samples": 82,
+    "supervisor_levels": {
+      "NORMAL": 82
+    },
+    "thermal_states": [
+      "SENSOR_UNAVAILABLE"
+    ]
+  },
+  "schema": "class-margin-v2-Adam60-actual-native-directions-v1",
+  "scope_file_sha256": "0dc854bcd5834ecb8f27fb38a867304084f7c2772f2be00a5c1ce08e55670d1f",
+  "scope_sha256": "d4ee98b6e4db3e11e625c9701aaeea274e39f7cc322ea80dbb49ba25e49fc6dc",
+  "source_commit_at_launch": "da5276a8d03961e71165ef22cead9c7ce86be3d6",
+  "state_integrity": {
+    "all1011optimizer_RNG_array_fingerprints_and_layout_unchanged": true,
+    "all1942parameters_unchanged_before_restore": true,
+    "release": {
+      "active_MLX_bytes": 1050,
+      "model_is_none": true,
+      "release_verified": true
+    },
+    "restored_state_exact": true
+  },
+  "status": "ACTUAL_NATIVE_READONLY_COMPLETE_STATE_UNCHANGED",
+  "training_readiness": "NO_CLASS_PROTECTION_CRITERION_NOT_MET_AND_NO_TRAINING_AUTHORIZATION",
+  "training_runs": 0
+}

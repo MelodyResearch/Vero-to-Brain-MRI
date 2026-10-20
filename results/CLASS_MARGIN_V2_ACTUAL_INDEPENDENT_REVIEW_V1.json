@@ -1,0 +1,493 @@
+{
+  "CPU_F32_combination_and_Adam_formula_vs_native_scalar_errors": {
+    "absolute": 0.0,
+    "relative_to_max_one": 0.0
+  },
+  "actual_calls": {
+    "backward_calls": 4,
+    "full_TF_forwards": 11,
+    "teacherforced_positions": 2868
+  },
+  "actual_proof_sha256": "d6b5c202c74bdb1c035e2af74684c132206853b95c9d727a0e23ec277de5a95b",
+  "closed_stdout_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+  "compatibility_admission_certificate_issued": false,
+  "conditions": {
+    "BLANK_OPPOSITE_LABEL_PAIR": {
+      "loss_values": {
+        "v1": 0.6931471805599453,
+        "v2": 0.9384922597245546
+      },
+      "versions": {
+        "v1": {
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -0.0,
+              "L2_real_pair": -0.0,
+              "mDallas": 0.0,
+              "mF": 0.0,
+              "mT": 0.0
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.0,
+              "L2_real_pair": -0.0,
+              "mDallas": 0.0,
+              "mF": 0.0,
+              "mT": 0.0
+            }
+          },
+          "gradient_coefficients": [
+            -0.25,
+            -0.25
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.0,
+            "Adam61_total_delta": 0.024864064658620167,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.0
+          },
+          "unscaled_aux_gradient_l2": 0.0
+        },
+        "v2": {
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -3.289147671367435e-05,
+              "L2_real_pair": -0.004685885444942638,
+              "mDallas": -0.004933432955800525,
+              "mF": -0.015640265388779395,
+              "mT": 0.015774634770488384
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0003170795951561138,
+              "L2_real_pair": -0.0010144531246178879,
+              "mDallas": 0.026920810254606086,
+              "mF": -0.005150869422060714,
+              "mT": 0.003855525052923562
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.004778609537430922,
+              "L2_real_pair": -0.7315055012368981,
+              "mDallas": -0.8566276680261069,
+              "mF": -2.4435129975079444,
+              "mT": 2.463034736059328
+            }
+          },
+          "gradient_coefficients": [
+            -0.09431677411424097,
+            -0.40568322588575906
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.003810358232256079,
+            "Adam61_total_delta": 0.02489166162814749,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.30516054005221127
+          },
+          "unscaled_aux_gradient_l2": 3.051605347640732
+        }
+      }
+    },
+    "REAL_PAIR": {
+      "loss_values": {
+        "v1": 0.6724979107709034,
+        "v2": 0.8887110314949681
+      },
+      "versions": {
+        "v1": {
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -0.0008829084258915028,
+              "L2_real_pair": -0.001092455762608982,
+              "mDallas": -0.0009440568426842777,
+              "mF": 0.001118319671162976,
+              "mT": 0.0024885679224055106
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": -0.0005329373539766325,
+              "L2_real_pair": 0.0025789765574687827,
+              "mDallas": 0.030910186367906684,
+              "mF": 0.011607715636802428,
+              "mT": -0.009430541794264254
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.11012431757718931,
+              "L2_real_pair": -0.13346960387171505,
+              "mDallas": -0.1335131837718115,
+              "mF": 0.14891040094828165,
+              "mT": 0.30097321457876197
+            }
+          },
+          "gradient_coefficients": [
+            -0.24478401474607484,
+            -0.24478401474607484
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.0015790479643454586,
+            "Adam61_total_delta": 0.02484882117475774,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.10494013457030402
+          },
+          "unscaled_aux_gradient_l2": 1.0494013277965133
+        },
+        "v2": {
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": -0.0010876452349107392,
+              "L2_real_pair": -0.00810814923000117,
+              "mDallas": -0.004066117614011464,
+              "mF": -0.021451768446535947,
+              "mT": 0.02589505383034257
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": -0.0007376741630589745,
+              "L2_real_pair": -0.004436716910075922,
+              "mDallas": 0.027788125597798342,
+              "mF": -0.010962372481067854,
+              "mT": 0.013975944114101965
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": -0.1334696019365179,
+              "L2_real_pair": -1.172657491814002,
+              "mDallas": -0.7867746902343625,
+              "mF": -3.232249641901323,
+              "mT": 3.7775042087690647
+            }
+          },
+          "gradient_coefficients": [
+            -0.09850877183826767,
+            -0.3947215812099012
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.004556155487033982,
+            "Adam61_total_delta": 0.024884930546338658,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.3424408634141395
+          },
+          "unscaled_aux_gradient_l2": 3.424408574902851
+        }
+      }
+    },
+    "SWAPPED_FIXED_LABEL_PAIR": {
+      "loss_values": {
+        "v1": 0.7142318491559992,
+        "v2": 0.930444969880064
+      },
+      "versions": {
+        "v1": {
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": 0.0009196932897788038,
+              "L2_real_pair": 0.001136699814813002,
+              "mDallas": 0.0009727562146834664,
+              "mF": -0.0011692041905822347,
+              "mT": -0.00258795818267503
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0012696643616040303,
+              "L2_real_pair": 0.004808132134844023,
+              "mDallas": 0.032826999425295024,
+              "mF": 0.009320191775387413,
+              "mT": -0.014507067899308775
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": 0.11481748569397165,
+              "L2_real_pair": 0.13915767844247717,
+              "mDallas": 0.13920311703341928,
+              "mF": -0.1552565143499938,
+              "mT": -0.313799791524705
+            }
+          },
+          "gradient_coefficients": [
+            -0.2552159852539252,
+            -0.2552159852539252
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.001643628199664205,
+            "Adam61_total_delta": 0.024981441837445984,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.10941236835637023
+          },
+          "unscaled_aux_gradient_l2": 1.094123664381777
+        },
+        "v2": {
+          "directions": {
+            "Adam61_increment_over_zero_gradient": {
+              "L1_real_pair": 0.0007078252099786391,
+              "L2_real_pair": -0.005887539659220575,
+              "mDallas": -0.0021491521506494552,
+              "mF": -0.02372932183521983,
+              "mT": 0.020837690162649636
+            },
+            "Adam61_total_delta": {
+              "L1_real_pair": 0.0010577962817908074,
+              "L2_real_pair": -0.0022161073390724382,
+              "mDallas": 0.029705091059225565,
+              "mF": -0.013239925868783718,
+              "mT": 0.008918580445602772
+            },
+            "Adam61_zero_new_gradient_baseline": {
+              "L1_real_pair": 0.0003499710719107444,
+              "L2_real_pair": 0.0036714323200796074,
+              "mDallas": 0.0318542432102368,
+              "mF": 0.01048939596566813,
+              "mT": -0.01191910971668159
+            },
+            "Euclidean_minus_alpha_g": {
+              "L1_real_pair": 0.09147220316879545,
+              "L2_real_pair": -0.9000302565419991,
+              "mDallas": -0.5140584262794937,
+              "mF": -3.5364167259965367,
+              "mT": 3.162731363969594
+            }
+          },
+          "gradient_coefficients": [
+            -0.10527841879009885,
+            -0.4014912281617323
+          ],
+          "parameter_direction_l2": {
+            "Adam61_increment_over_zero_gradient": 0.0042808328490696245,
+            "Adam61_total_delta": 0.02496571449754452,
+            "Adam61_zero_new_gradient_baseline": 0.024864064658620167,
+            "Euclidean_minus_alpha_g": 0.3296775616571021
+          },
+          "unscaled_aux_gradient_l2": 3.2967755612235905
+        }
+      }
+    }
+  },
+  "engineering_review_sha256": "e04a4a7756849e5ff1fbf660cd5ed86b95a68ec6f7ffbc02ee0032cbcd776fe4",
+  "external_exit_sha256": "62368691c7ef707ba0df00619efe47fb31cacd5e62e5323195c929d9929bc1db",
+  "external_wall_seconds": 188.9462690000073,
+  "generation_calls": 0,
+  "gradient_comparisons_F64_combination": {
+    "g_mF_vs_negative_g_mT": {
+      "cosine": 0.923940591140524,
+      "difference_l2": 4.287050110705251,
+      "left_l2": 10.82707692015432,
+      "relative_difference_to_left": 0.3959563732963806,
+      "right_l2": 11.110252768498123
+    },
+    "v1_REAL_vs_v2_REAL": {
+      "cosine": 0.3714113376699495,
+      "difference_l2": 3.187228646608611,
+      "left_l2": 1.0494013375160365,
+      "relative_difference_to_left": 3.0371875207943546,
+      "right_l2": 3.424408758121313
+    },
+    "v2_REAL_vs_BLANK": {
+      "cosine": 0.7000089981336577,
+      "difference_l2": 2.531553051547707,
+      "left_l2": 3.424408758121313,
+      "relative_difference_to_left": 0.7392671933640769,
+      "right_l2": 3.0516054107794846
+    },
+    "v2_REAL_vs_SWAPPED": {
+      "cosine": 0.7972272236692557,
+      "difference_l2": 2.143525055352626,
+      "left_l2": 3.424408758121313,
+      "relative_difference_to_left": 0.6259547871640765,
+      "right_l2": 3.2967755891313275
+    }
+  },
+  "human_authorization_sha256": "98ae44f4205000fa3330298a76d102771f52df1f754979db99e3d6d7c5b9f580",
+  "independent_model_loads": 0,
+  "independent_native_calls": 0,
+  "independent_optimizer_updates": 0,
+  "independent_private_numeric_detail_sha256": "536d408d8a2db5335c99a36ac0e72597c0eacc1251d8e78f0cedea916580434f",
+  "independent_saved_gradient_inventory": {
+    "BLANK_ZERO_NORMALIZED_PIXELS": {
+      "dtype": "F32",
+      "file_sha256": "7044ceeee0721d71dc8c773cffe2e3e5d93c30e149f94767489df1afd76f08a6",
+      "shape_inventory_matches_saved_parent_signature": true,
+      "tensor_count": 504
+    },
+    "DALLAS_REAL": {
+      "dtype": "F32",
+      "file_sha256": "672c332c8908c42154fbdc2a6f0fb473efa62d5ff61ba37845212ea9a6e3c638",
+      "shape_inventory_matches_saved_parent_signature": true,
+      "tensor_count": 504
+    },
+    "F_REAL": {
+      "dtype": "F32",
+      "file_sha256": "4a9d93061a6b11054b7d2a51d4d84ea4ebe73fee67ed5db0d25a35d7ef14a43e",
+      "shape_inventory_matches_saved_parent_signature": true,
+      "tensor_count": 504
+    },
+    "T_REAL": {
+      "dtype": "F32",
+      "file_sha256": "675eaf311c3fb4d3d743aafd7c615951c8ebeab30d4ab31f1c75de964326474d",
+      "shape_inventory_matches_saved_parent_signature": true,
+      "tensor_count": 504
+    }
+  },
+  "independent_verifier_sha256": "fb6684536848ad675146509a06d4c2091fba948218d6fe6f58e468edb4d5ac5f",
+  "label_values_recalculation": {
+    "blank_oracle_VJP_label_logps_max_abs_error": 0.0,
+    "common_prefix_and_independent_first_oracle": "SAVED_RECEIPTS_ACCEPTED_LE_0.002;fullprefixvectors_not_persisted_so_not_independently_reconstructed",
+    "label_logps_mean_sum_first_recomputed": true,
+    "mean_only_parameter_directions": true,
+    "reference_logps_max_abs_error": 0.0
+  },
+  "limitations": [
+    "Only 3 real TRAIN image contexts and one same-shape zero-normalized-pixel blank; swaps are algebraic aliases with no independent inference.",
+    "Only label-MEAN gradients were measured. Sum/first values do not identify their parameter derivatives. No completed all-task or on-policy GSPO/joint training qualification.",
+    "No new generation, update, parameter perturbation, finite-step reevaluation, holdout16 payload/label/outcome or final100 access.",
+    "82resource samples include5HOLD then recovery; all supervisor NORMAL. One activeMLX and one peakMLX reading are missing; valid maxima reported rather than treating missing as0. Thermal sensor unavailable; no hardware-safety guarantee.",
+    "1200s is an operation-start deadline, not hardwall. Native actualexternalwall188.946269s does not generalize runtime.",
+    "Native VJPs are preserved measurements; this verifier redoes saved-array arithmetic only, not native gradient correctness by finite differences.",
+    "Scalar-only public review omits patient IDs/images/prompts/tokenIDs/per-image arrays/gradient arrays/Adam moments/RNG/private filesystem paths.",
+    "CROSS_MODEL_REVIEW=NOT_VERIFIED; same-family isolated Codex review."
+  ],
+  "native_wall_seconds": 188.712869415991,
+  "optimizer_updates": 0,
+  "parameter_perturbations": 0,
+  "resource_summary": {
+    "actions": {
+      "CONTINUE": 77,
+      "HOLD": 5
+    },
+    "levels": {
+      "NORMAL": 82
+    },
+    "power_sources": {
+      "BATTERY": 82
+    },
+    "reasons": {
+      "insufficient_memory_headroom": 1,
+      "sustained_swap_growth": 5
+    },
+    "samples": 82,
+    "telemetry": {
+      "available_gib": {
+        "maximum": 15.956222534179688,
+        "minimum": 5.4563446044921875,
+        "missing": 0
+      },
+      "battery_percent": {
+        "maximum": 81,
+        "minimum": 80,
+        "missing": 0
+      },
+      "mlx_active_gib": {
+        "maximum": 10.275382794439793,
+        "minimum": 0.050770021975040436,
+        "missing": 1
+      },
+      "mlx_peak_gib": {
+        "maximum": 15.562322989106178,
+        "minimum": 0.050770021975040436,
+        "missing": 1
+      },
+      "monotonic_seconds": {
+        "maximum": 374643.094951375,
+        "minimum": 374467.524742791,
+        "missing": 0
+      },
+      "other_heavy_processes": {
+        "maximum": 0,
+        "minimum": 0,
+        "missing": 0
+      },
+      "power_source": {
+        "maximum": null,
+        "minimum": null,
+        "missing": 0
+      },
+      "pressure_free_percent": {
+        "maximum": 62.0,
+        "minimum": 30.0,
+        "missing": 0
+      },
+      "process_rss_gib": {
+        "maximum": 5.7979888916015625,
+        "minimum": 0.0338134765625,
+        "missing": 0
+      },
+      "swap_used_gib": {
+        "maximum": 16.6215234375,
+        "minimum": 10.306943359375,
+        "missing": 0
+      },
+      "thermal_state": {
+        "maximum": null,
+        "minimum": null,
+        "missing": 0
+      }
+    },
+    "thermal_states": [
+      "SENSOR_UNAVAILABLE"
+    ]
+  },
+  "reviewed_public_aggregate_sha256": "41b3dc15b1484734558ce15133e6bdf0406c8aca6a90385574c1e23cb226e101",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "class-margin-v2-actual-native-saved-independent-review-v1",
+  "scientific_findings": [
+    "V2 real auxiliary gradient is nonzero and differs from blank/swap aliases on this one TRAIN pair. This is image-conditional sensitivity within this setup, not anatomical grounding, clinical correctness or independent generalization.",
+    "V2 Euclidean descent and auxiliary-only Adam61 total direction increase T1 mean margin but decrease FLAIR mean margin. The class-protection criterion is NOT_MET.",
+    "Dallas Adam61 total derivative is positive, but its zero-new-gradient momentum baseline is larger; incremental contribution is negative. Positive old momentum must not be described as evidence of no auxiliary interference.",
+    "V2 blank-only gradient is nonzero and similar to real gradient; priors/shared Jacobians remain substantial. V1 blank gradient cancels exactly.",
+    "The Adam preview includes retained Adam60 moments and learning-rate arithmetic but is before finite parameter rounding and model reevaluation. Neither this nor Euclidean local dots are observed accuracy changes.",
+    "F32-combined native norm and F64-combined comparison norm are distinct arithmetic quantities; both independently reproduced, not silently equated."
+  ],
+  "scope_file_sha256": "0dc854bcd5834ecb8f27fb38a867304084f7c2772f2be00a5c1ce08e55670d1f",
+  "scope_sha256": "d4ee98b6e4db3e11e625c9701aaeea274e39f7cc322ea80dbb49ba25e49fc6dc",
+  "scoped_artifact_byte_digests_match": 17,
+  "scoped_source_byte_digests_match": 67,
+  "state_integrity": {
+    "all1011_parent_saved_arrays_and_layout_checked_against_actual_state_fingerprints": 1011,
+    "all1942_parameters_before_after_equal": true,
+    "full_optimizer_and_Python_MLX_RNG_fingerprints_before_restore_equal": true,
+    "release": {
+      "active_MLX_bytes": 1050,
+      "model_is_none": true,
+      "release_verified": true
+    },
+    "restored_fingerprints_exact": true
+  },
+  "summary_source_sha256": "2671605ffedfb4327e6569243d2321511ea45eccea1c3d958b32f9af52c0593a",
+  "training_authorized": false,
+  "training_readiness": "NO_CLASS_PROTECTION_NOT_MET",
+  "training_runs": 0,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
