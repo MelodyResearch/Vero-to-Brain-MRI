@@ -1,0 +1,142 @@
+{
+  "CPU_runtime": {
+    "model_or_native_runtime_imported": false,
+    "schedule_and_artifact_verifier_interpreter": "Existing lexical mlx-venv Python3, CPU metadata imports only"
+  },
+  "bindings": {
+    "all_author_artifact_hashes_verified": true,
+    "author_code_sha256": {
+      "builder": "16cf5b0c46b09a3f7cad5752b0783ba5e25ccff4826eff8603d1fd1fc58a679b",
+      "existing_category_sampler": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3",
+      "helper": "681d322f9f843c5e0a1217a709a417946b8b1f3e9fa76907a304afa7437dabbe",
+      "tests": "804a0ae280790e2a58e7c323013f3cf1a7c8d2bbae25dc22d550d44275af23d1"
+    },
+    "author_public_result_sha256": "56f00aa0713c979f736133b30e41d5f86c7855264f3228ca5c7d072e90843e2e",
+    "candidate_binding_sha256": "527196310047649f2439634a9f79564edf6e2cd147b90d815c2b88b3d0d487f9",
+    "candidate_manifest_sha256": "5187823432d452d85a60b41a834cc9babbc71f78bdfb3dbe366e36ac849e1844",
+    "new56_sha256": "c257ef5481c0e97a907fdc75bfcba6345744bd3769b3e6391f0563147a17a770",
+    "private_verifier_sha256": "536fd7b42b26114db71a5ee270ea3f8df3dc4caf99c9e7383cbc64499c1f34c0",
+    "source_membership_sha256": "bf92f7e560ce3ed3b3629427f590d8c6f6cf4c4c3bae6ab04dc14af42ad4ce99",
+    "source_sha256": {
+      "Dallas48": "6adf06674050e395b704e4b76103f067166b905016920195603e271690de4f14",
+      "blind_key": "b72735cb28b26c065d33bc5717b8ecfd1213f5b2e3f24330a0029baa840bc0b0",
+      "full_MRI_train": "0efb588b328e3d9af2a339d9237836357a5baff5d9db8b376dc716de3d1f10e3",
+      "native_token_measurements": "0839e1a9c10e3a7d2b7d45d8f7bceeda46cdcb94146adb3b2233abc82ebec5e9",
+      "original76": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+      "parent_uniform_receipt": "3c2567723e7bc90a65464c8c3645f49ad91c38a0ad886961c508bc1f8a0e3879",
+      "reviewed168": "761c1618a455031098eda68c3080808d9d610beb63293bb50af597eea3caaf9b",
+      "source_README": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+      "source_audit": "eca155b538b5f83fdcc6b6242f113aebdbfac9210511b68f4a6c01bc53571390"
+    }
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED_TRAIN_METADATA_HASHES_AND_CPU_SCHEDULE_REPLAY",
+  "limitations": [
+    "Current checks authenticate existing source/pixel/geometry qualification receipts and byte identity; they do not rerender NIfTI or independently repeat visual qualification.",
+    "Acquisition-modality identity is not clinical lesion truth or proof of anatomical reasoning.",
+    "Paired pool support does not guarantee both modalities for every person in this finite schedule: only4of12 exposed people have both modalities.",
+    "Removing deterministic patient-label lookup in pool does not exclude site/scanner/protocol/intensity shortcuts or establish generalization.",
+    "213/405 input lengths are conditional historical equivalents; new native expanded-token equivalence is NOT_RUN.",
+    "No new independent holdout established; no training permission or native readiness from this review.",
+    "Review is isolated Codex, not verified cross-model-family review."
+  ],
+  "mission_alignment": "Validate one source-pool intervention without new patients, levels, modality quota, task weighting, Dallas changes or model execution.",
+  "native_execution": "NOT_RUN",
+  "read_scope": {
+    "backward_calls": 0,
+    "final100_labels_predictions_or_metrics_read": false,
+    "generations": 0,
+    "image_byte_hashes_and_IHDR_only": true,
+    "image_pixels_decoded": 0,
+    "models_loaded": 0,
+    "optimizer_updates": 0,
+    "prior_mixed_metadata_bytes_disclosed_by_author": true,
+    "source_volumes_or_masks_decoded": 0
+  },
+  "readiness": "NO",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "sampling": {
+    "Dallas14_occurrence_objects_identical": true,
+    "actual_exposure": {
+      "maximum_repeats_per_sequence_row": 2,
+      "people_both_modalities_observed": 4,
+      "people_one_modality_observed": 8,
+      "repeated_sequence_occurrences": 2,
+      "sequence_label_occurrences": {
+        "FLAIR": 8,
+        "contrast-enhanced T1": 10
+      },
+      "sequence_occurrences": 18,
+      "sequence_people_observed": 12,
+      "task_occurrences": {
+        "mri_sequence": 18,
+        "mri_visit_correspondence": 14
+      },
+      "unique_sequence_rows": 16
+    },
+    "candidate_official_fullblock_helper_replayed": true,
+    "conditional_token_cap": 70784,
+    "forced_modality_balance_or_pair_adjacency": false,
+    "new_native_input_measurement": false,
+    "old_control_matches_historical_except_top_occurrence_id": true,
+    "original_first8_occurrence_binding_verified": true,
+    "original_parent_Adam_step": 60,
+    "original_parent_absolute_groups": 129,
+    "reference_slots": [
+      8,
+      40
+    ],
+    "sampler_numpy_version": "2.5.4",
+    "seed": 13,
+    "sequence_draw_offset": 2,
+    "standalone_sequence_rng_added": false,
+    "taskmask_matched_adaptation_not_uninterrupted_sampler_state": true
+  },
+  "schema": "paired-z045-data-independent-review-v1",
+  "tests": {
+    "command": "PYTHONPATH=src python3 -m pytest -q tests/test_paired_z045_data_v1.py",
+    "passed": 12,
+    "seconds": 0.04
+  },
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verified": {
+    "Dallas_rows": 48,
+    "FLAIR_rows": 28,
+    "PNG_IHDR_only_checks": 56,
+    "PNG_pixels_decoded": 0,
+    "T1_rows": 28,
+    "TRAIN_source_and_split_checks": 56,
+    "all_original28_sources_and_targets_retained_in_new56": true,
+    "candidate_opaque_rows_keep_reviewed_train_metadata_and_hidden_targets": true,
+    "level": 45,
+    "mixed_rows": 104,
+    "modalities_per_person": 2,
+    "new_H_label_given_patient_bits": 1.0,
+    "new_patient_lookup_resubstitution": 0.5,
+    "new_visual_judgments": 0,
+    "old_H_label_given_patient_bits": 0.0,
+    "old_patient_lookup_resubstitution": 1.0,
+    "opaque_prompt_and_no_semantic_filename_checks": 56,
+    "original28_exact_file_preserved": true,
+    "original76_and_Dallas48_raw_bytes_unchanged": true,
+    "original_and_opaque_PNG_SHA_equality": 56,
+    "other_levels": 0,
+    "question_variants": 1,
+    "sequence_people": 28,
+    "sequence_rows": 56,
+    "site_rows": {
+      "BA": 2,
+      "BO": 12,
+      "FO": 6,
+      "JS": 6,
+      "KA": 12,
+      "ME": 6,
+      "NSK": 8,
+      "TO": 4
+    },
+    "source_annex_identity_checks": 56,
+    "source_sidecar_hash_checks": 56
+  }
+}

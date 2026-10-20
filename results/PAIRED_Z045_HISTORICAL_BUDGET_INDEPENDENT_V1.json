@@ -1,0 +1,215 @@
+{
+  "blockers": [
+    "F32 rollout/scorer/backward backend IMPLEMENTED_CPU_NOT_NATIVE_QUALIFIED; complete native qualification NOT_RUN.",
+    "Native213/405 prompt reserve must be remeasured under the frozen candidate contract before launch.",
+    "Independent patient holdout not established.",
+    "Exact scope review and fresh explicit human training authorization required.",
+    "Matched F32 parent/child evaluation native integration remains unqualified; inherited BF16 eval methods now fail closed."
+  ],
+  "cross_model_review": "NOT_VERIFIED",
+  "current_preparation_amendment": {
+    "actual_prompt_cost_gate_before_any_generation_LM": "Exact sequence213/Dallas405; changed length or unknown route rejects.",
+    "amendment_reproducer_sha256": "7abc217f2739709e31237217db452da7e3e17c6d53765a21b03efe8afb020d80",
+    "current_CPU_tests": "31 F32 backend/continuation/qualification tests passed in0.35s; no native/model imports or execution.",
+    "current_backend_status": "IMPLEMENTED_CPU_NOT_NATIVE_QUALIFIED",
+    "current_evaluation_public_sha256": "01a1cac28e1a334b7d92214c97761678f0e50e54b5ca37a8f9108c8fc77244ba",
+    "current_evaluation_v3_manifest_sha256": "33e583f25c369e724c62ba96a14cbf6c7ca60af51703b40005dbe3e990203618",
+    "current_source_sha256": {
+      "src/mri_rl/paired_z045_continuation_driver_v1.py": "18131e9d1f1a70c2f76f75b5ca7d7ff6de205cc1587fed413c4e92af88ce5f00",
+      "src/mri_rl/paired_z045_continuation_entry_v1.py": "98e05a4c8b2bdee6818d3fbbd46886b2c9fd59b5b610cad33221b614a41a78ed",
+      "src/mri_rl/paired_z045_evaluation_v1.py": "7f874193cb172e2890fc29a80139c3e0cf284607cb3bc9e9d4ed6dc2343179d7",
+      "src/mri_rl/paired_z045_f32_backend_v1.py": "1b7e75cac1f30b3f888cfc6dcad5235f6614a81247d9edebca464d4b65e5df07",
+      "src/mri_rl/paired_z045_f32_qualification_v1.py": "8ee603fd3624c6d9d9fcbd9dc89ad28688250d0656fa2867ad837dd7663943e7"
+    },
+    "frozen_image_guard": "Expected TRAIN PNG SHA joins authenticated sequence membership plus Dallas historical inventory; checked before construction and after relevant resource gates. Current bytes cannot become their own expected truth.",
+    "historical_arithmetic_and_exposure_unchanged": true,
+    "historical_proof_before_CPU_implementation_sha256": "5f8cfd52d858ecdf40914530c2c018c61838c2f2e667330704ee5fdd0b387b56",
+    "historical_source_sha256_map_preserved_unchanged": true,
+    "image_guard_amendment_reproducer_sha256": "612682010295ed4c71d7a28552bb5577188d6d95688a26cac98d38ff5fc1c563",
+    "image_guard_independent_CPU_delta_test": "test_frozen_image_map_joins_membership_and_Dallas_inventory_and_stops_mutation:1passed0.09s; prior31targetedtests passed0.35s before this source-only guard.",
+    "matched_F32_evaluation_integration": "NOT_NATIVE_QUALIFIED",
+    "native_or_train_authorization": false,
+    "native_qualification": "NOT_RUN",
+    "prompt_guard_amendment_reproducer_sha256": "2af6d3488ee0c6acac0b801937b4567818307f84841b56f0d74641fa855499fa"
+  },
+  "evaluation": {
+    "Dallas_cases": 16,
+    "additional_swap_calls": 0,
+    "alias_input_and_image_sha_equality_verified": true,
+    "candidate_queries_per_checkpoint": 40,
+    "development": "Repeated internal-dev; four sequence people and four Dallas cycles, not independent holdout.",
+    "greedy_calls_per_checkpoint": 40,
+    "historical_comparator_candidate_queries": 25,
+    "historical_comparator_null_greedy_calls": 1,
+    "historical_comparator_real_greedy_cases": 40,
+    "historical_resource_span_including_setup_seconds": 300.0866761660145,
+    "max_candidate_score_LM_API_calls_per_checkpoint": 120,
+    "new_latency": "NOT_MEASURED",
+    "null_calls": 0,
+    "parent_plus_child_candidate_score_LM_API_calls_max": 240,
+    "parent_plus_child_greedy_calls": 80,
+    "same_new_numeric_contract_parent_and_child_required": true,
+    "sequence_cases": 24,
+    "swap_comparison_aliases": 8,
+    "unique_real_cases_per_checkpoint": 40
+  },
+  "evidence_tier": "SAVED_TRAIN_METADATA_AND_CPU_PREPARATION_ONLY",
+  "execution_this_review": {
+    "backward_calls": 0,
+    "final100_predictions_or_labels_read": false,
+    "generations": 0,
+    "image_decodes": 0,
+    "model_loads": 0,
+    "optimizer_updates": 0,
+    "tests": "tests/test_paired_z045_evaluation_v1.py: 8 passed in 0.12s"
+  },
+  "historical_timing_seconds": {
+    "complete_intergroup_intervals": [
+      54.696926290984266,
+      25.5526378750219,
+      19.867587083979743,
+      38.42861400000402,
+      48.08455937501276,
+      14.014440040977206,
+      20.361925250006607
+    ],
+    "complete_intergroup_statistics": {
+      "count": 7,
+      "maximum": 54.696926290984266,
+      "mean": 31.572384273712355,
+      "median": 25.5526378750219,
+      "p90_linear": 50.729506141401366
+    },
+    "first_to_last_resource_span": 328.3744000000006,
+    "inactive_complete_intervals": {
+      "count": 4,
+      "maximum": 25.5526378750219,
+      "mean": 19.949147562496364,
+      "median": 20.114756166993175,
+      "p90_linear": 23.995424087517314
+    },
+    "interpretation": "Seven start-to-next-start intervals include checkpoint/bookkeeping; eighth ends at optimizer-start sample, not group completion. Resource span is not exact process wall.",
+    "last_group_right_censored_lower_bound": 47.011103875003755,
+    "load_authorization_to_first_group": 60.35660620901035,
+    "updated_complete_intervals": {
+      "count": 3,
+      "maximum": 54.696926290984266,
+      "mean": 47.07003322200035,
+      "median": 48.08455937501276,
+      "p90_linear": 53.374452907789966
+    }
+  },
+  "historical_training": {
+    "accepted_updates": 4,
+    "charged_debt": 0,
+    "charged_tokens": 12957,
+    "first_eight_schedule_occurrences_authenticated": true,
+    "groups": 8,
+    "input_tokens": 11424,
+    "response_tokens": 1533,
+    "task_totals": {
+      "mri_sequence": {
+        "accepted_updates": 1,
+        "attempted_groups": 2,
+        "input_tokens": 1704,
+        "response_mean_tokens": 75.75,
+        "response_tokens": 606
+      },
+      "mri_visit_correspondence": {
+        "accepted_updates": 3,
+        "attempted_groups": 6,
+        "input_tokens": 9720,
+        "response_mean_tokens": 38.625,
+        "response_tokens": 927
+      }
+    }
+  },
+  "holdout": {
+    "all_history_identity_exclusion_union_authenticated": false,
+    "future_selection_requires": "Authenticate comprehensive historical exposure/lineage exclusions, site availability and paired payloads before freezing metadata-only selection; no final100 outcome-based choice.",
+    "no_candidate_eligibility_count_invented": true,
+    "old14_prospective_certificate_is_stale_for_unexposed_claim": true,
+    "paired_payload_and_sidecar_qualification": false,
+    "proposed_new_sequence_people": 16,
+    "proposed_site_target": 8,
+    "public_source_tree_proves_only_pointer_existence": true,
+    "status": "NOT_ESTABLISHED"
+  },
+  "limitations": [
+    "Historical timing and response/update rates do not guarantee new Adam60/F32/pool performance or accepted-update count.",
+    "Changing pool size changes sampler RNG consumption; explicit rowstream binding is required.",
+    "No new training or model inference occurred.",
+    "Training response JSON was parsed for token lengths; private IDs/text remain outside public output.",
+    "Same-family isolated Codex review, not independent model-family verification."
+  ],
+  "mission_alignment": "Prepare one bounded paired-modality Vero GSPO comparison; no new execution, endpoint selection from final100, or scientific generalization claim.",
+  "prospective_training_envelope": {
+    "atomic_final_group_and_release_can_overrun": true,
+    "charged_token_cap_if_native_tokens_reconfirm": 70784,
+    "f32_training_latency": "NOT_MEASURED",
+    "first_hit_stops": true,
+    "frozen_original_slot_range": [
+      8,
+      40
+    ],
+    "group_size": 4,
+    "historical_mean_response_extrapolation_not_prediction": 45633.0,
+    "max_accepted_updates": 8,
+    "max_attempted_groups": 32,
+    "native_input213_405_requalification_required": true,
+    "not_hard_wall_ceiling": true,
+    "prompt_reserve_if_native_tokens_reconfirm": 38016,
+    "recommended_operation_start_elapsed_seconds": 3000,
+    "response_cap": 256,
+    "response_reserve": 32768,
+    "schedule_rule": "Keep original task/Dallas slots8:40; derive old76/new104 row streams through the pinned existing official helper at uniform seed13, filter sequence draws, skip prior two and map next18 to the fixed mask. Old76 filtered control must exactly match original source IDs/order. This is a declared task-mask-matched new-pool adaptation, not uninterrupted sampler/RNG resume. No forced modality/pair quota.",
+    "setup_plus_32_historical_p90_seconds": 1683.700802733854,
+    "status": "RECOMMENDATION_NOT_AUTHORIZATION",
+    "task_attempts_at_full32": {
+      "mri_sequence": 18,
+      "mri_visit_correspondence": 14
+    }
+  },
+  "readiness": "NO",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-z045-historical-budget-independent-v1",
+  "source_sha256": {
+    "AGENTS": "c75ffd6af71949091a1fbccbc83625c2e1a38a70248879380dbfd1c6f048fb93",
+    "all22_completion_binding_proof": "b7cb356924c7c4285cdb7c03b9319a7e0b637469d5fbad80f7451508f102051f",
+    "group_1_receipt.json": "1c9a165a91412afc97d3ddcff3f545ea7db07001e690e17a214d4e20b91fbc66",
+    "group_1_rollout_progress_PRIVATE.json": "679e4145cee5d6c851d4ee1f51482fde515de7fbc5b93ae3b84198c62735098f",
+    "group_2_receipt.json": "72f7877cee66329da20c0e2681034c64147b767e319665854aa7653afc9b8e7b",
+    "group_2_rollout_progress_PRIVATE.json": "4567eae3fd151f0958294455ca184f17be32fcf3534715ea65365acd27eb7fb5",
+    "group_3_receipt.json": "001fb2bd4463689688a07d0ade3edb131fec1c21d9cab0da85afda2c9fa81721",
+    "group_3_rollout_progress_PRIVATE.json": "0300978028176432d662fac241d55edbc4b372acd8f631f71bd18ba410f3b145",
+    "group_4_receipt.json": "8569b59ff77ed021caafd362ccdab6989c0d0249dcc759dba23c753eed294c9a",
+    "group_4_rollout_progress_PRIVATE.json": "59e564a1a72f9b0cade56ba4c9e8fc73c8f7ccd24e0a8b6ab518272a7be64b9a",
+    "group_5_receipt.json": "bea5081b4e8156c60e28c9ada979f75ddc5d47ecf7f4f5b4e656094f3d526b94",
+    "group_5_rollout_progress_PRIVATE.json": "e7ff744effe83359ac7bca9dae7c619cafd3f6fc2e8bda69d42f76721b775262",
+    "group_6_receipt.json": "33a3473b2603a8e1de2a87945f87d33078651a0c71d5a6799b8e1945cc1d4e86",
+    "group_6_rollout_progress_PRIVATE.json": "81c17107979dda491c46987d191a2da85b19bb747404f02e57d7add795efbabe",
+    "group_7_receipt.json": "d63f7fb961465f7cbe488b4577c4b72a618d2ff1c138c902c6208c111c7b416a",
+    "group_7_rollout_progress_PRIVATE.json": "68a7c00bb9cb1119eacace48d7bc9852923554bbd402f71029d2476c0b441394",
+    "group_8_receipt.json": "3c2567723e7bc90a65464c8c3645f49ad91c38a0ad886961c508bc1f8a0e3879",
+    "group_8_rollout_progress_PRIVATE.json": "1fed38d6b783ebb14afa2e798584611a034eef54780788c2c9fbca43c8ca535d",
+    "historical_eval_exit": "843165780f31fa348702a0540d4963bca7063e8c983621d02274960aff0a0d45",
+    "historical_eval_receipt": "41500f2e288077cd56a020325eb9d6a36a40d922b4c0b7b3da3ea6d3bc41e1cf",
+    "historical_eval_resources": "01dcfa15e9f31f88952c20e73bbe1bf8b865385850a6c5c4c01b500e6ca87af3",
+    "historical_exit": "d05c6bdf3c8f38735c4f4c6c8445921a1404354bd97e8e7296616fab2272f58e",
+    "historical_native_log": "8c6c7ff1b08f57a559de78416c7d33ebe60f7f3bbad7ec1759a0fa7208688bfb",
+    "historical_resources": "c8c1a4c4481f6c57424a9c94eeb8f484707e7b703c347e8fc06594272c5a29a5",
+    "historical_scope": "a712379b37ff234904254a80d9f50e2331c56b83c134e1f5d14fa50d91ee1793",
+    "historical_spec": "bee47ec33b51b4075103ff4cece96acb152d678f305d8555055c19f48b1bd535",
+    "historical_train_manifest": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+    "new_eval_preparation": "c490ed5753af05297719e193427145a64384ae1835748e0e67f29cc274a66c0a",
+    "new_eval_private_manifest": "8a062cf61f3b125100c58d70b71128586d4bdcbf03b050cf06d6841bffb7b712",
+    "new_eval_source": "3a3912386c09722af230e54aa47b77f7c76caf8ea7ad48ba3326e918549e0fdb",
+    "new_eval_tests": "288075b2e0b4ded49167c6a187db723bc9313cfae8e9f0a27560a4440eb16520",
+    "old_prospective14_certificate": "d12e1539fa8f1569d16dc68e5b3475e02cd02e6abf949e9b539b74fa9cdfd6d7",
+    "private_reproducer": "5b2bdd2ad28cce89c239c76aae341dd6ce8bc6f4d49645a43ac45eced9edc712",
+    "public_source_pointer_tree": "ce5be333d00fd55718e38f22d64c4c46498d897d40f82c7d5f3f7e9c215802cf",
+    "sampler_source": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

@@ -1,0 +1,178 @@
+{
+  "AGENTS_sha256": "c75ffd6af71949091a1fbccbc83625c2e1a38a70248879380dbfd1c6f048fb93",
+  "actual_execution_this_phase": {
+    "backward_calls": 0,
+    "final100_predictions_labels_or_metrics_read": false,
+    "generations": 0,
+    "model_loads": 0,
+    "new_training": 0,
+    "optimizer_updates": 0
+  },
+  "bindings_sha256": {
+    "continuation_scope_PRIVATE": "b508998636c6c3011695ec967e9deb9893a50cac8d94284f4ba4bd02812e034a",
+    "continuation_spec_PRIVATE": "ddd53814a73ac13f5e819f9f3835f579f5bed712d352cf5f4c7b5680028b8993",
+    "data": "56f00aa0713c979f736133b30e41d5f86c7855264f3228ca5c7d072e90843e2e",
+    "data_independent": "1466f1c8715bd1cd85d38baa3d4ab9df3edb704bcfbe65f1be12bb16753a1322",
+    "evaluation_protocol": "01a1cac28e1a334b7d92214c97761678f0e50e54b5ca37a8f9108c8fc77244ba",
+    "execution_preparation": "f9a714d5713c3e8df4dd8b38f3cceefad1b32a95d716ba18b1ba04f5fb231a03",
+    "historical_budget_independent": "06cc00d5e57f1bb0fe2086c2138b8df9683e604debaadbfd44c0e7b49a829881",
+    "matched_eval_scope_PRIVATE": "1e84274151f0d0235fe729e2bdef4e35e1d0c7918c3b74c1be5ea2707000ebca",
+    "qualification_engineering_review_PRIVATE": "fbf67a72c286f59512dbb7c954c1f64151fbe98e5eb35beefe24018ea8488263",
+    "qualification_scope_PRIVATE": "865aeda5a772c9a917370bacddfd84309ac51ac225cd52732e0ee0e2f56f3511",
+    "report": "f8666a93e241fa0f34f35e844022994595b63db2d20bed7debc054327381dad1"
+  },
+  "confirmed_preparation": [
+    "56sequence rows are same28 TRAIN people atz045 with28FLAIR/28T1; original28 sources/targets and exact old28/76/Dallas48 artifacts preserved. Existing technical/source qualification reused, not a new clinical or visual audit.",
+    "Original uniform task/Dallas slots8:40 are frozen:18sequence/14Dallas. Existing complete logical-block helper is reused for each pool then sequence-filtered with2prior draws skipped. Old control restores source occurrences, explicitly a new-pool task-mask adaptation rather than uninterrupted oldrow RNG.",
+    "Full32 candidate exposure is18sequence(8FLAIR/10T1),16unique images/12people/4withbothmodalities/2repeats; no forced pair quota or all56exposure claim.",
+    "Finite future continuation from fullAdam60/global129 is32attempts/8acceptedupdates/70784chargedtokens/3000s operation-start deadline with60s nextgroup reserve; exact approval/prepared budget equality, persistent deadline and partial-debt handling retained.",
+    "Actual input213/405 check precedes generation; authenticated expected TRAIN image SHA membership/Dallas inventory checks prevent freshbytes from becoming expected truth. Runtime/source closure and original certified cache identity are separately bound; fullweights verification remains deferred to authorized execute.",
+    "F32 functional generation/scorer/GSPO code CPU implemented. Installed EOS/detokenizer/chunking/lookahead captured; no fallback to oldBF16. Exception cleanup preserves first STOP and releases unwound frame references.",
+    "Separate F32 matched evaluator now has a runnable guarded future entry with40unique real inputs and8reusealiases, strict greedy plus mean/sum/first canonical-label scores, common-prefix and independent-oracle .002 gates, exact first-budget terminal spec/schedule/config binding and fullstate/release audits.",
+    "Saved metric primitives preserve INVALID denominators, correct classrecalls/confusions, oriented paired margins, descriptive2000person/cycle bootstrap and jointGO. Saved-only CLI requires independently hash-bound actual exit0/closedlog/output/scope/state/release and the unchanged strict parser before arithmetic.",
+    "Readout-loop wall seconds explicitly exclude model loading, parameter/Adam audits and release; external process witness is required for end-to-end elapsed time.",
+    "Final report distinguishes metadata label eligibility from anatomical/clinical reasoning, patientlookup contingency from causal shortcut proof, and candidate support from actual finite exposure. All actual current work remainsCPU/NOT_RUN."
+  ],
+  "cross_model_review": "NOT_VERIFIED",
+  "focused_tests_source_sha256": {
+    "tests/test_paired_z045_continuation_v1.py": "227ffbffd9bc8691313d7270e262394364157ee3318ac3b1cccbf651104827fe",
+    "tests/test_paired_z045_data_v1.py": "804a0ae280790e2a58e7c323013f3cf1a7c8d2bbae25dc22d550d44275af23d1",
+    "tests/test_paired_z045_evaluation_v1.py": "288075b2e0b4ded49167c6a187db723bc9313cfae8e9f0a27560a4440eb16520",
+    "tests/test_paired_z045_f32_backend_v1.py": "ecfc3e4a6a81b51428f7c3d4566f047f3892afd29cf2016a851e55836a440382",
+    "tests/test_paired_z045_f32_qualification_v1.py": "3c56bce0ab08a7829f60ce39ed55ad5cbb0cdaa8e3a1d41ab1d9defc1c62d8a9",
+    "tests/test_paired_z045_matched_f32_eval_v1.py": "8ba53289d813ed914c0e5e88e3606f3c1969ecb5cc9fe47809f4a50a7b53d1e0",
+    "tests/test_paired_z045_saved_evaluation_cli_v1.py": "0e73e1a0c5317c74accdc7a4999e6cb9a7ccf9400b301dfed88bbbd506192e28",
+    "tests/test_paired_z045_saved_evaluation_v1.py": "a29e0f5e42f4f7b495afe8cbcdbddaa0d1de9e461c2141861661463f28c77175"
+  },
+  "holdout_status": "NOT_ESTABLISHED",
+  "independent_CPU_evidence": [
+    {
+      "passed": 12,
+      "seconds": 0.04,
+      "suite": "paired_z045_data"
+    },
+    {
+      "note": "Initial protocol review; subsequent finite-cost metadata/source delta inspected.",
+      "passed": 8,
+      "seconds": 0.12,
+      "suite": "evaluation protocol/alias fixtures"
+    },
+    {
+      "note": "Before final expected-image metadata guard; sameguard reviewed separately.",
+      "passed": 31,
+      "seconds": 0.35,
+      "suite": "F32backend/continuation/qualification targeted tests"
+    },
+    {
+      "passed": 1,
+      "seconds": 0.09,
+      "suite": "final expected-image mutation regression"
+    },
+    {
+      "note": "Final later delta only adds truthful wall_seconds_scope; no arithmetic change.",
+      "passed": 12,
+      "seconds": 0.48,
+      "suite": "saved metric arithmetic/privacy fixtures"
+    },
+    {
+      "passed": 10,
+      "seconds": 0.02,
+      "suite": "matched evaluator initial corrected primitives"
+    },
+    {
+      "composition": "1selector regression +9savedCLI authentication fixtures; no model or real outcomes.",
+      "passed": 10,
+      "seconds": 0.15,
+      "suite": "exact terminal selector new regression plus final saved CLI"
+    }
+  ],
+  "matched_evaluation_preparation": {
+    "budget": {
+      "candidate_score_API_calls": 240,
+      "checkpoints": 2,
+      "generation_language_model_calls": 20640,
+      "greedy_generations": 80,
+      "maximum_generated_tokens": 20480,
+      "maximum_seconds": 2400,
+      "optimizer_updates": 0,
+      "simultaneous_image_graphs": 1,
+      "simultaneous_models": 1,
+      "teacherforced_input_positions": 102000,
+      "vision_embedding_calls": 320
+    },
+    "canonical_scope_sha256": "a8240ef5b82c14a5dddb30087272ee00b82361c57b75e5edf70cf16f68b3d288",
+    "exact_terminal": "PENDING",
+    "implementation": "CPU_IMPLEMENTED_NOT_NATIVE_QUALIFIED",
+    "native_execution_authorized": false,
+    "numeric_contract_file": "PENDING",
+    "scope_file_sha256": "1e84274151f0d0235fe729e2bdef4e35e1d0c7918c3b74c1be5ea2707000ebca"
+  },
+  "mission_alignment": "Prepare the requested same28 TRAIN people z045 paired-modality source-pool intervention under preserved Vero GSPO profile and finite budget; no new experiment or accuracy claim.",
+  "native_qualification": "NOT_RUN",
+  "preparation_delivery": "CPU_IMPLEMENTED_AND_REVIEWED_WITH_PENDING_NATIVE_PREREQUISITES",
+  "privacy": {
+    "only_aggregate_counts_and_code_or_artifact_digests_exported": true,
+    "patient_ids_paths_truth_rows_response_text_token_arrays_or_image_pixels_in_this_public_proof": false,
+    "private_artifacts_remain_ignored": true
+  },
+  "private_reproducer_sha256": "c73062748a5f3672c011dc549f0565b08512380daf398cb9ad2cdbcab4072925",
+  "readiness_for_training": "NO",
+  "readonly_qualification_engineering_review": {
+    "actual_numerical_PASS": false,
+    "budget": {
+      "backward_calls": 8,
+      "full_scorer_calls": 16,
+      "generated_response_tokens": 2048,
+      "groups": 2,
+      "language_model_calls": 2080,
+      "maximum_sampler_draws_including_installed_AR_lookahead": 2056,
+      "maximum_seconds": 1200,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "responses_per_group": 4,
+      "simultaneous_image_autograd_graphs": 1,
+      "vision_embedding_calls": 24
+    },
+    "canonical_scope_sha256": "d218806a395680f9e11b9acfc09b66353d570323b3db1c69bc782924af03900a",
+    "human_execution_authorization": false,
+    "only_future_scope": true,
+    "review_file_sha256": "fbf67a72c286f59512dbb7c954c1f64151fbe98e5eb35beefe24018ea8488263",
+    "scope_unchanged_by_new_evaluator": true,
+    "training_authorized": false,
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "remaining_gates": [
+    "Fresh explicit human authorization for exact reviewed zero-update qualification, unchanged source/input scope and fresh resource/global-lock checks. Static review is not permission to execute in the current CPU-only phase.",
+    "Actual fullF32 onpolicy generated-ID/EOS selected+F64 vocabulary/scorer/originalGSPO qualification and independent saved-numerics verification; inactive fixed groups remainPARTIAL without reselection or invented advantages.",
+    "Matched F32 evaluator native numerical qualification, actual exact terminal binding and separate exact execution scope review; CPU implementation does not establish native correctness or actual metrics.",
+    "New explicit finite training authorization and exact scope review only after prerequisites truly pass. No automatic updates, retry, expansion or training from a JSON readiness flag.",
+    "Independent-patient holdout remainsNOT_ESTABLISHED: no comprehensive history-exclusion union or newly qualified paired payloads. Repeated internaldev remains engineering-only."
+  ],
+  "review_scope": "CPU preparation, exact metadata/source bindings, synthetic regression fixtures, final scientific wording and aggregate privacy; no native numerical acceptance.",
+  "reviewed_sources_sha256": {
+    "scripts/analyze_paired_z045_saved_v1.py": "c043f412c736bb5e01289c9ad2f34beb64fa28a7b7c0e980f6f9297c6176d320",
+    "scripts/build_paired_z045_data_v1.py": "16cf5b0c46b09a3f7cad5752b0783ba5e25ccff4826eff8603d1fd1fc58a679b",
+    "scripts/prepare_paired_z045_evaluation_v1.py": "982f494a1eb0e6821f64eaaeee77a7b43d83fdbbde3c166ca063c6a6c695818e",
+    "scripts/prepare_paired_z045_experiment_v1.py": "0537373485828aa0b7124410f08ff0894cd4a5ca3fd1a86d7f4cc51e723a2d1c",
+    "src/mri_rl/paired_z045_continuation_driver_v1.py": "18131e9d1f1a70c2f76f75b5ca7d7ff6de205cc1587fed413c4e92af88ce5f00",
+    "src/mri_rl/paired_z045_continuation_entry_v1.py": "98e05a4c8b2bdee6818d3fbbd46886b2c9fd59b5b610cad33221b614a41a78ed",
+    "src/mri_rl/paired_z045_data_v1.py": "681d322f9f843c5e0a1217a709a417946b8b1f3e9fa76907a304afa7437dabbe",
+    "src/mri_rl/paired_z045_evaluation_v1.py": "7f874193cb172e2890fc29a80139c3e0cf284607cb3bc9e9d4ed6dc2343179d7",
+    "src/mri_rl/paired_z045_f32_backend_v1.py": "1b7e75cac1f30b3f888cfc6dcad5235f6614a81247d9edebca464d4b65e5df07",
+    "src/mri_rl/paired_z045_f32_qualification_v1.py": "8ee603fd3624c6d9d9fcbd9dc89ad28688250d0656fa2867ad837dd7663943e7",
+    "src/mri_rl/paired_z045_matched_f32_eval_v1.py": "1174a904fd2440f6cc919a0048ccbec21824bba80c451e5406ce61c321a85626",
+    "src/mri_rl/paired_z045_saved_evaluation_v1.py": "9f156de7f543bbecbf8cd25d66c977c9ffa1333b429e5af1e808b969260feff0",
+    "src/mri_rl/vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8"
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-z045-preparation-delivery-independent-review-v1",
+  "scientific_limitations": [
+    "No causal paired-data benefit can be isolated from extraoptimization by a single parent/terminal pilot without an additional matchedoldpoolcontrol; that extra run is not authorized.",
+    "No new accuracy result, scientific secondtask qualification, clinical validity, site-invariant discrimination or independentpatient generalization is claimed.",
+    "Historical timing/update acceptance is not a newF32 latency or success guarantee; operation-start deadlines can be exceeded by the last atomic unit/release.",
+    "Only isolated Codex review occurred; no fabricated Claude or model-family-independent verification."
+  ],
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

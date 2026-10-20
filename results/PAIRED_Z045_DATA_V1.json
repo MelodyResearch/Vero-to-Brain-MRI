@@ -1,0 +1,252 @@
+{
+  "Dallas_original_bytes_and_objects_unchanged": true,
+  "Dallas_rows": 48,
+  "artifact_sha256": {
+    "Dallas48_UNCHANGED_PRIVATE.verl.jsonl": "6adf06674050e395b704e4b76103f067166b905016920195603e271690de4f14",
+    "binding_PRIVATE.json": "527196310047649f2439634a9f79564edf6e2cd147b90d815c2b88b3d0d487f9",
+    "candidate_common_stage_next32_PRIVATE.json": "c08e64677f01482f59376127faba78998db96d48d8b2fae28cd1853f3e59a484",
+    "candidate_common_stage_next32_input_costs_PRIVATE.json": "d750d1140c2f180e736098190d1309ab7a821d3915b55112fa5d0103091853f1",
+    "mixed104_PRIVATE.verl.jsonl": "5187823432d452d85a60b41a834cc9babbc71f78bdfb3dbe366e36ac849e1844",
+    "original28_sequence_PRIVATE.verl.jsonl": "87316f84049ca5486e0cdcc8dca68eeab272e3ce5f3d2498a17879e75e0ae6d2",
+    "original76_UNCHANGED_PRIVATE.verl.jsonl": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+    "paired_z045_sequence56_PRIVATE.verl.jsonl": "c257ef5481c0e97a907fdc75bfcba6345744bd3769b3e6391f0563147a17a770",
+    "reference_common_stage_next32_PRIVATE.json": "44a874e50d45ee5f6007b9ee3800d8d7e05dcf092fa4fa5adade4fedfd8ba17d",
+    "reference_common_stage_next32_input_costs_PRIVATE.json": "213d4ea923b07a515640cdbfeb88d929fd47a8f3846ba49bb5a897d0abd4f70f",
+    "reference_original_next32_PRIVATE.json": "bf59197b33f6f5390269dc3c045d8f259b88e0a41258613e4e983d683fd02c2f",
+    "reference_original_next32_input_costs_PRIVATE.json": "ba6a35a725709bc47a3b169aa765946e5ff2d18509e309d8fc523f3ccbaddd57",
+    "source_and_pair_membership_PRIVATE.json": "bf92f7e560ce3ed3b3629427f590d8c6f6cf4c4c3bae6ab04dc14af42ad4ce99",
+    "token_counts_SAFE.json": "67744c7d323f587fa30a0dcffbc38cb7bd7c9f684090de03eda83d20f9d615df"
+  },
+  "code_sha256": {
+    "builder": "16cf5b0c46b09a3f7cad5752b0783ba5e25ccff4826eff8603d1fd1fc58a679b",
+    "existing_category_sampler": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3",
+    "helper": "681d322f9f843c5e0a1217a709a417946b8b1f3e9fa76907a304afa7437dabbe",
+    "tests": "804a0ae280790e2a58e7c323013f3cf1a7c8d2bbae25dc22d550d44275af23d1"
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED",
+  "expanded_input_costs": {
+    "Dallas": 405,
+    "full_new_expanded_token_ID_equality": "NOT_RUN",
+    "new_native_measurements": 0,
+    "sequence": 213,
+    "status": "DERIVED_FROM_PINNED_NATIVE_BASELINE_SAME_DIMENSIONS_AND_TEXT_CONDITIONAL_ON_UNCHANGED_PROCESSOR"
+  },
+  "level": 45,
+  "mission_alignment": {
+    "falsifier": "Source/index/modality/pixel SHA/pair linkage/task slots/Dallas bytes/cursor mismatch aborts.",
+    "isolation": "Same28TRAINpeople,samez045,unchangedquestion/targets/Dallas/taskslots/reward;onlysequencepool28to56.",
+    "link": "Prepare a single source-pool intervention for the existing Vero-style sequence/Dallas training comparison.",
+    "provenance": "Existing pinned TRAIN acquisition/pixel/visual qualification receipts;no new clinical judgments.",
+    "resources_decision": "Single-thread CPU preparation;no native/model/update;separate review and future numerical gates required.",
+    "shortcut": "Both modalities per patient remove perfect patient-label lookup in this pool;site/protocol/normalization shortcuts remain unexcluded."
+  },
+  "mixed_pool_rows": 104,
+  "native_execution": "NOT_RUN",
+  "new_independent_validation": "ROOT_SEPARATE_PROTOCOL_NOT_ESTABLISHED_BY_THIS_BUILDER",
+  "new_sequence_pool": {
+    "H_modality_given_patient_bits": 1.0,
+    "interpretation": "TRAIN contingency only;not a fitted model or generalization score",
+    "modality_rows": {
+      "FLAIR": 28,
+      "contrast-enhanced T1": 28
+    },
+    "patient_only_lookup_resubstitution_correct": 28,
+    "patient_only_lookup_resubstitution_fraction": 0.5,
+    "people": 28,
+    "people_both_modalities": 28,
+    "rows": 56,
+    "rows_per_person_counts": {
+      "2": 28
+    }
+  },
+  "old_sequence_pool": {
+    "H_modality_given_patient_bits": 0.0,
+    "interpretation": "TRAIN contingency only;not a fitted model or generalization score",
+    "modality_rows": {
+      "FLAIR": 14,
+      "contrast-enhanced T1": 14
+    },
+    "patient_only_lookup_resubstitution_correct": 28,
+    "patient_only_lookup_resubstitution_fraction": 1.0,
+    "people": 28,
+    "people_both_modalities": 0,
+    "rows": 28,
+    "rows_per_person_counts": {
+      "1": 28
+    }
+  },
+  "original28_and_original76_preserved_exactly": true,
+  "other_levels_in_candidate": 0,
+  "prompt_leakage": {
+    "PNG_metadata_keys": 0,
+    "hidden_targets_remain_PRIVATE": true,
+    "native_filename_text_exclusion": "Existing native source audit only;no new native token-path execution claimed.",
+    "opaque_semantic_filename_leaks": 0,
+    "question_variants": 1
+  },
+  "read_scope": {
+    "MLX_imports": 0,
+    "PNG_headers_read": 56,
+    "PNG_pixels_decoded": 0,
+    "TRAIN_source_volumes_or_masks_decoded": 0,
+    "classifier_fits": 0,
+    "dev_final100_or_native_model_outputs_read": 0,
+    "models_loaded": 0,
+    "new_blind_judgments": 0,
+    "new_renders": 0,
+    "optimizer_updates": 0,
+    "preserved_pre_review_builds": 1,
+    "prior_mixed_audit_bytes_read": true,
+    "prior_retrieval_outcomes_not_used": true,
+    "session_total_PNG_header_reads_including_preview": 112,
+    "session_unique_PNGs": 56
+  },
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "sampling": {
+    "candidate_new56_exposure": {
+      "maximum_repeats_per_sequence_row": 2,
+      "people_both_modalities_observed": 4,
+      "people_one_modality_observed": 8,
+      "repeated_sequence_occurrences": 2,
+      "sequence_label_occurrences": {
+        "FLAIR": 8,
+        "contrast-enhanced T1": 10
+      },
+      "sequence_occurrences": 18,
+      "sequence_people_observed": 12,
+      "task_occurrences": {
+        "mri_sequence": 18,
+        "mri_visit_correspondence": 14
+      },
+      "unique_sequence_rows": 16
+    },
+    "category_slot_counts": {
+      "mri_sequence": 18,
+      "mri_visit_correspondence": 14
+    },
+    "common_stage_old28_exposure": {
+      "maximum_repeats_per_sequence_row": 2,
+      "people_both_modalities_observed": 0,
+      "people_one_modality_observed": 16,
+      "repeated_sequence_occurrences": 2,
+      "sequence_label_occurrences": {
+        "FLAIR": 8,
+        "contrast-enhanced T1": 10
+      },
+      "sequence_occurrences": 18,
+      "sequence_people_observed": 16,
+      "task_occurrences": {
+        "mri_sequence": 18,
+        "mri_visit_correspondence": 14
+      },
+      "unique_sequence_rows": 16
+    },
+    "control_stage_common_to_old_and_new": true,
+    "forced_pair_adjacency": false,
+    "full_existing_sampler_block_shuffle_reused": true,
+    "group_size": 4,
+    "historical_completed_sequence_slots": 2,
+    "historical_completed_slots": 8,
+    "historical_reference_exposure": {
+      "maximum_repeats_per_sequence_row": 2,
+      "people_both_modalities_observed": 0,
+      "people_one_modality_observed": 16,
+      "repeated_sequence_occurrences": 2,
+      "sequence_label_occurrences": {
+        "FLAIR": 8,
+        "contrast-enhanced T1": 10
+      },
+      "sequence_occurrences": 18,
+      "sequence_people_observed": 16,
+      "task_occurrences": {
+        "mri_sequence": 18,
+        "mri_visit_correspondence": 14
+      },
+      "unique_sequence_rows": 16
+    },
+    "logical_category_weights": {
+      "mri_sequence": 0.5,
+      "mri_visit_correspondence": 0.5
+    },
+    "matched_token_charge_cap": 70784,
+    "max_attempted_groups": 32,
+    "max_tokens": 256,
+    "new_dataset_row_stage_not_exact_historical_row_RNG_resume": true,
+    "new_pool_proportions_not_used_as_task_weights": true,
+    "new_standalone_sequence_RNG_or_sampler_implementation": false,
+    "next_original_slot_range": [
+      8,
+      40
+    ],
+    "old28_control_restores_historical_source_occurrences_exactly_except_top_id": true,
+    "original_uniform_seed": 13,
+    "reference_first8_matches_actual_Adam60": true,
+    "sequence_stage": {
+      "law": "Existing build_category_schedule198:128 draws/category,exhaustion reshuffle,whole256-block shuffle;filter sequence then skip prior2;fixed historical task/Dallas mask",
+      "name": "existing-full-block-category-sampler-v1",
+      "seed": 13,
+      "sequence_draw_offset": 2
+    }
+  },
+  "schema": "paired-z045-data-v1",
+  "scientific_scope": "Acquisition-modality recognition qualified by source metadata;no clinical task or patient-held-out/site generalization result.",
+  "site_scanner_invariant_generalization": "NOT_ESTABLISHED",
+  "source_acquisition_qualification": {
+    "RGB_header_dimensions": [
+      364,
+      436
+    ],
+    "acquisition_endpoint_is_not_anatomical_grounding": true,
+    "basis": "OfficialREADME post-Gd run02_T1w mapping;FLAIR collection/sidecars;sourceNIfTI/annex/render SHA and paired geometry from existing frozen audit.",
+    "clinical_diagnoses_created": 0,
+    "clinical_expert_gate_required_for_acquisition_identity": false,
+    "current_acquisition_sidecar_SHA_matches": 56,
+    "current_official_annex_identity_matches_saved_SHA": 56,
+    "nonexpert_z045_coverage_adequate_pairs": 28,
+    "original_and_opaque_PNG_SHA_matches": 56,
+    "paired_opposite_modality_groups": 28,
+    "paired_scanner_model_field_equal": 28,
+    "paired_shape_affine_orientation_qualified": 28,
+    "people": 28,
+    "rows": 56,
+    "source_and_render_pixels_recomputed": false,
+    "source_volumes_previously_verified": 56
+  },
+  "source_sha256": {
+    "Dallas48": "6adf06674050e395b704e4b76103f067166b905016920195603e271690de4f14",
+    "blind_key": "b72735cb28b26c065d33bc5717b8ecfd1213f5b2e3f24330a0029baa840bc0b0",
+    "full_MRI_train": "0efb588b328e3d9af2a339d9237836357a5baff5d9db8b376dc716de3d1f10e3",
+    "native_token_measurements": "0839e1a9c10e3a7d2b7d45d8f7bceeda46cdcb94146adb3b2233abc82ebec5e9",
+    "original76": "455efc650444f2820f26832bc29b042ce2ec3babc0c9fe745491705a3fdf7e2c",
+    "parent_uniform_receipt": "3c2567723e7bc90a65464c8c3645f49ad91c38a0ad886961c508bc1f8a0e3879",
+    "reviewed168": "761c1618a455031098eda68c3080808d9d610beb63293bb50af597eea3caaf9b",
+    "source_README": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+    "source_audit": "eca155b538b5f83fdcc6b6242f113aebdbfac9210511b68f4a6c01bc53571390"
+  },
+  "source_sites_aggregate_rows": {
+    "BA": 2,
+    "BO": 12,
+    "FO": 6,
+    "JS": 6,
+    "KA": 12,
+    "ME": 6,
+    "NSK": 8,
+    "TO": 4
+  },
+  "status": "TESTED_CPU_PREPARED_NOT_TRAINED",
+  "token_accounting": {
+    "fixed_canonical_target_tokens": {
+      "FLAIR": 16,
+      "contrast-enhanced T1": 19
+    },
+    "label_tokens": {
+      "FLAIR": 2,
+      "contrast-enhanced T1": 5
+    },
+    "question_tokens": 27,
+    "scope": "Actual CPU tokenizer text counts;expanded input costs separately derived from pinned native baseline and identical dimensions/question.",
+    "tokenizer_sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7"
+  },
+  "training_authorized": false
+}
