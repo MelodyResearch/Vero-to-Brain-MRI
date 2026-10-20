@@ -22,7 +22,8 @@ require=core.require
 OWN_SOURCES=('src/mri_rl/shared_rollout_gspo_core_v1.py','src/mri_rl/shared_rollout_gspo_driver_v1.py','src/mri_rl/shared_rollout_gspo_backend_v1.py',
              'src/mri_rl/shared_rollout_gspo_entry_v1.py','src/mri_rl/shared_rollout_gspo_eval_v1.py','scripts/run_shared_rollout_gspo_v1.py',
              'scripts/run_shared_rollout_gspo_eval_v1.py','src/mri_rl/paired_z045_evaluation_v1.py','src/mri_rl/answer_likelihood.py','src/mri_rl/vero_mri_reward.py',
-             'src/mri_rl/paired_prompt_groups_v1.py','src/mri_rl/class_margin_aux_v2.py','src/mri_rl/paired_z045_matched_f32_eval_v1.py')
+             'src/mri_rl/paired_prompt_groups_v1.py','src/mri_rl/class_margin_aux_v2.py','src/mri_rl/paired_z045_matched_f32_eval_v1.py',
+             'src/mri_rl/shared_rollout_qualification_power_v1.py')
 
 
 def _json(path):return json.loads(Path(path).read_text())
@@ -55,6 +56,8 @@ def prepare(spec,*,verify_images=False):
     sources=inherited.source_closure(runtime)
     for name in OWN_SOURCES:sources[str(ROOT/name)]=inherited.digest(ROOT/name)
     output=Path(spec['output']).resolve();require(output.is_relative_to(ROOT/'local_data/shared_rollout_gspo'),'Fresh isolated private output required')
+    battery=spec.get('battery_readonly_exception',False)
+    require(type(battery) is bool,'Explicit boolean battery exception required')
     input_sha=core.identity({'schedule_sha256':inherited.scope_digest(schedule),'expected_image_sha256':expected,'parent_receipt_sha256':parent['receipt_sha256'],
         'calibration_sha256':original['calibration_sha256'],'immutable_spec_sha256':immutable_spec_binding(spec),'runtime_spec_sha256':inherited.digest(spec['runtime_spec'])})
     prepared={'schema':'shared-rollout-gspo-preparation-v1','implementation_status':core.STATUS,'experiment':core.EXPERIMENT,'execution_subtype':core.EXECUTION_SUBTYPE,
@@ -63,6 +66,7 @@ def prepare(spec,*,verify_images=False):
         'budgets':{mode:core.derive_budget(lengths,mode) for mode in core.MODES},'source_sha256':sources,'input_sha256':input_sha,
         'derived_cache':inherited.cache_metadata(runtime)['expected_binding'],'output':str(output),
         'invocation':{'output':str(output),'adopt_qualification_run':spec.get('adopt_qualification_run'),'resume':bool(spec.get('resume')),
+                      'battery_readonly_exception':battery,
                       'binding':'PER-INVOCATION metadata: bound by the launch scope digest, deliberately EXCLUDED from the immutable input_sha256'},
         'arm_definition':{'A':'F0F1F2F3 | T0T1T2T3','B':'F0F1T0T1 | F2F3T2T3','weight':'1/8 per gate-admitted response','gate':'inherited Adam60 valid-format-subset gate in both arms',
                           'updates':'at most one actual Adam update per arm from identical full parent state; no sequential stale second-group update; inactive arm = 0 updates, no resample'},
@@ -72,7 +76,7 @@ def prepare(spec,*,verify_images=False):
     return prepared
 
 
-PER_INVOCATION_KEYS=('output','resume','adopt_qualification_run')
+PER_INVOCATION_KEYS=('output','resume','adopt_qualification_run','battery_readonly_exception')
 
 
 def immutable_spec_binding(spec):
@@ -84,6 +88,7 @@ def immutable_spec_binding(spec):
 def launch_scope(prepared,mode):
     require(mode in core.MODES,'Unknown mode')
     require(mode=='train' or not prepared['invocation']['adopt_qualification_run'],'Qualification never adopts a bundle')
+    require(mode=='qualify' or not prepared['invocation'].get('battery_readonly_exception',False),'Battery exception cannot authorize training')
     return {'invocation':prepared['invocation'],'scope_kind':core.SCOPE_KINDS[mode],'experiment':core.EXPERIMENT,'execution_subtype':core.EXECUTION_SUBTYPE,'numerical_policy':core.POLICY,
             'budget':prepared['budgets'][mode],'source_sha256':prepared['source_sha256'],'input_sha256':prepared['input_sha256'],
             'preparation_sha256':core.identity(prepared),'output':prepared['output']}
@@ -146,7 +151,13 @@ def execute(mode,args):
     from mri_rl.experiment_contract import load_contract
     qualified=_json(args.qualification) if mode=='train' else None
     adopt={'run':spec['adopt_qualification_run'],'proof':qualified} if mode=='train' and spec.get('adopt_qualification_run') else None   # only after the fresh train authorization above
-    runtime=inputs(spec);out=Path(prepared['output']);gate=PacedGate(out.with_name(out.name+'_resources_PRIVATE.jsonl'));resident=[None]
+    runtime=inputs(spec);out=Path(prepared['output'])
+    if prepared['invocation'].get('battery_readonly_exception',False):
+        require(mode=='qualify','Battery exception is readonly qualification only')
+        from mri_rl.shared_rollout_qualification_power_v1 import QualificationBatteryGate
+        gate=QualificationBatteryGate(out.with_name(out.name+'_resources_PRIVATE.jsonl'))
+    else:gate=PacedGate(out.with_name(out.name+'_resources_PRIVATE.jsonl'))
+    resident=[None]
     def check_sources():
         for path,expected in prepared['source_sha256'].items():require(inherited.digest(path)==expected,'Reviewed source changed: '+path)
     def before(name):
@@ -193,7 +204,7 @@ def main():
         require(args.run_directory and args.evidence_directory and args.output and not args.output.exists(),'Completed qualification run directory, its release-evidence directory and fresh output required')
         core.publish_once(args.output,qualification_proof(args.run_directory,args.evidence_directory,prepared));print(json.dumps({'status':'QUALIFICATION_PROOF_WRITTEN_FOR_INDEPENDENT_REVIEW'}));return
     require(args.output and not args.output.exists() and args.output.resolve().is_relative_to(ROOT/'local_data'),'Fresh private CPU preparation output under ignored local_data required')
-    modes=('train',) if prepared['invocation']['adopt_qualification_run'] else core.MODES
+    modes=('train',) if prepared['invocation']['adopt_qualification_run'] else (('qualify',) if prepared['invocation'].get('battery_readonly_exception',False) else core.MODES)
     scopes={mode:launch_scope(prepared,mode) for mode in modes}
     args.output.parent.mkdir(parents=True,exist_ok=True);core.publish_once(args.output,prepared)
     for mode,scope in scopes.items():core.publish_once(args.output.with_name(args.output.stem+f'_{mode}_scope.json'),scope)
