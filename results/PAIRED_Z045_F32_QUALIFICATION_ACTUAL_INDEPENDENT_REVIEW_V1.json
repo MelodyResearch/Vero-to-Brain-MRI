@@ -1,0 +1,192 @@
+{
+  "actual": {
+    "UTC_start_to_finish_seconds": 307.590905,
+    "backward_calls": 0,
+    "full_scorer_API_calls": 8,
+    "generation_LM_API_calls": 232,
+    "groups": 2,
+    "model_loads": 1,
+    "native_exit_code": 0,
+    "native_external_elapsed_seconds": 307.5901584579842,
+    "no_retry": true,
+    "optimizer_updates": 0,
+    "responses": 8,
+    "returned_response_tokens": 216,
+    "sampler_draws_including_unreturned_lookahead": 224,
+    "total_LM_API_calls": 240,
+    "vision_embedding_API_calls": 16
+  },
+  "bindings": {
+    "actual_exit_sha256": "05a3a012250ae63f48691e2d0cf995e6a1666df6164a46a45cb66c3d0d40e805",
+    "before_restore_integrity_sha256": "039d6d566832bb26d2a0301208e30e9bed7c3853a4fc92c51c9821319af2d44c",
+    "closed_stdout_sha256": "ec92eca62148aa82cf6bf53229e253ce83937eb9e5f13020ddbb0de0bf1eb20f",
+    "engineering_review_sha256": "fbf67a72c286f59512dbb7c954c1f64151fbe98e5eb35beefe24018ea8488263",
+    "human_authorization_sha256": "856b89232c18c890ccfe6cb5bade4dbf5f5c50d5b88323affa9a2f630bdc5ea5",
+    "independent_decoder_sha256": "4324dece864d6fd25a7f0fc66ea3c966682e595d20f7002226ef864ce607a339",
+    "independent_verifier_sha256": "2f2635a3c2196f94e6e3a0ee43f5e8ed3714d9a9c46f9f69050ae843976d81d2",
+    "native_complete_sha256": "ea8c354b99f17409e8c2fdeaa9f572f2188995159da02d26302c62029387d69d",
+    "native_loss_AST_sha256": "a9d80bac3b29a6d32df22c94aec44fcdaa7f4e00b2f214d1d15218da7bc8680d",
+    "private_detail_sha256": "d9fdeb9135d28e49862b12dda21ad80aea04e0b03b6c9d6b20d7f223815941fa",
+    "private_inventory_sha256": "7cb3cfc834cd52dc5cf30388df94e45be98435beae38168a28e1b5470f9407f7",
+    "release_sha256": "e4ab85550c97622b0e4156ead9eec8bb8b7da4cfd5e05df701ce24a8f619c9a6",
+    "resources_sha256": "0a337ceab52e96707be8345c61365c9d60a478ae57db37bb789f19548711ba1e",
+    "restored_state_sha256": "928b52e5227c1cf93b806ae898b8322b1c3aa198d76583169413ab10c5e279e4",
+    "scope_canonical_sha256": "d218806a395680f9e11b9acfc09b66353d570323b3db1c69bc782924af03900a",
+    "scope_file_sha256": "865aeda5a772c9a917370bacddfd84309ac51ac225cd52732e0ee0e2f56f3511"
+  },
+  "cross_model_family_review": "NOT_VERIFIED",
+  "evidence_tier": "B_READONLY_NATIVE_ACTUAL_CPU_VERIFIED",
+  "gradient_qualification": "PARTIAL_NOT_RUN_BOTH_ORIGINAL_GATES_INACTIVE",
+  "limitations": [
+    "The F64 comparison is independently recomputed from saved full-vocabulary F32 logits, including final EOS. Native centered MLX selected-logp agreement is authenticated from the recorded summary; its centered per-token vectors were not persisted, so no CPU bitwise MLX-kernel reproduction is claimed.",
+    "Both sampled groups had zero raw-correct responses and no valid-class accuracy variation. Sequence format-only reward variation and its nonzero advantages do not make the group informative. No fallback, reselection, backward or optimizer update occurred.",
+    "No GSPO gradient/own-old-current qualification was executed; numerical parity alone does not qualify training or establish matched F32 evaluation parity.",
+    "Saved source-bound fingerprints audit parameters/Adam/RNG; this CPU review does not load model weights or regenerate tensors. Pixel/grid fingerprints and native deterministic state assertions are receipt/source-bound, not independent pixel reconstruction.",
+    "One fixed sequence context and one fixed Dallas TRAIN context with four actual samples each do not establish all-context parity, MRI understanding, performance or clinical validity.",
+    "No final100 outcomes, new datasets, images decoded, model execution, gradients or optimizer updates were used by this independent review. Existing internal dev and independent holdout qualification remain separate.",
+    "1200 seconds is an operation-start deadline, not a hard wall guarantee. LM counters count API calls; internal decoder recomputation is not physical kernel-pass accounting."
+  ],
+  "mission_alignment": "Qualify the versioned F32 rollout/scorer path before any future GSPO continuation; no task/performance or training claim.",
+  "numerical_parity": "PASS_FOR_EIGHT_ACTUAL_SAVED_TRAIN_RESPONSES",
+  "overall_qualification": "PARTIAL_ACTUAL_GROUP_UNINFORMATIVE",
+  "resources": {
+    "HOLD_reasons": {
+      "insufficient_memory_headroom": 2,
+      "sustained_swap_growth": 9
+    },
+    "actions": {
+      "CONTINUE": 526,
+      "HOLD": 11
+    },
+    "observed_monotonic_span_seconds": 298.3845405410393,
+    "samples": 537,
+    "supervisor_levels": {
+      "NORMAL": 525,
+      "WARNING": 12
+    },
+    "telemetry": {
+      "available_gib": {
+        "max": 8.900436401367188,
+        "min": 6.42120361328125,
+        "missing": 0
+      },
+      "mlx_active_gib": {
+        "max": 5.081787931732833,
+        "min": 0.050770021975040436,
+        "missing": 3
+      },
+      "mlx_peak_gib": {
+        "max": 6.280780793167651,
+        "min": 0.050770021975040436,
+        "missing": 3
+      },
+      "other_heavy_processes": {
+        "max": 0,
+        "min": 0,
+        "missing": 0
+      },
+      "pressure_free_percent": {
+        "max": 54.0,
+        "min": 34.0,
+        "missing": 0
+      },
+      "process_rss_gib": {
+        "max": 5.953094482421875,
+        "min": 0.0428009033203125,
+        "missing": 0
+      },
+      "swap_used_gib": {
+        "max": 12.8291015625,
+        "min": 11.18939453125,
+        "missing": 0
+      },
+      "thermal_state": {
+        "missing": 0,
+        "observed_values": {
+          "SENSOR_UNAVAILABLE": 537
+        }
+      }
+    }
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-z045-F32-actual-independent-CPU-review-v1",
+  "source_binding": {
+    "metadata_input_files_verified": 13,
+    "source_closure_canonical_sha256": "217203fce854251cded525588854b8149b20b3456faab08a36ae37c2419c7d47",
+    "source_files_verified": 57
+  },
+  "state": {
+    "Adam_step_before_after": 60,
+    "deterministic_scorer_RNG_Adam_unchanged_native_witness": true,
+    "full_parameter_fingerprints_unchanged": 1942,
+    "initial_Python_MLX_RNG_and_Adam_restored": true,
+    "model_released": true,
+    "real_generation_RNG_advancement_recorded": true,
+    "release_active_MLX_bytes": 1100,
+    "saved_Adam_fingerprints_unchanged": true
+  },
+  "tasks": [
+    {
+      "F64_JS_max": 1.77055035213598e-10,
+      "F64_TV_max": 1.626512455753256e-05,
+      "F64_full_vocab_max_abs": 0.00016783670487541258,
+      "F64_selected_max_abs": 6.38044976035701e-05,
+      "active_original_gate": false,
+      "advantage_max": 0.49999500004999936,
+      "advantage_min": -1.4999850001499986,
+      "advantages_nonzero": 4,
+      "full_format_count": 3,
+      "gradient_qualification": "NOT_RUN_ORIGINAL_GATE_INACTIVE",
+      "independent_native_selected_vs_F64_TF_max_abs": 6.36716615503019e-05,
+      "input_tokens": 213,
+      "native_centered_selected_summary_max_abs": 6.341934204101562e-05,
+      "raw_correct_count": 0,
+      "response_length_max": 26,
+      "response_length_min": 15,
+      "responses": 4,
+      "returned_response_tokens": 86,
+      "scored_positions": 86,
+      "task": "mri_sequence",
+      "top1_equal_positions": 86,
+      "total_reward_max": 0.2194470404912912,
+      "total_reward_min": 0.01944704049129121,
+      "total_reward_sample_std": 0.1,
+      "unique_calibrated_accuracies": 1,
+      "unique_raw_accuracies": 1,
+      "unique_total_rewards": 2
+    },
+    {
+      "F64_JS_max": 2.260273140043616e-10,
+      "F64_TV_max": 1.9590490709118468e-05,
+      "F64_full_vocab_max_abs": 0.00026378755620726224,
+      "F64_selected_max_abs": 5.336777678621729e-05,
+      "active_original_gate": false,
+      "advantage_max": 0.0,
+      "advantage_min": 0.0,
+      "advantages_nonzero": 0,
+      "full_format_count": 4,
+      "gradient_qualification": "NOT_RUN_ORIGINAL_GATE_INACTIVE",
+      "independent_native_selected_vs_F64_TF_max_abs": 5.3582765684012656e-05,
+      "input_tokens": 405,
+      "native_centered_selected_summary_max_abs": 5.364418029785156e-05,
+      "raw_correct_count": 0,
+      "response_length_max": 69,
+      "response_length_min": 16,
+      "responses": 4,
+      "returned_response_tokens": 130,
+      "scored_positions": 130,
+      "task": "mri_visit_correspondence",
+      "top1_equal_positions": 130,
+      "total_reward_max": 0.4566570406596856,
+      "total_reward_min": 0.4566570406596856,
+      "total_reward_sample_std": 0.0,
+      "unique_calibrated_accuracies": 1,
+      "unique_raw_accuracies": 1,
+      "unique_total_rewards": 1
+    }
+  ],
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

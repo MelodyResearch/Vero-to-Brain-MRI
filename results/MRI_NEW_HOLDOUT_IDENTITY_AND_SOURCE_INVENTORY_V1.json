@@ -1,0 +1,90 @@
+{
+  "MRI_pixels_decoded": 0,
+  "builder_sha256": "8e6cac7b1a1ac319085c0113288894d160273c1c491847ab794330650589f5e3",
+  "excluded_unique_people": 54,
+  "final_registry_use": "Patient identity projection for exclusion only; no outcomes/task-label selection.",
+  "global_cross_source_identity": "NOT_VERIFIED",
+  "helper_sha256": "d52489ef10074d831b606d8f0096a819e0d424e9bba632b4404a06565b6a8347",
+  "historical_exclusion_scope": "Explicit original partition/TRAIN/dev/used final identity registries/feature-probe input catalogs/review candidates plus conservative local raw directories; prospective cross-source lineage and unseen external exposures not certified.",
+  "metadata_people": 363,
+  "missing_catalog_inputs": [],
+  "new_holdout_qualified": false,
+  "new_model_loads": 0,
+  "new_patients_selected": 0,
+  "old_final100_outputs_or_accuracy_accessed": false,
+  "optimizer_updates": 0,
+  "participants_sha256": "54d0ebf35a7e54a1e8e88d31d04fdfa864803ecd3137caf4a3c7dca56cad8fcd",
+  "private_artifact_sha256": {
+    "historical_identity_exclusion_PRIVATE.json": "6946aff5c4f40faceebc18ea8269e0599c1465e7e2f5d13c3208dfd36698492b",
+    "remaining_source_availability_PRIVATE.json": "181cf17c09263352b098466e10f0f2ca95f148abeba9fe418799fa3cf35f472e"
+  },
+  "prospective16_two_per_each8site_metadata_feasible": false,
+  "remaining_metadata_people": 309,
+  "remaining_requirements": [
+    "Resolve missing catalogs if any and certify closed historical exposure union, including external/manual exposures.",
+    "Freeze feasible site availability rule before selecting any cohort or inspecting outputs.",
+    "Retrieve real paired payloads and qualify acquisition metadata/geometry/rendering/labels; pointers or gzip headers alone are not qualification.",
+    "Deduplicate source lineage and predeclare independent evaluation before model selection."
+  ],
+  "schema": "MRI-new-holdout-identity-and-source-inventory-v1",
+  "sites": {
+    "BA": {
+      "all_metadata_people": 3,
+      "excluded_people": 3
+    },
+    "BO": {
+      "all_metadata_people": 171,
+      "excluded_people": 9,
+      "remaining_both_local_gzip_headers": 0,
+      "remaining_both_sidecars": 162,
+      "remaining_metadata_people": 162
+    },
+    "FO": {
+      "all_metadata_people": 8,
+      "excluded_people": 7,
+      "remaining_both_local_gzip_headers": 0,
+      "remaining_both_sidecars": 1,
+      "remaining_metadata_people": 1
+    },
+    "JS": {
+      "all_metadata_people": 11,
+      "excluded_people": 7,
+      "remaining_both_local_gzip_headers": 0,
+      "remaining_both_sidecars": 4,
+      "remaining_metadata_people": 4
+    },
+    "KA": {
+      "all_metadata_people": 110,
+      "excluded_people": 9,
+      "remaining_both_local_gzip_headers": 0,
+      "remaining_both_sidecars": 101,
+      "remaining_metadata_people": 101
+    },
+    "ME": {
+      "all_metadata_people": 7,
+      "excluded_people": 6,
+      "remaining_both_local_gzip_headers": 0,
+      "remaining_both_sidecars": 1,
+      "remaining_metadata_people": 1
+    },
+    "NSK": {
+      "all_metadata_people": 39,
+      "excluded_people": 7,
+      "remaining_both_local_gzip_headers": 0,
+      "remaining_both_sidecars": 32,
+      "remaining_metadata_people": 32
+    },
+    "TO": {
+      "all_metadata_people": 14,
+      "excluded_people": 6,
+      "remaining_both_local_gzip_headers": 0,
+      "remaining_both_sidecars": 8,
+      "remaining_metadata_people": 8
+    }
+  },
+  "source_files_examined": 23,
+  "source_namespace": "OpenNeuro_ds007045",
+  "source_payloads_downloaded": 0,
+  "source_readme_sha256": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+  "status": "METADATA_INVENTORY_COMPLETE_HOLDOUT_NOT_ESTABLISHED"
+}

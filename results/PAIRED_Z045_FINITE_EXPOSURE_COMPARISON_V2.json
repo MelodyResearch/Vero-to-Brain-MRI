@@ -1,0 +1,351 @@
+{
+  "causal_limit": "Without matched old-pool continuation at identical actual budget, parent/child only measures local change; pairing causality not identified.",
+  "evidence_tier": "OBSERVED_CPU_SCHEDULE_ARITHMETIC_NOT_LEARNING",
+  "final100_outcomes_read": false,
+  "forced32_prefix_exposure": {
+    "12": {
+      "maximum_repeats_per_sequence_row": 1,
+      "people_both_modalities_observed": 3,
+      "people_one_modality_observed": 1,
+      "repeated_sequence_occurrences": 0,
+      "sequence_label_occurrences": {
+        "FLAIR": 3,
+        "contrast-enhanced T1": 4
+      },
+      "sequence_occurrences": 7,
+      "sequence_people_observed": 4,
+      "task_occurrences": {
+        "mri_sequence": 7,
+        "mri_visit_correspondence": 5
+      },
+      "unique_sequence_rows": 7
+    },
+    "16": {
+      "maximum_repeats_per_sequence_row": 1,
+      "people_both_modalities_observed": 4,
+      "people_one_modality_observed": 0,
+      "repeated_sequence_occurrences": 0,
+      "sequence_label_occurrences": {
+        "FLAIR": 4,
+        "contrast-enhanced T1": 4
+      },
+      "sequence_occurrences": 8,
+      "sequence_people_observed": 4,
+      "task_occurrences": {
+        "mri_sequence": 8,
+        "mri_visit_correspondence": 8
+      },
+      "unique_sequence_rows": 8
+    },
+    "20": {
+      "maximum_repeats_per_sequence_row": 1,
+      "people_both_modalities_observed": 5,
+      "people_one_modality_observed": 0,
+      "repeated_sequence_occurrences": 0,
+      "sequence_label_occurrences": {
+        "FLAIR": 5,
+        "contrast-enhanced T1": 5
+      },
+      "sequence_occurrences": 10,
+      "sequence_people_observed": 5,
+      "task_occurrences": {
+        "mri_sequence": 10,
+        "mri_visit_correspondence": 10
+      },
+      "unique_sequence_rows": 10
+    },
+    "24": {
+      "maximum_repeats_per_sequence_row": 1,
+      "people_both_modalities_observed": 6,
+      "people_one_modality_observed": 1,
+      "repeated_sequence_occurrences": 0,
+      "sequence_label_occurrences": {
+        "FLAIR": 7,
+        "contrast-enhanced T1": 6
+      },
+      "sequence_occurrences": 13,
+      "sequence_people_observed": 7,
+      "task_occurrences": {
+        "mri_sequence": 13,
+        "mri_visit_correspondence": 11
+      },
+      "unique_sequence_rows": 13
+    },
+    "28": {
+      "maximum_repeats_per_sequence_row": 1,
+      "people_both_modalities_observed": 8,
+      "people_one_modality_observed": 0,
+      "repeated_sequence_occurrences": 0,
+      "sequence_label_occurrences": {
+        "FLAIR": 8,
+        "contrast-enhanced T1": 8
+      },
+      "sequence_occurrences": 16,
+      "sequence_people_observed": 8,
+      "task_occurrences": {
+        "mri_sequence": 16,
+        "mri_visit_correspondence": 12
+      },
+      "unique_sequence_rows": 16
+    },
+    "32": {
+      "maximum_repeats_per_sequence_row": 1,
+      "people_both_modalities_observed": 9,
+      "people_one_modality_observed": 0,
+      "repeated_sequence_occurrences": 0,
+      "sequence_label_occurrences": {
+        "FLAIR": 9,
+        "contrast-enhanced T1": 9
+      },
+      "sequence_occurrences": 18,
+      "sequence_people_observed": 9,
+      "task_occurrences": {
+        "mri_sequence": 18,
+        "mri_visit_correspondence": 14
+      },
+      "unique_sequence_rows": 18
+    },
+    "8": {
+      "maximum_repeats_per_sequence_row": 1,
+      "people_both_modalities_observed": 2,
+      "people_one_modality_observed": 1,
+      "repeated_sequence_occurrences": 0,
+      "sequence_label_occurrences": {
+        "FLAIR": 3,
+        "contrast-enhanced T1": 2
+      },
+      "sequence_occurrences": 5,
+      "sequence_people_observed": 3,
+      "task_occurrences": {
+        "mri_sequence": 5,
+        "mri_visit_correspondence": 3
+      },
+      "unique_sequence_rows": 5
+    }
+  },
+  "new_model_loads": 0,
+  "optimizer_updates_this_command": 0,
+  "plans": {
+    "forced_46": {
+      "Dallas_occurrence_content_unchanged": true,
+      "actual_optimizer_updates": 0,
+      "attempted_group_slots": 46,
+      "charged_token_reservation": 97048,
+      "declared_token_cap": 70784,
+      "exposure": {
+        "maximum_repeats_per_sequence_row": 1,
+        "people_both_modalities_observed": 16,
+        "people_one_modality_observed": 0,
+        "repeated_sequence_occurrences": 0,
+        "sequence_label_occurrences": {
+          "FLAIR": 16,
+          "contrast-enhanced T1": 16
+        },
+        "sequence_occurrences": 32,
+        "sequence_people_observed": 16,
+        "task_occurrences": {
+          "mri_sequence": 32,
+          "mri_visit_correspondence": 14
+        },
+        "unique_sequence_rows": 32
+      },
+      "fits_declared_cap": false,
+      "historical_speed_planning_seconds": {
+        "all_groups_at_historical_p90_plus_load": 2393.913888713473,
+        "holds_excluded": true,
+        "mean_rate_plus_historical_load": 1512.6862827997786,
+        "not_native_F32_training_measurement": true
+      },
+      "paired_patient_fraction_of_existing28": 0.5714285714285714,
+      "prompt_visual_reservation": 49944,
+      "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+      "returned_response_reservation": 47104,
+      "same_task_Dallas_slots_as_original32": false,
+      "training_executed": false,
+      "unique_sequence_image_paths": 32
+    },
+    "forced_70": {
+      "Dallas_occurrence_content_unchanged": true,
+      "actual_optimizer_updates": 0,
+      "attempted_group_slots": 70,
+      "charged_token_reservation": 142072,
+      "declared_token_cap": 70784,
+      "exposure": {
+        "maximum_repeats_per_sequence_row": 1,
+        "people_both_modalities_observed": 28,
+        "people_one_modality_observed": 0,
+        "repeated_sequence_occurrences": 0,
+        "sequence_label_occurrences": {
+          "FLAIR": 28,
+          "contrast-enhanced T1": 28
+        },
+        "sequence_occurrences": 56,
+        "sequence_people_observed": 28,
+        "task_occurrences": {
+          "mri_sequence": 56,
+          "mri_visit_correspondence": 14
+        },
+        "unique_sequence_rows": 56
+      },
+      "fits_declared_cap": false,
+      "historical_speed_planning_seconds": {
+        "all_groups_at_historical_p90_plus_load": 3611.422036107106,
+        "holds_excluded": true,
+        "mean_rate_plus_historical_load": 2270.4235053688753,
+        "not_native_F32_training_measurement": true
+      },
+      "paired_patient_fraction_of_existing28": 1.0,
+      "prompt_visual_reservation": 70392,
+      "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+      "returned_response_reservation": 71680,
+      "same_task_Dallas_slots_as_original32": false,
+      "training_executed": false,
+      "unique_sequence_image_paths": 56
+    },
+    "forced_pair_same32": {
+      "Dallas_occurrence_content_unchanged": true,
+      "actual_optimizer_updates": 0,
+      "attempted_group_slots": 32,
+      "charged_token_reservation": 70784,
+      "declared_token_cap": 70784,
+      "exposure": {
+        "maximum_repeats_per_sequence_row": 1,
+        "people_both_modalities_observed": 9,
+        "people_one_modality_observed": 0,
+        "repeated_sequence_occurrences": 0,
+        "sequence_label_occurrences": {
+          "FLAIR": 9,
+          "contrast-enhanced T1": 9
+        },
+        "sequence_occurrences": 18,
+        "sequence_people_observed": 9,
+        "task_occurrences": {
+          "mri_sequence": 18,
+          "mri_visit_correspondence": 14
+        },
+        "unique_sequence_rows": 18
+      },
+      "fits_declared_cap": true,
+      "historical_speed_planning_seconds": {
+        "all_groups_at_historical_p90_plus_load": 1683.700802733854,
+        "holds_excluded": true,
+        "mean_rate_plus_historical_load": 1070.6729029678058,
+        "not_native_F32_training_measurement": true
+      },
+      "paired_patient_fraction_of_existing28": 0.32142857142857145,
+      "prompt_visual_reservation": 38016,
+      "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+      "returned_response_reservation": 32768,
+      "same_task_Dallas_slots_as_original32": true,
+      "training_executed": false,
+      "unique_sequence_image_paths": 18
+    },
+    "historical28_pool_same32": {
+      "Dallas_occurrence_content_unchanged": true,
+      "actual_optimizer_updates": 0,
+      "attempted_group_slots": 32,
+      "charged_token_reservation": 70784,
+      "declared_token_cap": 70784,
+      "exposure": {
+        "maximum_repeats_per_sequence_row": 2,
+        "people_both_modalities_observed": 0,
+        "people_one_modality_observed": 16,
+        "repeated_sequence_occurrences": 2,
+        "sequence_label_occurrences": {
+          "FLAIR": 8,
+          "contrast-enhanced T1": 10
+        },
+        "sequence_occurrences": 18,
+        "sequence_people_observed": 16,
+        "task_occurrences": {
+          "mri_sequence": 18,
+          "mri_visit_correspondence": 14
+        },
+        "unique_sequence_rows": 16
+      },
+      "fits_declared_cap": true,
+      "historical_speed_planning_seconds": {
+        "all_groups_at_historical_p90_plus_load": 1683.700802733854,
+        "holds_excluded": true,
+        "mean_rate_plus_historical_load": 1070.6729029678058,
+        "not_native_F32_training_measurement": true
+      },
+      "paired_patient_fraction_of_existing28": 0.0,
+      "prompt_visual_reservation": 38016,
+      "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+      "returned_response_reservation": 32768,
+      "same_task_Dallas_slots_as_original32": true,
+      "training_executed": false,
+      "unique_sequence_image_paths": 16
+    },
+    "unforced56_pool_same32": {
+      "Dallas_occurrence_content_unchanged": true,
+      "actual_optimizer_updates": 0,
+      "attempted_group_slots": 32,
+      "charged_token_reservation": 70784,
+      "declared_token_cap": 70784,
+      "exposure": {
+        "maximum_repeats_per_sequence_row": 2,
+        "people_both_modalities_observed": 4,
+        "people_one_modality_observed": 8,
+        "repeated_sequence_occurrences": 2,
+        "sequence_label_occurrences": {
+          "FLAIR": 8,
+          "contrast-enhanced T1": 10
+        },
+        "sequence_occurrences": 18,
+        "sequence_people_observed": 12,
+        "task_occurrences": {
+          "mri_sequence": 18,
+          "mri_visit_correspondence": 14
+        },
+        "unique_sequence_rows": 16
+      },
+      "fits_declared_cap": true,
+      "historical_speed_planning_seconds": {
+        "all_groups_at_historical_p90_plus_load": 1683.700802733854,
+        "holds_excluded": true,
+        "mean_rate_plus_historical_load": 1070.6729029678058,
+        "not_native_F32_training_measurement": true
+      },
+      "paired_patient_fraction_of_existing28": 0.14285714285714285,
+      "prompt_visual_reservation": 38016,
+      "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+      "returned_response_reservation": 32768,
+      "same_task_Dallas_slots_as_original32": true,
+      "training_executed": false,
+      "unique_sequence_image_paths": 16
+    }
+  },
+  "private_plan_sha256": {
+    "forced_46_PRIVATE.json": "94c8cc0fd6205ec5b7d4fdea51ad39ed2748b177c9280c1c601b8e6832e66fdb",
+    "forced_70_PRIVATE.json": "e52d72d651a3e53bf78238cc2dbace75abce4ddbb75f7f31197df4f7be66b719",
+    "forced_pair_same32_PRIVATE.json": "e488613befa931c5db257593c8b00a1e04677d0308b2c6c93f57129550cb95c8",
+    "historical28_pool_same32_PRIVATE.json": "5ce2aada05a2256a7cb9bb9d4bc221a647dcb3d94244e086b61c0ad0534b40c7",
+    "unforced56_pool_same32_PRIVATE.json": "8095e34f30ebe98cc6652b31666a2b716f4511692d6b374f80d06bb4ef56c8b3"
+  },
+  "qualification": "Real F32 backward qualification and fresh exact training permission still required; no new model execution in this command.",
+  "recommendation": {
+    "32_attempts_if_all_completed": true,
+    "atomic_finish_can_overrun": true,
+    "ceiling_rationale": "At most one update/group;32 ceiling prevents update-count censoring before32 planned inputs. It is a proposed ceiling, not an optimization target or permission to train.",
+    "coverage_complete_candidate_update_ceiling": 32,
+    "current32_group8_update_entry_not_modified_or_authorized_for_this_candidate": true,
+    "existing8_update_early_stop_cannot_guarantee9_pairs": true,
+    "incomplete_schedule_result": "INCONCLUSIVE_FOR_PLANNED9_PAIR_EXPOSURE; report actual pairs, never silently extend.",
+    "not_original_Vero_source_sampling": true,
+    "operation_start_seconds": 3000,
+    "reward_LR_LoRA_loss_changed": false,
+    "sampling_change": "Explicit site-round-robin deterministic patient ordering, alternating within-pair orientation, adjacent sequence occurrences paired; exact historical task/Dallas mask preserved.",
+    "schedule": "forced_pair_same32",
+    "token_cap": 70784,
+    "training_authorized": false
+  },
+  "schema": "paired-z045-finite-exposure-comparison-v2",
+  "source_sha256": {
+    "results/PAIRED_Z045_DATA_V1.json": "56f00aa0713c979f736133b30e41d5f86c7855264f3228ca5c7d072e90843e2e",
+    "scripts/prepare_paired_z045_exposure_v2.py": "b18c1fa6acbc32f00ff0a3d9d1031f91e12841c868023c8d2cb546b9e4fda423",
+    "src/mri_rl/paired_z045_exposure_v2.py": "762ffb168f3e4a95f4c3aa11dbd285af1290654b4e62f0c4397e5a2ff73607e5"
+  },
+  "status": "CPU_PREPARED_NOT_TRAINED"
+}

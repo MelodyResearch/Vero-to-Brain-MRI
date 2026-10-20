@@ -1,0 +1,116 @@
+{
+  "MRI_pixel_decodes": 0,
+  "bindings": {
+    "exposure_builder_sha256": "b18c1fa6acbc32f00ff0a3d9d1031f91e12841c868023c8d2cb546b9e4fda423",
+    "exposure_helper_sha256": "762ffb168f3e4a95f4c3aa11dbd285af1290654b4e62f0c4397e5a2ff73607e5",
+    "exposure_result_sha256": "c239aa51a38abc44b183e333c42e2f6746502b95790827a8c5fa3f638788633a",
+    "identity_builder_sha256": "8e6cac7b1a1ac319085c0113288894d160273c1c491847ab794330650589f5e3",
+    "identity_helper_sha256": "d52489ef10074d831b606d8f0096a819e0d424e9bba632b4404a06565b6a8347",
+    "identity_result_sha256": "c7d92f44d3aeaf45850c425a3c643b9d81984d71e12a8220f66fce695e962d7d",
+    "native_independent_proof_sha256": "b61f9966b591082416e2da3a3b4b39f9ef1d26b841781bf01fec831c083af673",
+    "private_detail_sha256": "ee2c095a572b90f5ee154354491eac020e0ece66c7f573445ccfa1cf49a32989",
+    "private_verifier_sha256": "0b0a653298ec69c01993ea99d457b50202724d7c0ea7301d37c12f560624e0f5"
+  },
+  "cross_model_family_review": "NOT_VERIFIED",
+  "final_outcomes_parsed": 0,
+  "findings": [
+    "All five saved schedule costs/exposure counts, exact original32 task/Dallas object preservation, forced-pair modality pairing, original TRAIN row contents, prefix counts and historical timing arithmetic independently match.",
+    "Forced32 contains nine complete existing-patient pairs and18 distinct sequence rows across all eight existing sites; unforced32 contains four pairs/16 distinct sequence rows/12 people. These are planned rollout inputs, not accepted-gradient or learning coverage.",
+    "An eight-update early stop can censor nine-pair input exposure; prefix8 has only two complete pairs. A32 update ceiling is a separate unimplemented/unauthorized proposal, not a target, new entry budget or permission. Incomplete coverage must be reported inconclusive.",
+    "The46/70 alternatives cost97048/142072, exceed70784 and change task allocation. They are arithmetic-only alternatives, not approved/recommended execution.",
+    "Metadata identity partition363\u221254=309, site counts and all618 paired sidecar checksums/availability statuses match. No paired local gzip headers are available; a source pointer/sidecar is not a qualified holdout.",
+    "Namespace-salted formal sequence identities are excluded via the source crosswalk in the reviewed builder; its synthetic regression passes. This reviewer authenticated catalog bytes and recomputed the recorded identity partition, without reparsing the raw final registry or outcome labels."
+  ],
+  "focused_tests": {
+    "command": "PYTHONPATH=src python3 -m pytest -q tests/test_paired_z045_exposure_v2.py tests/test_mri_holdout_identity_inventory_v1.py",
+    "passed": 9,
+    "seconds": 0.03
+  },
+  "forced_same32_prefix8_pairs": 2,
+  "holdout": {
+    "catalog_files_byte_hash_verified": 23,
+    "eight_sites_two_each_feasible": false,
+    "excluded_unique_people": 54,
+    "global_cross_source_identity": "NOT_VERIFIED",
+    "limiting_remaining_sites": {
+      "BA": 0,
+      "FO": 1,
+      "ME": 1
+    },
+    "missing_catalog_inputs": 0,
+    "new_patients_selected": 0,
+    "qualified_independent_holdout": "NOT_ESTABLISHED",
+    "recorded_formal_sequence_identity_exclusions": 14,
+    "remaining_metadata_people": 309,
+    "remaining_paired_gzip_header_payloads": 0,
+    "remaining_paired_sidecars": 309,
+    "source_metadata_people": 363
+  },
+  "independent_plan_arithmetic": {
+    "forced_46": {
+      "Dallas": 14,
+      "groups": 46,
+      "pairs": 16,
+      "people": 16,
+      "reserved_tokens": 97048,
+      "sequence": 32,
+      "sites": 8,
+      "unique_sequence_rows": 32
+    },
+    "forced_70": {
+      "Dallas": 14,
+      "groups": 70,
+      "pairs": 28,
+      "people": 28,
+      "reserved_tokens": 142072,
+      "sequence": 56,
+      "sites": 8,
+      "unique_sequence_rows": 56
+    },
+    "forced_pair_same32": {
+      "Dallas": 14,
+      "groups": 32,
+      "pairs": 9,
+      "people": 9,
+      "reserved_tokens": 70784,
+      "sequence": 18,
+      "sites": 8,
+      "unique_sequence_rows": 18
+    },
+    "historical28_pool_same32": {
+      "Dallas": 14,
+      "groups": 32,
+      "pairs": 0,
+      "people": 16,
+      "reserved_tokens": 70784,
+      "sequence": 18,
+      "sites": 7,
+      "unique_sequence_rows": 16
+    },
+    "unforced56_pool_same32": {
+      "Dallas": 14,
+      "groups": 32,
+      "pairs": 4,
+      "people": 12,
+      "reserved_tokens": 70784,
+      "sequence": 18,
+      "sites": 7,
+      "unique_sequence_rows": 16
+    }
+  },
+  "limitations": [
+    "Forced pairing also changes site/patient ordering, row choices, duplicate exposure and modality balance; it is a declared composite sampling intervention, not unchanged Vero row sampling or a pure causal estimate of pairing. A matched controlled continuation would still need a prespecified factor definition.",
+    "Historical timing excludes HOLD and does not measure new F32 training speed. Token costs use declared213/405/256/K4; actual run must enforce them.",
+    "The historical catalog is explicit but does not certify unknown external/manual exposure or global cross-source person independence. Remaining sidecars do not establish acquisition/geometry/pixel or expert qualification.",
+    "Native numerical parity passed eight actual saved responses, but both fixed groups were inactive; no F32 GSPO backward qualification occurred. No retry or training is authorized.",
+    "Public review contains only aggregate counts, hashes and site-level source availability. IDs, paths, sidecars, exclusions, response text, logits and state remain PRIVATE."
+  ],
+  "new_model_loads": 0,
+  "optimizer_updates": 0,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-z045-exposure-and-holdout-independent-CPU-review-v1",
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
