@@ -190,8 +190,10 @@ def main():
         require(args.run_directory and args.evidence_directory and args.output and not args.output.exists(),'Completed qualification run directory, its release-evidence directory and fresh output required')
         core.publish_once(args.output,qualification_proof(args.run_directory,args.evidence_directory,prepared));print(json.dumps({'status':'QUALIFICATION_PROOF_WRITTEN_FOR_INDEPENDENT_REVIEW'}));return
     require(args.output and not args.output.exists() and args.output.resolve().is_relative_to(ROOT/'local_data'),'Fresh private CPU preparation output under ignored local_data required')
+    modes=('train',) if prepared['invocation']['adopt_qualification_run'] else core.MODES
+    scopes={mode:launch_scope(prepared,mode) for mode in modes}
     args.output.parent.mkdir(parents=True,exist_ok=True);core.publish_once(args.output,prepared)
-    for mode in core.MODES:core.publish_once(args.output.with_name(args.output.stem+f'_{mode}_scope.json'),launch_scope(prepared,mode))
+    for mode,scope in scopes.items():core.publish_once(args.output.with_name(args.output.stem+f'_{mode}_scope.json'),scope)
     print(json.dumps({'status':prepared['implementation_status'],'preparation_sha256':core.identity(prepared),'model_loads':0,'optimizer_updates':0,'training_authorized':False}))
 
 
