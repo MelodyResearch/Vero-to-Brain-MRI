@@ -76,3 +76,10 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 
 - 实际资格saved-only独立review已完成：Codex /root/full_arm_execution_contract，公开SHA0fe61d6a811b074d6feb0d3f232d62f50085f23892b4913f2a31789d402758ad，PWL。独立重算reward/gate/advantage/1/8loss/parity/counters/source70hash；runtime-only状态与gradientnorm认证边界明确。459资源samples中448CONTINUE/11HOLD，456NORMAL/3WARNING，按原gate正常暂停后继续；没有掩盖HOLD或宣称保证安全。
 - README最终actual-status狭窄复核已完成：README SHA179cf90a3a7585bde0025b0e5b293ec28aeed2a54ae1a7153d84fc715e73f07c；独立docsreview SHA7b0f1c91f47c121d9273ac2b86740c462742489950d3608d1e44537cc79c834b。主计划/锁hash保持c7e96b76/6844b67a。
+
+
+## 2026-10-20 / DOCS_PR_ACTUAL_MERGE / VERIFIED
+
+- PRIVATE docs branch docs/vero-to-brain-mri-readme-refresh-v1 已实际推送61f76a63a7270744e2f1cdcd1e0e6acf1d63a586。PR#4仅README+两份aggregate文档review/verification，MERGEABLE/CLEAN，无configuredchecks，未修改branchrules；已按研究者授权正常merge，非force/squash/historyrewrite。
+- PR https://github.com/MelodyResearch/Longitudinal-BrainMRI-Verifiable-RL/pull/4 于2026-10-20T23:09:16Z实际MERGED，main c92b133d1a8fa1524c4a6a650d9c6c84dada3d03。GitHubAPI读取默认README bytes与reviewed本地逐字节相等：SHA179cf90a3a7585bde0025b0e5b293ec28aeed2a54ae1a7153d84fc715e73f07c，10790B（原26324B）。
+- native qualification源/结果保持独立researchbranch；实际结果commit cadf78babdfdfdfed89c54dab4d0d8bca7cfdb37已推送并远端exact。没有把未训练MLX代码合入main，没有新的训练/模型调用/optimizer更新。R原main checkout未强切换，S/D均独立；原模型状态/数据/负结果/冻结plan与锁完整保留。
