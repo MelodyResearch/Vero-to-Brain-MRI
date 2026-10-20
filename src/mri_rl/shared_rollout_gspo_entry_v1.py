@@ -21,6 +21,7 @@ ROOT=Path(__file__).resolve().parents[2]
 require=core.require
 OWN_SOURCES=('src/mri_rl/shared_rollout_gspo_core_v1.py','src/mri_rl/shared_rollout_gspo_driver_v1.py','src/mri_rl/shared_rollout_gspo_backend_v1.py',
              'src/mri_rl/shared_rollout_gspo_entry_v1.py','src/mri_rl/shared_rollout_gspo_eval_v1.py','scripts/run_shared_rollout_gspo_v1.py',
+             'scripts/run_shared_rollout_gspo_eval_v1.py','src/mri_rl/paired_z045_evaluation_v1.py','src/mri_rl/answer_likelihood.py','src/mri_rl/vero_mri_reward.py',
              'src/mri_rl/paired_prompt_groups_v1.py','src/mri_rl/class_margin_aux_v2.py','src/mri_rl/paired_z045_matched_f32_eval_v1.py')
 
 
@@ -76,13 +77,30 @@ def launch_scope(prepared,mode):
             'preparation_sha256':core.identity(prepared),'output':prepared['output']}
 
 
-def qualification_proof(output,prepared):
-    """Aggregate proof of a completed read-only qualification run, for independent review."""
-    output=Path(output);done=_json(output/'complete_SAFE.json');require(done['status']=='SCHEDULE_COMPLETE' and done['mode']=='qualify' and done['optimizer_updates']==0,'Completed zero-update qualification required')
+def qualification_proof(output,evidence,prepared):
+    """Proof built ONLY from artifacts the run itself wrote: run identity (actual source/input), counters, per-arm
+    gradient evidence and the release witness that `run_with_release` wrote. Nothing is accepted from the caller.
+    Without an effective, finite, nonzero backward path in BOTH arms the status is PARTIAL and training is denied."""
+    import math
+    output=Path(output);evidence=Path(evidence)
+    done=_json(output/'complete_SAFE.json');require(done['status']=='SCHEDULE_COMPLETE' and done['mode']=='qualify' and done['optimizer_updates']==0,'Completed zero-update qualification required')
+    identity_path=output/'run_identity_PRIVATE.json';recorded=_json(identity_path)
+    require(recorded['mode']=='qualify' and recorded['source_sha256']==prepared['source_sha256'] and recorded['input_sha256']==prepared['input_sha256'],'Run source/input differ from the current reviewed preparation')
+    release_path=evidence/'release_SAFE.json';release=_json(release_path) if release_path.is_file() else None
+    require(release is not None and release.get('release_verified') is True and release.get('model_is_none') is True and (evidence/'complete_PRIVATE.json').is_file() and
+            not (evidence/'entry_STOP_PRIVATE.json').exists() and _json(evidence/'complete_PRIVATE.json').get('bundle_sha256')==done['bundle_sha256'],'Release witness written by run_with_release is missing or unverified')
     old=_json(output/'old_PRIVATE.json')
     arms={arm:_json(output/f'qualification_arm_{arm}_PRIVATE.json') for arm in driver.ARM_ORDER}
-    return {'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED','optimizer_updates':0,'source_sha256':prepared['source_sha256'],'input_sha256':prepared['input_sha256'],
-            'bundle_sha256':done['bundle_sha256'],'counters':done['counters'],
+    blockers=[]
+    for arm,v in arms.items():
+        g=v['gradient_evidence']
+        if not (v['gate']['effective_groups']>=1 and g['backward_calls']>=1 and g['backward_calls']==len(v['gate']['admitted_response_ids']) and
+                type(g['gradient_l2']) in (int,float) and math.isfinite(g['gradient_l2']) and g['gradient_l2']>0 and v['update_decision']['update'] is True):
+            blockers.append(f'ARM_{arm}_NO_EFFECTIVE_FINITE_NONZERO_BACKWARD_PATH')
+    return {'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED' if not blockers else 'PARTIAL_SHARED_ROLLOUT_GSPO_QUALIFICATION','blockers':blockers,'optimizer_updates':0,
+            'source_sha256':recorded['source_sha256'],'input_sha256':recorded['input_sha256'],'run_identity_sha256':core.file_sha256(identity_path),
+            'bundle_sha256':done['bundle_sha256'],'old_sha256':core.file_sha256(output/'old_PRIVATE.json'),'release_witness_sha256':core.file_sha256(release_path),
+            'rng_R1_sha256':core.file_sha256(output/'rng_R1_PRIVATE.json'),'counters':done['counters'],
             'rollout_vs_own_context_parity_max_abs':{k:v['max_abs_error'] for k,v in old['rollout_vs_own_context_parity'].items()},
             'arms':{a:{'effective_groups':v['gate']['effective_groups'],'backward_calls':v['gradient_evidence']['backward_calls'],'gradient_l2':v['gradient_evidence']['gradient_l2'],
                        'old_current_max_abs':[r['old_current_max_abs'] for r in v['gradient_evidence']['responses']],'update_decision':v['update_decision']} for a,v in arms.items()},
@@ -116,6 +134,8 @@ def execute(mode,args):
     from mri_rl.mlx_continuous_gspo import is_loading_unit
     from mri_rl.continuous_rl_pilot import cache_binding_for
     from mri_rl.experiment_contract import load_contract
+    qualified=_json(args.qualification) if mode=='train' else None
+    adopt={'run':spec['adopt_qualification_run'],'proof':qualified} if mode=='train' and spec.get('adopt_qualification_run') else None   # only after the fresh train authorization above
     runtime=inputs(spec);out=Path(prepared['output']);gate=PacedGate(out.with_name(out.name+'_resources_PRIVATE.jsonl'));resident=[None]
     def check_sources():
         for path,expected in prepared['source_sha256'].items():require(inherited.digest(path)==expected,'Reviewed source changed: '+path)
@@ -140,8 +160,8 @@ def execute(mode,args):
             require(len(resident[0].trainable_signature())==504,'Exact504LoRA inventory required')
             return resident[0]
         def run():
-            return driver.run(output=out,mode=mode,schedule=prepared['schedule_PRIVATE'],bindings={'stage':'shared_rollout_gspo_v1','scope_sha256':core.scope_digest(scope)},
-                backend_factory=factory,authorize=lambda context:before('authorize_'+context['phase']),parent_checkpoint=runtime['parent_checkpoint'],
+            return driver.run(output=out,mode=mode,schedule=prepared['schedule_PRIVATE'],bindings={'stage':'shared_rollout_gspo_v1','scope_sha256':core.scope_digest(scope),'source_sha256':prepared['source_sha256'],'input_sha256':prepared['input_sha256']},
+                adopt=adopt,backend_factory=factory,authorize=lambda context:before('authorize_'+context['phase']),parent_checkpoint=runtime['parent_checkpoint'],
                 parent_receipt_sha256=runtime['parent_receipt_sha256'],grader=make_grader(_json(runtime['calibration'])),reward_policy_sha256=prepared['reward_policy_sha256'],
                 budget=prepared['budgets'][mode],resume=bool(spec.get('resume')),config=prepared['configuration'])
         result=inherited.run_with_release(run,resident,evidence)
@@ -152,7 +172,7 @@ def execute(mode,args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('action',choices=('prepare','qualify','train','qualification-proof'))
-    for name in ('spec','output','scope','human','review','qualification','qualification-review','run-directory'):parser.add_argument('--'+name,type=Path)
+    for name in ('spec','output','scope','human','review','qualification','qualification-review','run-directory','evidence-directory'):parser.add_argument('--'+name,type=Path)
     for name in ('scope','human','review','qualification','qualification-review'):parser.add_argument('--expected-'+name+'-sha256')
     parser.add_argument('--verify-images',action='store_true')
     args=parser.parse_args();require(args.spec,'Specification required')
@@ -160,8 +180,8 @@ def main():
         print(json.dumps(execute(args.action,args),sort_keys=True));return
     prepared=prepare(_json(args.spec),verify_images=args.verify_images)
     if args.action=='qualification-proof':
-        require(args.run_directory and args.output and not args.output.exists(),'Completed qualification run directory and fresh output required')
-        core.publish_once(args.output,qualification_proof(args.run_directory,prepared));print(json.dumps({'status':'QUALIFICATION_PROOF_WRITTEN_FOR_INDEPENDENT_REVIEW'}));return
+        require(args.run_directory and args.evidence_directory and args.output and not args.output.exists(),'Completed qualification run directory, its release-evidence directory and fresh output required')
+        core.publish_once(args.output,qualification_proof(args.run_directory,args.evidence_directory,prepared));print(json.dumps({'status':'QUALIFICATION_PROOF_WRITTEN_FOR_INDEPENDENT_REVIEW'}));return
     require(args.output and not args.output.exists() and args.output.resolve().is_relative_to(ROOT/'local_data'),'Fresh private CPU preparation output under ignored local_data required')
     args.output.parent.mkdir(parents=True,exist_ok=True);core.publish_once(args.output,prepared)
     for mode in core.MODES:core.publish_once(args.output.with_name(args.output.stem+f'_{mode}_scope.json'),launch_scope(prepared,mode))

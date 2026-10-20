@@ -179,6 +179,78 @@ def test_eval_binds_committed_arm_terminals_and_aliases_inactive_arm_to_parent(t
     with pytest.raises(ValueError):ev.arm_checkpoint(tmp_path/'run','B',{**anchor,'receipt_sha256':base.sha('foreign')})
 
 
+def test_parent_only_budget_and_aliases_when_both_arms_made_no_update(tmp_path):
+    from mri_rl import shared_rollout_gspo_eval_v1 as ev
+    from mri_rl.uniform_balance_continuation_gate_v1 import parent_anchor
+    assert ev.eval_budget(1)['greedy_generations']==40 and ev.eval_budget(1)['checkpoints']==1 and ev.eval_budget(1)['maximum_seconds']==1200
+    with pytest.raises(ValueError):ev.eval_budget(0)
+    base.Fake.instances=[];base.Fake.accuracy={'F':[1,1,1,1],'T':[1,1,1,1]}
+    base.launch(tmp_path,tmp_path/'run')
+    parent=tmp_path/'adam60'/'boundary_0008';anchor=parent_anchor(parent,base.old.digest(parent/'receipt.json'))
+    arms={a:ev.arm_checkpoint(tmp_path/'run',a,anchor) for a in 'AB'}
+    assert all(v['alias_of_parent'] for v in arms.values()) and 1+sum(not v['alias_of_parent'] for v in arms.values())==1
+
+
+def fake_matched_prepare(tmp_path,run):
+    from mri_rl.uniform_balance_continuation_gate_v1 import parent_anchor
+    parent=tmp_path/'adam60'/'boundary_0008';anchor={**parent_anchor(parent,base.old.digest(parent/'receipt.json')),'path':str(parent)}
+    return {'parent':anchor,'source_sha256':{'/x/matched.py':base.sha('m')},'numerical_contract_sha256':base.sha('numeric'),'output':str(tmp_path/'eval_out'),'records_PRIVATE':[],'status':'x'}
+
+
+def test_evaluator_prepare_cli_binds_source_closure_and_is_idempotent_without_native(tmp_path,monkeypatch,capsys):
+    from mri_rl import shared_rollout_gspo_eval_v1 as ev
+    base.Fake.instances=[];base.Fake.accuracy={'F':[1,1,1,1],'T':[0,0,0,0]};base.launch(tmp_path,tmp_path/'run')
+    monkeypatch.setattr(ev.matched,'prepare',lambda spec:fake_matched_prepare(tmp_path,tmp_path/'run'))
+    spec={'shared_run':str(tmp_path/'run')};spec_path=tmp_path/'spec.json';spec_path.write_text(json.dumps(spec))
+    before=set(sys.modules)
+    result=ev.main(['--spec',str(spec_path),'--scope-output',str(tmp_path/'scope.json')])
+    scope=json.loads((tmp_path/'scope.json').read_text())
+    names={Path(p).name for p in scope['source_sha256']}
+    assert {'paired_z045_evaluation_v1.py','answer_likelihood.py','vero_mri_reward.py','paired_z045_f32_backend_v1.py','shared_rollout_gspo_eval_v1.py','run_shared_rollout_gspo_eval_v1.py'}<=names
+    assert scope['status']==core.STATUS and scope['evaluated_checkpoints']==['parent','B'] and scope['arms']['A']['alias_of_parent'] is True and scope['budget']['checkpoints']==2
+    assert result['model_loads']==0 and not any(n=='mlx' or n.startswith('mlx.') for n in set(sys.modules)-before)
+    assert ev.main(['--spec',str(spec_path),'--scope-output',str(tmp_path/'scope.json')])['scope_sha256']==result['scope_sha256']
+    monkeypatch.setattr(ev.matched,'prepare',lambda spec:{**fake_matched_prepare(tmp_path,None),'output':'/changed'})
+    with pytest.raises(ValueError,match='scope differs'):ev.main(['--spec',str(spec_path),'--scope-output',str(tmp_path/'scope.json')])
+    monkeypatch.setattr(ev.matched,'prepare',lambda spec:fake_matched_prepare(tmp_path,tmp_path/'run'))
+    with pytest.raises(ValueError,match='NOT_AUTHORIZED'):ev.main(['--spec',str(spec_path),'--scope-output',str(tmp_path/'scope.json'),'--execute'])
+
+
+def eval_authorization(tmp_path,scope,*,status='ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED',blockers=(),action=None,sources=None):
+    from types import SimpleNamespace as NS
+    from mri_rl import shared_rollout_gspo_eval_v1 as ev
+    from mri_rl import paired_z045_continuation_entry_v1 as inherited
+    binding=inherited.scope_digest(scope)
+    proof={'status':status,'blockers':list(blockers),'optimizer_updates':0,'source_sha256':sources or scope['source_sha256']}
+    files={'proof':proof,'proof_review':{'verdict':'PASS','actual_proof_sha256':core.identity(proof),'reviewer_id':'r','reviewer_kind':'claude_code'},
+           'review':{'verdict':'PASS','scope_sha256':binding,'reviewer_id':'r','reviewer_kind':'isolated_codex'},
+           'human':{'authorized':True,'action':action or ev.ACTION,'scope_sha256':binding,'human_instruction_sha256':base.sha('h')}}
+    paths={}
+    for key,value in files.items():
+        paths[key]=tmp_path/(key+'.json');paths[key].write_text(json.dumps(value))
+    numeric={'actual_proof_path':str(paths['proof']),'actual_proof_sha256':inherited.digest(paths['proof']),'actual_review_path':str(paths['proof_review']),'actual_review_sha256':inherited.digest(paths['proof_review'])}
+    paths['numeric']=tmp_path/'numeric.json';paths['numeric'].write_text(json.dumps(numeric))
+    return NS(review=paths['review'],expected_review_sha256=inherited.digest(paths['review']),human_authorization=paths['human'],expected_human_sha256=inherited.digest(paths['human']),
+              numeric_contract=paths['numeric'],expected_numeric_sha256=inherited.digest(paths['numeric']))
+
+
+def test_evaluator_admission_requires_the_new_shared_qualification_not_the_old_status(tmp_path):
+    from mri_rl import shared_rollout_gspo_eval_v1 as ev
+    from mri_rl import shared_rollout_gspo_entry_v1 as shared_entry
+    root=Path(ev.core.__file__).resolve().parents[2]
+    sources={str(root/n):base.sha(n) for n in shared_entry.OWN_SOURCES}
+    def build(**kw):
+        scope={'status':core.STATUS,'source_sha256':sources,'output':str(tmp_path/'o')}
+        probe=eval_authorization(tmp_path,scope,**kw);scope['numerical_contract_sha256']=probe.expected_numeric_sha256     # contract SHA = numeric file digest
+        return eval_authorization(tmp_path,scope,**kw),scope
+    good,scope=build();assert ev.authorize_eval(good,scope)['binding']
+    with pytest.raises(ValueError,match='status'):ev.authorize_eval(good,{**scope,'status':'ACTUAL_F32_ONPOLICY_GSPO_READONLY_QUALIFIED'})
+    for kw in ({'status':'ACTUAL_F32_ONPOLICY_GSPO_READONLY_QUALIFIED'},{'status':'PARTIAL_SHARED_ROLLOUT_GSPO_QUALIFICATION'},{'blockers':['ARM_A_NO_EFFECTIVE_FINITE_NONZERO_BACKWARD_PATH']},
+               {'action':'finite_train'},{'sources':{**sources,next(iter(sources)):base.sha('edited')}}):
+        bad,bad_scope=build(**kw)
+        with pytest.raises(ValueError,match='prerequisite|authorization|review'):ev.authorize_eval(bad,bad_scope)
+
+
 def test_eval_execution_refuses_before_native_import_without_review_human_and_numeric_proof():
     from mri_rl import shared_rollout_gspo_eval_v1 as ev
     before=set(sys.modules)
@@ -194,11 +266,57 @@ def test_launch_scope_shape_is_exactly_what_the_admission_contract_accepts_and_i
         binding=core.scope_digest(scope)
         human={'authorized':True,'action':core.ACTIONS[mode],'scope_sha256':binding,'human_instruction_sha256':base.sha('h'+mode)}
         review={'verdict':'PASS','scope_sha256':binding,'reviewer_id':'r','reviewer_kind':'claude_code','source_sha256':scope['source_sha256'],'input_sha256':scope['input_sha256']}
-        proof={'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED','optimizer_updates':0,'source_sha256':scope['source_sha256'],'input_sha256':scope['input_sha256']}
+        proof={'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED','optimizer_updates':0,'blockers':[],'source_sha256':scope['source_sha256'],'input_sha256':scope['input_sha256'],
+               **{k:base.sha(k) for k in ('bundle_sha256','old_sha256','release_witness_sha256','run_identity_sha256')}}
         qualification={'proof':proof,'review':{'verdict':'PASS','actual_proof_sha256':core.identity(proof),'reviewer_id':'r','reviewer_kind':'claude_code'}} if mode=='train' else None
         assert core.authorize_launch(mode,scope,human,review,qualification=qualification,source_sha256=prepared['source_sha256'])
         with pytest.raises(ValueError):core.authorize_launch(mode,scope,human,review,qualification=qualification,source_sha256={'/s.py':base.sha('edited')})
     with pytest.raises(ValueError):e.launch_scope(prepared,'execute')
+
+
+def test_entry_prepare_to_authorized_workflow_with_lightweight_fixtures(tmp_path,monkeypatch):
+    import shutil
+    import uuid
+    from types import SimpleNamespace
+    from mri_rl import shared_rollout_gspo_entry_v1 as e
+    from mri_rl import paired_z045_continuation_entry_v1 as inherited
+    from mri_rl import paired_z045_continuation_driver_v1 as old
+    parent,sha_,rows=base.parent_fixture(tmp_path)
+    calibration={'mri_sequence':{'p50':.5,'iqr':.2}};cal=tmp_path/'calibration.json';cal.write_text(json.dumps(calibration))
+    runtime={'parent_checkpoint':str(parent),'parent_receipt_sha256':sha_,'calibration':str(cal),'file_sha256':{'calibration':inherited.digest(cal)}}
+    (tmp_path/'runtime.json').write_text(json.dumps(runtime));(tmp_path/'schedule.json').write_text(json.dumps(rows))
+    config={**old.PROFILE,'group_size':4,'max_tokens':256}
+    monkeypatch.setattr(inherited,'parent_metadata',lambda path,sha:{'receipt_sha256':sha,'groups':129,'updates':60,'original_binding':{'configuration':config,
+        'experiment':{'parent_experiment':{'arm':{'name':'U_calibrated','reward':'medgrpo_eq3','sampling':'uniform'},'seed':13,'calibration_sha256':inherited.scope_digest(calibration)}}}})
+    monkeypatch.setattr(inherited,'source_closure',lambda spec:{'/installed/runtime.py':base.sha('runtime')})
+    monkeypatch.setattr(inherited,'cache_metadata',lambda spec:{'expected_binding':{'cache':'fixture'}})
+    root=Path(e.__file__).resolve().parents[2];output=root/'local_data/shared_rollout_gspo'/('pytest-'+uuid.uuid4().hex)
+    images={r['id']:inherited.digest(r['images'][0]) for r in rows}
+    spec={'runtime_spec':str(tmp_path/'runtime.json'),'schedule':str(tmp_path/'schedule.json'),'expected_image_sha256':images,'output':str(output),
+          'file_sha256':{'runtime_spec':inherited.digest(tmp_path/'runtime.json'),'schedule':inherited.digest(tmp_path/'schedule.json')}}
+    try:
+        prepared=e.prepare(spec,verify_images=True)
+        assert prepared['training_authorized'] is False and prepared['model_loads_this_preparation']==0 and set(prepared['budgets'])=={'qualify','train'}
+        assert set(str(root/n) for n in e.OWN_SOURCES)<=set(prepared['source_sha256']) and prepared['reward_policy_sha256']==inherited.scope_digest(calibration)
+        scope=e.launch_scope(prepared,'qualify');binding=core.scope_digest(scope)
+        files={'scope':scope,'human':{'authorized':True,'action':core.ACTIONS['qualify'],'scope_sha256':binding,'human_instruction_sha256':base.sha('h')},
+               'review':{'verdict':'PASS','scope_sha256':binding,'reviewer_id':'r','reviewer_kind':'claude_code','source_sha256':scope['source_sha256'],'input_sha256':scope['input_sha256']}}
+        paths={}
+        for key,value in files.items():paths[key]=tmp_path/(key+'.json');paths[key].write_text(json.dumps(value))
+        args=SimpleNamespace(spec=tmp_path/'spec.json',scope=paths['scope'],human=paths['human'],review=paths['review'],expected_scope_sha256=inherited.digest(paths['scope']),
+            expected_human_sha256=inherited.digest(paths['human']),expected_review_sha256=inherited.digest(paths['review']))
+        args.spec.write_text(json.dumps(spec))
+        assert e._authorized('qualify',args)[1]['input_sha256']==prepared['input_sha256']
+        with pytest.raises(ValueError,match='already consumed'):e._authorized('qualify',args)            # one human instruction, one launch
+        wrong=json.loads(paths['scope'].read_text());wrong['budget']['backward_calls']=1;paths['scope'].write_text(json.dumps(wrong));args.expected_scope_sha256=inherited.digest(paths['scope'])
+        with pytest.raises(ValueError):e._authorized('qualify',args)
+        broken=json.loads(json.dumps(rows));broken[0].pop('paired_z045_data_v1');(tmp_path/'schedule.json').write_text(json.dumps(broken))
+        spec['file_sha256']['schedule']=inherited.digest(tmp_path/'schedule.json');(tmp_path/'spec.json').write_text(json.dumps(spec))
+        with pytest.raises(ValueError,match='z045'):e.prepare(spec)
+        (tmp_path/'schedule.json').write_text(json.dumps(rows));spec['file_sha256']['schedule']=inherited.digest(tmp_path/'schedule.json')
+        with pytest.raises(ValueError,match='private output'):e.prepare({**spec,'output':str(tmp_path/'outside')})
+    finally:
+        shutil.rmtree(output,ignore_errors=True);shutil.rmtree(output.with_name(output.name+'_authorizations_PRIVATE'),ignore_errors=True)
 
 
 def test_every_owned_source_exists_for_the_source_closure():

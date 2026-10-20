@@ -39,6 +39,15 @@ Rollout once: ≤8 responses / 2048 returned tokens / 2056 sampler draws / 2080 
 
 `qualify` and `train` need an exact launch scope bound to the current source closure and input hash, a fresh human authorization whose `action` is specific to the mode (`shared_rollout_gspo_readonly_qualification` vs `shared_rollout_gspo_one_step_train`), and an independent source/input/scope review, all digest-bound on the command line, consumed once. `train` additionally requires an independently reviewed actual same-source read-only qualification proof. A local `approved`/`authorized` flag in any scope is rejected. All gates precede any MLX import. None of these artifacts exist; this work did not create them.
 
+## Revision 2 (response to preliminary independent review)
+
+- Qualification proof is built only from run-written artifacts (`run_identity_PRIVATE.json` with the actual source/input, per-arm gradient evidence, and the `release_SAFE.json` written by `run_with_release`). Without an admitted group, nonzero finite gradient and backward coverage in BOTH arms it is `PARTIAL_...` with `blockers`, and `authorize_launch('train')` denies it.
+- Post-generation RNG R1 is persisted (`rng_R1_PRIVATE.json` + safetensors via `pack_tree`/`save_arrays`); both arms restart from the exact parent R0, recorded in each arm receipt.
+- Qualify→train adoption (`adopt=`, only after the fresh train authorization): the reviewed qualification's committed bundle and own-old are copied, bound to the proof (bundle/old/run-identity/release hashes) and to the same source/input/parent; no generation, no rescoring. New counters exclude inherited work (`adopted_limits`); inherited counters are reported separately. An interrupted adoption stops (`INCOMPLETE_ADOPTION`).
+- The `boundary_0001` rename is the commit: an exception after it is reported committed, the marker is reconstructed on resume, leftover `.pending-*` dirs are ignored, nothing is replayed.
+- Consumer entry revalidates response ID/modality/index, bundle parent receipt/adapter against the external anchor, and context rows/images/pair/reward; z045 rows must carry certified `paired_z045_data_v1` lineage (no `None==None`).
+- Evaluator: `eval_budget(1..3)` (parent-only when both arms are aliases), executable CLI `scripts/run_shared_rollout_gspo_eval_v1.py`, admission requires the NEW shared qualification (effective, reviewed, same source) instead of the old F32 status, source closure includes `paired_z045_evaluation_v1.py`, `answer_likelihood.py`, `vero_mri_reward.py` and the shared files.
+
 ## Limitations (not verified)
 
 - Mixed-context F32 rollout/scorer/backward are **not** native-measured. The pinned F32 helpers are reused, but `_generate_context` is a new count-aware copy of the pinned rollout loop; only CPU doubles exercise it.

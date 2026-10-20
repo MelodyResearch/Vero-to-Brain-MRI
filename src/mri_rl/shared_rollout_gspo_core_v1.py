@@ -85,6 +85,27 @@ def derive_budget(prompt_lengths,mode):
         'counting':'Completed API endpoints, not kernel/hardware counts; checkpoint internal recomputation and one unreturned AR lookahead per response are additional work disclosed separately.'}
 
 
+def adopted_limits(budget):
+    """NEW-run limits when the F4+T4 bundle and own-old are adopted: generation/own-old work is inherited, never recharged."""
+    limits=counter_limits(budget);lengths=budget['prompt_lengths']
+    for key in ('generated_response_tokens','sampler_draws','generation_language_model_calls','generation_vision_embedding_calls','detached_old_forwards'):limits[key]=0
+    limits['scorer_vision_embedding_calls']=limits['scorer_language_model_calls']=2*RESPONSES
+    limits['teacherforced_input_positions']=sum(2*GROUP_SIZE*(lengths[t]+MAX_TOKENS-1) for t in ('F','T'))
+    return limits
+
+
+def validate_bundle_against_run(bundle,*,anchor,rows,expected_image_sha256,pair_id,reward_policy_sha256):
+    """Consumer-side revalidation against the EXTERNAL anchor and this run's own rows/images (no self-attested identity)."""
+    require(bundle.raw['parent']=={'receipt_sha256':anchor['receipt_sha256'],'adapter_sha256':anchor['adapter_sha256']},'Bundle parent receipt/adapter differs from the external anchor')
+    for m in ('F','T'):
+        c=bundle.raw['contexts'][m];row=rows[m]
+        require(c['row_id']==row['id'] and c['image_sha256']==expected_image_sha256[row['id']] and c['pair_id']==pair_id and c['reward_policy_sha256']==reward_policy_sha256 and
+                c['checkpoint_sha256']==anchor['adapter_sha256'] and c['policy_sha256']==identity(POLICY),"Bundle context differs from this run's own row/image/reward/anchor")
+    for r in bundle.responses:
+        require(r.context==bundle.contexts[r.response_id[0]],'Response context differs from its modality context')
+    return True
+
+
 def counter_limits(budget):
     require(isinstance(budget,dict) and budget.get('mode') in MODES,'Derived budget required')
     require(all(type(budget.get(key)) is int and budget[key]>=0 for key in CHARGEABLE),'Finite integer chargeable budget required')
@@ -220,6 +241,7 @@ def load_bundle(value):
     responses=[]
     for item in raw['responses']:
         m=item['modality'];_validate_stream(item,item['effective_eos_ids'])
+        require(m in ('F','T') and type(item['index']) is int and 0<=item['index']<GROUP_SIZE and item['response_id']==m+str(item['index']),'Response ID prefix/modality/index differ')
         require(item['token_sha256']==identity(tuple(item['token_ids'])) and item['selected_logps_sha256']==identity(item['raw_selected_logps']) and
                 item['text_sha256']==hashlib.sha256(item['text'].encode()).hexdigest(),'Token/logp/text binding differs')
         require(item['reward_receipt_sha256']==reward_receipt(item['response_id'],contexts[m].sha256,item['token_sha256'],item['text_sha256'],item['selected_logps_sha256'],item['grade']),'Immutable reward receipt binding differs')
@@ -338,7 +360,9 @@ def authorize_launch(mode,scope,human,review,*,qualification=None,source_sha256=
     if mode=='train':
         proof,proof_review=(qualification or {}).get('proof'),(qualification or {}).get('review')
         require(isinstance(proof,dict) and proof.get('status')=='ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED' and proof.get('optimizer_updates')==0 and
-                proof.get('source_sha256')==scope.get('source_sha256') and proof.get('input_sha256')==scope.get('input_sha256'),'Actual same-source read-only qualification required before training')
+                proof.get('source_sha256')==scope.get('source_sha256') and proof.get('input_sha256')==scope.get('input_sha256') and
+                all(sha(proof.get(k)) for k in ('bundle_sha256','old_sha256','release_witness_sha256','run_identity_sha256')) and not proof.get('blockers'),
+                'Actual same-source read-only qualification with effective backward coverage and release witness required before training')
         require(isinstance(proof_review,dict) and proof_review.get('verdict') in ('PASS','PASS_WITH_LIMITATIONS') and proof_review.get('actual_proof_sha256')==identity(proof) and
                 proof_review.get('reviewer_id') and proof_review.get('reviewer_kind') in REVIEWER_KINDS,'Independent review of the actual qualification proof required')
     if consumed is not None:consumed(human['human_instruction_sha256'])

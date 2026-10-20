@@ -25,7 +25,7 @@ def eval_budget(checkpoints=3):
     """Matched evaluator per-checkpoint maxima scaled to parent+A+B."""
     base=matched.budget();per={k:v//2 for k,v in base.items() if k in ('greedy_generations','candidate_score_API_calls','maximum_generated_tokens',
         'teacherforced_input_positions','generation_language_model_calls','vision_embedding_calls')}
-    require(checkpoints in (2,3),'Parent plus one or two arm checkpoints')
+    require(checkpoints in (1,2,3),'Parent only (both arms aliased), or parent plus one or two updated arm checkpoints')
     return {**{k:v*checkpoints for k,v in per.items()},'checkpoints':checkpoints,'optimizer_updates':0,'maximum_seconds':1200*checkpoints,'simultaneous_models':1,'simultaneous_image_graphs':1}
 
 
@@ -60,30 +60,45 @@ def prepare(spec):
     base=matched.prepare({**spec,'terminal_checkpoint':None})
     arms={arm:arm_checkpoint(spec['shared_run'],arm,base['parent']) for arm in ('A','B')}
     distinct=1+sum(not v['alias_of_parent'] for v in arms.values())
-    sources={**base['source_sha256'],**{str(Path(__file__)):entry.digest(__file__),str(Path(core.__file__)):entry.digest(core.__file__)}}
+    root=Path(core.__file__).resolve().parents[2]
+    direct=('src/mri_rl/paired_z045_evaluation_v1.py','src/mri_rl/answer_likelihood.py','src/mri_rl/vero_mri_reward.py','src/mri_rl/paired_z045_f32_backend_v1.py',
+            'src/mri_rl/shared_rollout_gspo_core_v1.py','src/mri_rl/shared_rollout_gspo_entry_v1.py','src/mri_rl/shared_rollout_gspo_eval_v1.py','scripts/run_shared_rollout_gspo_eval_v1.py')
+    from mri_rl import shared_rollout_gspo_entry_v1 as shared_entry
+    sources={**base['source_sha256'],**{str(root/name):entry.digest(root/name) for name in (*direct,*shared_entry.OWN_SOURCES)}}
     return {**base,'schema':'shared-rollout-gspo-matched-F32-evaluator-v1','status':core.STATUS,'arms':arms,'terminal':None,'terminal_binding_status':'ARM_TERMINALS_BOUND',
             'source_sha256':sources,'budget':eval_budget(distinct),'evaluated_checkpoints':['parent']+[a for a,v in arms.items() if not v['alias_of_parent']],
             'shared_bundle_sha256':json.loads((Path(spec['shared_run'])/'bundle_COMMITTED.json').read_text())['bundle_sha256'],
             'scope_limitation':'Parent and committed shared-rollout arm terminals only; engineering diagnostic, no independent-generalization/clinical/training-gain claim.'}
 
 
-def execute(args,spec,scope):
-    import fcntl
-    from mri_rl import early_native_conditioning_probe_v1 as utility
+def authorize_eval(args,scope):
+    """Every gate, before any native import. The numeric prerequisite is the NEW shared-rollout read-only
+    qualification (effective, reviewed, same source) - not the old ACTUAL_F32 status, which this path cannot produce."""
     required=('review','expected_review_sha256','human_authorization','expected_human_sha256','numeric_contract','expected_numeric_sha256')
-    require(all(getattr(args,k,None) for k in required),'NOT_AUTHORIZED: exact new evaluation review/human/actual numeric proof required')
+    require(all(getattr(args,k,None) for k in required),'NOT_AUTHORIZED: exact new evaluation review/human/shared-qualification artifacts required')
     for path,expected in ((args.review,args.expected_review_sha256),(args.human_authorization,args.expected_human_sha256),(args.numeric_contract,args.expected_numeric_sha256)):
         require(entry.digest(path)==expected,'Eval authorization evidence changed')
-    require(scope['numerical_contract_sha256']==args.expected_numeric_sha256,'Exact matched numerical contract file SHA missing/changed')
+    require(scope.get('status')==core.STATUS and scope.get('numerical_contract_sha256')==args.expected_numeric_sha256,'Eval scope status/numerical contract SHA differs')
     review=json.loads(args.review.read_text());human=json.loads(args.human_authorization.read_text());numeric=json.loads(args.numeric_contract.read_text());binding=entry.scope_digest(scope)
     require(review.get('verdict') in ('PASS','PASS_WITH_LIMITATIONS') and review.get('scope_sha256')==binding and review.get('reviewer_id') and review.get('reviewer_kind') in core.REVIEWER_KINDS,'Independent exact eval review missing')
     require(human.get('authorized') is True and human.get('action')==ACTION and human.get('scope_sha256')==binding and core.sha(human.get('human_instruction_sha256')),'New human shared-rollout evaluation authorization missing')
-    require(numeric.get('actual_proof_path') and numeric.get('actual_review_path'),'Actual native F32 prerequisite missing')
-    for key in ('actual_proof','actual_review'):require(entry.digest(numeric[key+'_path'])==numeric[key+'_sha256'],'Actual numeric artifact changed')
+    require(numeric.get('actual_proof_path') and numeric.get('actual_review_path'),'Shared-rollout qualification prerequisite missing')
+    for key in ('actual_proof','actual_review'):require(entry.digest(numeric[key+'_path'])==numeric[key+'_sha256'],'Qualification artifact changed')
     actual=json.loads(Path(numeric['actual_proof_path']).read_text());actual_review=json.loads(Path(numeric['actual_review_path']).read_text())
-    require(actual.get('status')=='ACTUAL_F32_ONPOLICY_GSPO_READONLY_QUALIFIED' and actual_review.get('verdict') in ('PASS','PASS_WITH_LIMITATIONS') and
-            actual_review.get('actual_proof_sha256')==numeric['actual_proof_sha256'] and actual_review.get('reviewer_id') and actual_review.get('reviewer_kind') in core.REVIEWER_KINDS and
-            all(scope['source_sha256'].get(p)==d for p,d in actual['source_sha256'].items()),'Actual complete same-source F32 prerequisite not qualified')
+    from mri_rl import shared_rollout_gspo_entry_v1 as shared_entry
+    own={str(Path(core.__file__).resolve().parents[2]/name) for name in shared_entry.OWN_SOURCES}
+    require(actual.get('status')=='ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED' and not actual.get('blockers') and actual.get('optimizer_updates')==0 and
+            actual_review.get('verdict') in ('PASS','PASS_WITH_LIMITATIONS') and actual_review.get('actual_proof_sha256')==core.identity(actual) and
+            actual_review.get('reviewer_id') and actual_review.get('reviewer_kind') in core.REVIEWER_KINDS and
+            own<=set(actual['source_sha256']) and own<=set(scope['source_sha256']) and all(scope['source_sha256'][p]==actual['source_sha256'][p] for p in own) and
+            all(scope['source_sha256'].get(p,d)==d for p,d in actual['source_sha256'].items()),'Effective same-source shared-rollout qualification prerequisite not qualified')
+    return {'binding':binding,'review':review,'human':human}
+
+
+def execute(args,spec,scope):
+    import fcntl
+    from mri_rl import early_native_conditioning_probe_v1 as utility
+    binding=authorize_eval(args,scope)['binding']
     cs=json.loads(Path(spec['continuation_spec']).read_text());out=Path(scope['output']);require(not out.exists(),'Fresh private matched evaluation output required')
     def verify():
         for path,expected in scope['source_sha256'].items():require(entry.digest(path)==expected,'Matched eval source changed')
@@ -120,6 +135,19 @@ def execute(args,spec,scope):
             results.append(entry.run_with_release(run,resident,directory));utility.durable(directory/'complete_PRIVATE.json',results[-1]);resident[0]=None;gc.collect();verify()
     utility.durable(out/'complete_PRIVATE.json',{'status':'ACTUAL_SHARED_ROLLOUT_MATCHED_F32_EVALUATION_COMPLETE','scope_sha256':binding,'checkpoints':results,
         'aliases_of_parent':[a for a in ('A','B') if scope['arms'][a]['alias_of_parent']],'actual_calls':counter.values,'optimizer_updates':0})
+
+
+def main(argv=None):
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--spec',type=Path,required=True);parser.add_argument('--scope-output',type=Path,required=True);parser.add_argument('--execute',action='store_true')
+    for name in ('review','human-authorization','numeric-contract'):parser.add_argument('--'+name,type=Path)
+    for name in ('expected-review-sha256','expected-human-sha256','expected-numeric-sha256'):parser.add_argument('--'+name)
+    args=parser.parse_args(argv);spec=json.loads(args.spec.read_text());scope=prepare(spec);args.scope_output.parent.mkdir(parents=True,exist_ok=True)
+    if args.scope_output.exists():require(json.loads(args.scope_output.read_text())==scope,'Frozen evaluator scope differs')
+    else:core.publish_once(args.scope_output,scope)
+    if args.execute:execute(args,spec,scope);return {'status':'EXECUTED'}
+    result={'status':scope['status'],'scope_sha256':entry.scope_digest(scope),'evaluated_checkpoints':scope['evaluated_checkpoints'],'model_loads':0}
+    print(json.dumps(result,sort_keys=True));return result
 
 
 def anchor_path(scope,label,checkpoint):return scope['parent']['path'] if label=='parent' else checkpoint['path']

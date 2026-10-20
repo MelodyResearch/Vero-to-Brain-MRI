@@ -189,7 +189,8 @@ def launch_pack(mode,tmp_path=None):
     binding=core.scope_digest(scope)
     human={'authorized':True,'action':core.ACTIONS[mode],'scope_sha256':binding,'human_instruction_sha256':sha('instruction-'+mode)}
     review={'verdict':'PASS_WITH_LIMITATIONS','scope_sha256':binding,'reviewer_id':'isolated','reviewer_kind':'isolated_codex','source_sha256':scope['source_sha256'],'input_sha256':scope['input_sha256']}
-    proof={'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED','optimizer_updates':0,'source_sha256':scope['source_sha256'],'input_sha256':scope['input_sha256']}
+    proof={'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED','optimizer_updates':0,'blockers':[],'source_sha256':scope['source_sha256'],'input_sha256':scope['input_sha256'],
+           **{k:sha(k) for k in ('bundle_sha256','old_sha256','release_witness_sha256','run_identity_sha256')}}
     qualification={'proof':proof,'review':{'verdict':'PASS','actual_proof_sha256':core.identity(proof),'reviewer_id':'isolated','reviewer_kind':'isolated_codex'}}
     return scope,human,review,qualification
 
@@ -331,14 +332,15 @@ def parent_fixture(tmp_path):
     for i,(label,m) in enumerate((('FLAIR','F'),('contrast-enhanced T1','T'))):
         image=tmp_path/f'{m}.png';image.write_bytes(b'SYNTHETIC IMAGE '+m.encode())
         rows.append({'id':f'row-{m}','ability':'mri_sequence','data_source':'OpenNeuro_ds007045','images':[str(image)],'reward_model':{'ground_truth':label},
-                     'extra_info':{'reward_type':'mri_sequence','internal_split':'train','patient_lineage':'BIDS_SUBJECT_VERIFIED','patient_key':'p1','question':'Generic?','level':45}})
+                     'extra_info':{'reward_type':'mri_sequence','internal_split':'train','patient_lineage':'BIDS_SUBJECT_VERIFIED','patient_key':'p1','question':'Generic?'},
+                     'paired_z045_data_v1':{'version':1,'level':45,'modality_PRIVATE':'flair' if m=='F' else 't1ce','acquisition_modality_source_eligible':True,'training_authorized':False}})
     return r['path'],old.digest(r['path']/'receipt.json'),rows
 
 
-def launch(tmp_path,out,mode='train',cls=Fake,resume=False,authorize=None,**kwargs):
+def launch(tmp_path,out,mode='train',cls=Fake,resume=False,authorize=None,bindings_input=None,**kwargs):
     parent,sha_,rows=parent_fixture(tmp_path) if not (tmp_path/'adam60').exists() else (tmp_path/'adam60'/'boundary_0008',old.digest(tmp_path/'adam60'/'boundary_0008'/'receipt.json'),json.loads((tmp_path/'rows.json').read_text()))
     if not (tmp_path/'rows.json').exists():(tmp_path/'rows.json').write_text(json.dumps(rows))
-    return drv.run(output=out,mode=mode,schedule=rows,bindings={'stage':'fixture'},backend_factory=cls,authorize=authorize or (lambda context:None),
+    return drv.run(output=out,mode=mode,schedule=rows,bindings={'stage':'fixture','source_sha256':{'/s.py':sha('s')},'input_sha256':bindings_input or sha('i')},backend_factory=cls,authorize=authorize or (lambda context:None),
         parent_checkpoint=parent,parent_receipt_sha256=sha_,grader=grader,reward_policy_sha256=sha('calibration'),budget=core.derive_budget(LENGTHS,mode),resume=resume,**kwargs)
 
 
@@ -399,9 +401,9 @@ def test_qualification_computes_both_arm_gradients_with_zero_updates(tmp_path):
     assert result['counters']['optimizer_updates']==0 and result['counters']['gradient_forwards']==16 and result['counters']['detached_old_forwards']==8
     assert not list((tmp_path/'run').glob('arm_*/boundary_*'))
     for arm in 'AB':assert json.loads((tmp_path/'run'/f'qualification_arm_{arm}_PRIVATE.json').read_text())['optimizer_updates']==0
-    from mri_rl import shared_rollout_gspo_entry_v1 as e
-    proof=e.qualification_proof(tmp_path/'run',{'source_sha256':{'/s':sha('s')},'input_sha256':sha('i')})
-    assert proof['status']=='ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED' and proof['optimizer_updates']==0 and proof['arms']['A']['backward_calls']==8
+    with pytest.raises(ValueError,match='Release witness'):                      # no externally written release witness -> no proof
+        from mri_rl import shared_rollout_gspo_entry_v1 as e
+        (tmp_path/'noev').mkdir();e.qualification_proof(tmp_path/'run',tmp_path/'noev',PREPARED)
 
 
 def test_inactive_arm_makes_zero_updates_and_records_negative_evidence_without_resample(tmp_path):
@@ -443,12 +445,142 @@ def test_failure_after_atomic_commit_is_not_replayed_on_resume(tmp_path,monkeypa
         return result
     monkeypatch.setattr(drv.old,'_publish',crash)
     with pytest.raises(RuntimeError,match='after atomic rename'):launch(tmp_path,tmp_path/'run')
-    run=tmp_path/'run';assert (run/'arm_A/boundary_0001/receipt.json').exists() and not (run/'arm_A_COMMITTED.json').exists()
+    run=tmp_path/'run';assert (run/'arm_A/boundary_0001/receipt.json').exists()
+    stop=json.loads(next(run.glob('arm_A_*_STOP_PRIVATE.json')).read_text());assert stop['committed'] is True and stop['rolled_back_model_Adam_RNG'] is False      # reported committed, not rolled back
     monkeypatch.setattr(drv.old,'_publish',publish)
     result=launch(tmp_path,run,resume=True);b=Fake.instances[-1]
     assert result['status']=='SCHEDULE_COMPLETE' and Fake.rollouts==1 and b.events.count('update')==1 and 'gradient_A' not in b.events and 'gradient_B' in b.events
     assert json.loads((run/'arm_A_COMMITTED.json').read_text())['recovered_without_replay'] is True
     assert result['optimizer_updates']==2
+
+
+def test_rename_is_the_commit_even_if_marker_write_fails_and_pending_leftovers_are_harmless(tmp_path,monkeypatch):
+    real=core.publish_once;armed=[True]
+    def flaky(path,value):
+        if Path(path).name=='arm_A_COMMITTED.json' and armed[0]:raise OSError('fsync after rename failed')
+        return real(path,value)
+    monkeypatch.setattr(core,'publish_once',flaky)
+    with pytest.raises(OSError,match='fsync after rename'):launch(tmp_path,tmp_path/'run')
+    run=tmp_path/'run';assert (run/'arm_A/boundary_0001/receipt.json').exists() and not (run/'arm_A_COMMITTED.json').exists()
+    assert json.loads(next(run.glob('arm_A_*_STOP_PRIVATE.json')).read_text())['committed'] is True
+    (run/'arm_A/.pending-leftover').mkdir();armed[0]=False
+    result=launch(tmp_path,run,resume=True);b=Fake.instances[-1]
+    assert result['status']=='SCHEDULE_COMPLETE' and 'gradient_A' not in b.events and Fake.rollouts==1 and (run/'arm_A_COMMITTED.json').exists()
+
+
+PREPARED={'source_sha256':{'/s.py':sha('s')},'input_sha256':sha('i')}
+
+
+def qualify(tmp_path,accuracy=ACCURACY,release=True,name='qrun'):
+    from types import SimpleNamespace as NS
+    from mri_rl import paired_z045_continuation_entry_v1 as inherited
+    Fake.accuracy=accuracy;run=tmp_path/name;evidence=tmp_path/(name+'_evidence');evidence.mkdir()
+    resident=[NS(close=lambda:None,mx=NS(clear_cache=lambda:None,get_active_memory=lambda:0),model=None)]
+    work=lambda:launch(tmp_path,run,mode='qualify')
+    result=inherited.run_with_release(work,resident,evidence) if release else work()
+    core.publish_once(evidence/'complete_PRIVATE.json',result);return run,evidence
+
+
+def test_qualification_proof_binds_actual_run_identity_and_external_release_witness(tmp_path):
+    from mri_rl import shared_rollout_gspo_entry_v1 as e
+    run,evidence=qualify(tmp_path)
+    proof=e.qualification_proof(run,evidence,PREPARED)
+    assert proof['status']=='ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED' and proof['blockers']==[] and proof['optimizer_updates']==0
+    assert proof['release_witness_sha256']==core.file_sha256(evidence/'release_SAFE.json') and proof['run_identity_sha256']==core.file_sha256(run/'run_identity_PRIVATE.json')
+    assert proof['old_sha256']==core.file_sha256(run/'old_PRIVATE.json') and proof['source_sha256']==PREPARED['source_sha256']
+    with pytest.raises(ValueError,match='differ from the current reviewed'):e.qualification_proof(run,evidence,{**PREPARED,'input_sha256':sha('other')})   # caller cannot supply arbitrary hashes
+    release=evidence/'release_SAFE.json';release.write_text(release.read_text().replace('true','false'))
+    with pytest.raises(ValueError,match='Release witness'):e.qualification_proof(run,evidence,PREPARED)
+
+
+def test_qualification_without_effective_backward_path_is_partial_and_training_is_denied(tmp_path):
+    from mri_rl import shared_rollout_gspo_entry_v1 as e
+    run,evidence=qualify(tmp_path,{'F':[1,1,1,1],'T':[0,0,0,0]})            # arm A has no admitted group -> no backward
+    proof=e.qualification_proof(run,evidence,PREPARED)
+    assert proof['status'].startswith('PARTIAL') and proof['blockers']==['ARM_A_NO_EFFECTIVE_FINITE_NONZERO_BACKWARD_PATH']
+    scope,human,review,qual=launch_pack('train')
+    with pytest.raises(ValueError,match='qualification'):core.authorize_launch('train',scope,human,review,qualification={'proof':proof,'review':qual['review']})
+    run2,evidence2=qualify(tmp_path,{'F':[1,1,1,1],'T':[1,1,1,1]},name='q2')
+    assert len(e.qualification_proof(run2,evidence2,PREPARED)['blockers'])==2
+
+
+def test_proof_needs_a_release_witness_the_run_wrote(tmp_path):
+    from mri_rl import shared_rollout_gspo_entry_v1 as e
+    run,evidence=qualify(tmp_path,release=False)
+    with pytest.raises(ValueError,match='Release witness'):e.qualification_proof(run,evidence,PREPARED)
+
+
+def test_rng_post_generation_state_is_persisted_and_both_arms_restart_from_R0(tmp_path):
+    launch(tmp_path,tmp_path/'run');run=tmp_path/'run'
+    r1=json.loads((run/'rng_R1_PRIVATE.json').read_text())
+    assert r1['R1_differs_from_R0'] is True and r1['R0_rng_digest']!=r1['R1_rng_digest'] and r1['arm_start_policy']=='BOTH_ARMS_RESTORE_R0_NOT_R1'
+    assert (run/r1['tensors_file']).is_file() and core.file_sha256(run/r1['tensors_file'])==r1['tensors_sha256'] and r1['layout']['kind']=='dict'
+    for arm in 'AB':
+        receipt=json.loads((run/f'arm_{arm}/boundary_0001/receipt.json').read_text())
+        assert receipt['arm_start_rng_digest']==r1['R0_rng_digest'] and receipt['rng_policy'].startswith('ARM_STARTS_FROM_EXACT_PARENT_R0')
+
+
+def test_qualify_to_train_adoption_reuses_bundle_without_regeneration_or_recharge(tmp_path):
+    from mri_rl import shared_rollout_gspo_entry_v1 as e
+    run,evidence=qualify(tmp_path);proof=e.qualification_proof(run,evidence,PREPARED);assert Fake.rollouts==1
+    result=launch(tmp_path,tmp_path/'train',adopt={'run':run,'proof':proof})
+    assert Fake.rollouts==1 and result['status']=='SCHEDULE_COMPLETE' and result['optimizer_updates']==2 and result['bundle_sha256']==proof['bundle_sha256']
+    new=result['counters'];inherited=result['inherited_counters']
+    assert new['generated_response_tokens']==0 and new['sampler_draws']==0 and new['detached_old_forwards']==0 and new['backward_calls']==16 and new['optimizer_updates']==2
+    assert inherited['generated_response_tokens']==24 and inherited['detached_old_forwards']==8 and inherited['optimizer_updates']==0 and result['counters_scope']=='NEW_COUNTERS_OF_THIS_RUN_ONLY'
+    adoption=json.loads((tmp_path/'train/adoption_PRIVATE.json').read_text());assert adoption['generation_in_this_run'] is False and adoption['release_witness_sha256']==proof['release_witness_sha256']
+    assert json.loads((tmp_path/'train/counters_PRIVATE.json').read_text())['limits']['generated_response_tokens']==0
+    resumed=launch(tmp_path,tmp_path/'train',resume=True);assert resumed['native_backend_constructed'] is False and resumed['inherited_counters']==inherited
+
+
+def test_adoption_is_refused_for_foreign_partial_or_tampered_evidence_and_never_automatic(tmp_path):
+    from mri_rl import shared_rollout_gspo_entry_v1 as e
+    run,evidence=qualify(tmp_path);proof=e.qualification_proof(run,evidence,PREPARED)
+    with pytest.raises(ValueError):launch(tmp_path,tmp_path/'t1',adopt={'run':run,'proof':{**proof,'status':'PARTIAL_SHARED_ROLLOUT_GSPO_QUALIFICATION','blockers':['x']}})
+    with pytest.raises(ValueError,match='differ from the reviewed proof'):launch(tmp_path,tmp_path/'t2',adopt={'run':run,'proof':{**proof,'bundle_sha256':sha('other')}})
+    with pytest.raises(ValueError,match='differ from the reviewed proof'):launch(tmp_path,tmp_path/'t3',adopt={'run':run,'proof':{**proof,'old_sha256':sha('other')}})
+    with pytest.raises(ValueError,match='source/input/parent'):launch(tmp_path,tmp_path/'t4',adopt={'run':run,'proof':proof},bindings_input=sha('different input'))
+    with pytest.raises(ValueError,match='train-mode'):launch(tmp_path,tmp_path/'t5',mode='qualify',adopt={'run':run,'proof':proof})
+    assert Fake.rollouts==1 and not any((tmp_path/n/'bundle_COMMITTED.json').exists() for n in ('t1','t2','t3','t4','t5'))
+    before=Fake.rollouts;launch(tmp_path,tmp_path/'plain')      # without an explicit adopt argument a train run generates its own bundle
+    assert Fake.rollouts==before+1
+
+
+def test_interrupted_adoption_is_not_retried(tmp_path,monkeypatch):
+    from mri_rl import shared_rollout_gspo_entry_v1 as e
+    run,evidence=qualify(tmp_path);proof=e.qualification_proof(run,evidence,PREPARED);real=core.publish_once
+    def flaky(path,value):
+        if Path(path).name=='adoption_PRIVATE.json':raise OSError('crash during adoption')
+        return real(path,value)
+    monkeypatch.setattr(core,'publish_once',flaky)
+    with pytest.raises(OSError):launch(tmp_path,tmp_path/'train',adopt={'run':run,'proof':proof})
+    monkeypatch.setattr(core,'publish_once',real)
+    with pytest.raises(RuntimeError,match='INCOMPLETE_ADOPTION'):launch(tmp_path,tmp_path/'train',resume=True,adopt={'run':run,'proof':proof})
+
+
+def test_modality_rows_require_certified_z045_lineage_not_none_equality():
+    rows=json.loads(json.dumps([{'id':m,'ability':'mri_sequence','reward_model':{'ground_truth':g},'extra_info':{'patient_key':'p','question':'q'},
+        'paired_z045_data_v1':{'version':1,'level':45,'modality_PRIVATE':z,'acquisition_modality_source_eligible':True,'training_authorized':False}}
+        for m,g,z in (('F','FLAIR','flair'),('T','contrast-enhanced T1','t1ce'))]))
+    assert drv._modality_rows(rows)['T']['id']=='T'
+    for edit in (lambda r:r[0].pop('paired_z045_data_v1'),lambda r:r[1]['paired_z045_data_v1'].__setitem__('level',91),lambda r:r[1]['paired_z045_data_v1'].__setitem__('modality_PRIVATE','flair'),
+                 lambda r:r[0]['paired_z045_data_v1'].__setitem__('acquisition_modality_source_eligible',False),lambda r:r[1]['extra_info'].__setitem__('patient_key','other'),
+                 lambda r:[x['extra_info'].pop('patient_key') for x in r],lambda r:[x['extra_info'].pop('question') for x in r],lambda r:r.reverse()):
+        bad=copy.deepcopy(rows);edit(bad)
+        with pytest.raises((ValueError,KeyError)):drv._modality_rows(bad)
+
+
+def test_consumer_entry_revalidates_ids_and_external_anchor_rows_and_images():
+    raw=frozen();anchor={'receipt_sha256':PARENT['receipt_sha256'],'adapter_sha256':PARENT['adapter_sha256']}
+    rows={m:{'id':'row-'+m} for m in 'FT'};images={'row-F':sha('imageF'),'row-T':sha('imageT')}
+    good=dict(anchor=anchor,rows=rows,expected_image_sha256=images,pair_id='pair',reward_policy_sha256=sha('calibration'))
+    assert core.validate_bundle_against_run(core.load_bundle(raw),**good)
+    for key,value in (('anchor',{**anchor,'receipt_sha256':sha('foreign')}),('anchor',{**anchor,'adapter_sha256':sha('foreign')}),('rows',{'F':{'id':'row-T'},'T':{'id':'row-F'}}),
+                      ('expected_image_sha256',{**images,'row-F':sha('swapped')}),('pair_id','other'),('reward_policy_sha256',sha('other calibration'))):
+        with pytest.raises(ValueError,match='external anchor|own row'):core.validate_bundle_against_run(core.load_bundle(raw),**{**good,key:value})
+    for edit in (lambda b:b['responses'][1].__setitem__('index',2),lambda b:b['responses'][5].__setitem__('modality','F'),lambda b:b['responses'][0].__setitem__('response_id','T0')):
+        tampered=copy.deepcopy(raw);edit(tampered);body={k:v for k,v in tampered.items() if k!='bundle_sha256'};tampered['bundle_sha256']=core.identity(body)
+        with pytest.raises(ValueError):core.load_bundle(tampered)
 
 
 def test_interrupted_rollout_is_preserved_and_never_regenerated(tmp_path):
