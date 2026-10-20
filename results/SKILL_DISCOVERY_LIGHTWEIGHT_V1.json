@@ -1,0 +1,98 @@
+{
+  "schema": "vero-brain-mri-skill-discovery-v1",
+  "UTC": "2026-10-20T23:30:48.020282+00:00",
+  "author": "Codex /root/rc_data",
+  "actual_search_queries": [
+    "machine learning research",
+    "reinforcement learning",
+    "GSPO",
+    "python testing numerical",
+    "MLX Apple Silicon",
+    "PyTorch autograd",
+    "GitHub workflow",
+    "reproducible research"
+  ],
+  "actual_CLI_queries": 8,
+  "all_CLI_exit0": true,
+  "primary_candidate_bodies_read": 4,
+  "candidate_decisions": [
+    {
+      "repo": "itsmostafa/llm-engineering-skills",
+      "commit": "c364a15d5138e3240a360b919a757249ab3e5cd9",
+      "body_sha256": "7f1cc9e64abb01ced7012634d999b2b53b41c0744dc884c87dacad4bbb35ba2d",
+      "stars": 24,
+      "decision": "NOT_INSTALLED",
+      "benefit": "General MLX-LM API orientation on AppleSilicon.",
+      "limits": "92registryinstalls/24GitHubstars at inspection;body is generic textLLM/SFT/conversion/serving,not MLX-VLMGSPO/mixed-contextF32/state qualification. Its permissive swap guidance cannot override project resource gates."
+    },
+    {
+      "repo": "orchestra-research/ai-research-skills",
+      "commit": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
+      "body_sha256": "1167e2b2994c9b0780edc44d5bc3a3eef69dc816af08af8f28ef9c19163d1285",
+      "stars": 13763,
+      "decision": "REFERENCE_ONLY_NOT_INSTALLED",
+      "benefit": "Useful high-level rollout/reward/train/sync and VLM/GRPO/verl terminology.",
+      "limits": "930registryinstalls/13763GitHubstars at inspection;body targets Ray/FSDP/vLLM/CUDA multiGPU and changesLR/KL/clipping as troubleshooting. Not a nativeMLX training-loop/numerical authority;no backend/framework migration."
+    },
+    {
+      "repo": "uw-ssec/rse-plugins",
+      "commit": "bf9da803e9ec9ac11f4ecd2424114774da658c1d",
+      "body_sha256": "8becd4b5dfc9c29d0062081b33f5e5af635b939a789781d324b00e727b182049",
+      "stars": 29,
+      "decision": "NOT_INSTALLED",
+      "benefit": "Scientificpytest fixtures,parametrization,dtype/stochastic numerical tests are relevant.",
+      "limits": "5registryinstalls/29GitHubstars;duplicates installedTDD/debug/verification. Body incorrectly states approx(0.0)alwayspasses: actual CPU pytest1.0==approx(0.0) isFalse. Useful guidance still needs independent numerical checking."
+    },
+    {
+      "repo": "huggingface/skills",
+      "commit": "c3ff942be3e07116b475253f0a8fc4f54682c1a8",
+      "body_sha256": "42c855bdc6171390abc7413cdb19bd4fd8dddfb31094d519a874427de08ddc2a",
+      "stars": 11191,
+      "decision": "REFERENCE_ONLY_NOT_INSTALLED",
+      "benefit": "Official TRL API/dataset/reward-signature and group-generation divisibility reference.",
+      "limits": "882registryinstalls/11191GitHubstars;PyTorch/TRL path is distinct from currentMLXGSPO. No migration,newgeneration,asyncserverortraining allowed by reading this body."
+    }
+  ],
+  "actual_skills_used": [
+    {
+      "skill": "find-skills",
+      "source": "existing",
+      "actual_use": "Read workflow;checkedskills.shleaderboard;ran8actual npxskillsfindqueries;inspected4primarySKILLbodies/commits/stars;chose0installs."
+    },
+    {
+      "skill": "verification-before-completion",
+      "source": "existing superpowers6.4.2",
+      "actual_use": "Checked all8CLIEXIT0,4bodySHA/commitmetadata and0addcommands;ran minimalCPUcounterexample rather than accepting candidate numerical assertion."
+    },
+    {
+      "skill": "receiving-code-review",
+      "source": "existing superpowers6.4.2",
+      "actual_use": "Applied verify-before-adopting discipline to external skill recommendations;rejected unsupported numerical statement instead of blindly following body."
+    }
+  ],
+  "existing_coding_core": [
+    "test-driven-development",
+    "systematic-debugging",
+    "requesting-code-review",
+    "receiving-code-review",
+    "verification-before-completion"
+  ],
+  "existing_research_skills_read": [
+    "norman-paper-reading",
+    "method-level-novelty-audit",
+    "experiment-design"
+  ],
+  "new_skills_installed": 0,
+  "Claude_actual_use": "NOT_VERIFIED_BY_THIS_DISCOVERY_TASK",
+  "model_calls": 0,
+  "training_updates": 0,
+  "private_data_uploads": 0,
+  "plan_changes": 0,
+  "decision": "STOP_DISCOVERY_REUSE_EXISTING_CORE_RETURN_TO_AB",
+  "private_report_sha256": "6dbbd60afe723034039126dcd1e5fa07f8dd950c6cba694a0787ec4ce3f0fe16",
+  "limitations": [
+    "Searchisbounded8queries,not exhaustive or anassertionthat noGSPO/MLXskill exists.",
+    "Registryinstallcounts and GitHubstars are discoverymetadata,not correctness validation.",
+    "No newskillis required before the currentA/B work continues."
+  ]
+}

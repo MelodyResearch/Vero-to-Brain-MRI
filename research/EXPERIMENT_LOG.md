@@ -83,3 +83,25 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 - PRIVATE docs branch docs/vero-to-brain-mri-readme-refresh-v1 已实际推送61f76a63a7270744e2f1cdcd1e0e6acf1d63a586。PR#4仅README+两份aggregate文档review/verification，MERGEABLE/CLEAN，无configuredchecks，未修改branchrules；已按研究者授权正常merge，非force/squash/historyrewrite。
 - PR https://github.com/MelodyResearch/Longitudinal-BrainMRI-Verifiable-RL/pull/4 于2026-10-20T23:09:16Z实际MERGED，main c92b133d1a8fa1524c4a6a650d9c6c84dada3d03。GitHubAPI读取默认README bytes与reviewed本地逐字节相等：SHA179cf90a3a7585bde0025b0e5b293ec28aeed2a54ae1a7153d84fc715e73f07c，10790B（原26324B）。
 - native qualification源/结果保持独立researchbranch；实际结果commit cadf78babdfdfdfed89c54dab4d0d8bca7cfdb37已推送并远端exact。没有把未训练MLX代码合入main，没有新的训练/模型调用/optimizer更新。R原main checkout未强切换，S/D均独立；原模型状态/数据/负结果/冻结plan与锁完整保留。
+
+
+## 2026-10-20 / REPOSITORY_RENAME / ADMINISTRATIVE_VERIFIED
+
+- 研究者明确授权后实际执行 gh repo rename：MelodyResearch/Longitudinal-BrainMRI-Verifiable-RL → MelodyResearch/Vero-to-Brain-MRI。现URL https://github.com/MelodyResearch/Vero-to-Brain-MRI ，同repositoryID1421422665；PRIVATE/main不变，无新repo/删除/forcepush/历史重写。
+- rename前后所有17branchrefs、0tags、3PR历史、1独立Issue、1workflow/4Actionsruns的ID/sha逐项相等。rename-only main仍c92b133d1a8fa1524c4a6a650d9c6c84dada3d03，research仍612cb69fbb79a0d981fc41a866c76eddfebd38a5。所有历史训练/正式结果/Adam60/冻结plan与日志refs保留；本地模型数据路径未重命名。
+- 实际发现2个独立clone（主clone及ResearchScratch），合计17checkout/worktree；新HTTPS origin统一更新并各fetch退出0，所有17remote-v核对一致。home元数据搜索排除了cache/runtime，macOS Photos保护目录未检查；没有其他外置卷。其他worktree既有untracked文件保持原样，不强切他人分支。
+- 已登录浏览器直接进入新PRIVATE页面，About新描述可见，旧URL实际跳转新URL。homepage/topics原空值保留。About为Vero-style verifiable reinforcement learning for image-grounded brain MRI reasoning.
+- README当前9个导航URL更换canonical新repo，commit/pinned内容不变；current scripts/src/config/CI扫描0旧repo调用。历史covenant原签发scope、初次push事实、旧README核验hash和receipt/local路径保留。docs PR#5仅README+行政聚合记录，实际正常merge于2026-10-20T23:31:21Z，main b8b0493754451befaf5e61285ca8bb05570ca36d；不是rename重写历史。
+- rename新增模型调用/optimizer更新/rollout/评价=0，没有停止科研进程或抢占锁。源证据PRIVATE before/after/API/remoteinventory保留；公开记录results/REPOSITORY_RENAME_ACTUAL_VERIFICATION_2026-10-20.json在main。
+
+## 2026-10-20 / NEXT_AB_PREPARATION_DIRECTIVE / HUMAN_DECISION_RECORDED
+
+- 新研究者附件SHA9ed64a48104aa99fb617dec7cb2dfee50b87e68237a983fee6d24b4fc608de3e明确转入最小真实A/B更新准备，不重复qualification、不重抽响应、不改辅助loss。阶段为ENGINEERING PASS / NATIVE INTEGRATION PASS / ACTIVE-GROUP BENEFIT NOT_OBSERVED_THIS_DRAW / METHOD BENEFIT INCONCLUSIVE / ACCURACY NOT_TESTED。
+- 复用已认证8response bundle，两臂同Adam60/fullAdam/R0，最多各1step，执行前必须新独立scope review和研究者一次明确训练授权；目前仍无step许可。CPU准备必须保存A/B真梯度/cos在首step前；不匹配本pair的旧marginVJP不得复用或伪造方向结论。
+- 原资格proof/source70项及原失败/部分证据不改写；必要新driver/证据delta采用一次精确source兼容审查，不能把新代码伪称已经native-qualified。新16模型输出继续封存，原final100不参与选择，冻结主计划内容/锁仍未修改。
+
+## 2026-10-20 / LIGHTWEIGHT_FIND_SKILLS / COMPLETED_NO_INSTALL
+
+- 新研究者指令要求find-skills但不能阻塞A/B。已真实执行8组CLI搜索（research/RL/GSPO/Python数值测试/MLX/PyTorch/GitHub/reproducibility），全退出0；检查4候选pinnedSKILL正文+来源metadata，发现阶段结束，新增安装0。
+- 优先复用已有TDD/systematic-debugging/code-review/verification，研究侧Norman/novelty/experiment-design按问题使用。通用MLX不覆盖VLMGSPO+fullstate，verl/TRL仅参考不换backend；scientificpytest候选含错误approx断言，已最小CPU反例验证，未盲从。
+- 独立技能发现者Codex /root/rc_data；actualClaude skilluse本项NOT_VERIFIED，不伪造使用证明。没有上传MRI/权重/Adam/PRIVATEreceipt、没有加载模型或新增训练，见results/SKILL_DISCOVERY_LIGHTWEIGHT_V1.json。
