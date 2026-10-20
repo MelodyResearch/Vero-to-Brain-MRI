@@ -19,7 +19,7 @@ The authoritative route and next experiment are in the [current research plan][p
 3. Evaluate on independent patients, with uncertainty clustered by patient or matched cycle.
 4. Adapt only by naming the Vero mechanism changed and comparing with direct transfer; supervised-loss gains are not GSPO gains.
 
-A complete heterogeneous-transfer claim needs at least two scientifically eligible MRI visual tasks. Only sequence identification (FLAIR vs. contrast-enhanced T1) is in use; the Dallas task is engineering-only.
+A complete heterogeneous-transfer claim needs at least two scientifically eligible MRI visual tasks. Sequence identification (FLAIR vs. contrast-enhanced T1) is the currently eligible scientific task; Dallas is used only as an engineering control.
 
 ## Current Progress
 
@@ -28,7 +28,7 @@ A complete heterogeneous-transfer claim needs at least two scientifically eligib
 - **Result.** No stable advantage of GSPO MRI accuracy over the common starting point was found (details below).
 - **Numerical evidence.** Finite-context F32 native evidence meets the original 0.002 tolerance in tested TRAIN contexts only. It is not official parity.
 - **Paired data preparation.** 28 TRAIN people now have 168 paired MRI images (84 FLAIR/T1 pairs), and 56 z045 metadata records have been prepared. 16 new people (32 images) were technically obtained and sealed. Sealed outputs support no generalization claim.
-- **Current candidate: Paired-Prompt GSPO.** It groups real on-policy responses to same-patient, same-slice FLAIR and T1 prompts and changes the group baseline and advantage normalization, keeping the GSPO loss. This is a **proposed Vero-style adaptation**, not official same-prompt GSPO and not an established contribution. CPU tests pass and new native code exists on the research branch. **Actual training and any accuracy gain have NOT been run.** A zero-update, read-only shared qualification has been authorized, which is not training. No outcome is claimed here.
+- **Current candidate: Paired-Prompt GSPO.** It groups real on-policy responses to same-patient, same-slice FLAIR and T1 prompts and changes the group baseline and advantage normalization, keeping the GSPO loss. This is a **proposed Vero-style adaptation**, not official same-prompt GSPO and not an established contribution. CPU tests pass and new native code exists on the research branch. **Paired-Prompt training and matched accuracy evaluation have not been performed.** A separately authorized zero-update native qualification has completed: eight real responses, eight read-only backward calls and zero optimizer updates. Both grouping arms admitted one group on this fixed TRAIN draw; this establishes limited integration evidence, not an accuracy gain.
 - **Dallas task.** Whole-head identity correspondence stays `ENGINEERING_ONLY`: not clinical change, not brain-specific, and not an established second scientific task.
 
 ## Methodology
@@ -58,8 +58,7 @@ Every seed and endpoint is reported, with no best-seed selection.
 **Conclusions (limited to this local task and implementation):**
 
 - No stable, cross-seed MRI accuracy advantage from GSPO was shown. Uniform raw GSPO had a 55.75% macro against 55.95% for B28.
-- Isolated high values are not evidence. Proportional raw seed 13 reached 59.67%, but its sibling seeds scored 55.95% and 52.98%. Proportional calibrated seed 13 lost 19 sequence questions (33/84 vs. 52/84).
-- B28 labels almost every image FLAIR (42/42 FLAIR, 10/42 contrast-enhanced T1) and answers "different" for every Dallas pair, so 50% Dallas accuracy is a class prior, not learned correspondence.
+- B28 recall was 42/42 FLAIR (100%) and 10/42 contrast-enhanced T1 (23.81%). It answered "different" for every Dallas pair; its 50% Dallas accuracy does not demonstrate learned correspondence.
 - More accepted updates did not mean higher accuracy. Zero-variance groups, the strict format gate and class priors were observed; their causal shares are undetermined.
 - These results do not show that Vero-style methods fail in general. They are small samples (14 patients, 4 Dallas cycles) on one local implementation.
 
@@ -100,6 +99,6 @@ Limitations:
 - The formal test is small; three training seeds do not add patients.
 - Dallas correspondence uses whole-head views containing face, skull and neck. It is not brain-specific or clinical change reasoning.
 - Cross-model verification is `NOT_VERIFIED` for the private final results. Independent checks were performed by separately identified Codex reviewers.
-- Final-test results must not be used to select prompts, rewards, checkpoints or seeds. Earlier README content remains in Git history.
+- Final-test results must not be used to select prompts, rewards, checkpoints or seeds. Earlier operational notes and CLI examples remain available in the [historical README](https://github.com/MelodyResearch/Longitudinal-BrainMRI-Verifiable-RL/blob/6ee3d1668f17189b24eaf1e850644a2cfbe5f69b/README.md).
 
 [plan]: https://github.com/MelodyResearch/Longitudinal-BrainMRI-Verifiable-RL/blob/05b8ba501c03db2782c34c9a6b4d8cae07e801c8/research/CURRENT_RESEARCH_PLAN.md
