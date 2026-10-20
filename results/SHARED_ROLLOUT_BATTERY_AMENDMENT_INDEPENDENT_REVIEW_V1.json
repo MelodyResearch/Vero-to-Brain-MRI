@@ -1,0 +1,60 @@
+{
+  "MRI_weight_Adam_payload_reads": 0,
+  "actual_native_status": "NOT_RUN",
+  "actual_tests": {
+    "author_power_cases": 10,
+    "command": "env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q tests/test_shared_rollout_qualification_power_v1.py test_battery_telemetry_PRIVATE.py",
+    "failed": 0,
+    "independent_real_gate_cases": 2,
+    "independent_test_sha256": "77d048650471336f4fcb4310734aac462ed0cbf33ddbd411f97de3d054f398c9",
+    "passed": 12,
+    "scope": "SyntheticCPU samples and temporaryJSONL;not actualmachine telemetry",
+    "seconds": 0.2,
+    "snapshot_used": true
+  },
+  "amendment_uncommitted_at_review": true,
+  "findings": [
+    "The exact amendment removes only power_not_verified_AC on the local readonly qualification BATTERY route. Real sample and supervisor reasons remain preserved.",
+    "KnownBATTERY<=10% or missingBATTERYpercentage stops; unknownpower remains held. Memory/pressure/swap/thermal/otherheavy reasons are retained.",
+    "Scoped battery flag is an explicit boolean, exact-launch-scope bound and forbidden in train mode. Global PacedGate and ResourcePolicy are byte-unchanged from the reviewed base.",
+    "10 author power cases plus2 independent real-gate telemetry/HOLD tests passed on an isolated amendment snapshot.",
+    "All70 current source hashes match this exact scope; immutable scientific input and all finite call/token/backward/0update limits equal the prior independently reviewed scope."
+  ],
+  "finite_budget_unchanged": true,
+  "human_boundary": "Fresh directhuman battery authorization reported by parent; actualupdatedreply record must be bound by launcher. Review does not mint permission.",
+  "input_sha256": "1d8d45555bca9d982dce76a09a4fe01ec4fd70fe6cb99cb78eaab92b23c89e7b",
+  "limits": [
+    "This review is source/CPU engineering approval only. It is not a native qualification proof, actualresource sample or permission to run a model by itself.",
+    "Parent reports a NEW directhuman reply allowing this single qualifier onbattery withoutAC and the minimal local amendment. The launcher must preserve and bind that actual latestreply, amendedscope, reviewer digest and once-onlyconsumption; the oldAC-worded source record is not the newbattery instruction. No secondhuman permission is requested by this review.",
+    "No training, subsequent evaluation, retries, extraresponses or unusedbudgetexpansion is covered. Original inactive/backwardPARTIAL semantics stay unchanged.",
+    "No native model/load/forward/backward/update was executed by this review; no probability/gradient/accuracy/efficiency/hardware result is inferred.",
+    "Battery lowstop is a safe-unit check, not an interruptible mid-call guarantee. Original operation-start deadline may be exceeded by an atomic call or release."
+  ],
+  "native_backwards": 0,
+  "native_forwards": 0,
+  "native_generation": 0,
+  "native_model_loads": 0,
+  "native_optimizer_updates": 0,
+  "new16_or_final100_reads": 0,
+  "optimizer_update_limit": 0,
+  "prior_final_source_CPU_review_sha256": "aab70b3615bd55849a8a27c86d01428d6c338e370c1e77714ced2108a2cbceb5",
+  "privacy": "Aggregate source/test hashes and limits only;no patientidentities/images/prompts/tokens/hiddenlabels exported.",
+  "private_review_file_sha256": "6dbe0a1b21baa59e9d43a6811da2a2c25429e79b2b78dbd0290efc581faf3513",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "shared-rollout-battery-amendment-independent-review-v1",
+  "scope_canonical_sha256": "d8940abf23f9e2f307a07b7c65ff0164db74b117f1941521ffacf8cdcb3dcc5b",
+  "scope_file_sha256": "32b03d90cd8e4cfb578a4b3b78339ef6edf62166d37afd1c8c2d67f47f37cdc1",
+  "source_base_commit": "490c502b127628963b389e7f142717d728ed2b06",
+  "source_closure_all_current_hashes_match": true,
+  "source_closure_files": 70,
+  "source_test_sha256": {
+    "src/mri_rl/paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "src/mri_rl/resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "src/mri_rl/shared_rollout_gspo_entry_v1.py": "64b6e425fe33b1bd4e1e634a8a349f858c7c980dda689abcca1b9f7e777dfac8",
+    "src/mri_rl/shared_rollout_qualification_power_v1.py": "e522aaa44bc58b804084812e897865bf2080573baf2b989a41bf0add258d9c25",
+    "tests/test_shared_rollout_qualification_power_v1.py": "11ac380085cb575e72998e00b210d15745b47551a8e66979e4ac72ea3c1320e3"
+  },
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

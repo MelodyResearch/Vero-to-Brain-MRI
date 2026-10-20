@@ -1,0 +1,183 @@
+{
+  "actual_counters": {
+    "backward_calls": 8,
+    "detached_old_forwards": 8,
+    "generated_response_tokens": 162,
+    "generation_language_model_calls": 178,
+    "generation_vision_embedding_calls": 8,
+    "gradient_forwards": 8,
+    "optimizer_updates": 0,
+    "sampler_draws": 170,
+    "scorer_language_model_calls": 16,
+    "scorer_vision_embedding_calls": 16,
+    "teacherforced_input_positions": 3709
+  },
+  "actual_exit_code": 0,
+  "actual_proof_file_sha256": "d8d3e02ffad342b367fa7664e1f308f92c42100ddedded7199b03c300826f2b9",
+  "actual_proof_sha256": "310f4fb1de50e8654ac354460c80d8d28c72ab2dfe342361bb8410550ecf99df",
+  "actual_report_claim_privacy_review": "PASS_WITH_LIMITATIONS; no material mismatch; norm/current/state evidence attribution retained.",
+  "actual_status": "ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED",
+  "arms": {
+    "A": {
+      "admitted_groups": 1,
+      "admitted_responses": 4,
+      "backward_calls": 4,
+      "gradient_norm_runtime_reported_NOT_CPU_recomputed": 0.9864109546776391,
+      "group_summaries": [
+        {
+          "admitted": false,
+          "full_format": 2,
+          "raw_correct": 2.0
+        },
+        {
+          "admitted": true,
+          "full_format": 3,
+          "raw_correct": 2.0
+        }
+      ],
+      "ideal_ratio1_loss_max_abs_F32_rounding_difference": 4.481037452208625e-08,
+      "ownold_current_max_abs_runtime_reported": 0.0,
+      "weighted_loss_recomputed_from_saved_scalars": 7.450580596923828e-09
+    },
+    "B": {
+      "admitted_groups": 1,
+      "admitted_responses": 4,
+      "backward_calls": 4,
+      "gradient_norm_runtime_reported_NOT_CPU_recomputed": 1.0637626054069058,
+      "group_summaries": [
+        {
+          "admitted": false,
+          "full_format": 2,
+          "raw_correct": 2.0
+        },
+        {
+          "admitted": true,
+          "full_format": 3,
+          "raw_correct": 2.0
+        }
+      ],
+      "ideal_ratio1_loss_max_abs_F32_rounding_difference": 1.640196640728675e-07,
+      "ownold_current_max_abs_runtime_reported": 0.0,
+      "weighted_loss_recomputed_from_saved_scalars": 1.4901161193847656e-08
+    }
+  },
+  "automatic_retry": false,
+  "evidence_sha256": {
+    "actual_report": "5442d4131d6ee0045f4cd885ea7bdb79c910b8733d5c21229019e54330b23b46",
+    "bundle_canonical": "f8305d640c21ae929e1c1490b4b5ce49a2619a3e934f05cceaec48b1448ab5d7",
+    "closed_stdout": "b2cacf2f4bb71ecaff6a3974efca063b6170f5c62e2a8b6a9d28e4a8c0ad5309",
+    "external_exit": "26f4b34db4d1b8c6e4166b450be14efe983e266469968a73abff98ef575d9c08",
+    "independent_CPU_verifier": "b87416d3e938c24fd4737a47f5270a800b83198d5534de7a7d625f048c86b0fb",
+    "independent_saved_recomputation": "3626959c52369a22d7d173aa14f0336f62d15fd11e0be66586daf7ee7b668344",
+    "root_public_actual_summary": "436f4afbadf47eeca01926912fe3d1c826095b4df049607d38514f2d7273e15e",
+    "source_closure_canonical": "c2c5ddae0ea7da0a536f8aab278b3f01b0ef59c4d66458c9bffe5577708e44e0"
+  },
+  "independent_private_review_sha256": "09dab0a70c9d5d9e2449dd8ca3a9dc7d341b9908c02f2b2134b42d6ceb4bc5ee",
+  "input_sha256": "1d8d45555bca9d982dce76a09a4fe01ec4fd70fe6cb99cb78eaab92b23c89e7b",
+  "limitations": [
+    "One fixed TRAIN pair and one shared eight-response draw provide bounded integration evidence, not accuracy, generalization, useful gradient direction or superiority.",
+    "Gradient norms and own-old/current zero differences are authenticated native runtime scalars. Full gradient arrays and fresh current-score vectors were not persisted, so these are not independently CPU-recomputed native gradients or fresh current vectors.",
+    "All-1942 parameter/full Adam/Python and MLX RNG equality is authenticated through source-bound runtime assertions/fingerprints and final parent equality; the reviewer did not load or independently rehash full native state arrays. R1 metadata and its small tensor file bytes were hashed.",
+    "No new model, native call, generation, backward or optimizer update was performed by the reviewer. No new16 inputs/outcomes or raw final100 outputs/labels were read.",
+    "Operation and API counters are not physical kernel passes or measured FLOPs. External wall time includes loading, resource HOLD and release.",
+    "The one-shot qualification authorization is consumed. This review is not new execution, training, evaluation or automatic expansion authority; future actions require separate exact human and source/scope review."
+  ],
+  "max_saved_rollout_vs_own_old_logp_error": 4.863739013671875e-05,
+  "new_native_execution_authorized": false,
+  "no_admission_count_gain": true,
+  "observed_response_counts": {
+    "EOS_terminated": 8,
+    "FLAIR_raw_correct": 2,
+    "FLAIR_total": 4,
+    "T1_raw_correct": 2,
+    "T1_total": 4,
+    "full_format": 5,
+    "invalid_format": 3,
+    "length_capped": 0,
+    "responses": 8
+  },
+  "parity_tolerance": 0.002,
+  "privacy": {
+    "aggregate_only": true,
+    "patient_IDs_images_response_text_token_IDs_private_state_exported": false
+  },
+  "release": {
+    "active_MLX_bytes": 1096,
+    "model_is_none": true,
+    "release_verified": true
+  },
+  "resources": {
+    "actions": {
+      "CONTINUE": 448,
+      "HOLD": 11
+    },
+    "hold_reasons": {
+      "insufficient_memory_headroom": 4,
+      "sustained_swap_growth": 7
+    },
+    "samples": 459,
+    "supervisor_levels": {
+      "NORMAL": 456,
+      "WARNING": 3
+    },
+    "telemetry": {
+      "available_gib": {
+        "max": 10.88934326171875,
+        "min": 6.2770538330078125,
+        "missing": 0,
+        "valid": 459
+      },
+      "battery_percent": {
+        "max": 33,
+        "min": 30,
+        "missing": 0,
+        "valid": 459
+      },
+      "mlx_active_gib": {
+        "max": 5.14128081034869,
+        "min": 0.050770021975040436,
+        "missing": 7,
+        "valid": 452
+      },
+      "mlx_peak_gib": {
+        "max": 7.8620643531903625,
+        "min": 0.050770021975040436,
+        "missing": 7,
+        "valid": 452
+      },
+      "pressure_free_percent": {
+        "max": 57.0,
+        "min": 35.0,
+        "missing": 0,
+        "valid": 459
+      },
+      "swap_used_gib": {
+        "max": 16.189697265625,
+        "min": 12.61583984375,
+        "missing": 0,
+        "valid": 459
+      }
+    }
+  },
+  "reviewer_findings": [
+    "Actual exit0, closed log, once-only human amendment consumption, launch argv, all70 source hashes and committed evidence chain match.",
+    "Own-context saved rollout/old parity, pinned calibrated reward grades, inherited gate, sample-std advantages, 1/8 weighted saved losses, native loss AST and finite budgets independently reproduced.",
+    "Both arms have one admitted K4 group and four backwards; no admission-count gain in this draw.",
+    "R1 differs from R0 and its byte-hash chain matches; both arm-start records identify R0.",
+    "Runtime state assertions and release witness authenticate parent equality and model release, subject to the saved-array limitations."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_models_or_native_calls": 0,
+  "schema": "shared-rollout-actual-proof-independent-review-v1",
+  "scope_file_sha256": "32b03d90cd8e4cfb578a4b3b78339ef6edf62166d37afd1c8c2d67f47f37cdc1",
+  "scope_sha256": "d8940abf23f9e2f307a07b7c65ff0164db74b117f1941521ffacf8cdcb3dcc5b",
+  "source_commit": "e86098885f5ac5d119c19b95ad5cfa92cae93217",
+  "source_files_verified": 70,
+  "state_verification_scope": "Source-bound runtime assertions/fingerprints and final parent equality attested;full native parameter/Adam/RNG arrays not independently rehashed byCPU reviewer. R1 metadata/tensor bytes hashed only.",
+  "total_language_model_API_calls": 194,
+  "total_vision_API_calls": 24,
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "wall_seconds": 344.7949511670158
+}

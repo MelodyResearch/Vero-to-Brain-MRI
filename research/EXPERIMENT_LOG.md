@@ -57,3 +57,22 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 - Exact future zero-update qualifier FILEscopeSHA32157f37c0d17e6bee9daa3dd12c777a811611ddcf63448d66cf9d5423f0cb99:<=8responses/2048returnedtokens/8ownold+16gradientforwards/16backwards/11232TFpositions/1800soperation-start,0updates,existingglobalflock/AC/resourcegates/no retry. No human authorization exists; nativeNOT_RUN/trainingNOT_READY.
 - This turn actualMRI model loads0/nativeforward0/nativebackward0/optimizerupdates0/accuracygainNOT_MEASURED. new16outputs sealed, final100untouched, CURRENT_RESEARCH_PLAN.md and lockbyteunchanged.
 - Evidence: results/SHARED_ROLLOUT_CLAUDE_CODE_ACTUAL_PARTICIPATION_V1.json; results/SHARED_ROLLOUT_ROOT_ACTUAL_CPU_VERIFICATION_V1.json; research/SHARED_ROLLOUT_CLAUDE_CODE_CODEX_ACTUAL_DELIVERY_2026-10-20.md. Code-only collaboration is genuine; approval-required Claude shell results recorded, no patient-sharing denial bypass or fabricated native/accuracy PASS.
+
+
+## 2026-10-20 / SHARED_ROLLOUT_NATIVE_ZERO_UPDATE_ACTUAL / LIMITED_INTEGRATION
+
+- 原AC scope未执行。研究者明确批准本次局部电池例外后，以独立复核的新scope32b03d90/canonicald8940abf执行一次；保留所有内存/swap/温度与低电量停止保护，全局训练门槛未改。局部代码e860988；root90项相关CPU测试、独立12项针对性检查通过，非重复模型资格。
+- 实际单进程退出0（2026-10-20T23:00:13.372904Z），344.795秒；8真实响应/162返回tokens，16scorer前向/8只读backward/3709TF位置，optimizer updates=0，无重试。结束模型None、MLXactive1096B。
+- rollout/own-contextTF最大差4.863739013671875e-05<.002，ownold/current差0。A/B各1个有效K4，gradientL2分别.9864109546776391/1.0637626054069058；本draw没有有效组数量优势，不是accuracy提升。
+- FLAIR和T1各采样2/4正确；5完整格式/3无效格式，8EOS、0caps。运行时1942参数指纹/fullAdam/PythonMLXRNG一致、父磁盘4项artifacthash不变。完整梯度数组未持久化，saved-onlyreview不能独立重算nativeL2。
+- 公开聚合和中文实际报告已生成，PRIVATE原始bundle/ownold/R1/reward/计数/log/exit/release保留。A/B训练与后续评价未授权、未运行；plan/lock不变，新16输出继续封存，旧final100未用于方法选择。
+
+## 2026-10-20 / README_REFRESH_SAFE_CLEANUP / DOCS_ONLY
+
+- 实际ClaudeCode session2e433b8c-cd0d-4992-ac2d-dfa9fca26634负责README/清理候选，commit9327ee38d99a7d45d98745d3d2073066de0d13cd；Codex独立核对8方法×3seed/48任务格、B28类别recall、2286/362和15个本地/固定Git链接。保留真实工具approval-required结果，不伪造模型审查。
+- 在独立docs worktree更新展示名Vero-to-Brain-MRI与8节首页；26,324B旧README保留Git6ee3d16固定链接，不复制出新档案。主计划用已有不可变commit链接，不在main创建竞争计划或复制研究代码。
+- 对648既有tracked文件的metadata/blob检查：0完全重复组、0明确cache/temp/空文件；因此既有文件删除0。仅去掉本轮新生成且已被最终review替代的清理proposal1份，仍可从9327commit恢复；最终相对main净删除0。未删改数据、历史模型/状态、梯度/负结果、实验依赖或既有日志。
+- 清理时原生进程在另一个worktree继续；没有停止/重启进程、锁抢占或第二模型。最终native已自然退出0释放。文档分支和main PR状态将在实际推送/合并后追加。
+
+- 实际资格saved-only独立review已完成：Codex /root/full_arm_execution_contract，公开SHA0fe61d6a811b074d6feb0d3f232d62f50085f23892b4913f2a31789d402758ad，PWL。独立重算reward/gate/advantage/1/8loss/parity/counters/source70hash；runtime-only状态与gradientnorm认证边界明确。459资源samples中448CONTINUE/11HOLD，456NORMAL/3WARNING，按原gate正常暂停后继续；没有掩盖HOLD或宣称保证安全。
+- README最终actual-status狭窄复核已完成：README SHA179cf90a3a7585bde0025b0e5b293ec28aeed2a54ae1a7153d84fc715e73f07c；独立docsreview SHA7b0f1c91f47c121d9273ac2b86740c462742489950d3608d1e44537cc79c834b。主计划/锁hash保持c7e96b76/6844b67a。

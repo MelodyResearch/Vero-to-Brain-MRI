@@ -1,0 +1,82 @@
+{
+  "accuracy_improvement": "NOT_MEASURED_NO_TRAINING",
+  "actual_counters": {
+    "backward_calls": 8,
+    "detached_old_forwards": 8,
+    "generated_response_tokens": 162,
+    "generation_language_model_calls": 178,
+    "generation_vision_embedding_calls": 8,
+    "gradient_forwards": 8,
+    "optimizer_updates": 0,
+    "sampler_draws": 170,
+    "scorer_language_model_calls": 16,
+    "scorer_vision_embedding_calls": 16,
+    "teacherforced_input_positions": 3709
+  },
+  "actual_exit_code": 0,
+  "bundle_sha256": "f8305d640c21ae929e1c1490b4b5ce49a2619a3e934f05cceaec48b1448ab5d7",
+  "closed_stdout_sha256": "b2cacf2f4bb71ecaff6a3974efca063b6170f5c62e2a8b6a9d28e4a8c0ad5309",
+  "groups_per_arm": {
+    "A": {
+      "backward_calls": 4,
+      "effective_groups": 1,
+      "gradient_l2": 0.9864109546776391
+    },
+    "B": {
+      "backward_calls": 4,
+      "effective_groups": 1,
+      "gradient_l2": 1.0637626054069058
+    }
+  },
+  "limitations": [
+    "One TRAIN pair/8 sampled responses is integration evidence, not greedy/candidate accuracy comparison or generalization.",
+    "Different gradients/norms do not establish useful MRI learning or superior direction.",
+    "No new16 or final100 outcomes read.",
+    "No saved full native gradient arrays, so saved-artifact reviewer cannot independently recalculate native gradient norms."
+  ],
+  "no_admission_count_gain_in_this_fixed_draw": true,
+  "observed_response_counts": {
+    "EOS_terminated": 8,
+    "FLAIR_correct": 2,
+    "FLAIR_total": 4,
+    "T1_correct": 2,
+    "T1_total": 4,
+    "full_format": 5,
+    "invalid_format": 3,
+    "length_capped": 0
+  },
+  "optimizer_updates": 0,
+  "own_old_current_max_abs": 0.0,
+  "parent_disk_artifact_hashes_unchanged": {
+    "adapter.safetensors": true,
+    "adapter_config.json": true,
+    "optimizer/manifest.json": true,
+    "optimizer/state.safetensors": true
+  },
+  "proof_canonical_sha256": "310f4fb1de50e8654ac354460c80d8d28c72ab2dfe342361bb8410550ecf99df",
+  "proof_file_sha256": "d8d3e02ffad342b367fa7664e1f308f92c42100ddedded7199b03c300826f2b9",
+  "release": {
+    "active_MLX_bytes": 1096,
+    "model_is_none": true,
+    "release_verified": true
+  },
+  "reward_class_support": {
+    "F": [
+      0.01944704049129121,
+      0.6000000000000001
+    ],
+    "T": [
+      0.01944704049129121,
+      0.2194470404912912,
+      0.6000000000000001
+    ]
+  },
+  "rollout_scorer_max_abs": 4.863739013671875e-05,
+  "rollout_scorer_tolerance": 0.002,
+  "runtime_full_parent_state_equals_original": true,
+  "runtime_state_note": "Native checks all1942parameter fingerprints/fullAdam/Python+MLXRNG. Saved-only CPU review authenticates assertions/counters; it does not rerun autograd.",
+  "source_commit": "e86098885f5ac5d119c19b95ad5cfa92cae93217",
+  "status": "ACTUAL_READONLY_QUALIFICATION_LOCAL_PASS",
+  "training_authorized": false,
+  "wall_seconds": 344.7949511670158
+}
