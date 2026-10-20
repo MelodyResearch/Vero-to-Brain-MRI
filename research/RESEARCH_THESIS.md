@@ -1,5 +1,7 @@
 # Thesis and present decision
 
+> 当前路线与实验优先级以 [CURRENT_RESEARCH_PLAN.md](CURRENT_RESEARCH_PLAN.md) 为唯一入口。本文原有阶段状态按其历史时点保留；安全、隐私、证据和人工执行授权约束继续适用。不得据历史队列文字自动启动模型或改写主计划。
+
 **Question:** On genuine, patient-separated brain MRI, does task-balanced online verifiable RL improve a task-to-task transfer matrix relative to single-task and proportional-mixture RL, while preserving spatial grounding and explanation quality?
 
 Vero demonstrates multi-category balance and negative-transfer patterns on general visual data. Med-R1, BrReMark, LoV3D, MedVol-R1 and MedGRPO already cover major ingredients. The possible contribution is a controlled empirical transfer result in MRI, or a genuinely distinct operation motivated by a reproduced failure of existing methods. Neither is established here.

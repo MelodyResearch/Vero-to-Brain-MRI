@@ -1,0 +1,54 @@
+{
+  "findings": [
+    "Currentplan has exactrequestedtitle/objective, observed/reproduced/unknown evidence boundaries, Vero-group mechanism hypothesis, matchedA/B future intent, stopconditions and outcome+human gated revisionpolicy. Originalnegative results preserved; auxiliaryv1/v2/v3 archived rather than deleted.",
+    "AGENTS makes CURRENT_RESEARCH_PLAN the solecurrentpriority and marks oldphase/overnighttext historical, while retaining safety/privacy/human executiongates; fouroldcontracts receive crosslinks only.",
+    "ActualGit regression initially reproduced newbranch HEAD^fallback bypass: unauthorizedplan+lockedit followedbycodecommit passedlastedge. CorrectedCI nowchecksfirst-parent governance transitions; fullhistory prevents earlierplan/logchanges being hidden bylaterordinarycommits.",
+    "Stagedmode verifiescommittedhistory and compares actualHEADtoindex; older --base cannot rebootstrap currentfrozenHEAD. Realindex/worktreehiding test failsclosed on stagedplan+lock+approvedJSON.",
+    "Append-only checks use byteprefix on everygovernance transition, rejectrewrite/truncate/delete, earlierrewrittenappendhistory, partialbaseline and invalidGitref. JSONapproval never authorizes planchange.",
+    "Initialcreation SHA is correctly boundtoactual latesthumanattachment. This is provenance and scopedhumanrequest checkedbyreviewer, not automatic humanidentity authentication.",
+    "Hook is executable and optional; no global/sharedGitconfig was changed. CI source configured forpush/PRhistorycheck; actualGitHubrun/branchprotection not claimed."
+  ],
+  "independent_git_fixture_sha256": "ad755574972be261dd5d6b610b9bc084ffaa454eff1cebbdd0873e738b891bbe",
+  "initial_human_instruction_sha256": "4ef822f5ec91c49713092d9091e6907512bed56c125782b1af6552dcc1d601b0",
+  "limitations": [
+    "This is initialplan/source/CPU governance review, not native/model/accuracy evidence and not futureexecutionauthorization. Groupmechanism/matched-designsource review remains separate.",
+    "Guard catches ordinary/staged/historydrift under reviewedcode and Gitancestry; cannot cryptographically prove humanidentity or guarantee against deliberate code/history/securitypolicybypass.",
+    "Future approvedplanrevision cannot be authorized byrepo-localapproved=true; requires realdecisionrelevantexperiment+independentreview+diff+explicitresearcherdecision and separatelyreviewedpolicychange.",
+    "LogSHA is a reviewedsnapshot; futureappend-only entries legitimately changefileSHA. This review doesnotpermit rewrites ofsnapshotbytes.",
+    "ActualGitHubActions execution/branchprotection and installation oflocalhook NOT_VERIFIED; sourcepresence is not enforcementproof.",
+    "No final100raw/new16inputs/model/optimizer access;0newnativeforward/backward/generation/update. Same-familyreview; CROSS_MODEL_REVIEW=NOT_VERIFIED."
+  ],
+  "native_execution": false,
+  "plan_modified_by_reviewer": false,
+  "reviewed_file_sha256": {
+    ".githooks/pre-commit": "0651e70af537995a1fa5f32fe04289a4cc0148b2b245507553698dfcdb3e3103",
+    ".github/workflows/research-plan-guard.yml": "abb19471ecf8e3d818070cb1b68e2aff9ee335f143948263e1b68a5ed1992bd3",
+    "AGENTS.md": "14d3e7b743b64a950722bbebb340940bb611917c9d51a9b68f872355c6998731",
+    "research/CURRENT_RESEARCH_PLAN.lock.json": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "research/CURRENT_RESEARCH_PLAN.md": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "research/EXPERIMENT_LOG.md": "dff8a31771f7f35299bb137fe51add58e11f55aa2a9a7cdfb6b23a4c65489306",
+    "research/EXPLORATORY_METHOD_ARCHIVE.md": "6ff8fe25e864e14bcf4dd547b8d99c70ff82adf2bbdbe5d6a98dc9524af316dc",
+    "research/RESEARCH_THESIS.md": "e4d906986547eb3244a199b9163648e08637c3cff1dd1fec9546c985ee366aea",
+    "research/VERO_MRI_RESEARCH_COVENANT.md": "92db14e434145c1a9eabde3aa6a94b1eda3dbd3618ab2490e410bac862dd4297",
+    "research/VERO_MRI_TRANSFER_EXPERIMENT_CONTRACT.md": "e2c6ee278a6f7f3890f342cae937c60021e4153dc213660ec06c6cd7567898df",
+    "research/VERO_TO_MRI_PRIMARY_EXECUTION_CONTRACT.md": "2ff5c92f24671b0f8ecb3ed7d46aca94eabdaa08b51548399c11415e46c0a43d",
+    "scripts/check_research_plan_guard.py": "0fc6c12d4d05ab2110f2bac41e61823f56009a9d4fc925d804d8c79444fe691a",
+    "src/mri_rl/research_plan_guard.py": "f9d41d535e6c843925532d004bbf1202301175988b0bd481a9dee72656fdda0f",
+    "tests/test_research_plan_guard.py": "c38ee62827026b10fd748cfc72ae3d37b8f43952b47a409c17dcae3a5c5d61c9"
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "fixed-research-plan-governance-independent-review-v1",
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "actual_CPU_tests": 15,
+    "actual_test_seconds": 1.5,
+    "independent_real_temporary_Git_tests": 6,
+    "initial_instruction_actual_attachment_bytes_matched": true,
+    "initial_plan_lock_digest_matched": true,
+    "optional_hook_executable": true,
+    "root_guard_tests": 9,
+    "shared_project_index_or_Gitconfig_modified": false
+  }
+}

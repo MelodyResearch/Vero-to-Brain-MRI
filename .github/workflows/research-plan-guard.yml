@@ -1,0 +1,13 @@
+name: Frozen research plan and append-only experiment log
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check every first-parent governance transition
+        run: python3 scripts/check_research_plan_guard.py --history --head HEAD

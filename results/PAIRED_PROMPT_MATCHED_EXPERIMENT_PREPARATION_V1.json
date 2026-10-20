@@ -1,0 +1,101 @@
+{
+  "A": {
+    "name": "SAME_PROMPT_LOCAL_VERO_STYLE_CONTROL",
+    "sequence_groups": [
+      [
+        "F",
+        "F",
+        "F",
+        "F"
+      ],
+      [
+        "T",
+        "T",
+        "T",
+        "T"
+      ]
+    ]
+  },
+  "B": {
+    "name": "PAIRED_PROMPT_ADAPTATION",
+    "sequence_groups": [
+      [
+        "F",
+        "F",
+        "T",
+        "T"
+      ],
+      [
+        "F",
+        "F",
+        "T",
+        "T"
+      ]
+    ]
+  },
+  "accuracy_claim": false,
+  "all_four_attempts_required_for_complete_exposure": true,
+  "both_arms_Dallas_groups": [
+    [
+      "DALLAS_SAME",
+      "DALLAS_SAME",
+      "DALLAS_SAME",
+      "DALLAS_SAME"
+    ],
+    [
+      "DALLAS_DIFFERENT",
+      "DALLAS_DIFFERENT",
+      "DALLAS_DIFFERENT",
+      "DALLAS_DIFFERENT"
+    ]
+  ],
+  "gate": "Unchanged uniform_balance_continuation_gate_v1.accuracy_group_is_informative, inherited Adam60 valid-format-subset rule; not historical18 all-format-strict or official Vero equality.",
+  "input_plan_sha256": "f4257ce14dd2918e5efd1bb01d27d86a1fcbbe890c881c527f07f2bbe3e63c5c",
+  "matching": "Same parent/fullAdam/RNG, TRAIN inputs, F32, reward/calibration, inheritedAdam60 gate, LR/LoRA, class exposure and hard ceilings. Realized tokens/updates/trajectories may differ; report them, no refill.",
+  "method_label": "PROPOSED VERO-STYLE ADAPTATION",
+  "model_loads": 0,
+  "native_blockers": [
+    "Mixed-context F32 generation/scorer/gradient backend and crash-consistent transaction implementation are not implemented by this CPU preparation.",
+    "Each response must retain its own image/prompt/oldlogps/reward; historical single-self.active backend cannot be reused unchanged.",
+    "Bound real input lengths, source/checkpoint/state hashes, all API counters/resources and matched F32 evaluation; independent exact scope review and fresh explicit human permission required."
+  ],
+  "native_execution_authorized": false,
+  "native_per_group_response_loss_weight": 0.25,
+  "offline_fixed_eight_block_response_loss_weight": 0.125,
+  "optimizer_updates": 0,
+  "parent_adapter_sha256_from_receipt": "1741ff2feb2f569cfe062b92cb79b62f61f83463e6683a928d2c458a5f547310",
+  "parent_payloads_verified_this_preparation": false,
+  "parent_receipt_sha256": "3c2567723e7bc90a65464c8c3645f49ad91c38a0ad886961c508bc1f8a0e3879",
+  "partial_failure": "Preserve partial state/cost; unequal incomplete exposure invalidates complete matched contrast. No automatic retry/replacement/resampling or extra updates.",
+  "per_arm": {
+    "Dallas_responses": 8,
+    "TF_positions_cap": 42240,
+    "attempted_groups": 4,
+    "backward_API_calls_cap": 16,
+    "charged_prompt_plus_returned_cap": 9040,
+    "full_TF_API_calls_cap": 64,
+    "generated_response_tokens_cap": 4096,
+    "generation_LM_API_call_reservation": 4160,
+    "maximum_updates": 4,
+    "minimum_updates": 0,
+    "operation_start_deadline_seconds": 1200,
+    "prompt_positions_reservation": 4944,
+    "responses_per_group": 4,
+    "sequence_responses": 8,
+    "simultaneous_autograd_image_graphs": 1,
+    "simultaneous_models": 1,
+    "vision_embedding_API_calls_cap": 80
+  },
+  "per_group_policy": "Collect four true on-policy responses before that group update. Next group uses current policy; never silently call stale eight-response collection sequentially on-policy.",
+  "reward_or_auxiliary_change": false,
+  "schema": "paired-prompt-matched-ab-preparation-v1",
+  "source_sha256": {
+    "research/CURRENT_RESEARCH_PLAN.lock.json": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "research/CURRENT_RESEARCH_PLAN.md": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "results/PAIRED_PROMPT_CPU_MECHANISM_V1.json": "08da0b835eb0a4318c3640603c405ebecc943181692f40ae5a0d6aba60f75cd6",
+    "results/PAIRED_PROMPT_SAVED_MATCHED_AVAILABILITY_V2.json": "761a984660898014c3b08ce9c9552bb8775d9d0c723018d612eb8542e97e4d98",
+    "src/mri_rl/paired_prompt_ab_preparation_v1.py": "7e0923dddb70a52777fc4e8ea985b9192d15898b182cb9613258900aebc8ffcc",
+    "src/mri_rl/paired_prompt_groups_v1.py": "4a8fea69ba4e14b110b192a89cda27d72bce05aecf5f33ca14a0728cef7ffa2e"
+  },
+  "status": "PROPOSED_CPU_PREPARED_NATIVE_NOT_IMPLEMENTED_NOT_AUTHORIZED"
+}

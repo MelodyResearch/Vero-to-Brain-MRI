@@ -1,5 +1,7 @@
 # Vero-to-MRI — primary execution contract (researcher-directed)
 
+> 当前路线与实验优先级以 [CURRENT_RESEARCH_PLAN.md](CURRENT_RESEARCH_PLAN.md) 为唯一入口。本文原有阶段状态按其历史时点保留；安全、隐私、证据和人工执行授权约束继续适用。不得据历史队列文字自动启动模型或改写主计划。
+
 **Authoritative research objective:** Systematically transfer Princeton Vero's **multi-task visual reinforcement-learning training recipe** to genuinely image-grounded brain MRI tasks and test whether the original task-diversity / negative-transfer findings hold. This research is independent and is **not** an official Princeton collaboration.
 
 This is a **research-direction correction**, not an assertion of experimental completion or methodological novelty. Prior 13-paper audits, Dallas data, verifier experiments and negative findings remain intact. Historical scientific conclusions are not overwritten.

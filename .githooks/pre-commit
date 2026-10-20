@@ -1,0 +1,3 @@
+#!/bin/sh
+# Optional repository-local hook; never installed into global/shared Git config automatically.
+exec python3 "$(git rev-parse --show-toplevel)/scripts/check_research_plan_guard.py" --base HEAD --staged

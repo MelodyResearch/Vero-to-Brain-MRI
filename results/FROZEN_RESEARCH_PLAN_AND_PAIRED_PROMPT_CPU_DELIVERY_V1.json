@@ -1,0 +1,31 @@
+{
+  "MRI_accuracy_improvement": "NOT_DEMONSTRATED",
+  "actual_CI_or_required_branch_protection": "NOT_VERIFIED; local versioned hook and CI source only; no global/shared hook config change",
+  "aux_v1_v2_v3": "EXPLORATORY_ARCHIVED — NOT PRIMARY METHOD",
+  "availability_CPU_fixtures": 18,
+  "generated_responses": 0,
+  "independent_reviews": "Codex /root/full_arm_execution_contract; same family, CROSS_MODEL_REVIEW=NOT_VERIFIED",
+  "initial_parent_commit": "1f39f5ec748ad4b7686cadf5778096cb16309d75",
+  "mission": "PRIMARY_VERO_TRANSFER",
+  "model_loads": 0,
+  "native_backwards": 0,
+  "native_forwards": 0,
+  "native_training_backend": "NOT_IMPLEMENTED_NOT_AUTHORIZED",
+  "optimizer_updates": 0,
+  "plan_status": "INITIAL_HUMAN_REQUESTED_FREEZE_NOT_AUTOMATIC_LOG",
+  "real_matched_eight_blocks": "NOT_AVAILABLE_IN_ENUMERATED_AUTHENTICATED_SOURCES",
+  "root_pytest": 28,
+  "schema": "frozen-vero-plan-paired-prompt-cpu-delivery-v1",
+  "source_sha256": {
+    "research/CURRENT_RESEARCH_PLAN.lock.json": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "research/CURRENT_RESEARCH_PLAN.md": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "research/EXPERIMENT_LOG.md": "657bea4317bf3044b42822c923a5799d4115d0e5f55144d3a74d64dbe3c5910a",
+    "research/EXPLORATORY_METHOD_ARCHIVE.md": "6ff8fe25e864e14bcf4dd547b8d99c70ff82adf2bbdbe5d6a98dc9524af316dc",
+    "results/PAIRED_PROMPT_CPU_MECHANISM_V1.json": "08da0b835eb0a4318c3640603c405ebecc943181692f40ae5a0d6aba60f75cd6",
+    "results/PAIRED_PROMPT_MATCHED_EXPERIMENT_PREPARATION_V1.json": "bf9c4559daeb8259594976c795b31ee14c83075f5239fac49562d66e9ed9b44f",
+    "results/PAIRED_PROMPT_PREPARATION_INDEPENDENT_REVIEW_V1.json": "9d600ced1142b850e4b3201ff64c5ff511b52007d9313875093d4cd5eb5cdb69",
+    "results/PAIRED_PROMPT_SAVED_MATCHED_AVAILABILITY_V2.json": "761a984660898014c3b08ce9c9552bb8775d9d0c723018d612eb8542e97e4d98",
+    "results/RESEARCH_PLAN_GOVERNANCE_INDEPENDENT_REVIEW_V1.json": "282feaab8517b3cb4fb7fe6858f8fb922bb143105d3f1620d226e92c2fbc25fd"
+  },
+  "training_readiness": "NO"
+}

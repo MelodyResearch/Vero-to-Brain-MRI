@@ -1,5 +1,7 @@
 # Prespecified Vero-style cross-task MRI transfer experiment contract
 
+> 当前路线与实验优先级以 [CURRENT_RESEARCH_PLAN.md](CURRENT_RESEARCH_PLAN.md) 为唯一入口。本文原有阶段状态按其历史时点保留；安全、隐私、证据和人工执行授权约束继续适用。不得据历史队列文字自动启动模型或改写主计划。
+
 **Status (2026-10-15): DESIGN ONLY — training and transfer matrix `NOT_RUN`.** Independent Statistical and Experiment Agent review. I read the installed global Norman paper-reading skill and evidence/novelty references, the local thesis, hypothesis and source-access audits, and the Vero/GSPO/MedGRPO/MT-GRPO method review. This contract defines how to test the project's **primary question**: whether task-balanced online verifiable RL improves transfer among distinct brain-MRI task categories. Longitudinal biological change is an optional category only after its label and verifier pass their own validity gate; it is **not** a prerequisite for testing transfer among other eligible MRI tasks. This is a proposed design, not an observed result.
 
 ## 1. Target estimands, units and task admission

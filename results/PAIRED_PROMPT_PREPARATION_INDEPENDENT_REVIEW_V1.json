@@ -1,0 +1,141 @@
+{
+  "AB_design": {
+    "FLAIR_T1_Dallas_response_counts": [
+      4,
+      4,
+      8
+    ],
+    "GO_basis": "Future B must improve strict balanced accuracy/T1/primary candidate against both A and parent while preserving FLAIR and Dallas/class recalls; not admitted-group rate alone.",
+    "TF_API_cap_per_arm": 64,
+    "TF_position_reservation_per_arm": 42240,
+    "actual_costs_or_native_count_qualification_observed": false,
+    "asymmetric_early_stop": "INCOMPLETE_MATCH; retain evidence/cost, no refill/resampling/compensating updates",
+    "attempted_groups_per_arm": 4,
+    "backward_API_cap_per_arm": 16,
+    "generation_LM_API_reservation_per_arm": 4160,
+    "operation_start_deadline_seconds_per_arm": 1200,
+    "prompt_plus_returned_cap_per_arm": 9040,
+    "prompt_reservation_per_arm": 4944,
+    "realized_tokens_updates_trajectories_required_equal": false,
+    "responses_per_arm": 16,
+    "returned_token_cap_per_arm": 4096,
+    "state": "PREPARATION_ONLY_NATIVE_NOT_IMPLEMENTED",
+    "two_arm_prompt_plus_returned_cap": 18080,
+    "updates_per_arm_min_max": [
+      0,
+      4
+    ],
+    "vision_API_reservation_per_arm": 80
+  },
+  "CROSS_MODEL_REVIEW": "NOT_VERIFIED",
+  "READY_FOR_TRAINING": "NO",
+  "accuracy_gain": "NOT_VERIFIED",
+  "availability": {
+    "actual_F32_Dallas_K4_groups": 1,
+    "actual_F32_sequence_K4_groups": 1,
+    "exhaustive_filesystem_absence_claim": false,
+    "historical2286_rollout_bodies_reread": false,
+    "matched_F4_T4_blocks": 0,
+    "named_source_files_hash_verified": 21,
+    "original_dual_modality_people": 0,
+    "original_sequence_rows_people": 28,
+    "reviewed_candidate_sequence_pairs": 28,
+    "status": "NOT_AVAILABLE_IN_ENUMERATED_AUTHENTICATED_SOURCES",
+    "synthetic_cases_are_real_replay": false,
+    "v2_amendment_changed_selection_parent_rows_or_budgets": false
+  },
+  "independent_synthetic_math": {
+    "T_correctness_direction_under_paired": -0.0001899231910026584,
+    "all_F_correct_all_T_wrong_advantage_magnitude": 0.8660239037870368,
+    "conditional_constant_fixed_length_expected_joint_score": 0.0,
+    "identical_Jacobian_descent": 0.0,
+    "paired_expected_descent": [
+      0.1469492249235441,
+      0.062254779133375904
+    ],
+    "paired_shared_direction": 0.0008995130766442094,
+    "same_expected_descent": [
+      0.14863729853587743,
+      0.06587207973123385
+    ],
+    "same_shared_direction": -0.005898600513597196,
+    "scope": "Synthetic Bernoulli/score-Jacobian fixtures only; not measured MRI probabilities",
+    "shared_parameter_slopes": [
+      1.0,
+      -2.346
+    ],
+    "true_balanced_gradient": [
+      0.105,
+      0.045
+    ],
+    "true_shared_direction": -0.0005700000000000149,
+    "variable_length_expected_mean_score_at_p_half": 0.125
+  },
+  "limitations": [
+    "CPU conditional surrogate feasibility does not establish an unbiased balanced expected-reward estimator, official Vero equality, patient generalization, grounding, actual Adam/finite-step safety, accuracy or efficiency gains.",
+    "Action-independent baseline cancellation requires the stated complete-response/fixed-length conditions. Sample-dependent standard deviation/centering and mean-token length weighting can change the expected direction in both control and adaptation.",
+    "The bounded availability audit inherits original18 coverage from existing proofs and the original manifest. It does not search all storage or manufacture a missing opposite-modality rollout.",
+    "One prospectively fixed TRAIN pair and one same/different Dallas control are a tiny method diagnostic, not a population-level independent trial or a second qualified scientific MRI task.",
+    "Identical initial full state and class exposure do not imply identical responses after per-group updates. Realized tokens/updates/time are outcomes. Equal ceilings are not equal FLOPs.",
+    "Generation/TF/backward/vision reservations are prospective API budgets, not native measured counters or physical kernel/recomputation counts. Input lengths must be remeasured; operation-start deadlines do not preempt atomic operations or release.",
+    "Mixed-context native generation/scoring/backward and crash-consistent transactions are absent here. Matched F32 parent/A/B evaluation, exact runtime scopes/state/resource/cost checks and fresh human permission remain prerequisites.",
+    "New16 remains sealed for method development; any later all-model once-only comparison requires frozen method/endpoints/statistics and separate permission. No formal final100 is reused for selection.",
+    "Governance review is separately source-bound. CI/branch protection enforcement and cross-model-family review are not verified; this file is not a self-authorizing plan or launch approval."
+  ],
+  "mechanism_findings": [
+    "Own context/prompt/image/tokens/own-old logps and immutable supplied reward receipt stay attached across grouping; returned scoring identities must match. Typed equality is not proof of authentic generation or rewards.",
+    "Fixed-policy eight-response CPU block compares F4/T4 with F2T2/F2T2; each admitted response receives exactly1/8 once. Prospective separate native K4 steps retain1/4, without stale-policy reuse.",
+    "Unchanged historical local ratio/clip loss AST agrees in CPU forward and stop-gradient dual-number derivatives away from clipping/cap ties. This is not native autograd or complete official-Vero parity.",
+    "Both proposed arms use the inherited Adam60 valid-format-subset gate, distinct from historical18 all-format-strict gate. Half-format and calibrated accuracy/raw binary correctness/supplied totals remain represented without regrading.",
+    "Independent256-outcome enumeration reproduces cross-prompt difficulty/std weighting and the shared-parameter direction reversal. More admitted groups need not create correct T responses, nonzero group/visual gradients, T1 gain or accuracy."
+  ],
+  "native_execution_authorized": false,
+  "plan_change_authorized_by_this_review": false,
+  "privacy_and_scope": {
+    "aggregate_only": true,
+    "author_sources_or_fixed_plan_changed_by_reviewer": false,
+    "final100_raw_or_outcome_reads": 0,
+    "image_weight_optimizer_or_gradient_payload_reads": 0,
+    "new16_input_or_outcome_reads": 0,
+    "new_backward": 0,
+    "new_generation": 0,
+    "new_model_loads": 0,
+    "optimizer_updates": 0,
+    "patient_keys_source_paths_tokens_response_text_hidden_truth_or_vocabulary_exported": false
+  },
+  "private_evidence_sha256": "68cae6372f3c19b85835dde0148cbad8fa35c6e2840fd31da321bb5a62315ae2",
+  "review_scope": "CPU mechanism, bounded named-source availability, fixed finite A/B preparation, protocol prose and aggregate privacy; no native execution review or permission.",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-prompt-preparation-independent-review-v1",
+  "source_and_evidence_sha256": {
+    "AGENTS.md": "14d3e7b743b64a950722bbebb340940bb611917c9d51a9b68f872355c6998731",
+    "research/CURRENT_RESEARCH_PLAN.lock.json": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "research/CURRENT_RESEARCH_PLAN.md": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "research/PAIRED_PROMPT_MATCHED_EXPERIMENT_V1.md": "749c87436fe70542b9ee5af2cd9e70b8d43562ee7914764e681e769b0f91115f",
+    "research/PAIRED_PROMPT_MECHANISM_V1.md": "05245fc2b7ccc8c938821c9ca130c177fa44aba68bca72e613b5ac4aaf657f50",
+    "results/PAIRED_PROMPT_CPU_MECHANISM_V1.json": "08da0b835eb0a4318c3640603c405ebecc943181692f40ae5a0d6aba60f75cd6",
+    "results/PAIRED_PROMPT_MATCHED_EXPERIMENT_PREPARATION_V1.json": "bf9c4559daeb8259594976c795b31ee14c83075f5239fac49562d66e9ed9b44f",
+    "results/PAIRED_PROMPT_SAVED_MATCHED_AVAILABILITY_V2.json": "761a984660898014c3b08ce9c9552bb8775d9d0c723018d612eb8542e97e4d98",
+    "results/RESEARCH_PLAN_GOVERNANCE_INDEPENDENT_REVIEW_V1.json": "282feaab8517b3cb4fb7fe6858f8fb922bb143105d3f1620d226e92c2fbc25fd",
+    "scripts/audit_paired_prompt_saved_availability_v1.py": "881c818e1519855a2cbb9fbe8f24beba0e4de918cb60c7c5c9d5f08500983c32",
+    "scripts/check_paired_prompt_mechanism_v1.py": "35faf7b7814eebabd41861f64a60e0fb4e82bdaabee0bab71986c1b6345fba42",
+    "scripts/prepare_paired_prompt_ab_v1.py": "c4d352b6c865d2b6e5fbaa1bd0a11256ff73f5ce2d6b6868cc19ebc43b60cefa",
+    "src/mri_rl/paired_prompt_ab_preparation_v1.py": "7e0923dddb70a52777fc4e8ea985b9192d15898b182cb9613258900aebc8ffcc",
+    "src/mri_rl/paired_prompt_groups_v1.py": "4a8fea69ba4e14b110b192a89cda27d72bce05aecf5f33ca14a0728cef7ffa2e",
+    "tests/test_paired_prompt_ab_preparation_v1.py": "7b504573a4f60ac8a4372006e7e875497943d4cf7e9ecd6a74674f4edd529db3",
+    "tests/test_paired_prompt_groups_v1.py": "77686f4cee7db3f2f6f9ad1124b150faf7539ca4d0cde91bf35bee36d06fcd84"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "AB_CLI_exact_reproduction": true,
+    "AB_execute_always_refused": true,
+    "availability_synthetic_contract_checks": 18,
+    "final_mechanism_and_AB_pytest": {
+      "command": "PYTHONPATH=src python3 -m pytest -q tests/test_paired_prompt_groups_v1.py tests/test_paired_prompt_ab_preparation_v1.py",
+      "elapsed_seconds": 0.15,
+      "passed": 19
+    },
+    "mechanism_CLI_exact_reproduction": true
+  }
+}

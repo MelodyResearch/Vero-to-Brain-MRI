@@ -1,5 +1,7 @@
 # Vero-to-MRI Research Covenant — anti-drift, evidence, and cross-model review
 
+> 当前路线与实验优先级以 [CURRENT_RESEARCH_PLAN.md](CURRENT_RESEARCH_PLAN.md) 为唯一入口。本文原有阶段状态按其历史时点保留；安全、隐私、证据和人工执行授权约束继续适用。不得据历史队列文字自动启动模型或改写主计划。
+
 **Status:** researcher-directed standing research guardrail. **Scope:** the PRIVATE `Longitudinal-BrainMRI-Verifiable-RL` repository. This covenant supplements, but does not replace, `research/VERO_TO_MRI_PRIMARY_EXECUTION_CONTRACT.md`, `research/VERO_MRI_TRANSFER_EXPERIMENT_CONTRACT.md`, `AGENTS.md` and `research/ENGINEERING_REVIEW_PROTOCOL.md`. A later explicit researcher decision may amend it; agents must record the change, not silently reinterpret it.
 
 ## 1. Locked principal research question
