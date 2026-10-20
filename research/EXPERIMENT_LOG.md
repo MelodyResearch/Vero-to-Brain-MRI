@@ -45,3 +45,15 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 - 治理review SHA282feaab8517b3cb4fb7fe6858f8fb922bb143105d3f1620d226e92c2fbc25fd；机制/来源/实验准备review SHA9d600ced1142b850e4b3201ff64c5ff511b52007d9313875093d4cd5eb5cdb69。结论均PASS_WITH_LIMITATIONS，不授予训练/原生运行或主计划修改许可，CROSS_MODEL_REVIEW=NOT_VERIFIED。
 - 独立复现机制CLI与AB准备CLI结果hash，--execute实际拒绝。源码明确未来native未实现，保持READY_FOR_TRAINING=NO；没有将参数/方向/accepted group当accuracy提升。
 - 只发布当前availabilityV2；本轮未发布的V1中间材料原字节保留在PRIVATE目录，未删改历史Git事实。主计划初始冻结后SHA保持c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e，没有因CPU结果自动重写。
+
+
+## 2026-10-20 — Actual Claude Code shared-rollout native implementation; no model execution
+
+- Request: implement `SHARED_ROLLOUT_BATCHED_ONE_STEP_GSPO_MECHANISM_CONTROL` inside the unchanged frozen plan; no auxiliary losses, historical reruns or current model permission.
+- Actual Claude Code 2.1.303 / reported `claude-sonnet-5-5`, session141d22e8-4a62-4305-88a6-266b0f743b1e implemented and committed f17cf47/f77ce44/d985a76. Codex independently reproduced faults, requested actual revisions and added schema/CLI/R1-adoption regression fixes; final implementation490c502b127628963b389e7f142717d728ed2b06.
+- Implemented: one sharedF4+T4 immutable bundle; A=F4/T4, B=F0F1T0T1/F2F3T2T3; own-image/prompt F32 scoring, inherited gate/loss/reward/LR/LoRA,1/8 each admitted response; exact parent/R0 restore,<=1step/arm only after new authorization; no-gradient=no update/no resample. Full atomic boundary commit and exact qualification-bundle adoption with separate inherited/new counters.
+- Actual rootCPU108PASS. Separate independent Codex source review23adversarial+80author=103PASS (overlapping root set; not211unique). Initial FAIL snapshots retained; repaired pre-restoreAdam/RNG, malformed bundle, z045/parent binding, renamecommit, PARTIAL qualification, Q→T immutable input identity, evaluation CLI and R1 hash adoption.
+- Actual nonmocked metadata preparation Q/T bothPASS,69source hashes exact, same predeclared TRAIN pair/scientificinputs and distinctinvocations. No image/weight/Adam payload reads. Final reviewPWL source/CPU engineering only: results/SHARED_ROLLOUT_FINAL_CODEX_INDEPENDENT_REVIEW_V1.json.
+- Exact future zero-update qualifier FILEscopeSHA32157f37c0d17e6bee9daa3dd12c777a811611ddcf63448d66cf9d5423f0cb99:<=8responses/2048returnedtokens/8ownold+16gradientforwards/16backwards/11232TFpositions/1800soperation-start,0updates,existingglobalflock/AC/resourcegates/no retry. No human authorization exists; nativeNOT_RUN/trainingNOT_READY.
+- This turn actualMRI model loads0/nativeforward0/nativebackward0/optimizerupdates0/accuracygainNOT_MEASURED. new16outputs sealed, final100untouched, CURRENT_RESEARCH_PLAN.md and lockbyteunchanged.
+- Evidence: results/SHARED_ROLLOUT_CLAUDE_CODE_ACTUAL_PARTICIPATION_V1.json; results/SHARED_ROLLOUT_ROOT_ACTUAL_CPU_VERIFICATION_V1.json; research/SHARED_ROLLOUT_CLAUDE_CODE_CODEX_ACTUAL_DELIVERY_2026-10-20.md. Code-only collaboration is genuine; approval-required Claude shell results recorded, no patient-sharing denial bypass or fabricated native/accuracy PASS.

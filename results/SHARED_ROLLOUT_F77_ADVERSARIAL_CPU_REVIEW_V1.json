@@ -1,0 +1,75 @@
+{
+  "READY_FOR_NATIVE_EXECUTION": "NO",
+  "actual_independent_tests": {
+    "elapsed_seconds": 0.34,
+    "failed": 6,
+    "passed": 15,
+    "total": 21
+  },
+  "author_commit": "f77ce44d194d34b55e3dc69cf530c1682e883069",
+  "fixture_adaptations": [
+    "Mutate certified paired_z045_data_v1.level instead of old fixture extra_info.level",
+    "Call qualification_proof(output,evidence,prepared) with genuine synthetic run release witness and bound source/input metadata"
+  ],
+  "independent_test_sha256": {
+    "test_core_adversarial_PRIVATE.py": "87058c28f04d602c5bbb0aa94dbe1cb923dbf8807d4ca98e931384247b7cc9e5",
+    "test_driver_adversarial_PRIVATE.py": "f0ddae9ce2c4899596e92a752b0e21613dc3825555f1dacc001d8bed898cee98",
+    "test_state_adversarial_PRIVATE.py": "acb62eb8aa48c04ea84e033f6e736fc56592ee52a1236378cb597651a59da7ec"
+  },
+  "limitations": [
+    "All tests use synthetic CPU state/temporary files, not MRI input/output evidence.",
+    "Real production core/driver/atomic publisher/proof compiler execute; only heavyweight model endpoints use the existing NumPy fixture.",
+    "Tests and source were archived from the exact commit, isolating an ongoing live revision.",
+    "The returned15 passing cases establish only those contract behaviors, not full implementation or native readiness."
+  ],
+  "native_backwards": 0,
+  "native_forwards": 0,
+  "native_model_loads": 0,
+  "native_optimizer_updates": 0,
+  "not_tested_by_this_replay": [
+    "Actual native model/probability/backward behavior",
+    "Live subsequent Claude correction",
+    "End-to-end metadata prepare qualification-versus-adopted-train input identity currently being corrected by author"
+  ],
+  "privacy": {
+    "new16_or_final100_reads": 0,
+    "patient_image_state_payload_reads": 0,
+    "raw_response_patient_or_hidden_truth_exports": false
+  },
+  "private_evidence_sha256": "942716eecc4f8ac7b600daea71ff7ccb390aeeb19209473e5de6574a14059f01",
+  "residual_findings": [
+    {
+      "failed_cases": 5,
+      "id": "T3",
+      "observed": "Deterministic own-old scoring/backward can mutate Adam moments or RNG; restoring parent masks these faults. A nominal single Adam call can also mutate RNG before the arm checkpoint is published. Production driver did not reject these synthetic injected faults.",
+      "requirement": "Check Adam/R0 RNG before restoring deterministic phases; only RNG may intentionally change during rollout, only Adam may change at a permitted update."
+    },
+    {
+      "affected_scope": "Core schema validation. The production driver now rejects a changed parent receipt against its actual external anchor, so this result is not a demonstrated driver bypass.",
+      "failed_cases": 1,
+      "id": "I3_CORE_ONLY",
+      "observed": "Standalone core bundle reload accepts a malformed parent receipt after its outer hash is recomputed."
+    }
+  ],
+  "resolved_prior_counterexamples": [
+    "Inactive backward qualification remains PARTIAL",
+    "Missing certified z045 metadata rejected",
+    "Wrong certified level65 rejected",
+    "Actual boundary publication recognized as committed before marker",
+    "Changed legal64hex parent receipt rejected against driver anchor despite outer/marker rehash"
+  ],
+  "review_status": "RESIDUAL_COUNTEREXAMPLES_ON_EXACT_SECOND_COMMIT_NOT_FINAL_CORRECTION_REVIEW",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "shared-rollout-independent-adversarial-CPU-review-v1",
+  "semantic_assertions_relaxed": false,
+  "source_sha256": {
+    "src/mri_rl/shared_rollout_gspo_backend_v1.py": "13e72e584258fe4ca02f10d6c3b065ce19270cd96b62648a709188194113ad7c",
+    "src/mri_rl/shared_rollout_gspo_core_v1.py": "dc1890abf3213e20880d189cf857ac6a8799a20a3e81c374cbd447f474830c98",
+    "src/mri_rl/shared_rollout_gspo_driver_v1.py": "f0251227fed3f3315ec3dffde04c9b33dc0e35e7b2e5a522696e4616db001e7a",
+    "src/mri_rl/shared_rollout_gspo_entry_v1.py": "aa7d9af9dbd283c5eb7e9463af29bc899f43c6d1343f5a9dcc039b1df977bd40",
+    "src/mri_rl/shared_rollout_gspo_eval_v1.py": "ccf3cf94023412a7111ce4dacce8a504068104474a671987868bb743aab8efea"
+  },
+  "training_authorized": false,
+  "verdict": "FAIL"
+}

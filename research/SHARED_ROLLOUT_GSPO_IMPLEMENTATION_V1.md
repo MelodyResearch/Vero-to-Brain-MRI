@@ -37,7 +37,7 @@ Rollout once: ≤8 responses / 2048 returned tokens / 2056 sampler draws / 2080 
 
 ## Admission (fail-closed)
 
-`qualify` and `train` need an exact launch scope bound to the current source closure and input hash, a fresh human authorization whose `action` is specific to the mode (`shared_rollout_gspo_readonly_qualification` vs `shared_rollout_gspo_one_step_train`), and an independent source/input/scope review, all digest-bound on the command line, consumed once. `train` additionally requires an independently reviewed actual same-source read-only qualification proof. A local `approved`/`authorized` flag in any scope is rejected. All gates precede any MLX import. None of these artifacts exist; this work did not create them.
+`qualify` and `train` need an exact launch scope bound to the current source closure and input hash, a fresh human authorization whose `action` is specific to the mode (`shared_rollout_gspo_readonly_qualification` vs `shared_rollout_gspo_one_step_train`), and an independent source/input/scope review, all digest-bound on the command line, consumed once. `train` additionally requires an independently reviewed actual same-source read-only qualification proof. A local `approved`/`authorized` flag in any scope is rejected. All gates precede any MLX import. Exact metadata scopes and an independent source/CPU review were subsequently prepared; a genuine human authorization and actual native proof do not exist.
 
 ## Revision 2 (response to preliminary independent review)
 
@@ -57,7 +57,7 @@ Rollout once: ≤8 responses / 2048 returned tokens / 2056 sampler draws / 2080 
 ## Limitations (not verified)
 
 - Mixed-context F32 rollout/scorer/backward are **not** native-measured. The pinned F32 helpers are reused, but `_generate_context` is a new count-aware copy of the pinned rollout loop; only CPU doubles exercise it.
-- `prepare`/`qualification-proof`/`_authorized` need the frozen real inputs and were exercised only through unit-level pieces (`launch_scope`, `authorize_launch`, `qualification_proof`), not end to end.
+- Actual metadata-only `prepare` for qualification and adopted training passed in the Codex final review. Native execution, qualification proof from a real model, and actual endpoint evaluation remain NOT_RUN.
 - Typed bundles do not authenticate real outputs; native qualification plus independent review do.
 - The arm boundary uses the existing receipt format with `completed_groups=1` representing the shared two-K4 batch (`attempted_K4_groups=2` recorded); absolute counters therefore read 130 groups.
 - Eval: `prepare()` delegates to `matched.prepare` (needs the frozen evaluation spec); a non-updated arm is aliased to the parent. Sealed new16 outputs are never read; no accuracy claim.

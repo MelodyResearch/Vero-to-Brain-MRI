@@ -1,0 +1,120 @@
+{
+  "CROSS_MODEL_IMPLEMENTATION_AND_REVIEW": "CLAUDE_CODE_IMPLEMENTATION_CODEX_INDEPENDENT_REVIEW",
+  "READY_FOR_NATIVE_EXECUTION": "NO",
+  "actual_independent_tests": {
+    "core": {
+      "failed": 1,
+      "passed": 9
+    },
+    "deterministic_state_faults": {
+      "failed": 5,
+      "passed": 1
+    },
+    "driver_and_proof": {
+      "failed": 5,
+      "passed": 0
+    },
+    "failed": 11,
+    "passed": 10,
+    "source_snapshot_used": true,
+    "total": 21
+  },
+  "author_commit": "f17cf47bfad558fa7b08498c068e8a833adb74cf",
+  "claude_activity_evidence": "Commit provenance/execution records are held by the parent task; this receipt records only the independent reviewer actions and exact inspected commit.",
+  "findings": [
+    {
+      "id": "Q1",
+      "observed": "A genuine completed synthetic all-wrong qualification run had0 backward calls but the production proof compiler emitted ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED.",
+      "required": "Inactive/unexecuted backward remains PARTIAL and cannot qualify the train path; bind actual run/evidence/source/input/state/release.",
+      "tests": [
+        "test_inactive_readonly_run_cannot_mint_complete_backward_qualification"
+      ]
+    },
+    {
+      "id": "I1",
+      "observed": "Production row validator accepted both missing levels and an explicitly wrong shared level65.",
+      "required": "Authenticate the fixed z045 lineage field; equality alone is insufficient.",
+      "tests": [
+        "test_fixed_z045_cannot_be_missing_or_another_level[None]",
+        "test_fixed_z045_cannot_be_missing_or_another_level[65]"
+      ]
+    },
+    {
+      "id": "T2",
+      "observed": "The real atomic publisher completed boundary_0001, then an injected post-publication exception produced STOP committed=false because the marker was absent.",
+      "required": "Recognize the durable completed boundary as commit point; do not describe it as uncommitted/replayable. Existing resume marker recovery is a separate behavior.",
+      "tests": [
+        "test_exception_after_boundary_rename_reports_actual_committed_status"
+      ]
+    },
+    {
+      "id": "I2",
+      "observed": "After a genuine production-driver shared-bundle commit, changing its parent receipt to another64hex value and rehashing bundle/marker allowed production resume/scoring to finish.",
+      "required": "Compare loaded bundle parent metadata against the externally authenticated actual anchor before scoring, independently of internal content hashes.",
+      "tests": [
+        "test_rehashed_committed_bundle_cannot_change_actual_parent_receipt"
+      ]
+    },
+    {
+      "id": "I3",
+      "observed": "Production bundle loader accepted non-SHA parent receipt metadata when its outer content hash was recomputed.",
+      "required": "Validate root schema/parent metadata when reloading as well as creating a bundle.",
+      "tests": [
+        "test_rehashed_bundle_cannot_use_malformed_root_parent_receipt"
+      ]
+    },
+    {
+      "id": "T3",
+      "observed": "Injected Adam or RNG mutation after deterministic scoring/backward was silently erased by restore; RNG mutation during the single allowed Adam call reached checkpoint publication. Production driver completed instead of rejecting before restoration/publication.",
+      "required": "Check pre-restore Adam/RNG equality to the declared parent R0 after deterministic scoring/backward. Rollout may intentionally consume RNG to R1 but must preserve Adam. A permitted Adam step may change optimizer state but must preserve R0 RNG.",
+      "tests": [
+        "test_deterministic_scoring_or_backward_cannot_hide_state_mutation_by_restore[Adam-score_old]",
+        "test_deterministic_scoring_or_backward_cannot_hide_state_mutation_by_restore[Adam-arm_gradient]",
+        "test_deterministic_scoring_or_backward_cannot_hide_state_mutation_by_restore[RNG-score_old]",
+        "test_deterministic_scoring_or_backward_cannot_hide_state_mutation_by_restore[RNG-arm_gradient]",
+        "test_single_Adam_step_does_not_authorize_changing_parent_RNG"
+      ]
+    }
+  ],
+  "independent_test_sha256": {
+    "test_core_adversarial_PRIVATE.py": "87058c28f04d602c5bbb0aa94dbe1cb923dbf8807d4ca98e931384247b7cc9e5",
+    "test_driver_adversarial_PRIVATE.py": "4574c7398a7e3996596f113c5ec20744047c4a6249af340c8a0b02a6558f60cd",
+    "test_state_adversarial_PRIVATE.py": "acb62eb8aa48c04ea84e033f6e736fc56592ee52a1236378cb597651a59da7ec"
+  },
+  "limitations": [
+    "This receipt concerns the exact first author commit. It is not a verdict on the ongoing Claude revision.",
+    "Tests are synthetic CPU integration evidence, not actual MRI model gradients, probability parity, optimizer/native hardware qualification or accuracy.",
+    "The0-backward qualification counterexample does not require invented MRI advantages or a model call.",
+    "The after-rename test proves an incorrect committed flag. It does not claim that an actual optimizer step was replayed; existing resume recovery can recover a complete boundary.",
+    "Recomputed hashes test internal metadata/schema and external-anchor consistency. Hashes alone are not proof of genuine human authorization or fabricated upstream data.",
+    "Postgeneration RNG persistence, matched F32 evaluation and final source closure remain for targeted review after the revision; no additional scientific or hardware audit is claimed."
+  ],
+  "methodology": "Real production loader, driver, publisher, boundary inspection and proof compiler execute. Only model/Adam/RNG runtime uses a NumPy fixture; injected faults surround actual filesystem commit operations.",
+  "native_backwards": 0,
+  "native_forwards": 0,
+  "native_model_loads": 0,
+  "native_optimizer_updates": 0,
+  "prior_public_review_sha256": "d11aec5a2db0197a12a70bf6a5ed906455e689e324c1b06b1c6a776d320b4029",
+  "privacy": {
+    "exported_response_text_tokens_or_hidden_truth": false,
+    "image_model_optimizer_gradient_payload_reads": 0,
+    "patient_inputs_or_identifiers": 0,
+    "sealed_holdout_or_final100_reads": 0
+  },
+  "private_evidence_sha256": "512f1c2ba94451fc42470c17213128f1e0bb236648be085d8cb43181d4f8583f",
+  "private_state_evidence_sha256": "49f6d1c30b1c24cb5f254d98cc99af6dff98be7e01b87eb2171381ddacdc1014",
+  "review_status": "ACTUAL_CPU_COUNTEREXAMPLES_ON_FIRST_AUTHOR_COMMIT_NOT_FINAL_REVISION_REVIEW",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "shared-rollout-independent-adversarial-CPU-review-v2",
+  "scope": "CPU source/metadata/qualification compiler and crash/publication behavior on synthetic inputs; no native execution or MRI outcome review.",
+  "source_sha256": {
+    "src/mri_rl/shared_rollout_gspo_backend_v1.py": "13e72e584258fe4ca02f10d6c3b065ce19270cd96b62648a709188194113ad7c",
+    "src/mri_rl/shared_rollout_gspo_core_v1.py": "dd53f1e5fdebabf68019a1d76909cec7adb0f976a66eb0b130bda5c71c779168",
+    "src/mri_rl/shared_rollout_gspo_driver_v1.py": "8a4ccba6858ffce2b1514f985bb7a9d47acabb437e9024e058757220a8e6e775",
+    "src/mri_rl/shared_rollout_gspo_entry_v1.py": "ae5e054f412ac9a97dd33050730b8aeb8ce9e242c47cd61576562b72c94a66ed",
+    "src/mri_rl/shared_rollout_gspo_eval_v1.py": "0e2a4c97e9620b8289eb07cdbb857edd50377e06c12fc195a2086993a32ec343"
+  },
+  "training_authorized": false,
+  "verdict": "FAIL"
+}

@@ -1,0 +1,107 @@
+{
+  "accuracy_improvement": "NOT_MEASURED_NOT_CLAIMED",
+  "actual_MRI_model_loads": 0,
+  "actual_native_backward_calls": 0,
+  "actual_native_forward_calls": 0,
+  "actual_optimizer_updates": 0,
+  "actual_reported_model": "claude-sonnet-5-5",
+  "auth_verified": "Existing authenticated claude.ai firstParty/pro through legitimate macOS access; no credentials exported",
+  "claude_commits": [
+    "f17cf47bfad558fa7b08498c068e8a833adb74cf",
+    "f77ce44d194d34b55e3dc69cf530c1682e883069",
+    "d985a76c6ba4816ed75be810530c826f7bb3c2c6"
+  ],
+  "claude_role": "Primary implementer: mixed-context F32 backend, shared8 bundle, batched per-response GSPO gradients, atomic driver, CLI, evaluator, CPU tests; actual commits below",
+  "cli_version": "2.1.303 (Claude Code)",
+  "codex_implementation_commits": [
+    "4ebdd868218f2bdb46484cfbfc191ec1cac4db72",
+    "800d5a2566b69837d0beb520c4a49854fa0c7607",
+    "490c502b127628963b389e7f142717d728ed2b06"
+  ],
+  "codex_role": "Independent source/CPU review, adversarial fault reproduction, author fix requests, final schema/CLI/R1-adoption fixes, actual metadata preparation, final evidence and PRIVATE push",
+  "lock_sha256_unchanged": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+  "native_status": "IMPLEMENTED_CPU_TESTED_NOT_NATIVE_QUALIFIED",
+  "permission_failure_correction": "Author final prose saying no tool denials is not adopted: actual transcripts contain approval-required shell calls. Permitted Edit used for authorized source changes; schema and sed errors also occurred. Counts above are exact tool-result categories, not data-sharing failures.",
+  "permission_mode": "acceptEdits",
+  "plan_sha256_unchanged": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+  "privacy": "Source/docs/synthetic CPU tests only shared with Claude. No patient identifiers/images/raw model outputs/weights/Adam/RNG/credentials supplied. No patient-sharing denial was bypassed. Transcripts and original requests remain private.",
+  "runs": [
+    {
+      "actual_init": {
+        "claude_code_version": "2.1.303",
+        "model": "claude-sonnet-5-5",
+        "permissionMode": "acceptEdits",
+        "session_id": "141d22e8-4a62-4305-88a6-266b0f743b1e"
+      },
+      "actual_result": {
+        "duration_ms": 951243,
+        "is_error": false,
+        "num_turns": 82,
+        "subtype": "success"
+      },
+      "approval_required_tool_results": 5,
+      "other_error_results": 1,
+      "tool_counts": {
+        "Bash": 38,
+        "Edit": 21,
+        "Read": 12,
+        "Write": 10
+      },
+      "tool_schema_errors": 1,
+      "transcript_file_sha256": "d4039ec231f23b0321f728b5a942f8f46884197cf13985211f73edc72d4d545d"
+    },
+    {
+      "actual_init": {
+        "claude_code_version": "2.1.303",
+        "model": "claude-sonnet-5-5",
+        "permissionMode": "acceptEdits",
+        "session_id": "141d22e8-4a62-4305-88a6-266b0f743b1e"
+      },
+      "actual_result": {
+        "duration_ms": 408674,
+        "is_error": false,
+        "num_turns": 74,
+        "subtype": "success"
+      },
+      "approval_required_tool_results": 2,
+      "other_error_results": 1,
+      "tool_counts": {
+        "Bash": 23,
+        "Edit": 47,
+        "Read": 1,
+        "Write": 2
+      },
+      "tool_schema_errors": 0,
+      "transcript_file_sha256": "b379e1b0cdb271e5e3360a89522ab017a752462ace5dfee4b907e1ce34a9caab"
+    },
+    {
+      "actual_init": {
+        "claude_code_version": "2.1.303",
+        "model": "claude-sonnet-5-5",
+        "permissionMode": "acceptEdits",
+        "session_id": "141d22e8-4a62-4305-88a6-266b0f743b1e"
+      },
+      "actual_result": {
+        "duration_ms": 178017,
+        "is_error": false,
+        "num_turns": 37,
+        "subtype": "success"
+      },
+      "approval_required_tool_results": 0,
+      "other_error_results": 3,
+      "tool_counts": {
+        "Bash": 17,
+        "Edit": 17,
+        "Read": 1,
+        "Write": 1
+      },
+      "tool_schema_errors": 0,
+      "transcript_file_sha256": "434e655495843707be16f18a3260c8033a03bdf037e70029502448762e9ae46a"
+    }
+  ],
+  "schema": "shared-rollout-gspo-actual-code-collaboration-v1",
+  "session_id": "141d22e8-4a62-4305-88a6-266b0f743b1e",
+  "status": "ACTUAL_CLAUDE_CODE_IMPLEMENTATION_AND_CODEX_REVIEW",
+  "tools": "Read/Edit/Write/Glob/Grep and allowlisted source/CPU-test/git Bash; no dangerous-permissions bypass",
+  "user_request_sha256": "f503e5656628d887ba931d67c411e2bdefc0c264fcf21529bbd0e6e4e2973980"
+}
