@@ -1,0 +1,301 @@
+{
+  "alpha": 0.1,
+  "arithmetic_sensitivity": {
+    "F32_gradients_first": {
+      "arithmetic": {
+        "dtype": "float32",
+        "order": "gradients"
+      },
+      "directions": {
+        "Adam_g0_baseline": {
+          "mDallas": 0.03185424321023681,
+          "mF": 0.010489395965668141,
+          "mT": -0.011919109716681591
+        },
+        "Adam_increment": {
+          "mDallas": -0.0023675135610794294,
+          "mF": -0.009230759765724824,
+          "mT": 0.013225245412824908
+        },
+        "Adam_total": {
+          "mDallas": 0.02948672964945306,
+          "mF": 0.0012586362001248837,
+          "mT": 0.001306135695746886
+        },
+        "Euclidean": {
+          "mDallas": -0.43213862694957844,
+          "mF": -1.3967193405205176,
+          "mT": 1.890199880157463
+        }
+      },
+      "gradient_coefficients": [
+        -0.17791721295562893,
+        -0.31332497450368374
+      ],
+      "norms": {
+        "Adam_increment_l2": 0.002581294468649583,
+        "Adam_total_delta_l2": 0.024784822125353684,
+        "scaled_aux_gradient_l2": 0.1854039954830919
+      },
+      "w": 0.45713
+    },
+    "F64": {
+      "arithmetic": {
+        "dtype": "float64",
+        "order": "coefficients"
+      },
+      "directions": {
+        "Adam_g0_baseline": {
+          "mDallas": 0.03185424412125365,
+          "mF": 0.010489396294531418,
+          "mT": -0.011919110087901162
+        },
+        "Adam_increment": {
+          "mDallas": -0.00236751356399552,
+          "mF": -0.009230759735747484,
+          "mT": 0.013225245309541618
+        },
+        "Adam_total": {
+          "mDallas": 0.029486730557258062,
+          "mF": 0.0012586365587839163,
+          "mT": 0.0013061352216404871
+        },
+        "Euclidean": {
+          "mDallas": -0.43213862960885413,
+          "mF": -1.396719353119352,
+          "mT": 1.89019989209774
+        }
+      },
+      "gradient_coefficients": [
+        -0.17791721295562893,
+        -0.31332497450368374
+      ],
+      "norms": {
+        "Adam_increment_l2": 0.00258129443495708,
+        "Adam_total_delta_l2": 0.02478482281919479,
+        "scaled_aux_gradient_l2": 0.1854039962919376
+      },
+      "w": 0.45713
+    },
+    "guard_1e-4_candidate_passes": true,
+    "guard_1e-5_candidate_passes": true
+  },
+  "candidate": {
+    "arithmetic": {
+      "dtype": "float32",
+      "order": "coefficients"
+    },
+    "directions": {
+      "Adam_g0_baseline": {
+        "mDallas": 0.03185424321023681,
+        "mF": 0.010489395965668141,
+        "mT": -0.011919109716681591
+      },
+      "Adam_increment": {
+        "mDallas": -0.00236751378482132,
+        "mF": -0.00923076105442643,
+        "mT": 0.013225246894396237
+      },
+      "Adam_total": {
+        "mDallas": 0.029486729425838756,
+        "mF": 0.0012586349112135645,
+        "mT": 0.0013061371777190744
+      },
+      "Euclidean": {
+        "mDallas": -0.4321386710624794,
+        "mF": -1.3967195344181635,
+        "mT": 1.8902000972981545
+      }
+    },
+    "gradient_coefficients": [
+      -0.17791721295562893,
+      -0.31332497450368374
+    ],
+    "norms": {
+      "Adam_increment_l2": 0.0025812947047145684,
+      "Adam_total_delta_l2": 0.024784822127454878,
+      "scaled_aux_gradient_l2": 0.1854040135721693
+    },
+    "w": 0.45713
+  },
+  "coefficients": {
+    "v1": [
+      -0.24478401474607484,
+      -0.24478401474607484
+    ],
+    "v2": [
+      -0.09850877183826767,
+      -0.3947215812099012
+    ]
+  },
+  "evaluations": 107,
+  "final_or_holdout_reads": false,
+  "initial_grid": [
+    0.0,
+    0.0625,
+    0.125,
+    0.1875,
+    0.25,
+    0.3125,
+    0.375,
+    0.4375,
+    0.5,
+    0.5625,
+    0.625,
+    0.6875,
+    0.75,
+    0.8125,
+    0.875,
+    0.9375,
+    1.0
+  ],
+  "interior_33_checked_points": [
+    0.4014863967895508,
+    0.40496409125626087,
+    0.40844178572297096,
+    0.41191948018968105,
+    0.41539717465639114,
+    0.41887486912310123,
+    0.4223525635898113,
+    0.4258302580565214,
+    0.4293079525232315,
+    0.4327856469899416,
+    0.4362633414566517,
+    0.4397410359233618,
+    0.44321873039007187,
+    0.44669642485678196,
+    0.45017411932349205,
+    0.45365181379020214,
+    0.45712950825691223,
+    0.4606072027236223,
+    0.4640848971903324,
+    0.4675625916570425,
+    0.4710402861237526,
+    0.4745179805904627,
+    0.4779956750571728,
+    0.48147336952388287,
+    0.48495106399059296,
+    0.48842875845730305,
+    0.49190645292401314,
+    0.49538414739072323,
+    0.4988618418574333,
+    0.5023395363241434,
+    0.5058172307908535,
+    0.5092949252575636,
+    0.5127726197242737
+  ],
+  "limitations": [
+    "ONE fixed TRAIN modality pair and ONE Dallas case, not wider TRAIN accuracy or heldout benefit.",
+    "TOTAL retained-Adam protection is distinct from new-aux increment protection; report both.",
+    "Finite grid and bisection find sampled connected components, not a global proof excluding narrow unsampled components.",
+    "Direction dot products are not a finite evaluated update or accuracy change; no native training qualification.",
+    "Endpoint norm envelope is a NEW analysis guard, not an inherited physical/model safety qualification."
+  ],
+  "model_loads": 0,
+  "new_endpoint_norm_envelope": {
+    "Adam_total_delta_l2": 0.024884930546339723,
+    "scaled_aux_gradient_l2": 0.34244086341414565
+  },
+  "new_native_backwards": 0,
+  "new_native_forwards": 0,
+  "optimizer_updates": 0,
+  "original_explicit_norm_cap": "NOT_PRESENT_FINITE_NONZERO_ONLY",
+  "robust_analysis": {
+    "guard": 1e-06,
+    "initial_grid_passes": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "transition_brackets": [
+      {
+        "bracket": [
+          0.401486337184906,
+          0.4014863967895508
+        ],
+        "left_passes": false,
+        "right_passes": true
+      },
+      {
+        "bracket": [
+          0.5127726197242737,
+          0.5127726793289185
+        ],
+        "left_passes": true,
+        "right_passes": false
+      }
+    ],
+    "verified_inside_components": [
+      [
+        0.4014863967895508,
+        0.5127726197242737
+      ]
+    ]
+  },
+  "schema": "saved-Adam60-mixture-feasibility-cpu-v3",
+  "source_parent_commit": "a6ebe8d12e0dc7a8e1633acb64e5730cc5c6897b",
+  "status": "FEASIBLE_LOCAL_TRAIN_DIRECTION",
+  "training_authorized": false,
+  "training_runs": 0,
+  "wall_seconds": 34.097502708027605,
+  "zero_boundary_analysis": {
+    "guard": 0.0,
+    "initial_grid_passes": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "transition_brackets": [
+      {
+        "bracket": [
+          0.4014437794685364,
+          0.40144383907318115
+        ],
+        "left_passes": false,
+        "right_passes": true
+      },
+      {
+        "bracket": [
+          0.512816846370697,
+          0.5128169059753418
+        ],
+        "left_passes": true,
+        "right_passes": false
+      }
+    ],
+    "verified_inside_components": [
+      [
+        0.40144383907318115,
+        0.512816846370697
+      ]
+    ]
+  }
+}

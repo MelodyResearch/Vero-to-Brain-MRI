@@ -1,0 +1,285 @@
+{
+  "boundary_endpoint_checks": [
+    {
+      "Adam_total": {
+        "mDallas": 0.029660564302270882,
+        "mF": 0.0025180045554511095,
+        "mT": -5.583290919712342e-10
+      },
+      "guard": 0.0,
+      "passes": false,
+      "search": "zero_boundary_analysis",
+      "w": 0.4014437794685364
+    },
+    {
+      "Adam_total": {
+        "mDallas": 0.02966056393372843,
+        "mF": 0.0025180023434152217,
+        "mT": 1.9549955515400525e-09
+      },
+      "guard": 0.0,
+      "passes": true,
+      "search": "zero_boundary_analysis",
+      "w": 0.40144383907318115
+    },
+    {
+      "Adam_total": {
+        "mDallas": 0.02931279507558729,
+        "mF": 9.49772623477221e-10,
+        "mT": 0.0026114085074032674
+      },
+      "guard": 0.0,
+      "passes": true,
+      "search": "zero_boundary_analysis",
+      "w": 0.512816846370697
+    },
+    {
+      "Adam_total": {
+        "mDallas": 0.029312794962472317,
+        "mF": -2.1876088554572196e-10,
+        "mT": 0.002611409607451144
+      },
+      "guard": 0.0,
+      "passes": false,
+      "search": "zero_boundary_analysis",
+      "w": 0.5128169059753418
+    },
+    {
+      "Adam_total": {
+        "mDallas": 0.029660431641372734,
+        "mF": 0.0025170429771744,
+        "mT": 9.96826359881309e-07
+      },
+      "guard": 1e-06,
+      "passes": false,
+      "search": "robust_analysis",
+      "w": 0.401486337184906
+    },
+    {
+      "Adam_total": {
+        "mDallas": 0.029660431146346172,
+        "mF": 0.0025170395940504655,
+        "mT": 1.0004429969273328e-06
+      },
+      "guard": 1e-06,
+      "passes": true,
+      "search": "robust_analysis",
+      "w": 0.4014863967895508
+    },
+    {
+      "Adam_total": {
+        "mDallas": 0.02931293345950028,
+        "mF": 1.0011536490019547e-06,
+        "mT": 0.002610371158873878
+      },
+      "guard": 1e-06,
+      "passes": true,
+      "search": "robust_analysis",
+      "w": 0.5127726197242737
+    },
+    {
+      "Adam_total": {
+        "mDallas": 0.029312932927561278,
+        "mF": 9.977799086718957e-07,
+        "mT": 0.0026103747650133118
+      },
+      "guard": 1e-06,
+      "passes": false,
+      "search": "robust_analysis",
+      "w": 0.5127726793289185
+    }
+  ],
+  "candidate": {
+    "directions": {
+      "Adam_g0_baseline": {
+        "mDallas": 0.03185424321023681,
+        "mF": 0.010489395965668141,
+        "mT": -0.011919109716681591
+      },
+      "Adam_increment": {
+        "mDallas": -0.0023675137846249595,
+        "mF": -0.009230761054425513,
+        "mT": 0.013225246894409612
+      },
+      "Adam_total": {
+        "mDallas": 0.02948672942602515,
+        "mF": 0.0012586349112109385,
+        "mT": 0.0013061371777415565
+      },
+      "Euclidean": {
+        "mDallas": -0.4321386710624794,
+        "mF": -1.3967195344181635,
+        "mT": 1.8902000972981545
+      }
+    },
+    "gradient_coefficients": [
+      -0.17791721295562893,
+      -0.31332497450368374
+    ],
+    "norms": {
+      "Adam_increment_l2": 0.002581294704733514,
+      "Adam_total_delta_l2": 0.024784822127478373,
+      "scaled_aux_gradient_l2": 0.1854040135721693
+    },
+    "w": 0.45713
+  },
+  "candidate_guard_slack": {
+    "mDallas": 0.029485729426025148,
+    "mF": 0.0012576349112109386,
+    "mT": 0.0013051371777415565
+  },
+  "candidate_rounding_rule_verified": "round(midpoint(widest sampled robust component),6)==0.457130",
+  "historical_norm_guard_audit": {
+    "actual_existing_guards": [
+      "finite optimizer state and nonnegative second moments on restore",
+      "finite nonzero group/joint gradient",
+      "finite loss and source-bound alignment checks",
+      "maximumTOTALoptimizerstepcount; this is a count cap, not L2 bound"
+    ],
+    "new_envelope_is_inherited_safety_cap": false,
+    "original_explicit_gradient_or_update_L2_upper_cap": "NOT_FOUND_IN_REVIEWED_ACTUAL_EXECUTION_PATH",
+    "scope": "NativeGSPOBackend/class_margin_aux_v2 actual path and installed Optimizer.apply_gradients/Adam.apply_single only; no repository-wide absence claim"
+  },
+  "independent_verifier_sha256": "3c3ec31116bf0aa4a8f2f319399f3ce8b26726bf09e70f88687af6aed6fc6b70",
+  "interpretation": [
+    "Saved CPU arithmetic supports the declared local TOTAL retained-Adam direction criterion at w=.457130; T1, FLAIR and Dallas local derivatives are positive with1e-6guard.",
+    "New-aux Adam increments for FLAIR and Dallas remain negative. TOTAL protection depends on retained old momentum; it does not prove new auxiliary supervision is noninterfering.",
+    "Euclidean auxiliary direction still weakens FLAIR and Dallas; Adam direction must not be replaced with endpoint-delta interpolation.",
+    "Candidate is below newly declared gradient and update endpoint envelopes. These are conservative analysis guards, not historical hardcaps or hardware safety guarantees.",
+    "Candidate survives separately recomputed F64 coefficients-first and F32 gradients-first orders; these checks do not prove MLX/native kernel equivalence for a future implementation."
+  ],
+  "limitations": [
+    "ONE fixed TRAIN modality pair and ONE Dallas context at preserved Adam60 only; no widerTRAIN, heldout or accuracy evidence.",
+    "This is auxiliary-only Adam61 preview before parameter rounding, not the actual joint GSPO+aux direction, finite step or updated model evaluation. Moments/weights change after any actual step, so fixedw protection cannot be assumed for subsequent groups.",
+    "Finite17point grid, bisection and33checked interior points identify sampled components only; no proof excluding narrow unsampled components or all nonmonotonic behavior. Independent recomputation covered candidate/endpoints/boundarybrackets/sensitivities13evaluations, not a second107evaluation search.",
+    "1e-6guard is derivative-unit numerical buffer, not statistical confidence or guaranteed recall protection.",
+    "CPU helper/4fixtures and arithmetic only; no newmodel, forward, backward, generation, update, holdout16 payload/label/outcome or final100 access.",
+    "Public proof contains scalar aggregates/source hashes only; no patientIDs/images/prompts/tokenIDs/private gradient/moment/RNG arrays or patient-linked paths.",
+    "Same-family isolated Codex review; CROSS_MODEL_REVIEW=NOT_VERIFIED."
+  ],
+  "native_models_loaded": 0,
+  "new_endpoint_norm_envelope": {
+    "Adam_total_delta_l2": 0.024884930546371524,
+    "scaled_aux_gradient_l2": 0.34244086341414565
+  },
+  "new_envelope_slack": {
+    "Adam_total_delta_l2": 0.00010010841889315086,
+    "scaled_aux_gradient_l2": 0.15703684984197636
+  },
+  "new_native_backwards": 0,
+  "new_native_forwards": 0,
+  "observed_sampled_component_guard_1e_6": [
+    [
+      0.4014863967895508,
+      0.5127726197242737
+    ]
+  ],
+  "observed_sampled_component_zero_guard": [
+    [
+      0.40144383907318115,
+      0.512816846370697
+    ]
+  ],
+  "optimizer_updates": 0,
+  "predeclaration_sha256": "2d08046e36b4e46806a53534c13b9ee0fba2c5e5bd080bc209777ea41bb6223f",
+  "private_recomputed_sha256": "600eae4ba8545009a287d9fc4f5e7c7b4d90dd4780c6be125609011a3ed4516b",
+  "reviewed_result_sha256": "cdc935fe0f49ae7453334dad6dadd24971c44bbdb850079b0ae128a9745e3966",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "mixture-v3-independent-saved-CPU-review-v1",
+  "sensitivity": {
+    "F32_gradients_first": {
+      "directions": {
+        "Adam_g0_baseline": {
+          "mDallas": 0.03185424321023681,
+          "mF": 0.010489395965668141,
+          "mT": -0.011919109716681591
+        },
+        "Adam_increment": {
+          "mDallas": -0.002367513561006778,
+          "mF": -0.009230759765822029,
+          "mT": 0.013225245412964427
+        },
+        "Adam_total": {
+          "mDallas": 0.029486729649537205,
+          "mF": 0.0012586362000040203,
+          "mT": 0.0013061356959129405
+        },
+        "Euclidean": {
+          "mDallas": -0.43213862694957844,
+          "mF": -1.3967193405205176,
+          "mT": 1.890199880157463
+        }
+      },
+      "gradient_coefficients": [
+        -0.17791721295562893,
+        -0.31332497450368374
+      ],
+      "norms": {
+        "Adam_increment_l2": 0.002581294468649736,
+        "Adam_total_delta_l2": 0.024784822125379125,
+        "scaled_aux_gradient_l2": 0.1854039954830919
+      },
+      "w": 0.45713
+    },
+    "F64": {
+      "directions": {
+        "Adam_g0_baseline": {
+          "mDallas": 0.03185424412125365,
+          "mF": 0.010489396294531418,
+          "mT": -0.011919110087901162
+        },
+        "Adam_increment": {
+          "mDallas": -0.00236751356399552,
+          "mF": -0.009230759735747484,
+          "mT": 0.013225245309541618
+        },
+        "Adam_total": {
+          "mDallas": 0.029486730557258062,
+          "mF": 0.0012586365587839163,
+          "mT": 0.0013061352216404871
+        },
+        "Euclidean": {
+          "mDallas": -0.43213862960885413,
+          "mF": -1.396719353119352,
+          "mT": 1.89019989209774
+        }
+      },
+      "gradient_coefficients": [
+        -0.17791721295562893,
+        -0.31332497450368374
+      ],
+      "norms": {
+        "Adam_increment_l2": 0.00258129443495708,
+        "Adam_total_delta_l2": 0.02478482281919479,
+        "scaled_aux_gradient_l2": 0.1854039962919376
+      },
+      "w": 0.45713
+    }
+  },
+  "source_sha256": {
+    "research/MIXTURE_V3_CPU_PREDECLARATION.md": "2d08046e36b4e46806a53534c13b9ee0fba2c5e5bd080bc209777ea41bb6223f",
+    "scripts/analyze_saved_mixture_adam_v3.py": "0f2a58c9efb92cad4ce6b976e16b01c867708999007204d4d3e0b2707d34882c",
+    "src/mri_rl/class_margin_aux_v2.py": "4343fe861ac4d060afd8509939578b3c87f3fc1d92bfd38983ed09e11086ebb8",
+    "src/mri_rl/continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "src/mri_rl/mixture_adam_cpu_v3.py": "6c042da5c4fa78b691bf0a413a7c2708f0efb8b1339d2431f1e541a486f6e972",
+    "src/mri_rl/mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+    "tests/test_mixture_adam_cpu_v3.py": "37d9f2939fe6bef346538afd5c2a063b9ff06b4f321a5a2fc511b0b883110632"
+  },
+  "status": "FEASIBLE_AT_ONE_SAVED_TRAIN_POINT_UNDER_TOTAL_RETAINED_ADAM_CRITERION",
+  "training_authorized": false,
+  "training_readiness": "NO;futureengineering_and_independent_scopes_and_explicit_human_decision_required",
+  "training_runs": 0,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "all107_independently_recalculated": false,
+    "all3_gradient_inventory504_F32_and_parent_Adam60_moments_authenticated": true,
+    "all8_zero_guard_and_1e_6_guard_bracket_endpoints_independently_recomputed": true,
+    "candidate_F32_and_F64_and_gradientsfirst_recomputed": true,
+    "focused_source_tests": 4,
+    "focused_tests_seconds": 0.05,
+    "independent_saved_array_evaluations": 13,
+    "max_abs_direction_dot_difference_from_root": 1.963602891397187e-13,
+    "root_saved_evaluations_checked_for_search_consistency": 107
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "broader_check_rule": "Excluding previous gradient patient/site, lexicographic first3sites and firstpatient/site; retain QC flags/no outcome-dependent exclusions. Dallas firstsource eachclass with distinct storedpatientkeys; cross-case person independence NOT_VERIFIED.",
+  "future_micro_hard_caps": {
+    "auxiliary_TF_positions_cap": 1812,
+    "backward_calls": 20,
+    "combined_rollout_plus_auxiliary_cap": 10852,
+    "full_TF_forwards": 40,
+    "generation_LM_calls_including_lookahead": 4128,
+    "group_size": 4,
+    "main_rollout_text_visual_token_cap": 9040,
+    "max_tokens": 256,
+    "maximum_attempted_groups": 4,
+    "maximum_generated_tokens": 4096,
+    "maximum_optimizer_updates": 2,
+    "maximum_seconds": 1200,
+    "simultaneous_image_graphs": 1,
+    "simultaneous_models": 1,
+    "teacherforced_positions": 19860,
+    "vision_embeddings": 56
+  },
+  "historical_pool_site_patient_counts": {
+    "BA": 1,
+    "BO": 6,
+    "FO": 3,
+    "JS": 3,
+    "KA": 6,
+    "ME": 3,
+    "NSK": 4,
+    "TO": 2
+  },
+  "holdout_or_final_reads": 0,
+  "loss": "unchanged_GSPO + .1*((1-.457130)*L_v1 + .457130*L_v2), explicit supervised auxiliary",
+  "micro_cost_note": "Additional current-model guard VJPs debit SAME40TF/20back/19860positions counters. Do not enlarge cap to complete checks; stop/rollback if exhausted. Both initial slots active upper bound28TF/14back/12500TFpositions. 2TOTALsteps can stop before4slots.",
+  "missing_before_training": [
+    "Fresh independent exact source/input/scope review and human permission for broader TRAIN read-only VJPs.",
+    "Broader TRAIN check real results and exact independent review; no retuningw after per-patient failures.",
+    "Actual current combinedGSPO+aux Adam direction checked dynamically before each proposed step; native joint path still not measured.",
+    "Exact future micro launch scope, explicit human training authorization accepting native limitations, sealed evaluation protocol before model use."
+  ],
+  "model_loads": 0,
+  "new_native_backwards": 0,
+  "new_native_forwards": 0,
+  "next_readonly_call_bound_PROPOSED": {
+    "Dallas_images": 2,
+    "expected_TF_positions": 4382,
+    "fresh_human_permission_required": true,
+    "full_TF_forwards": 16,
+    "generation_calls": 0,
+    "hard_TF_positions": 6800,
+    "margin_backward_calls": 8,
+    "maximum_operation_start_seconds": 1200,
+    "optimizer_updates": 0,
+    "scope_status": "CALL_BOUND_AND_INPUTS_ONLY_NOT_EXACT_NATIVE_LAUNCH_SCOPE",
+    "sequence_images": 6,
+    "sequence_pairs": 3
+  },
+  "old_main_pool_and_next4schedule_unchanged": true,
+  "optimizer_updates": 0,
+  "pre_step_guard": "Sequence slots protect actual current auxiliary F/T pair; Dallas slots protect fixed reference F/T pair; Dallas target is fixedcase always. Persist exact per-target image/question/row identities. Recompute current-model VJPs and current-Adam JOINT direction, never stale Adam60 targets. All3TOTALdirections>=1e-6; NEWdelta/auxgradient endpointenvelope; reject beforestep without altering gradients/advantages. This is case-scoped protection, not classwide/oldanchor protection on sequence slots.",
+  "schema": "mixture-v3-broader-TRAIN-and-micro-preparation",
+  "selected_TRAIN_counts": {
+    "Dallas_cases": 2,
+    "Dallas_classes": [
+      "same",
+      "different"
+    ],
+    "sequence_images": 6,
+    "sequence_pairs": 3,
+    "sequence_patients": 3,
+    "sequence_sites": 3
+  },
+  "status": "CPU_PREPARED_NOT_NATIVE_AUTHORIZED",
+  "training_authorized": false,
+  "weight": 0.45713
+}

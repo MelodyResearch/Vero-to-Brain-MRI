@@ -1,0 +1,75 @@
+{
+  "data_checks": {
+    "Dallas_cases_distinct_other_patients": 2,
+    "Dallas_truths": [
+      "same",
+      "different"
+    ],
+    "QC_flags_retained": true,
+    "input_bindings": 5,
+    "lexicographic_metadata_selection_recomputed": true,
+    "main4_companions_parent_configuration_caps_equal_prior": true,
+    "new_image_decodes": 0,
+    "proposal_calls": {
+      "expected_positions": 4382,
+      "full_TF_forwards": 16,
+      "hard_positions": 6800,
+      "mean_margin_VJPs": 8,
+      "updates": 0
+    },
+    "selected_existing_PNG_bytes_hashed": 6,
+    "selected_nonanchor_TRAIN_sequence_patients": 3,
+    "selected_nonanchor_sites": 3
+  },
+  "feasibility_review_sha256": "68f2813f7ec92f5882e8dd4dcaf0fc6348234e81b2338e717c3dfd56f7906a49",
+  "findings": [
+    "Fixedw=.457130 convex loss mixture and score-space derivatives match finite differences; v1/v2 sources retained. Shared margin VJP chainrule ALPHA applied once.",
+    "Dormant backend sums unchanged GSPO and mixedaux gradients, then uses currentmodel target VJPs/currentAdam moments to preview proposed JOINT direction before the sole persistent optimizer.update. No endpoint-delta interpolation, gradient projection, advantage or reward modification.",
+    "Independent CPU fixture executes actual transition/preview/readonlyAdam arithmetic: protectedcase records exactlyoneoptimizer call; negativeFLAIR case fails before any optimizer. It is a recording CPU optimizer, not native training evidence.",
+    "Per-slot target identity is now explicit: sequence mF/mT=currentauxiliarypair; Dallas slot mF/mT=fixedreferencepair; mDallas=fixedreferencecase always. Exact row/image/question identity logged and checked. This is not classwide, oldanchor-on-sequence or allDallas protection.",
+    "Additional guard VJPs debit SAME40TF/20back/19860positions budget; auxiliary subset8TF/4back/1812positions unchanged. Exhaustion stops/rollsback instead of increasing caps. 2TOTALsteps applies acrossbranches; driver object is unchanged reviewed atomicloop.",
+    "Inherited17CPUfixtures separately exercise rollback/modelAdamRNG restoration, pendingreuse/oncecharge, exactsplitresume and postrename no duplicate committed update. Newcombined nativepath remains unmeasured.",
+    "Fresh broaderTRAINread-only review is a dormant configuration prerequisite; there is no exact v3 native training CLI/authorization chain in this component. No configuration receipt itself authorizes execution.",
+    "Prepared3nonanchorTRAINpeople/3sites/6pairedimages plus2otherDallasclasses authenticated by5metadata inputbindings and existingPNG byteSHAs; no images rerendered/decoded, no holdout used. Oldmain4 schedule/companions/profile/parent/caps unchanged.",
+    "Nextreadonly16TF/8VJP/4382expected<=6800positions/1200s is input-and-callbound DRAFT only. No exact native execution scope/CLI/review or human permission is supplied."
+  ],
+  "independent_native_branch_fixture_sha256": "837091ae4122cc5673a182c89601d2cc242d5da59c6811b0c0f787d3ac6a109f",
+  "independent_private_detail_sha256": "e4b7b6a2c238831f46dcb7f0c74a99e8a59dc112fb52363244430cf57d8f2bab",
+  "limitations": [
+    "All32fixtures are CPUonly;0model/newnativeforward/backward/generation/update. Native currentJOINT direction, actual training rollback and broadTRAIN benefit NOT_RUN.",
+    "SavedAdam60 local TOTAL protection does not prove nonnegative newauxincrement, finite-step protection, accuracy, subsequent-state safety or independent generalization.",
+    "Current per-case guard protects only the measured cases at currentweights/moments, not every case/class. Norm caps are NEW endpoint-preview analysis guards, not historical clipping or hardware safety proofs.",
+    "Hard40TF/20back budget may stop before4slots or2updates. Operation-start deadline is not hardwall.",
+    "BroaderTRAIN metadata selection is deterministic/no outcome-dependent replacement; it is not untouched validation or evidence of expert clinical qualification. New16holdout payload/labels/outcomes and final100 are not accessed.",
+    "Passing this source review is not a broadernative launch review, freshTRAIN actual review, trainingcertificate or human training permission.",
+    "Public output contains scalar counts and source/evidence hashes only; patientIDs/paths/images/questions/targets/nativearrays/state kept PRIVATE.",
+    "Same-family isolated Codex review; CROSS_MODEL_REVIEW=NOT_VERIFIED."
+  ],
+  "native_execution": false,
+  "reviewed_preparation_sha256": "e861b82540b37c03556c3d487b4866ca2a419b48cb322daafb8561155858b80f",
+  "reviewed_public_preparation_sha256": "b4380509468dda83b9276d95482b84ad96807ec3bb1bcb6b1c50c65f4b07dc81",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "mixture-v3-dormant-backend-and-TRAIN-preparation-independent-review-v1",
+  "source_sha256": {
+    "scripts/prepare_mixture_micro_v3.py": "f02ff326987eb1a009d41525f52692af71e1e491ff68ccf6a9ed6d37a60e236c",
+    "src/mri_rl/class_margin_mix_v3.py": "f8ecf14fd93dedf6d5acfcb985bb3ad9f7cd177a72b6982be06cf0a95c45b872",
+    "src/mri_rl/paired_classification_mix_v3.py": "86053624e785f4a63cac3f5eafbbdaefe3d27a76691e62afdf1c1307725c877f",
+    "tests/test_class_margin_mix_v3.py": "54b53f56010ae05d55a1e15358672715559fe795efdeda0a8b25a0362bf6947f"
+  },
+  "status": "CPU_IMPLEMENTED_AND_PREPARED_DORMANT_NATIVE_NOT_RUN",
+  "training_authorized": false,
+  "training_readiness": "NO;broader_readonly_actual_and_exact_future_native_scopes_and_explicit_human_decision_pending",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "breakdown": {
+      "independent_actual_transition_and_preview_CPU": 2,
+      "inherited_actual_atomic_transactions": 17,
+      "mixture_feasibility": 4,
+      "new_v3_backend_math_and_identity": 9
+    },
+    "command": "PYTHONPATH=src python3 -m pytest -q local_data/mixture_v3_independent_cpu_v1/test_native_guard_PRIVATE.py tests/test_class_margin_mix_v3.py tests/test_mixture_adam_cpu_v3.py tests/test_class_margin_aux_v2.py",
+    "passed": 32,
+    "wall_seconds": 0.32
+  }
+}
