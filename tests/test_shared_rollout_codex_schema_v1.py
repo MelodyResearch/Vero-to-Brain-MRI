@@ -41,3 +41,35 @@ def test_prepare_cli_emits_only_applicable_scopes(tmp_path,monkeypatch,adopt):
     assert json.loads(out.read_text())==prepared
     assert out.with_name('prepared_train_scope.json').is_file()
     assert out.with_name('prepared_qualify_scope.json').exists()==(adopt is None)
+
+
+@pytest.mark.parametrize('target',['metadata','tensor'])
+def test_adoption_rejects_changed_post_generation_rng_evidence(tmp_path,target):
+    import json
+    from test_shared_rollout_gspo_v1 import qualify,launch,PREPARED,Fake
+    from mri_rl import shared_rollout_gspo_entry_v1 as entry
+    before=Fake.rollouts
+    run,evidence=qualify(tmp_path)
+    proof=entry.qualification_proof(run,evidence,PREPARED)
+    metadata=run/'rng_R1_PRIVATE.json'
+    if target=='metadata':
+        value=json.loads(metadata.read_text());value['R1_rng_digest']='f'*64
+        metadata.write_text(json.dumps(value))
+    else:
+        tensor=run/json.loads(metadata.read_text())['tensors_file']
+        tensor.write_bytes(tensor.read_bytes()+b'changed')
+    with pytest.raises(ValueError,match='R1'):
+        launch(tmp_path,tmp_path/'adopt',adopt={'run':run,'proof':proof})
+    assert Fake.rollouts==before+1
+
+
+def test_production_train_entry_cannot_silently_resample(tmp_path):
+    import json
+    from types import SimpleNamespace
+    from mri_rl import shared_rollout_gspo_entry_v1 as entry
+    evidence=tmp_path/'artifact.json';evidence.write_text(json.dumps({}))
+    values={'spec':evidence}
+    for key in ('scope','human','review','qualification','qualification_review'):
+        values[key]=evidence;values['expected_'+key+'_sha256']=core.file_sha256(evidence)
+    with pytest.raises(ValueError,match='adopt_qualification_run'):
+        entry._authorized('train',SimpleNamespace(**values))

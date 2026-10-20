@@ -121,7 +121,10 @@ def _authorized(mode,args):
     pairs=[('scope','expected_scope_sha256'),('human','expected_human_sha256'),('review','expected_review_sha256')]
     if mode=='train':pairs+=[('qualification','expected_qualification_sha256'),('qualification_review','expected_qualification_review_sha256')]
     for key,expected in pairs:require(inherited.digest(getattr(args,key))==getattr(args,expected),'Exact launch artifact changed: '+key)
-    spec=_json(args.spec);prepared=prepare(spec);scope=_json(args.scope)
+    spec=_json(args.spec)
+    require(mode!='train' or isinstance(spec.get('adopt_qualification_run'),str) and spec['adopt_qualification_run'],
+            'Production train requires explicit adopt_qualification_run; no second rollout is permitted')
+    prepared=prepare(spec);scope=_json(args.scope)
     require(scope==launch_scope(prepared,mode),'Scope differs from exact current source/input preparation')
     output=Path(prepared['output'])
     qualification=None

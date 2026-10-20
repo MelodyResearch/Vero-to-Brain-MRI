@@ -167,7 +167,8 @@ def test_adoption_rejects_unverified_completion_claims(tmp_path,monkeypatch):
     run,evidence=f.qualify(tmp_path,{'F':[1,1,1,1],'T':[0,0,0,0]})                       # arm A never had an admitted group
     forged={'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED','blockers':[],'optimizer_updates':0,'source_sha256':{'/s.py':f.sha('s')},'input_sha256':f.sha('i'),
             'bundle_sha256':json.loads((run/'bundle_COMMITTED.json').read_text())['bundle_sha256'],'old_sha256':core.file_sha256(run/'old_PRIVATE.json'),
-            'release_witness_sha256':core.file_sha256(evidence/'release_SAFE.json'),'run_identity_sha256':core.file_sha256(run/'run_identity_PRIVATE.json')}
+            'release_witness_sha256':core.file_sha256(evidence/'release_SAFE.json'),'run_identity_sha256':core.file_sha256(run/'run_identity_PRIVATE.json'),
+            'rng_R1_sha256':core.file_sha256(run/'rng_R1_PRIVATE.json')}
     assert core.qualification_blockers(run)==['ARM_A_NO_EFFECTIVE_FINITE_NONZERO_BACKWARD_PATH']
     before=f.Fake.rollouts
     with pytest.raises(ValueError,match='effective finite nonzero'):f.launch(tmp_path,tmp_path/'train',adopt={'run':run,'proof':forged})

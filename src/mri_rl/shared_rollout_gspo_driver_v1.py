@@ -201,6 +201,10 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                         recorded['parent']==identity_record['parent'],'Qualification run source/input/parent differs from this train run')
                 require(qmarker['bundle_sha256']==proof['bundle_sha256'] and old.digest(qrun/'bundle_PRIVATE.json')==qmarker['file_sha256'] and
                         qold.is_file() and old.digest(qold)==proof['old_sha256'] and qr1.is_file(),'Adopted bundle/own-old/R1 differ from the reviewed proof')
+                require(old.digest(qr1)==proof.get('rng_R1_sha256'),'Adopted R1 metadata differs from the reviewed proof')
+                r1=_json(qr1);r1_name=r1.get('tensors_file')
+                require(isinstance(r1_name,str) and Path(r1_name).name==r1_name and (qrun/r1_name).is_file() and
+                        old.digest(qrun/r1_name)==r1.get('tensors_sha256'),'Adopted R1 tensor payload differs from its frozen metadata')
                 candidate=validated(_json(qrun/'bundle_PRIVATE.json'));saved_old=_json(qold)
                 require(saved_old['bundle_sha256']==candidate.sha256 and saved_old['parent_identity']==parent_identity,'Qualification own-old belongs to a different bundle/parent state')
                 # Completion/coverage/parity are RE-DERIVED from the qualification run's own files, never from the proof's or caller's claims.
@@ -208,7 +212,7 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                 core.check_old_shapes(candidate,saved_old['old']);core.parity_report(candidate,saved_old['old'])
                 inherited=_json(qrun/'counters_PRIVATE.json')['used']
                 core.publish_once(output/'adoption_reservation_PRIVATE.json',{'binding_sha256':binding_sha,'bundle_sha256':candidate.sha256})
-                r1=_json(qr1);shutil.copyfile(qrun/r1['tensors_file'],output/r1['tensors_file'])
+                shutil.copyfile(qrun/r1_name,output/r1_name)
                 core.publish_once(output/'rng_R1_PRIVATE.json',r1)
                 core.publish_once(output/'old_PRIVATE.json',saved_old)
                 core.publish_once(output/'bundle_PRIVATE.json',_json(qrun/'bundle_PRIVATE.json'))
