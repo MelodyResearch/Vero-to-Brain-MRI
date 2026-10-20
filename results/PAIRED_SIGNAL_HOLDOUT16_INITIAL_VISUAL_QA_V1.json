@@ -1,0 +1,18 @@
+{
+  "reviewer": "Codex /root",
+  "review_type": "Nonclinical label-blind first visual QA; key not opened",
+  "sheets_sha256": [
+    "ec7f2d61f0257721c0df567536706420eea1135d02d582b4ec982ed64fe3239a",
+    "fa390bcc127fc355899addbe606ebdaa3b72c1b2054da47366a7423deec8463b"
+  ],
+  "images_viewed": 32,
+  "pairs_viewed": 16,
+  "all_black_or_empty_seen": 0,
+  "labels_inferred_or_scored": 0,
+  "model_outputs_seen": 0,
+  "frozen_cases_removed_or_replaced": 0,
+  "decision": "Preserve all16 preselected pairs/32 images. Report fixed inferior-level/FOV/blur limits. Do not use QA or eventual errors to replace subjects; all16 remain primary if later authorized. No clinical or perfect-registration certification.",
+  "flagged_pairs": 4,
+  "private_qa_sha256": "052e6b5fd4a845041bd160b81ef4dce26e9282ae10ad12fc30d7044be2d29dce",
+  "scope": "Technical, nonclinical visual QA only. Acquisition labels remain metadata-derived; this is not an accuracy or generalization result."
+}

@@ -1,0 +1,124 @@
+{
+  "actual_calls": {
+    "full_TF_forwards": 12,
+    "teacherforced_positions": 2811
+  },
+  "backward_calls": 0,
+  "closed_external_exit_sha256": "4dc54743a2620a5d252ec858bba7cdf4af752e68ecd8eab5cf43ec2124fec212",
+  "closed_log_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+  "complete_sha256": "252d44fb879ef8926b4dda301168265be6702641d37c44554fe5f306a6f1a911",
+  "external_seconds": 72.01244412496453,
+  "generation_calls": 0,
+  "internal_seconds": 71.57043916697148,
+  "interpretation": "Correct T1 remains below FLAIR under common canonical prefix; response sampling error alone cannot explain fixedsequence0/4. Image-conditioned separation exists but is small relative to shared FLAIR preference; this does not diagnose entire encoder capacity or global causal failure.",
+  "limits": [
+    "Forced canonical readout differs from free generation; one TRAIN pair is not a generalization test.",
+    "No Dallas swap/null measured, so Dallas image dependence not inferred.",
+    "A pair-interaction objective can increase separation without crossing the T1 decision boundary; recall and cross-task benefit remain unverified."
+  ],
+  "models_loaded": 1,
+  "observations": [
+    {
+      "canonical_predictions": {
+        "first": "FLAIR",
+        "mean": "FLAIR",
+        "sum": "FLAIR"
+      },
+      "common_prefix_max_error": 0.0,
+      "condition": "SEQUENCE_REAL",
+      "correct_minus_wrong": {
+        "first": -6.607452202937566,
+        "mean": -1.321572210302478,
+        "sum": -6.61010741780229
+      },
+      "displayed_truth": "contrast-enhanced T1",
+      "mean_label0_minus_label1": 1.321572210302478,
+      "oracle_max_error": 0.0
+    },
+    {
+      "canonical_predictions": {
+        "first": "FLAIR",
+        "mean": "FLAIR",
+        "sum": "FLAIR"
+      },
+      "common_prefix_max_error": 0.0,
+      "condition": "SEQUENCE_OPPOSITE_SAME_PERSON_Z045",
+      "correct_minus_wrong": {
+        "first": 7.024005855899304,
+        "mean": 1.4050400870726698,
+        "sum": 7.026790678671212
+      },
+      "displayed_truth": "FLAIR",
+      "mean_label0_minus_label1": 1.4050400870726698,
+      "oracle_max_error": 0.0
+    },
+    {
+      "canonical_predictions": {
+        "first": "FLAIR",
+        "mean": "FLAIR",
+        "sum": "FLAIR"
+      },
+      "common_prefix_max_error": 0.0,
+      "condition": "SEQUENCE_NO_IMAGE_NULL",
+      "correct_minus_wrong": null,
+      "displayed_truth": null,
+      "mean_label0_minus_label1": 1.9648560386243878,
+      "oracle_max_error": 0.0
+    },
+    {
+      "canonical_predictions": {
+        "first": "different",
+        "mean": "different",
+        "sum": "different"
+      },
+      "common_prefix_max_error": 0.0,
+      "condition": "DALLAS_REAL",
+      "correct_minus_wrong": {
+        "first": -0.6436691582202911,
+        "mean": -0.6436691582202911,
+        "sum": -0.6436691582202911
+      },
+      "displayed_truth": "same",
+      "mean_label0_minus_label1": 0.6436691582202911,
+      "oracle_max_error": 0.0
+    }
+  ],
+  "optimizer_RNG_before_restore_unchanged": true,
+  "optimizer_updates": 0,
+  "paired_FLAIR_minus_T1_separation": {
+    "first": 0.4165536529617384,
+    "mean": 0.08346787677019174,
+    "sum": 0.41668326086892193
+  },
+  "parameter_arrays_unchanged": 1942,
+  "parent": "Preserved trained Adam60 fullstate",
+  "real_FLAIR_FLAIR_bias_minus_null": {
+    "first": -2.7961117428640136,
+    "mean": -0.559815951551718,
+    "sum": -2.79765329908696
+  },
+  "real_T1_FLAIR_bias_minus_null": {
+    "first": -3.212665395825752,
+    "mean": -0.6432838283219098,
+    "sum": -3.214336559955882
+  },
+  "release": {
+    "active_MLX_bytes": 1052,
+    "model_is_none": true,
+    "release_verified": true
+  },
+  "restored_state_unchanged": true,
+  "schema": "paired-signal-Adam60-canonical-actual-v1",
+  "scope_canonical_sha256": "d808df585be2f62ba0cae2036b43e1248bfe449c026f038a14921f95758c3fe0",
+  "scope_file_sha256": "834be758cb6fc660d498b0e1a9f909dbf622647956accfeb0d7d7aab7dc651b2",
+  "status": "INFERENCE_COMPLETED_NO_TRAINING",
+  "strict_greedy_accuracy": "NOT_MEASURED_THIS_DIAGNOSTIC",
+  "task_sample_units": {
+    "Dallas_cases": 1,
+    "independent_validation_cases_scored": 0,
+    "sequence_pairs": 1
+  },
+  "training_accuracy_improvement": "NOT_DEMONSTRATED",
+  "training_authorized": false,
+  "training_readiness": "NO"
+}

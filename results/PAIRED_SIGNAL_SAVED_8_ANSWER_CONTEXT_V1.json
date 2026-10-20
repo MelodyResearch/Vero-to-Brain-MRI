@@ -1,0 +1,131 @@
+{
+  "actual_complete_sha256": "ea8c354b99f17409e8c2fdeaa9f572f2188995159da02d26302c62029387d69d",
+  "canonical_common_prefix_scores": "NOT_MEASURED",
+  "conclusion": "Wrong class dominates at each actual generated answer history; common-prefix scores and image dependence remain unresolved.",
+  "groups": [
+    {
+      "responses": [
+        {
+          "actual_wrong_label_mean_logp": -0.0004061089576268273,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -1.4441039120788601,
+          "correct_minus_wrong_complete_label_margin": null,
+          "correct_minus_wrong_mean_upper_bound": -1.4436978031212333,
+          "first_token_margin": -7.219707489013672,
+          "format_valid": false,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 0,
+          "returned_tokens": 15
+        },
+        {
+          "actual_wrong_label_mean_logp": -0.0019398846620308774,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -1.1330902301197276,
+          "correct_minus_wrong_complete_label_margin": null,
+          "correct_minus_wrong_mean_upper_bound": -1.1311503454576968,
+          "first_token_margin": -5.661571502685547,
+          "format_valid": true,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 1,
+          "returned_tokens": 26
+        },
+        {
+          "actual_wrong_label_mean_logp": -0.000463260383137154,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -1.4577051814136859,
+          "correct_minus_wrong_complete_label_margin": null,
+          "correct_minus_wrong_mean_upper_bound": -1.4572419210305487,
+          "first_token_margin": -7.287599563598633,
+          "format_valid": true,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 2,
+          "returned_tokens": 26
+        },
+        {
+          "actual_wrong_label_mean_logp": -0.0033543771760253804,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -1.0214219001720388,
+          "correct_minus_wrong_complete_label_margin": null,
+          "correct_minus_wrong_mean_upper_bound": -1.0180675229960134,
+          "first_token_margin": -5.100400924682617,
+          "format_valid": true,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 3,
+          "returned_tokens": 19
+        }
+      ],
+      "task": "mri_sequence"
+    },
+    {
+      "responses": [
+        {
+          "actual_wrong_label_mean_logp": -2.641213821874544e-05,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -11.541505522855992,
+          "correct_minus_wrong_complete_label_margin": -11.541479110717773,
+          "correct_minus_wrong_mean_upper_bound": -11.541479110717773,
+          "first_token_margin": -11.541479110717773,
+          "format_valid": true,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 0,
+          "returned_tokens": 16
+        },
+        {
+          "actual_wrong_label_mean_logp": -0.3363494298949483,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -1.254016818810964,
+          "correct_minus_wrong_complete_label_margin": -0.9176673889160156,
+          "correct_minus_wrong_mean_upper_bound": -0.9176673889160156,
+          "first_token_margin": -0.9176673889160156,
+          "format_valid": true,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 1,
+          "returned_tokens": 17
+        },
+        {
+          "actual_wrong_label_mean_logp": -1.7416618078414103e-05,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -13.479063284538,
+          "correct_minus_wrong_complete_label_margin": -13.479045867919922,
+          "correct_minus_wrong_mean_upper_bound": -13.479045867919922,
+          "first_token_margin": -13.479045867919922,
+          "format_valid": true,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 2,
+          "returned_tokens": 69
+        },
+        {
+          "actual_wrong_label_mean_logp": -0.07968793710962174,
+          "common_canonical_prefix_measured": false,
+          "correct_mean_logp_upper_bound": -2.572983606665286,
+          "correct_minus_wrong_complete_label_margin": -2.493295669555664,
+          "correct_minus_wrong_mean_upper_bound": -2.493295669555664,
+          "first_token_margin": -2.493295669555664,
+          "format_valid": true,
+          "generated_correct": false,
+          "normal_EOS": true,
+          "response_index": 3,
+          "returned_tokens": 28
+        }
+      ],
+      "task": "mri_visit_correspondence"
+    }
+  ],
+  "image_swap_and_null": "NOT_MEASURED",
+  "inventory_sha256": "871ae6979f06293cdfc41ed584773611a95883cc0ab01ba6420b906e65c70d2a",
+  "limitations": "TRAIN two fixed contexts, four stochastic outputs each, no independent accuracy estimate. Multi-token correct-label value is an upper bound, not a measured alternative continuation.",
+  "new_model_calls": 0,
+  "optimizer_updates": 0,
+  "schema": "paired-signal-saved-answer-context-v1",
+  "scope_sha256": "865aeda5a772c9a917370bacddfd84309ac51ac225cd52732e0ee0e2f56f3511",
+  "status": "SAVED_TRAIN_ANALYSIS_COMPLETED",
+  "tokenizer_sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+  "training_runs": 0
+}

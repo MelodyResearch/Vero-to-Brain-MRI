@@ -1,0 +1,40 @@
+{
+  "budget": {
+    "candidate_TF_calls_including_two_NULL": 294,
+    "greedy_generations": 96,
+    "max_TF_input_positions_at425": 124950,
+    "max_returned_greedy_tokens": 24576,
+    "model_loads": 2,
+    "operation_start_seconds_total": 3000,
+    "training_updates": 0
+  },
+  "checkpoints": [
+    "exact_preserved_Adam60_parent",
+    "exact_first_budget_terminal_future_unknown"
+  ],
+  "inference_authorized": false,
+  "input_spec_sha256": "e037af35f33821ff1558d896feb4dd7d53c9badaa92c1ebf23848af3b5905e2f",
+  "limitations": [
+    "Prospective operation budget, no measured new F32 throughput;atomic calls/unwind may exceed deadline.",
+    "Final first-terminal hash/source/state bindings and independent review required before any execution.",
+    "Input data SOURCE qualification does not establish global cross-source/external exposure independence."
+  ],
+  "protocol": {
+    "Dallas": "Repeated16case/4cycle engineering retention only, not independent scientific endpoint",
+    "GO": "One prespecified parent/child comparison only; require T1 recall>parent,candidate balanced accuracy>parent,FLAIR recall>=parent andDallas accuracy+bothrecalls>=parent. Report all outcomes; no tuning on this holdout. Failure ends this intervention.",
+    "candidate": "Canonical mean label-only primary; sum and first secondary; exact same F32 parent/child contract with.002commonprefix+prefixoracle",
+    "decoding": "Original strictVero think/answer/boxed,greedy256,temp0;no parser change",
+    "no_image": "One sequence question NULL canonical-only per checkpoint; no fabricated null correctness",
+    "primary": "New16 people/32sequence images all included, strict greedy balanced accuracy and FLAIR/T1 recall",
+    "statistics": "Report16paired-patient units and descriptive patient-resampled intervals; no normal-approx binomial or clinical-generalization claim",
+    "swap": "Same-person opposite-modality real-output alias, no extra inference"
+  },
+  "records": 48,
+  "schema": "paired-signal-future-matched48-evaluation-v1",
+  "source_sha256": {
+    "Dallas_source40_input_spec": "33e583f25c369e724c62ba96a14cbf6c7ca60af51703b40005dbe3e990203618",
+    "new32": "b1f76fb6735e8aa04cf818526938696c8b4a1620ed47abfb053c8deaaabbe69d"
+  },
+  "status": "INPUTS_FROZEN_NOT_RUN_NOT_NATIVE_APPROVED",
+  "training_authorized": false
+}

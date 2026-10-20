@@ -1,0 +1,105 @@
+{
+  "actual_saved_answer_context": {
+    "Dallas_exact_one_token_margin_range": [
+      -13.479045867919922,
+      -0.9176673889160156
+    ],
+    "Dallas_responses": 4,
+    "all_wrong_class_first_token_favored": true,
+    "alternative_correct_label_boundary_exact_for_all8": true,
+    "common_canonical_prefix": "NOT_MEASURED",
+    "format_valid_count": 7,
+    "image_swap_or_null": "NOT_MEASURED",
+    "responses": 8,
+    "sequence_correct_T1_tokens": 5,
+    "sequence_correct_minus_wrong_mean_upper_bound_range": [
+      -1.4572419210291347,
+      -1.0180675229955933
+    ],
+    "sequence_first_token_margin_range": [
+      -7.287599563598633,
+      -5.100400924682617
+    ],
+    "sequence_responses": 4,
+    "sequence_wrong_FLAIR_tokens": 2
+  },
+  "bindings": {
+    "independent_reproducer_sha256": "26fe551461c073680d78bb55bf771601eb019c145a6b6a54edb48029e611cb17",
+    "paired_interaction_preparation_public_sha256": "9ee5fac8e7d294c3cc4272ce15524749c0c64805e4d5719812465cf6a6b21cab",
+    "private_independent_detail_sha256": "1ec128ba9a6c3a0c1a7cdee82cf266342ef0c0e8add2eef2558e07c46e80e740",
+    "private_pair_preparation_sha256": "ef4244f44809e6c8cbe0718c8b86e0db611ac5f5c2d457247cae47852c17d0d3",
+    "private_saved_source_result_sha256": "27a0343398215dc2c11e26ac4f27e0f5f2aecd9514a247e03c81bef609999fd2",
+    "saved_answer_context_public_sha256": "f87e7f85904dffb42627e55fec06330aab9313b1bb7584d2ceecbe4d89ad29ae"
+  },
+  "cross_model_family_review": "NOT_VERIFIED",
+  "evidence_tier": "SAVED_TRAIN_CPU_ARITHMETIC_AND_PROSPECTIVE_OBJECTIVE",
+  "final100_access": false,
+  "findings": [
+    "All eight actual generated label boundaries, first-token logits differences, stable F64 logsumexp, wrong-label means and alternative-label upper bounds independently match saved results; strict format uses the unchanged Vero parser.",
+    "For ungenerated five-token T1, only its first conditional is known at each actual generated answer prefix; all remaining logps<=0 gives a rigorous mean upper bound. No score after the ungenerated alternative prefix is invented. Dallas labels are single-token, so their full label margins are exact only at each actual response history.",
+    "The paired objective is explicitly supervised extra same-person opposite-modality exposure, even if0/4 sampled responses are correct or the original active gate rejects the group. It is not original/pure GSPO and is not an accuracy result.",
+    "Common additive priors cancel in SCORE space; this does not prove immunity to arbitrary network/logit prior changes, because normalization, token length and conditional histories can change scores non-additively.",
+    "A valid nonpositive-logp shared-parameter counterexample lowers pair loss while worsening T1 margin; image-insensitive Jacobians can cancel the entire auxiliary parameter gradient. Separation/score-space gradient is not learning, grounding or recall gain.",
+    "Main original76 sampler slots remain frozen, with companion images auxiliary-only;16unique pairs across18sequence auxiliary units are distinct from the forced-pair32 sampling-only alternative. Extra exposure and objective effects are not causally separable without a matched control."
+  ],
+  "focused_tests": {
+    "combined_passed": 22,
+    "combined_seconds": 0.12,
+    "command": "PYTHONPATH=src python3 -m pytest -q tests/test_paired_signal_holdout16_v1.py tests/test_paired_interaction_signal_v1.py tests/test_paired_signal_saved_answers_v1.py",
+    "component_passed": 13,
+    "other_holdout_tests_passed": 9
+  },
+  "limitations": [
+    "No common-prefix F32 model scoring, image/null contrast, native auxiliary gradient, atomic optimizer integration or new performance was executed by this CPU review. A future12-forward read-only scope needs its own independent scope review and explicit human authorization.",
+    "13560/111464 combine declared rollout token reservation with auxiliary teacher-forced positions; they are not physical FLOPs, total training LM processed positions or wall-time measurements. Original GSPO old/current scorer/autograd and installed generation lookahead remain separately accountable.",
+    "The ten auxiliary forwards/two image backward calls per pair are a proposed serial two-pass plan, not native-executed counts. Shared params can harm Dallas; actual combined-gradient behavior remains unknown.",
+    "Mean label logp normalizes the2/5-token class lengths by declaration; sum and first-token readouts must remain secondary checks, and no null/prior-invariance arithmetic establishes MRI grounding.",
+    "Repeated TRAIN responses from two fixed contexts do not give eight independent subjects or a generalization estimate. No final100 outcomes were used.",
+    "No qualified new holdout or future training permission is established by these CPU checks; cross-model-family review remains NOT_VERIFIED."
+  ],
+  "new_backward_calls": 0,
+  "new_model_calls": 0,
+  "objective_math": {
+    "additive_score_class_prior_and_image_offset_invariant": true,
+    "both_wrong_does_not_imply_auxiliary_parameter_gradient_nonzero": true,
+    "finite_difference_max_abs_error": 1.874611577079577e-12,
+    "formula": "Delta=s_F(I_F)-s_T(I_F)-s_F(I_T)+s_T(I_T); L_aux=softplus(-Delta/2); L_total=L_GSPO+0.1*L_aux",
+    "image_insensitive_Jacobian_cancellation_confirmed": true,
+    "nonpositive_logp_T1_harm_counterexample_confirmed": true,
+    "score_derivative": "sigmoid(-Delta/2)/2 * [[-1,+1],[+1,-1]]"
+  },
+  "optimizer_updates": 0,
+  "prospective_accounting": {
+    "auxiliary_TF_positions": 4520,
+    "auxiliary_backward_calls_per_pair": 2,
+    "auxiliary_forward_calls_per_pair": 10,
+    "combined_accounted_positions": 13560,
+    "fixed_micro_slots": 4,
+    "full32_auxiliary_TF_positions": 40680,
+    "full32_auxiliary_units": 18,
+    "full32_combined_accounted_positions": 111464,
+    "full32_rollout_reserved_tokens": 70784,
+    "full32_unique_auxiliary_images": 32,
+    "full32_unique_auxiliary_pairs": 16,
+    "main_schedule_unchanged": true,
+    "micro_Dallas_slots": 2,
+    "micro_sequence_slots": 2,
+    "native_two_pass_integration": "NOT_IMPLEMENTED_NOT_VERIFIED",
+    "original_main_pool_rows": 76,
+    "rollout_reserved_tokens": 9040
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-signal-saved-and-interaction-independent-CPU-review-v1",
+  "source_sha256": {
+    "scripts/prepare_paired_interaction_signal_v1.py": "5c0c9e72c2174c5e80563b21358b46c5b070806d068dea8c4516f4df823c549f",
+    "src/mri_rl/paired_interaction_signal_v1.py": "fc5be726f37a0bbd05421d837313070d7fe63e1869bb83748d51e77b9f11afe3",
+    "src/mri_rl/paired_signal_saved_answers_v1.py": "5dea4e38afa7d840851160e76283720dd440e388a77679afb3f0857b86377d19",
+    "src/mri_rl/vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "tests/test_paired_interaction_signal_v1.py": "8e178392e1a6914340a58f3ae82b1ed8bba1f5e9915f97cc6cd8f05911ff0d1e",
+    "tests/test_paired_signal_saved_answers_v1.py": "04860a3ac18275f12611a966dda1bc10727636ade53939e3f886b58cc07aa779"
+  },
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

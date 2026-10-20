@@ -1,0 +1,238 @@
+{
+  "blockers": [
+    "Common-prefix TRAIN class scores/image dependence not measured; new read-only scope requires explicit authorization.",
+    "F32 on-policy active-group backward remains PARTIAL.",
+    "Auxiliary native serial-gradient integration/state audit not verified.",
+    "New holdout model-blind qualification and prospective acceptance lock required."
+  ],
+  "failure_boundaries": [
+    "Image-insensitive parameter Jacobians cancel despite nonzero score-space derivatives.",
+    "Common additive class priors cancel, but image-specific shortcuts do not.",
+    "Larger separation need not improve absolute T1 margin/recall; explicit CPU counterexample passes.",
+    "Shared parameters can harm Dallas. Extra paired exposure and auxiliary math are inseparable without exposure-matched control.",
+    "Prior two-update independent CE from B28 was negative; this interaction objective is not validated by that experiment."
+  ],
+  "fixtures": {
+    "all_wrong_equal_rollout_rewards_GSPO_gradient": 0,
+    "pair_loss": 0.4554924814633377,
+    "pair_scores": [
+      [
+        -0.1,
+        -3.0
+      ],
+      [
+        -0.2,
+        -2.0
+      ]
+    ],
+    "score_derivatives": [
+      [
+        -0.18293220449459968,
+        0.18293220449459968
+      ],
+      [
+        0.18293220449459968,
+        -0.18293220449459968
+      ]
+    ]
+  },
+  "forced_pair32_sampling_only_alternatives": [
+    {
+      "accepted_update_ceiling": 8,
+      "earliest_possible_update_stop_prefix": {
+        "actual_optimizer_updates": 0,
+        "attempted_group_slots": 8,
+        "charged_token_reservation": 17312,
+        "declared_token_cap": 70784,
+        "exposure": {
+          "maximum_repeats_per_sequence_row": 1,
+          "people_both_modalities_observed": 2,
+          "people_one_modality_observed": 1,
+          "repeated_sequence_occurrences": 0,
+          "sequence_label_occurrences": {
+            "FLAIR": 3,
+            "contrast-enhanced T1": 2
+          },
+          "sequence_occurrences": 5,
+          "sequence_people_observed": 3,
+          "task_occurrences": {
+            "mri_sequence": 5,
+            "mri_visit_correspondence": 3
+          },
+          "unique_sequence_rows": 5
+        },
+        "fits_declared_cap": true,
+        "paired_patient_fraction_of_existing28": 0.07142857142857142,
+        "prompt_visual_reservation": 9120,
+        "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+        "returned_response_reservation": 8192,
+        "training_executed": false,
+        "unique_sequence_image_paths": 5
+      },
+      "full_schedule": {
+        "actual_optimizer_updates": 0,
+        "attempted_group_slots": 32,
+        "charged_token_reservation": 70784,
+        "declared_token_cap": 70784,
+        "exposure": {
+          "maximum_repeats_per_sequence_row": 1,
+          "people_both_modalities_observed": 9,
+          "people_one_modality_observed": 0,
+          "repeated_sequence_occurrences": 0,
+          "sequence_label_occurrences": {
+            "FLAIR": 9,
+            "contrast-enhanced T1": 9
+          },
+          "sequence_occurrences": 18,
+          "sequence_people_observed": 9,
+          "task_occurrences": {
+            "mri_sequence": 18,
+            "mri_visit_correspondence": 14
+          },
+          "unique_sequence_rows": 18
+        },
+        "fits_declared_cap": true,
+        "paired_patient_fraction_of_existing28": 0.32142857142857145,
+        "prompt_visual_reservation": 38016,
+        "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+        "returned_response_reservation": 32768,
+        "training_executed": false,
+        "unique_sequence_image_paths": 18
+      },
+      "group_cap": 32,
+      "interpretation": "8 accepted updates can stop at slot8, censoring planned nine-pair exposure; rejected groups can delay that endpoint.",
+      "token_reservation": 70784
+    },
+    {
+      "accepted_update_ceiling": 32,
+      "earliest_possible_update_stop_prefix": {
+        "actual_optimizer_updates": 0,
+        "attempted_group_slots": 32,
+        "charged_token_reservation": 70784,
+        "declared_token_cap": 70784,
+        "exposure": {
+          "maximum_repeats_per_sequence_row": 1,
+          "people_both_modalities_observed": 9,
+          "people_one_modality_observed": 0,
+          "repeated_sequence_occurrences": 0,
+          "sequence_label_occurrences": {
+            "FLAIR": 9,
+            "contrast-enhanced T1": 9
+          },
+          "sequence_occurrences": 18,
+          "sequence_people_observed": 9,
+          "task_occurrences": {
+            "mri_sequence": 18,
+            "mri_visit_correspondence": 14
+          },
+          "unique_sequence_rows": 18
+        },
+        "fits_declared_cap": true,
+        "paired_patient_fraction_of_existing28": 0.32142857142857145,
+        "prompt_visual_reservation": 38016,
+        "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+        "returned_response_reservation": 32768,
+        "training_executed": false,
+        "unique_sequence_image_paths": 18
+      },
+      "full_schedule": {
+        "actual_optimizer_updates": 0,
+        "attempted_group_slots": 32,
+        "charged_token_reservation": 70784,
+        "declared_token_cap": 70784,
+        "exposure": {
+          "maximum_repeats_per_sequence_row": 1,
+          "people_both_modalities_observed": 9,
+          "people_one_modality_observed": 0,
+          "repeated_sequence_occurrences": 0,
+          "sequence_label_occurrences": {
+            "FLAIR": 9,
+            "contrast-enhanced T1": 9
+          },
+          "sequence_occurrences": 18,
+          "sequence_people_observed": 9,
+          "task_occurrences": {
+            "mri_sequence": 18,
+            "mri_visit_correspondence": 14
+          },
+          "unique_sequence_rows": 18
+        },
+        "fits_declared_cap": true,
+        "paired_patient_fraction_of_existing28": 0.32142857142857145,
+        "prompt_visual_reservation": 38016,
+        "reservation_qualification": "Conditional on actual expanded213/405 input counts; existing4-response256 policy. Installed unreturned AR lookahead recorded separately.",
+        "returned_response_reservation": 32768,
+        "training_executed": false,
+        "unique_sequence_image_paths": 18
+      },
+      "group_cap": 32,
+      "interpretation": "32 is a noncensoring ceiling, not a target. Safety/time/token gates may still stop early; accepted-gradient coverage unknown.",
+      "token_reservation": 70784
+    }
+  ],
+  "full32_auxiliary": {
+    "GSPO_reserved_tokens": 70784,
+    "auxiliary_backward_calls": 36,
+    "auxiliary_forward_calls": 180,
+    "auxiliary_teacherforced_positions": 40680,
+    "combined_accounted_token_positions": 111464,
+    "maximum_returned_rollout_tokens": 32768,
+    "unique_images": 32,
+    "unique_pairs": 16,
+    "units": 18
+  },
+  "intervention": "Original28+48 main GSPO pool and original next uniform seed13 slots8:40 unchanged; same-person opposite z045 image is auxiliary-only.",
+  "matched_evaluation": {
+    "data": "New independent16-person source plan/payload qualification separate; old40 engineering only; no opened final100 output access.",
+    "decision": "No scale-up unless T1 and candidate improve without FLAIR or Dallas degradation; one local comparison is not a causal proof.",
+    "evaluation_budget": "Existing matched F32 parent+child80greedy+240candidate API calls, <=20480 generated and102000 TF positions; <=2400s operation-start; actual throughput unmeasured.",
+    "primary": "Strict greedy sequence balanced accuracy and both class recalls",
+    "same_F32_parent_child": true,
+    "secondary": [
+      "mean/sum/first candidate balanced accuracy and correct-minus-wrong margins",
+      "same-person image-swap direction",
+      "Dallas same/different recall",
+      "macro/worst task",
+      "invalids",
+      "charged tokens and wall cost"
+    ]
+  },
+  "not_original_vero": "Explicit supervised paired auxiliary. Never fabricated rollout/reward/advantage.",
+  "objective": "L_total=L_GSPO+0.1*softplus(-((s_F(I_F)-s_T(I_F))-(s_F(I_T)-s_T(I_T)))/2), s=mean canonical label-only logp; tau=1.",
+  "optimizer_updates": 0,
+  "preferred_future_micro": {
+    "Dallas": 2,
+    "accepted_joint_update_cap": 2,
+    "cost": {
+      "GSPO_reserved_tokens": 9040,
+      "auxiliary_backward_calls": 4,
+      "auxiliary_forward_calls": 20,
+      "auxiliary_teacherforced_positions": 4520,
+      "combined_accounted_token_positions": 13560,
+      "maximum_returned_rollout_tokens": 4096
+    },
+    "estimated_training_minutes": [
+      10,
+      20
+    ],
+    "minimum_updates_required": 0,
+    "optimizer": "Same trainable structure permits full Adam60/RNG import in an explicitly new objective phase; native atomicity not yet integrated or verified.",
+    "parent": "Preserved Adam60 for literal chain continuity, not best-final selection",
+    "selection": "First four original28-pool uniform-stage slots, no correct-rollout filtering, no resampling.",
+    "sequence": 2,
+    "slot_count": 4,
+    "timing_basis": "Prior F32 two-group read-only qualification actual307.59s includes load/216 returnedtokens/0backward; auxiliary and training backward unmeasured. Planning envelope, not throughput forecast.",
+    "wall_operation_start_seconds": 1200
+  },
+  "schema": "paired-interaction-signal-preparation-v1",
+  "source_sha256": {
+    "forced": "e488613befa931c5db257593c8b00a1e04677d0308b2c6c93f57129550cb95c8",
+    "membership": "bf92f7e560ce3ed3b3629427f590d8c6f6cf4c4c3bae6ab04dc14af42ad4ce99",
+    "pool": "c257ef5481c0e97a907fdc75bfcba6345744bd3769b3e6391f0563147a17a770",
+    "schedule": "44a874e50d45ee5f6007b9ee3800d8d7e05dcf092fa4fa5adade4fedfd8ba17d"
+  },
+  "status": "TESTED_CPU_NOT_NATIVE_INTEGRATED",
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "training_runs": 0
+}

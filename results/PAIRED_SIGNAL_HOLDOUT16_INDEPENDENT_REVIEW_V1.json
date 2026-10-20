@@ -1,0 +1,122 @@
+{
+  "bindings": {
+    "future48_input_spec_sha256": "e037af35f33821ff1558d896feb4dd7d53c9badaa92c1ebf23848af3b5905e2f",
+    "future48_public_sha256": "3076f868f29575a5cb1675c1bc173366ce9839d0f43e96f3c7297ea5b84f881a",
+    "independent_reproducer_sha256": "d89778ab7dbab9e65ab7838c0070f8ec74dcd4edcf117a40daee9bdcf3cc1f8e",
+    "initial_nonclinical_QA_sha256": "4dc50f1186e0f7501876ff923697ef7c4597f8ae8955746dde03ea6897800946",
+    "private_independent_detail_sha256": "146eaf642dc6fff2ae3db81f3486604361a523637b24a58cdbd60f9bda012238",
+    "sealed_inputs_sha256": "ea9b1362843d730e75b0e1d6f8bdddd510bb3a3a5d3eff479179319c05666d33",
+    "sealed_manifest_sha256": "b1f76fb6735e8aa04cf818526938696c8b4a1620ed47abfb053c8deaaabbe69d",
+    "source_plan_PRIVATE_sha256": "a8a06819499cffa40411b5b3ac5cddd58ba942b6be05add8b22408c13f76fbc6",
+    "source_plan_public_sha256": "7f1ccc96905246e3df118c2b07b584699414a17322a50dd68e5f4af3cbfaf1f8",
+    "technical_public_sha256": "457b9947a5c25e8c5e41c63d1ccb5851e18f142566d715e7fb36761bdd178c4e"
+  },
+  "evidence_tier": "SOURCE_BYTES_GEOMETRY_AND_RENDER_OBSERVED",
+  "final100_outcomes_accessed": false,
+  "findings": [
+    "Independent within-site hash ranking over eligible processed-pair pointers reproduces every preselected subject under the frozen seven-site quotas; all16 remain disjoint from54known historical identities and108processed payload SHAs.",
+    "All32actual gzip payload byte sizes/SHAs match source annex identities, and current symlink targets plus acquisition sidecars also match their pinned official Git commit blobs. Selection precedes fetch journal; no failure/retry/replacement entries appear.",
+    "All32NIfTI arrays independently decoded sequentially have finite voxels, LAS1mm storage and16paired affine/shape agreements. Independent frozen percentile/rot90/resize RGB reconstruction matches all32saved PNG pixels/windows/FOV statistics exactly.",
+    "Model-facing questions are identical generic modality questions; opaque image paths contain no source patient identity. Hidden reward labels/lineage stay in metadata, not the actual question. All rows remain independent_validation with training_authorized false.",
+    "Future48 contains all32new rows unchanged plus exact16repeated Dallas rows, no QA-selected subset or extra swap inferences.96greedy+294TF/24576returned/124950TFpositions/3000s are prospective arithmetic only.",
+    "Separate first nonclinical QA by Codex/root reports4flaggedpairs and0replacements. This reviewer did not independently visually adjudicate contact sheets and makes no clinical/brain-visibility certification."
+  ],
+  "focused_tests": {
+    "combined_passed": 22,
+    "combined_seconds": 0.12,
+    "command": "PYTHONPATH=src python3 -m pytest -q tests/test_paired_signal_holdout16_v1.py tests/test_paired_interaction_signal_v1.py tests/test_paired_signal_saved_answers_v1.py",
+    "holdout_tests_passed": 9
+  },
+  "future_inference_authorized": false,
+  "future_matched_evaluation": {
+    "TF_position_upperbound": 124950,
+    "candidate_TF_calls_including_two_NULL": 294,
+    "greedy_calls_two_checkpoints": 96,
+    "model_loads_if_later_authorized": 2,
+    "model_outputs": "NOT_RUN",
+    "new_sequence_images": 32,
+    "operation_start_seconds": 3000,
+    "prespecified_one_comparison_only": true,
+    "repeated_Dallas_engineering_images": 16,
+    "returned_token_upperbound": 24576,
+    "status": "INPUT_JOIN_AND_BUDGET_ONLY_NOT_EXECUTABLE",
+    "terminal_checkpoint": "UNKNOWN",
+    "unique_input_rows": 48
+  },
+  "independent_review_new_PNG_pixel_comparisons": 32,
+  "independent_review_new_source_volume_decodes": 32,
+  "independent_visual_or_clinical_judgments": 0,
+  "limitations": [
+    "Technical source/modality label eligibility and54-catalog exclusion are not universal independence: unknown manual/external exposures and global cross-source people remain NOT_VERIFIED.",
+    "Seven fixed source sites are represented withunequal quotas; BA0 andFO/ME1 reflect availability. This is neither equal-site nor held-out-site validation.",
+    "Shape/affine equality does not prove perfect biological registration, anatomical informativeness or clinical validity. z045FOV/blur limitations and acquisition/site/intensity shortcuts remain; four QAflags do not cause subject replacement.",
+    "No model predictions or fits exist for this new holdout. Use only the predeclared one-shot parent/terminal decision, include all outcomes, and do not tune/replace after seeing errors.",
+    "Future48 metadata and budgets are not a native evaluator implementation/scope approval, completed matching or training authorization. Exact unknown terminal/source/state/output and fresh authorization/review are still required.",
+    "No new MRI rendering was written by reviewer: source arrays were decoded32times solely for saved-render equality, no image displayed or clinical labels created. Raw subjects, paths, headers, sidecars, percase stats and pixels stay PRIVATE.",
+    "Cross-model-family review NOT_VERIFIED."
+  ],
+  "new_model_calls": 0,
+  "optimizer_updates": 0,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-signal-holdout16-independent-technical-review-v1",
+  "selection": {
+    "BA_quota": 0,
+    "global_cross_source_or_unknown_external_exposure": "NOT_VERIFIED",
+    "known_excluded_identities": 54,
+    "known_excluded_processed_payload_SHA": 108,
+    "modalities_each": 16,
+    "network_retries_observed": 0,
+    "people": 16,
+    "received_and_verified_bytes": 209954608,
+    "records": 32,
+    "selected_before_actual_fetch_journal": true,
+    "selected_identity_overlap": 0,
+    "selected_payload_SHA_overlap": 0,
+    "selected_source_payload_SHA_unique": 32,
+    "site_quotas": {
+      "BO": 4,
+      "FO": 1,
+      "JS": 2,
+      "KA": 4,
+      "ME": 1,
+      "NSK": 2,
+      "TO": 2
+    },
+    "subject_replacements_observed": 0
+  },
+  "source_sha256": {
+    "scripts/collect_paired_signal_holdout16_v1.py": "5882c04238ec0861b768b73f15c0e105632663d6d9c8f8a4685403ec771c86be",
+    "src/mri_rl/paired_signal_holdout16_v1.py": "6fbda958d38b04be250ec4f57416730a11171b57c22be4b987f27ea499e88fcf",
+    "tests/test_paired_signal_holdout16_v1.py": "6e3762c822248e8974275f931f69d64385dcb1d55f01e94dc70b4cc913ea1fbd"
+  },
+  "technical": {
+    "MRI_anatomical_or_clinical_understanding": "NOT_VERIFIED",
+    "acquisition_modality_metadata_identity": "TECHNICALLY_ELIGIBLE",
+    "committed_Git_pointer_and_sidecar_identity_verified": 32,
+    "finite_source_voxel_arrays": 32,
+    "independent_render_pixel_matches": 32,
+    "opaque_PNG_metadata_keys": 0,
+    "pairs_same_shape_affine": 16,
+    "real_source_payload_hash_and_size_verified": 32,
+    "render_RGB_size": [
+      364,
+      436
+    ],
+    "source_level": 45,
+    "source_shape": [
+      182,
+      218,
+      182
+    ],
+    "spacing_mm": [
+      1,
+      1,
+      1
+    ],
+    "storage_axes": "LAS",
+    "world_coordinate_convention": "NIfTI RAS+ world, not RAS storage"
+  },
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

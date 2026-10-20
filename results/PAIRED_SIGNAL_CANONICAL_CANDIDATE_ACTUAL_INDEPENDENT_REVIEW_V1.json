@@ -1,0 +1,292 @@
+{
+  "actual": {
+    "TF_input_positions": 2811,
+    "automatic_retries": 0,
+    "backward_calls": 0,
+    "contexts": 4,
+    "external_elapsed_seconds": 72.01244412496453,
+    "generation_calls": 0,
+    "model_loads": 1,
+    "native_exit_code": 0,
+    "optimizer_updates": 0,
+    "real_image_TF_calls_from_source_and_context_evidence": 9,
+    "scorer_TF_API_calls": 12,
+    "text_only_TF_calls_from_source_and_context_evidence": 3
+  },
+  "actual_status": "CLOSED_FIXED_FOUR_CONTEXT_READONLY_COMPLETE",
+  "bindings": {
+    "actual_exit_sha256": "4dc54743a2620a5d252ec858bba7cdf4af752e68ecd8eab5cf43ec2124fec212",
+    "actual_launch_sha256": "0e6968a38304e3ca296a30af4fd93c3e0a405f039128ec5f01a32ee582642ea9",
+    "before_restore_integrity_sha256": "23e9737ec73b5cce12b02993564c3b1498fb8ec10803c446d299e2277d453b20",
+    "closed_stdout_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+    "engineering_review_sha256": "fb3a07543b84adc1425e3fb910f908229b536de4cd62a3ccfbaae188874b8798",
+    "human_authorization_sha256": "4b5aa3d84b5eb7d0ee905845e3f8eed436c888128e07b43d4f90ff303775adac",
+    "independent_verifier_sha256": "a67f337174785238160fcc57a2027d216f51f7884a78e040421e7d87edd0609c",
+    "launch_binding_review_sha256": "2f41a2489620d3d3b29557dc5ff7486d055d8650eea8fc42074ce799fd2c4e31",
+    "launch_config_sha256": "abdd653a6e39d7843a4bf6daeb81788066fd75ab3045a4d332cca24639114384",
+    "native_complete_sha256": "252d44fb879ef8926b4dda301168265be6702641d37c44554fe5f306a6f1a911",
+    "private_input_inventory_sha256": "003cadac6b5b69f2c23c3b5c9774f080edfcb33b065d815553a4016579295b38",
+    "private_recomputed_detail_sha256": "6b7eeb1257bf2f592c36a4d0e128454501418f6696d2b83085235d51b2b02065",
+    "release_sha256": "94e81f8d6ca3f6c238711eb8c9bedc512bb6616369a5fcf8b147811401bae364",
+    "resources_sha256": "fc3b47bd0563358ec2080f3c7f0afa3f3a6156af3cde650257d8ecb52620427f",
+    "restored_state_sha256": "928b52e5227c1cf93b806ae898b8322b1c3aa198d76583169413ab10c5e279e4",
+    "scope_canonical_sha256": "d808df585be2f62ba0cae2036b43e1248bfe449c026f038a14921f95758c3fe0",
+    "scope_file_sha256": "834be758cb6fc660d498b0e1a9f909dbf622647956accfeb0d7d7aab7dc651b2"
+  },
+  "contexts": [
+    {
+      "canonical_label0_minus_label1": {
+        "first": 6.607452202937566,
+        "mean": 1.321572210302478,
+        "sum": 6.61010741780229
+      },
+      "canonical_preference_by_readout": {
+        "first": "FLAIR",
+        "mean": "FLAIR",
+        "sum": "FLAIR"
+      },
+      "context": "SEQUENCE_REAL",
+      "independent_first_oracle_max_abs": 0.0,
+      "input_tokens": 213,
+      "native_common_prefix_max_abs": 0.0,
+      "per_label": [
+        {
+          "first": -0.0014974583173170686,
+          "label": "FLAIR",
+          "mean": -0.000748788763299757,
+          "sum": -0.001497577526599514,
+          "token_count": 2
+        },
+        {
+          "first": -6.608949661254883,
+          "label": "contrast-enhanced T1",
+          "mean": -1.3223209990657778,
+          "sum": -6.611604995328889,
+          "token_count": 5
+        }
+      ],
+      "scorer_API_calls": 3,
+      "source_truth_minus_alternative": {
+        "first": -6.607452202937566,
+        "mean": -1.321572210302478,
+        "sum": -6.61010741780229
+      },
+      "task": "mri_sequence",
+      "visual_source_truth": "contrast-enhanced T1"
+    },
+    {
+      "canonical_label0_minus_label1": {
+        "first": 7.024005855899304,
+        "mean": 1.4050400870726698,
+        "sum": 7.026790678671212
+      },
+      "canonical_preference_by_readout": {
+        "first": "FLAIR",
+        "mean": "FLAIR",
+        "sum": "FLAIR"
+      },
+      "context": "SEQUENCE_OPPOSITE_SAME_PERSON_Z045",
+      "independent_first_oracle_max_abs": 0.0,
+      "input_tokens": 213,
+      "native_common_prefix_max_abs": 0.0,
+      "per_label": [
+        {
+          "first": -0.0010600429959595203,
+          "label": "FLAIR",
+          "mean": -0.0005300811026209828,
+          "sum": -0.0010601622052419657,
+          "token_count": 2
+        },
+        {
+          "first": -7.025065898895264,
+          "label": "contrast-enhanced T1",
+          "mean": -1.4055701681752908,
+          "sum": -7.027850840876454,
+          "token_count": 5
+        }
+      ],
+      "scorer_API_calls": 3,
+      "source_truth_minus_alternative": {
+        "first": 7.024005855899304,
+        "mean": 1.4050400870726698,
+        "sum": 7.026790678671212
+      },
+      "task": "mri_sequence",
+      "visual_source_truth": "FLAIR"
+    },
+    {
+      "canonical_label0_minus_label1": {
+        "first": 9.820117598763318,
+        "mean": 1.9648560386243878,
+        "sum": 9.824443977758172
+      },
+      "canonical_preference_by_readout": {
+        "first": "FLAIR",
+        "mean": "FLAIR",
+        "sum": "FLAIR"
+      },
+      "context": "SEQUENCE_NO_IMAGE_NULL",
+      "independent_first_oracle_max_abs": 0.0,
+      "input_tokens": 57,
+      "native_common_prefix_max_abs": 0.0,
+      "per_label": [
+        {
+          "first": -0.00010907054820563644,
+          "label": "FLAIR",
+          "mean": -5.45948787440409e-05,
+          "sum": -0.0001091897574880818,
+          "token_count": 2
+        },
+        {
+          "first": -9.820226669311523,
+          "label": "contrast-enhanced T1",
+          "mean": -1.9649106335031319,
+          "sum": -9.82455316751566,
+          "token_count": 5
+        }
+      ],
+      "scorer_API_calls": 3,
+      "source_truth_minus_alternative": null,
+      "task": "mri_sequence",
+      "visual_source_truth": null
+    },
+    {
+      "canonical_label0_minus_label1": {
+        "first": 0.6436691582202911,
+        "mean": 0.6436691582202911,
+        "sum": 0.6436691582202911
+      },
+      "canonical_preference_by_readout": {
+        "first": "different",
+        "mean": "different",
+        "sum": "different"
+      },
+      "context": "DALLAS_REAL",
+      "independent_first_oracle_max_abs": 0.0,
+      "input_tokens": 405,
+      "native_common_prefix_max_abs": 0.0,
+      "per_label": [
+        {
+          "first": -0.4225907027721405,
+          "label": "different",
+          "mean": -0.4225907027721405,
+          "sum": -0.4225907027721405,
+          "token_count": 1
+        },
+        {
+          "first": -1.0662598609924316,
+          "label": "same",
+          "mean": -1.0662598609924316,
+          "sum": -1.0662598609924316,
+          "token_count": 1
+        }
+      ],
+      "scorer_API_calls": 3,
+      "source_truth_minus_alternative": {
+        "first": -0.6436691582202911,
+        "mean": -0.6436691582202911,
+        "sum": -0.6436691582202911
+      },
+      "task": "mri_visit_correspondence",
+      "visual_source_truth": "same"
+    }
+  ],
+  "cross_model_family_review": "NOT_VERIFIED",
+  "evidence_tier": "NATIVE_READONLY_SAVED_SCORES_CPU_VERIFIED",
+  "limitations": [
+    "Canonical mean/sum/first scores are a fixed candidate readout, not greedy accuracy, learning or clinical generalization. Only two same-person acquisition images, one Dallas input and one text-only prior were measured.",
+    "The source-truth-minus-alternative score forNULL is intentionally None; there is no visual correctness label for text-only controls. Image-pair interaction/null shifts can show local score sensitivity, not prove anatomical reasoning or causal training benefit.",
+    "Label-token arithmetic and first-token oracle are independently recomputed from saved vectors. Full-candidate prefix raw vectors were not persisted, so their.002 summary is authenticated/source-bound, not independently regenerated MLX outputs.",
+    "F32 full-scorer dtype/cache evidence and input fingerprints are authenticated. This does not requalify stochasticKV/full, activeGSPObackward, auxiliary training or optimizer dynamics.",
+    "The observed pair-loss scalar is the proposed supervised objective value, not an executed gradient/update. Extra pair supervision remains a declared intervention with unresolved effect.",
+    "Battery>=60 is a measured boundary gate onACandBATTERY, not a continuous physical guarantee.600seconds is an operation-start deadline, not strict walltime; rawpower/resource warnings/HOLDs and missing telemetry are retained.",
+    "API call counts are not physical FLOPs or internal kernel/recomputation counts. No oldBF16/F32 qualification or B2/B3 repetition, model generation or final100 selection was performed by this review.",
+    "All raw identities, images, tokenIDs, logits and state arrays remain PRIVATE. Reviewer performed CPU only; actual native operator was Codex/root."
+  ],
+  "prospective_pair_loss_value_from_observed_mean_scores": 0.6724979107709034,
+  "resources": {
+    "HOLD_reasons": {},
+    "actions": {
+      "CONTINUE": 74
+    },
+    "observed_monotonic_span_seconds": 64.0242817500257,
+    "power_sources": {
+      "BATTERY": 74
+    },
+    "samples": 74,
+    "supervisor_levels": {
+      "NORMAL": 74
+    },
+    "telemetry": {
+      "available_gib": {
+        "max": 10.450576782226562,
+        "min": 8.007095336914062,
+        "missing": 0
+      },
+      "battery_percent": {
+        "max": 94,
+        "min": 94,
+        "missing": 0
+      },
+      "mlx_active_gib": {
+        "max": 4.906283251941204,
+        "min": 0.050770021975040436,
+        "missing": 1
+      },
+      "mlx_peak_gib": {
+        "max": 6.13681535795331,
+        "min": 0.050770021975040436,
+        "missing": 1
+      },
+      "pressure_free_percent": {
+        "max": 58.0,
+        "min": 34.0,
+        "missing": 0
+      },
+      "process_rss_gib": {
+        "max": 5.66546630859375,
+        "min": 0.073272705078125,
+        "missing": 0
+      },
+      "swap_used_gib": {
+        "max": 11.103818359375,
+        "min": 11.103818359375,
+        "missing": 0
+      }
+    },
+    "thermal_observed": {
+      "SENSOR_UNAVAILABLE": 74
+    }
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-signal-canonical-candidate-actual-independent-CPU-review-v1",
+  "sequence_pair_interaction_FLAIR_minus_T1_contrast": {
+    "first": 0.4165536529617384,
+    "mean": 0.08346787677019174,
+    "sum": 0.41668326086892193
+  },
+  "sequence_real_minus_textNULL_shifts": {
+    "SEQUENCE_OPPOSITE_SAME_PERSON_Z045": {
+      "first": -2.7961117428640136,
+      "mean": -0.559815951551718,
+      "sum": -2.79765329908696
+    },
+    "SEQUENCE_REAL": {
+      "first": -3.212665395825752,
+      "mean": -0.6432838283219098,
+      "sum": -3.214336559955882
+    }
+  },
+  "state": {
+    "Adam_step": 60,
+    "full_Adam_Python_MLX_RNG_unchanged_before_restore": true,
+    "full_parameters_unchanged": 1942,
+    "model_none_and_release_verified": true,
+    "release_active_MLX_bytes": 1052,
+    "restored_state_equals_initial": true
+  },
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

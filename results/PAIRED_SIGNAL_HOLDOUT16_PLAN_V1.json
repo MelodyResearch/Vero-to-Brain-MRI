@@ -1,0 +1,42 @@
+{
+  "BA_quota": 0,
+  "code_sha256": {
+    "collector": "5882c04238ec0861b768b73f15c0e105632663d6d9c8f8a4685403ec771c86be",
+    "helper": "6fbda958d38b04be250ec4f57416730a11171b57c22be4b987f27ea499e88fcf",
+    "tests": "6e3762c822248e8974275f931f69d64385dcb1d55f01e94dc70b4cc913ea1fbd"
+  },
+  "historical_excluded_people": 54,
+  "historical_source_SHA_overlap": 0,
+  "holdout_technical_qualification": "PENDING_ACTUAL_PAYLOADS",
+  "input_sha256": {
+    "README": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+    "availability": "181cf17c09263352b098466e10f0f2ca95f148abeba9fe418799fa3cf35f472e",
+    "description": "748fb52a1d943c6f50bb6e4795082e973c4a8694e01a287383a9bf1f20fff763",
+    "exclusion": "6946aff5c4f40faceebc18ea8269e0599c1465e7e2f5d13c3208dfd36698492b",
+    "inventory_safe": "c7d92f44d3aeaf45850c425a3c643b9d81984d71e12a8220f66fce695e962d7d"
+  },
+  "level": 45,
+  "models_loaded": 0,
+  "network_byte_cap": 400000000,
+  "optimizer_updates": 0,
+  "paired_volumes": 32,
+  "payloads_fetched": 0,
+  "people": 16,
+  "plan_sha256": "a8a06819499cffa40411b5b3ac5cddd58ba942b6be05add8b22408c13f76fbc6",
+  "schema": "paired-signal-independent16-source-plan-safe-v1",
+  "selection_rule": "Within-site ascending SHA256(prefix+BIDSsubject);metadata complete processed pair only;exclude all54 identities;no outcome/pixel substitution.",
+  "site_quotas": {
+    "BO": 4,
+    "FO": 1,
+    "JS": 2,
+    "KA": 4,
+    "ME": 1,
+    "NSK": 2,
+    "TO": 2
+  },
+  "source_expected_bytes": 209954608,
+  "source_license": "CC0",
+  "source_metadata_commit": "283007b96977b5b3285bd22cd67b7d97114b1eed",
+  "status": "FROZEN_BEFORE_PAYLOAD_FETCH",
+  "training_authorized": false
+}

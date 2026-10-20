@@ -1,0 +1,146 @@
+{
+  "actual_readonly_scope": {
+    "MLX_telemetry_missing": 1,
+    "TF_API_calls": 12,
+    "actual_complete_sha256": "252d44fb879ef8926b4dda301168265be6702641d37c44554fe5f306a6f1a911",
+    "actual_exit_sha256": "4dc54743a2620a5d252ec858bba7cdf4af752e68ecd8eab5cf43ec2124fec212",
+    "automatic_retries": 0,
+    "backward_calls": 0,
+    "battery_observed_percent_min": 94,
+    "closed_stdout_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+    "engineering_review_sha256": "fb3a07543b84adc1425e3fb910f908229b536de4cd62a3ccfbaae188874b8798",
+    "full_Adam_Python_MLX_RNG_before_restore_unchanged": true,
+    "full_parameter_fingerprints_unchanged": 1942,
+    "generation_calls": 0,
+    "human_authorization_sha256": "4b5aa3d84b5eb7d0ee905845e3f8eed436c888128e07b43d4f90ff303775adac",
+    "initial_state_restored": true,
+    "launch_binding_review_sha256": "2f41a2489620d3d3b29557dc5ff7486d055d8650eea8fc42074ce799fd2c4e31",
+    "model_loads": 1,
+    "model_none_release_verified": true,
+    "native_external_seconds": 72.01244412496453,
+    "old_scope_versions_v1_v2_v3": "NOT_RUN_SUPERSEDED_BEFORE_EXECUTION",
+    "optimizer_updates": 0,
+    "permission": "CONSUMED_ONE_ACTUAL_EXECUTION",
+    "release_active_MLX_bytes": 1052,
+    "resource_actions": {
+      "CONTINUE": 74
+    },
+    "resource_samples": 74,
+    "resource_supervisor_levels": {
+      "NORMAL": 74
+    },
+    "scope_canonical_sha256": "d808df585be2f62ba0cae2036b43e1248bfe449c026f038a14921f95758c3fe0",
+    "scope_file_sha256": "834be758cb6fc660d498b0e1a9f909dbf622647956accfeb0d7d7aab7dc651b2",
+    "teacherforced_positions": 2811,
+    "thermal": "SENSOR_UNAVAILABLE74"
+  },
+  "actual_scientific_limits": {
+    "Dallas_correct_same_mean_margin": -0.6436691582202911,
+    "Dallas_visual_dependence": "NOT_MEASURED_NO_SWAP_OR_NULL",
+    "auxiliary_native_gradient_training": "NOT_IMPLEMENTED_NOT_VERIFIED",
+    "both_sequence_images_canonical_preference": "FLAIR",
+    "correct_FLAIR_canonical_mean_margin": 1.4050400870726698,
+    "correct_T1_canonical_mean_margin": -1.321572210302478,
+    "entire_encoder_incapacity": "NOT_IDENTIFIED",
+    "isolated_real_vsNULL_image_mechanism": "NOT_IDENTIFIED",
+    "same_shape_pair_first_interaction": 0.4165536529617384,
+    "same_shape_pair_mean_interaction": 0.08346787677019174,
+    "same_shape_pair_sum_interaction": 0.41668326086892193,
+    "strict_greedy_accuracy": "NOT_MEASURED",
+    "textNULL_FLAIR_minus_T1_mean": 1.9648560386243878,
+    "training_or_generalization_improvement": "NOT_DEMONSTRATED"
+  },
+  "bindings": {
+    "AGENTS.md": "300535ed3f4be12d07b0d9fd49dbde0e44bbef2d75a410d615ac48e5b9937dfc",
+    "research/PAIRED_VISUAL_SIGNAL_PREPARATION_2026-10-20.md": "b868f9ba5e3c77ebf5348d04d6173ffddd849c10cc6c4feecc111d6c5c64f152",
+    "results/PAIRED_INTERACTION_SIGNAL_CPU_PREPARATION_V1.json": "9ee5fac8e7d294c3cc4272ce15524749c0c64805e4d5719812465cf6a6b21cab",
+    "results/PAIRED_SIGNAL_ADAM60_CANONICAL_ACTUAL_V1.json": "57e431691fb3605b50ecb1620a9ea725934aad4cd071dfdd7bfdfcc010870785",
+    "results/PAIRED_SIGNAL_CANONICAL_CANDIDATE_ACTUAL_INDEPENDENT_REVIEW_V1.json": "51f8c7eca305f00f364313b29e358ff6592cd752e49492aa574f9f6a82ebfd25",
+    "results/PAIRED_SIGNAL_CPU_INDEPENDENT_REVIEW_V1.json": "eee7e23875e1161c260aa1f04ec2dbcf054085e17a49020eb303d0ae0def917d",
+    "results/PAIRED_SIGNAL_FUTURE_MATCHED48_EVALUATION_V1.json": "3076f868f29575a5cb1675c1bc173366ce9839d0f43e96f3c7297ea5b84f881a",
+    "results/PAIRED_SIGNAL_HOLDOUT16_CONTACT_SHEETS_V1.json": "941432863775fb58cf0fb5ff83277ddc06936470adc75f5dda78ab60bea73e2a",
+    "results/PAIRED_SIGNAL_HOLDOUT16_INDEPENDENT_REVIEW_V1.json": "a430f9ab0ff464fb51f96d01127bce2b5dc41a6f0a6bef95c1c65f03a84547dc",
+    "results/PAIRED_SIGNAL_HOLDOUT16_INITIAL_VISUAL_QA_V1.json": "4dc50f1186e0f7501876ff923697ef7c4597f8ae8955746dde03ea6897800946",
+    "results/PAIRED_SIGNAL_HOLDOUT16_PLAN_V1.json": "7f1ccc96905246e3df118c2b07b584699414a17322a50dd68e5f4af3cbfaf1f8",
+    "results/PAIRED_SIGNAL_HOLDOUT16_TECHNICAL_V1.json": "457b9947a5c25e8c5e41c63d1ccb5851e18f142566d715e7fb36761bdd178c4e",
+    "results/PAIRED_SIGNAL_POST_DIAGNOSTIC_CPU_VERIFICATION_V1.json": "50c29f931f2b9b86b29e8fe5f46ed9a9364f15580a51f9329b3b2499acd938bd",
+    "results/PAIRED_SIGNAL_READONLY_SCOPE_REVIEW_V2.json": "749b5ecd31103fa6c852309ef8c938ee9819b5413fa79177cb5f4b33f1fc749d",
+    "results/PAIRED_SIGNAL_ROOT_FOCUSED_CPU_VERIFICATION_V1.json": "03dcdfb0dec836130bd06123c8fcb67333d8a84d15d6bbd22ba417b83044e36a",
+    "results/PAIRED_SIGNAL_SAVED_8_ANSWER_CONTEXT_V1.json": "f87e7f85904dffb42627e55fec06330aab9313b1bb7584d2ceecbe4d89ad29ae"
+  },
+  "claims_checked": [
+    "Root actual aggregate matches independently recomputed mean/sum/first/correct-minus-wrong/null/pair/state/cost/provenance exactly. Allprefix/oracle summaries were0; rawfullprefixvectors were not persisted, so independent proof distinguishes authenticated summary from saved-first-vector recomputation.",
+    "Final Chinese report now separates historical saved8 premeasurement from completed canonical diagnostic and consumed permission; no current pending authorization or nativePASS is fabricated.",
+    "Same-shape two-image score contrast is a local conditional observation. Real-vstextNULL changes visualtokens/inputshape as well as imagepresence, so common shifts do not isolate an image mechanism. NegativeT1 candidate margin does not prove wholeencoder incapacity or future auxiliary benefit.",
+    "Supervised auxiliary0.1pair loss is not pureVeroGSPO. Common scoreprior cancellation does not guarantee networkprior invariance, nonzero parameter gradient, T1recall or Dallas retention; extra pair exposure and objective changes remain causally coupled.",
+    "13560/111464 are declared rollout-plus-auxiliary positions with originalGSPOscorer/autograd/lookahead/internalkernels separate. No measured training-throughput or totalFLOP claim.",
+    "Known54identity/108processedSHA exclusions, actual32source-payload qualification, seven-site/FOV/acquisition/unknownexternalexposure limits, independentreview versusroot nonclinicalQA and all16fixedcases remain explicit. No heldoutmodel outputs or newgeneralization result.",
+    "Future matched48 input join and96greedy/294TF/24576returned/124950TFpositions are prospective only. Terminalunknown/nooutputs/noexecutionapproval, prespecified one comparison/no outcome-tuning and allcase inclusion are retained.",
+    "Localbattery exception retained alloriginalotherguards, requires known>=60 onACandBATTERY, logsraw samples and is now consumed. No globaltraininggate change, restart or furthermodelpermission.",
+    "Report/AGENTS/publicresults contain no source subjectIDs, patientkeys, absolute sourcepaths, rawMRI/images, tokenIDs/fullvocab/state arrays or hidden perpatient mappings."
+  ],
+  "cross_model_family_review": "NOT_VERIFIED",
+  "final100_outcomes_used": false,
+  "further_model_intervention_authorized": false,
+  "independent_evidence": {
+    "alternative_correct_label_boundaries_verified": 8,
+    "expert_or_visual_judgments_by_reviewer": 0,
+    "historical_answer_contexts_recomputed": 8,
+    "independent_focused_CPU_tests_on_final_sources": 41,
+    "native_saved_contexts_recomputed": 4,
+    "new_holdout_PNG_pixel_matches": 32,
+    "new_holdout_payload_hash_size_matches": 32,
+    "new_holdout_source_bytes": 209954608,
+    "new_holdout_source_volume_decodes_for_saved_render_check": 32,
+    "new_models_or_inference_calls_by_reviewer": 0,
+    "pair_math_finite_difference_max_abs_error": 1.874611577079577e-12,
+    "postrelease_root_test_run": {
+      "actual_exit_code": 0,
+      "operator": "Codex /root",
+      "passed": 41,
+      "seconds": 0.23
+    },
+    "root_aggregate_all_context_scores_and_contrasts_match": true,
+    "test_invocations": [
+      {
+        "passed": 22,
+        "scope": "Signal math/saved8/holdout source tests",
+        "seconds": 0.12
+      },
+      {
+        "passed": 19,
+        "scope": "Final exact probe and localAC/BATTERY threshold tests",
+        "seconds": 0.09
+      }
+    ]
+  },
+  "new_source_sha256": {
+    "scripts/collect_paired_signal_holdout16_v1.py": "5882c04238ec0861b768b73f15c0e105632663d6d9c8f8a4685403ec771c86be",
+    "scripts/prepare_paired_interaction_signal_v1.py": "5c0c9e72c2174c5e80563b21358b46c5b070806d068dea8c4516f4df823c549f",
+    "scripts/run_paired_signal_candidate_probe_v1.py": "124ae777c576030708b66d333026657be873d247a958f043683a5322e73fe412",
+    "src/mri_rl/paired_interaction_signal_v1.py": "fc5be726f37a0bbd05421d837313070d7fe63e1869bb83748d51e77b9f11afe3",
+    "src/mri_rl/paired_signal_candidate_probe_v1.py": "c84be4bc19731098292911b4c30a5906aef528401759e2c6304ba171cf88967a",
+    "src/mri_rl/paired_signal_holdout16_v1.py": "6fbda958d38b04be250ec4f57416730a11171b57c22be4b987f27ea499e88fcf",
+    "src/mri_rl/paired_signal_saved_answers_v1.py": "5dea4e38afa7d840851160e76283720dd440e388a77679afb3f0857b86377d19",
+    "tests/test_paired_interaction_signal_v1.py": "8e178392e1a6914340a58f3ae82b1ed8bba1f5e9915f97cc6cd8f05911ff0d1e",
+    "tests/test_paired_signal_candidate_probe_v1.py": "ea053a2cd0c2acb5a79342af34be3854bb17eaed55d15d976c7711ed4593ecdc",
+    "tests/test_paired_signal_holdout16_v1.py": "6e3762c822248e8974275f931f69d64385dcb1d55f01e94dc70b4cc913ea1fbd",
+    "tests/test_paired_signal_saved_answers_v1.py": "04860a3ac18275f12611a966dda1bc10727636ade53939e3f886b58cc07aa779"
+  },
+  "optimizer_updates_this_phase": 0,
+  "prior_pending_preparation_review_preserved_PRIVATE_sha256": "fc8091f98c41f09c8a9b95263d026ad500d0e83b2a0d769dbb4e714289feaed5",
+  "readiness_for_training": "NO",
+  "remaining_limits": [
+    "One TRAIN sequence pair and one Dallas case are not population accuracy, anatomical understanding, clinical validation or an independent gradient qualification.",
+    "ActiveF32GSPO backward remainsPARTIAL; supervisedauxiliary native serial-gradient/optimizeratomic integration and actualtrainingaccuracy effects remain unverified.",
+    "New16person input eligibility is source/geometry/render technical evidence within the knowncatalog, not certified global or unknownexternal historical independence. Root firstvisualQA is nonclinical and separatelyattributed, not repeated by reviewer.",
+    "No extra native run, generation, backward, training or method retuning follows from this deliveryreview. A newhuman decision and exactfuture scope would be necessary.",
+    "Independent reviewer is a distinct Codexagent within the same model family; no Claude/distinctfamily verification is claimed."
+  ],
+  "review_scope": "Final narrow numerical/wording/privacy delivery check against already independently verified saved TRAIN, technical holdout and one closed canonical diagnostic; no repeated component/model/image audit.",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-visual-signal-preparation-and-actual-delivery-independent-review-v1",
+  "training_runs_this_phase": 0,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

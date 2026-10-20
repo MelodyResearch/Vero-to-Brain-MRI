@@ -1,0 +1,141 @@
+{
+  "BA_people": 0,
+  "PNG_mode": "RGB",
+  "PNG_shape": [
+    364,
+    436
+  ],
+  "PNG_text_metadata_keys": 0,
+  "acquisition_modality_endpoint": "OfficialFLAIR collection andrun02T1 postGd mapping;clinicalexpert adjudication not required for this metadata identity endpoint.",
+  "actual_network_received_bytes": 209954608,
+  "all_voxels_finite": 32,
+  "clinical_visual_adjudication": "NOT_RUN_NOT_INVENTED",
+  "code_sha256": {
+    "collector": "5882c04238ec0861b768b73f15c0e105632663d6d9c8f8a4685403ec771c86be",
+    "helper": "6fbda958d38b04be250ec4f57416730a11171b57c22be4b987f27ea499e88fcf",
+    "tests": "6e3762c822248e8974275f931f69d64385dcb1d55f01e94dc70b4cc913ea1fbd"
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED",
+  "generalization_result_claimed": false,
+  "holdout_input_technical_eligibility": true,
+  "identity_independence": {
+    "excluded_historical_people": 54,
+    "external_exposure_or_cross_source_global_identity": "NOT_VERIFIED",
+    "historical_processed_source_SHA_overlap": 0,
+    "scope": "Disjoint54 historical within-source BIDS identities and processed source SHA;global cross-source/external exposures NOT_VERIFIED",
+    "selected_subject_overlap": 0
+  },
+  "input_sha256": {
+    "README": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+    "availability": "181cf17c09263352b098466e10f0f2ca95f148abeba9fe418799fa3cf35f472e",
+    "description": "748fb52a1d943c6f50bb6e4795082e973c4a8694e01a287383a9bf1f20fff763",
+    "exclusion": "6946aff5c4f40faceebc18ea8269e0599c1465e7e2f5d13c3208dfd36698492b",
+    "inventory_safe": "c7d92f44d3aeaf45850c425a3c643b9d81984d71e12a8220f66fce695e962d7d"
+  },
+  "level": 45,
+  "manifest_sha256": "b1f76fb6735e8aa04cf818526938696c8b4a1620ed47abfb053c8deaaabbe69d",
+  "mission_alignment": {
+    "falsifier": "Fixed source IDs/payloadSHA/bytes/geometry/affine/metadata/render contract failure blocks establishment without replacement.",
+    "isolation": "New evaluation sources only;no training samples,model,loss,normalization or task prompt intervention.",
+    "link": "Provide actual new-patient acquisition-modality validation inputs for the locked Vero-to-MRI comparison.",
+    "provenance": "Pinned publicsource metadata and54-exclusion proof;fixed SHA-ranked16 selected beforepayload;actual32 SHAverified.",
+    "resources_decision": "Single-thread boundedserial<=400MB sourcefetch;32decoded volumes;nomodel/fitting/updates;sealedfutureoutputsNOT_RUN.",
+    "shortcut": "Samez045 pairedmodalities pernewpatient;7sites;BA unavailable;site/protocol/intensity shortcuts not excluded."
+  },
+  "modality_counts": {
+    "FLAIR": 16,
+    "contrast-enhanced T1": 16
+  },
+  "model_output_rows": 0,
+  "network_byte_cap": 400000000,
+  "new_model_outputs": "NOT_RUN",
+  "new_source_volumes_decoded": 32,
+  "opaque_filenames": true,
+  "pair_geometry_qualified": 16,
+  "paired_affine_equal_atol_1e_6": 16,
+  "people": 16,
+  "plan_sha256": "a8a06819499cffa40411b5b3ac5cddd58ba942b6be05add8b22408c13f76fbc6",
+  "private_artifact_sha256": {
+    "FETCH_COMPLETE_SAFE.json": "b0f92d7e26af890c07c3fc85ce748f4a4ce990a88bec0b27461d6bd95e51e9b7",
+    "FROZEN_SOURCE_PLAN_PRIVATE.json": "a8a06819499cffa40411b5b3ac5cddd58ba942b6be05add8b22408c13f76fbc6",
+    "SEALED_INPUTS_PRIVATE.json": "ea9b1362843d730e75b0e1d6f8bdddd510bb3a3a5d3eff479179319c05666d33",
+    "fetch_journal_PRIVATE.jsonl": "a33a26c2f6c9a2900c7550d803d3bfc48a95d0a8b58adf733af50163cfe05c5c",
+    "holdout32_PRIVATE.verl.jsonl": "b1f76fb6735e8aa04cf818526938696c8b4a1620ed47abfb053c8deaaabbe69d",
+    "source_geometry_render_qualification_PRIVATE.json": "39015796b3665494ce2deb52d1bf45f48123af9cf6aad94d9b2dcae403d93bc2"
+  },
+  "read_scope": {
+    "MLX_imports": 0,
+    "classifier_fits": 0,
+    "clinical_diagnoses": 0,
+    "historical_identity_catalog_only": true,
+    "inference_calls": 0,
+    "models_loaded": 0,
+    "old_final_outcomes_used": false,
+    "old_final_registry_or_outputs_opened": 0,
+    "optimizer_updates": 0
+  },
+  "remaining_limits": [
+    "Evaluation and modeloutputs are NOT_RUN;technical source validity is not an accuracy result.",
+    "Within-source54-catalog exclusion does not certify unknown external/manual or cross-source historical exposure.",
+    "Seven source sites represented;BA has no eligible remainder;not equal-site or site-held-out validation.",
+    "MNI/skullstrip/N4 andper-volume percentile normalization retain possible acquisition/site/intensity shortcuts;no clinical visibility label created."
+  ],
+  "render_contract": "np.rot90;nonzero[::16]percentile.5/99.5;round/clampuint8;2xbilinearRGB364x436",
+  "rendered_PNGs": 32,
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "schema": "paired-signal-independent16-technical-v1",
+  "sealed_inputs_sha256": "ea9b1362843d730e75b0e1d6f8bdddd510bb3a3a5d3eff479179319c05666d33",
+  "segmentation_masks_read": 0,
+  "sequence_records": 32,
+  "site_people": {
+    "BO": 4,
+    "FO": 1,
+    "JS": 2,
+    "KA": 4,
+    "ME": 1,
+    "NSK": 2,
+    "TO": 2
+  },
+  "source_license": "CC0",
+  "source_metadata_commit": "283007b96977b5b3285bd22cd67b7d97114b1eed",
+  "source_payload_SHA_unique": 32,
+  "source_payload_expectedSHA_size_matches": 32,
+  "source_payload_files_verified": 32,
+  "source_shape": [
+    182,
+    218,
+    182
+  ],
+  "source_storage_axcodes": {
+    "LAS": 32
+  },
+  "spacing_mm": [
+    1,
+    1,
+    1
+  ],
+  "status": "ACTUAL32_VOLUMES_AND_FIXED_Z045_RENDERS_TECHNICALLY_QUALIFIED_SEALED_NOT_EVALUATED",
+  "technical_FOV_ranges": {
+    "display_black_fraction": [
+      0.4829493900594818,
+      0.8191917027926202
+    ],
+    "display_saturated_fraction": [
+      0.0,
+      0.0057024397620727895
+    ],
+    "display_std": [
+      35.29452240773258,
+      86.9692475738781
+    ],
+    "z045_nonzero_fraction": [
+      0.17353059784252445,
+      0.5066286924085089
+    ]
+  },
+  "technical_stats_used_for_reselection": false,
+  "training_authorized": false,
+  "verified_source_bytes": 209954608,
+  "world_coordinates": "NIfTI affine RAS+;LAS array storage preserved"
+}

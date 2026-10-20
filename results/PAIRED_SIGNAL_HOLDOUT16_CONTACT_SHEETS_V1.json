@@ -1,0 +1,35 @@
+{
+  "additional_NIfTI_decodes": 0,
+  "additional_existing_PNG_decodes": 32,
+  "case_substitution": false,
+  "clinical_expert_judgments_created": 0,
+  "frozen_source_manifest_modified": false,
+  "images": 32,
+  "layout": "Four rows bytwo pairs;randomL/R;opaqueCaseIDandL/Ronly;no modality/subject/filename labels",
+  "new_model_outputs": "NOT_RUN",
+  "pairs": 16,
+  "pairs_per_page": 8,
+  "private_key_sha256": "0794331ab0d20a99da089dce6ffb7e112b04ccc5ec5558b7801943f4fe1be289",
+  "schema": "paired-signal-holdout16-contact-sheets-v1",
+  "script_sha256": "10f1c936827f2a2003f0ecb995f5583d902f767a923aec901ef237f37f4da757",
+  "session_existing_QA_PNG_decodes_including_header_layout_fix": 64,
+  "sheet_pages": 2,
+  "sheet_sha256": [
+    {
+      "page": 1,
+      "sha256": "ec7f2d61f0257721c0df567536706420eea1135d02d582b4ec982ed64fe3239a"
+    },
+    {
+      "page": 2,
+      "sha256": "fa390bcc127fc355899addbe606ebdaa3b72c1b2054da47366a7423deec8463b"
+    }
+  ],
+  "single_image_display_pixels": [
+    240,
+    288
+  ],
+  "source_manifest_sha256": "b1f76fb6735e8aa04cf818526938696c8b4a1620ed47abfb053c8deaaabbe69d",
+  "status": "READY_FOR_FIRST_BASIC_NONEXPERT_FOV_QA_NOT_YET_REVIEWED",
+  "training_authorized": false,
+  "unreviewed_initial_header_layout_preserved": true
+}

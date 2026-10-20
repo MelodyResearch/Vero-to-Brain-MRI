@@ -1,0 +1,49 @@
+{
+  "actual_common_prefix_image_scores": "NOT_RUN",
+  "backward_calls": 0,
+  "budget": {
+    "backward_calls": 0,
+    "contexts": 4,
+    "full_TF_forwards": 12,
+    "generation_calls": 0,
+    "maximum_seconds": 600,
+    "model_loads": 1,
+    "optimizer_updates": 0,
+    "simultaneous_image_graphs": 1,
+    "teacherforced_positions": 5100,
+    "text_only_TF_forwards": 3,
+    "vision_TF_forwards": 9
+  },
+  "engineering_fix": "v1 missed runtime input/contract digests; v2 checks all15 artifacts,binds runtime spec+contract source,and rechecks after native-load resource gate. v1 was never launched.",
+  "fixed_contexts": [
+    "OriginalTRAINsequence",
+    "Samepersonz045oppositemodality",
+    "SamequestionnoimageNULL",
+    "OriginalTRAINDallas"
+  ],
+  "generation_calls": 0,
+  "human_authorization": "PENDING_NEW_EXPLICIT_REPLY",
+  "independent_review_sha256": "93a7276dfb6cf0d3d0ab55aa83cecc918a08eb67f4bfccfa53848efc396eff8e",
+  "latest_resource_snapshot": {
+    "action": "HOLD",
+    "available_GiB": 11.455108642578125,
+    "other_heavy_processes": 0,
+    "pressure_free_percent": 64,
+    "raw_power_observation": "pmset reports AC Power while battery is discharging; unchanged resource policy classifies BATTERY.",
+    "reason": "power_not_verified_AC",
+    "supervisor": "NORMAL",
+    "thermal": "SENSOR_UNAVAILABLE"
+  },
+  "models_loaded": 0,
+  "optimizer_updates": 0,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "runtime_artifact_files": 15,
+  "schema": "paired-signal-readonly-candidate-probe-preparation-and-review-v2",
+  "scope_canonical_sha256": "e70ac6ea17219aa158c5d3df23b18f0f58d922236e46573270125dc33da70a6a",
+  "scope_file_sha256": "818a4469a842ea46145c1134f382e34bcacb96f92aa9b938eb8ec08deddf3c92",
+  "source_closure_files": 63,
+  "status": "EXACT_SCOPE_REVIEWED_NOT_AUTHORIZED_NOT_RUN",
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

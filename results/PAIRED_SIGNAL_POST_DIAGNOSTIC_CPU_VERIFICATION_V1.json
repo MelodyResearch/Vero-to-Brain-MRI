@@ -1,0 +1,25 @@
+{
+  "CPU_test_model_calls": 0,
+  "actual_exit_code": 0,
+  "actual_focused_tests": 41,
+  "command": "PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 python3 -m pytest -q tests/test_paired_interaction_signal_v1.py tests/test_paired_signal_saved_answers_v1.py tests/test_paired_signal_holdout16_v1.py tests/test_paired_signal_candidate_probe_v1.py",
+  "operator": "Codex /root",
+  "optimizer_updates": 0,
+  "pytest_reported_seconds": 0.23,
+  "schema": "paired-signal-post-diagnostic-CPU-verification-v1",
+  "separate_authorized_native_probe": "Completed once with12TF/2811positions,0generation/backward/updates; independently verified separately.",
+  "source_sha256": {
+    "scripts/collect_paired_signal_holdout16_v1.py": "5882c04238ec0861b768b73f15c0e105632663d6d9c8f8a4685403ec771c86be",
+    "scripts/prepare_paired_interaction_signal_v1.py": "5c0c9e72c2174c5e80563b21358b46c5b070806d068dea8c4516f4df823c549f",
+    "scripts/run_paired_signal_candidate_probe_v1.py": "124ae777c576030708b66d333026657be873d247a958f043683a5322e73fe412",
+    "src/mri_rl/paired_interaction_signal_v1.py": "fc5be726f37a0bbd05421d837313070d7fe63e1869bb83748d51e77b9f11afe3",
+    "src/mri_rl/paired_signal_candidate_probe_v1.py": "c84be4bc19731098292911b4c30a5906aef528401759e2c6304ba171cf88967a",
+    "src/mri_rl/paired_signal_holdout16_v1.py": "6fbda958d38b04be250ec4f57416730a11171b57c22be4b987f27ea499e88fcf",
+    "src/mri_rl/paired_signal_saved_answers_v1.py": "5dea4e38afa7d840851160e76283720dd440e388a77679afb3f0857b86377d19",
+    "tests/test_paired_interaction_signal_v1.py": "8e178392e1a6914340a58f3ae82b1ed8bba1f5e9915f97cc6cd8f05911ff0d1e",
+    "tests/test_paired_signal_candidate_probe_v1.py": "ea053a2cd0c2acb5a79342af34be3854bb17eaed55d15d976c7711ed4593ecdc",
+    "tests/test_paired_signal_holdout16_v1.py": "6e3762c822248e8974275f931f69d64385dcb1d55f01e94dc70b4cc913ea1fbd",
+    "tests/test_paired_signal_saved_answers_v1.py": "04860a3ac18275f12611a966dda1bc10727636ade53939e3f886b58cc07aa779"
+  },
+  "training_runs": 0
+}
