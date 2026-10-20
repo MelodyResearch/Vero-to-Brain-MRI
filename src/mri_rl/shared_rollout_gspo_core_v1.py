@@ -234,6 +234,8 @@ def load_bundle(value):
     body={k:v for k,v in value.items() if k!='bundle_sha256'}
     require(sha(value.get('bundle_sha256')) and identity(body)==value['bundle_sha256'],'Bundle hash differs')
     raw=json.loads(canonical(value));parent=raw['parent']
+    require(raw.get('execution_subtype')==EXECUTION_SUBTYPE and raw.get('numerical_policy')==POLICY,'Bundle execution subtype/numerical policy differs')
+    require(isinstance(parent,dict) and sha(parent.get('receipt_sha256')) and sha(parent.get('adapter_sha256')),'Exact parent receipt/adapter identity required')
     contexts={m:prompt_context(m,raw['contexts'][m]) for m in ('F','T')}
     for m,context in contexts.items():
         require(raw['contexts'][m]['context_sha256']==context.sha256 and context.checkpoint_sha256==parent['adapter_sha256'] and context.policy_sha256==identity(POLICY),'Context identity differs')
