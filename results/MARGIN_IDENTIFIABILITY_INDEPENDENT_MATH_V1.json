@@ -1,0 +1,88 @@
+{
+  "backward_calls": 0,
+  "first_token_gradient_counterexample": [
+    {
+      "first_token_derivative_under_negative_unit_group": -1.0,
+      "label_token_gradients": [
+        1.0,
+        -1.0
+      ],
+      "mean_gradient": 0.0
+    },
+    {
+      "first_token_derivative_under_negative_unit_group": 1.0,
+      "label_token_gradients": [
+        -1.0,
+        1.0
+      ],
+      "mean_gradient": 0.0
+    }
+  ],
+  "generation_calls": 0,
+  "limitations": [
+    "Synthetic normalized categorical and scalar arithmetic; not observations of a model or MRI task.",
+    "Saved full/strict-label response gradients use different saved reasoning contexts and may omit alternative canonical completion; their dot products cannot substitute for a new same-prefix class contrast.",
+    "Mean label score is length-normalized scoring, not the log probability of a completed class event. Sum label score is a joint label-span score; first score is a next-token contrast. None by itself is MRI accuracy.",
+    "Negative local margin direction is not a finite-step loss of accuracy or generalization. Counterexamples motivate bounded measurement, not a new loss/training authorization."
+  ],
+  "mean_sum_length_weight_counterexample": {
+    "candidate_label_lengths": [
+      1,
+      3
+    ],
+    "candidate_mean_gradients": [
+      0.1,
+      0.09
+    ],
+    "mean_margin_direction": -0.010000000000000009,
+    "sum_margin_direction": 0.17
+  },
+  "measurement_contract": {
+    "common_context": "Same image, native chat prompt and exact answer prefix for both canonical candidates.",
+    "conditioning": "Common task-answer prefix and saved Dallasresponse0 reasoning prefix are separate experiments; do not compare candidates with unequal prefixes.",
+    "direction": "D M[-g]=-dot(saved actual group_gradient, new margin_gradient). No K/a/r conversion of saved group is needed.",
+    "primary": "M_mean=mean(label logps truth)-mean(label logps alternative).",
+    "reuse": "Per-candidate gradient(sum)=label_length*gradient(mean). Equality of first and mean gradients is guaranteed for one-token labels; otherwise independently measure first or mark its derivative NOT_MEASURED.",
+    "secondary": "M_sum=sum(label logps truth)-sum(label logps alternative); M_first=first truth logp-first alternative logp.",
+    "state": "Same original parent weights and numerical policy as saved group gradients; verify state/RNG, strict new scope, no training/generation/update.",
+    "token_boundary": "Freeze full rendered prompt/processor-expanded IDs, canonical labels, exact prefix/label/suffix partition; score only declared label tokens, no EOS/suffix salvage."
+  },
+  "model_loads": 0,
+  "native_calls": 0,
+  "normalized_categorical_counterexample": [
+    {
+      "central_difference_derivative": -0.9999999999177334,
+      "correct_minus_wrong_margin_derivative_under_negative_group": -1.0,
+      "normalized_categorical_probabilities": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "observed_correct_logp_gradient": 1.0,
+      "other_logp_gradient": -0.4,
+      "saved_group_gradient": 1.0,
+      "unobserved_same_prefix_wrong_logp_gradient": 0.0
+    },
+    {
+      "central_difference_derivative": 1.000000000139778,
+      "correct_minus_wrong_margin_derivative_under_negative_group": 1.0,
+      "normalized_categorical_probabilities": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "observed_correct_logp_gradient": 1.0,
+      "other_logp_gradient": -1.6,
+      "saved_group_gradient": 1.0,
+      "unobserved_same_prefix_wrong_logp_gradient": 2.0
+    }
+  ],
+  "optimizer_updates": 0,
+  "patient_or_final100_reads": false,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "margin-identifiability-independent-math-v1",
+  "source_sha256": "59ac14a21e103f65ed1966a2af0d43320c5c9ad1d0818e5ca682033dc10578b1",
+  "training_readiness": "NO",
+  "verdict": "CONFIRMED_SAVED_B3_INSUFFICIENT_TO_IDENTIFY_CLASS_MARGIN"
+}

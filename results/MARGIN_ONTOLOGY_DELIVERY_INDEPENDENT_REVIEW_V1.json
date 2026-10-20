@@ -1,0 +1,58 @@
+{
+  "AGENTS_sha256": "5f3c41a5ccf675ddebb6e704bd09e7009fee28da27d136ffeacbfcfca359dec4",
+  "actual_generation_calls": 0,
+  "actual_new_training": 0,
+  "actual_optimizer_updates": 0,
+  "cross_model_review": "NOT_VERIFIED",
+  "findings": [
+    "Saved B3 non-identifiability and the new fixed-prompt counterfactual experiment are clearly distinguished. Same-prefix canonical correct/wrong mean primary, sum/first secondary, actual Euclidean\u2212g directions and sharedfirst-logit context match the approved finite measurement.",
+    "Actual native exit0/source/state/release and33LM API/16vision/14backward/one-load/214.151101s evidence reconcile; no new generation or parameter/optimizer update. Internal checkpoint recomputation is not claimed to be a fixed number ofphysicalforwardpasses.",
+    "All6image/prefixconditions\u00d72savedgroups\u00d73marginmetrics positive, but36numbers are notindependentreplicates. Dallas fullresponse negative derivative is not classmarginharm here; correct+.02659395/wrong\u221233.01801986 give margin+33.04461381. No loss edit is justified from the measuredharm hypothesis.",
+    "Report does not equate Euclidean\u2212g with persistentAdam or a finite accuracy change. New F32 fixed-historical-sample surrogate remains distinct from originalBF16; newDallas numericalPASS is limited to oneP405/T17context.",
+    "REAL/ZERO crossdots and zero-higher baseline margins are both reported, preventing an imagegrounding claim from positive gradientinteraction. Historical reasoningprefix conditioning/OODzero remains explicit.",
+    "All1942model/504adapter/Adam/Python+MLXRNG preservation and release1050bytes match evidence. Resource98CONTINUE+3recoveredHOLD(all101NORMAL/AC/nootherheavy),2missingMLXsamples/validpeak10.125GiB/thermalunavailable are accurately stated without hardwareguarantees.",
+    "Task2 sourceontology/version lineage26unchanged+2newrelease is separate from wholeunion geometry;15priorityrows/13people,0geometricgridchanges,214originaltargets unchanged and expertadjudication0 remain correctly bounded. Component geometry is not clinicalmultifocal disease or visible-focus gold; all15scientificadmissions remainHOLD.",
+    "Future pairedmodality data intervention remains conditional, with patient/slice/task/exposurebudgets fixed and slice-coverage confounding explicitly excluded. No final100-guided method/parent selection; Adam60 onlyliteralcontinuity, B28commoncontrol, separate new authorization required.",
+    "Public report, summaries, proofs and new code contain aggregate metrics, generic schema fields, public source URLs and hashes; no concrete patient/study IDs, MRI pixels, response/token arrays, tensorpayloads, checkpoints, optimizer/RNG payloads or secrets. Case-linked artifacts remain private."
+  ],
+  "limits": [
+    "This delivery review did not reload models, recompute nativegradients, reopen MRI/masks, repeat clinical/source-paper adjudication or access final100. Task2 arithmetic/source conclusions rely on its accurately attributed existing root independent review, whose hashes are bound.",
+    "The two independent CPU verifier schema-assumption failures are preserved privately with source snapshots and attemptjournal. They are not nativefailures; final saved-array proof passed without native replay or data/source changes.",
+    "Root reported25focusedCPUtests; this final step does not claim a new25-test independent rerun. Component reviews retain exact previous test evidence.",
+    "Independent reviewers are Codex agents of the same underlyingfamily. CROSS_MODEL_REVIEW=NOT_VERIFIED; no Claude review is claimed.",
+    "No training efficacy, greedy accuracy gain, MRIgrounding/generalization or qualified second scientific task is established. This review is not training permission or broad project completion."
+  ],
+  "new_source_sha256": {
+    "scripts/build_spatial_ontology_resolution_v1.py": "9a1f01946b83eb2f63c65a6b68bfcee8614cfb822a734c04604181f8fcb192db",
+    "scripts/run_class_margin_v1.py": "c7bdfe8344869ebbe4003ed3877bcae972f4a5dc5c9612f52cf8d4fa337d825c",
+    "scripts/verify_margin_identifiability_independent_v1.py": "59ac14a21e103f65ed1966a2af0d43320c5c9ad1d0818e5ca682033dc10578b1",
+    "src/mri_rl/class_margin_v1.py": "da2592250b3f2a25e001f0df32e49821bd14c34b40d19d108c0db40b12b9ef0b",
+    "src/mri_rl/spatial_ontology_resolution_v1.py": "3288e38d7de4e1d371272c6c6809ca6cd477f1b3e96c525d2e9a0fff17180d5d",
+    "tests/test_class_margin_forward_independent_v1.py": "bbd56af1337c2f108ba9758903b34b8c9bb7f2d94ba741068c95b9d056ad6117",
+    "tests/test_class_margin_v1.py": "93b096f9e4288247fe97f40f8a10e08bef92e4f4da9c618a79bd36c58d7c4422",
+    "tests/test_spatial_ontology_resolution_v1.py": "d8d547cf06ef5ebfdb05eb91ab8e98ed5a3976501f276dc26adca64c1a5e97ed"
+  },
+  "private_verifier_provenance_sha256": "8f98c159717213f7f7a05e1cc66f546c9c3673bf506d60d7c0f72b0f63c6fd96",
+  "public_evidence_sha256": {
+    "results/CLASS_MARGIN_ACTUAL_INDEPENDENT_REVIEW_V1.json": "fe6dd294709c56b92a15d41643173732b6f38a4643bb77f8c12e497dc4153998",
+    "results/MARGIN_IDENTIFIABILITY_INDEPENDENT_MATH_V1.json": "2f6be4a19b5576e8ecb0ad95242512dd9f4644fdf239a1d5aeda83f409c85dd6",
+    "results/MARGIN_ONTOLOGY_ACTUAL_SUMMARY_V1.json": "21fc15967127a190a9b6889bc81162ae8ab8d4033a149370cc8b0b08d9a20278",
+    "results/SPATIAL_ONTOLOGY_RESOLUTION_INDEPENDENT_REVIEW_V1.json": "8139a79de2c825ab867f9a7cf809fca430fca03578f6f2a2aecfeb7307527295",
+    "results/SPATIAL_ONTOLOGY_RESOLUTION_V1.json": "988be564d9226e52f061a1269c861e5d8a28c7f6b24662be9cf3f1abef2fdb81"
+  },
+  "report_path": "research/GSPO_CLASS_MARGIN_AND_SPATIAL_ONTOLOGY_2026-10-20.md",
+  "report_sha256": "58b1ad698a56b6e6507374c87efba89ec056c605858f45fce56c980f82231ac4",
+  "research_project_complete": false,
+  "review_scope": "Final frozen report/public evidence/provenance/privacy consistency only; no repeated component/native/mask audit.",
+  "reviewed_utc": "2026-10-20T07:59:04.241547+00:00",
+  "reviewer_final100_access": false,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_new_mask_or_MRI_decodes": 0,
+  "reviewer_new_model_loads": 0,
+  "reviewer_new_native_calls": 0,
+  "schema": "margin-ontology-delivery-independent-review-v1",
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

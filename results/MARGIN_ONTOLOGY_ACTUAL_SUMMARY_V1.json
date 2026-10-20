@@ -1,0 +1,61 @@
+{
+  "Dallas_new_F32_qualification": "PASS_AT_ORIGINAL_0.002_FOR_ONE_PREBOUND_CONTEXT_ONLY",
+  "Dallas_original_whole_response_negative_is_not_class_margin_harm": "CONTRADICTED_FOR_THIS_FIXED_CONTEXT",
+  "GSPO_loss_modified": false,
+  "MRI_image_audit_rerenders_or_new_blind_adjudications": 0,
+  "actual_calls": {
+    "language_model_calls": 33,
+    "margin_backward_calls": 14,
+    "vision_embedding_calls": 16
+  },
+  "all36_margin_direction_values_positive_not_independent_cases": true,
+  "base_commit": "cc41a50c47489a3e3481d03f1518e9d999c329e8",
+  "branch": "research/vero-mri-margin-ontology-v1",
+  "cross_model_review": "NOT_VERIFIED_ISOLATED_CODEX_REVIEWERS",
+  "evidence_tier": "ACTUAL_NATIVE_READONLY_PLUS_INDEPENDENT_SAVED_GRADIENT_AND_TRAIN_MASK_RECOMPUTATION",
+  "expert_adjudications": 0,
+  "final100_reads_for_method_selection": 0,
+  "generation_calls": 0,
+  "margin_harm_in_measured_F32_Euclidean_directions": false,
+  "native_actual_exit": 0,
+  "native_actual_wall_seconds": 214.15110108302906,
+  "native_full_parameters_Adam_RNG_unchanged": true,
+  "native_release_active_bytes": 1050,
+  "new_model_loads": 1,
+  "new_scientific_task_admission": 0,
+  "new_training": 0,
+  "next_single_training_factor_if_later_authorized": "Sequence sample-pool composition with eligible same-patient/same-level modal coverage, fixedpatient/slice/task/exposurebudgets; not a demonstrated benefit or training approval.",
+  "operator": "Codex /root",
+  "optimizer_updates": 0,
+  "original_B2_not_repeated": true,
+  "original_source_prompt_target_rewrites": 0,
+  "priority_new_release_subtype_semantics_still_unverified": 2,
+  "priority_source_ontology_lineage_paper_same_annotation": 13,
+  "priority_spatial_candidates": 15,
+  "public_proof_sha256": {
+    "CLASS_MARGIN_ACTUAL_INDEPENDENT_REVIEW_V1.json": "fe6dd294709c56b92a15d41643173732b6f38a4643bb77f8c12e497dc4153998",
+    "MARGIN_IDENTIFIABILITY_INDEPENDENT_MATH_V1.json": "2f6be4a19b5576e8ecb0ad95242512dd9f4644fdf239a1d5aeda83f409c85dd6",
+    "SPATIAL_ONTOLOGY_RESOLUTION_INDEPENDENT_REVIEW_V1.json": "8139a79de2c825ab867f9a7cf809fca430fca03578f6f2a2aecfeb7307527295",
+    "SPATIAL_ONTOLOGY_RESOLUTION_V1.json": "988be564d9226e52f061a1269c861e5d8a28c7f6b24662be9cf3f1abef2fdb81"
+  },
+  "remaining_blockers": [
+    "Independent expert visual answerability and question/annotation-endpoint alignment for the15spatialMRIcandidates; sequence-data scientific eligibility remains separately qualified.",
+    "Exact numeric3 version evidence for2new-release annotations; subtype issue is distinct fromwholemask spatial arithmetic.",
+    "Future common generation/scorer numerical contract across intended inputs; no silent trainer replacement.",
+    "New prospectively declared independent-patient holdout; openedfinal100 cannot guide method selection."
+  ],
+  "report": {
+    "path": "research/GSPO_CLASS_MARGIN_AND_SPATIAL_ONTOLOGY_2026-10-20.md",
+    "sha256": "58b1ad698a56b6e6507374c87efba89ec056c605858f45fce56c980f82231ac4"
+  },
+  "research_tags": [
+    "ENGINEERING_UNBLOCK",
+    "C_TASK_ELIGIBILITY"
+  ],
+  "resource_holds_recovered": 3,
+  "saved_B3_not_regenerated": true,
+  "schema": "margin-ontology-actual-summary-v1",
+  "training_authorized": false,
+  "training_or_greedy_accuracy_improvement": "NOT_MEASURED_NO_UPDATES_OR_GENERATION",
+  "training_readiness": "NO"
+}

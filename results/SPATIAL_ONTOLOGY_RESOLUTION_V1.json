@@ -1,0 +1,130 @@
+{
+  "Dallas": "ENGINEERING_ONLY;independent brain-only identity answerability evidence still absent;no Dallas payload opened.",
+  "actual_arithmetic": {
+    "3D_component_interpretation": "Source-mask topology only, not clinical multifocal disease. Slice endpoint remains the 2D union, not volume centroid.",
+    "TRAIN_people": 28,
+    "TRAIN_planes": 84,
+    "all_grid_rows_convention_sensitive_HOLD": 1,
+    "all_positive_union_endpoint_metrics": {
+      "boundary_distance_lt10_display_pixels": 15,
+      "centroid_off_mask": 2,
+      "component_grid_disagrees_with_union": 8,
+      "coordinate_convention_changes_grid": 1,
+      "multicomponent_8": 14,
+      "rows": 46
+    },
+    "label3_positive_planes": 31,
+    "negative_union_planes": 38,
+    "original_hidden_target_presence_enhancement_grid_reproduced": 214,
+    "original_targets_changed": 0,
+    "positive_union_planes": 46,
+    "priority_3D_source_masks_with_multiple_26_components": 7,
+    "priority_endpoint_metrics": {
+      "boundary_distance_lt10_display_pixels": 0,
+      "centroid_off_mask": 0,
+      "component_grid_disagrees_with_union": 0,
+      "coordinate_convention_changes_grid": 0,
+      "multicomponent_8": 0,
+      "rows": 15
+    },
+    "priority_expert_blocked_rows": 15,
+    "priority_geometric_exclusions": 0,
+    "priority_people": 13,
+    "priority_rows": 15,
+    "source_images_or_masks_modified": 0
+  },
+  "candidate_sha256": "9fbb35128035d35543725a1f2e4e4314d89740e49f132b77c6034269f25f292b",
+  "code_sha256": {
+    "builder": "9a1f01946b83eb2f63c65a6b68bfcee8614cfb822a734c04604181f8fcb192db",
+    "helper": "3288e38d7de4e1d371272c6c6809ca6cd477f1b3e96c525d2e9a0fff17180d5d",
+    "tests": "d8d547cf06ef5ebfdb05eb91ab8e98ed5a3976501f276dc26adca64c1a5e97ed"
+  },
+  "concrete_fix": {
+    "candidate_corrections": "Original target/prompt preserved;versioned proposed arithmetic target stored separately;coordinate boundary disagreement cannot silently rewrite original gold.",
+    "components_are_not_visible_lesion_centers": true,
+    "convention_sensitive_case_handling": "One nonpriority row is explicitly flagged HOLD_CONVENTION_SENSITIVE_GRID in private second-pass packet;original target retained for endpoint adjudication.",
+    "new_endpoint_contract": "Panel-relative image-edge mass centroid:2*(native mean index+.5),half-open thirds,exact boundary right/bottom;store each component and global union separately.",
+    "old_conventions": "Legacy used2*mean index;prior qualification used2*mean index+.5 in display pixel-index coordinates. New edge coordinates distinguish physical center from index origin.",
+    "retrospective_label_bug_claim": false,
+    "visible_focus_target_created": false
+  },
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_tier": "OBSERVED",
+  "expert_packet": {
+    "blank_credentials_and_identity": true,
+    "existing_15_priority_rows_amended": 15,
+    "existing_MRI_only_forms_preserved": 84,
+    "new_expert_annotations": 0,
+    "new_image_adjudication": 0,
+    "second_pass_endpoint_key_separate": true
+  },
+  "mission_alignment": {
+    "falsifier": "Reject unknown labels, source hashes, TRAIN coverage or original arithmetic mismatches.",
+    "isolation": "Only versioned source/endpoint qualification; original tasks, targets, prompts and images retained.",
+    "link": "Unblock an explicitly defined source spatial endpoint for heterogeneous Vero-to-MRI tasks.",
+    "provenance": "Pinned primary article, complete public release trees, local annex pointer and actual TRAIN mask hashes.",
+    "resources": "One CPU thread;28 existing TRAIN masks;zero MRI decoding/renders/updates;expert HOLD.",
+    "shortcut": "No new model or fit; reuse existing site/level controls; mask is not visible-focus gold."
+  },
+  "primary_ontology": {
+    "PMCID": "PMC13498554",
+    "TRAIN_masks_byte_identical_annotation_pointer_to_paper_release": 26,
+    "TRAIN_masks_current_pointer_bound": 28,
+    "TRAIN_masks_new_to_v201_numeric3_semantics_NOT_VERIFIED": 2,
+    "current_release": "ds007045 v2.0.1;363 people",
+    "dictionary": {
+      "0": "background/non-tumor tissue",
+      "1": "necrotic core",
+      "2": "non-enhancing/edematous tumor",
+      "3": "contrast-enhancing tumor"
+    },
+    "interpretation": "Numeric3 ontology is directly documented and source-bound for unchanged annotations. A new-release annotation needs its own numeric-label version evidence; this does not itself invalidate whole-mask>0 spatial arithmetic.",
+    "paper_doi": "10.1038/s41597-026-07953-2",
+    "priority_rows_new_release_label3_semantics_NOT_VERIFIED": 2,
+    "priority_rows_paper_release_exact_lineage": 13,
+    "section": "Data Records / derivatives/segmentation",
+    "source_release": "ds007045 v1.0.1;337 people",
+    "source_sha256": {
+      "paper": "52ec470531eb503dc92707de2ab5e276280d773ededa79df7b82229c4547b1a5",
+      "tree_v101": "c631539db8d85ea225891610df849443d0a8ebaaf63229216ad43414792a5b6f",
+      "tree_v201": "ce5be333d00fd55718e38f22d64c4c46498d897d40f82c7d5f3f7e9c215802cf"
+    },
+    "source_urls": {
+      "paper": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13498554/fullTextXML",
+      "tree_v101": "https://api.github.com/repos/OpenNeuroDatasets/ds007045/git/trees/20e149769eaad41c117f51e9be5e95b12bb56b5a?recursive=1",
+      "tree_v201": "https://api.github.com/repos/OpenNeuroDatasets/ds007045/git/trees/283007b96977b5b3285bd22cd67b7d97114b1eed?recursive=1"
+    }
+  },
+  "private_artifact_sha256": {
+    "binding_PRIVATE.json": "eb6b94aa72251948cd33f96f21358c4100fd1dbd12e44f6b2f29e2158133179b",
+    "expert_MRI_only_adjudication_queue_PRIVATE.jsonl": "d6d1afd84e6fee2d7dda3006ab015d59db2bd73e6c3dd171d9d061ce79c13cae",
+    "expert_second_pass_endpoint_key_PRIVATE.json": "68240d8c8302b4e406a9a4b5575328849518e9605ded215fe94695d1e8a16fd0",
+    "mask_source_lineage_PRIVATE.json": "c2a4ebbb04b061531445ecda142e4af9c821d91792fe52d79648d948aabe62ec",
+    "spatial_priority_amended_PRIVATE.verl.jsonl": "9fbb35128035d35543725a1f2e4e4314d89740e49f132b77c6034269f25f292b"
+  },
+  "read_scope": {
+    "MRI_images_decoded": 0,
+    "TRAIN_mask_files_decoded": 28,
+    "approved_public_inventory_fetch": "Complete fixed release-level Git tree URLs;no local selection identifiers in requests;subsequent comparisons entirely offline.",
+    "classifier_fits": 0,
+    "final100_or_dev_outputs_read": 0,
+    "models_loaded": 0,
+    "new_renders": 0,
+    "nonTRAIN_MRI_payloads_read": 0,
+    "optimizer_updates": 0,
+    "priority_3D_topology_files": 13,
+    "public_release_tree_metadata_contains_all_source_paths": true,
+    "rejected_TRAIN_filtered_outbound_pointer_requests_executed": 0,
+    "repeated_blind_reviews": 0
+  },
+  "remaining_blockers": [
+    "Expert frame visibility and union-centroid/question alignment for all15 spatial candidates.",
+    "Clinical dominant/visible focus centers, multifocal interpretation and postoperative/necrotic etiology remain unadjudicated.",
+    "Numeric3 mapping for the two new-release TRAIN annotations remains NOT_VERIFIED; do not mechanically reject whole-mask grid because this enhancement subtype is unresolved."
+  ],
+  "research_tag": "C_TASK_ELIGIBILITY",
+  "schema": "spatial-ontology-resolution-v1",
+  "scientifically_admitted_rows": 0,
+  "status": "TESTED_CPU_SOURCE_ARITHMETIC_RESOLVED_EXPERT_HOLD",
+  "training_authorized": false
+}

@@ -1,0 +1,35 @@
+{
+  "MRI_decodes": 0,
+  "all15_original_targets_prompts_preserved": true,
+  "all28_public_release_pointer_bindings_checked": true,
+  "all84_expert_forms_identical_and_blank": true,
+  "candidate_manifest_sha256": "9fbb35128035d35543725a1f2e4e4314d89740e49f132b77c6034269f25f292b",
+  "final100_reads": 0,
+  "independent_priority_mask_arithmetic": {
+    "mask_decodes": 13,
+    "paper_release_same_pointer_rows": 13,
+    "rows": 15,
+    "volumes_multiple_26_components": 7
+  },
+  "limitations": [
+    "Source-mask centers/components do not establish visible lesion centers or clinical multifocal disease.",
+    "Two new-release annotations still lack exact numeric3 version evidence.",
+    "Expert visual answerability and question/endpoint alignment remain required."
+  ],
+  "models_loaded": 0,
+  "network_calls": 0,
+  "new_release_masks_with_subtype_version_semantics_unverified": 2,
+  "optimizer_updates": 0,
+  "preserved_verifier_failure": "Initial blank-field assertion expected None for the existing empty ambiguity list; source/data unchanged, schema check corrected.",
+  "reviewer_id": "Codex /root",
+  "reviewer_mask_decodes_including_preserved_schema_failed_attempt": 26,
+  "reviewer_unique_masks": 13,
+  "schema": "spatial-ontology-independent-review-v1",
+  "scientifically_admitted_rows": 0,
+  "source_numeric3_paper_definition_checked": true,
+  "source_report_sha256": "988be564d9226e52f061a1269c861e5d8a28c7f6b24662be9cf3f1abef2fdb81",
+  "training_authorized": false,
+  "unchanged_paper_release_masks": 26,
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verifier_source_sha256": "ed28cff4695a22b3c63d4d32692b8e83170c8f0f6724ed3bb6ba25bdc47545ba"
+}
