@@ -337,10 +337,10 @@ def parent_fixture(tmp_path):
     return r['path'],old.digest(r['path']/'receipt.json'),rows
 
 
-def launch(tmp_path,out,mode='train',cls=Fake,resume=False,authorize=None,bindings_input=None,**kwargs):
+def launch(tmp_path,out,mode='train',cls=Fake,resume=False,authorize=None,bindings_input=None,bindings_source=None,**kwargs):
     parent,sha_,rows=parent_fixture(tmp_path) if not (tmp_path/'adam60').exists() else (tmp_path/'adam60'/'boundary_0008',old.digest(tmp_path/'adam60'/'boundary_0008'/'receipt.json'),json.loads((tmp_path/'rows.json').read_text()))
     if not (tmp_path/'rows.json').exists():(tmp_path/'rows.json').write_text(json.dumps(rows))
-    return drv.run(output=out,mode=mode,schedule=rows,bindings={'stage':'fixture','source_sha256':{'/s.py':sha('s')},'input_sha256':bindings_input or sha('i')},backend_factory=cls,authorize=authorize or (lambda context:None),
+    return drv.run(output=out,mode=mode,schedule=rows,bindings={'stage':'fixture','source_sha256':bindings_source or {'/s.py':sha('s')},'input_sha256':bindings_input or sha('i')},backend_factory=cls,authorize=authorize or (lambda context:None),
         parent_checkpoint=parent,parent_receipt_sha256=sha_,grader=grader,reward_policy_sha256=sha('calibration'),budget=core.derive_budget(LENGTHS,mode),resume=resume,**kwargs)
 
 

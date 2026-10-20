@@ -183,6 +183,11 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                 backend.transaction_restore(parent_snapshot)
                 require(backend.rng_digest()==parent_rng and backend.optimizer_digest()==parent_optimizer,'Parent Adam/RNG restore not exact after '+label)
 
+            def audit(label,*,adam=True,rng=True):
+                """Pre-restore check: the (parameter-only) transaction validator cannot see Adam/RNG, and restoring would hide a fault."""
+                require(not adam or backend.optimizer_digest()==parent_optimizer,f'{label}: Adam state changed (pre-restore audit)')
+                require(not rng or backend.rng_digest()==parent_rng,f'{label}: RNG changed (pre-restore audit)')
+
             def stop(name,error,**extra):
                 core.replace_atomic(output/f'{name}_{time.time_ns()}_STOP_PRIVATE.json',{'error_type':type(error).__name__,'error':str(error),'counters':counters.snapshot(),**extra})
             # ----- adoption of a reviewed qualification's committed bundle + own-old (no generation, no rescoring)
@@ -198,6 +203,9 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                         qold.is_file() and old.digest(qold)==proof['old_sha256'] and qr1.is_file(),'Adopted bundle/own-old/R1 differ from the reviewed proof')
                 candidate=validated(_json(qrun/'bundle_PRIVATE.json'));saved_old=_json(qold)
                 require(saved_old['bundle_sha256']==candidate.sha256 and saved_old['parent_identity']==parent_identity,'Qualification own-old belongs to a different bundle/parent state')
+                # Completion/coverage/parity are RE-DERIVED from the qualification run's own files, never from the proof's or caller's claims.
+                require(core.qualification_blockers(qrun)==[],'Qualification run lacks an effective finite nonzero backward path in both arms')
+                core.check_old_shapes(candidate,saved_old['old']);core.parity_report(candidate,saved_old['old'])
                 inherited=_json(qrun/'counters_PRIVATE.json')['used']
                 core.publish_once(output/'adoption_reservation_PRIVATE.json',{'binding_sha256':binding_sha,'bundle_sha256':candidate.sha256})
                 r1=_json(qr1);shutil.copyfile(qrun/r1['tensors_file'],output/r1['tensors_file'])
@@ -215,6 +223,9 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                 try:
                     work=output/'rollout_work_PRIVATE';work.mkdir()
                     captured=backend.generate_shared_rollout(rows,work)
+                    require(backend.optimizer_digest()==parent_optimizer,'Rollout changed Adam')
+                    require(backend.rng_digest()!=parent_rng,'Rollout did not consume RNG: post-generation R1 evidence would equal R0')
+                    backend.transaction_validate(parent_snapshot,False)
                     # Post-generation RNG R1 is persisted as evidence; BOTH arms deliberately restart from the exact parent R0.
                     r1_state=backend.rng_state();layout,arrays=pack_tree(r1_state);r1_file=output/'rng_R1_post_generation_PRIVATE.safetensors'
                     backend.save_arrays(r1_file,arrays)
@@ -238,19 +249,18 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                     core.publish_once(output/'bundle_PRIVATE.json',frozen)
                     core.publish_once(bundle_marker,{'bundle_sha256':bundle.sha256,'binding_sha256':binding_sha,'file_sha256':old.digest(output/'bundle_PRIVATE.json')})
                     authorize({'phase':'post_rollout','mode':mode,'binding':binding})
-                    backend.transaction_validate(parent_snapshot,False)
-                    require(backend.optimizer_digest()==parent_optimizer,'Rollout changed Adam');restore_parent('rollout')
+                    backend.transaction_validate(parent_snapshot,False);restore_parent('rollout')
                 except BaseException as error:
                     stop('rollout',error);raise
             # ----- own-old scoring / parity once (committed; reused on resume, never recharged)
             old_path=output/'old_PRIVATE.json'
             if old_path.exists():
                 saved=_json(old_path);require(saved['bundle_sha256']==bundle.sha256 and saved['parent_identity']==parent_identity,'Committed own-old belongs to a different bundle/parent')
-                own_old=saved['old']
+                own_old=saved['old'];core.parity_report(bundle,own_old);core.check_old_shapes(bundle,own_old)     # re-derived on CPU, never trusted from the file's own claims
             else:
                 require(not expired(),'Deadline before own-old scoring');authorize({'phase':'own_old','mode':mode,'binding':binding})
                 try:
-                    own_old=backend.score_old(bundle);parity=core.parity_report(bundle,own_old)
+                    own_old=backend.score_old(bundle);audit('own_old');core.check_old_shapes(bundle,own_old);parity=core.parity_report(bundle,own_old)
                     backend.transaction_validate(parent_snapshot,False);restore_parent('own_old')
                     core.publish_once(old_path,{'bundle_sha256':bundle.sha256,'parent_identity':parent_identity,'old':own_old,'rollout_vs_own_context_parity':parity})
                 except BaseException as error:
@@ -267,6 +277,7 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                     restore_parent('arm_'+arm+'_start')
                     gate={'effective_groups':planned.admitted_groups,'admitted_response_ids':list(planned.admitted_response_ids)}
                     gradient,gradient_evidence=backend.arm_gradient(planned,own_old)
+                    audit('arm_gradient_'+arm)             # deterministic backward must leave Adam moments and RNG exactly at the parent
                     norm=float(gradient_evidence.get('gradient_l2',0.)) if gradient is not None else 0.
                     decision=core.update_decision(planned,norm)
                     require(gradient is not None or not decision['update'],'Update decision without a gradient')
@@ -284,6 +295,8 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                             counters.charge('optimizer_updates')
                             update_evidence=backend.apply_update(gradient);updated=True
                         require(old._step(backend)==before_step+int(updated),'More than one Adam call or hidden update')
+                        audit('optimizer_update_'+arm,adam=not updated)            # one Adam step may change moments, never the parent RNG
+                        require(not updated or backend.optimizer_digest()!=parent_optimizer,'Updated arm left Adam unchanged')
                         after_state=old.state_fingerprint(backend,backend.optimizer_state(),work/'optimizer_after.safetensors')
                         if not updated:require(before_state==after_state,'No-update arm changed Adam')
                         check=work/'verify_adapter.safetensors';backend.save_adapter(check)
@@ -304,7 +317,7 @@ def run(*,output,mode,schedule,bindings,backend_factory,authorize,parent_checkpo
                         core.publish_once(evidence_path,{'arm':arm,'gate':gate,'update_decision':decision,'gradient_evidence':gradient_evidence,'optimizer_updates':0,
                             'rng_policy':'ARM_STARTS_FROM_EXACT_PARENT_R0_NOT_POST_GENERATION_R1','arm_start_rng_digest':parent_rng})
                         require(old._step(backend)==before_step,'Qualification changed the optimizer counter')
-                        backend.transaction_validate(parent_snapshot,False)
+                        backend.transaction_validate(parent_snapshot,False);audit('qualification_arm_'+arm)
                         core.publish_once(output/f'arm_{arm}_COMMITTED.json',{'arm':arm,'updated':False,'evidence_sha256':old.digest(evidence_path)})
                     status[arm]='COMMITTED';gradient=None
                     restore_parent('arm_'+arm+'_end')

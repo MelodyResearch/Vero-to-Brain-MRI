@@ -56,12 +56,14 @@ def prepare(spec,*,verify_images=False):
     for name in OWN_SOURCES:sources[str(ROOT/name)]=inherited.digest(ROOT/name)
     output=Path(spec['output']).resolve();require(output.is_relative_to(ROOT/'local_data/shared_rollout_gspo'),'Fresh isolated private output required')
     input_sha=core.identity({'schedule_sha256':inherited.scope_digest(schedule),'expected_image_sha256':expected,'parent_receipt_sha256':parent['receipt_sha256'],
-        'calibration_sha256':original['calibration_sha256'],'spec_sha256':inherited.stage_spec_binding(spec),'runtime_spec_sha256':inherited.digest(spec['runtime_spec'])})
+        'calibration_sha256':original['calibration_sha256'],'immutable_spec_sha256':immutable_spec_binding(spec),'runtime_spec_sha256':inherited.digest(spec['runtime_spec'])})
     prepared={'schema':'shared-rollout-gspo-preparation-v1','implementation_status':core.STATUS,'experiment':core.EXPERIMENT,'execution_subtype':core.EXECUTION_SUBTYPE,
         'scope_kind':'PREPARATION_ONLY_NOT_LAUNCH_SCOPE','training_authorized':False,'native_approved':False,'model_loads_this_preparation':0,'optimizer_updates_this_preparation':0,
         'parent':parent,'schedule_PRIVATE':schedule,'expected_image_sha256':expected,'configuration':configuration,'reward_policy_sha256':original['calibration_sha256'],
         'budgets':{mode:core.derive_budget(lengths,mode) for mode in core.MODES},'source_sha256':sources,'input_sha256':input_sha,
         'derived_cache':inherited.cache_metadata(runtime)['expected_binding'],'output':str(output),
+        'invocation':{'output':str(output),'adopt_qualification_run':spec.get('adopt_qualification_run'),'resume':bool(spec.get('resume')),
+                      'binding':'PER-INVOCATION metadata: bound by the launch scope digest, deliberately EXCLUDED from the immutable input_sha256'},
         'arm_definition':{'A':'F0F1F2F3 | T0T1T2T3','B':'F0F1T0T1 | F2F3T2T3','weight':'1/8 per gate-admitted response','gate':'inherited Adam60 valid-format-subset gate in both arms',
                           'updates':'at most one actual Adam update per arm from identical full parent state; no sequential stale second-group update; inactive arm = 0 updates, no resample'},
         'limitations':['Native mixed-context F32 rollout/scorer/backward NOT measured; CPU fixtures prove routing, accounting and transactions only.',
@@ -70,9 +72,19 @@ def prepare(spec,*,verify_images=False):
     return prepared
 
 
+PER_INVOCATION_KEYS=('output','resume','adopt_qualification_run')
+
+
+def immutable_spec_binding(spec):
+    """Scientific/runtime inputs only. Output path, resume flag and adoption target are per-invocation metadata;
+    every other key (schedule, images, runtime spec, file hashes, prompt lengths ...) still changes the hash."""
+    return inherited.scope_digest({k:v for k,v in spec.items() if k not in PER_INVOCATION_KEYS})
+
+
 def launch_scope(prepared,mode):
     require(mode in core.MODES,'Unknown mode')
-    return {'scope_kind':core.SCOPE_KINDS[mode],'experiment':core.EXPERIMENT,'execution_subtype':core.EXECUTION_SUBTYPE,'numerical_policy':core.POLICY,
+    require(mode=='train' or not prepared['invocation']['adopt_qualification_run'],'Qualification never adopts a bundle')
+    return {'invocation':prepared['invocation'],'scope_kind':core.SCOPE_KINDS[mode],'experiment':core.EXPERIMENT,'execution_subtype':core.EXECUTION_SUBTYPE,'numerical_policy':core.POLICY,
             'budget':prepared['budgets'][mode],'source_sha256':prepared['source_sha256'],'input_sha256':prepared['input_sha256'],
             'preparation_sha256':core.identity(prepared),'output':prepared['output']}
 
@@ -91,12 +103,7 @@ def qualification_proof(output,evidence,prepared):
             not (evidence/'entry_STOP_PRIVATE.json').exists() and _json(evidence/'complete_PRIVATE.json').get('bundle_sha256')==done['bundle_sha256'],'Release witness written by run_with_release is missing or unverified')
     old=_json(output/'old_PRIVATE.json')
     arms={arm:_json(output/f'qualification_arm_{arm}_PRIVATE.json') for arm in driver.ARM_ORDER}
-    blockers=[]
-    for arm,v in arms.items():
-        g=v['gradient_evidence']
-        if not (v['gate']['effective_groups']>=1 and g['backward_calls']>=1 and g['backward_calls']==len(v['gate']['admitted_response_ids']) and
-                type(g['gradient_l2']) in (int,float) and math.isfinite(g['gradient_l2']) and g['gradient_l2']>0 and v['update_decision']['update'] is True):
-            blockers.append(f'ARM_{arm}_NO_EFFECTIVE_FINITE_NONZERO_BACKWARD_PATH')
+    blockers=core.qualification_blockers(output)       # same re-derivation the adopting train driver performs
     return {'status':'ACTUAL_SHARED_ROLLOUT_GSPO_READONLY_QUALIFIED' if not blockers else 'PARTIAL_SHARED_ROLLOUT_GSPO_QUALIFICATION','blockers':blockers,'optimizer_updates':0,
             'source_sha256':recorded['source_sha256'],'input_sha256':recorded['input_sha256'],'run_identity_sha256':core.file_sha256(identity_path),
             'bundle_sha256':done['bundle_sha256'],'old_sha256':core.file_sha256(output/'old_PRIVATE.json'),'release_witness_sha256':core.file_sha256(release_path),

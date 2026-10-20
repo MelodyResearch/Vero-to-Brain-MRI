@@ -328,6 +328,34 @@ def selected_logp_parity(sampled,scored):
     return {'max_abs_error':error,'tolerance':ROLLOUT_TOLERANCE,'positions':len(scored)}
 
 
+def check_old_shapes(bundle,old):
+    require(isinstance(old,dict) and set(old)==set(RESPONSE_IDS) and all(isinstance(old[r['response_id']],list) and len(old[r['response_id']])==len(r['token_ids']) and
+            _finite(old[r['response_id']]) for r in bundle.raw['responses']),'Own-old logps must be eight finite vectors matching each response length')
+    return True
+
+
+def qualification_blockers(run_directory):
+    """Re-derive qualification completeness from a qualify run's own committed files. [] means effective in BOTH arms."""
+    run_directory=Path(run_directory);blockers=[]
+    try:
+        done=json.loads((run_directory/'complete_SAFE.json').read_text())
+        ident=json.loads((run_directory/'run_identity_PRIVATE.json').read_text())
+        if not (done.get('status')=='SCHEDULE_COMPLETE' and done.get('mode')=='qualify' and done.get('optimizer_updates')==0 and ident.get('mode')=='qualify'):blockers.append('RUN_NOT_COMPLETED_ZERO_UPDATE_QUALIFICATION')
+    except (OSError,ValueError,KeyError):
+        return ['RUN_COMPLETION_EVIDENCE_MISSING']
+    for arm in ARMS:
+        try:
+            marker=json.loads((run_directory/f'arm_{arm}_COMMITTED.json').read_text());path=run_directory/f'qualification_arm_{arm}_PRIVATE.json'
+            if file_sha256(path)!=marker['evidence_sha256']:blockers.append(f'ARM_{arm}_EVIDENCE_NOT_COMMITTED');continue
+            v=json.loads(path.read_text());g=v['gradient_evidence']
+            effective=(v['gate']['effective_groups']>=1 and g['backward_calls']>=1 and g['backward_calls']==len(v['gate']['admitted_response_ids']) and
+                       type(g['gradient_l2']) in (int,float) and math.isfinite(g['gradient_l2']) and g['gradient_l2']>0 and v['update_decision'].get('update') is True and v.get('optimizer_updates')==0)
+        except (OSError,ValueError,KeyError,TypeError):
+            effective=False
+        if not effective:blockers.append(f'ARM_{arm}_NO_EFFECTIVE_FINITE_NONZERO_BACKWARD_PATH')
+    return blockers
+
+
 def parity_report(bundle,old):
     require(isinstance(old,dict) and set(old)==set(RESPONSE_IDS),'Own-old inventory must be exactly eight responses')
     return {item['response_id']:selected_logp_parity(item['raw_selected_logps'],old[item['response_id']]) for item in bundle.raw['responses']}

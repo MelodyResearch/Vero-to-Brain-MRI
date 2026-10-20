@@ -48,6 +48,12 @@ Rollout once: ≤8 responses / 2048 returned tokens / 2056 sampler draws / 2080 
 - Consumer entry revalidates response ID/modality/index, bundle parent receipt/adapter against the external anchor, and context rows/images/pair/reward; z045 rows must carry certified `paired_z045_data_v1` lineage (no `None==None`).
 - Evaluator: `eval_budget(1..3)` (parent-only when both arms are aliases), executable CLI `scripts/run_shared_rollout_gspo_eval_v1.py`, admission requires the NEW shared qualification (effective, reviewed, same source) instead of the old F32 status, source closure includes `paired_z045_evaluation_v1.py`, `answer_likelihood.py`, `vero_mri_reward.py` and the shared files.
 
+## Revision 3
+
+- Pre-restore state audit: after own-old scoring, each arm's backward, the qualification arm, and every optimizer update, the driver compares full `optimizer_digest`/`rng_digest` against the parent BEFORE `restore_parent` (the inherited `transaction_validate` is parameter-only and restoration would hide a fault). Rollout must leave Adam unchanged and must consume RNG (R1 != R0); an updated arm may change Adam but never RNG and must actually change the moments.
+- `input_sha256` now covers immutable scientific/runtime/parent inputs only (`immutable_spec_binding` excludes `output`, `resume`, `adopt_qualification_run`). Per-invocation metadata is bound in `prepared['invocation']` and therefore in the launch-scope digest that humans/reviewers sign; source, image, parent and calibration hashes are untouched and any scientific change alters the hash.
+- Adoption and the qualification proof share `core.qualification_blockers(run)`, which re-derives completion, committed arm evidence and effective backward coverage from the qualification run's own files; own-old shapes and `.002` parity are recomputed on CPU for adopted and resumed files. Booleans in a proof or prepared dict never substitute.
+
 ## Limitations (not verified)
 
 - Mixed-context F32 rollout/scorer/backward are **not** native-measured. The pinned F32 helpers are reused, but `_generate_context` is a new count-aware copy of the pinned rollout loop; only CPU doubles exercise it.

@@ -260,7 +260,8 @@ def test_eval_execution_refuses_before_native_import_without_review_human_and_nu
 
 def test_launch_scope_shape_is_exactly_what_the_admission_contract_accepts_and_is_never_self_authorizing():
     from mri_rl import shared_rollout_gspo_entry_v1 as e
-    prepared={'budgets':{m:core.derive_budget(base.LENGTHS,m) for m in core.MODES},'source_sha256':{'/s.py':base.sha('s')},'input_sha256':base.sha('i'),'output':'/x'}
+    prepared={'budgets':{m:core.derive_budget(base.LENGTHS,m) for m in core.MODES},'source_sha256':{'/s.py':base.sha('s')},'input_sha256':base.sha('i'),'output':'/x',
+              'invocation':{'output':'/x','adopt_qualification_run':None,'resume':False}}
     for mode in core.MODES:
         scope=e.launch_scope(prepared,mode);assert scope['scope_kind']==core.SCOPE_KINDS[mode] and not any(k in scope for k in ('approved','authorized','training_authorized'))
         binding=core.scope_digest(scope)
