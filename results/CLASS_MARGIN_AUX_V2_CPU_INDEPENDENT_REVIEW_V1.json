@@ -1,0 +1,79 @@
+{
+  "CPU_transaction_proof_sha256": "6f3102cc46e83be639384fc5e6782e9ffe44f8c391d2504ebbc651df4bdfb376",
+  "budget": {
+    "auxiliary_TF_positions_cap": 1812,
+    "backward_calls": 20,
+    "combined_rollout_plus_auxiliary_cap": 10852,
+    "full_TF_forwards": 40,
+    "generation_LM_calls_including_lookahead": 4128,
+    "group_size": 4,
+    "main_rollout_text_visual_token_cap": 9040,
+    "max_tokens": 256,
+    "maximum_attempted_groups": 4,
+    "maximum_generated_tokens": 4096,
+    "maximum_optimizer_updates": 2,
+    "maximum_seconds": 1200,
+    "simultaneous_image_graphs": 1,
+    "simultaneous_models": 1,
+    "teacherforced_positions": 19860,
+    "vision_embeddings": 56
+  },
+  "findings": [
+    "Native auxiliary method CPU finite-difference fixture verifies correct-margin VJP chain-rule coefficients and ALPHA exactly once.",
+    "GSPO loss compiled from original frozen native AST; four detached own-old forwards reused for selected rollout/full alignment, four fresh gradient forwards retain1e-5 guard; no fabricated advantages.",
+    "All optimizer branches share2TOTALstepcap and a sole combined optimizer.update. Inactive+zeroaux NO_UPDATE; totalcancellation STOP and rollback.",
+    "Actual driver CPU fixtures verify full/split weights/moments/RNG equality; post-step rollback; complete pending rollout+postgenerationRNG reuse/no duplicate charge; committed rename exception not replayed.",
+    "Restored counter negative/fractional/bool/overlimit/missing/unknown guards now pass; only original three-key allzero initial checkpoint normalized.",
+    "Compatibility admission binds exact training source/budget, readonly actual/scope/independent actual review and shared numerical/runtime closure, CPUtransaction proof. Human/review must explicitly accept nativejoint/onpolicy still unmeasured; readonly evidence is not relabeled training qualification.",
+    "Current sealed evaluation hash PENDING, actual margin evidence/human/training launch review absent: training remains blocked before model construction.",
+    "Generation4128/vision56 are source-derived logical API maxima under fixed K4/256/4slots. FullTF40/back20/19860TFpositions/1812auxpositions have durable pre-operation counters; hardware kernels/checkpoint recomputation are additional work."
+  ],
+  "limitations": [
+    "CPU/source/transaction review only;0model/0generation/0backward/0updates in this review. Native joint/onpolicy backward and actual rollback/resume remain unmeasured.",
+    "This review is not a compatibility admission certificate, exact future training launch review, human permission or training approval.",
+    "Persistent1200s operation-start deadline is not hardwall; atomic operation/release can overrun. Complete pending resume needs separate exact authorization; incomplete pending STOP/no automatic retry.",
+    "2TOTALsteps may stop before4slots; acceptedGSPO versus auxiliary-only must remain distinct. Added paired supervision changes objective.",
+    "No accuracy, grounding, generalization or training-readiness claim. No sealed16holdout payload/label/outcome or final100 read.",
+    "Aggregate public proof omits patient identifiers/images/prompts/tokens/private state and paths. Same-family Codex; CROSS_MODEL_REVIEW=NOT_VERIFIED."
+  ],
+  "native_execution": false,
+  "preparation_file_sha256": "51cd57b04444b4c70d9f6533f4823a72cc19ebd61e478bd81b5b5f9e33aea139",
+  "preparation_sha256": "dc77229854876fa1ed574ae475eceeaaaa460460de2a63a5f39eba6b324c7e19",
+  "private_review_sha256": "400cfa781d8dd9b813e661bb0377f30a8278a730d95aee5f5f2ca184203c4513",
+  "reviewed_source_sha256": {
+    "scripts/run_class_margin_aux_v2.py": "3f124e62804c665fbef12d8f066db657b6f55a98fe74f2a023fc71256dd5aee8",
+    "src/mri_rl/class_margin_aux_v2.py": "4343fe861ac4d060afd8509939578b3c87f3fc1d92bfd38983ed09e11086ebb8",
+    "src/mri_rl/class_margin_aux_v2_driver.py": "973dbc1952ac998e4f97df4101ab2bd4b0892248bcfbc4bbd9e3f4f55bc718ea",
+    "src/mri_rl/class_margin_aux_v2_entry.py": "f418825746a7e471bfff084bc8870da3b185e68f6b32cca34d9c6c89be5b64f8",
+    "src/mri_rl/paired_class_margin_probe_v2.py": "b7b6eeb7fca43588404a3cb2025894e3c65a1094e94bf29571f815f3e9551107",
+    "src/mri_rl/paired_classification_signal_v2.py": "c320ee1469451aa44503edb3638b4d6416fd14d82fce17415acb387a6ee76aa8",
+    "tests/test_class_margin_aux_v2.py": "9db539ad7592250af277c4afa7fbfc3b494e23eb6d931548ed01c6c1bb657b92"
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "class-margin-aux-v2-focused-independent-CPU-review-v1",
+  "spec_file_sha256": "052269fb05eb2bcea9fcd0f77470457ffe332a4f7ce4ce4b1858c7d08cfe443b",
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "artifact_bindings_checked": 17,
+    "generation_and_vision_upper_bound_recomputed": {
+      "auxiliary_TF_positions_cap": 1812,
+      "backward_calls": 20,
+      "full_TF_forwards": 40,
+      "generation_LM_calls_including_lookahead": 4128,
+      "main_rollout_text_visual_token_cap": 9040,
+      "teacherforced_positions": 19860,
+      "vision_embeddings": 56
+    },
+    "independent_integration_tests": 17,
+    "independent_probe_plus_objective_tests": 25,
+    "integration_tests_seconds": 0.24,
+    "native_imports": [],
+    "output_absent": true,
+    "prepare_exact": true,
+    "probe_plus_objective_tests_seconds": 0.08,
+    "source_bindings_checked": 66
+  }
+}

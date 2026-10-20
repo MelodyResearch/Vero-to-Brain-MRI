@@ -1,0 +1,91 @@
+{
+  "bindings": {
+    "independent_reproducer_sha256": "a12b695285952eba194e6c81967516e70430c6fc9c614a32b8a49e12b21635b4",
+    "private_independent_detail_sha256": "006d853f69286ea7557abc97c5c4fdc53959ddbc0e97b7b2d7b9d319dafbb38d",
+    "root_math_public_sha256": "7881c7be11ed5edf33e47df727d6808d7347ec9098114a2aa24bf455e4be632a",
+    "saved_TRAIN_complete_sha256": "252d44fb879ef8926b4dda301168265be6702641d37c44554fe5f306a6f1a911"
+  },
+  "cross_model_family_review": "NOT_VERIFIED",
+  "evidence_tier": "SAVED_TRAIN_SCALAR_RECOMPUTATION_AND_CPU_MATH",
+  "final100_accessed": false,
+  "findings": [
+    "The actual saved TRAIN margins reproduce mF=1.4050400871 and mT=-1.3215722103; L1=.6724979108 versus L2=.8887110315. V2 penalizes each class margin separately instead of only their average.",
+    "Jensen gives L2>=L1 with equality at equal finite class margins. Source loss, backend-neutral expression, fixedalpha.1 and analytic derivative .5[-sigmoid(-mF),+sigmoid(-mF);+sigmoid(-mT),-sigmoid(-mT)] match independent finite differences.",
+    "The common additive FLAIR score-bias derivative is+.2962128094, versus zero forV1. This intentionally responds to shared bias, but image-blind models can lowerV2 simply by neutralizing their prior to tied scores; no grounding or class discrimination follows.",
+    "Independent negative-logp shared-parameter counterexample decreases totalL2 while worseningT1 margin. Score-coordinate derivative signs do not establish real model-parameter or retained-Adam update directions.",
+    "update_kind strictly labels JOINT/AUXILIARY_ONLY/GSPO_ONLY/NO_UPDATE with explicitbools. It neither increments an optimizer nor proves the future hard2TOTALstep cap/atomic checkpoint behavior; those require the separate integration review.",
+    "Mean label logp is the actual proposed objective; saved sum andfirst readouts are kept distinct. No native gradient, actual Adam-direction, new generation, holdout evaluation or performance gain is claimed."
+  ],
+  "focused_tests": {
+    "command": "PYTHONPATH=src python3 -m pytest -q tests/test_paired_classification_signal_v2.py",
+    "passed": 9
+  },
+  "independent_actual_mean_readout": {
+    "Jensen_gap": 0.21621312072406473,
+    "L1_interaction": 0.6724979107709034,
+    "L2_fixed_alpha": 0.1,
+    "L2_per_class": 0.8887110314949681,
+    "L2_score_derivatives": [
+      [
+        -0.09850877183826766,
+        0.09850877183826766
+      ],
+      [
+        0.39472158120990114,
+        -0.39472158120990114
+      ]
+    ],
+    "common_additive_FLAIR_SCORE_bias_derivative": 0.29621280937163347,
+    "independent_bias_finite_difference": 0.2962128093697558,
+    "independent_score_gradient_margin_direction": {
+      "FLAIR": 0.19701754367653532,
+      "T1": 0.7894431624198023
+    },
+    "m_FLAIR": 1.4050400870726698,
+    "m_T1": -1.321572210302478
+  },
+  "limitations": [
+    "This result uses only the already authenticated oldTRAIN complete score JSON, not model weights, gradients, newholdout images/labels or final100.",
+    "Jensen and score-gradient results are algebraic/numerical CPU evidence. Native VJP, gradient cancellation, zero-gradient gates, retainedmomentum baseline and optimizeratomicity remain unverified.",
+    "V2 is an explicitly supervised auxiliary, not originalpureVeroGSPO; no empirical accuracy advantage over untrainedV1 is established.",
+    "Any further native diagnostic needs its own exact scope review and fresh human permission; futuretraining requires another explicit decision.",
+    "Cross-model-family review NOT_VERIFIED."
+  ],
+  "mathematical_checks": {
+    "Jensen_grid_cases": 81,
+    "branch_labels_and_nonbool_rejection_confirmed": true,
+    "equal_margin_equality_confirmed": true,
+    "image_independent_prior_neutralization_counterexample_confirmed": true,
+    "max_gradient_finite_difference_abs_error": 3.913341872774367e-12,
+    "scalar_score_finite_difference_cases": 4,
+    "shared_class_bias_noninvariance_confirmed": true,
+    "shared_parameter_T1_harm_despite_lower_L2_confirmed": true
+  },
+  "native_execution_authorized": false,
+  "new_backward_calls": 0,
+  "new_holdout_inputs_accessed": false,
+  "new_model_calls": 0,
+  "optimizer_updates": 0,
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "classification-margin-v2-independent-CPU-math-review-v1",
+  "separate_secondary_saved_margins_not_used_in_objective": {
+    "first": {
+      "FLAIR": 7.024005855899304,
+      "T1": -6.607452202937566
+    },
+    "sum": {
+      "FLAIR": 7.026790678671212,
+      "T1": -6.61010741780229
+    }
+  },
+  "source_sha256": {
+    "scripts/prepare_classification_margin_math_v2.py": "980ebc9244669dde06f835e322a3e733a234bd8924c496e3fb68f288f0995de3",
+    "src/mri_rl/paired_classification_signal_v2.py": "c320ee1469451aa44503edb3638b4d6416fd14d82fce17415acb387a6ee76aa8",
+    "src/mri_rl/paired_interaction_signal_v1.py": "fc5be726f37a0bbd05421d837313070d7fe63e1869bb83748d51e77b9f11afe3",
+    "tests/test_paired_classification_signal_v2.py": "9273a237fbeeb266db5d0b5bfff780e11c3e5445a6c9e1af32cd317b4856f627"
+  },
+  "training_authorized": false,
+  "training_readiness": "NO",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

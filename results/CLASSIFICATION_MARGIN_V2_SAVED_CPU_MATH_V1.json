@@ -1,0 +1,49 @@
+{
+  "boundaries": [
+    "These are score-space derivatives, not measured model-parameter or Adam directions.",
+    "An image-independent model can reduce v2 through prior neutralization; that alone does not establish image discrimination.",
+    "Shared model Jacobians and retained Adam moments can harm one class despite v2 score-space signs.",
+    "Mean canonical logp is length-normalized by declaration; sum and first readouts remain separately reported.",
+    "Old v1 never trained; no empirical accuracy superiority over v1 is claimed."
+  ],
+  "correct_margins": {
+    "FLAIR": 1.4050400870726698,
+    "T1": -1.321572210302478
+  },
+  "meaning": "v1 can lower loss with a wrong absolute T1 margin; v2 directly penalizes each wrong class margin and responds to shared FLAIR score bias.",
+  "native_model_loads_this_CPU_replay": 0,
+  "optimizer_updates": 0,
+  "saved_reference_complete_sha256": "252d44fb879ef8926b4dda301168265be6702641d37c44554fe5f306a6f1a911",
+  "schema": "classification-margin-v2-saved-CPU-math-v1",
+  "score_space_correct_margin_changes_along_v2_descent": {
+    "FLAIR": 0.19701754367653534,
+    "T1": 0.7894431624198024
+  },
+  "status": "TESTED_CPU_NOT_NATIVE_GRADIENT_QUALIFIED",
+  "training_authorized": false,
+  "training_runs": 0,
+  "v1_common_additive_FLAIR_score_bias_derivative": 0.0,
+  "v1_interaction_loss": 0.6724979107709034,
+  "v1_score_derivatives": [
+    [
+      -0.24478401474607484,
+      0.24478401474607484
+    ],
+    [
+      0.24478401474607484,
+      -0.24478401474607484
+    ]
+  ],
+  "v2_common_additive_FLAIR_score_bias_derivative": 0.2962128093716335,
+  "v2_perclass_margin_loss": 0.8887110314949681,
+  "v2_score_derivatives": [
+    [
+      -0.09850877183826767,
+      0.09850877183826767
+    ],
+    [
+      0.3947215812099012,
+      -0.3947215812099012
+    ]
+  ]
+}

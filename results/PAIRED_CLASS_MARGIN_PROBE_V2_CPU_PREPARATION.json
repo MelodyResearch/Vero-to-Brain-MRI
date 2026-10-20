@@ -1,0 +1,67 @@
+{
+  "actual_this_task": {
+    "backward_calls": 0,
+    "generation_calls": 0,
+    "holdout_or_final_reads": 0,
+    "model_loads": 0,
+    "native_forwards": 0,
+    "optimizer_updates": 0
+  },
+  "author": "Codex /root/rc_data",
+  "budget": {
+    "backward_calls": 4,
+    "contexts": 4,
+    "expected_teacherforced_positions": 2868,
+    "full_TF_forwards": 11,
+    "generation_calls": 0,
+    "maximum_seconds": 1200,
+    "model_loads": 1,
+    "optimizer_updates": 0,
+    "parameter_perturbations": 0,
+    "simultaneous_image_contexts": 1,
+    "teacherforced_positions": 4675,
+    "vision_TF_forwards": 11
+  },
+  "canonical_scope_sha256": "d4ee98b6e4db3e11e625c9701aaeea274e39f7cc322ea80dbb49ba25e49fc6dc",
+  "cpu_verification": {
+    "actual_parent_moment_metadata_leaves": 504,
+    "actual_parent_moment_metadata_matches_signature": true,
+    "cpu_prepare_scope_recomputed_equal": true,
+    "focused_tests_passed": 25,
+    "loss_tests": 9,
+    "mlx_or_mlx_vlm_imported_by_cpu_prepare": false,
+    "probe_tests": 16,
+    "six_new_guard_regressions_observed_failing_before_fix": true,
+    "test_duration_seconds": 0.08
+  },
+  "guards": [
+    "Required direct evaluator/constant/helper source closure is byte-bound;missing entry or tampered bytes fail closed.",
+    "Adam inputs,moments,prospective moments,delta,g0 baseline and increment must remain finite;second moment nonnegative.",
+    "F64 comparison/directional scalar dots and norms fail closed on overflow.",
+    "Current real and zero-normalized-pixel input fingerprints and prompt SHA persist PRIVATE with score evidence.",
+    "New exact human authorization and isolated review required before native imports;prior permission consumed;global gate unchanged."
+  ],
+  "limitations": [
+    "CPU fixtures are not native VJP qualification.",
+    "Native numerical results NOT_RUN.",
+    "Only mean margin gradients planned;sum/first directional effects UNKNOWN.",
+    "Nonzero gradient norm or similarity is not evidence of image grounding.",
+    "Adam preview uses existing momentum and reports g0 baseline/increment;not a parameter update or finite-step accuracy observation.",
+    "Blank retains real image shape/grid with zero normalized pixels and has no assigned visual truth."
+  ],
+  "planned_comparisons": [
+    "v2_REAL_vs_BLANK",
+    "v2_REAL_vs_SWAPPED",
+    "v1_REAL_vs_v2_REAL",
+    "g_mF_vs_negative_g_mT"
+  ],
+  "private_scope_file_sha256": "0dc854bcd5834ecb8f27fb38a867304084f7c2772f2be00a5c1ce08e55670d1f",
+  "private_spec_sha256": "ba4542e6a58daa48cf6a5047532aa6d0fdca6ea5eb8479c1c48c2a442e3e5c89",
+  "schema": "paired-class-margin-probe-v2-cpu-preparation",
+  "source_sha256": {
+    "scripts/run_paired_class_margin_probe_v2.py": "bde0bdf6101b0210aa9aaa131270fed80376f759291e2f9d8e6a3f8aff766d0c",
+    "src/mri_rl/paired_class_margin_probe_v2.py": "b7b6eeb7fca43588404a3cb2025894e3c65a1094e94bf29571f815f3e9551107",
+    "tests/test_paired_class_margin_probe_v2.py": "c14ce36cd321e0740e968693358e4cccbc63e293cde5b8b195d4f945868037f1"
+  },
+  "status": "CPU_PREPARED_FRESH_AUTHORIZATION_AND_INDEPENDENT_REVIEW_PENDING_NOT_RUN"
+}

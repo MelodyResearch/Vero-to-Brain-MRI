@@ -1,0 +1,51 @@
+{
+  "budget": {
+    "backward_calls": 4,
+    "contexts": 4,
+    "expected_teacherforced_positions": 2868,
+    "full_TF_forwards": 11,
+    "generation_calls": 0,
+    "maximum_seconds": 1200,
+    "model_loads": 1,
+    "optimizer_updates": 0,
+    "parameter_perturbations": 0,
+    "simultaneous_image_contexts": 1,
+    "teacherforced_positions": 4675,
+    "vision_TF_forwards": 11
+  },
+  "limitations": [
+    "Source/CPU engineering review only; nativeVJP/Adam results NOT_RUN, no accuracy/grounding/joint/onpolicy training qualification.",
+    "Fresh exact human permission REQUIRED; consumed priorpermission cannot be reused. Local>=60battery proposal does not amend global training gate.",
+    "1200s is operation-start deadline, not hardwall guarantee.",
+    "Adam61 pureaux preview is before parameter rounding, not finite evaluated move or GSPO+aux joint step.",
+    "Mean gradients measured; sum/first directional effects UNKNOWN.",
+    "Zero normalized pixels retain image grid, are not no-image NULL; prior-neutralization can create nonzero blank gradient.",
+    "This review:0model/0generation/0backward/0updates/noholdoutpayload/nofinal100; no human authorization authored.",
+    "Same-family isolated Codex review; CROSS_MODEL_REVIEW=NOT_VERIFIED."
+  ],
+  "native_execution_this_review": false,
+  "native_permission_granted_by_review": false,
+  "private_review_sha256": "e04a4a7756849e5ff1fbf660cd5ed86b95a68ec6f7ffbc02ee0032cbcd776fe4",
+  "reviewed_source_sha256": {
+    "scripts/run_paired_class_margin_probe_v2.py": "bde0bdf6101b0210aa9aaa131270fed80376f759291e2f9d8e6a3f8aff766d0c",
+    "src/mri_rl/paired_class_margin_probe_v2.py": "b7b6eeb7fca43588404a3cb2025894e3c65a1094e94bf29571f815f3e9551107",
+    "tests/test_paired_class_margin_probe_v2.py": "c14ce36cd321e0740e968693358e4cccbc63e293cde5b8b195d4f945868037f1"
+  },
+  "reviewer_findings": [
+    "Fresh25CPUtests passed (16probe+9objective); sharedVJP dualfixture confirms prefix exclusion and2TF/1VJP permeanmargin.",
+    "All67source+17artifact bytehashes match; prepare exact; output absent; no native imports.",
+    "Installed Adam.apply_single AST run using NumPy: delta/g0momentum baseline/increment EXACT_ARRAY_EQUAL in F32fixture; arrays unchanged.",
+    "Reproduced squared-gradient overflow now fails closed; finite m/v/direction/scalar and closure guards verified.",
+    "Current real/blank fingerprints+prompt hashes durable, real label-logps .002 against preserved canonical references.",
+    "11TF/2868expectedpositions/4675hardcap/4VJP; no extra calls for swapped/blank aliases.",
+    "All1942/fullAdam/PythonMLXRNG audited before restore, restoration/release and traceback cleanup retained; no optimizer.update or parameter perturbation."
+  ],
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "paired-class-margin-v2-probe-source-independent-review-v1",
+  "scope_file_sha256": "0dc854bcd5834ecb8f27fb38a867304084f7c2772f2be00a5c1ce08e55670d1f",
+  "scope_sha256": "d4ee98b6e4db3e11e625c9701aaeea274e39f7cc322ea80dbb49ba25e49fc6dc",
+  "spec_file_sha256": "ba4542e6a58daa48cf6a5047532aa6d0fdca6ea5eb8479c1c48c2a442e3e5c89",
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
