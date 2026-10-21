@@ -1,0 +1,96 @@
+{
+  "actual_child": {
+    "elapsed_seconds": 9.897598165960517,
+    "exit_code": 1,
+    "one_dispatch": true,
+    "timed_out": false,
+    "tool_CLI_completion_does_not_mean_cache_success": true
+  },
+  "actual_new_operations": {
+    "GPU_quantizations": 0,
+    "MLX_imports": 0,
+    "backwards": 0,
+    "forwards": 0,
+    "generation": 0,
+    "model_loads": 0,
+    "optimizer_updates": 0
+  },
+  "authorization_and_next_action": {
+    "AB_model_evaluation_update_authorized": false,
+    "CPU_research_unrelated_to_runtime_cache_may_continue_under_its_existing_scope": true,
+    "automatic_retry_allowed": false,
+    "cache_PASS": false,
+    "code_consumption_gate_reached": false,
+    "reason": "Researcher permits one dispatch and expressly forbids automatic retry even if preflight stops before the code consumption gate. No rerun or lowered threshold follows this review."
+  },
+  "evidence": {
+    "launcher_record_sha256": "dcd5fdefc79fa308b95c7388ae5f548f0baa1058dd6d7a5e96c02aca2e4e0ece",
+    "resource_log_sha256": "20dbd8edf390f7440ce1bd8c21b2ada197e87d47308bb8ea513aa18d74e6c734",
+    "stderr_sha256": "45aa47c527dd7bce0ba6c4f8e91eaf46bb0f24ac5372ecc27d80aa21742859ee",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "execution_outcome": "PREFLIGHT_STOP_NO_NEW_GPU_NO_CERTIFICATE",
+  "human_file_sha256": "5d2cef90c6dd63fa9548862949d8d183eae334d4127d2df0f91cd7cf0038af93",
+  "input_sha256": "57f5ccb4d6dee11f3f8961461e613afa6c3191dfbd141a4bf161c065c6479750",
+  "limits": [
+    "Evidence review certifies the recorded preflight failure, not a restored cache or native numerical qualification.",
+    "No parent or oldunit payload was rehashed/deserialized; only smallsavedmetadata/source/pins/receipt inventory were checked.",
+    "No fresh resource rerun/test/MLX/GPU/model operation. Globalflock availability check acquired/released the existing advisory lock without modifying it.",
+    "The preliminary wrong-system-interpreter CPU admission rejection is operator-reported metadata only; it is distinct from this sole worker dispatch and is not counted as a GPU attempt.",
+    "No allocator release byte-count is claimed; backend construction was not reached andthechildclosed.",
+    "This runtime dependency remains blocked; this does not establish any scientific accuracy result or require unrelated CPU literature/research work to stop."
+  ],
+  "operation_count_basis": "Authenticated unchanged execution source and savedtraceback show ctrl.preflight raised before adm.consume and backend_factory; no backend existed. No new native execution was performed by reviewer.",
+  "preserved_state": {
+    "all23sources_and_scope_human_review_pins_match": true,
+    "cache_or_certificate_present": false,
+    "global_flock_independently_available": true,
+    "launcher_reports_lock_file_unchanged": true,
+    "lock_stat_unchanged_by_independent_check": true,
+    "new_unit_files_created": 0,
+    "no_unit0_ordinary_receipt": true,
+    "ordinary_quantized_receipts": 0,
+    "ordinary_retained_receipts": 406,
+    "unit0_explicit_adoption_matches_scope": true,
+    "v3_active_lock_present": false,
+    "v3_consumption_markers_present": false,
+    "v3_failure_receipt_present": false,
+    "v3_ledger_present": false,
+    "why_no_failure_receipt": "Preflight raised before consumption/backend/inner execution try; the closedchild witness andresource line preserve theSTOP."
+  },
+  "prior_engineering_review_file_sha256": "713d17713277a4203cfe1f8a949b839694468629b130f4907facc55ed7438546",
+  "privacy": "Only aggregate technical counts/scalars/hashes; no patient/image/response/model/Adam payloads or private absolute paths.",
+  "private_detail_sha256": "5167cee06ff02503d0cc49e8e6470820cfa592e3134032efd0b7d12e84ec88af",
+  "resource_transition": {
+    "absolute_cap_exceeded": false,
+    "absolute_cap_gib": 16,
+    "battery_percent": 94,
+    "dispatch_available_gib": 8.86346435546875,
+    "dispatch_decision": "CONTINUE",
+    "dispatch_pressure_free_percent": 50,
+    "dispatch_swap_growth_gib": 0.5844140624999987,
+    "interpretation": "Available6.391GiB andpressure36 satisfy the localfloor5.5/free30; OSlevel2iswarning, notcritical. The carried cumulative net-growth1.56958 exceeds1.5 andaloneforcesSTOP.",
+    "net_growth_cap_gib": 1.5,
+    "net_growth_excess_gib": 0.069580078125,
+    "original_swap_baseline_gib": 13.96966796875,
+    "other_heavy_processes": 0,
+    "power_source": "AC",
+    "reason": [
+      "swap_net_growth_over_cap"
+    ],
+    "thermal_state": "SENSOR_UNAVAILABLE",
+    "worker_OS_pressure_level": 2,
+    "worker_available_gib": 6.39141845703125,
+    "worker_boundary": "preflight",
+    "worker_cumulative_net_growth_gib": 1.569580078125,
+    "worker_decision": "STOP",
+    "worker_pressure_free_percent": 36.0,
+    "worker_swap_used_gib": 15.539248046875
+  },
+  "review_verdict": "PASS_WITH_LIMITATIONS_FOR_ACTUAL_STOP_EVIDENCE",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "accuracy-recovery-gpu-cache-v3-actual-preflight-stop-independent-review-v1",
+  "scope_canonical_sha256": "1e586e6312b946029c98c032fc7543d9675476cbb92c1f816bf6cfabfbb19144",
+  "scope_file_sha256": "658542e0c31a39b512a7705a41d08abc5b027e714c5715df32cb47cd960ab4ee"
+}
