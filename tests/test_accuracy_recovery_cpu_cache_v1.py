@@ -416,9 +416,8 @@ def test_plan_layout_predicts_exact_shard_header_and_file_size_without_reading_t
 def test_old_weight_scales_biases_order_would_have_shifted_the_boundary(tmp_path):
     plan, args, units, cache = assembled_small(tmp_path)
     idx = json.loads((cache / 'model.safetensors.index.json').read_text())
-    assert idx['weight_map']['m_never'] if False else True
     old = {}
-    cur, size, k = 1, 0, 0
+    cur, size = 1, 0
     entries = []
     for u in plan['units']:
         n = u['nbytes']
