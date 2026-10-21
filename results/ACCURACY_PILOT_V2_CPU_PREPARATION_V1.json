@@ -1,0 +1,227 @@
+{
+  "schema": "accuracy-pilot-v2-actual-cpu-preparation-v1",
+  "created_utc": "2026-10-21T21:49:17.665905+00:00",
+  "status": "TESTED_CPU_NATIVE_NOT_RUN_PENDING_FRESH_HUMAN",
+  "repository": "MelodyResearch/Vero-to-Brain-MRI",
+  "branch": "research/vero-mri-safe-micro-v1",
+  "Claude_actual_work": {
+    "CLI_version": "2.1.306",
+    "actual_model": "claude-opus-5-5",
+    "implementation_commit": "8c5af12c46c63c7f9590fa2f79d49e73c490850a",
+    "real_schema_fix_commit": "1b018e644f3e44674b0e3bcf88ef1fdabf41da77",
+    "main_implementer": "Claude Code",
+    "normal_CLI_permissions_used": true,
+    "permission_bypass": false,
+    "CPU_V2_tests_passed": 40,
+    "CPU_neighbouring_tests_passed": 226
+  },
+  "Codex_actual_verification": {
+    "final_source_commit": "1b018e644f3e44674b0e3bcf88ef1fdabf41da77",
+    "final_focused_and_reused_CPU_tests_passed": 166,
+    "verification_private_FILE_sha256": "db25cdef3890f322e8850c0a3b1e08311b0d1d338ae9571daea461a820d2fc04",
+    "real_metadata_prepare": "PASS_104_SOURCE_78_METADATA_BINDINGS",
+    "plan_guard": "UNCHANGED_PLAN_APPEND_ONLY_LOG"
+  },
+  "saved_V1_caps": {
+    "counts": {
+      "Parent": {
+        "records": 9,
+        "starts_think_Visible": 9,
+        "lesion_question_10plus": 5,
+        "Visible_Visible_10plus": 1,
+        "contains_sequence_label": 0,
+        "tokens_256": 9,
+        "finish_length": 9,
+        "answer_present": 0,
+        "think_closed": 0
+      },
+      "A": {
+        "records": 9,
+        "starts_think_Visible": 9,
+        "lesion_question_10plus": 5,
+        "Visible_Visible_10plus": 1,
+        "contains_sequence_label": 1,
+        "tokens_256": 9,
+        "finish_length": 9,
+        "answer_present": 0,
+        "think_closed": 0
+      },
+      "B": {
+        "records": 9,
+        "starts_think_Visible": 9,
+        "lesion_question_10plus": 5,
+        "Visible_Visible_10plus": 1,
+        "contains_sequence_label": 1,
+        "tokens_256": 9,
+        "finish_length": 9,
+        "answer_present": 0,
+        "think_closed": 0
+      }
+    },
+    "new_generation_calls": 0,
+    "interpretation": "Observed repetition, 256 returned tokens and no final answer; current-cohort counterfactual beyond256 and correct latent label knowledge NOT_VERIFIED",
+    "private_CPU_pattern_FILE_sha256": "735af3cec468b471c41f965598f7f408feac404f679c76d3a9916549431bfed3"
+  },
+  "saved_V1_paired_evidence": {
+    "denominator_pairs": 12,
+    "patients": 4,
+    "all36_model_pair_input_fingerprint_checks_passed": true,
+    "fully_correct_pairs": {
+      "Parent": 2,
+      "A": 3,
+      "B": 3
+    },
+    "pairs_with_invalid": {
+      "Parent": 7,
+      "A": 8,
+      "B": 8
+    },
+    "predicted_T1_of24": {
+      "Parent": 8,
+      "A": 8,
+      "B": 9
+    },
+    "B_vs_A_additional_correct_discriminating_pairs": 0,
+    "B_vs_A_image_discrimination_conclusion": "INCONCLUSIVE_NOT_DEMONSTRATED",
+    "independent_swap_intervention": false,
+    "new_model_calls": 0,
+    "Claude_analysis_CPU_FILE_sha256": "d5a2c786238a2aca75b5e3fe80d3ee655f1d2d787e6e3d2fa1ac42ec0d8ba0ce",
+    "independent_public_review_FILE_sha256": "9b3d2cb51fc300a6955cae3d0dd78acb4654f5f7135026fe7cd6eefda1406492"
+  },
+  "prompt_preparation": {
+    "variants": 1,
+    "instruction": "Keep the reasoning brief (at most two short sentences) and finish with the required boxed answer.",
+    "source": "generation_recovery_v1.SHORT_INSTRUCTION verbatim",
+    "original_expanded_sequence_prompt_tokens": 213,
+    "concise_reservation_tokens": 233,
+    "CPU_delta_tokens": 20,
+    "measured_rows": 32,
+    "native_expanded_length_recheck_required": true,
+    "decision_data": "FIXED_TRAIN8_ONLY",
+    "max_response_tokens": 256,
+    "verifier_changed": false,
+    "Dallas_prompt_changed": false,
+    "prompt_effect_is_RL_gain": false
+  },
+  "training_preparation": {
+    "parent": "Original P_calibrated13 / Adam52 / boundary114; not V1 Adam53 endpoints",
+    "schedule": {
+      "DEV_disjoint": true,
+      "class_counts": [
+        4,
+        4
+      ],
+      "dallas_rows": 8,
+      "patients": 4,
+      "patients_per_update": 2,
+      "row_level_field": "ABSENT_IN_MODEL_ROWS_BY_DESIGN",
+      "segments": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "sequence_images": 8,
+      "z045": {
+        "basis": "BOUND_DATA56_SOURCE_PROVENANCE: level + patient_key_PRIVATE + original_source_record_id_PRIVATE + modality_PRIVATE + expected_png_sha256 + exact record_PRIVATE per row",
+        "complete_patient_pairs": 4,
+        "level": 45,
+        "row_level_field_used_as_proof": false,
+        "rows_authenticated": 8,
+        "unique_image_sha256": 8
+      }
+    },
+    "logical_responses_per_arm": 64,
+    "physical_training_responses_max": 96,
+    "common_parent_responses_shared_once": 32,
+    "own_current_policy_responses_per_arm_segment1": 32,
+    "max_updates_per_arm": 2,
+    "joint_unit_weight": 0.25,
+    "response_weight_when_admitted": 0.03125,
+    "inactive_unit": "ZERO_NOT_REWEIGHTED",
+    "V1_granularity_difference": "V2 uses two complete patient rounds per macro update; V1 used one. This is not hidden as a group-construction effect.",
+    "only_between_arm_difference": "sequence group construction (A same-prompt F4/T4, B Paired-Prompt F2T2)",
+    "new_loss_reward_LR_LoRA_architecture": false,
+    "resampling_for_success": false
+  },
+  "bounded_future_execution": {
+    "scope_FILE_sha256": "afb0d7ef4af2bc581ffce761faba8975a00f32d6ff2ba9c2f4975c838c115482",
+    "scope_canonical_sha256": "c2b67850da720f2dafc74f349759ca67d031557c19b0a782695155be93a43f7f",
+    "source_count": 104,
+    "metadata_count": 78,
+    "maximum_generation_calls": 184,
+    "maximum_returned_tokens": 47104,
+    "maximum_scorer_forwards": 224,
+    "maximum_scorer_TF_input_positions": 128576,
+    "maximum_backward_calls": 128,
+    "maximum_optimizer_updates": 4,
+    "planned_model_loads": 7,
+    "maximum_model_loads_including_recovery": 9,
+    "maximum_safe_recoveries": 2,
+    "global_operation_start_window_seconds": 19800,
+    "windows_include_waits": true,
+    "conditional_empirical_ETA_minutes": [
+      70,
+      90
+    ],
+    "ETA_is_guarantee_or_calibrated_interval": false,
+    "cache_recovery_operations": 0,
+    "evaluation": "Frozen DEV24 strict greedy only; no candidate/no-image/Dallas post-eval calls",
+    "input_substitution": "reuse exact paired-input evaluations; no extra calls",
+    "automatic_round2": false,
+    "fresh_human_authorization": "NOT_GRANTED"
+  },
+  "resource_policy": {
+    "same_existing_dynamic_policy": true,
+    "RSS_limit_GiB": 14,
+    "MLX_limit_GiB": 12,
+    "MLX_cache_MiB": 256,
+    "minimum_disk_GiB": 26,
+    "minimum_battery_percent": 20,
+    "GREEN": "CONTINUE",
+    "YELLOW": "CONTINUE_SINGLE_MODEL_SERIAL_LOW_CACHE",
+    "RED": "BLOCK_NEW_COMPUTE_COOPERATIVE_RELEASE_OWN_PROCESS",
+    "standalone_9_or10GiB_gate": false,
+    "swap_standalone_stop": false,
+    "severe_memory_disk_OOM_protection_retained": true,
+    "atomic_GPU_and_external_MLX_sampling_limitations": true,
+    "zero_OS_risk_guarantee": false
+  },
+  "engineering_fixes": [
+    "Immutable per-operation journal counter snapshots with nonrefundable spent ledger",
+    "Verify all completed/skipped stages, terminal/exits/closed logs and skip reasons before reuse",
+    "Reject duplicate terminal before checkpoint loader or backend mutation",
+    "Authenticate actual DATA56 top-level z045/source/modalities/planned image SHA schema; no invented row-level field"
+  ],
+  "preservation": {
+    "plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "plan_lock_sha256": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "historical_source_results_checkpoints_not_overwritten": true,
+    "final100_new16_predictions_read": false
+  },
+  "this_task_native_model_calls": 0,
+  "this_task_optimizer_updates": 0,
+  "V2_accuracy": "NOT_RUN",
+  "limitations": [
+    "DEV24 is repeatedly explored internal data with four patients, not independent generalization.",
+    "Paired substitution is reused main evaluation evidence, not a new randomized control or clinical grounding proof.",
+    "Dallas remains ENGINEERING_ONLY and this scope does not measure post-update Dallas retention.",
+    "CPU tests and source review cannot qualify native accuracy or all-context F32 parity.",
+    "No automatic8-patient/4-update expansion."
+  ],
+  "independent_exact_review": {
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "reviewer_id": "Codex /root/recovery_exact_scope_review",
+    "private_review_FILE_sha256": "d0e38bf4eb60ab026bf361af54535c43176e012ad06a5e516a4fad063bfaf1b5",
+    "public_review_FILE_sha256": "56d0cf9969c56dbd5ec30eb533855e22fd88583bdb9bef96a8a73723fb07f7bc",
+    "native_or_accuracy_qualification": false
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "accuracy_improvement": "NOT_MEASURED_FOR_PILOT_V2",
+  "author_commits": [
+    "8c5af12c46c63c7f9590fa2f79d49e73c490850a",
+    "1b018e644f3e44674b0e3bcf88ef1fdabf41da77"
+  ],
+  "author_implementation": "Claude Code (claude-opus-5-5), actual CLI2.1.306 as observed by orchestrator",
+  "checks": {
+    "RNG_only_restore_does_not_reinstall_Adam": true,
+    "TRAIN_schedule": {
+      "DEV_disjoint": true,
+      "class_counts": [
+        4,
+        4
+      ],
+      "dallas_rows": 8,
+      "patients": 4,
+      "patients_per_update": 2,
+      "row_level_field": "ABSENT_IN_MODEL_ROWS_BY_DESIGN",
+      "segments": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          4,
+          5,
+          6,
+          7
+        ]
+      ],
+      "sequence_images": 8,
+      "z045": {
+        "basis": "BOUND_DATA56_SOURCE_PROVENANCE: level + patient_key_PRIVATE + original_source_record_id_PRIVATE + modality_PRIVATE + expected_png_sha256 + exact record_PRIVATE per row",
+        "complete_patient_pairs": 4,
+        "level": 45,
+        "row_level_field_used_as_proof": false,
+        "rows_authenticated": 8,
+        "unique_image_sha256": 8
+      }
+    },
+    "actual_updates_can_be_0_1_or_2": true,
+    "allocator_release_before_reusable_stage_commit": true,
+    "automatic_round2": false,
+    "conditional_EP_reuse_V1_parent_only_when_original_prompt": true,
+    "current_frozen_real_spec_reprepare_matches_exact_scope": true,
+    "each_arm_segment1_owns_current_policy_and_RNG": true,
+    "fresh_action_all_stage_human_grant_required": true,
+    "frozen_plan_and_lock_byte_identical_to_0bea080": true,
+    "full_checkpoint_Adam_RNG_and_atomic_manifest_last_journals": true,
+    "inactive_units_zero_not_reweighted": true,
+    "incomplete_operations_block_replay_spent_not_refunded": true,
+    "joint_response_weight": 0.03125,
+    "joint_unit_weight": 0.25,
+    "metadata_bindings": 78,
+    "method_specific_B_vs_A_pair_evidence_required_by_frozen_scale_rule": true,
+    "no_early_stop_before_four_patients_on_reaching_two_updates": true,
+    "no_fake_rollout_or_advantages_no_resampling": true,
+    "no_native_modules_imported_during_prepare_or_review": true,
+    "old_consumed_V1_permission_not_reused": true,
+    "original_dynamic_resource_policy_unchanged": true,
+    "paired_response_metrics_require_actual_fingerprint_equivalence_and_separate_invalids": true,
+    "parent": "Original P_calibrated13/Adam52/boundary114, not V1 Adam53A/B",
+    "per_backend_array_leaf_copy_ceiling_inherited": 10000,
+    "plan_guard_status": "UNCHANGED_PLAN_APPEND_ONLY_LOG",
+    "same_group_reward_loss_LR_LoRA_and_data_budget_across_A_B": true,
+    "single_model_global_lock_and_owned_child_monitor": true,
+    "source_bindings": 104,
+    "two_macroupdates_each_four_units": true,
+    "zero_update_arm_alias_only_no_fake_independent_evaluation": true
+  },
+  "conditional_flow": {
+    "A": "always; fresh disk Adam52, segment0 common, segment1 own policy",
+    "B": "always; identical to A except Paired-Prompt grouping",
+    "C": "always; common rollout units 0-3 under the frozen prompt condition",
+    "EA": "run iff arm A made >=1 update, else Parent alias",
+    "EB": "run iff arm B made >=1 update, else Parent alias",
+    "EP": "run iff ADOPT_CONCISE; if KEEP_ORIGINAL the hash-bound saved V1 Parent DEV24 rows are reused (same protocol), no call",
+    "P": "always; decision by core.prompt_decision (frozen rule) on 8 TRAIN images, Parent Adam52 greedy"
+  },
+  "created_at_utc": "2026-10-21T21:48:26.120491+00:00",
+  "human_execution_permission_issued": false,
+  "input_sha256": "f0fce1a5a7d5ca8fee117b37befc2f27db577f89462a636d8a019d60a40a01b3",
+  "limitations": [
+    "This is exact source/metadata/CPU approval for future execution preparation, not human permission or a native qualification. No PilotV2 model load, generation, backward, optimizer update or accuracy measurement occurred.",
+    "The new native two-macro path has not run on MLX. Existing V1 actual restore/F32 evidence is inherited narrowly; CPU fake success cannot establish future native memory, gradient, checkpoint or accuracy success.",
+    "The TRAIN8 prompt diagnostic chooses between exactly one fixed concise condition and original according to its predeclared rule. Any resulting prompt gain must remain separate from RL gain; all A/B/Parent accuracy comparisons use the selected common condition.",
+    "V2 batches two complete patient rounds per update. Relative to V1, the batch doubles and per-response joint weight halves from1/16to1/32; V1-to-V2 changes cannot be attributed exclusively to Paired-Prompt grouping. Within V2 A/B only sequence grouping differs.",
+    "The first32 sampled responses are shared only at the original common parent. Segment1 must use each arms own current policy and persisted RNG; if weights diverge those later rollouts are different draws, with the same fixed sampling rule and data/call budget.",
+    "All four TRAIN patients are processed through two complete macros even if some groups are inactive. Actual updates remain0/1/2per arm; extra active groups or gradient norms are not accuracy gains.",
+    "Existing paired evaluations support equivalent fixed-input conditional-response analysis, not a new randomized independent image-swap intervention or anatomical/clinical grounding. INVALID changes must not count as valid visual discrimination.",
+    "DEV24 is four previously explored patients. Dallas is an ENGINEERING_ONLY training control and no Dallas retention evaluation is included. Candidate scores/null images/new16/final100 are not part of this scope; no generalization claim follows.",
+    "Up to2cooperative recoveries are allowed only within9total load attempts and original cumulative stage/global windows; waits never reset deadlines. Incomplete scientific operations are INDETERMINATE_NO_REPLAY, not losslessly replayable.",
+    "GREEN/YELLOW/RED safeguards retain RSS14GiB, MLX12GiB, disk26GiB, battery20percent and severe-memory/OOM checks, but sampled monitors have atomic-operation blind spots. Thermal telemetry may remain unavailable and no system-stability/OOM guarantee is possible.",
+    "Performance/cost-model windows are bounded estimates from V1, not guaranteed runtime or evidence of compute-efficiency improvement. Scope counts API endpoints rather than every internal kernel/checkpoint recomputation.",
+    "Claude Code implemented the new code at its actual commits; this isolated Codex review is independent source/CPU review. No new cross-family native-results review is claimed because PilotV2 remains NOT_RUN."
+  ],
+  "maximum_calls": {
+    "DEV_greedy": 72,
+    "TRAIN_prompt_diagnostic_greedy": 16,
+    "backward_calls": 128,
+    "cache_quantizations": 0,
+    "candidate_calls": 0,
+    "generated_response_tokens": 47104,
+    "generated_responses_total": 184,
+    "global_window_seconds": 19800,
+    "optimizer_updates_per_arm": 2,
+    "optimizer_updates_total": 4,
+    "planned_serial_loads": 7,
+    "sampled_training_responses": 96,
+    "serial_load_attempts_including_maximum_two_recoveries": 9,
+    "sum_stage_windows_seconds": 17900,
+    "teacherforced_positions_concise_worst_case": 128576,
+    "teacherforced_positions_original": 126336,
+    "training_gradient_scorer_forwards": 128,
+    "training_own_old_scorer_forwards": 96,
+    "training_scorer_forwards_total": 224
+  },
+  "metadata_file_count": 78,
+  "native_cross_family_result_review": "NOT_RUN",
+  "native_execution_status": "NOT_RUN",
+  "privacy_review": "Only aggregate exposure, scalar budgets, hashes, source commit references and source-review findings; no patient identities, raw answers/tokens, MRI payloads, weights, optimizer/RNG arrays or credentials.",
+  "private_exact_review_FILE_sha256": "d0e38bf4eb60ab026bf361af54535c43176e012ad06a5e516a4fad063bfaf1b5",
+  "prompt": {
+    "applies_to": "mri_sequence question only",
+    "concise_sequence_prompt_length": 233,
+    "decision_rule": "ADOPT_CONCISE iff, on the SAME 8 frozen TRAIN images and Parent Adam52 greedy: concise invalid <= original invalid, no class loses a correct answer, and (concise invalid < original invalid OR concise correct > original correct). Otherwise KEEP_ORIGINAL. Frozen before any call; DEV24 is never used for this decision.",
+    "instruction_sha256": "d374337b3f1b34aa9afef3b8ff65d35e2d35ef4b6334c326dd089fa37178f100",
+    "instruction_source": "generation_recovery_v1.SHORT_INSTRUCTION (verbatim)",
+    "max_tokens": 256,
+    "verifier_changed": false
+  },
+  "resolved_material_findings": [
+    {
+      "evidence": "Actual CPU Journal counterexample reproduced the failure before the fix; FILEc4ed435371238de0181e75598c5caab83f0b697ec7473dcc5f8efa5a6cafde2c.",
+      "issue": "Mutable arm ledger was captured by an immutable segment0 journal manifest and invalidated by segment1 spending.",
+      "resolution": "Per-operation immutable counters snapshots are journal-bound. The persistent mutable spent ledger is separately retained and cannot fall below committed receipts.",
+      "status": "RESOLVED_TESTED_CPU"
+    },
+    {
+      "issue": "Controller resume trusted completed/skipped stage marker existence without authenticating every completed predecessor.",
+      "resolution": "_completed authenticates exact scope/terminal/exit/reaped lock/closed logs. Skip reasons are re-derived and must have no native artifacts. _prior authenticates all earlier stages and the root loop uses _completed.",
+      "status": "RESOLVED_TESTED_CPU"
+    },
+    {
+      "issue": "Duplicate completed core.run_arm could load segment0 before discovering segment1 already committed.",
+      "resolution": "Completed segment1 is rejected before any loader/state mutation; regression confirms0loads0generation and unchanged fake state.",
+      "status": "RESOLVED_TESTED_CPU"
+    },
+    {
+      "issue": "Initial z045 source-proof code used a nonexistent DATA56 schema.",
+      "resolution": "Actual schema level45,patient binding,original source record id,modality,expected PNG SHA and exact record are checked against8scheduled rows. Real metadata prepare reproduces4complete pairs/8unique image SHAs. Missing model-visible level is not evidence.",
+      "status": "RESOLVED_REAL_METADATA_PREPARE_CPU"
+    }
+  ],
+  "reviewer_id": "Codex /root/recovery_exact_scope_review",
+  "reviewer_kind": "isolated_codex",
+  "run_limits": {
+    "cache_recovery_operations": 0,
+    "completed_results": "HASH_VERIFIED_REUSE_ONLY",
+    "global_operation_start_window_seconds": 19800,
+    "incomplete_operation": "INDETERMINATE_NO_REPLAY",
+    "max_attempts_per_stage": 3,
+    "max_automatic_recoveries": 2,
+    "max_controller_launches": 3,
+    "model_loads_max": 9,
+    "note": "POLICY.compound_seconds/model_load fields belong to the executed V1 scope; V2 uses these limits.",
+    "planned_model_loads": 7,
+    "single_resident_model": true,
+    "wait_counts_against_deadlines": true,
+    "wait_samples_before_restart": 3
+  },
+  "schema": "accuracy-pilot-v2-exact-independent-review-v1",
+  "scope_FILE_sha256": "afb0d7ef4af2bc581ffce761faba8975a00f32d6ff2ba9c2f4975c838c115482",
+  "scope_sha256": "c2b67850da720f2dafc74f349759ca67d031557c19b0a782695155be93a43f7f",
+  "source_file_count": 104,
+  "spec_FILE_sha256": "be933948d1e8680e15c3a393ecac0beb409c14c99185d4cb6814ced0acfffb87",
+  "stage_budgets": {
+    "A": {
+      "backward_calls": 64,
+      "detached_old_forwards": 32,
+      "generated_response_tokens": 8192,
+      "model_loads": 1,
+      "optimizer_updates": 2,
+      "sampled_responses": 32,
+      "window_seconds": 3600,
+      "worst_case_seconds": 3064.0
+    },
+    "B": {
+      "backward_calls": 64,
+      "detached_old_forwards": 32,
+      "generated_response_tokens": 8192,
+      "model_loads": 1,
+      "optimizer_updates": 2,
+      "sampled_responses": 32,
+      "window_seconds": 3600,
+      "worst_case_seconds": 3064.0
+    },
+    "C": {
+      "backward_calls": 0,
+      "detached_old_forwards": 32,
+      "generated_response_tokens": 8192,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "sampled_responses": 32,
+      "window_seconds": 2900,
+      "worst_case_seconds": 2394.0
+    },
+    "EA": {
+      "backward_calls": 0,
+      "generated_response_tokens": 6144,
+      "greedy_calls": 24,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "window_seconds": 2100,
+      "worst_case_seconds": 1698.0
+    },
+    "EB": {
+      "backward_calls": 0,
+      "generated_response_tokens": 6144,
+      "greedy_calls": 24,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "window_seconds": 2100,
+      "worst_case_seconds": 1698.0
+    },
+    "EP": {
+      "backward_calls": 0,
+      "generated_response_tokens": 6144,
+      "greedy_calls": 24,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "window_seconds": 2100,
+      "worst_case_seconds": 1698.0
+    },
+    "P": {
+      "backward_calls": 0,
+      "generated_response_tokens": 4096,
+      "greedy_calls": 16,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "window_seconds": 1500,
+      "worst_case_seconds": 1162.0
+    }
+  },
+  "tests": [
+    {
+      "actual": "40passed in0.42s",
+      "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=src python3 -m pytest -q tests/test_accuracy_pilot_v2.py",
+      "scope": "CPU synthetic/source fixtures, no MLX"
+    },
+    {
+      "actual": "UNCHANGED_PLAN_APPEND_ONLY_LOG; errors[]",
+      "command": "python3 scripts/check_research_plan_guard.py --base 0bea080ce312c02b2fddd7c272c2deb757c08be9 --head HEAD"
+    }
+  ],
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

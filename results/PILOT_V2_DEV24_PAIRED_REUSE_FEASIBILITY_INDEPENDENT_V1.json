@@ -1,0 +1,161 @@
+{
+  "DEV24_FILE_sha256": "d9f3d5190af22e32f5475b0e7829201480c51d7978ec6437e9a3c15d9b254784",
+  "V1_final_private_review_FILE_sha256": "395afec11590bde3764070f0a48eb785b159f1c40c51600d80cb88bcdfec4806",
+  "created_at_utc": "2026-10-21T21:10:48.653079+00:00",
+  "cross_model_review": "NOT_VERIFIED",
+  "four_round_TRAIN_exposure": {
+    "Dallas_class_counts": {
+      "different": 4,
+      "same": 4
+    },
+    "Dallas_context_slots": 8,
+    "complete_rounds": 4,
+    "complete_z045_FLAIR_T1_pairs": 4,
+    "first_two_rounds_if_stopped_early": {
+      "Dallas_context_slots": 4,
+      "complete_patient_pairs": 2,
+      "sequence_images": 4
+    },
+    "frozen_source_units": 8,
+    "meaning": "The frozen four-round source contains four actual unique complete patient pairs. Executing only two rounds must be reported as two-pair exposure, not four; future driver stopping behavior is not assessed here.",
+    "per_round": [
+      {
+        "complete_patient_pairs": 1,
+        "matching_Dallas_contexts": 2,
+        "round": 1,
+        "sequence_images": 2
+      },
+      {
+        "complete_patient_pairs": 1,
+        "matching_Dallas_contexts": 2,
+        "round": 2,
+        "sequence_images": 2
+      },
+      {
+        "complete_patient_pairs": 1,
+        "matching_Dallas_contexts": 2,
+        "round": 3,
+        "sequence_images": 2
+      },
+      {
+        "complete_patient_pairs": 1,
+        "matching_Dallas_contexts": 2,
+        "round": 4,
+        "sequence_images": 2
+      }
+    ],
+    "sequence_class_counts": {
+      "FLAIR": 4,
+      "contrast-enhanced T1": 4
+    },
+    "sequence_images": 8,
+    "unique_Dallas_record_ids": 8,
+    "unique_sequence_TRAIN_patients": 4,
+    "unique_sequence_images": 8
+  },
+  "frozen_four_round_source_FILE_sha256": "641316c82f435c17b9a410c694050b85e15d9d1fbb1b9284a475d5d9770c7890",
+  "identity_checks": {
+    "36_model_pair_checks": 36,
+    "72_completed_output_hashes_authenticated": true,
+    "actual_inputids_attention_grid_fingerprints_equal_within_pair": true,
+    "actual_pixel_shape_dtype_equal_and_payload_hash_different": true,
+    "actual_rendered_prompt_hash_equal_within_pair": true,
+    "levels": [
+      45,
+      91,
+      136
+    ],
+    "model_visible_question_text_equal_within_pair": true,
+    "new_payload_reads_or_processor_reconstruction": false,
+    "pairs_per_checkpoint": 12,
+    "patients": 4,
+    "raw_prompt_difference_only_the_single_image_reference": true,
+    "raw_prompt_object_equal": false,
+    "same_patient_same_level": true,
+    "same_processor_model_config_F32_greedy_settings_via_frozen_runtime_and_scope": true
+  },
+  "limitations": [
+    "This reuses existing paired real-image evaluations; it is not an independently randomized new image-swap intervention and adds0inference calls.",
+    "Raw row prompt objects differ in the one image-reference path as expected; question/text segments and normalized single-image placeholder agree. Full rendered prompt text is not resaved, but actual rendered-prompt hashes and prepared input token fingerprints agree.",
+    "Processor/settings equivalence follows the shared pinned runtime/configuration and actual source-bound F32 greedy path; this review does not independently rebuild processor tensors.",
+    "Conditional response changes can show dependence on differing paired inputs but do not establish anatomical or clinical grounding or exclude acquisition/domain shortcuts.",
+    "DEV24 contains four previously explored development patients and three levels. Pair metrics are correlated repeated observations, not12independent patients.",
+    "Invalid handling is separated from valid opposite-class responses. A raw response-change rate must not count INVALID changes as successful visual discrimination.",
+    "The frozen four-round metadata is not evidence all four rounds have actually trained. Hitting an update cap after two rounds cannot be described as four-pair exposure.",
+    "No new16/final100 outcomes, new native computation, image audit, training, source changes or optimizer updates were performed."
+  ],
+  "native_calls": 0,
+  "optimizer_updates": 0,
+  "paired_conditional_response_metrics": {
+    "A": {
+      "any_invalid_pair_rate": 0.6666666666666666,
+      "any_invalid_pairs": 8,
+      "any_prediction_change_rate_including_invalid": 0.8333333333333334,
+      "any_prediction_changes_including_invalid": 10,
+      "both_invalid_pairs": 1,
+      "both_predict_FLAIR": 0,
+      "both_predict_T1": 1,
+      "both_valid_pair_rate": 0.3333333333333333,
+      "both_valid_pairs": 4,
+      "exactly_one_invalid_pairs": 7,
+      "fully_correct_given_both_valid": 0.75,
+      "fully_correct_pair_rate": 0.25,
+      "fully_correct_pairs": 3,
+      "paired_comparisons": 12,
+      "reversed_both_wrong_pairs": 0,
+      "same_valid_class_on_both_images": 1,
+      "same_valid_class_pair_rate": 0.08333333333333333,
+      "valid_opposite_class_response_rate": 0.25,
+      "valid_opposite_class_responses": 3
+    },
+    "B": {
+      "any_invalid_pair_rate": 0.6666666666666666,
+      "any_invalid_pairs": 8,
+      "any_prediction_change_rate_including_invalid": 0.8333333333333334,
+      "any_prediction_changes_including_invalid": 10,
+      "both_invalid_pairs": 1,
+      "both_predict_FLAIR": 0,
+      "both_predict_T1": 1,
+      "both_valid_pair_rate": 0.3333333333333333,
+      "both_valid_pairs": 4,
+      "exactly_one_invalid_pairs": 7,
+      "fully_correct_given_both_valid": 0.75,
+      "fully_correct_pair_rate": 0.25,
+      "fully_correct_pairs": 3,
+      "paired_comparisons": 12,
+      "reversed_both_wrong_pairs": 0,
+      "same_valid_class_on_both_images": 1,
+      "same_valid_class_pair_rate": 0.08333333333333333,
+      "valid_opposite_class_response_rate": 0.25,
+      "valid_opposite_class_responses": 3
+    },
+    "Parent": {
+      "any_invalid_pair_rate": 0.5833333333333334,
+      "any_invalid_pairs": 7,
+      "any_prediction_change_rate_including_invalid": 0.5833333333333334,
+      "any_prediction_changes_including_invalid": 7,
+      "both_invalid_pairs": 2,
+      "both_predict_FLAIR": 1,
+      "both_predict_T1": 2,
+      "both_valid_pair_rate": 0.4166666666666667,
+      "both_valid_pairs": 5,
+      "exactly_one_invalid_pairs": 5,
+      "fully_correct_given_both_valid": 0.4,
+      "fully_correct_pair_rate": 0.16666666666666666,
+      "fully_correct_pairs": 2,
+      "paired_comparisons": 12,
+      "reversed_both_wrong_pairs": 0,
+      "same_valid_class_on_both_images": 3,
+      "same_valid_class_pair_rate": 0.25,
+      "valid_opposite_class_response_rate": 0.16666666666666666,
+      "valid_opposite_class_responses": 2
+    }
+  },
+  "private_evidence_FILE_sha256": "ff1da5871f8e2756edad2efe636786c5b0218d7b0649b1db3dd8542496aa6d8b",
+  "reviewer_id": "Codex /root/recovery_exact_scope_review",
+  "reviewer_kind": "isolated_codex",
+  "schema": "pilot-v2-saved-dev-paired-input-reuse-feasibility-v1",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "source_commit": "0bea080ce312c02b2fddd7c272c2deb757c08be9",
+  "status": "SAVED_EVALUATION_REUSE_FEASIBLE_FOR_FIXED_INPUT_CONDITIONAL_RESPONSE"
+}
