@@ -236,42 +236,82 @@ def load_historical(path, sha256, expected_plan_sha256, expected):
     return h
 
 
-def verify_assembly(plan, cache_dir, shard_limit_bytes=4 << 30):
-    """Deterministic key->shard binding and byte sizes recomputed from the PLAN (not from this run's output)."""
+# The installed MLX save_safetensors writes tensors in SORTED-name header order (observed in the real unit files:
+# __metadata__, biases, scales, weight) and quant_convert.assemble_cache copies each unit's parts in that saved header order.
+# The previous weight/scales/biases prediction therefore moved the 4 GiB shard boundary (lm_head.scales/biases). The sorted
+# assumption is not trusted blindly: verify_assembly STOPS unless every authenticated unit file really has this order.
+PART_ORDER = ('biases', 'scales', 'weight')
+RETAIN_ORDER = ('tensor',)
+
+
+def _quant_parts(u):
+    """(dtype, shape, nbytes) of each saved part from the plan only: 4-bit packs 8 values per uint32, one bf16 scale and bias per 64."""
+    rows, cols = u['shape']
+    if cols % 64 or u['nbytes'] != rows * cols * 2:
+        raise ValueError('Quantized unit shape/bytes inconsistent with BF16')
+    sb = ('BF16', [rows, cols // 64], rows * (cols // 64) * 2)
+    return {'biases': sb, 'scales': sb, 'weight': ('U32', [rows, cols // 8], rows * (cols // 8) * 4)}
+
+
+def plan_layout(plan, shard_limit_bytes=4 << 30):
+    """Exact assembled shard layout (names, grouping, header JSON, file bytes) derived from the PLAN alone."""
     entries = []
     for u in plan['units']:
-        n = u['nbytes']
-        if u['action'] == 'quantize':   # packed 4-bit weight, bf16 scales and biases per 64-element group
-            entries += [(u['module'] + '.weight', n // 4), (u['module'] + '.scales', n // 64), (u['module'] + '.biases', n // 64)]
+        if u['action'] == 'quantize':
+            parts = _quant_parts(u)
+            entries += [(u['module'] + '.' + p, *parts[p]) for p in PART_ORDER]
         else:
-            entries.append((u['normalized_key'], n))
+            entries.append((u['normalized_key'], 'BF16', list(u['shape']), u['nbytes']))
     groups, cur, size = [], [], 0
-    for e in entries:                   # same grouping rule as quant_convert.assemble_cache
-        if cur and size + e[1] > shard_limit_bytes:
+    for e in entries:                       # same grouping rule as quant_convert.assemble_cache
+        if cur and size + e[3] > shard_limit_bytes:
             groups.append(cur); cur, size = [], 0
-        cur.append(e); size += e[1]
+        cur.append(e); size += e[3]
     groups.append(cur)
-    want, sizes = {}, {}
+    out = []
     for gi, group in enumerate(groups, 1):
-        fname = f'model-{gi:05d}-of-{len(groups):05d}.safetensors'
-        for name, n in group:
-            want[name] = fname; sizes[name] = n
+        header, pos = {}, 0
+        for name, dtype, shape, n in group:
+            header[name] = {'dtype': dtype, 'shape': shape, 'data_offsets': [pos, pos + n]}; pos += n
+        raw = json.dumps(header, separators=(',', ':')).encode()
+        raw += b' ' * (-len(raw) % 8)
+        out.append({'file': f'model-{gi:05d}-of-{len(groups):05d}.safetensors', 'header': header, 'payload_bytes': pos,
+                    'file_bytes': 8 + len(raw) + pos})
+    return out
+
+
+def verify_unit_header_order(plan, units_dir):
+    for u in plan['units']:
+        header, _ = qc._read_st_header(Path(units_dir) / f"unit_{u['index']:04d}.safetensors")
+        if list(header) != list(PART_ORDER if u['action'] == 'quantize' else RETAIN_ORDER):
+            raise ValueError('Unit file header order differs from the assumed sorted order; layout model invalid: unit %d' % u['index'])
+
+
+def verify_assembly(plan, cache_dir, shard_limit_bytes=4 << 30, units_dir=None, historical_shards=None):
+    """Key->shard mapping, shard headers (incl. order) and file bytes recomputed from the PLAN; the cache's own index is only compared."""
+    layout = plan_layout(plan, shard_limit_bytes)
     cache_dir = Path(cache_dir)
+    if units_dir is not None:
+        verify_unit_header_order(plan, units_dir)
+    if historical_shards is not None and {s['file']: s['file_bytes'] for s in layout} != {k: v['bytes'] for k, v in historical_shards.items()}:
+        raise ValueError('Plan-derived shard names/bytes differ from the pinned historical shards')
+    want = {name: s['file'] for s in layout for name in s['header']}
     index = json.loads((cache_dir / 'model.safetensors.index.json').read_text())
-    if index['weight_map'] != want or index['metadata']['total_size'] != sum(sizes.values()):
+    total = sum(s['payload_bytes'] for s in layout)
+    if index['weight_map'] != want or index['metadata']['total_size'] != total:
         raise ValueError('Cache index differs from the plan-derived key/shard mapping')
-    if {p.name for p in cache_dir.glob('*.safetensors')} != set(want.values()):
+    if {p.name for p in cache_dir.glob('*.safetensors')} != {s['file'] for s in layout}:
         raise ValueError('Cache shard files differ from the plan-derived set')
-    for fname in set(want.values()):
-        header, _ = qc._read_st_header(cache_dir / fname)
-        if {k: v['data_offsets'][1] - v['data_offsets'][0] for k, v in header.items()} != {k: sizes[k] for k, f in want.items() if f == fname}:
-            raise ValueError('Cache tensor byte sizes differ from the plan-derived sizes: ' + fname)
+    for s in layout:
+        header, _ = qc._read_st_header(cache_dir / s['file'])
+        if header != s['header'] or list(header) != list(s['header']) or (cache_dir / s['file']).stat().st_size != s['file_bytes']:
+            raise ValueError('Cache shard header/order/bytes differ from the plan-derived layout: ' + s['file'])
 
 
 def verify_historical(plan, units_dir, cache_dir, source_dir, qmap, hist, expected):
     """certify_cache (consistency with this run's verified units) + the pinned historical identity + plan-derived assembly."""
     from mri_rl.quant_cache import certify_cache
-    verify_assembly(plan, cache_dir)
+    verify_assembly(plan, cache_dir, units_dir=units_dir, historical_shards=hist['shards'])
     cert = certify_cache(plan, units_dir, cache_dir, source_dir, qmap)
     diff = [k for k in HISTORICAL_KEYS if cert.get(k) != hist.get(k)]
     if diff:
