@@ -1,0 +1,118 @@
+{
+  "schema": "safe-micro-staged-pilot-preparation-actual-v1",
+  "status": "TESTED_CPU_STAGE1_READY_FOR_FRESH_HUMAN_AUTHORIZATION",
+  "previous_compound_scope": "REVOKED_NOT_EXECUTED",
+  "parent": "P_calibrated13 / Adam52 / boundary114",
+  "actual_this_round": {
+    "model_loads": 0,
+    "GPU_operations": 0,
+    "generation": 0,
+    "native_backward": 0,
+    "optimizer_updates": 0,
+    "accuracy": "NOT_RUN"
+  },
+  "CPU_verification": {
+    "focused_tests_passed": 46,
+    "seconds": 2.18,
+    "kind": "synthetic fixtures; no MRI model"
+  },
+  "Claude_actual": {
+    "version": "2.1.306",
+    "model": "claude-sonnet-5-5",
+    "session": "38dbbb08-12d1-4541-bcd9-e68f83666cc6",
+    "turns": 25,
+    "exit_code": 0,
+    "commit": "4f95b4a382e95ee3155242b75edcd98ae560f823",
+    "scope": "micro transaction and lazy native bridge; source and synthetic tests only",
+    "TDD_limit": "implementation preceded tests; subsequent mutation checks, not strict test-first"
+  },
+  "Codex_actual": "cache-only admission, local resource helper, external exit witness, focused verification, isolated independent Stage1 review",
+  "stage1": {
+    "scope_file_sha256": "49dad3571308ed23af9efb1cec6fd78cbeb8e66e7760a724953fb3316d332419",
+    "canonical_scope_sha256": "d372c429c46536c928297e5066f088e92dfff15fff0291dcd4f9e3c16bb576ee",
+    "review": "results/SAFE_MICRO_STAGE1_CACHE_ONLY_INDEPENDENT_REVIEW_V1.json",
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "budget": {
+      "new_cache_units_max": 343,
+      "new_direct_quantizations_max": 343,
+      "new_module_quantizations_max": 343,
+      "new_underlying_quantizations_max": 686,
+      "cumulative_underlying_quantizations_max": 688,
+      "retained_units_adopted": 406,
+      "saved_unit0_adopted": 1,
+      "operation_start_window_seconds": 1800,
+      "model_loads": 0,
+      "generation": 0,
+      "forward": 0,
+      "backward": 0,
+      "updates": 0,
+      "automatic_next_stage": false,
+      "battery_floor_percent_this_round": 20,
+      "original_swap_baseline_gib": 13.96966796875
+    },
+    "actual": "NOT_RUN",
+    "human_grant": "NOT_ISSUED"
+  },
+  "resources": {
+    "GPU_operations": 0,
+    "OS_pressure_level": "1",
+    "Pacific": "2026-10-21T00:19:43.352391-07:00",
+    "authorization_consumed": false,
+    "effective_swap_cap_GiB": 15.46966796875,
+    "global_lock_no_open_holders": true,
+    "mlx_imported": false,
+    "model_loads": 0,
+    "physical_memory_bytes": 38654705664,
+    "sample": {
+      "available_gib": 9.58477783203125,
+      "battery_percent": 78,
+      "mlx_active_gib": null,
+      "mlx_peak_gib": null,
+      "monotonic_seconds": 420116.455676333,
+      "other_heavy_processes": 0,
+      "power_source": "BATTERY",
+      "pressure_free_percent": 54.0,
+      "process_rss_gib": 0.0174713134765625,
+      "swap_used_gib": 14.704892578125,
+      "thermal_state": "SENSOR_UNAVAILABLE"
+    },
+    "swap_headroom_GiB": 0.764775390625001
+  },
+  "model_admission": "HOLD under proposed >=10 GiB available loading floor at recorded sample; no loading permission",
+  "planned_micro": {
+    "patients": 1,
+    "sequence_images": 2,
+    "Dallas_rows": 2,
+    "shared_responses": 16,
+    "K4_groups_per_arm": 4,
+    "max_total_updates_per_arm": 1,
+    "returned_tokens_max": 4096,
+    "old_forwards_max": 16,
+    "gradient_forward_backward_max": 32,
+    "teacher_forced_positions_max": 27072,
+    "joint_gradient": "0.5 sequence + 0.5 Dallas, inactive block not renormalized; zero joint signal => no update",
+    "status": "CPU_IMPLEMENTED_NATIVE_NOT_RUN_ENTRY_NOT_AUTHORIZED"
+  },
+  "planned_DEV24": {
+    "patients": 4,
+    "FLAIR": 12,
+    "enhanced_T1": 12,
+    "models": 3,
+    "greedy_calls_max": 72,
+    "candidate_calls_max": 216,
+    "returned_tokens_max": 18432,
+    "teacher_forced_positions_max": 91800,
+    "status": "FROZEN_MEMBERSHIP_NOT_RUN",
+    "limitations": "repeatedly explored internal DEV; sequence-only readout does not measure Dallas retention"
+  },
+  "stage_boundaries": [
+    "CACHE_ONLY",
+    "SINGLE_LOAD_FORWARD",
+    "MICRO_TRAIN",
+    "SMALL_PILOT",
+    "DEV24_EVAL"
+  ],
+  "remaining": "Stage2+ exact production scopes/admission need actual cache certificate, child exit/release/resource prerequisites and separate review plus permission. Stage1 token cannot enter training.",
+  "decision": "INCONCLUSIVE; no scaling without actual matched accuracy evidence",
+  "privacy": "No patient IDs, image bytes, private model/state, raw responses or token arrays in this public aggregate; no final100/new16 predictions accessed."
+}
