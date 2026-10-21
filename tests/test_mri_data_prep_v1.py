@@ -389,3 +389,32 @@ def test_run_pilot_public_output_has_no_paths(tmp_path):
     assert res["legacy_render_self_deterministic"] is True
     assert len(list((priv / "images").glob("*.png"))) >= 2
     assert res["pair_geometry"]["k1"]["registration_proven"] is False
+
+
+def test_partner_emitted_flags_inherit_reference_selection_abstain(tmp_path):
+    import json
+    x, y, z = np.indices((12, 12, 10))
+    p = (1 + 3 * x + 2 * y + z).astype(np.float32)
+    r = p.copy()
+    r[:, :, :4] = 0
+    r[:4, :5, :4] = p[:4, :5, :4]
+    a = np.diag([-1.0, 1.0, 1.0, 1.0])
+    rows = []
+    for oid, mod, v in [("r1", "flair", r), ("r2", "t1ce", p)]:
+        im = nib.Nifti1Image(v, a)
+        im.header.set_xyzt_units("mm")
+        im.set_qform(a, 1)
+        im.set_sform(a, 1)
+        f = tmp_path / (oid + ".nii.gz")
+        nib.save(im, f)
+        rows.append({"opaque_id": oid, "modality": mod, "nifti_path": str(f), "pair_key": "k1", "split": "train"})
+    dp.run_pilot({"schema": dp.MANIFEST_SCHEMA, "rows": rows, "legacy_levels": [2, 4, 6]}, tmp_path / "priv", tmp_path / "pub")
+    j = json.loads((tmp_path / "pub" / "pilot_public_aggregate.json").read_text())
+    helper = j["pair_geometry"]["k1"]["paired_selection"]["partner_abstain"]
+    ref = j["per_row_opaque"]["r1"]["candidate_primary"]
+    par = j["per_row_opaque"]["r2"]["candidate_primary"]
+    assert any(s["abstain"] for s in ref)
+    for s, ra, h in zip(par, [s["abstain"] for s in ref], helper):
+        assert s["abstain"] == h
+        if ra:
+            assert "REFERENCE_SELECTION_ABSTAIN" in s["qc_flags"] and s["abstain_before_pixel_qc"] is True
