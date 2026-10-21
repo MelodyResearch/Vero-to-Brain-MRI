@@ -377,6 +377,11 @@ class ArmRunner:
     def _check_common(self, unit):
         require(self.common is not None and unit['index'] == 0, 'The common rollout may only be consumed by unit 0')
         require(self.backend.policy_sha() == self.common.parent_policy_sha256 == self.parent_policy_sha256, 'Arm is not at the common parent: the shared rollout is no longer on-policy')
+        parent = self.common.parent_state
+        require(parent is not None and
+                (self.backend.policy_sha(), self.backend.adam_digest(), self.backend.rng_digest()) ==
+                (parent['policy'], parent['adam'], parent['rng']),
+                'Common rollout use requires the trusted complete parent parameters, Adam and R0')
 
     def _run_unit(self, unit):
         k = unit['index']
@@ -469,6 +474,9 @@ class ArmRunner:
         rec['receipt_sha256'] = identity({kk: v for kk, v in rec.items() if kk != 'receipt_sha256'})
         pending = Path(tempfile.mkdtemp(prefix=f'.pending-{k:04d}-', dir=self.output))
         files = list(self.backend.save_checkpoint(pending))
+        (pending / 'own_old_PRIVATE.json').write_text(canonical({'bundle_sha256': block.sha256, 'old': own_old}) + '\n')
+        (pending / 'gradient_evidence_PRIVATE.json').write_text(canonical(evidence) + '\n')
+        files.extend(('own_old_PRIVATE.json', 'gradient_evidence_PRIVATE.json'))
         rec['files_sha256'] = {name: shared.file_sha256(pending / name) for name in files}
         rec['receipt_sha256'] = identity({kk: v for kk, v in rec.items() if kk != 'receipt_sha256'})
         (pending / 'bundle_PRIVATE.json').write_text(canonical(block.raw) + '\n')

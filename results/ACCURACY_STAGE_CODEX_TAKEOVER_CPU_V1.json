@@ -1,0 +1,99 @@
+{
+  "F32_training_rate": "NOT_MEASURED",
+  "accuracy_improvement": "NOT_MEASURED",
+  "cache_scope_file_sha256": "e832655fe226607d8c7028c1132345e43ca340039521c817b1f0cbe10b4a7b65",
+  "claude_actual_commit": "f06a8f33690427915ad97459d3c8720a65092acc",
+  "claude_model": "claude-sonnet-5-5",
+  "claude_quota_reached": true,
+  "claude_version": "2.1.306",
+  "component_ceiling_sum_seconds": 12600,
+  "eval_caps": {
+    "TF_positions": 153000,
+    "candidate_API_calls": 360,
+    "checkpoints_max": 3,
+    "greedy_calls": 120,
+    "internal_dev_real_cases": 40,
+    "optimizer_updates": 0,
+    "patient_generalization_claim": false,
+    "response_tokens": 30720,
+    "swap_aliases": 8
+  },
+  "frozen_plan": {
+    "Dallas_rows": 8,
+    "all56_trained": false,
+    "first_rollout_shared_once": true,
+    "groups_per_arm": 16,
+    "later_rollouts": "OWN_CURRENT_ARM_POLICY",
+    "rounds": 4,
+    "sequence_images": 8,
+    "sequence_people": 4,
+    "sites": 4,
+    "updates_max_per_arm": 8
+  },
+  "global_operation_start_seconds": 10800,
+  "independent_review": {
+    "bound_metadata_files": 13,
+    "bound_source_files": 85,
+    "native_result": "NOT_RUN",
+    "public_result": "results/ACCURACY_STAGE_FINAL_INDEPENDENT_CPU_SCOPE_REVIEW_V1.json",
+    "public_result_sha256": "3b1f8066bcdb1e7e9189199fbe085639c8b4ef39f891fb546b243bb9da1b2642",
+    "reviewer": "Codex /root/full_arm_execution_contract",
+    "scope_reprepare_equal": true,
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "latest_human_role_override": "Codex takes over the remainder this round",
+  "model_loads_this_stage": 0,
+  "native_backward_calls": 0,
+  "new_generated_responses": 0,
+  "optimizer_updates": 0,
+  "parent": {
+    "adam_step": 52,
+    "arm": "P_calibrated13",
+    "boundary": 114,
+    "new_base_model": false
+  },
+  "preservation": {
+    "frozen_lock_sha256": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "frozen_plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "new16_model_outputs_read": false,
+    "old_final100_model_outputs_read": false,
+    "private_arrays_pushed": false
+  },
+  "qualified_pool": {
+    "expanded_prompt_tokens": 213,
+    "levels": [
+      45
+    ],
+    "merged_visual_tokens": 154,
+    "people": 28,
+    "processor_status": "CPU_ONLY_NOT_NATIVE_BACKEND_QUALIFICATION",
+    "reprocessed_168": false,
+    "sequence_images": 56
+  },
+  "root_fixes": [
+    "Live trusted common parent parameters/Adam/R0 check",
+    "Historical generate instance-shadow fix",
+    "Durable own-old and gradient evidence in per-unit receipt",
+    "Release full parameter/Adam snapshot references",
+    "Exact issued authorization token before native dispatch"
+  ],
+  "schema": "accuracy-stage-codex-takeover-cpu-v1",
+  "scope_canonical_sha256": "c92eca5ab0f14809016020b9a9327da0e0c2eeae6be4813411946bc33e4e723c",
+  "scope_file_sha256": "931c886bcb93e4e2be4f9ec741e2657ac35045bbdcbaa43dd766a1cec09eb1db",
+  "status": "SOURCE_CPU_REVIEWED_PENDING_FRESH_HUMAN_EXECUTION_AUTHORIZATION",
+  "tests": {
+    "environment": "Pinned Python/processor environment using existing system pytest import; no dependency installation",
+    "independent_original_six": "6 PASS after 5 PASS/1 RED; unchanged assertions",
+    "passed": 79,
+    "seconds": 8.94,
+    "targeted_total": 79,
+    "test_environment_failures_preserved": "Initial system Python lacked mlx_vlm for 3 synthetic processor tests; pinned runtime lacked pytest; resolved using installed pytest with pinned runtime, without installing packages or changing model code."
+  },
+  "training_caps": {
+    "backward_calls_both_arms": 128,
+    "generated_response_tokens_total_new": 30720,
+    "per_arm_generation_exposure_charge_tokens": 36160,
+    "per_arm_seconds": 3600,
+    "teacherforced_positions_both_arms_plus_common": 140640
+  }
+}
