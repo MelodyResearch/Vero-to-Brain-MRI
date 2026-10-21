@@ -1,0 +1,151 @@
+{
+  "actual_outcome": {
+    "Stage3": "NOT_RUN",
+    "Stage4": "NOT_RUN",
+    "accuracy_results": "NOT_AVAILABLE",
+    "backward_calls": 0,
+    "compound_status": "STOPPED",
+    "failed_stage": 2,
+    "free_pressure_shortfall_rows": 23,
+    "generation_calls": 0,
+    "load_HOLD_rows": 25,
+    "max_hold_elapsed_seconds": 121.97254649997922,
+    "model_constructor_calls": 0,
+    "model_loads": 0,
+    "optimizer_updates": 0,
+    "resource_decisions": {
+      "CONTINUE": 1,
+      "HOLD": 25
+    },
+    "resource_rows": 26,
+    "root_exit_code": 1,
+    "root_wall_seconds": 125.90999770798953,
+    "stage2_exit_code": 1,
+    "stage2_wall_seconds": 125.37478291697334,
+    "stop_reason": "ResourceStop: pre-constructor native_model_load HOLD timed out; insufficient available memory at terminal sample"
+  },
+  "aggregate_review": {
+    "aggregate_FILE_sha256": "17f28b9a8c3812ed206f5055d532d3ffc00edc05ea353bd7f690538285d346a4",
+    "live_process_absence_check": "NOT_REPEATED_BY_THIS_SAVED_ONLY_REVIEW",
+    "post_child_available_GiB": 8.996078491210938,
+    "post_root_available_GiB": 9.009292602539062,
+    "saved_evidence_hashes_verified": 7,
+    "terminal_available_GiB": 8.961044311523438,
+    "terminal_pressure_free_percent": 50.0,
+    "terminal_reasons": [
+      "insufficient_available_memory"
+    ],
+    "verdict": "NO_FACTUAL_MISMATCH_FOUND_IN_REVIEWED_STOP_FIELDS"
+  },
+  "allocator_evidence": {
+    "MLX_active": "NOT_MEASURED",
+    "MLX_peak": "NOT_MEASURED",
+    "controller_initialized_peak_zero_is_measurement": false,
+    "release": "NOT_MEASURED_NO_MODEL_CONSTRUCTED"
+  },
+  "closed_log_hashes_verified": true,
+  "created_at_utc": "2026-10-21T08:59:16.358033+00:00",
+  "evidence_FILE_sha256": {
+    "compound_terminal": "837d1cdb6946d5dfe415db332c9914ed0841c5db66d1956d72439776fb6272d4",
+    "entry_STOP": "3a5097bd266eaaaf3459083b69b34d7dcdff878bed6a35bb4d3766086b1bd4c4",
+    "guardian_log": "2b292a896920447fa1c26562b23e343a4c605b215f0e9b3b256214a661ec31f4",
+    "root_exit": "2a1d6236e308593df5da18320a44b33604ba5c5c3f98fa353f0900e54a4563d5",
+    "root_stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "root_stdout": "3b04d6aac46954fc0abddef088d2c8f063db36245b725fc23b025253d72dcfde",
+    "stage2_exit": "7218dcc716e33c0cc7f3f37eb0dee31129effe1e1264b4d7674f91fc9a1dea11",
+    "stage2_resources": "2a75c127c6f90032a6d2c13c5354794c9858a9182990f2486456327ec0cf9420",
+    "stage2_stderr": "87abf8f92ed54876f29b9c448003b764d741dde3e2d1cae129f9c55a5757d41b",
+    "stage2_stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence_tier": "REPRODUCED_SAVED_STOP_ONLY",
+  "guardian_audit": {
+    "OS_pressure_level_counts": {
+      "1": 2,
+      "2": 59
+    },
+    "child_reaped": true,
+    "disk_free_GiB_range": {
+      "max": 294.64778900146484,
+      "min": 294.6255569458008
+    },
+    "exact_child_wait4_peak_RSS_GiB": 0.053466796875,
+    "guardian_SIGKILL": false,
+    "guardian_SIGTERM": false,
+    "guardian_stop": false,
+    "root_reaped": true,
+    "saved_post_child_and_root_lock_no_open_holders": true,
+    "saved_samples": 61,
+    "sensor_error_rows": 0,
+    "stop_reason_rows": 0
+  },
+  "limitations": [
+    "Saved-only verification; no tests, native execution, live resource resampling or model/image/weight payload reads.",
+    "Zero native-call counts are inferred from the pinned source ordering, STOP traceback and absent later artifacts; no model-call telemetry was produced.",
+    "Parent/Adam/RNG payload integrity and allocator release were not measured by these exit receipts. No accuracy or hardware-safety success is established.",
+    "One root admission and one derived Stage2 admission belong to the same single compound attempt; the two ledgers are not two compound runs.",
+    "Aggregate preservation flags, source-commit identity and after-exit source/metadata immutability were not independently re-audited in this focused saved-outcome review; earlier exact-scope review remains separate evidence."
+  ],
+  "new_execution_authorized": false,
+  "permission_audit": {
+    "automatic_retry": false,
+    "command_credential_hashes_and_launch_argv_hashes_verified": true,
+    "compound_admissions": 1,
+    "derived_stage2_admissions": 1,
+    "fresh_exact_human_grant_and_instruction_verified": true,
+    "later_stage_ledgers": 0,
+    "matching_once_only_ledgers": 2,
+    "permission_status": "CONSUMED_BY_STOP_NO_REUSE"
+  },
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "review_subject": "Saved execution receipts accurately establish a bounded pre-constructor resource STOP; experiment did not complete.",
+  "reviewer_id": "Codex /root/resource_v2_final_review",
+  "reviewer_kind": "isolated_codex",
+  "saved_child_resource_ranges": {
+    "available_gib": {
+      "max": 9.527130126953125,
+      "min": 7.4878692626953125
+    },
+    "battery_percent": {
+      "max": 87,
+      "min": 85
+    },
+    "pressure_free_percent": {
+      "max": 53.0,
+      "min": 42.0
+    },
+    "process_rss_gib": {
+      "max": 0.053009033203125,
+      "min": 0.0370330810546875
+    },
+    "swap_used_gib": {
+      "max": 14.470458984375,
+      "min": 14.462646484375
+    }
+  },
+  "saved_parent_guardian_ranges": {
+    "available_gib": {
+      "max": 9.50494384765625,
+      "min": 7.5089569091796875
+    },
+    "battery_percent": {
+      "max": 87,
+      "min": 85
+    },
+    "pressure_free_percent": {
+      "max": 53.0,
+      "min": 42.0
+    },
+    "process_rss_gib": {
+      "max": 0.053009033203125,
+      "min": 0.0184173583984375
+    },
+    "swap_used_gib": {
+      "max": 14.470458984375,
+      "min": 14.462646484375
+    }
+  },
+  "schema": "safe-micro-pilot234-resource-v2-actual-stop-independent-review-v1",
+  "scope_FILE_sha256": "5dd24d8dc73241d11460e18fc4b25ac8597bbf6a3d0b2f6283df12b43a2c039c",
+  "scope_canonical_sha256": "c96a71b4e9680f6af36b666f6aa2aa6e85c74906809790efff12430502434665",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
