@@ -1,0 +1,64 @@
+{
+  "backend_f32_model_inputs": "NOT_RUN",
+  "binding_checks_all_true": {
+    "expected_label_equals_reward_model": 56,
+    "file_sha_equals_expected_pin": 56,
+    "one_typed_image": 56,
+    "split_is_train": 56,
+    "typed_equals_top": 56,
+    "typed_text_equals_extra_info_question": 56
+  },
+  "capsule_whole_file_sha256": "1c2791d45e38759212766fc3d3553e1e1523dbc1b87167bf595171b515c986b9",
+  "contract_sha256": "9e69a7459ae319217fc7899aa0626a495e9491a984eea4af153accd96b2c1ff7",
+  "cross_model_review": "NOT_VERIFIED",
+  "decoded_rgb_hash_note": "CURRENT decode recorded once by this program; NOT an independent historical pixel re-verification (inherited pixel-source audit + PNG byte pin is the basis).",
+  "evidence_tier": "OBSERVED_CPU",
+  "grid_distinct": [
+    [
+      1,
+      28,
+      22
+    ]
+  ],
+  "image_pad_tokens_distinct": [
+    154
+  ],
+  "leak_hits_total": 0,
+  "mlx_imported": false,
+  "models_loaded": 0,
+  "ok": true,
+  "pinned_sources": {
+    "models_base": "a7cfa38413bea057946c5d56c9edd34dbcceb33f6613529f5201ca2ad5b41120",
+    "numpy_version": "2.5.4",
+    "processor": "9c6bc521ea6b45c3346967502f2d0b69697371327d7b340c23650e76de91f5d2",
+    "prompt_utils": "8d3469f3d34d58dab84d207d820e0ec3c9c50f2573c47e9a893cc5162469756a",
+    "transformers_version": "5.20.0",
+    "utils": "d38eabab88d5d6b835d4ab703cdac2e30924fc04463be8134d12ae5406e50b0c"
+  },
+  "pixel_std_min": 0.29522448778152466,
+  "prompt_length_min_max": [
+    213,
+    213
+  ],
+  "prompt_text_variants": 1,
+  "rows": 56,
+  "rows_ok": 56,
+  "schema": "native-processor-qualification-cpu-v1",
+  "source_size_wh_distinct": [
+    [
+      364,
+      436
+    ]
+  ],
+  "status": "CPU_PROCESSOR_CONTRACT_ONLY_NOT_BACKEND_F32_MODEL_INPUTS",
+  "swap_pairs": 28,
+  "swap_pixel_changes": 28,
+  "swap_text_unchanged": 28,
+  "threads": "1",
+  "torch_imported": false,
+  "unique_decoded_rgb_sha256": 56,
+  "unique_pixel_sha256": 56,
+  "visual_tokens_independent_distinct": [
+    154
+  ]
+}
