@@ -1,6 +1,6 @@
 # MRI spatial task card v1 (CPU pilot; extension of `spatial_ontology_resolution`, `second_task_eligibility`, `mri_data_prep_v1`)
 
-Code `src/mri_rl/mri_spatial_task_pilot_v1.py`, runner `scripts/run_mri_spatial_task_pilot_v1.py`, tests `tests/test_mri_spatial_task_pilot_v1.py` (37, CPU, synthetic fixtures). **Execution status: `IMPLEMENTED`, `TESTED_CPU` on synthetic fixtures; the real-TRAIN run is `NOT_RUN` until root freezes `EXECUTION_INPUT_PRIVATE.json` and reviews the code.** No model, GPU, MLX, optimizer, resampling, new render or mask overlay is involved.
+Code `src/mri_rl/mri_spatial_task_pilot_v1.py`, runner `scripts/run_mri_spatial_task_pilot_v1.py`, tests `tests/test_mri_spatial_task_pilot_v1.py` (37, CPU, synthetic fixtures). **Execution status: `ACTUAL_CPU_COMPLETE` on three fixed TRAIN cases: one technical candidate, two ABSTAIN, zero scientific admissions (details below).** No model, GPU, MLX, optimizer, resampling, new render or mask overlay is involved.
 
 ## Question and hypotheses (bounded, falsifiable)
 
@@ -52,3 +52,9 @@ Fixed manifest SHA `b4a2ba13…0cec` verified; local adapter preserved all 3 sou
 | scientific_admitted | **0** (all `EXPERT_ADJUDICATION_REQUIRED`) |
 
 Interpretation: one of three fixed cases is arithmetically clean; this is source-mask arithmetic, not visible truth, and 3 cases give no statistical or accuracy claim. T1ce answerability remains unadjudicated.
+
+## Cohort and admission boundary
+
+The historical priority-15 packet/membership is not available locally. This is a **new, separately frozen 3-case technical cohort**, not a claim to reconstruct or qualify the original 15. It does not change the frozen GSPO A/B data. A saved arithmetic candidate is not permission to train. See [actual aggregate evidence](../results/MRI_SPATIAL_SLICE_ACTUAL_CPU_PILOT_V1.json).
+
+The actual VERL-compatible candidate row is preserved byte-for-byte. A PRIVATE admission sidecar binds its file and canonical-row SHA; training_authorized=false, scientific_admitted=0, expert_status=EXPERT_ADJUDICATION_REQUIRED. Any future ingestion must validate that sidecar and reject the current row. The bare JSONL must never be used as an approved training set. No training loader is enabled here.

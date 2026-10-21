@@ -1,0 +1,201 @@
+{
+  "accuracy": {
+    "MRI_improvement": "NOT_MEASURED",
+    "RL_effect": "NOT_RUN",
+    "input_effect": "NOT_MEASURED",
+    "scientific_second_task": "NOT_QUALIFIED"
+  },
+  "created_UTC": "2026-10-21T05:07:29.491841+00:00",
+  "evidence_tier": "ACTUAL TRAIN CPU arithmetic and saved-input preparation; no new model predictions or scientific visual-answerability admission.",
+  "independent_source_review": {
+    "fixed_defects": [
+      "RGB information was lost by grayscale comparison",
+      "Duplicate IDs could overweight results",
+      "Input-condition identity/reference cohort binding was missing",
+      "An arbitrary receipt string could mint an actual-model provenance claim"
+    ],
+    "initial_counterchecks": {
+      "PASS": 3,
+      "RED": 4,
+      "proof_sha256": "d81cd63781626b29f8ea20c91b815803582ac813b0bd82cc1faca713094e52a2",
+      "seconds": 0.31
+    },
+    "reviewer": "Codex /root/full_arm_execution_contract",
+    "same_checks_after_fix": {
+      "PASS": 7,
+      "RED": 0,
+      "proof_sha256": "4748f1ce37418a67a98a0a9ce02c047b886c7c3af2086efbc4a0e6219459248b",
+      "seconds": 0.25
+    }
+  },
+  "inputs": {
+    "cohort_rule": "NEW first three distinct-patient existing TRAIN mri_tumor_grid rows in source order, frozen before voxel inspection; no replacement.",
+    "old15_priority_packet_status": "NOT_AVAILABLE_LOCALLY; exact membership NOT_RECOVERED; new3 are NOT asserted to be the historical15.",
+    "slice_capsule_sha256": "9f0681a6986e299c51fd4c5b81073ee65016dec3fc583e9bf8e411310309f53e",
+    "slice_modality_rows": 6,
+    "slice_people": 3,
+    "slice_sites": 3,
+    "spatial_cases": 3,
+    "spatial_modality": "T1ce",
+    "spatial_original_manifest_sha256": "b4a2ba137efbb7ffe34857a45a60ffa4385d501b1b8e797e685484cfd60d0cec",
+    "spatial_patients": 3,
+    "spatial_sites": 2
+  },
+  "mission": "Qualify MRI data and freeze an isolated input-effect comparison supporting Princeton Vero-style verifiable multi-task GSPO transfer; no new method or model run.",
+  "model_loads": 0,
+  "native_research": {
+    "cache_v3": "STOP_NO_COMPLETE_CERTIFICATE",
+    "frozen_SamePrompt_vs_PairedPrompt_A_B": "UNCHANGED; not executed",
+    "new_native_permission": "NONE",
+    "parent52_unchanged": true,
+    "retry": "NOT_ATTEMPTED"
+  },
+  "new16_or_final100_access": 0,
+  "new_backward_calls": 0,
+  "new_generations": 0,
+  "new_training": 0,
+  "optimizer_updates": 0,
+  "primary_executor": {
+    "client": "Claude Code",
+    "fixed_runtime_commit": "1ae9edc8e87c25632de6a42a5f387e4cfb83756e",
+    "model": "claude-sonnet-5-5",
+    "role": "design, implementation, regression fixes, actual bounded local CPU execution",
+    "source_commit": "017335d0ec1abe64732658d1e4908ea9ecf440d1",
+    "version": "2.1.306"
+  },
+  "privacy": "Only aggregates/source and whole-artifact digests in Git; images, individual grids/labels/IDs/site names/prompts/native state remain local.",
+  "private_execution_witness_sha256": "0a7b6ff2581d4d02267ed473e0eeb4b804272444ebd16fdd4b9e930f733fb4e8",
+  "schema": "mri-spatial-slice-actual-cpu-aggregate-v1",
+  "slice_input_preparation": {
+    "B_abstain_flagged": 0,
+    "B_identical_to_A_pixels": 0,
+    "analysis_actual_mode": "FAIL_CLOSED until an externally authenticated future execution interface is bound; synthetic analyzer only today.",
+    "both_image_fields_bound": true,
+    "endpoints": {
+      "balanced_accuracy": "mean of FLAIR and contrast-enhanced T1 recall",
+      "candidate": "readouts mean (primary) / sum / first reported separately; ties INVALID; correct-minus-wrong margin by class and aggregate",
+      "cost": "greedy calls, scorer calls, generated tokens, teacher-forced positions",
+      "invalids": "greedy format failures and candidate ties counted, never dropped",
+      "recalls": [
+        "FLAIR",
+        "contrast-enhanced T1"
+      ],
+      "strict": "strict-format temperature-0 greedy sequence accuracy; invalid counts wrong",
+      "swap_sensitivity": "same-person opposite-modality image, same input; changed/valid-opposite-class/both-correct"
+    },
+    "existing_unique_PNGs": 12,
+    "future_per_parent_caps": {
+      "candidate_score_API_calls": 36,
+      "generated_tokens": 3072,
+      "greedy_calls": 12,
+      "model_loads_per_checkpoint": 1,
+      "records": 12,
+      "swap_inference_calls": 0,
+      "swap_rule": "same-person opposite-modality output within the SAME input reused; zero extra calls",
+      "teacherforced_input_positions": 15300
+    },
+    "models_loaded": 0,
+    "normalization_windows_equal_in_saved_metadata": "6/6",
+    "only_changed_factor": "single legacy z045 plane vs single predeclared physical-support median plane; same six TRAIN rows/prompt/normalization/image count/size/parent/F32/decoder/scorer.",
+    "parent": "P_calibrated13 / Adam52 / boundary114",
+    "peak_rss": "NOT_MEASURED_SEPARATELY; wrapper child rusage is cumulative",
+    "people": 3,
+    "protocol_sha256": "0b1ef8332a12f3167a069556d6af8a5399e59b21ae74d701b0ea9c1a7333d641",
+    "records": 12,
+    "rerenders": 0,
+    "rows_per_input": 6,
+    "source_volume_reads": 0,
+    "status": "PREPARED_NOT_MODEL_RUN",
+    "text_bit_exact_across_inputs": true,
+    "wrapper_elapsed_s": 0.11,
+    "wrapper_exit": 0
+  },
+  "source_sha256": {
+    "scripts/prepare_mri_slice_comparison_v1.py": "ab53bca20c8417e3be854d9f81bb74ff994f3493ec3ed8a33c1c18b283e7f561",
+    "scripts/run_mri_spatial_task_pilot_v1.py": "6b8ecb6074a892a5be696c3006047983476b2b035015c2a8ba62aec1cc7fbd12",
+    "src/mri_rl/mri_slice_comparison_v1.py": "487a453f96f42df3ac2640c95efa99fce1bd91660d5797842bf125371879ef78",
+    "src/mri_rl/mri_spatial_task_pilot_v1.py": "038bce79af2c5074e5c771f9d6e1916335c51124c5688cf6e7b67a13b577e2d2"
+  },
+  "spatial": {
+    "MRI_volumes_read": 3,
+    "abstain_reason_counts": {
+      "MULTICOMPONENT_2D": 2,
+      "SMALL_SOURCE_MASK": 1
+    },
+    "candidate_admission": {
+      "candidate_file_sha256": "6c7019dfee4d3787f496fba9d0e5326f66f7369a295fb49e8bbb6b2df3caf2b6",
+      "expert_status": "EXPERT_ADJUDICATION_REQUIRED",
+      "future_ingestion": "Must verify sidecar and reject current rows; bare candidate JSONL is not training-approved.",
+      "original_actual_bytes_preserved": true,
+      "rows_bound": 1,
+      "scientific_admitted": 0,
+      "sidecar_sha256": "f0c64fdfb460a902a4c6e5ca46bafd9213397523369ed019d0bb829099c5d798",
+      "training_authorized": false
+    },
+    "candidate_rows_created": 1,
+    "cases_attempted": 3,
+    "exact_RGB_T1ce_right_panel_matches": 3,
+    "expert_adjudication_required": 3,
+    "expert_fields": "All blank; no AI clinical assertions",
+    "image_mask_registration_quality_independently_proven": false,
+    "label3_selected_release_semantics": "NOT_REATTESTED; numeric3 separately recorded, enhancing-specific task route disabled",
+    "legacy_PNGs_read": 3,
+    "mask_overlays": 0,
+    "mask_volumes_read": 3,
+    "module_elapsed_s": 0.319,
+    "multicomponent_is_not_clinical_multifocal_adjudication": true,
+    "new_model_input": "One mask-free/header-free single-T1ce panel candidate, distinct from historical paired canvas; no model test.",
+    "peak_rss_mib": 319.1,
+    "primary_target": "whole-lesion union mask>0 centroid in panel-relative half-open display thirds; NOT clinical visible truth",
+    "resampling": 0,
+    "reward": {
+      "model_response_or_accuracy_evidence": false,
+      "route": "unchanged mri_tumor_grid in vero_mri_reward.py",
+      "synthetic_fixture_values_common_to_all_cases": {
+        "correct": {
+          "accuracy": 1.0,
+          "format": 1.0,
+          "score": 1.0
+        },
+        "no_tags": {
+          "accuracy": 0.0,
+          "format": 0.0,
+          "score": 0.0
+        },
+        "unboxed_in_answer": {
+          "accuracy": 1.0,
+          "format": 0.5,
+          "score": 0.9
+        },
+        "wrong": {
+          "accuracy": 0.0,
+          "format": 1.0,
+          "score": 0.2
+        }
+      },
+      "synthetic_response_checks_ok_cases": 3,
+      "weights": {
+        "accuracy": 0.8,
+        "format": 0.2
+      }
+    },
+    "same_image_mask_voxel_grids": 3,
+    "scientifically_admitted": 0,
+    "soft_limits": {
+      "checked_at": "safe case boundaries; soft, not a hard allocation guarantee",
+      "peak_rss_mib": 512,
+      "seconds_per_case": 120,
+      "threads": 1
+    },
+    "source_files_unchanged_stat_checks": 3,
+    "status_counts": {
+      "ABSTAIN": 2,
+      "TECHNICAL_ARITHMETIC_CLEAN_EXPERT_PENDING": 1
+    },
+    "stop_reason": null,
+    "stopped_remaining": 0,
+    "wrapper_elapsed_s": 0.57
+  },
+  "whole_private_spatial_report_sha256": "64969e5817a1bc99c53abae663867dcaad1b348fd8b0dbd43d53d72ee49a138f",
+  "whole_slice_preparation_report_sha256": "d210f9bf00e26a0bcf108081914ce49733f8d7ca65e4f109004cf4c1bc00ddb0"
+}

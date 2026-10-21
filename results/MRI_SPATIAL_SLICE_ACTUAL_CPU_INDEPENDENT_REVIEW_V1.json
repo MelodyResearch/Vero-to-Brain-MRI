@@ -1,0 +1,172 @@
+{
+  "execution_witness_checks": {
+    "both_saved_subprocess_exit_codes": 0,
+    "both_stderr_bytes": 0,
+    "source_hashes_and_both_output_trees_recomputed": true,
+    "source_or_pixel_immutability": "Saved execution stat/hash assertions agree with pinned manifests. Original NIfTI/source PNG pixels were not reread or reverified by this reviewer.",
+    "witness_limit": "Saved external subprocess capture authenticated; reviewer did not execute or independently observe the original processes."
+  },
+  "limitations": [
+    "One arithmetic-clean source-mask case is not scientific or clinical admission; new single-T1ce prompt/frame is distinct from historic paired FLAIR-based task and is not model tested.",
+    "Multicomponent 2D mask geometry is not a clinical multifocal diagnosis; numeric labels are not re-attested clinical semantics.",
+    "Source image/mask grid equality and exact right-panel pixel comparison are executor-recorded technical checks, not anatomical registration or visible lesion truth. No masks or images were independently decoded by reviewer.",
+    "No prepared comparison predictions, model accuracy, input benefit, GSPO/RL gain or independent-patient generalization exists. New16/final100 were not accessed.",
+    "Future model comparison still needs an implemented authenticated execution/analysis path, certified runtime dependencies, exact scope review and fresh human authorization. Dormant run and actual-result modes do not authorize execution.",
+    "Only the seven independent synthetic checks were run by this reviewer; root-reported wider focused suite is separate operator evidence."
+  ],
+  "native_or_training_authorization": false,
+  "primary_implementer_and_executor": "Actual Claude Code; Codex independently reviewed. Root supplied private input/admission bindings and sanitized publication.",
+  "publication_privacy": "Sanitized aggregate contains counts, method facts, whole-artifact/source hashes only; no per-case grid targets, patient identifiers, source filesystem paths, prompts or images. Detailed rows, admission binding, expert forms and image candidates remain private.",
+  "reviewer_execution": {
+    "MLX_calls": 0,
+    "PNG_pixel_decodes": 0,
+    "model_calls": 0,
+    "new_renders": 0,
+    "optimizer_updates": 0,
+    "real_NIfTI_payload_or_header_reads": 0
+  },
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "saved_slice_preparation_verification": {
+    "PNG_bindings_hashed_without_pixel_decoding": 12,
+    "current_state": "PREPARED_NOT_MODEL_RUN; actual-model analyzer mode is refused",
+    "file_SHA_bindings": "MATCH_CAPSULE_AND_OUTPUT",
+    "future_caps_per_checkpoint": {
+      "candidate_score_API_calls": 36,
+      "generated_tokens": 3072,
+      "greedy_calls": 12,
+      "model_loads_per_checkpoint": 1,
+      "records": 12,
+      "swap_inference_calls": 0,
+      "swap_rule": "same-person opposite-modality output within the SAME input reused; zero extra calls",
+      "teacherforced_input_positions": 15300
+    },
+    "image_geometry_metadata_equal_cases": 6,
+    "inputs": 2,
+    "normalization_windows_equal_in_saved_metadata_cases": 6,
+    "original_TRAIN_id_canonical_hash_truth_and_index_joins": "MATCH",
+    "original_capsule_fixed": true,
+    "original_rows": 6,
+    "parent_reference": "P_calibrated13 original boundary114 / Adam52; no Adam60 validator or BF16 baseline substituted",
+    "patient_modality_exposure": "Identical between inputs",
+    "people": 3,
+    "prepared_records": 12,
+    "prompt_text_roles_and_nonimage_parts": "EXACTLY_PRESERVED",
+    "protocol_sha256": "0b1ef8332a12f3167a069556d6af8a5399e59b21ae74d701b0ea9c1a7333d641",
+    "separate_slice_peak_RSS": "NOT_CAPTURED; wrapper child rusage is cumulative",
+    "sites": 3,
+    "swap_maps": "Same pair, opposite modality, same input; involutive aliases, no extra inference",
+    "typed_prompt_image_and_top_level_images": "BOTH_BOUND_TO_EXPECTED_INPUT",
+    "wrapper_elapsed_seconds_recorded": 0.11
+  },
+  "saved_spatial_verification": {
+    "abstain_reason_counts": {
+      "MULTICOMPONENT_2D": 2,
+      "SMALL_SOURCE_MASK": 1
+    },
+    "candidate_admission": {
+      "bare_row_missing_explicit_admission_fields": true,
+      "expert_status": "EXPERT_ADJUDICATION_REQUIRED",
+      "future_ingestion_requirement": "Must validate sidecar binding and reject current rows; no active qualified ingestion loader exists. The bare VERL-compatible row is not approved training data.",
+      "scientific_admitted": 0,
+      "training_authorized": false,
+      "whole_file_and_canonical_row_bound_by_separate_sidecar": true
+    },
+    "candidate_rows": 1,
+    "cases": 3,
+    "elapsed_seconds_recorded": 0.319,
+    "endpoint": "Whole-lesion union only; panel-relative display thirds. Saved centroid arithmetic, component-area totals and boundary-distance arithmetic independently recomputed.",
+    "expert_packet": "Three forms, all expert fields blank, AI expert assertions zero",
+    "expert_required": 3,
+    "historic_15_membership": "NOT_RECOVERED_NOT_ASSERTED",
+    "modality": "T1ce",
+    "numeric3": "Original release lineage NOT_REATTESTED; saved clinical semantics NOT_VERIFIED, route disabled; not substituted for union",
+    "panel_pixel_reverification_by_reviewer": false,
+    "peak_RSS_MiB_recorded": 319.1,
+    "people": 3,
+    "registered_anatomy_or_visible_clinical_truth": "NOT_VERIFIED",
+    "reward_replay": "Saved correct/wrong/no-tags/unboxed strings independently replayed through pinned unchanged reward route; synthetic fixtures only, not model responses or MRI accuracy.",
+    "right_T1ce_panel_exact_matches_recorded": 3,
+    "scientific_admitted": 0,
+    "sites": 2,
+    "source_reference": "First three distinct-person existing TRAIN spatial records in source order match pinned manifest and adapters; source row canonical digests and stored indexes match. No replacements.",
+    "synthetic_common_reward_values": {
+      "correct": {
+        "accuracy": 1.0,
+        "format": 1.0,
+        "score": 1.0
+      },
+      "no_tags": {
+        "accuracy": 0.0,
+        "format": 0.0,
+        "score": 0.0
+      },
+      "unboxed_in_answer": {
+        "accuracy": 1.0,
+        "format": 0.5,
+        "score": 0.9
+      },
+      "wrong": {
+        "accuracy": 0.0,
+        "format": 1.0,
+        "score": 0.2
+      }
+    },
+    "technical_status_counts": {
+      "ABSTAIN": 2,
+      "TECHNICAL_ARITHMETIC_CLEAN_EXPERT_PENDING": 1
+    }
+  },
+  "schema": "mri-spatial-slice-actual-cpu-independent-review-v1",
+  "scope": "Independent source/synthetic counterchecks and closed saved-only metadata, source-reference joins, arithmetic, output hashes and publication privacy. No real-image/header/voxel or PNG decoding, rerender or model invocation by reviewer.",
+  "source_commit_at_actual_execution": "1ae9edc8e87c25632de6a42a5f387e4cfb83756e",
+  "source_counterchecks": {
+    "fixes_verified": [
+      "Exact RGB panel equality preserves colored-pixel mismatch",
+      "Duplicate response IDs rejected",
+      "Condition input, complete frozen cohort and truth bound",
+      "Actual-model provenance mode explicitly blocked during preparation"
+    ],
+    "initial_synthetic": {
+      "failed": 4,
+      "passed": 3,
+      "seconds": 0.31
+    },
+    "same_seven_after_fix": {
+      "assertions_unchanged": true,
+      "failed": 0,
+      "passed": 7,
+      "seconds": 0.25
+    }
+  },
+  "source_sha256": {
+    "scripts/prepare_mri_slice_comparison_v1.py": "ab53bca20c8417e3be854d9f81bb74ff994f3493ec3ed8a33c1c18b283e7f561",
+    "scripts/run_mri_spatial_task_pilot_v1.py": "6b8ecb6074a892a5be696c3006047983476b2b035015c2a8ba62aec1cc7fbd12",
+    "src/mri_rl/mri_slice_comparison_v1.py": "487a453f96f42df3ac2640c95efa99fce1bd91660d5797842bf125371879ef78",
+    "src/mri_rl/mri_spatial_task_pilot_v1.py": "038bce79af2c5074e5c771f9d6e1916335c51124c5688cf6e7b67a13b577e2d2"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "whole_artifact_sha256": {
+    "blank_expert_packet_private": "3207388723c4ac33005fdfc5facb67983aa01d3d2f8262c87cdaef7a78c8855b",
+    "candidate_admission_sidecar_private": "f0c64fdfb460a902a4c6e5ca46bafd9213397523369ed019d0bb829099c5d798",
+    "candidate_jsonl_private": "6c7019dfee4d3787f496fba9d0e5326f66f7369a295fb49e8bbb6b2df3caf2b6",
+    "execution_witness_private": "0a7b6ff2581d4d02267ed473e0eeb4b804272444ebd16fdd4b9e930f733fb4e8",
+    "independent_initial_RED_proof_private": "d81cd63781626b29f8ea20c91b815803582ac813b0bd82cc1faca713094e52a2",
+    "independent_same7_GREEN_proof_private": "4748f1ce37418a67a98a0a9ce02c047b886c7c3af2086efbc4a0e6219459248b",
+    "independent_saved_detail_private": "f42dc7ee0d2a93eda6f432e3f413221d75b36b856463b123b153e48eba8b1288",
+    "independent_saved_verifier_private": "f6fc9962dbb60ee2ac72be34783bb4461d66d25a362098ba09a60aa5663e3a6d",
+    "results/MRI_SPATIAL_SLICE_ACTUAL_CPU_PILOT_V1.json": "43246e3ef01d9259acf132e1a38be9b8175d2341f06ae1102e35bd164cfdeb17",
+    "slice_adapter_private": "152c8e9b10e10d8b7eb9654a9ed4a9c1364abd4e579cc79fe3ddeeb1c70aceff",
+    "slice_comparison_inputs_private": "70ef1f193d53bc581395ac8bb4374eaecba1cf79f78eb8f9ef071060a0910473",
+    "slice_original_capsule_private": "9f0681a6986e299c51fd4c5b81073ee65016dec3fc583e9bf8e411310309f53e",
+    "slice_preparation_report_private": "d210f9bf00e26a0bcf108081914ce49733f8d7ca65e4f109004cf4c1bc00ddb0",
+    "spatial_adapter_private": "cad8aca845d8d366d64b95c661aa78808d17aa5e6e6120a8d0ba4a96188296b7",
+    "spatial_local_report_private": "64969e5817a1bc99c53abae663867dcaad1b348fd8b0dbd43d53d72ee49a138f",
+    "spatial_original_input_private": "b4a2ba137efbb7ffe34857a45a60ffa4385d501b1b8e797e685484cfd60d0cec",
+    "spatial_run_receipt_private": "2eda0eed4f707ccc813533a3e80fcd47794a12f4acb25faeae982ee60dc63d20"
+  },
+  "whole_private_output_tree_sha256": {
+    "slice": "c33e05307fcd19adfb544907c2d886f44e637d0d6d15f369ce0cdde5a80507cd",
+    "spatial": "cf11924b607ae88e2058fe9c8ce659e764b0e767bd41a5b7732ef72b80314880"
+  }
+}

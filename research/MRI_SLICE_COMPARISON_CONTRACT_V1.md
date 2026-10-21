@@ -1,6 +1,6 @@
 # Frozen slice-input comparison contract v1 — PREPARATION ONLY, `NOT_RUN`
 
-Code `src/mri_rl/mri_slice_comparison_v1.py`; CLIs `scripts/prepare_mri_slice_comparison_v1.py`, `scripts/analyze_mri_slice_comparison_v1.py`; tests `tests/test_mri_slice_comparison_v1.py` (14, synthetic). **No model call, no GPU/MLX authorization, no rerender.** Certified base cache v3 is `STOP` (not PASS) and its permission is not reusable. The `run` action is dormant and always raises `NotAuthorized`; the existing frozen kernels (`paired_z045_matched_f32_eval_v1.run_checkpoint`/`run_row`, wired as in `accuracy_recovery_eval_v1.execute`) can consume the prepared records only after a separate exact-scope review and fresh human authorization.
+Code `src/mri_rl/mri_slice_comparison_v1.py`; CLIs `scripts/prepare_mri_slice_comparison_v1.py`, `scripts/analyze_mri_slice_comparison_v1.py`; tests `tests/test_mri_slice_comparison_v1.py` (CPU synthetic). **No model call, no GPU/MLX authorization, no rerender.** Certified base cache v3 is `STOP` (not PASS) and its permission is not reusable. The `run` action is dormant and always raises `NotAuthorized`; the existing frozen kernels (`paired_z045_matched_f32_eval_v1.run_checkpoint`/`run_row`, wired as in `accuracy_recovery_eval_v1.execute`) can consume the prepared records only after a separate exact-scope review and fresh human authorization.
 
 ## What is compared (data input only)
 
