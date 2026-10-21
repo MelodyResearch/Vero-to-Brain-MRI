@@ -1,0 +1,106 @@
+{
+  "actual_MRI_execution": {
+    "MRI_generated_responses": 0,
+    "accuracy_improvement": "NOT_MEASURED",
+    "full_model_loads": 0,
+    "model_backwards": 0,
+    "model_forwards": 0,
+    "optimizer_updates": 0
+  },
+  "actual_counts": {
+    "direct_quantizations": 1,
+    "maximum_underlying_allowed": 688,
+    "module_path_quantizations": 1,
+    "quantized_output_files_historically_matching": 1,
+    "quantized_units_accepted_with_receipt": 0,
+    "quantized_units_attempted": 1,
+    "quantized_units_not_attempted": 343,
+    "retained_units_authenticated": 406,
+    "underlying_quantizations": 2
+  },
+  "child_elapsed_seconds": 12.383272886276245,
+  "date_client_timezone": "2026-10-20 America/Los_Angeles",
+  "decision": "Do not retry consumed scope, lower resource gates, use uncommitted unit or launch A/B. Cache PASS condition not met; existing Adam52/A-B code remains preserved but executable native scope cannot be bound to an absent certificate.",
+  "disk_preflight": "PASS; approximately320GiB free before run,20GiB reserve retained",
+  "evidence_tier": "OBSERVED_AND_INDEPENDENTLY_REPRODUCED_SAVED_ONLY",
+  "execution_scope_canonical_sha256": "3edf070143c8a7e42eca71a8a5817005d359fb0f4ea591322e397f4cc1a41dc7",
+  "failure_reasons": [
+    "sustained_swap_growth",
+    "insufficient_memory_headroom"
+  ],
+  "gpu_stage_elapsed_seconds": 2.336553792003542,
+  "hash_evidence": {
+    "actual_final_shard_sha256": null,
+    "certificate_emitted": false,
+    "dual_shard_cache_assembled": false,
+    "note": "One hash-matching but uncommitted quantized output is not an accepted complete cache. Do not substitute expected historical shard hashes for missing actual ones.",
+    "unit_0000_all3tensor_payload_parts_match_pinned_history": true,
+    "unit_0000_has_passing_receipt": false,
+    "unit_0000_whole_file_matches_pinned_history": true,
+    "unit_0000_whole_file_sha256": "6cc6fa0558040faa6efa1b95535d58595246fc53843618b796cfc7ebb2912258"
+  },
+  "human_reply": "Actual explicit user approval, duplicate UI reply treated as one grant",
+  "independent_operator": "Codex /root",
+  "independent_terminal_review": {
+    "cache_verdict": "FAIL_RESOURCE_STOP_NO_CERTIFICATE",
+    "evidence_verdict": "PASS_WITH_LIMITATIONS",
+    "file": "results/ACCURACY_RECOVERY_HISTORICAL_GPU_CACHE_V2_ACTUAL_INDEPENDENT_REVIEW_V1.json",
+    "reviewer": "Codex /root/full_arm_execution_contract",
+    "sha256": "dd978f9abbedcf7bb04faaa2fa1bf52b7660d79f06faa898a8a18ea97d1b19c2"
+  },
+  "native_child_exit_code": 1,
+  "original_parent": {
+    "Adam_step": 52,
+    "adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+    "all4required_file_hashes_match_original": true,
+    "groups": 114,
+    "native_restore": "NOT_RUN",
+    "optimizer_state_sha256": "e941a7cb91690bde7b2e9c574fdcfd4d78e74012c9dd62260feeed568055a3d1",
+    "source_model_weights_Adam_RNG_modified": false
+  },
+  "primary_executor": "Claude Code 2.1.303 / claude-sonnet-5-5 / session ef1f8629-cead-485d-8fec-8efe75b67f41",
+  "privacy": "Aggregated counters/source/tensor-file hashes only; no MRI, identifiers, raw responses/tokens, weights, optimizer/RNG arrays or credentials.",
+  "provenance_sha256": {
+    "GPU_CACHE_V2_ROOT_SAVED_ONLY_VERIFICATION_PRIVATE.json": "b3c95072d063ba7753db9a215a6014fd715b922a9968a18883c0cea713a29193",
+    "gpu_cache_v2_ACTUAL_EXECUTION_20261020_SUMMARY_PRIVATE.json": "aba97e91f850b42d3bc7516fa177f96cf79c3c806c93c68b6e23360113a81356",
+    "gpu_cache_v2_ACTUAL_EXECUTION_20261020_launcher_record_PRIVATE.json": "1ad149d4f3cecaad1868b1da033c385740d367001d7458c82c03b3787225574d"
+  },
+  "release": {
+    "MLX_peak_active_postrelease_numeric": "NOT_RECORDED; not fabricated",
+    "backend_release_finally": "Source finally-release path plus closed process and removed private lock; no recorded numeric post-release allocator measurement",
+    "canonical_global_lock_preserved_and_released": true,
+    "child_closed": true,
+    "lock_file_unchanged": true,
+    "private_active_lock_removed": true
+  },
+  "rerun_allowed": false,
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "resources": {
+    "independent_limitations": "Net swap growth is below the separate1GiB whole-run cap; sustained_swap_growth is the emitted supervisor reason. Exact rate cannot be independently replayed without monotonic sample timestamps. Available5.9315<6GiB alone blocks under the unchanged gate.",
+    "last_sample_at_stop": {
+      "available_gib": 5.9315185546875,
+      "baseline_swap_gib": 13.96966796875,
+      "battery_percent": 100,
+      "other_heavy_processes": 0,
+      "power_source": "AC",
+      "pressure_free_percent": 35.0,
+      "process_rss_gib": 0.693634033203125,
+      "reasons": [
+        "sustained_swap_growth",
+        "insufficient_memory_headroom"
+      ],
+      "swap_growth_gib": 0.5784277343749995,
+      "swap_used_gib": 14.548095703125,
+      "thermal_state": "SENSOR_UNAVAILABLE"
+    },
+    "mlx_peak_active_counters": "not recorded in the failure receipt (informational only)",
+    "peak_process_rss_gib_observed": 2.0229949951171875,
+    "resource_log_entries": 3,
+    "rss_samples": 5
+  },
+  "schema": "historical-gpu-cache-v2-actual-one-shot-result-v1",
+  "scope_and_human_consumed": true,
+  "scope_file_sha256": "1f2bd2db5a7b6161334979fdea2a4d0d225a2b5a4b8fbe51506f820b49509b7e",
+  "static_policy_scope_sha256": "17054d852cf823629a509df1b631222c95798292cd6c7c37c604822f7a69d28f",
+  "terminal_status": "STOPPED_BY_RESOURCE_GUARDS_PARTIAL_NOT_CERTIFIED"
+}
