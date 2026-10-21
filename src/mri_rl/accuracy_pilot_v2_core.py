@@ -176,10 +176,11 @@ def validate_schedule(units, dev_patient_keys):
 
 
 def z045_provenance(sequence_rows, pool, image_bindings):
-    """Authenticate pinned z045 for every scheduled sequence row from the bound DATA56 source capsule rows
-    (paired_z045_data_v1.level == 45 and source_record_id `<patient>_z045_<flair|t1ce>_sequence` matching the target), and
-    require 8 actual unique planned image SHA-256s. pool: DATA56 capsule rows; image_bindings: {row_id: sha256}."""
-    import re
+    """Authenticate pinned z045 for every scheduled sequence row from the bound DATA56 capsule entries (actual schema:
+    level, patient_key_PRIVATE, original_source_record_id_PRIVATE, modality_PRIVATE, expected_png_sha256, record_PRIVATE).
+    Each scheduled row must equal its source record_PRIVATE exactly, with integer level 45, the source patient key, source id
+    `<patient>_z045_<modality>_sequence`, modality matching the label, and expected_png_sha256 equal to the planned image
+    SHA-256; 8 unique planned SHAs. pool: DATA56 entries; image_bindings: {row_id: sha256}. No legacy schema fallback."""
     require(len(sequence_rows) == 8 and len({r['id'] for r in sequence_rows}) == 8, 'Eight unique scheduled sequence rows required')
     by_id = {}
     for entry in pool:
@@ -188,18 +189,23 @@ def z045_provenance(sequence_rows, pool, image_bindings):
     for row in sequence_rows:
         require(row['id'] in by_id, 'Scheduled row absent from the bound DATA56 source')
         entry = by_id[row['id']]; rec = entry['record_PRIVATE']
-        meta = rec.get('paired_z045_data_v1') or entry.get('paired_z045_data_v1')
-        require(isinstance(meta, dict) and meta.get('level') == 45, 'Bound source provenance must pin level 45')
-        patient = rec['extra_info']['patient_key']
-        require(patient == row['extra_info']['patient_key'] and rec['reward_model'] == row['reward_model'], 'Scheduled row differs from its source')
-        m = re.fullmatch(re.escape(patient) + r'_z045_(flair|t1ce)_sequence', str(meta.get('source_record_id_PRIVATE')))
-        require(m is not None and {'flair': LABELS[0], 't1ce': LABELS[1]}[m[1]] == row['reward_model']['ground_truth'],
+        require(rec == row, 'Scheduled row differs from its bound DATA56 source record')
+        require(type(entry.get('level')) is int and entry['level'] == 45, 'Bound source provenance must pin integer level 45')
+        patient = entry.get('patient_key_PRIVATE')
+        require(isinstance(patient, str) and patient == rec['extra_info']['patient_key'], 'Source patient key must equal the record patient')
+        modality = entry.get('modality_PRIVATE')
+        require(modality in ('flair', 't1ce') and {'flair': LABELS[0], 't1ce': LABELS[1]}[modality] == row['reward_model']['ground_truth'],
+                'Source modality must match the target label')
+        require(entry.get('original_source_record_id_PRIVATE') == '%s_z045_%s_sequence' % (patient, modality),
                 'Source record identity must be this patient z045 with the target modality')
-        pairs.setdefault(patient, set()).add(m[1])
+        require(row['id'] in image_bindings and entry.get('expected_png_sha256') == image_bindings[row['id']],
+                'Source expected PNG SHA-256 must equal the planned image SHA-256')
+        require(modality not in pairs.setdefault(patient, set()), 'Duplicate source modality for a patient'); pairs[patient].add(modality)
     require(len(pairs) == 4 and all(v == {'flair', 't1ce'} for v in pairs.values()), 'Four complete z045 FLAIR/T1 source pairs required')
     shas = [image_bindings[r['id']] for r in sequence_rows]
     require(all(shared.sha(s) for s in shas) and len(set(shas)) == 8, 'Eight actual unique planned MRI image SHA-256s required')
-    return {'level': 45, 'basis': 'BOUND_DATA56_SOURCE_PROVENANCE: paired_z045_data_v1.level + source_record_id_PRIVATE regex per row',
+    return {'level': 45, 'basis': 'BOUND_DATA56_SOURCE_PROVENANCE: level + patient_key_PRIVATE + original_source_record_id_PRIVATE + '
+                                  'modality_PRIVATE + expected_png_sha256 + exact record_PRIVATE per row',
             'rows_authenticated': 8, 'complete_patient_pairs': 4, 'unique_image_sha256': 8, 'row_level_field_used_as_proof': False}
 
 

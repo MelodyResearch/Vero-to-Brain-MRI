@@ -530,9 +530,12 @@ def test_v2_model_load_ledger_is_exactly_nine(tmp_path):
 def z045_fixture():
     units = units4()
     rows = [c['row'] for u in units if u['kind'] == ms.SEQ_KIND for c in u['contexts']]
-    pool = [{'record_PRIVATE': {**json.loads(json.dumps(r)), 'paired_z045_data_v1': {'level': 45, 'source_record_id_PRIVATE': '%s_z045_%s_sequence' % (
-        r['extra_info']['patient_key'], 'flair' if r['reward_model']['ground_truth'] == 'FLAIR' else 't1ce')}}} for r in rows]
-    return units, rows, pool, {r['id']: sha('png' + r['id']) for r in rows}
+    images = {r['id']: sha('png' + r['id']) for r in rows}
+    def entry(r):                                                      # actual authenticated DATA56 entry schema
+        patient, modality = r['extra_info']['patient_key'], 'flair' if r['reward_model']['ground_truth'] == 'FLAIR' else 't1ce'
+        return {'level': 45, 'patient_key_PRIVATE': patient, 'original_source_record_id_PRIVATE': '%s_z045_%s_sequence' % (patient, modality),
+                'modality_PRIVATE': modality, 'expected_png_sha256': images[r['id']], 'record_PRIVATE': json.loads(json.dumps(r))}
+    return units, rows, [entry(r) for r in rows], images
 
 
 def test_schedule_never_reports_missing_row_level_as_proven_and_z045_comes_from_bound_source():
@@ -547,17 +550,32 @@ def test_schedule_never_reports_missing_row_level_as_proven_and_z045_comes_from_
     z = core.z045_provenance(rows, pool, images)
     assert z['level'] == 45 and z['unique_image_sha256'] == 8 and z['complete_patient_pairs'] == 4 and z['row_level_field_used_as_proof'] is False
     def mutate(index, change):
-        bad = json.loads(json.dumps(pool)); change(bad[index]['record_PRIVATE']); return bad
-    meta = lambda rec: rec['paired_z045_data_v1']
-    bads = [mutate(0, lambda r: meta(r).update(source_record_id_PRIVATE=meta(r)['source_record_id_PRIVATE'].replace('z045', 'z091'))),
-            mutate(0, lambda r: meta(r).update(source_record_id_PRIVATE=meta(r)['source_record_id_PRIVATE'].replace('flair', 't1ce'))),
-            mutate(1, lambda r: meta(r).update(level=91)),
-            mutate(2, lambda r: r.pop('paired_z045_data_v1'))]
+        bad = json.loads(json.dumps(pool)); change(bad[index]); return bad
+    sid = 'original_source_record_id_PRIVATE'
+    legacy = {k: v for k, v in pool[2].items() if k == 'record_PRIVATE'}
+    legacy['record_PRIVATE'] = {**legacy['record_PRIVATE'], 'paired_z045_data_v1': {'level': 45, 'source_record_id_PRIVATE': pool[2][sid]}}
+    bads = [mutate(0, lambda e: e.update({sid: e[sid].replace('z045', 'z091')})),
+            mutate(0, lambda e: e.update({sid: e[sid].replace('flair', 't1ce')})),
+            mutate(0, lambda e: e.pop(sid)),
+            mutate(1, lambda e: e.update(level=91)),
+            mutate(1, lambda e: e.update(level='45')),
+            mutate(1, lambda e: e.pop('level')),
+            mutate(3, lambda e: e.update(modality_PRIVATE='flair' if e['modality_PRIVATE'] == 't1ce' else 't1ce')),
+            mutate(4, lambda e: e.update(patient_key_PRIVATE=e['patient_key_PRIVATE'] + 'x')),
+            mutate(5, lambda e: e.update(expected_png_sha256=sha('other'))),
+            mutate(5, lambda e: e.pop('expected_png_sha256')),
+            mutate(6, lambda e: e['record_PRIVATE']['images'].append('extra') if isinstance(e['record_PRIVATE'].get('images'), list)
+                   else e['record_PRIVATE'].update(images=['extra'])),
+            mutate(7, lambda e: e['record_PRIVATE']['reward_model'].update(ground_truth='OTHER')),
+            [legacy if i == 2 else e for i, e in enumerate(pool)]]        # invented legacy schema is not accepted as a fallback
     for bad in bads:
         with pytest.raises(ValueError):
             core.z045_provenance(rows, bad, images)
-    with pytest.raises(ValueError, match='unique planned MRI image'):
+    with pytest.raises(ValueError, match='expected PNG SHA-256 must equal the planned'):
         core.z045_provenance(rows, pool, {**images, rows[1]['id']: images[rows[0]['id']]})
+    with pytest.raises(ValueError, match='unique planned MRI image'):     # source and plan agree, but duplicated
+        core.z045_provenance(rows, mutate(1, lambda e: e.update(expected_png_sha256=images[rows[0]['id']])),
+                             {**images, rows[1]['id']: images[rows[0]['id']]})
 
 
 # ================================================================ journal: immutable per-segment counters snapshot (real Journal)
