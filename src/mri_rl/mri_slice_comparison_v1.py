@@ -15,6 +15,7 @@ import argparse
 import copy
 import hashlib
 import json
+import math
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -147,7 +148,7 @@ def build_records(binding):
             rid = f"{r['opaque_id']}_{arm}"
             row = rebind_image(r["old_row_PRIVATE"], r[key], rid)
             records[arm].append({"id": rid, "row_PRIVATE": row, "image_sha256": _sha(r[key])})
-            meta[rid] = {"pair_key": r["pair_key"], "modality": r["modality"], "arm": arm}
+            meta[rid] = {"pair_key": r["pair_key"], "modality": r["modality"], "arm": arm, "truth": r["truth"]}
         ident += int(np.array_equal(_pixels(r["A_image"]), _pixels(r["B_image"])))
         abstain += int(bool(r.get("B_abstain")))
     for arm in INPUTS:
@@ -194,6 +195,17 @@ def _balanced(a, b):
 def condition_metrics(rows, meta):
     labels = ev.LABELS["mri_sequence"]
     require(rows and all(r["task"] == "mri_sequence" for r in rows), "Sequence rows required")
+    ids = [r["id"] for r in rows]
+    require(len(set(ids)) == len(ids), "Duplicate response ids would repeat-weight a record")
+    require(all(i in meta for i in ids), "Response id not in the frozen record set")
+    for r in rows:
+        require(r["truth"] in labels, "Unknown truth label")
+        require(isinstance(r["greedy"]["text"], str), "Greedy text required")
+        per = r["candidates"]["per_label"]
+        require(sorted(i["label"] for i in per) == sorted(labels), "Both canonical candidate labels exactly once required")
+        require(all(isinstance(i[k], (int, float)) and not isinstance(i[k], bool) and math.isfinite(i[k]) for i in per for k in READOUTS),
+                "Finite mean/sum/first scores required for every label")
+        require(all(isinstance(r["costs"][k], (int, float)) and r["costs"][k] >= 0 for k in COST_FIELDS), "Complete nonnegative costs required")
     greedy = lambda r: ev.strict_prediction(r["greedy"]["text"], "mri_sequence")
     fl, t1 = _recall(rows, labels[0], greedy), _recall(rows, labels[1], greedy)
     m = {"rows": len(rows), "strict_accuracy": sum(greedy(r) == labels.index(r["truth"]) for r in rows) / len(rows),
@@ -241,15 +253,36 @@ def _body(m):
     return {k: v for k, v in m.items() if k not in ("costs", "rows")}
 
 
+def _frozen_ids(meta, arm):
+    ids = sorted(i for i, m in meta.items() if m["arm"] == arm)
+    require(ids, "No frozen records for input " + arm)
+    return ids
+
+
 def analyze(conditions, meta, *, provenance, receipt_sha256=None):
-    """conditions: {'checkpoint|input': [row,...]}. Rows have the run_row shape. provenance must be declared; real outputs need a receipt hash."""
+    """conditions: {'checkpoint|input': [row,...]} in the run_row shape. At the PREPARATION stage only SYNTHETIC_FIXTURE is accepted:
+    an actual-model claim cannot be minted from a receipt string, and no externally authenticated execution entry exists yet."""
     require(provenance in ("ACTUAL_MODEL_OUTPUT", "SYNTHETIC_FIXTURE"), "Declared provenance required")
-    require(provenance != "ACTUAL_MODEL_OUTPUT" or receipt_sha256, "Actual model output needs a receipt sha256")
+    require(provenance == "SYNTHETIC_FIXTURE", "ACTUAL_MODEL_OUTPUT is refused: no externally authenticated execution entry exists at this preparation stage")
+    require(conditions, "At least one condition required")
     metrics = {}
     for key, rows in conditions.items():
         ck, inp = key.split("|")
         require(ck in CHECKPOINTS and inp in INPUTS, "Unknown condition key")
+        frozen = _frozen_ids(meta, inp)
+        got = [r["id"] for r in rows]
+        require(len(set(got)) == len(got), "Duplicate response ids")
+        require(all(meta.get(i, {}).get("arm") == inp for i in got), "Response id does not belong to this condition's input")
+        require(sorted(got) == frozen, "Condition must cover exactly the frozen record set (no missing/extra rows)")
+        for r in rows:
+            m = meta[r["id"]]
+            require("truth" in m and r["truth"] == m["truth"], "Row truth differs from the frozen reference")
         metrics[key] = condition_metrics(rows, meta)
+    arms = {}
+    for inp in INPUTS:
+        sig = {(m["pair_key"], m["modality"], m["truth"]) for i, m in meta.items() if m["arm"] == inp}
+        arms[inp] = sig
+    require(arms["inA"] == arms["inB"], "inA and inB must cover the same patients/modalities/truths")
     M = lambda ck, inp: metrics.get(f"{ck}|{inp}")
     effects = {}
     for ck in CHECKPOINTS:
@@ -269,7 +302,7 @@ def analyze(conditions, meta, *, provenance, receipt_sha256=None):
         effects["input_x_training_interaction"] = {"kind": "INTERACTION_DIFFERENCE_OF_DIFFERENCES", "exploratory": True,
                                                    "delta": numeric_delta(d("trainedB"), d("trainedA"))}
     return {"schema": "mri-slice-comparison-analysis-v1", "protocol_sha256": protocol_digest(), "provenance": provenance,
-            "model_prediction_claim": provenance == "ACTUAL_MODEL_OUTPUT", "receipt_sha256": receipt_sha256,
+            "model_prediction_claim": False, "receipt_sha256": None,
             "metrics": metrics, "effects": effects, "MRI_accuracy_improvement_claim": "NOT_ESTABLISHED",
             "limits": protocol()["resolution"], "training_authorized": False}
 

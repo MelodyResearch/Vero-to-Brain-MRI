@@ -182,8 +182,10 @@ def test_analyze_refuses_without_provenance_and_labels_synthetic(tmp_path):
     cond = {"parent|inA": fake_rows(prep, "inA", truths), "parent|inB": fake_rows(prep, "inB", truths)}
     with pytest.raises(ValueError, match="provenance"):
         sc.analyze(cond, prep["meta"], provenance=None)
-    with pytest.raises(ValueError, match="receipt"):
+    with pytest.raises(ValueError, match="refused"):
         sc.analyze(cond, prep["meta"], provenance="ACTUAL_MODEL_OUTPUT")
+    with pytest.raises(ValueError, match="refused"):
+        sc.analyze(cond, prep["meta"], provenance="ACTUAL_MODEL_OUTPUT", receipt_sha256="a" * 64)
     out = sc.analyze(cond, prep["meta"], provenance="SYNTHETIC_FIXTURE")
     assert out["model_prediction_claim"] is False and out["MRI_accuracy_improvement_claim"] == "NOT_ESTABLISHED"
     assert out["effects"]["data_input_effect_at_parent"]["kind"] == "DATA_INPUT_EFFECT_ONLY_NOT_RL_GAIN"
@@ -213,3 +215,26 @@ def test_no_effects_invented_when_conditions_missing(tmp_path):
     truths = [r["row_PRIVATE"]["reward_model"]["ground_truth"] for r in prep["records"]["inA"]]
     out = sc.analyze({"parent|inA": fake_rows(prep, "inA", truths)}, prep["meta"], provenance="SYNTHETIC_FIXTURE")
     assert out["effects"] == {}
+
+
+def test_analyze_rejects_missing_extra_duplicate_wrongtruth_and_nonfinite(tmp_path):
+    prep = sc.build_records(binding(tmp_path))
+    truths = [r["row_PRIVATE"]["reward_model"]["ground_truth"] for r in prep["records"]["inA"]]
+    good = fake_rows(prep, "inA", truths)
+    for bad in (good[:-1], good + [copy.deepcopy(good[0])]):
+        with pytest.raises(ValueError):
+            sc.analyze({"parent|inA": bad}, prep["meta"], provenance="SYNTHETIC_FIXTURE")
+    wrong = copy.deepcopy(good)
+    wrong[0]["truth"] = "FLAIR" if wrong[0]["truth"] != "FLAIR" else "contrast-enhanced T1"
+    with pytest.raises(ValueError, match="truth"):
+        sc.analyze({"parent|inA": wrong}, prep["meta"], provenance="SYNTHETIC_FIXTURE")
+    nan = copy.deepcopy(good)
+    nan[0]["candidates"]["per_label"][0]["sum"] = float("nan")
+    with pytest.raises(ValueError):
+        sc.analyze({"parent|inA": nan}, prep["meta"], provenance="SYNTHETIC_FIXTURE")
+    short = copy.deepcopy(good)
+    del short[0]["candidates"]["per_label"][0]["first"]
+    with pytest.raises((ValueError, KeyError)):
+        sc.analyze({"parent|inA": short}, prep["meta"], provenance="SYNTHETIC_FIXTURE")
+    with pytest.raises(ValueError):
+        sc.analyze({"parent|inB": good}, prep["meta"], provenance="SYNTHETIC_FIXTURE")

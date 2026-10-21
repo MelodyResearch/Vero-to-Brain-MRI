@@ -24,7 +24,7 @@ import time
 import traceback
 import numpy as np
 import nibabel as nib
-from PIL import Image, ImageChops
+from PIL import Image
 
 from mri_rl import mri_data_prep_v1 as dp
 from mri_rl.dallas_spatial_qualification_v1 import render_slice
@@ -235,8 +235,10 @@ def compare_png_panel(png_path, rendered_gray, declared_modality):
         panels = {"single": canvas}
     else:
         return {"status": "UNEXPECTED_CANVAS_SIZE", "canvas_size": list(size), "matches": {}, "panel": None, "crop": None}
-    ref = Image.fromarray(rendered_gray)
-    matches = {m: ImageChops.difference(p.convert("L"), ref).getbbox() is None for m, p in panels.items()}
+    gray = np.asarray(rendered_gray, np.uint8)
+    require(gray.shape == (PANEL_SIZE[1], PANEL_SIZE[0]), "Rendered panel has an unexpected shape")
+    ref_rgb = np.repeat(gray[:, :, None], 3, axis=2)  # exact RGB comparison: a colored/overlaid pixel can never equal gray
+    matches = {m: bool(np.array_equal(np.asarray(p), ref_rgb)) for m, p in panels.items()}
     if size == PANEL_SIZE:
         panel = "single" if matches["single"] else None
     elif declared_modality in PANEL_BOX:
