@@ -136,7 +136,8 @@ def test_runner_rechecks_the_authorized_source_closure_before_every_model(tmp_pa
 # ------------------------------------------------------------------ analyzer + stop rule
 def row(task,truth,answer,means):
     return {'id':f'{task}-{truth}-{answer}-{means}','task':task,'truth':truth,'greedy':{'text':f'<think>x</think><answer>\\boxed{{{answer}}}</answer>'},
-            'candidates':{'per_label':[{'label':l,'mean':v} for l,v in zip(ev.LABELS[task],means)]}}
+            'candidates':{'per_label':[{'label':l,'mean':v,'sum':2*v,'first':v} for l,v in zip(ev.LABELS[task],means)]},
+            'costs':{'greedy_calls':1,'candidate_score_API_calls':3,'generated_tokens':2,'teacherforced_input_positions':10}}
 
 
 def rows_for(flair_correct,t1_correct,dallas_correct):

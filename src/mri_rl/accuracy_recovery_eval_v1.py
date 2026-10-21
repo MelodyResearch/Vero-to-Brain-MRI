@@ -191,10 +191,14 @@ def run_checkpoints(prepared,token,*,backend_factory,runner,before,out,counter,r
     token.check('eval_complete');return results
 
 
+BENEFIT_KEYS=('sequence_balanced_accuracy','T1_recall','sequence_candidate_balanced_accuracy')
+PROTECTED_KEYS=('FLAIR_recall','Dallas_accuracy','Dallas_same_recall','Dallas_different_recall')
 STOP_RULE={'training_signal_diagnostics':'Admitted-group/response counts, gradient norms and cosine are DIAGNOSTICS ONLY: equal counts do not imply equal advantage coefficients (group means/std differ) and different counts do not decide accuracy. The authenticated-terminal accuracy comparison is always completed.',
-           'primary_benefit':'B must beat A on strict-greedy sequence balanced accuracy AND T1 recall (B-A>0 on both)',
-           'degrade':'Stop if B FLAIR recall or Dallas accuracy is below the Parent, or Dallas accuracy is below A (retention); a no-update arm equals the Parent',
-           'decision':'CONTINUE_CANDIDATE_REQUIRES_NEW_AUTHORIZATION only if benefit and no degrade, else STOP_CANDIDATE; never a training authorization',
+           'policy_source':'Frozen by the Root before any new output (private spec hash 3107aa44a6f3a00eaf715065522fc4f7d83faf89ce62ccb0dae21573df4e30d7).',
+           'benefit':'B-A AND B-Parent must each STRICTLY increase strict-greedy sequence balanced accuracy, T1 recall and mean-candidate balanced accuracy',
+           'protection':'FLAIR recall, Dallas overall accuracy, Dallas same recall and Dallas different recall must NOT fall against A or against the Parent',
+           'image_dependence':'swap-alias valid opposite-class changes of B must not fall below A (when computed)',
+           'decision':'CONTINUE_CANDIDATE_REQUIRES_NEW_AUTHORIZATION only if every benefit and protection condition holds, else STOP_CANDIDATE; never a training authorization; candidate sum/first are secondary and reported, never chosen as best readout',
            'resolution':'24 sequence rows = 12 FLAIR + 12 T1 from 4 people: one row moves a recall by 1/12; engineering diagnostic, not statistical evidence'}
 
 
@@ -225,15 +229,17 @@ def swap_summaries(rows,aliases):
 
 
 def verdict(parent,a,b,swaps=None,diagnostics=None):
-    """Pre-declared stop rule on saved endpoint vectors (see STOP_RULE). Alias arms must be passed as the Parent vector/summary."""
+    """Frozen conservative policy on saved endpoint vectors (see STOP_RULE). Alias arms must be passed as the Parent vector/summary."""
     for vector in (parent,a,b):ev._validate_vector(vector)
-    delta={k:b[k]-a[k] for k in ev.KEYS}
-    benefit=delta['sequence_balanced_accuracy']>0 and delta['T1_recall']>0
-    degrade={'FLAIR_recall_below_parent':b['FLAIR_recall']<parent['FLAIR_recall'],'Dallas_accuracy_below_parent':b['Dallas_accuracy']<parent['Dallas_accuracy'],
-             'Dallas_accuracy_below_A':b['Dallas_accuracy']<a['Dallas_accuracy']}
+    references={'A':a,'parent':parent}
+    delta_a={k:b[k]-a[k] for k in ev.KEYS};delta_parent={k:b[k]-parent[k] for k in ev.KEYS}
+    benefit_detail={ref:{k:b[k]-vector[k]>0 for k in BENEFIT_KEYS} for ref,vector in references.items()}
+    benefit=all(all(v.values()) for v in benefit_detail.values())
+    degrade={f'{k}_below_{ref}':b[k]<vector[k] for ref,vector in references.items() for k in PROTECTED_KEYS}
     if swaps is not None:degrade['swap_valid_opposite_class_changes_below_A']=swaps['B']['valid_opposite_class_changes']<swaps['A']['valid_opposite_class_changes']
     go=benefit and not any(degrade.values())
-    return {'decision':'CONTINUE_CANDIDATE_REQUIRES_NEW_AUTHORIZATION' if go else 'STOP_CANDIDATE','B_minus_A':delta,'benefit':benefit,'degrade':degrade,'swap_summaries':swaps,'training_signal_diagnostics':{'diagnostic_only_never_a_criterion':True,**(diagnostics or {})},
+    return {'decision':'CONTINUE_CANDIDATE_REQUIRES_NEW_AUTHORIZATION' if go else 'STOP_CANDIDATE','B_minus_A':delta_a,'B_minus_Parent':delta_parent,'benefit':benefit,'benefit_detail':benefit_detail,
+            'degrade':degrade,'swap_summaries':swaps,'training_signal_diagnostics':{'diagnostic_only_never_a_criterion':True,**(diagnostics or {})},
             'A_vs_parent':ev.decide(parent,a)['decision'],'B_vs_parent':ev.decide(parent,b)['decision'],'training_authorized':False,'generalization_proven':False,'stop_rule':STOP_RULE}
 
 
@@ -245,14 +251,62 @@ def load_rows(checkpoint_dir):
     return rows
 
 
+READOUTS=('mean','sum','first')
+COST_FIELDS=('greedy_calls','candidate_score_API_calls','generated_tokens','teacherforced_input_positions')
+
+
+def _class_stats(rows,task,predict):
+    labels=ev.LABELS[task];recalls={};invalid=sum(predict(r)==-1 for r in rows)
+    for label in labels:
+        group=[r for r in rows if r['truth']==label];recalls[label]=sum(predict(r)==labels.index(label) for r in group)/len(group) if group else None
+    values=[v for v in recalls.values() if v is not None]
+    return {'class_recall':recalls,'balanced_accuracy':sum(values)/len(values) if len(values)==len(labels) else None,'invalid':invalid,'rows':len(rows)}
+
+
+def score_summary(rows):
+    """Saved-only summary of the real rows: strict greedy; candidate mean (PRIMARY) / sum / first with ties INVALID; correct-minus-wrong label margin by
+    class and aggregate; invalid counts; actual cost fields. No model call, no best-readout choice, no clinical or independence claim."""
+    require(len(rows)==40,'Exact 40 real rows required');result={'primary_candidate_readout':'mean','secondary_candidate_readouts':['sum','first'],'tasks':{},'costs':{k:0 for k in COST_FIELDS},'rows':len(rows)}
+    for task in ev.LABELS:
+        subset=[r for r in rows if r['task']==task];labels=ev.LABELS[task];require(subset,'Missing task rows: '+task)
+        entry={'greedy':_class_stats(subset,task,lambda r:ev.strict_prediction(r['greedy']['text'],task)),'candidate':{},'margin_correct_minus_wrong':{}}
+        for readout in READOUTS:
+            def scores(r):
+                by_label={item['label']:item[readout] for item in r['candidates']['per_label']};return [by_label[labels[0]],by_label[labels[1]]]
+            entry['candidate'][readout]=_class_stats(subset,task,lambda r:ev.candidate_prediction(scores(r)))
+            margins={label:[] for label in labels}
+            for r in subset:
+                values=scores(r);truth=labels.index(r['truth']);margins[r['truth']].append(values[truth]-values[1-truth])
+            every=[m for group in margins.values() for m in group]
+            entry['margin_correct_minus_wrong'][readout]={**{label:(sum(g)/len(g) if g else None) for label,g in margins.items()},'aggregate':sum(every)/len(every)}
+        result['tasks'][task]=entry
+    for r in rows:
+        for k in COST_FIELDS:result['costs'][k]+=r['costs'][k]
+    return result
+
+
+def numeric_delta(left,right):
+    """Recursive left-right over shared numeric leaves (None/non-numeric leaves are skipped); costs are excluded by the caller."""
+    if isinstance(left,dict) and isinstance(right,dict):
+        return {k:numeric_delta(left[k],right[k]) for k in left if k in right and numeric_delta(left[k],right[k]) is not None}
+    if isinstance(left,(int,float)) and isinstance(right,(int,float)) and not isinstance(left,bool):return left-right
+    return None
+
+
 def analyze(evaluation_output,arms,aliases=None,diagnostics=None):
-    """Vectors for Parent/A/B (an alias arm reuses the Parent rows, no duplicate evaluation) and the verdict."""
+    """Vectors, saved-only score summaries and deltas for Parent/A/B (an alias arm reuses the Parent rows, no duplicate evaluation) and the verdict."""
     root=Path(evaluation_output);rows={'parent':load_rows(root/'parent_PRIVATE')}
     for arm in ('A','B'):rows[arm]=rows['parent'] if arms[arm]['alias_of_parent'] else load_rows(root/f'{arm}_PRIVATE')
     vectors={label:endpoint_vector(value) for label,value in rows.items()}
+    summaries={label:score_summary(value) for label,value in rows.items()}
+    for arm in ('A','B'):
+        if arms[arm]['alias_of_parent']:summaries[arm]={**summaries[arm],'costs':'ALIAS_OF_PARENT_NO_NEW_CALLS'}
+    body=lambda label:{k:v for k,v in summaries[label].items() if k!='costs'}
+    deltas={'B_minus_A':numeric_delta(body('B'),body('A')),'B_minus_Parent':numeric_delta(body('B'),body('parent')),'A_minus_Parent':numeric_delta(body('A'),body('parent'))}
     swaps={label:swap_summaries(value,aliases) for label,value in rows.items() if label in ('A','B')} if aliases else None
-    return {'schema':'accuracy-recovery-evaluation-analysis-v1','vectors':vectors,'aliases_of_parent':[a for a in ('A','B') if arms[a]['alias_of_parent']],
-            'verdict':verdict(vectors['parent'],vectors['A'],vectors['B'],swaps,diagnostics)}
+    return {'schema':'accuracy-recovery-evaluation-analysis-v1','vectors':vectors,'summaries':summaries,'deltas':deltas,'aliases_of_parent':[a for a in ('A','B') if arms[a]['alias_of_parent']],
+            'verdict':verdict(vectors['parent'],vectors['A'],vectors['B'],swaps,diagnostics),
+            'limits':'Engineering diagnostic on 4 internal-dev people; no clinical, independence or generalization claim; candidate mean is primary, sum/first secondary.'}
 
 
 # ---------------------------------------------------------------- guarded native execution
