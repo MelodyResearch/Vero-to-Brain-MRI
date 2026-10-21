@@ -1,7 +1,22 @@
 {
   "schema": "accuracy_recovery_runtime_v1",
   "date": "2026-10-20",
-  "status": "RUNTIME_INSTALLED_BASE_RECOVERED_QUANT_CACHE_NOT_RUN",
+  "status": "RUNTIME_INSTALLED_BASE_RECOVERED_CPU_CACHE_REBUILD_FAILED_NOT_CERTIFIED",
+  "cpu_cache_rebuild": {
+    "result": "FAILED_NO_CERTIFICATE",
+    "wrapper": "scripts/rebuild_accuracy_recovery_cpu_cache_v1.py @043d9d6",
+    "work_root": "work/accuracy-recovery-exact-cache-v1",
+    "plan_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d",
+    "units_converted": 750,
+    "quantized": 344,
+    "device": "cpu",
+    "model_loaded": false,
+    "error": "Cache index differs from the plan-derived key/shard mapping (lm_head.biases/scales on the shard boundary; inferred part-order mismatch)",
+    "rebuilt_shard_sha256": {"model-00001-of-00002.safetensors": "f09a14da7bd749744722fe7be315ad37ccbfe3e03d186985ab29ed80e0ad82dc", "model-00002-of-00002.safetensors": "38923a94d29b6ce492c0b9977cfa7b885c67fb4b7c1446494ab82664ad35c3d2"},
+    "historical_shard_sha256": {"model-00001-of-00002.safetensors": "6a332d4977c95fd6b51ac7155e039016d90041da1bf3cdd3e500192ea00fa626", "model-00002-of-00002.safetensors": "2c94dc6761ab4641a4e2c612eb3ff5fd62d939c5704f8301025e741650b9e1e8"},
+    "hashes_match_historical": false,
+    "note": "Shard byte sizes equal historical, hashes do not. No retry, no substitution. Do not use this cache. Private report: local_data/accuracy_recovery_v1/cpu_cache_rebuild_failure_report_PRIVATE.json"
+  },
   "evidence_labels": {
     "python": "OBSERVED venv python 3.13.6; historical minor 3.13; historical patch NOT_VERIFIED",
     "package_pins": "OBSERVED installed mlx 0.32.4, mlx-metal 0.32.4, mlx-vlm 0.7.8, transformers 5.20.0 (match historical receipts)",
