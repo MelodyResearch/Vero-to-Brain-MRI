@@ -22,3 +22,9 @@ Three effects are never merged: (1) `data_input_effect_at_<checkpoint>` = inB−
 ## Binding (PRIVATE, local code only; schema `mri-slice-comparison-binding-v1`)
 
 `rows[]`: `opaque_id, pair_key, modality (flair|t1ce), truth, old_row_PRIVATE (original VERL row), A_image, B_image, A_sha256?, B_sha256?, B_abstain`. `A_image` = pilot `images/<id>_legacy_z045.png`; `B_image` = pilot `images/<id>_prim_f50.png`. Run: `python3 scripts/prepare_mri_slice_comparison_v1.py --binding <PRIVATE.json> --private-out <NEW_DIR> --public-out <NEW_FILE.json>`.
+
+## ACTUAL CPU preparation (code `1ae9edc`; analyzer hardened)
+
+Review fixes: duplicate response ids rejected; `analyze` requires each condition to cover exactly the frozen record set of its own input (ids/arm/truth/pair/modality), rejects cross-arm, missing, extra, duplicated or non-finite rows and incomplete readouts; `ACTUAL_MODEL_OUTPUT` is **refused** (no externally authenticated execution entry exists), so only `SYNTHETIC_FIXTURE` runs.
+
+Capsule SHA `9f0681a6…9f53e` verified; local adapter checked candidate prompt text+role equal after image stripping and no site/patient/opaque id (whole token) in visible text. One witnessed `prepare` run, exit 0, stderr 0 bytes: **6 rows/input, 3 people, 12 existing PNGs bound, 12 records**, typed + top-level image bound, text bit-exact, 0 B-equals-A, 0 B-abstain flagged, 0 source volumes, 0 renders, **0 models, NOT_RUN**. Protocol SHA `0b1ef833…d641`. No accuracy exists; the data-input effect is still unmeasured.

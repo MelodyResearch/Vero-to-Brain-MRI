@@ -34,3 +34,21 @@ Command (after root review and binding): `python3 scripts/run_mri_spatial_task_p
 ## Paired-canvas correction (root review, applied)
 
 The historical spatial PNGs are **paired** 752×470 canvases (FLAIR panel box (4,28,368,464); T1ce panel box (384,28,748,464); each 364×436; title strip above y=28). The new pilot images are **T1ce**, so the T1ce render (`dallas_spatial_qualification_v1.render_slice`, float32 read as the historical builder) is compared with the **right panel crop only** (declared modality must match its panel; undeclared modality needs exactly one matching panel; a bare 364×436 PNG is accepted as the panel). All endpoint coordinates are **panel-relative**; the canvas offset is never applied (`canvas_to_panel_xy`, tested). For a technically clean case the mask-free, header-free T1ce panel crop is saved privately as a **NEW** model-input candidate with a **NEW** single-image prompt state (`SINGLE_IMAGE_PROMPT`, `NEW_SINGLE_IMAGE_CANDIDATE_NOT_MODEL_TESTED`; image bound in typed prompt and top-level `images`); abstaining cases create no row. This is not the historical paired-frame input, and the old FLAIR-panel question/target remain private provenance only. T1ce contrast and visible answerability are **not** assumed equal to FLAIR. Numeric-3 is reported as a separate `numeric3_component` (route disabled; lineage `NOT_REATTESTED` → `NOT_VERIFIED`; not called clinically enhancing).
+
+## ACTUAL CPU execution (2026-10-20/21; code `1ae9edc`; private per-case results stay local, not in Git)
+
+Fixed manifest SHA `b4a2ba13…0cec` verified; local adapter preserved all 3 source SHAs, PNG SHAs, hidden source targets, `image_modality: t1ce` (from `image_acquisition_label`), numeric-3 lineage `NOT_REATTESTED`, whole-union only. One witnessed CLI run, exit **0**, stderr 0 bytes, **no rerun**. Cases attempted **3/3**, none replaced; 3 MRI volumes + 3 masks + 3 PNGs read, 0 models, 0 resampling, 0 mask overlays; sources unmodified (size+mtime). Wall 0.57 s (cases 0.10–0.12 s), peak RSS 319 MiB (limit 512), no soft-limit stop.
+
+| Result | Count |
+|---|---|
+| Image/mask grid identical (no resample) | 3/3 |
+| Historical PNG: T1ce right-panel exact **RGB** match | 3/3 |
+| Labels observed | {0,1,2,3} in all 3, none outside ontology |
+| Hidden source target agrees with arithmetic (either convention) | 3/3; convention-sensitive 0 |
+| Technically clean (`TECHNICAL_ARITHMETIC_CLEAN_EXPERT_PENDING`) | **1** (new single-image T1ce candidate row saved privately) |
+| `ABSTAIN` | **2**: `MULTICOMPONENT_2D` x2, `SMALL_SOURCE_MASK` x1 (union area 890 px) |
+| Distinct grid cells among 3 cases | 2 |
+| Verifier on synthetic strings | 3/3 OK (not model accuracy) |
+| scientific_admitted | **0** (all `EXPERT_ADJUDICATION_REQUIRED`) |
+
+Interpretation: one of three fixed cases is arithmetically clean; this is source-mask arithmetic, not visible truth, and 3 cases give no statistical or accuracy claim. T1ce answerability remains unadjudicated.
