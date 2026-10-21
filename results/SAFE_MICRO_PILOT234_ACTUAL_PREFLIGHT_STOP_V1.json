@@ -1,0 +1,89 @@
+{
+  "schema": "safe-micro-pilot234-actual-readonly-preflight-stop-v1",
+  "status": "BLOCKED_AVAILABLE_MEMORY_PREFLIGHT_STOP",
+  "scope_file_sha256": "3927e15080b582e57be370151abe8fc34a6833f1bbcb8c4991681fd93ea8c01c",
+  "human_grant_received": true,
+  "human_instruction_sha256": "29d3d8dffd6707cbbca04dc088b5a0c51a8f8a1b066c5f8bcb459fcd0b5d78e1",
+  "software_execution_grant_consumed": false,
+  "native_launcher_started": false,
+  "automatic_retry": false,
+  "source_or_threshold_changed": false,
+  "initial_samples": 3,
+  "hold_samples": 25,
+  "hold_elapsed_seconds": 122.13663224998163,
+  "stop_reason": "insufficient_available_memory followed by reviewed120s boundedHOLD timeout",
+  "required_available_GiB": 10.0,
+  "required_pressure_free_percent": 40.0,
+  "min_available_GiB": 9.492919921875,
+  "max_available_GiB": 9.97015380859375,
+  "last_available_GiB": 9.818679809570312,
+  "last_shortfall_GiB": 0.1813201904296875,
+  "min_pressure_free_percent": 53.0,
+  "max_pressure_free_percent": 56.0,
+  "swap_start_GiB": 14.579892578125,
+  "swap_end_GiB": 14.579892578125,
+  "swap_growth_GiB": 0.0,
+  "effective_swap_cap_GiB": 15.46966796875,
+  "original_baseline_swap_growth_GiB": 0.610224609374999,
+  "OS_pressure_levels": [
+    1
+  ],
+  "battery_percent": 67,
+  "power_source": "BATTERY",
+  "disk_free_GiB": 294.66352462768555,
+  "initial_global_lock_has_no_holders": true,
+  "monitor_peak_RSS_GiB": 0.040496826171875,
+  "MLX_active_or_peak": "NOT_INITIALIZED_NOT_MEASURED",
+  "thermal": "SENSOR_UNAVAILABLE",
+  "actual": {
+    "model_loads": 0,
+    "model_generation": 0,
+    "scorer_forwards": 0,
+    "native_backward": 0,
+    "optimizer_updates": 0,
+    "training": 0,
+    "GPU_operations": 0
+  },
+  "stages": {
+    "2": "NOT_RUN_PREFLIGHT_STOP",
+    "3": "NOT_RUN",
+    "4": "NOT_RUN"
+  },
+  "accuracy": {
+    "Parent_Adam52": {
+      "MRI_accuracy": "NOT_RUN",
+      "FLAIR_recall": "NOT_RUN",
+      "T1_recall": "NOT_RUN",
+      "balanced_accuracy": "NOT_RUN",
+      "actual_updates": 0
+    },
+    "Direct_Vero": {
+      "MRI_accuracy": "NOT_RUN",
+      "FLAIR_recall": "NOT_RUN",
+      "T1_recall": "NOT_RUN",
+      "balanced_accuracy": "NOT_RUN",
+      "actual_updates": 0
+    },
+    "MRI_adapted_Vero": {
+      "MRI_accuracy": "NOT_RUN",
+      "FLAIR_recall": "NOT_RUN",
+      "T1_recall": "NOT_RUN",
+      "balanced_accuracy": "NOT_RUN",
+      "actual_updates": 0
+    }
+  },
+  "decision": "INCONCLUSIVE_NO_TRAINING_OR_ACCURACY_EVIDENCE; do not scale or automatically redispatch after STOP",
+  "assets": "Stage1 restored cache and immutable Adam52/checkpoints/Adam/RNG/frozenplan untouched",
+  "stop_utc": "2026-10-21T08:14:20.815450+00:00",
+  "limitations": "This is a read-only preflight stop, not a model memory-exhaustion event or a native training failure. Software grant unconsumed does not authorize an automatic retry after the explicit operational STOP.",
+  "post_stop_global_lock_has_no_holders": true,
+  "readonly_monitor_exited": true,
+  "readonly_monitor_exit_code": 0,
+  "native_stage_exit_code": "NOT_APPLICABLE_NOT_STARTED",
+  "private_evidence_file_sha256": {
+    "PILOT234_APPROVED_PREFLIGHT_PRIVATE.json": "0169061ce473956903ef2159f45f44bf3c2a171a6539deea1f29fb5add5b0e87",
+    "PILOT234_AUTHORIZED_RESOURCE_HOLD_PRIVATE.jsonl": "8e13f012413c18e8b8767fd6171473e9aaba1882e75e7a458e2b05a4854ef172",
+    "PILOT234_AUTHORIZED_RESOURCE_HOLD_OUTCOME_PRIVATE.json": "93446717a0048ccf3a1ec5f92b5521ca46ffa67b53c570a866a5e96fb1b75ef5",
+    "PILOT234_POST_STOP_NO_NATIVE_PRIVATE.json": "422b8b0a6bbc8b8b0f9dd2a3c2062f7710ea390460038a93cf5f48dff52a4ef7"
+  }
+}
