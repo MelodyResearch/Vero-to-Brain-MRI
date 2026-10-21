@@ -1,0 +1,153 @@
+{
+  "schema": "historical-gpu-cache-v3-resource-policy-preparation-actual-v1",
+  "status": "IMPLEMENTED_TESTED_CPU_INDEPENDENTLY_REVIEWED_GPU_NOT_RUN",
+  "primary_implementer": "Claude Code 2.1.305 / claude-sonnet-5-5",
+  "claude_sessions": [
+    "ef1f8629-cead-485d-8fec-8efe75b67f41",
+    "3fce90b8-f7ae-491f-9bd8-054483b0312d"
+  ],
+  "claude_commits": [
+    "c6f61d40926ed1a15d53290ce79e44577149d8f6",
+    "cfecc77ef58b7bb74fbee3e2f8b2b4df4eb2b51e"
+  ],
+  "old_stop": {
+    "available_gib": 5.9315185546875,
+    "old_floor_gib": 6.0,
+    "pressure_free_percent": 35,
+    "stage_swap_growth_gib": 0.5784277343749995,
+    "old_stage_swap_cap_gib": 1,
+    "stage_cap_exceeded": false,
+    "sampled_rss_peak_gib": 2.0229949951171875,
+    "saved_reasons": [
+      "sustained_swap_growth",
+      "insufficient_memory_headroom"
+    ],
+    "rate_reconstruction": "UNVERIFIABLE_FROM_OLD_LOG_NO_TIMESTAMPS",
+    "native_exit_code": 1,
+    "authorization_consumed": true
+  },
+  "resource_policy": {
+    "ac_required": true,
+    "continue_available_gib_min": 5.5,
+    "continue_pressure_free_percent_min": 30.0,
+    "disk_reserve_gib": 20.0,
+    "hold_seconds_per_boundary_max": 120.0,
+    "mlx_active_gib_stop_above": 18.0,
+    "mlx_active_note": "optional native MLX active-memory guard (old paced_resources >18 GiB), applied whenever the sampler reports it",
+    "mlx_cache_limit_bytes": 67108864,
+    "mlx_memory_limit_bytes": 8589934592,
+    "operation_start_window_seconds": 1800.0,
+    "os_critical_level": 4,
+    "os_pressure_levels": {
+      "1": "normal",
+      "2": "warning",
+      "4": "critical"
+    },
+    "other_heavy_processes_allowed": 0,
+    "rss_envelope_gib": 8.0,
+    "sample_interval_seconds": 5.0,
+    "stop_available_gib_below": 2.0,
+    "stop_pressure_free_percent_max": 15.0,
+    "sustained_low_available_gib": 4.0,
+    "sustained_low_seconds": 30.0,
+    "swap_baseline": "ORIGINAL authenticated v2 first sample (13.96966796875 GiB, hash-pinned old resource log), carried into the controller; never reset",
+    "swap_cumulative_net_growth_cap_gib": 1.5,
+    "swap_rate": "trend-only (logged, never decides)",
+    "swap_used_absolute_cap_gib": 16.0,
+    "swap_used_absolute_cap_note": "NEW in v3: no absolute swap-used cap existed historically; STOP strictly above 16 GiB",
+    "thermal_limitation": "THROTTLED holds; SENSOR_UNAVAILABLE cannot refuse (documented current limitation)",
+    "unit_reserve_gib": 2.0,
+    "unknown_essential_sensors": "HOLD (no operation starts) then STOP at the per-boundary bound; non-finite / out-of-range / non-integer essential readings are treated as unknown",
+    "warning_only_inherited_supervisor_reasons_terminate": false
+  },
+  "scope_file_sha256": "658542e0c31a39b512a7705a41d08abc5b027e714c5715df32cb47cd960ab4ee",
+  "scope_canonical_sha256": "1e586e6312b946029c98c032fc7543d9675476cbb92c1f816bf6cfabfbb19144",
+  "input_sha256": "57f5ccb4d6dee11f3f8961461e613afa6c3191dfbd141a4bf161c065c6479750",
+  "source_closure_files": 23,
+  "four_public_base_shards_fully_stream_verified_during_prepare": true,
+  "independent_review": {
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "reviewer": "Codex /root/full_arm_execution_contract",
+    "public_path": "results/ACCURACY_RECOVERY_GPU_CACHE_V3_RESOURCE_REVISED_INDEPENDENT_REVIEW_V1.json",
+    "public_sha256": "cd76a5f0d05807a57975beafea301183476abb4d866f262e377cedf027e693fd",
+    "exact_private_review_sha256": "713d17713277a4203cfe1f8a949b839694468629b130f4907facc55ed7438546"
+  },
+  "actual_cpu_tests": {
+    "root_fresh_focused_passed": 149,
+    "root_seconds": 4.67,
+    "independent_same_cases_old_failed": 6,
+    "independent_same_cases_old_passed": 2,
+    "independent_same_cases_new_passed": 8,
+    "independent_additional_focused_author_passed": 45,
+    "counts_overlap_do_not_sum": true
+  },
+  "cpu_staging": {
+    "status": "CPU_STAGED_ONLY_NOT_GPU_AUTHORIZED",
+    "retained_units": 406,
+    "historical_exact_saved_unit0": 1,
+    "ordinary_unit0_receipt_fabricated": false,
+    "adoption_matches_scope": true,
+    "adoption_object_canonical_sha256": "a9f20332b5c428e6a4757345a5d631c6877c94ae4d731de44fb5b8de4a6f9dcf",
+    "adoption_file_sha256": "50db0f94f35ace179d0b6ca60c22f73bea975ce4c9a2d5baae1119a9ee426d7a",
+    "unit0_old_missing_metrics": [
+      "module_path_bitwise_equal_result",
+      "reload_bitwise_equal_result",
+      "mlx_peak_mib",
+      "mlx_active_after_release_mib",
+      "residual_within_budget",
+      "post_unit_resource_receipt"
+    ]
+  },
+  "remaining_budget": {
+    "quantized_units": 343,
+    "direct": 343,
+    "module_path": 343,
+    "new_underlying_max": 686,
+    "previous_spent_underlying": 2,
+    "cumulative_max": 688,
+    "operation_start_seconds": 1800
+  },
+  "latest_actual_cpu_resource_snapshot": {
+    "utc": "2026-10-21T03:39:11.827054+00:00",
+    "decision": "HOLD",
+    "available_gib": 8.567306518554688,
+    "pressure_free_percent": 48.0,
+    "swap_used_gib": 14.69470703125,
+    "swap_growth_gib": 0.7250390624999987,
+    "power_source": "BATTERY",
+    "battery_percent": 97,
+    "os_pressure_level": 2,
+    "other_heavy_processes": 0,
+    "flock_free_at_check": true,
+    "only_hold_reason": [
+      "not_ac"
+    ],
+    "thermal_state": "SENSOR_UNAVAILABLE"
+  },
+  "preservation": {
+    "global_training_guards_unchanged": true,
+    "historical_quantization_and_SHA_targets_unchanged": true,
+    "old_source_and_consumed_ledgers_unchanged": true,
+    "frozen_plan_and_lock_unchanged": true,
+    "Adam52_untouched": true,
+    "no_MRI_or_final100_read": true
+  },
+  "test_incident": {
+    "type": "optional isolated CPU mutation deleted HOLD timeout; no external per-mutant timeout",
+    "action": "root terminated exact runaway CPU runner and child; Claude closed its background task; no production-source mutation and no GPU",
+    "replacement": "finite targeted regression and independent cases with30s external timeout",
+    "rerun_optional_mutation_sweep": false
+  },
+  "new_operations_this_phase": {
+    "mlx_imports": 0,
+    "GPU_quantizations": 0,
+    "model_loads": 0,
+    "forward": 0,
+    "generation": 0,
+    "backward": 0,
+    "optimizer_updates": 0
+  },
+  "native_authorization": "FRESH_HUMAN_AUTHORIZATION_STILL_REQUIRED_AND_AC_GATE_MUST_PASS",
+  "cache_certified": false,
+  "next_after_cache_PASS": "bind actual identical cache certificate to existing Adam52 native/A-B preparation; do not repeat old audits or execute model/A-B without separate permission"
+}

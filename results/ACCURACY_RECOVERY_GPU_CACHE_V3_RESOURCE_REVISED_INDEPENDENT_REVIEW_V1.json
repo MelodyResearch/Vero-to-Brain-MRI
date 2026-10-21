@@ -1,0 +1,159 @@
+{
+  "AB_or_training_authorized": false,
+  "OS_enum_primary_source": "https://github.com/apple-oss-distributions/xnu/blob/xnu-11417.140.69/bsd/kern/kern_memorystatus_notify.c#L1672-L1696",
+  "OS_note_constants_primary_source": "https://github.com/apple-oss-distributions/xnu/blob/xnu-11417.140.69/bsd/sys/event_private.h#L276-L278",
+  "baseline_and_budget": {
+    "absolute_cap_gib": 16,
+    "baseline_gib": 13.96966796875,
+    "cumulative_endpoint_gib": 15.46966796875,
+    "cumulative_max": 688,
+    "new343quantized_units": 343,
+    "new_underlying_max": 686,
+    "spent_swap_gib": 0.5784277343749995
+  },
+  "explicit_unit0_missing_metrics_acceptance": {
+    "basis": "Exact saved file and all3payload hashes match original external historicalproof; sourcefragment/header/shape/dtype verified. Technical acceptance limited to this explicit adoption; no legacy receipt/boolean/peak/residual is invented. Human must authorize exactscope includingthisexception.",
+    "engineering_acceptance": true,
+    "evidence_missing": [
+      "module_path_bitwise_equal_result",
+      "reload_bitwise_equal_result",
+      "mlx_peak_mib",
+      "mlx_active_after_release_mib",
+      "residual_within_budget",
+      "post_unit_resource_receipt"
+    ],
+    "exact_adoption_record_sha256": "a9f20332b5c428e6a4757345a5d631c6877c94ae4d731de44fb5b8de4a6f9dcf"
+  },
+  "findings": [
+    "Same8 independent cases: oldc6 sixRED/twoPASS; frozen newsource eightPASS. Finite/range, preservedbaseline, absolutecap, realOSenum parser, finalSTOP fixed.",
+    "45focused revisedauthor cases PASS; previously dead compound assertion replaced with actual separate limits/static/action/installed assertions and exercised.",
+    "Old CPU/v2/quant/cache/resource/paced/quant_probe source files unchanged againstae4a483. Newpolicy lives in local v3controller only.",
+    "23runtime source files and all input/evidence pins match exactscope; complete inventory and actualunit0 adoptionrecord rederived from historical proof and preserved closed v2evidence.",
+    "406retained files authenticated; unit0 is an explicit no-requantization adoption;343remaining quantized units imply686new+2old=688maximum.",
+    "Separate human/review/source/input files and both consumed-ledgers required; canonical existingglobalflock beforebackend retained; finalpostverifySTOP cannot publishcertificate."
+  ],
+  "human_authorization_issued": false,
+  "input_sha256": "57f5ccb4d6dee11f3f8961461e613afa6c3191dfbd141a4bf161c065c6479750",
+  "limitations": [
+    "Exact engineering scope only: GPU runtime-cache dependency continuation. No A/B, full-model loading, forward, backward, generation, evaluation or optimizer update permission. A fresh genuine human authorization of this exact v3scope is still required.",
+    "Old v2 failed scope/instruction remain consumed and untouched; this is a newly scoped continuation, not reuse of the old grant.",
+    "Unit0 is accepted only by the exact versioned historical-byte adoption record. Explicitly absent are the old module-path comparison result, reload boolean, MLX peak, postrelease active memory/residual and post-unit resource receipt. None is fabricated or certified as a measured old pass.",
+    "CPU fake tests do not prove actual native payload reproduction or resource behavior. All remaining outputs and final two shards/config/tokenizer must match the original external historical identities; mismatch stops without retry.",
+    "The1.5GiB net-growth budget carries original baseline13.96966796875 including prior growth; absolute16GiB is NEW, not a historical guard. Rate warnings are logged rather than independently decisive under this local scoped amendment.",
+    "RSS/swap/pressure/disk gates are sampled.1800s is an operation-start window, not an interruptible hard wall; preflight and final atomic/file/release operations can extend elapsed wall. MLX allocator limits are not independently proven OS hard ceilings.",
+    "Thermal SENSOR_UNAVAILABLE remains a disclosed blind spot; advisory flock only excludes cooperating jobs. Real OS sysctl must be readable under legitimate runtime permissions; unknown/invalid values HOLD then boundedSTOP.",
+    "Full17.5GB source hashing was not repeated by reviewer; source shard sizes/pins and adopted unit0 source fragment were checked, while prepare/execute preserve full source hashing. No new16/final100 data or model/Adam arrays were read."
+  ],
+  "native_execution_status": "NOT_RUN",
+  "primary_implementer": "Claude Code; Codex independent source/scope and CPU counterexample review",
+  "privacy": "Counts/scalars/hashes/relative source names only; no patient identifiers, image data, model tensors or private absolute runtime paths.",
+  "private_exact_review_sha256": "713d17713277a4203cfe1f8a949b839694468629b130f4907facc55ed7438546",
+  "protocol_sha256": "94d231e5af2a4879cd65282bf0efc081bb91013c61f94ba8ae62b3255bb7ba10",
+  "resource_policy": {
+    "ac_required": true,
+    "continue_available_gib_min": 5.5,
+    "continue_pressure_free_percent_min": 30.0,
+    "disk_reserve_gib": 20.0,
+    "hold_seconds_per_boundary_max": 120.0,
+    "mlx_active_gib_stop_above": 18.0,
+    "mlx_active_note": "optional native MLX active-memory guard (old paced_resources >18 GiB), applied whenever the sampler reports it",
+    "mlx_cache_limit_bytes": 67108864,
+    "mlx_memory_limit_bytes": 8589934592,
+    "operation_start_window_seconds": 1800.0,
+    "os_critical_level": 4,
+    "os_pressure_levels": {
+      "1": "normal",
+      "2": "warning",
+      "4": "critical"
+    },
+    "other_heavy_processes_allowed": 0,
+    "rss_envelope_gib": 8.0,
+    "sample_interval_seconds": 5.0,
+    "stop_available_gib_below": 2.0,
+    "stop_pressure_free_percent_max": 15.0,
+    "sustained_low_available_gib": 4.0,
+    "sustained_low_seconds": 30.0,
+    "swap_baseline": "ORIGINAL authenticated v2 first sample (13.96966796875 GiB, hash-pinned old resource log), carried into the controller; never reset",
+    "swap_cumulative_net_growth_cap_gib": 1.5,
+    "swap_rate": "trend-only (logged, never decides)",
+    "swap_used_absolute_cap_gib": 16.0,
+    "swap_used_absolute_cap_note": "NEW in v3: no absolute swap-used cap existed historically; STOP strictly above 16 GiB",
+    "thermal_limitation": "THROTTLED holds; SENSOR_UNAVAILABLE cannot refuse (documented current limitation)",
+    "unit_reserve_gib": 2.0,
+    "unknown_essential_sensors": "HOLD (no operation starts) then STOP at the per-boundary bound; non-finite / out-of-range / non-integer essential readings are treated as unknown",
+    "warning_only_inherited_supervisor_reasons_terminate": false
+  },
+  "reviewed_commit": "cfecc77ef58b7bb74fbee3e2f8b2b4df4eb2b51e",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_operations": {
+    "backwards": 0,
+    "forwards": 0,
+    "mlx_imports": 0,
+    "model_loads": 0,
+    "new_GPU_quantizations": 0,
+    "updates": 0
+  },
+  "schema": "accuracy-recovery-gpu-cache-v3-resource-revised-independent-review-v1",
+  "scope_canonical_sha256": "1e586e6312b946029c98c032fc7543d9675476cbb92c1f816bf6cfabfbb19144",
+  "scope_counts": {
+    "adopted_saved_units": 1,
+    "plan_units": 750,
+    "quantized_pending_gpu": 343,
+    "retained_units_adopted": 406
+  },
+  "scope_file_sha256": "658542e0c31a39b512a7705a41d08abc5b027e714c5715df32cb47cd960ab4ee",
+  "source_sha256": {
+    "scripts/rebuild_accuracy_recovery_historical_gpu_cache_v3.py": "361edb541d3d53782c4036ad57319239225b1007f4abab7759d9bf5a98ed6b0b",
+    "src/mri_rl/__init__.py": "1f88831cf57082aa079bac05ac87d2ca4d881b02da0425a7594f54c18f77902f",
+    "src/mri_rl/accuracy_recovery_cpu_cache_v1.py": "99b737790320cdb68d67cacd3f085931167a3ab9bd5732238d06460d6a82d8a8",
+    "src/mri_rl/accuracy_recovery_gpu_cache_v2.py": "5bbd7991533ac14ed2c0aa45a27c6f46a6ba1796fc3a1e34307af83912910383",
+    "src/mri_rl/accuracy_recovery_gpu_cache_v3.py": "c71376338e5c5da8010ae5ee09f15134a45988801d7f72c67c816fb48d14ff0f",
+    "src/mri_rl/continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "src/mri_rl/ds007045_internal_dev_eval.py": "80386d7201fef0570d3bf96f4b5c4685f27a15a485f794d8bc111f837b9fadd2",
+    "src/mri_rl/experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+    "src/mri_rl/frozen_eval.py": "878f29aa2d0bf7f023b76b3aa46256e7f0cc48d0175964f0153b927632181859",
+    "src/mri_rl/mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+    "src/mri_rl/mlx_sft_warmstart.py": "7247f2995b33162645fda7221c39d071c1563ec2fd51ed36fdb64f66aa1bd2d9",
+    "src/mri_rl/optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "src/mri_rl/paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "src/mri_rl/paired_prompt_groups_v1.py": "4a8fea69ba4e14b110b192a89cda27d72bce05aecf5f33ca14a0728cef7ffa2e",
+    "src/mri_rl/quant_cache.py": "25b6c8c3778d1a0d60d2841ba8076239f64f572493d2fe2f1d96ecb876008c13",
+    "src/mri_rl/quant_convert.py": "808682cf79242cf530e6dc67e57ce705ca474a6fb4fe99d2927697c01d21c2d5",
+    "src/mri_rl/quant_probe.py": "59469495fdddc60a59bc231fe2bff933ec326601fada83f83ee947cd095b43dd",
+    "src/mri_rl/resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "src/mri_rl/sft_evidence.py": "08b346dee5c15dcd39b42e65651eafd4cf66741ff26cbbce404cdafab129f859",
+    "src/mri_rl/sft_resume.py": "caefa2de66a0f644c520d4827188aebfffd06829a38bad63ee9cc816568ffc70",
+    "src/mri_rl/shared_rollout_gspo_core_v1.py": "c9fc3f999d7e349250bca8dc8db524cbb595a8a87caeaac6ebfea57e24a2f12e",
+    "src/mri_rl/uniform_balance_continuation_gate_v1.py": "026f62e1c2a3b7538283c4f90c71b8408a135230b9f619deee50ee8baea93311",
+    "src/mri_rl/vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "author_focused_cases": {
+      "failed": 0,
+      "files": [
+        "tests/test_accuracy_recovery_gpu_cache_v3_resource_revised.py",
+        "tests/test_accuracy_recovery_gpu_cache_v3.py::test_prepare_scope_v3_binds_roots_files_previous_attempt_adoption_policy_closure_and_installed"
+      ],
+      "output_sha256": "be82634240865edf2f6f5970036bc8d8c2f4345e0768f4e47077b755af60df53",
+      "passed": 45,
+      "seconds": 1.14
+    },
+    "independent_cases": {
+      "fixture_sha256": "fcc163dbbddb93b1f4b40fcd6dc7938f74e9c2d30e9d6704c6e8b8f5df8e7465",
+      "new_failed": 0,
+      "new_output_sha256": "24ad8f3778b08d2cce8c6fc099a794bf11913562b5a015fe47b7f89662408c4f",
+      "new_passed": 8,
+      "new_seconds": 0.56,
+      "old_commit": "c6f61d40926ed1a15d53290ce79e44577149d8f6",
+      "old_failed": 6,
+      "old_output_sha256": "691b413d54b66e16f5c2e8c25729f805e6694eada2152c77be3e7079af174dd1",
+      "old_passed": 2,
+      "subprocess_timeout_seconds": 30
+    },
+    "installed_fingerprint_match_without_mlx_import": true,
+    "real_scope_detail_sha256": "ec8784bded641a8e239eae0b4d3a80ccf18b805b18f3272e3d015954eb055ee5",
+    "scope_checker_sha256": "d34c5d27529117b3941ea0cbad9442063d1ec723873272fcf15f0d6d264f730d"
+  }
+}
