@@ -1,0 +1,143 @@
+{
+  "AB_readiness": "NOT_READY_ORIGINAL_MATCHED_RUNTIME_MISSING",
+  "Plan_B_activated": false,
+  "actions_by_reviewer": {
+    "Trash_UI_actions": 0,
+    "backward": 0,
+    "commits": 0,
+    "generation": 0,
+    "model_loads": 0,
+    "model_or_MRI_payload_reads": 0,
+    "optimizer_updates": 0,
+    "qualification_repeats": 0,
+    "restores": 0,
+    "source_log_edits": 0
+  },
+  "as_of_utc": "2026-10-21T01:15:02.054082+00:00",
+  "conclusions": [
+    "The exact shared bundle and adaptive Adam60 parent originally lived inside two Batch4 linked worktrees, so tracing their loss to Batch4 is supported; Batch3 removed a separate models directory.",
+    "The recorded methods directly remove files and do not move these targets to Trash. An uncleared or nonempty Trash is therefore not evidence that these particular payloads must be there.",
+    "Git source/summary recovery does not reconstruct the original response/Adam/RNG payload; no SFT step60 or other checkpoint is accepted as the required Adam60 substitute.",
+    "The supplied quarantine inventory and current local snapshot metadata do not identify a recoverable copy. This limited result is not a global proof that every external backup or historical copy is absent.",
+    "The final report honestly labels the remaining P52 state as a distinct unexecuted fallback proposal, preserves missing native/runtime dependencies and requires a separate human research decision; it does not resume the original Adam60 experiment."
+  ],
+  "deletion_trace": {
+    "Adam60_location_in_models_assumed": false,
+    "actual_execution_evidence": "Reviewed script branches, exact pre-delete command/output, chronological child invocation records and final machine inventory. Initial refusal/permission-denial invocations are preserved as non-deletion attempts; wrapper exit0 by itself is not treated as proof of deletion.",
+    "batch3": {
+      "bypassed_Trash": true,
+      "directories": 13,
+      "files": 114,
+      "final_inventory_allocated_bytes": 35096637440,
+      "method": "Python shutil.rmtree",
+      "target": "M/local_data/models",
+      "target_parent_Adam60_original_location": false
+    },
+    "batch4": {
+      "bypassed_Trash": true,
+      "directories": 679,
+      "dirty_linked_worktrees": 4,
+      "files": 15216,
+      "final_inventory_allocated_bytes": 9287966720,
+      "final_inventory_worktrees_removed": 15,
+      "linked_worktrees_prechecked": 15,
+      "method": "git worktree remove --force for each registered linked child, then empty parent rmdir and git worktree prune",
+      "target": "M/.worktrees"
+    },
+    "both_required_assets_deleted_with_batch4_targets": true,
+    "exact_original_repo_relative_paths": {
+      "adaptive_Adam60": ".worktrees/mri-adaptive-accuracy-gate/local_data/uniform_balance_continuation_v1/run/boundary_0008",
+      "shared_qualification": ".worktrees/vero-mri-shared-rollout-native-v1/local_data/shared_rollout_gspo/qualification_run_v1"
+    },
+    "original_path_alias": "M denotes the historical repository root named Longitudinal-BrainMRI-Verifiable-RL; absolute user paths remain private.",
+    "path_basis": "Historical tool path records match descendants of the exact pre-delete linked-worktree inventory, rather than an inference from models-directory size."
+  },
+  "evidence_sha256": {
+    "P52_operator_CPU_validation": "a2caf819252701e2b1b50dc9b0e40348d956c9dc75b67fd8932ec8e0982c0a64",
+    "P52_operator_candidate_metadata": "85defae77ce97af65811a065d129be3b39f2f5128b8c19eef0b1573ef39c8e76",
+    "actual_batch3_4_transcript": "3f9cecf4c9ead176f48ee5f4c403e159c424c5a4d4c25ce5861cae8d615cf9b6",
+    "batch_execution_timeline": "a54f91c21236329b7e2b11be203dfc504d0202b6edf350c3c77423f12de0c03c",
+    "cleanup_executor_source": "9af0a72ee9ecaafa815bf16ffb323ad78c7a87196943440f6f11ef251b1abef0",
+    "exact_execution_records": "5bfdd075b756cf00e6ad9cbb03b00d3404b595f88af8f8f4f7aa671f12aaab14",
+    "final_exact_deletion_recovery_public_report": "537b76900ef10c480e8e16e922d3a17384e0ebb6e54ba9643f1fd2c6d448d0de",
+    "final_recovery_private_closure": "308aafe2984dc4215338b1c6467538f21fc8bf69590d644c34c70e07268dd41e",
+    "initial_cleanup_inventory": "8738f6046d9121c94cf119c906994b9fe92378f6c3f2d9d87091eb8ffb4718f3",
+    "initial_cleanup_report": "b25bb089e5361b1b3e7bfa2333df736ce7b190b4b7a03c6c8e84c3e8f61dbfa3",
+    "known_copy_location_operator_audit": "1fee4cb14bfd468fb8c303c81a2253c65cace378a5124512a5f77b5a133b618c",
+    "later_cleanup_inventory": "23b1f3858eb6041d4de9b15a7c8f27fc0aad02a5e5604d3706ae89e8b72a50d7",
+    "later_cleanup_report": "89f8fa8c3ae162641caaeba5151d4c4035a4af0e7821d80187402866f6ee77b4",
+    "original_runtime_path_tool_evidence": "ffe3235199cc0298ed610fd2c340988358c1acde17c233092a0ced5247b38cc1"
+  },
+  "global_forensic_unrecoverability_verified": false,
+  "independent_snapshot_metadata_checks": {
+    "Time_Machine_operator_followup": {
+      "destinationinfo": "No destinations configured.",
+      "independently_rerun": false,
+      "listbackups": "No machine directory found for host.",
+      "scope": "Bound operator closure metadata only."
+    },
+    "actual_Data_query_output": "No snapshots for disk3s1",
+    "all_names_have_OS_update_prefix": true,
+    "command_Data": "diskutil apfs listSnapshots /System/Volumes/Data",
+    "command_tmutil": "tmutil listlocalsnapshots /",
+    "destructive_restore_mount_or_snapshot_change_performed": false,
+    "exit_code_tmutil": 0,
+    "external_TimeMachine_destinations_other_volumes_or_copies_ruled_out": false,
+    "interpretation": "No current snapshot is listed for this Data volume. The three OS-update names are not evidence of a usable deletion-time user-data recovery point.",
+    "listed_snapshots": 3,
+    "normal_permission_readonly_query_exit_code": 0,
+    "ordinary_sandbox_result": "DiskManagement framework unavailable; not interpreted as no snapshots."
+  },
+  "limitations": [
+    "Exact original paths are authenticated historical tool records; deleted files themselves were not reopened to rehash.",
+    "Claude deletion summaries and final inventory differ in linked-worktree count and allocated bytes, recorded explicitly in this review.",
+    "Local Data snapshot metadata was independently queried; later Time Machine destination/machine-directory and Finder followup observations are operator evidence, not repeated GUI/network/backup checks.",
+    "P52 structural/finite/moment/RNG validation is operator CPU evidence authenticated by metadata hashes; this reviewer did not load its adapter/optimizer arrays or perform native restore.",
+    "Unrecoverable is limited to the report's checked currently available sources. Unavailable offline backups, other historical copies and disk forensics are explicitly not ruled out.",
+    "No algorithm, native qualification, A/B source compatibility, replacement-parent adoption or execution authorization is issued."
+  ],
+  "new_model_training_or_Plan_B_authorized": false,
+  "operational_status": "ORIGINAL_RUNTIME_ASSETS_UNRECOVERABLE_WITHIN_CHECKED_CURRENTLY_AVAILABLE_SOURCES",
+  "original_runtime_assets_unrecoverable_declared": true,
+  "preserved_record_discrepancies": {
+    "Claude_success_summary_allocated_bytes": 9288089600,
+    "Claude_success_summary_worktrees": 16,
+    "difference_bytes": 122880,
+    "exact_precheck_and_final_inventory_linked_worktrees": 15,
+    "final_machine_inventory_allocated_bytes": 9287966720,
+    "interpretation": "Registry total including the main checkout can be16; the actual linked children under .worktrees are15. Do not repeat the summary16 as a deleted-linked count.",
+    "interpretation_bytes": "These are distinct reported measurements; retain the discrepancy rather than silently equating them. It does not alter the exact-path/direct-deletion conclusion."
+  },
+  "prior_review_sha256_before_final_report_binding": "a9e2a9e57051d57001bb24c7e38cf5f1b9d176415028bad67b9a4f7522ccd78e",
+  "privacy": {
+    "absolute_user_paths_exported": false,
+    "aggregate_only": true,
+    "patient_IDs_images_response_text_token_IDs_credentials_or_model_RNG_arrays_exported": false
+  },
+  "public_report_claim_review": {
+    "Finder_Trash_followup": "New paged-root/name-search observations are operator reported; reviewer did not repeat UI or infer a byte-exhaustive search. Historical access-blocked record remains historical evidence.",
+    "P52_CPU_validation": "Read and hash-authenticated operator metadata only; 504 moment-pair/finite/RNG checks and nine file hashes were not independently repeated on payload arrays.",
+    "P52_identity_boundary": "Original P_calibrated13 Adam52, boundary114, is a different candidate, not recovered Adam60; native restore NOT_RUN; no old shared bundle reuse.",
+    "Plan_B": "Proposal only, not executed or authorized. A new research decision, runtime reconstruction and exact review/permission remain prerequisites.",
+    "Time_Machine_destination_and_machine_directory_results": "Operator-recorded metadata in the bound closure; not independently rerun by this reviewer.",
+    "deletion_paths_methods_and_count_discrepancies": "Match independently reviewed source/path/inventory facts.",
+    "exact_report_sha256": "537b76900ef10c480e8e16e922d3a17384e0ebb6e54ba9643f1fd2c6d448d0de",
+    "execution_windows": "Independent UTC conversion from recorded launcher start/end milliseconds matches both report windows; not syscall timestamps.",
+    "privacy": "PASS: technical relative paths/counts/hashes and execution provenance only; no MRI, patient IDs, raw responses/tokens, credentials or state arrays exported.",
+    "private_closure_and_referenced_metadata_hashes": "PASS",
+    "status": "PASS_WITH_LIMITATIONS",
+    "unrecoverability_scope": "Accept only the expressly stated checked currently available recovery-source scope. No global impossibility, offline-backup absence or disk-forensic conclusion is certified."
+  },
+  "quarantine_inventory": {
+    "MRI_target_source_paths": 0,
+    "all_source_paths_from_other_Memory_project": true,
+    "records": 91,
+    "scope": "Supplied exact quarantine mappings only; no unrelated content or image payload scan."
+  },
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "cleanup-runtime-deletion-trace-independent-review-v1",
+  "scope": "Independent read-only source, recorded cleanup execution, exact original runtime path, inventory and local-snapshot metadata review; no broad Git re-audit, Trash search, model payload access or restore.",
+  "unrecoverability_status_scope": "Only checked currently available local recovery sources and fetched Git objects; not a global forensic impossibility or a claim about unavailable offline backups.",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

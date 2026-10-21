@@ -127,3 +127,15 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 - 同轮后续Finder重新绑定成功并实际打开Trash，显示200顶层items，因此已排除Trash为空的推测；但目标文件尚未完成查找。下一操作再次USER_CHANGED_APPLICATION，实际AX变为外部输入的/Users/vv/.keras/ GoToWindow。本任务停止争用并请求暂停其他Finder控制或复制必要候选。最终状态更新为BLOCKED_TRASH_SEARCH_CONCURRENT_FINDER_CONTROL；未宣告unrecoverable/未启动PlanB。
 
 - 同轮独立Codex /root/full_arm_execution_contract复算Git/current-path metadata并核对脱敏表述，结果PASS_WITH_LIMITATIONS仅针对恢复证据，不是资产恢复或A/B许可。review SHA ad696d32fe68fb25b09e47b68bfdef5886a6039a64bc1e5eb64c3fe128873ceb；保留Trash未完成查找及A/B NOT_READY边界。
+
+
+## 2026-10-20 / EXACT_RUNTIME_DELETION_TRACE_AND_RECOVERY_CLOSURE / NO_MODEL_ACTION
+
+- 已读取四份原始cleanup报告/inventory，并核对实际cleanup executor与成功调用记录。原shared qualification准确在旧.worktrees/vero-mri-shared-rollout-native-v1/local_data/shared_rollout_gspo/qualification_run_v1；adaptive Adam60准确在旧.worktrees/mri-adaptive-accuracy-gate/local_data/uniform_balance_continuation_v1/run/boundary_0008。二者属于Batch4，不在Batch3的local_data/models。Batch4用git worktree remove --force再rmdir/prune，DELETION_BYPASSED_TRASH。成功launcher窗口为2026-10-20T23:39:41.153Z至23:40:44.192Z；这是包含删除的调用时间，并非逐文件syscall时间。
+- 预删除与最终machine inventory为15 linked worktrees；Claude摘要16及字节多122880的差异保留，不隐去。Batch3另以shutil.rmtree删除模型cache；Batch6还删除native env/quant cache。原始报告、失败/拒绝尝试与成功执行均保留，不把早期exit0拒绝当删除成功。
+- Finder实际遍历Trash至末尾、执行准确目录/文件名搜索，manifest.json有35个非目标positive controls；未恢复/删除/PutBack任何项目。Trash索引不是字节级穷尽，但直接删除已确认，停止重复Trash循环。quarantine91条全为另一Memory项目；Time Machine无destination/machine directory，Data卷当前0snapshot，root三个OS-update不当作用户数据备份。3个已知副本根metadata检查0目标，Git证据不含private runtime。
+- ORIGINAL_RUNTIME_ASSETS_UNRECOVERABLE仅指已检查、当前可用来源；未排除离线外部备份或未执行的磁盘取证。bundle canonical f8305d64...与adaptive adapter1741ff2f...均未找回，恢复runtime文件0；原A/B NOT_READY，不拿三个SFT step60替代。
+- 只提出NEW_MATCHED_PARENT_AND_SHARED_ROLLOUT_AB_V1，未执行/未授权：现存原P_calibrated13 boundary114/Adam52候选adapter/receipt与原独立proof匹配，9文件hash全PASS；CPU读取完整state通过504moments/1011state tensors/有限值/非负second moments/Python+MLXRNG/精确inventory，未native restore。选择理由仅原训练链祖先连续性，不用final100；不能复用旧Adam60授权。native base/runtime/quant依赖需另行认证恢复。
+- 新增model load/generation/backward/optimizer updates/qualification/cleanup均0，冻结plan和lock未改。详见results/REQUIRED_RUNTIME_EXACT_DELETION_TRACE_AND_RECOVERY_V1.json及独立review；原BLOCKED_TRASH历史报告保留，由本轮精确证据状态取代。
+
+- 最终独立Codex /root/full_arm_execution_contract对精确删除trace及新report SHA537b76900ef10c480e8e16e922d3a17384e0ebb6e54ba9643f1fd2c6d448d0de作PASS_WITH_LIMITATIONS，review SHA8ee5604adf278676867e500c55f711ed0e6868b25776ba7e1fa18cab9bda9749。P52数组及新增Finder检查标明operator evidence未独立重跑；不把恢复来源窄结论扩大为全局取证不可能。

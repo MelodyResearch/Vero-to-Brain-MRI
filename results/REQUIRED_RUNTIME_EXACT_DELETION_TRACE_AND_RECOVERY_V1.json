@@ -1,0 +1,153 @@
+{
+  "schema": "required-runtime-exact-deletion-recovery-v1",
+  "as_of_utc": "2026-10-21T01:13:37.075926+00:00",
+  "status": "ORIGINAL_RUNTIME_ASSETS_UNRECOVERABLE",
+  "status_scope": "Only checked currently available local recovery sources and fetched Git objects; not a global forensic impossibility or a claim about unavailable offline backups.",
+  "deletion_status": "DELETION_BYPASSED_TRASH",
+  "original_root": "Historical outputs/Longitudinal-BrainMRI-Verifiable-RL",
+  "exact_original_repo_relative_paths": {
+    "shared_qualification": ".worktrees/vero-mri-shared-rollout-native-v1/local_data/shared_rollout_gspo/qualification_run_v1",
+    "adaptive_Adam60": ".worktrees/mri-adaptive-accuracy-gate/local_data/uniform_balance_continuation_v1/run/boundary_0008"
+  },
+  "path_basis": "Actual historical tool output paths plus exact linked-worktree predelete inventory; cleanup container inventory alone does not enumerate individual checkpoint files.",
+  "deletion": {
+    "both_required_payloads_batch": 4,
+    "batch4_method": "git worktree remove --force <each exact registered child>; then empty parent rmdir and git worktree prune",
+    "batch4_final_inventory_linked_worktrees": 15,
+    "batch4_final_inventory_allocated_bytes": 9287966720,
+    "batch4_summary_discrepancy": {
+      "summary_worktrees": 16,
+      "summary_bytes": 9288089600,
+      "byte_difference": 122880
+    },
+    "batch3_separate_target": "local_data/models",
+    "batch3_method": "shutil.rmtree",
+    "batch3_allocated_bytes": 35096637440,
+    "batch3_not_original_adaptive_Adam60_location": true,
+    "execution_windows": [
+      {
+        "batch": 3,
+        "record_line": 968,
+        "command": "python3 -I work/launch_claude.py 3",
+        "start_utc": "2026-10-20T23:35:08.694000+00:00",
+        "completed_utc": "2026-10-20T23:36:25.492000+00:00",
+        "timestamp_scope": "successful launcher invocation containing deletion, not syscall timestamp",
+        "claude_session": "0ac40f27-bd53-46c9-adc5-92cf92aaede4"
+      },
+      {
+        "batch": 4,
+        "record_line": 1061,
+        "command": "python3 -I work/launch_claude.py 4",
+        "start_utc": "2026-10-20T23:39:41.153000+00:00",
+        "completed_utc": "2026-10-20T23:40:44.192000+00:00",
+        "timestamp_scope": "successful launcher invocation containing deletion, not syscall timestamp",
+        "claude_session": "0741116b-09ba-4c45-ad9f-9a607c3fa081"
+      }
+    ],
+    "later_batch6_removed_native_environment_and_quant_cache": true
+  },
+  "targets": {
+    "bundle": {
+      "expected_digest_kind": "canonical SHA256, not raw file SHA",
+      "expected_sha256": "f8305d640c21ae929e1c1490b4b5ce49a2619a3e934f05cceaec48b1448ab5d7",
+      "found": false,
+      "authenticated": false,
+      "full_evidence_chain_recovered": false
+    },
+    "adaptive_Adam60": {
+      "expected_adapter_sha256": "1741ff2feb2f569cfe062b92cb79b62f61f83463e6683a928d2c458a5f547310",
+      "found": false,
+      "authenticated": false,
+      "full_optimizer_RNG_recovered": false,
+      "SFT_step60_substitution": false
+    }
+  },
+  "recovery_sources": {
+    "Git": "GITHUB_HAS_EVIDENCE_BUT_NOT_PRIVATE_RUNTIME_PAYLOAD; prior actual object/digest audit preserved, not rerun",
+    "Finder_Trash": {
+      "actual_paged_root_listing_to_end": true,
+      "scoped_target_name_searches_no_target": true,
+      "manifest_json_positive_control_results": 35,
+      "positive_control_contains_optimizer_manifest": false,
+      "limitations": "Finder search depends on indexing. Not a claim of byte-exhaustive recovery. Stop Trash loops because deletion bypassed Trash.",
+      "put_back_copy_delete_or_empty_operations": 0
+    },
+    "known_quarantine": {
+      "records": 91,
+      "target_MRI_paths": 0,
+      "source": "all mapped records are another Memory project; MRI cleanup report says no new quarantine copy"
+    },
+    "Time_Machine": {
+      "destinationinfo": "No destinations configured.",
+      "listbackups": "No machine directory found for host."
+    },
+    "APFS": {
+      "Data_volume_listSnapshots": "No snapshots for disk3s1",
+      "root_OS_update_snapshot_names": 3,
+      "verified_user_data_restore_point": false
+    },
+    "known_copy_roots": {
+      "roots_checked": 3,
+      "target_paths": 0,
+      "metadata_scan_errors": 0
+    },
+    "external_offline_backups_and_disk_forensics": "NOT_INSPECTED_NOT_RULED_OUT"
+  },
+  "recovery": {
+    "runtime_payload_files_restored": 0,
+    "formal_restore_paths": [],
+    "overwrite_operations": 0
+  },
+  "fallback_proposal": {
+    "name": "NEW_MATCHED_PARENT_AND_SHARED_ROLLOUT_AB_V1",
+    "status": "PROPOSED_NOT_EXECUTED_NOT_AUTHORIZED",
+    "candidate": "Existing original P_calibrated13 final Adam52, boundary114, literal ancestor of lost adaptive chain; not chosen using final100",
+    "candidate_repo_relative_path": "local_data/c_two_task_pool_v1/tier_c_v1/calibrated_bundle_v1/P_calibrated_seed13/run/boundary_0114",
+    "candidate_adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+    "candidate_CPU_validation": {
+      "step": 52,
+      "groups": 114,
+      "adapter_tensors": 504,
+      "moment_pairs": 504,
+      "state_tensors": 1011,
+      "state_arrays_finite": true,
+      "second_moments_nonnegative": true,
+      "Python_MLX_RNG_structure_valid": true,
+      "receipt_all9_file_hashes_pass": true,
+      "adapter_receipt_match_original_independent_proof": true,
+      "native_restore": "NOT_RUN"
+    },
+    "is_recovered_Adam60": false,
+    "old_shared_bundle_reuse": false,
+    "requirements_before_execution": [
+      "Separate human research decision on new matched experiment and parent; prior Adam60-only permission does not transfer",
+      "Re-establish authenticated historical base/runtime/quant dependencies without pretending deleted caches remain",
+      "Freeze a new matched shared-rollout scope and independent review, then fresh explicit permission; no automatic qualification or generation",
+      "A/B update scope and evaluation require separate explicit authorization"
+    ]
+  },
+  "AB_status": "NOT_READY_ORIGINAL_MATCHED_RUNTIME_MISSING",
+  "actions_this_turn": {
+    "model_loads": 0,
+    "generation": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "qualification_repeats": 0,
+    "new_cleanup": 0,
+    "runtime_restore": 0
+  },
+  "scientific_outcomes": "No accuracy improvement or new model outcome measured.",
+  "privacy": "Only aggregate counts, technical paths and hashes; no MRI, IDs, labels, raw answers, tokens, model/Adam/RNG arrays or credentials.",
+  "private_closure_file_sha256": "308aafe2984dc4215338b1c6467538f21fc8bf69590d644c34c70e07268dd41e",
+  "evidence_sha256": {
+    "final-cleanup-report.md": "b25bb089e5361b1b3e7bfa2333df736ce7b190b4b7a03c6c8e84c3e8f61dbfa3",
+    "final-inventory.json": "8738f6046d9121c94cf119c906994b9fe92378f6c3f2d9d87091eb8ffb4718f3",
+    "cleanup-report-2026-10-20.md": "89f8fa8c3ae162641caaeba5151d4c4035a4af0e7821d80187402866f6ee77b4",
+    "cleanup-inventory-2026-10-20.json": "23b1f3858eb6041d4de9b15a7c8f27fc0aad02a5e5604d3706ae89e8b72a50d7",
+    "ORIGINAL_RUNTIME_PATH_TOOL_EVIDENCE_PRIVATE.json": "ffe3235199cc0298ed610fd2c340988358c1acde17c233092a0ced5247b38cc1",
+    "CLEANUP_BATCH_EXECUTION_TIMELINE_PRIVATE.json": "a54f91c21236329b7e2b11be203dfc504d0202b6edf350c3c77423f12de0c03c",
+    "CLEANUP_15_WORKTREES_PREDELETE_PRIVATE.json": "a3df2b091327db26b0cb3d58a395b00e11bc330df091f82369a27d7aa8af3e37",
+    "KNOWN_COPY_LOCATION_AUDIT_PRIVATE.json": "1fee4cb14bfd468fb8c303c81a2253c65cace378a5124512a5f77b5a133b618c",
+    "EXISTING_PARENT52_FULLSTATE_CPU_VALIDATION_PRIVATE.json": "a2caf819252701e2b1b50dc9b0e40348d956c9dc75b67fd8932ec8e0982c0a64"
+  }
+}
