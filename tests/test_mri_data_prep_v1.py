@@ -418,3 +418,4 @@ def test_partner_emitted_flags_inherit_reference_selection_abstain(tmp_path):
         assert s["abstain"] == h
         if ra:
             assert "REFERENCE_SELECTION_ABSTAIN" in s["qc_flags"] and s["abstain_before_pixel_qc"] is True
+            assert "REFERENCE_LOW_COVERAGE" in s["abstain_reasons"]

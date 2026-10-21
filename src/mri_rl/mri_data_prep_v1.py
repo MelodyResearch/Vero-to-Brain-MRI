@@ -397,6 +397,7 @@ def select_paired_slices(ref_vol, ref_aff, par_vol, par_aff, fractions=PRIMARY_F
         flags = ["OUT_OF_VOLUME"] if out else (["LOW_COVERAGE"] if cov < min_coverage else [])
         if s["abstain"]:
             flags.append("REFERENCE_SELECTION_ABSTAIN")  # inherited selection-stage abstention, not partner pixel QC
+            flags.extend("REFERENCE_" + reason for reason in s["qc_flags"])
         partner.append({"fraction": s["fraction"], "index": idx, "world_z_mm": float(par_aff[2, 3] + idx * step),
                         "world_z_residual_mm": float(par_aff[2, 3] + idx * step - z), "coverage_vs_max": cov,
                         "out_of_volume": out, "abstain": bool(flags) or s["abstain"], "qc_flags": flags})

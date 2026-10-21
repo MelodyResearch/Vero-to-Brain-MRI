@@ -34,11 +34,11 @@ Root fetched public sources with its authorized GitHub CLI into `local_data/mri_
 
 ### MM-NeuroOnco (2D slice benchmark/instruction data)
 - **Input**: mostly already-2D Kaggle/Zenodo/Figshare images plus BraTS21 (`docs/data_sources.md`, dataset table); `data_processing/metadata_extraction/metadata_tumor_05.py:10,109-116` looks up a same-stem `.png` mask — **no NIfTI handling found in the fetched files** (`files/` text search for nifti/.nii/nibabel returned nothing); the full upstream tree contents were not all read.
-- **Paper vs repo on dedup**: the paper states "Global pixel-level deduplication is performed prior to partitioning", one 2D slice per volume, stratified partition, and admits slice-only datasets lack patient ids (`2602.22955v1_html.txt:1638-1640`). **The repo tree has no dedup/hash script** (80 paths; none contain "dup"/"hash"); the only split artifact is `benchmark/splits/mm-neuroonco_test_ids_v1.0.json` (**NOT_FETCHED**). So the claimed global dedup is **a paper promise with no implementation observed in the public repo** (`OBSERVED` absence in tree; dedup may exist elsewhere, e.g. in the gated HF data — `NOT_VERIFIED`).
+- **Paper vs repo on dedup**: the paper states "Global pixel-level deduplication is performed prior to partitioning", one 2D slice per volume, stratified partition, and admits slice-only datasets lack patient ids (`2602.22955v1_html.txt:1638-1640`). **The repo tree has no dedup/hash script** (80 paths; none contain "dup"/"hash"); the only split artifact is `benchmark/splits/mm-neuroonco_test_ids_v1.0.json` (**NOT_FETCHED**). So the claimed global dedup is **a paper-reported procedure without an independently verified implementation in the fetched materials** (absence of a dup/hash-named script does not prove absence of dedup logic elsewhere; such implementation remains `NOT_VERIFIED`).
 - **Labels**: silver labels produced by LLM pipeline (`pipeline/Step1_…`, `Step2_double_blind…`, `Step3_gemini_audit`; scripts not read beyond names) — label provenance is model-derived; `NOT_VERIFIED` beyond file names.
 
 ### NeuroVLM-Bench (2D, modality/plane/diagnosis separation)
-- **Split code** `split.py:22` stratifies on `class, original_class, subclass, modality, modality_subtype, plane` (`random_state=42+i`, `:74,83`; `np.random.seed(42)` `:93`). **No patient/group column exists** (`map_images.py:300` fieldnames) → a *patient-disjoint* split is impossible from that CSV.
+- **Split code** `split.py:22` stratifies on `class, original_class, subclass, modality, modality_subtype, plane` (`random_state=42+i`, `:74,83`; `np.random.seed(42)` `:93`). **No patient/group column exists** (`map_images.py:300` fieldnames) → the inspected split does **not implement patient grouping**. Identity possibly encoded in paths or upstream patient isolation is `NOT_VERIFIED`.
 - **Paper vs code**: the paper says subsets are stratified (`2603.24846v1_html.txt:1133`) **and** that Phase-0 screening subsets are "patient-disjoint" (`:1142`). The fetched code implements stratification only; patient-disjointness is **not implemented in the fetched split.py** (`OBSERVED`; may be handled upstream of the CSV — `NOT_VERIFIED`).
 - **Dedup**: path-string duplicate check only (`map_images.py:19,58-61`), no content hash.
 - **Labels**: `plane`/`modality` come from dataset/folder names, e.g. Br35H is hard-coded `axial` (`map_images.py:73`), sclerosis plane from the folder name (`:190-202`). These are metadata assumptions, not image-derived.
@@ -64,13 +64,13 @@ Root fetched public sources with its authorized GitHub CLI into `local_data/mri_
 | Reorient / resample? | In the inspected code, none of the fetched sources reorients or resamples spacing (mpLLM, M3D resize only); not a claim about other code | Ours records orientation and refuses non-axis-aligned input; no silent resample |
 | Normalization | per-volume min-max (mpLLM/M3D), per-slice max (mpLLM PNG), CT HU window (MedVol); none train-fit | Ours: legacy per-volume window is the control; alternatives are named controls |
 | Mask cast | `astype(np.uint8)` without integrality check (mpLLM `:263`) | Ours rejects non-integer/nonfinite labels |
-| Split | volume-id (mpLLM, patient-grouping NOT_VERIFIED), image-level stratified (NeuroVLM), paper-only claims (MM-NeuroOnco dedup, NeuroVLM patient-disjoint) | Ours: patient-level disjointness check per source namespace + exact/near-duplicate guard, global lineage `NOT_VERIFIED` |
+| Split | volume-id (mpLLM, patient-grouping NOT_VERIFIED), image-level stratified (NeuroVLM), paper-reported protocols not independently established by the inspected code (MM-NeuroOnco dedup, NeuroVLM patient-disjoint) | Ours: patient-level disjointness check per source namespace + exact/near-duplicate guard, global lineage `NOT_VERIFIED` |
 | Slice choice | uniform (MedVol), coronal all-slices (mpLLM PNG), single random slice per volume (MM-NeuroOnco paper) | Ours: one frozen coverage rule in physical mm |
 | Flip augmentation | M3D Bench flips all axes | Not used |
 
 ## 4. Is our dataset already upstream MNI/preprocessed?
 
-`NOT_VERIFIED` from public documentation: no ds007045 dataset documentation was supplied in the fetched sources. What is `OBSERVED` locally (`results/SEQUENCE_QUALIFICATION_V1.json`): 56 TRAIN volumes, LAS storage, 182×218×182 — the standard 1 mm MNI152 grid size — and same-person FLAIR/T1ce pairs share shape and affine in 28/28 pairs. That is **consistent with** MNI-space resampling but does not establish it (grid size alone is not registration; the pilot's NMI proxy also never proves registration). Cross-patient anatomical comparability of a fixed index depends on upstream registration quality, which stays `NOT_VERIFIED` until a public dataset document (or a root-supplied receipt) is read.
+The pinned official source README explicitly describes the selected derivative as MNI152-registered, skull-stripped and N4-corrected; it is distinct from the additional z-scored variant. See §7 for the source and independent six-header evidence. These are **source-lineage claims**, not independent validation of registration, stripping or N4 quality. Common LAS storage, 1 mm spacing and equal grids are observed; anatomical registration accuracy remains `NOT_VERIFIED`. No second registration, skull stripping or N4 is justified by this pilot.
 
 ## 5. What this repo itself establishes (OBSERVED; local receipts)
 
@@ -85,9 +85,9 @@ From `results/SEQUENCE_QUALIFICATION_V1.json`, `research/ROOT_CAUSE_CPU_FIXES_20
 
 No claim of reproducing any published pipeline. No unrun code is described as reproduced. `CROSS_MODEL_REVIEW=NOT_VERIFIED` (a second Claude agent would not be an independent model family).
 
-## 7. Audit 4 — selected-source processing facts (supersedes §4's `NOT_VERIFIED` for lineage)
+## 7. Selected-source processing evidence
 
-Source: root's anonymous `LOCAL_SOURCE_PROCESSING_PUBLIC_FACTS_FOR_CLAUDE.json` (header-only; I did not read MRI or private paths). §4 above said no ds007045 documentation was available; root's pinned official README (commit `283007b9…`) now provides it:
+Source: root's anonymous `LOCAL_SOURCE_PROCESSING_PUBLIC_FACTS_FOR_CLAUDE.json` (header-only; I did not read MRI or private paths). The pinned official README (commit `283007b96977b5b3285bd22cd67b7d97114b1eed`) supplies the processing lineage:
 - `OBSERVED` (source-author claim): the selected variant `processing_MNI152_skull-stripped_N4` is stated to be skull-stripped, registered to the MNI152 template and N4 bias-corrected. The z-scored variant is a different folder and is **not** the selected one.
 - `OBSERVED` (headers, 6 volumes): qform = sform with code **1 (scanner)**, not 4 (MNI152); LAS, 1 mm, 182×218×182, one shared affine; z045 = −27 mm. These are consistent with, but are **not proof of**, MNI alignment: `NOT_VERIFIED` registration accuracy, skull-strip/N4 effectiveness, global duplicate/pretraining exposure.
 - Consequence: no automatic second registration, crop, resample, N4 or z-score; "foreground" is nonzero support, not a validated brain mask.
