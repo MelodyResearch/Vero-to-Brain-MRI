@@ -26,7 +26,7 @@ def main():
     ap.add_argument("--public-out", required=True)
     a = ap.parse_args()
     res = run_pilot(json.loads(Path(a.manifest).read_text()), a.private_out, a.public_out)
-    print(json.dumps({k: res[k] for k in ("rows", "legacy_control_pixels_unchanged", "geometry_flag_counts", "duplicate_guard")}, sort_keys=True))
+    print(json.dumps({k: res[k] for k in ("rows", "legacy_render_self_deterministic", "existing_legacy_png_verification", "geometry_flag_counts", "duplicate_guard")}, sort_keys=True))
 
 
 if __name__ == "__main__":

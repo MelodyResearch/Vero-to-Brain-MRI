@@ -149,10 +149,10 @@ def test_mask_nearest_resample_preserves_labels_and_physical_position():
     assert set(np.unique(out)) <= {0, 1, 3}
     assert np.array_equal(out, m)
     rep = dp.check_image_mask_geometry(v, aff, mfine, maff, allowed_labels={0, 1, 2, 3})
-    assert rep["grid_compatible"] is False and rep["label_set_preserved"] is True
+    assert rep["grid_compatible"] is False and rep["label_set_exact_preserved"] is True
     assert rep["registration_proven"] is False and rep["mask_is_model_input"] is False
     bad = dp.check_image_mask_geometry(v, aff, m, aff, allowed_labels={0, 1})
-    assert bad["label_set_preserved"] is False and "LABEL_OUTSIDE_ALLOWED" in bad["flags"]
+    assert bad["label_set_exact_preserved"] is False and "LABEL_OUTSIDE_ALLOWED" in bad["flags"]
 
 
 def test_mask_outside_brain_support_flagged():
@@ -258,7 +258,7 @@ def test_2p5d_offsets_in_mm_with_anisotropic_spacing():
 
 def test_token_cost_is_labelled_estimate():
     t = dp.visual_token_estimate((364, 436), n_images=3)
-    assert t["kind"] == "ESTIMATE_NOT_MEASURED" and t["per_image_tokens"] == 11 * 14
+    assert t["kind"] == "METADATA_DERIVED_APPROXIMATE" and t["per_image_tokens"] == 11 * 14
     assert t["total_tokens"] == 3 * t["per_image_tokens"]
 
 
@@ -386,6 +386,6 @@ def test_run_pilot_public_output_has_no_paths(tmp_path):
     text = (pub / "pilot_public_aggregate.json").read_text()
     assert str(tmp_path) not in text and "subx" not in text and "nii.gz" not in text
     assert res["rows"] == 2 and (priv / "full_geometry_PRIVATE.json").exists()
-    assert res["legacy_control_pixels_unchanged"] is True
+    assert res["legacy_render_self_deterministic"] is True
     assert len(list((priv / "images").glob("*.png"))) >= 2
     assert res["pair_geometry"]["k1"]["registration_proven"] is False

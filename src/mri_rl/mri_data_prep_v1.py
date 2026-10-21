@@ -83,6 +83,40 @@ def inspect_nifti(path):
             "affine": aff.tolist(), "flags": flags}
 
 
+def is_axis_aligned(affine, tol=1e-3):
+    """True iff each voxel axis maps onto exactly one distinct world axis (signed permutation x spacing).
+
+    Slice-index arithmetic ``aff[2,3] + idx*aff[2,k]`` is a physical-plane claim only under this condition.
+    """
+    a = np.asarray(affine, float)
+    if a.shape != (4, 4) or not np.isfinite(a).all():
+        return False
+    m = np.abs(a[:3, :3])
+    norms = np.linalg.norm(m, axis=0)
+    if (norms < 1e-9).any():
+        return False
+    major = m.argmax(axis=0)
+    if len(set(major.tolist())) != 3:
+        return False
+    off = m.copy()
+    off[major, np.arange(3)] = 0
+    return bool((off.max(axis=0) <= tol * norms).all())
+
+
+GEOMETRY_BLOCKING_FLAGS = ("UNITS_UNKNOWN", "UNITS_NOT_MM", "QFORM_SFORM_CONFLICT", "NO_VALID_XFORM", "NONFINITE_AFFINE",
+                           "SPACING_HEADER_AFFINE_MISMATCH", "OBLIQUE_OR_SINGULAR")
+
+
+def geometry_eligibility(geo):
+    """Fail-closed gate: only mm-unit, consistent, axis-aligned LAS volumes get physical-plane outputs (v1 legacy frame)."""
+    reasons = [f for f in geo["flags"] if f in GEOMETRY_BLOCKING_FLAGS]
+    if not is_axis_aligned(np.asarray(geo["affine"], float)) and "OBLIQUE_OR_SINGULAR" not in reasons:
+        reasons.append("OBLIQUE_OR_SINGULAR")
+    if geo["axcodes"] != "LAS":
+        reasons.append("NOT_LAS_STORAGE")
+    return {"eligible": not reasons, "reasons": reasons}
+
+
 def legacy_display_axes(affine):
     """What the historical np.rot90(volume[:,:,z]) shows, from the storage axis codes."""
     codes = nib.aff2axcodes(np.asarray(affine, float))
@@ -122,6 +156,7 @@ def canonicalize_ras(data, affine, max_samples=64):
 
 
 def axial_axis(affine):
+    require(is_axis_aligned(affine), "Axis-aligned affine required for physical axial-plane arithmetic (oblique/sheared/singular rejected)")
     return int(np.argmax(np.abs(np.asarray(affine, float)[2, :3])))
 
 
@@ -185,12 +220,24 @@ def resample_mask_nearest(mask, mask_aff, target_shape, target_aff):
     return ndimage.affine_transform(np.asarray(mask), m[:3, :3], offset=m[:3, 3], output_shape=tuple(target_shape), order=0, mode="constant", cval=0)
 
 
+def integer_labels(mask):
+    """Validate that a mask holds finite, integer-valued labels (no silent truncation) and return int64."""
+    m = np.asarray(mask)
+    if m.dtype.kind in "iub":
+        return m.astype(np.int64)
+    require(m.dtype.kind == "f", "Mask dtype must be integer or float")
+    require(np.isfinite(m).all(), "Mask contains nonfinite labels")
+    require((m == np.rint(m)).all(), "Mask contains non-integer labels")
+    return np.rint(m).astype(np.int64)
+
+
 def check_image_mask_geometry(volume, img_aff, mask, mask_aff, allowed_labels):
+    mask = integer_labels(mask)
     g = compare_grids(volume.shape, img_aff, mask.shape, mask_aff)
     flags = []
     before = {int(x) for x in np.unique(mask)}
     if g["same_voxel_grid"]:
-        on_grid = np.asarray(mask)
+        on_grid = mask
     else:
         on_grid = resample_mask_nearest(mask, mask_aff, volume.shape, img_aff)
         flags.append("RESAMPLED_NEAREST")
@@ -198,13 +245,23 @@ def check_image_mask_geometry(volume, img_aff, mask, mask_aff, allowed_labels):
     outside = sorted(before - set(allowed_labels))
     if outside:
         flags.append("LABEL_OUTSIDE_ALLOWED")
-    preserved = after <= before and not outside
+    missing = sorted(before - after)
+    novel_nonzero = sorted(after - before - {0})
+    bg_zero = bool(0 in after and 0 not in before)
+    if missing:
+        flags.append("LABEL_MISSING_AFTER_RESAMPLE")
+    if novel_nonzero:
+        flags.append("LABEL_NOVEL_AFTER_RESAMPLE")
+    if bg_zero:
+        flags.append("BACKGROUND_ZERO_INTRODUCED")
+    exact = after == before and not outside
     nz = on_grid > 0
     frac = float((np.asarray(volume)[nz] != 0).mean()) if nz.any() else None
     if frac is not None and frac < 0.5:
         flags.append("MASK_OUTSIDE_IMAGE_SUPPORT")
     return {"grid_compatible": bool(g["same_voxel_grid"]), "grid": g, "label_set_before": sorted(before), "label_set_after": sorted(after),
-            "label_set_preserved": bool(preserved), "mask_nonzero_voxels": int(nz.sum()), "fraction_inside_support": frac,
+            "label_set_exact_preserved": bool(exact), "missing_labels": missing, "novel_nonzero_labels": novel_nonzero,
+            "background_zero_introduced": bg_zero, "mask_nonzero_voxels": int(nz.sum()), "fraction_inside_support": frac,
             "registration_proven": False, "mask_is_model_input": False,
             "scope": "geometric grid check + image-support proxy; a grid-compatible mask can still be misregistered", "flags": flags}
 
@@ -299,6 +356,40 @@ def coverage_at(volume, affine, index):
     return float(area[index] / area.max()), area
 
 
+REFERENCE_MODALITY_ORDER = ("flair", "t1ce")  # predetermined: the first present modality in a pair selects the planes
+
+
+def independent_selection_difference(sel_a, sel_b):
+    """Physical difference between two independently selected slice sets (they do NOT correspond unless all zero)."""
+    dz = [float(b["world_z_mm"] - a["world_z_mm"]) for a, b in zip(sel_a["slices"], sel_b["slices"])]
+    return {"world_z_diff_mm": dz, "index_diff": [b["index"] - a["index"] for a, b in zip(sel_a["slices"], sel_b["slices"])],
+            "corresponding": bool(all(abs(x) < 1e-6 for x in dz))}
+
+
+def select_paired_slices(ref_vol, ref_aff, par_vol, par_aff, fractions=PRIMARY_FRACTIONS, min_coverage=0.50):
+    """One predetermined reference modality chooses world-z planes; the partner is mapped to the same world z."""
+    ref = select_slices_coverage(ref_vol, ref_aff, fractions)
+    par_aff = np.asarray(par_aff, float)
+    k = axial_axis(par_aff)
+    step = float(par_aff[2, k])
+    v = np.asarray(par_vol)
+    area = np.array([np.count_nonzero(np.take(v, i, axis=k)) for i in range(v.shape[k])], float)
+    require(area.max() > 0, "No partner foreground")
+    partner = []
+    for s in ref["slices"]:
+        z = s["world_z_mm"]
+        idx = int(np.floor((z - par_aff[2, 3]) / step + 0.5))
+        out = bool(idx < 0 or idx >= v.shape[k])
+        cov = None if out else float(area[idx] / area.max())
+        flags = ["OUT_OF_VOLUME"] if out else (["LOW_COVERAGE"] if cov < min_coverage else [])
+        partner.append({"fraction": s["fraction"], "index": idx, "world_z_mm": float(par_aff[2, 3] + idx * step),
+                        "world_z_residual_mm": float(par_aff[2, 3] + idx * step - z), "coverage_vs_max": cov,
+                        "out_of_volume": out, "abstain": bool(flags) or s["abstain"], "qc_flags": flags})
+    return {"reference_selection": ref, "reference_world_z_mm": [s["world_z_mm"] for s in ref["slices"]], "partner": partner,
+            "correspondence": "SAME_WORLD_Z_FROM_REFERENCE_MODALITY",
+            "independent_selection_difference": independent_selection_difference(ref, select_slices_coverage(par_vol, par_aff, fractions))}
+
+
 def offsets_2p5d(volume, affine, center_index, offsets_mm):
     aff = np.asarray(affine, float)
     k = axial_axis(aff)
@@ -313,11 +404,27 @@ def offsets_2p5d(volume, affine, center_index, offsets_mm):
     return {"slices": out, "rounding": "floor(mm/step+0.5), signed by affine axis direction"}
 
 
-def visual_token_estimate(size, n_images, patch=16, merge=2):
+def visual_token_estimate(size, n_images, patch=16, merge=2, min_pixels=65536, max_pixels=16777216):
+    """Approximate visual tokens from model metadata (patch/merge/min/max pixels); no processor was run.
+
+    Rounds each side to a multiple of patch*merge, then rescales into [min_pixels, max_pixels]. Special
+    vision start/end tokens are not counted. ``size`` is (width, height) in pixels.
+    """
     f = patch * merge
-    per = max(1, round(size[0] / f)) * max(1, round(size[1] / f))
-    return {"kind": "ESTIMATE_NOT_MEASURED", "per_image_tokens": per, "n_images": n_images, "total_tokens": per * n_images,
-            "assumption": f"patch {patch}, merge {merge}, round-to-{f}px, no min/max-pixel clamp; real processor settings NOT_VERIFIED"}
+    w, h = size
+    rw, rh = max(f, round(w / f) * f), max(f, round(h / f) * f)
+    if rw * rh > max_pixels:
+        s = (w * h / max_pixels) ** 0.5
+        rw, rh = max(f, int(np.floor(w / s / f)) * f), max(f, int(np.floor(h / s / f)) * f)
+    elif rw * rh < min_pixels:
+        s = (min_pixels / (w * h)) ** 0.5
+        rw, rh = int(np.ceil(w * s / f)) * f, int(np.ceil(h * s / f)) * f
+    per = (rw // f) * (rh // f)
+    return {"kind": "METADATA_DERIVED_APPROXIMATE", "native_processor_observed": False,
+            "metadata_source": "ROOT_REPORTED_NOT_READ_BY_THIS_AGENT", "per_image_tokens": per, "n_images": n_images,
+            "total_tokens": per * n_images, "resized_wh_px": [rw, rh], "min_pixels": min_pixels, "max_pixels": max_pixels,
+            "assumption": f"patch {patch}, spatial merge {merge}, side rounding to {f}px, min/max-pixel clamp; special tokens not counted; "
+                          "per single image and for n_images separate images (no video/temporal merge)"}
 
 
 # ------------------------------------------------------------------- QC
@@ -476,14 +583,33 @@ def _h16(pixels):
     return hashlib.sha256(np.ascontiguousarray(pixels).tobytes()).hexdigest()[:16]
 
 
+def _render_png_pixels(img):
+    return np.asarray(img.convert("RGB"))
+
+
+def _verify_legacy_png(rendered, supplied_path):
+    """Exact RGB pixel comparison against an existing PNG supplied by the researcher."""
+    with Image.open(supplied_path) as im:
+        existing = np.asarray(im.convert("RGB"))
+    return bool(existing.shape == rendered.shape and np.array_equal(existing, rendered))
+
+
 def run_pilot(manifest, private_dir, public_dir):
     validate_manifest(manifest)
+    levels = manifest.get("legacy_levels", [45, 91, 136])
+    if any(r.get("mask_path") for r in manifest["rows"]):
+        labels = manifest.get("mask_allowed_labels")
+        require(isinstance(labels, list) and labels and all(isinstance(x, int) for x in labels),
+                "mask_allowed_labels must be an explicit pinned integer ontology when masks are supplied")
+    for r in manifest["rows"]:
+        for lv in r.get("legacy_png", {}):
+            require(int(lv) in levels, "legacy_png level not among legacy_levels")
     priv, pub = Path(private_dir), Path(public_dir)
     (priv / "images").mkdir(parents=True, exist_ok=True)
     pub.mkdir(parents=True, exist_ok=True)
-    levels = manifest.get("legacy_levels", [45, 91, 136])
-    rows_pub, rows_priv, loaded = {}, {}, {}
-    unchanged = True
+    rows_pub, rows_priv, loaded, legacy_px = {}, {}, {}, {}
+    self_det = True
+    png_compared = png_exact = 0
     dup_rows = []
     for r in manifest["rows"]:
         t0 = time.perf_counter()
@@ -492,39 +618,55 @@ def run_pilot(manifest, private_dir, public_dir):
         sha = sha256_file(r["nifti_path"])
         if r.get("expected_sha256"):
             require(sha == r["expected_sha256"], "Source hash mismatch")
+        elig = geometry_eligibility(geo)
+        base = {"modality": r["modality"], "pair_key": r["pair_key"], "shape": geo["shape"], "axcodes": geo["axcodes"],
+                "spacing_mm": geo["spacing_mm"], "units": geo["units"], "qform_code": geo["qform_code"], "sform_code": geo["sform_code"],
+                "qform_sform_conflict": geo["qform_sform_conflict"], "obliquity_deg": geo["obliquity_deg"], "geometry_flags": geo["flags"]}
+        rows_priv[oid] = {"nifti_path": r["nifti_path"], "sha256": sha, "affine": geo["affine"], "mask_path": r.get("mask_path")}
+        if not elig["eligible"]:  # fail closed: no pixels read, no physical candidate, no legacy world z
+            rows_pub[oid] = {**base, "technical_ineligible": True, "ineligible_reasons": elig["reasons"],
+                             "elapsed_s": round(time.perf_counter() - t0, 3)}
+            continue
         vol = np.asanyarray(nib.load(r["nifti_path"], mmap=True).dataobj)
         require(np.isfinite(vol).all(), "Nonfinite source")
         aff = np.array(geo["affine"])
-        k = axial_axis(aff)
         sel = select_slices_coverage(vol, aff)
         e0, e1 = sel["support_world_z_mm"]
+        cvol, caff, crep = canonicalize_ras(vol, aff)
+        rows_priv[oid]["ras_affine"] = caff.tolist()
+        cinv = np.linalg.inv(caff)
         legacy = []
+        legacy_px[oid] = {}
         for z in levels:
             if not 0 <= z < vol.shape[2]:
                 legacy.append({"level": z, "out_of_volume": True})
                 continue
             a, win = legacy_render(vol, z)
             b, _ = legacy_render(vol, z)
-            unchanged &= a.tobytes() == b.tobytes()
+            self_det &= a.tobytes() == b.tobytes()
             a.save(priv / "images" / f"{oid}_legacy_z{z:03d}.png")
-            wz = float(aff[2, 3] + z * aff[2, 2]) if k == 2 else None
-            cov = coverage_at(vol, aff, z)[0] if k == 2 else None
+            exact = None
+            supplied = r.get("legacy_png", {}).get(str(z))
+            if supplied:
+                exact = _verify_legacy_png(_render_png_pixels(a), supplied)
+                png_compared += 1
+                png_exact += exact
+            wz = float(aff[2, 3] + z * aff[2, 2])
+            kc = int(np.rint((cinv @ (aff @ np.array([0, 0, z, 1.0])))[2]))
+            same_plane = bool(0 <= kc < cvol.shape[2] and np.array_equal(axial_display_plane(cvol, caff, kc), axial_display_plane(vol, aff, z)))
             px = np.asarray(a)[:, :, 0]
-            legacy.append({"level": z, "window": win, "world_z_mm": wz, "support_fraction": (wz - e0) / (e1 - e0) if wz is not None and e1 > e0 else None,
-                           "coverage_vs_max": cov, "pixel_hash16": _h16(px), "qc_flags": qc_flags_for_plane(px)})
+            legacy_px[oid][z] = px
+            legacy.append({"level": z, "window": win, "world_z_mm": wz, "support_fraction": (wz - e0) / (e1 - e0) if e1 > e0 else None,
+                           "coverage_vs_max": coverage_at(vol, aff, z)[0], "pixel_hash16": _h16(px), "qc_flags": qc_flags_for_plane(px),
+                           "existing_png_exact": exact, "ras_canonical_slice_index": kc, "display_plane_equal_after_canonicalization": same_plane})
             dup_rows.append({"id": f"{oid}L{z}", "patient": r["pair_key"], "pixels": px})
-        cand = []
+        independent = []
         for i, s in enumerate(sel["slices"]):
             img, win = render_candidate(vol, aff, s["index"], "legacy_percentile")
             px = np.asarray(img)[:, :, 0]
-            img.save(priv / "images" / f"{oid}_cand_f{int(round(s['fraction'] * 100)):02d}.png")
-            diff = None
-            if i < len(legacy) and "pixel_hash16" in legacy[i]:
-                leg = np.asarray(Image.open(priv / "images" / f"{oid}_legacy_z{levels[i]:03d}.png"))[:, :, 0].astype(float)
-                diff = float(np.abs(leg - px).mean())
-            cand.append({**s, "window": win, "pixel_hash16": _h16(px), "qc_flags": s["qc_flags"] + [f for f in qc_flags_for_plane(px) if f not in s["qc_flags"]],
-                         "mean_abs_pixel_diff_vs_legacy_level": diff,
-                         "difference_reason": ("same axial index" if diff == 0 else "different axial index / physical height")})
+            img.save(priv / "images" / f"{oid}_ind_f{int(round(s['fraction'] * 100)):02d}.png")
+            independent.append({**s, "window": win, "pixel_hash16": _h16(px), "correspondence": "NOT_CORRESPONDING_ACROSS_MODALITIES",
+                                "qc_flags": s["qc_flags"] + [f for f in qc_flags_for_plane(px) if f not in s["qc_flags"]]})
             dup_rows.append({"id": f"{oid}C{i}", "patient": r["pair_key"], "pixels": px})
         center = sel["slices"][len(sel["slices"]) // 2]["index"]
         ctrl = {}
@@ -538,34 +680,80 @@ def run_pilot(manifest, private_dir, public_dir):
         stats = {"nonzero_fraction": float(nz.size / vol.size), "p0.5_p99.5": [float(x) for x in np.percentile(nz[::16], [0.5, 99.5])],
                  "mean_nonzero": float(nz.mean()), "std_nonzero": float(nz.std())}
         ess = offsets_2p5d(vol, aff, center, (-8, 0, 8))
-        info = {"modality": r["modality"], "pair_key": r["pair_key"], "shape": geo["shape"], "axcodes": geo["axcodes"], "spacing_mm": geo["spacing_mm"],
-                "units": geo["units"], "qform_code": geo["qform_code"], "sform_code": geo["sform_code"],
-                "qform_sform_conflict": geo["qform_sform_conflict"], "obliquity_deg": geo["obliquity_deg"], "geometry_flags": geo["flags"],
+        info = {**base, "technical_ineligible": False, "ineligible_reasons": [],
+                "canonicalization": {k2: v for k2, v in crep.items() if k2 != "original_affine_preserved"},
                 "display": {**legacy_display_axes(aff), **display_aspect_report(geo["shape"], geo["spacing_mm"], LEGACY_SIZE)},
-                "intensity": stats, "selection": {k2: v for k2, v in sel.items() if k2 != "slices"}, "legacy": legacy, "candidate_primary": cand,
+                "intensity": stats, "selection": {k2: v for k2, v in sel.items() if k2 != "slices"}, "legacy": legacy,
+                "candidate_independent_exploratory": independent,
                 "normalization_controls_at_center": ctrl, "offsets_2p5d_mm": ess["slices"],
-                "token_estimate_primary_3_images": visual_token_estimate(LEGACY_SIZE, 3), "token_estimate_2p5d_3_images": visual_token_estimate(LEGACY_SIZE, 3),
+                "token_estimate_primary_3_images": visual_token_estimate(LEGACY_SIZE, 3),
+                "token_estimate_single_image": visual_token_estimate(LEGACY_SIZE, 1),
                 "elapsed_s": round(time.perf_counter() - t0, 3)}
         if r.get("mask_path"):
             mimg = nib.load(r["mask_path"])
-            info["mask"] = check_image_mask_geometry(vol, aff, np.asanyarray(mimg.dataobj), np.asarray(mimg.affine), set(manifest.get("mask_allowed_labels", [0, 1, 2, 3, 4])))
+            info["mask"] = check_image_mask_geometry(vol, aff, np.asanyarray(mimg.dataobj), np.asarray(mimg.affine), set(manifest["mask_allowed_labels"]))
         rows_pub[oid] = info
-        rows_priv[oid] = {"nifti_path": r["nifti_path"], "sha256": sha, "affine": geo["affine"], "mask_path": r.get("mask_path")}
-        loaded[oid] = (r, vol, aff)
+        loaded[oid] = (r, vol, aff, sel)
+
+    def primary_entry(oid, fraction, index, world_z, cov, flags, role, residual):
+        _r, vol, aff, _sel = loaded[oid]
+        img, win = render_candidate(vol, aff, index, "legacy_percentile")
+        px = np.asarray(img)[:, :, 0]
+        img.save(priv / "images" / f"{oid}_prim_f{int(round(fraction * 100)):02d}.png")
+        i = [0.30, 0.50, 0.70].index(fraction) if fraction in (0.30, 0.50, 0.70) else None
+        leg = legacy_px.get(oid, {}).get(levels[i]) if i is not None and i < len(levels) else None
+        diff = float(np.abs(leg.astype(float) - px).mean()) if leg is not None else None
+        dup_rows.append({"id": f"{oid}P{int(round(fraction * 100))}", "patient": loaded[oid][0]["pair_key"], "pixels": px})
+        return {"fraction": fraction, "index": index, "world_z_mm": world_z, "coverage_vs_max": cov, "role": role,
+                "world_z_residual_mm": residual, "abstain": bool(flags), "window": win, "pixel_hash16": _h16(px),
+                "qc_flags": flags + [f for f in qc_flags_for_plane(px) if f not in flags],
+                "mean_abs_pixel_diff_vs_legacy_level": diff,
+                "difference_reason": ("same axial index" if diff == 0 else "different axial index / physical height") if diff is not None else None}
+
     pairs = defaultdict(list)
-    for oid, (r, vol, aff) in loaded.items():
-        pairs[r["pair_key"]].append(oid)
+    for r in manifest["rows"]:
+        pairs[r["pair_key"]].append(r["opaque_id"])
     pair_geo = {}
     for key, ids in pairs.items():
-        if len(ids) == 2:
-            (ra, va, aa), (rb, vb, ab) = loaded[ids[0]], loaded[ids[1]]
-            g = compare_grids(va.shape, aa, vb.shape, ab)
+        ok = [i for i in ids if i in loaded]
+        pair_geo[key] = {"n_rows": len(ids), "n_eligible_rows": len(ok), "paired_selection": None, "registration_proven": False}
+        mods = {loaded[i][0]["modality"]: i for i in ok}
+        if len(ok) == 2 and len(mods) == 2:
+            ref_m = next(m for m in REFERENCE_MODALITY_ORDER if m in mods)
+            ref_id = mods[ref_m]
+            par_id = next(i for i in ok if i != ref_id)
+            (_, rv, ra, rsel), (_, pv, pa, _) = loaded[ref_id], loaded[par_id]
+            ps = select_paired_slices(rv, ra, pv, pa)
+            rows_pub[ref_id]["candidate_primary"] = [primary_entry(ref_id, s["fraction"], s["index"], s["world_z_mm"], s["coverage_vs_max"], s["qc_flags"], "reference", 0.0)
+                                                      for s in ps["reference_selection"]["slices"]]
+            rows_pub[par_id]["candidate_primary"] = [
+                primary_entry(par_id, q["fraction"], q["index"], q["world_z_mm"], q["coverage_vs_max"], q["qc_flags"], "mapped_from_reference_world_z", q["world_z_residual_mm"])
+                if not q["out_of_volume"] else {"fraction": q["fraction"], "index": q["index"], "world_z_mm": q["world_z_mm"], "role": "mapped_from_reference_world_z",
+                                                "abstain": True, "qc_flags": q["qc_flags"], "world_z_residual_mm": q["world_z_residual_mm"]}
+                for q in ps["partner"]]
+            pair_geo[key]["paired_selection"] = {"reference_modality": ref_m, "rule": "reference_modality_world_z_mapped_to_partner",
+                                                 "correspondence": ps["correspondence"],
+                                                 "partner_world_z_residual_mm": [q["world_z_residual_mm"] for q in ps["partner"]],
+                                                 "partner_abstain": [q["abstain"] for q in ps["partner"]],
+                                                 "independent_selection_difference": ps["independent_selection_difference"]}
+            g = compare_grids(rv.shape, ra, pv.shape, pa)
             if g["same_voxel_grid"]:
-                g["shift_nmi"] = shift_sensitivity_nmi(va, vb)
-            pair_geo[key] = g
+                g["shift_nmi"] = shift_sensitivity_nmi(rv, pv)
+            pair_geo[key].update(g)
+        else:  # unpaired: own selection, explicitly not a cross-modality correspondence
+            for i in ok:
+                s = loaded[i][3]
+                rows_pub[i]["candidate_primary"] = [primary_entry(i, x["fraction"], x["index"], x["world_z_mm"], x["coverage_vs_max"], x["qc_flags"], "unpaired_own_selection", 0.0)
+                                                    for x in s["slices"]]
     dup = duplicate_guard(dup_rows)
     flags = Counter(f for v in rows_pub.values() for f in v["geometry_flags"])
-    result = {"version": VERSION, "rows": len(rows_pub), "legacy_control_pixels_unchanged": bool(unchanged), "pair_geometry": pair_geo,
+    verification = {"status": "NOT_SUPPLIED", "compared": 0, "exact": 0, "mismatched": 0}
+    if png_compared:
+        verification = {"status": "ALL_EXACT" if png_exact == png_compared else "MISMATCH", "compared": png_compared,
+                        "exact": png_exact, "mismatched": png_compared - png_exact}
+    result = {"version": VERSION, "rows": len(rows_pub), "ineligible_rows": sum(v["technical_ineligible"] for v in rows_pub.values()),
+              "legacy_render_self_deterministic": bool(self_det), "existing_legacy_png_verification": verification,
+              "reference_modality_order": list(REFERENCE_MODALITY_ORDER), "pair_geometry": pair_geo,
               "duplicate_guard": {k: v for k, v in dup.items() if k != "flagged_pairs"}, "geometry_flag_counts": dict(flags),
               "modalities": dict(Counter(v["modality"] for v in rows_pub.values())), "threads": os.environ.get("OMP_NUM_THREADS"),
               "model_loaded": False, "training": False, "clinical_adjudication": False}
