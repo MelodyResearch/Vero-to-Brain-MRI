@@ -1,0 +1,46 @@
+{
+  "schema": "accuracy_recovery_runtime_v1",
+  "date": "2026-10-20",
+  "status": "RUNTIME_INSTALLED_BASE_RECOVERED_QUANT_CACHE_NOT_RUN",
+  "evidence_labels": {
+    "python": "OBSERVED venv python 3.13.6; historical minor 3.13; historical patch NOT_VERIFIED",
+    "package_pins": "OBSERVED installed mlx 0.32.4, mlx-metal 0.32.4, mlx-vlm 0.7.8, transformers 5.20.0 (match historical receipts)",
+    "transitive_dependencies": "NOT_VERIFIED vs historical; current resolver output, frozen in private receipt",
+    "installed_source_hashes": "OBSERVED: 5 of 5 match historical hashes (mlx quantized.py, mlx nn/utils.py, mlx_vlm processing_qwen3_vl.py, vision.py, utils.py)",
+    "base_download": "OBSERVED: 4 safetensors shards (17,534,339,512 bytes) and 11 config/tokenizer/doc files match historical sha256; 0 bytes remaining",
+    "quant_plan_rebuild": "NOT_RUN (quant_convert plan command blocked by permission rule)",
+    "quant_cache": "NOT_RUN; hash certificate never implies payload exists; conversion needs MLX and separate bounded native approval",
+    "model_load_or_mlx_import": "none"
+  },
+  "venv": {
+    "path": "work/accuracy-recovery-venv-v1",
+    "pins": {"mlx": "0.32.4", "mlx-metal": "0.32.4", "mlx-vlm": "0.7.8", "transformers": "5.20.0"},
+    "extra": {"huggingface_hub": "2.2.0"},
+    "private_receipt": "local_data/accuracy_recovery_v1/runtime_install_receipt_PRIVATE.json (full pip freeze, source hashes)"
+  },
+  "base_model": {
+    "repo": "Qwen/Qwen3-VL-8B-Instruct",
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "target_dir": "local_data/models/qwen3vl8b-base-recovered-v1",
+    "safetensors_total_bytes": 17534339512,
+    "shard_sha256": {
+      "model-00001-of-00004.safetensors": "d5d0aef0eb170fc7453a296c43c0849a56f510555d3588e4fd662bb35490aefa",
+      "model-00002-of-00004.safetensors": "8be88fb5501e4d5719a6d4cc212e6a13480330e74f3e8c77daa1a68f199106b5",
+      "model-00003-of-00004.safetensors": "83de00eafe6e0d57ccd009dbcf71c9974d74df2f016c27afb7e95aafd16b2192",
+      "model-00004-of-00004.safetensors": "0a88b98e9f96270973f567e6a2c103ede6ccdf915ca3075e21c755604d0377a5"
+    },
+    "private_receipt": "local_data/accuracy_recovery_v1/base_download_sha_receipt_PRIVATE.json"
+  },
+  "quant_cache": {
+    "recipe": "src/mri_rl/quant_convert.py (bits 4, group_size 64, affine) and src/mri_rl/quant_cache.py certify_cache",
+    "expected": {"historical_internal_plan_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d", "source_tensor_units": 750, "quantized_modules": 344, "cache_payload_bytes": 5127775392},
+    "commands_NOT_RUN": [
+      "PYTHONPATH=<worktree>/src <venv>/bin/python -m mri_rl.quant_convert plan --metadata-dir <work/exact_qwen_quant_metadata> --output <local_data/accuracy_recovery_v1/recovered_quant_plan_PRIVATE.json>  (CPU only; blocked by permission rule)",
+      "... quant_convert convert --plan <plan> --expected-plan-sha256 <hist> --source-dir <recovered base> --output <units> --max-units N  (native MLX; needs fresh scope review, human authorization and resource wrapper)"
+    ]
+  },
+  "science_notes": {
+    "native_f32_correspondence_vs_accuracy": "Agreement between native and F32 token log-probs on probed contexts shows the numerical path is consistent, so a later change is less likely numerical drift. It does not show the policy is more accurate.",
+    "paired_baseline": "With balanced labels, a same-input paired B-A comparison can still reflect a shifted answer prior rather than better visual reading. The measured endpoint is an engineering B-A classification difference under the same inputs, not causal anatomical proof; no extra ablation is mandated by this note."
+  }
+}
