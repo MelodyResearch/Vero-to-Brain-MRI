@@ -1,0 +1,172 @@
+{
+  "Stage3_reviewed": false,
+  "Stage4_reviewed": false,
+  "actual": {
+    "Adam_fingerprint_arrays_unchanged": 1010,
+    "Adam_layout_unchanged": true,
+    "F32_generation_embeds_and_logits": true,
+    "F32_generation_observed_calls": 59,
+    "RNG_restore": "Source-enforced identity check completed; no independently saved pre/post RNG payload comparison",
+    "active_MLX_bytes_after_release": 1096,
+    "call_counts": {
+      "LM": 59,
+      "TF": 1408,
+      "generated_tokens": 55,
+      "generations": 2,
+      "sampler": 57,
+      "scorer": 6,
+      "vision": 2
+    },
+    "child_exit_code": 0,
+    "child_reaped": true,
+    "fixed_threshold": 0.002,
+    "full_parameters_unchanged": 1942,
+    "model_reference_none_after_release": true,
+    "optimizer_updates": 0,
+    "post_child_lock_no_open_holders": true,
+    "qualification_and_session_release_verified": true,
+    "qualification_manifest_files_verified": 4,
+    "rollout_scorer_max_abs_errors": [
+      4.2438507080078125e-05,
+      1.3113021850585938e-05
+    ],
+    "same_fixed_target_image_delta": 0.004766849393490702,
+    "stage2_status": "PASS"
+  },
+  "additional_execution_authorized": false,
+  "created_at_utc": "2026-10-21T17:13:30.332888+00:00",
+  "cumulative_saved_stage2_resources": {
+    "child_color_counts": {
+      "GREEN": 1,
+      "YELLOW": 185
+    },
+    "disk_free_GiB": {
+      "max": 297.8341407775879,
+      "min": 296.8294143676758
+    },
+    "exact_wait4_peak_RSS_GiB": 5.91937255859375,
+    "guardian_OS_level_counts": {
+      "1": 2,
+      "2": 46
+    },
+    "guardian_rows": 48,
+    "no_guardian_signals": true,
+    "resource_rows": 186,
+    "saved_child_ranges": {
+      "available_gib": {
+        "max": 11.961090087890625,
+        "min": 6.32501220703125,
+        "observed_count": 186
+      },
+      "battery_percent": {
+        "max": 94,
+        "min": 93,
+        "observed_count": 186
+      },
+      "mlx_active_gib": {
+        "max": 5.070968273095787,
+        "min": 1.0207295417785645e-06,
+        "observed_count": 183
+      },
+      "mlx_peak_gib": {
+        "max": 6.0054090255871415,
+        "min": 0.050770021975040436,
+        "observed_count": 183
+      },
+      "pressure_free_percent": {
+        "max": 56.0,
+        "min": 33.0,
+        "observed_count": 186
+      },
+      "process_rss_gib": {
+        "max": 5.834869384765625,
+        "min": 0.0432281494140625,
+        "observed_count": 186
+      },
+      "swap_used_gib": {
+        "max": 13.315244140625,
+        "min": 12.00005859375,
+        "observed_count": 186
+      }
+    },
+    "saved_guardian_ranges": {
+      "available_gib": {
+        "max": 9.767501831054688,
+        "min": 5.90380859375,
+        "observed_count": 48
+      },
+      "battery_percent": {
+        "max": 94,
+        "min": 93,
+        "observed_count": 48
+      },
+      "mlx_active_gib": {
+        "max": null,
+        "min": null,
+        "observed_count": 0
+      },
+      "mlx_peak_gib": {
+        "max": null,
+        "min": null,
+        "observed_count": 0
+      },
+      "pressure_free_percent": {
+        "max": 55.0,
+        "min": 33.0,
+        "observed_count": 48
+      },
+      "process_rss_gib": {
+        "max": 5.8385162353515625,
+        "min": 0.0178070068359375,
+        "observed_count": 48
+      },
+      "swap_used_gib": {
+        "max": 13.315244140625,
+        "min": 12.00005859375,
+        "observed_count": 48
+      }
+    },
+    "stage2_attempts": 1,
+    "wall_seconds": 99.29031249997206
+  },
+  "evidence_FILE_sha256": {
+    "actual_exit": "a4faf98bc7c9ef8e00bc0c1af4bd6b465e426ea2d3ab5c47a1861f72e5e7f459",
+    "calls": "8e1ce8b5f4aa39a758d294889c39cd784657492ed610fec1a723b0d1dbbd8140",
+    "dynamic_resources": "0d24e50b0438f2d79bae3f5d2661e6c8bc79b03dcaba39bfe688f0d8935993b6",
+    "forward_actual": "45f518ea9d9c262988e1cf05adb742da54072ec2f71018b33f41ce0922efd1ce",
+    "guardian_log": "5241d2f2604af9a3c46cc793b298c5dc5732e376d89433bc6ddc1f177ddb6957",
+    "native_complete_commit": "5800062f4a3b6942e1e667fb56230e8bc4fa07b263d9c01925c522d5accb7e89",
+    "qualification_commit": "96d955f9030eaca58a201afa458fc12789f2787a5cb2080ecf4446899424f418",
+    "qualification_release": "35759e5d9fa1ed8ec9cc66421123f6d11e9ae28bc68eaae99f54ee0e3a082be6",
+    "readonly_integrity": "585488f31eea62fdf411811e3a4ac8e39f8334b69648032b4498462e2af0ccf4",
+    "session_release": "35759e5d9fa1ed8ec9cc66421123f6d11e9ae28bc68eaae99f54ee0e3a082be6",
+    "stderr": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+    "stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "terminal": "44cbb350326066209a640447b0e67f29a3d55675ead07c8421d9a30474526bfc",
+    "verified_gate": "1c13c18c46581385164540b80a1283a23e7f13bde497a68f2606489b7db3f8ab"
+  },
+  "evidence_tier": "REPRODUCED_SAVED_NATIVE_STAGE2",
+  "interpretation": "Actual bounded finite F32 generation/scoring and fixed-token-target image sensitivity passed for these two TRAIN image contexts. This does not establish anatomical grounding, two-class discrimination, general numerical qualification or MRI accuracy gain.",
+  "limitations": [
+    "Saved-only Stage2 review: no tests, native calls, live resource resampling, image/weight/optimizer/RNG payload reads or active Stage3 output access.",
+    "Readonly proof compares recorded full parameter/Adam fingerprints; RNG restoration is enforced by the pinned completed source path rather than separately persisted pre/post RNG payload fingerprints.",
+    "All saved Stage2 attempt logs were aggregated; Stage2 had one attempt. MLX data are child allocator observations; parent external allocator observations remain unavailable.",
+    "Thermal telemetry is SENSOR_UNAVAILABLE. Sampled resource compliance and clean exit do not guarantee protection from OOM or kernel panic.",
+    "This review is scoped to completed Stage2 and grants no expanded execution, retry or scientific claim."
+  ],
+  "permission_verified": {
+    "fresh_exact_human_grant_instruction_command": true,
+    "no_old_grant_reuse": true,
+    "one_root_admission_and_one_stage2_admission": true
+  },
+  "private_review_FILE_sha256": "fa83cffb03e66afcc4862aa5e53f14de9313d43d52c1c19afca15556f70fb39c",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewer_id": "Codex /root/resource_v2_final_review",
+  "reviewer_kind": "isolated_codex",
+  "schema": "safe-micro-dynamic-v3-stage2-actual-independent-review-v1",
+  "scope_FILE_sha256": "da7ef34ccf171922d601bb3160c99758c0873a518e58ea981f39e8f86012c279",
+  "scope_canonical_sha256": "bc01fd061005f888fe2d9236f1c23f5d9e654be4d36927f23d78f280ff6c376b",
+  "source_commit_reported": "eaddb4abe5a0b55c239509cfb8832fea48520317",
+  "stage2_scope_sha256": "f6f1161419d0a70b433d78f8986e9e7e80f3e20c43d83207f733d1316526c402",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

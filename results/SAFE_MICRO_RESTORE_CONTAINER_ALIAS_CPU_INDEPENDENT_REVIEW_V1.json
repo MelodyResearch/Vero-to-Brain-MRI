@@ -1,0 +1,60 @@
+{
+  "created_at_utc": "2026-10-21T17:23:26.111233+00:00",
+  "evidence_tier": "REPRODUCED_CPU_SOURCE_ALIAS_MECHANISM",
+  "findings": {
+    "CPU_mutable_container_alias_bug": "CONFIRMED",
+    "GSPO_reward_update_formula_changed": false,
+    "actual_failed_native_restore_cause": "LIKELY_COMPATIBLE_MECHANISM_NOT_UNIQUELY_PROVEN",
+    "failed_A_checkpoint_adoption_authorized": false,
+    "future_helper_effect": "Correctly detaches dict/list/tuple containers on both transaction and two-argument restore paths; selected existing backend remains responsible for validating parameters/Adam/RNG",
+    "historical_native_implementation_changed": false,
+    "new_mixin_automatically_wired": false
+  },
+  "installed_optimizer_evidence": {
+    "adam_replaces_m_and_v_entries": true,
+    "apply_gradients_replaces_step_entry": true,
+    "evidence": "EXACT_PINNED_SOURCE_AST_CPU_ONLY",
+    "limitation": "Source and CPU formula proof; actual stopped model failure attribution and future native repair remain separately unverified.",
+    "line_numbers": {
+      "adam_apply_single": 526,
+      "apply_gradients": 85,
+      "state_setter": 127
+    },
+    "native_execution": false,
+    "optimizer_updates_executed": 0,
+    "source_hash_matches_pin": true,
+    "source_sha256": "a649eeb65133d1a21eec61ab83529badd0ec50938ee6476b1e59f7ee36def1f2",
+    "state_setter_aliases_argument": true
+  },
+  "limitations": [
+    "The exact installed Python Optimizer/Adam AST is run with NumPy CPU operations and a small synthetic state; this confirms a container-alias mechanism, not a native MLX training/recovery qualification.",
+    "The actual failure receipt reports a combined full model/Adam/RNG rollback mismatch without component-specific differences; a unique native cause remains unproven.",
+    "Default detachment retains array leaves. In-place mutation of a borrowed leaf remains possible; explicit leaf copying or independently verified immutable native leaf semantics is required for that case.",
+    "The future mixin is not wired into the frozen95-source execution path. Using it requires a separately reviewed exact prospective scope and genuine human execution permission; the consumed failed attempt cannot be retried or adopted through this review.",
+    "No model loading, GPU work, native MLX import, test of the actual saved A arrays or MRI accuracy evaluation was performed."
+  ],
+  "native_execution_authorized": false,
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewer_id": "Codex /root/resource_v2_final_review",
+  "reviewer_kind": "isolated_codex",
+  "schema": "safe-micro-restore-container-alias-cpu-independent-review-v1",
+  "scope": "Future-only detached restore helper and installed optimizer source CPU reproduction; no old native code changed",
+  "source_files_sha256": {
+    "src/mri_rl/safe_micro_restore_v1.py": "42aa5299e390fae63dd816246a65c1f1814af546294754da5ccb1f8a1f0383c2",
+    "tests/test_safe_micro_restore_v1.py": "74fe4340d823d618cd7be54a2f04df77a82614b9df0f5efbfb44c00a6542f468"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "actual_optimizer_AST_executed_with_NumPy_CPU": true,
+    "cyclic_container_rejected": true,
+    "detached_container_reproduction": "Parent step, full m/v and synthetic RNG remain unchanged; repeated synthetic A/B endpoints agree",
+    "exit_code": 0,
+    "focused_command": "PYTHONPATH=src python3 -m pytest -q tests/test_safe_micro_restore_v1.py",
+    "independent_container_replacement_counterexample": "CONFIRMED: detached nested dict/list containers protect saved entries from replacement",
+    "independent_in_place_array_leaf_counterexample": "CONFIRMED limitation: default borrowed array leaf mutation also changes saved state; explicit copy_leaf prevents it",
+    "model_calls": 0,
+    "native_imports": false,
+    "old_setter_alias_reproduction": "One nonzero CPU Adam formula update changes saved state step52 to53 and replaces saved m/v entries; reassigning the same corrupted state cannot restore52",
+    "result": "6 passed in0.09s; no skipped source tests"
+  }
+}

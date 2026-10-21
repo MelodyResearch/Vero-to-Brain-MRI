@@ -1,0 +1,195 @@
+{
+  "Stage2": {
+    "SIGKILL": false,
+    "SIGTERM_sent": false,
+    "calls": {
+      "LM": 59,
+      "TF": 1408,
+      "generated_tokens": 55,
+      "generations": 2,
+      "sampler": 57,
+      "scorer": 6,
+      "vision": 2
+    },
+    "child_reaped": true,
+    "color_counts": {
+      "GREEN": 1,
+      "YELLOW": 185
+    },
+    "exact_child_peak_RSS_GiB": 5.91937255859375,
+    "exit_code": 0,
+    "guardian_stop": false,
+    "interpretation": "Finite tested F32 path and same-target image sensitivity, not accuracy gain or anatomical grounding.",
+    "lock_free_after_exit": true,
+    "min_available_GiB": 6.32501220703125,
+    "optimizer_updates": 0,
+    "peak_MLX_reported_GiB": 6.0054090255871415,
+    "release_verified": true,
+    "resource_decisions": {
+      "CONTINUE": 186
+    },
+    "rollout_scorer_max_abs": 4.2438507080078125e-05,
+    "same_target_image_delta": 0.004766849393490702,
+    "status": "PASS",
+    "wall_seconds": 99.29031249997206
+  },
+  "Stage3": {
+    "A": {
+      "Adam_after_checkpoint": 53,
+      "Adam_before": 52,
+      "TF_positions": 2701,
+      "actual_optimizer_updates": 1,
+      "admitted_responses": 8,
+      "arm_journal_committed": false,
+      "backward_calls": 8,
+      "checkpoint_all_file_hashes_match": true,
+      "checkpoint_hashes": {
+        "adapter.safetensors": "bc836be274586358253757b53d0dbf297c23be7b108b40d122a12cc101ae8bf2",
+        "optimizer/manifest.json": "c5a806554b15a25c19c9f286a68f5f8f27121ee3e9ca71a762c4686910a6abd9",
+        "optimizer/state.safetensors": "33578d002f892dac49e9fcd7c63e9a96d4e28a5ad0f3d89d97c75b78c60c6a70"
+      },
+      "checkpoint_saved": true,
+      "effective_groups": 2,
+      "gradient_forwards": 8,
+      "joint_gradient_L2": 0.3817254932701475,
+      "receipt_hash_verified": true,
+      "replay_allowed": false,
+      "task_gradient_blocks": [
+        {
+          "admitted_responses": 4,
+          "effective_groups": 1,
+          "gradient_L2": 0.5321259235951751,
+          "task": "sequence"
+        },
+        {
+          "admitted_responses": 4,
+          "effective_groups": 1,
+          "gradient_L2": 0.5462623396941043,
+          "task": "dallas"
+        }
+      ],
+      "whole_arm_success": false
+    },
+    "B": {
+      "actual_optimizer_updates": 0,
+      "backward_calls": 0,
+      "started": false
+    },
+    "SIGKILL": false,
+    "SIGTERM_sent": false,
+    "allocator_not_released_before_exit": true,
+    "allocator_release": {
+      "active_MLX_bytes": 5260969528,
+      "model_is_none": true,
+      "release_verified": false
+    },
+    "child_reaped": true,
+    "color_counts": {
+      "GREEN": 152,
+      "YELLOW": 1251
+    },
+    "common": {
+      "TF_positions": 5546,
+      "fully_committed": true,
+      "old_forwards": 16,
+      "responses": 16,
+      "returned_tokens": 618
+    },
+    "exact_child_peak_RSS_GiB": 5.6486053466796875,
+    "exit_code": 1,
+    "failure": "Rollback failed full model/Adam/RNG integrity",
+    "guardian_stop": false,
+    "lock_free_after_exit": true,
+    "min_available_GiB": 6.6314849853515625,
+    "no_automatic_recovery": true,
+    "peak_MLX_reported_GiB": 10.355946354568005,
+    "process_exited_and_reaped": true,
+    "resource_decisions": {
+      "CONTINUE": 1403
+    },
+    "rolled_back_to_parent_verified": false,
+    "status": "FAIL_PARENT_TRANSACTION_RESTORE_AFTER_SAVED_A_CHECKPOINT",
+    "wall_seconds": 337.9374731659773
+  },
+  "Stage4": {
+    "Direct_accuracy": "NOT_RUN",
+    "Parent_accuracy": "NOT_RUN",
+    "actual_accuracy_gain": "NOT_MEASURED",
+    "adapted_accuracy": "NOT_RUN",
+    "status": "NOT_RUN_PRIOR_FATAL_STAGE_FAILURE"
+  },
+  "cache_regenerated": false,
+  "canonical_scope_sha256": "bc01fd061005f888fe2d9236f1c23f5d9e654be4d36927f23d78f280ff6c376b",
+  "cumulative_resource_observations": {
+    "RED_observed": false,
+    "colors": [
+      "GREEN",
+      "YELLOW"
+    ],
+    "last_post_root_resource_sample": {
+      "available_gib": 14.674163818359375,
+      "battery_percent": 90,
+      "mlx_active_gib": null,
+      "mlx_peak_gib": null,
+      "monotonic_seconds": 455887.646826,
+      "other_heavy_processes": 0,
+      "power_source": "BATTERY",
+      "pressure_free_percent": 59.0,
+      "process_rss_gib": 0.014984130859375,
+      "swap_used_gib": 15.96203125,
+      "thermal_state": "SENSOR_UNAVAILABLE"
+    },
+    "peak_exact_child_RSS_GiB": 5.91937255859375,
+    "peak_reported_MLX_GiB": 10.355946354568005,
+    "stage_child_rows": 1589,
+    "swap_first_GiB": 12.00005859375,
+    "swap_peak_GiB": 15.96203125,
+    "thermal": "SENSOR_UNAVAILABLE",
+    "min_child_boundary_available_GiB": 6.32501220703125,
+    "all_child_and_guardian_samples": 1801,
+    "min_available_all_observations_GiB": 5.7896575927734375,
+    "min_pressure_free_all_observations_percent": 32.0,
+    "max_swap_all_observations_GiB": 15.96203125
+  },
+  "human_permission": "APPROVED_USED_ONE_COMPOUND_ATTEMPT",
+  "limitations": [
+    "A is a real saved one-update checkpoint, but its enclosing arm transaction never committed; do not call it a successful matched experiment.",
+    "The live process failed restoring its parent; a saved checkpoint alone does not authorize adopting or retrying the incomplete operation.",
+    "Stage3 allocator release verification failed; subsequent process exit/reaping and unlocked global lock are separate evidence, not successful allocator cleanup.",
+    "No Parent/A/B DEV24 result exists and no accuracy gain has been established."
+  ],
+  "preservation": {
+    "frozen_plan_not_changed": true,
+    "historical_parent_checkpoint_not_replaced": true,
+    "new_A_checkpoint_preserved": true,
+    "no_other_apps_closed_or_OS_changes": true,
+    "old_final100_new16_not_accessed": true,
+    "shared_rollout_R1_preserved": true
+  },
+  "private_evidence_hashes": {
+    "A_gradient_evidence": "dc2fff18a6eb9ca537d2081474616d4c152158503e22716dc4c84d39c153ae36",
+    "A_receipt": "20e29e9f5f097708b5203a665504797b00e56ae23f9e1858bb164535395738a4",
+    "common_commit": "3cb3d5d8c4b462c224b1353665aaf475cfcfabbdc26863e2841de1f38d3ab04c",
+    "release": "2157227a070c9f9b544f6e747f3c15fd5d3bd252d3331f76a04bbd36377b50f9",
+    "root_exit": "cdf6e19ed83522c32c71759bb2cda7eccf229f1584cf742d308a85eaeef83ea7",
+    "spent_counters": "d51a729ec8974cdadfdd33af772df8af7b43e9324e89bf3b8d82364140b28476",
+    "stage3_exit": "086fe905c507cb94dbbdf57a09905bf0165457d7ec4c801b4a40b1d3e59d6db7",
+    "stage3_stderr": "ebd8833d0dfe9f0dfa68586184aea9de825dc13b63f13d74f2bb6f4953a06d45"
+  },
+  "schema": "safe-micro-dynamic-v3-actual-failure-v1",
+  "scope_FILE_sha256": "da7ef34ccf171922d601bb3160c99758c0873a518e58ea981f39e8f86012c279",
+  "source95_metadata20_unchanged_after_exit": true,
+  "source_commit": "eaddb4abe5a0b55c239509cfb8832fea48520317",
+  "status": "STAGE2_PASS_STAGE3_FAIL_POST_A_UPDATE_PARENT_ROLLBACK",
+  "total_actual": {
+    "TF_positions": 9655,
+    "backward_calls": 8,
+    "generation_responses": 18,
+    "model_load_attempts": 2,
+    "optimizer_updates": 1,
+    "recovery_attempts": 0,
+    "returned_tokens": 673,
+    "root_wall_seconds": 458.76610420801444,
+    "scorer_forwards": 30
+  }
+}

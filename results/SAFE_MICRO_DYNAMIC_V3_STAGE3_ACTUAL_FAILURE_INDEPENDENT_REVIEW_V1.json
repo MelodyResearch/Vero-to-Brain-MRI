@@ -1,0 +1,361 @@
+{
+  "additional_native_execution_authorized": false,
+  "aggregate_audit": {
+    "aggregate_FILE_sha256": "3427484eb5045e1eea2623fea4d0cb5d554e5f745c29d4b38a9bcf73b87cf676",
+    "combined_saved_samples": 1801,
+    "cumulative_minima_sources_correctly_labeled": true,
+    "status": "NO_FACTUAL_MISMATCH_FOUND_IN_REVIEWED_SAVED_OUTCOME_FIELDS"
+  },
+  "allocator_release": {
+    "active_MLX_bytes": 5260969528,
+    "model_is_none": true,
+    "release_verified": false
+  },
+  "created_at_utc": "2026-10-21T17:21:37.450498+00:00",
+  "cumulative_actual_cost": {
+    "automatic_recoveries": 0,
+    "backward_calls": 8,
+    "generation_responses": 18,
+    "model_load_attempts": 2,
+    "optimizer_updates": 1,
+    "returned_tokens": 673,
+    "scorer_forwards": 30,
+    "teacherforced_input_positions": 9655
+  },
+  "cumulative_resource_audit": {
+    "combined_child_and_guardian_ranges": {
+      "available_gib": {
+        "max": 12.49456787109375,
+        "min": 5.7896575927734375,
+        "observed_count": 1801
+      },
+      "battery_percent": {
+        "max": 94,
+        "min": 90,
+        "observed_count": 1801
+      },
+      "mlx_active_gib": {
+        "max": 5.226801653392613,
+        "min": 1.0207295417785645e-06,
+        "observed_count": 1583
+      },
+      "mlx_peak_gib": {
+        "max": 10.355946354568005,
+        "min": 0.050770021975040436,
+        "observed_count": 1583
+      },
+      "pressure_free_percent": {
+        "max": 59.0,
+        "min": 32.0,
+        "observed_count": 1801
+      },
+      "process_rss_gib": {
+        "max": 5.8385162353515625,
+        "min": 0.013824462890625,
+        "observed_count": 1801
+      },
+      "swap_used_gib": {
+        "max": 15.96203125,
+        "min": 12.00005859375,
+        "observed_count": 1801
+      }
+    },
+    "guardian_rows": 212,
+    "peak_child_MLX_reported_GiB": 10.355946354568005,
+    "peak_exact_wait4_RSS_GiB": 5.91937255859375,
+    "resource_stop_rows": 0,
+    "root_wall_seconds": 458.76610420801444,
+    "stage_child_rows": 1589,
+    "stage_ranges": {
+      "2": {
+        "child_colors": {
+          "GREEN": 1,
+          "YELLOW": 185
+        },
+        "child_ranges": {
+          "available_gib": {
+            "max": 11.961090087890625,
+            "min": 6.32501220703125,
+            "observed_count": 186
+          },
+          "battery_percent": {
+            "max": 94,
+            "min": 93,
+            "observed_count": 186
+          },
+          "mlx_active_gib": {
+            "max": 5.070968273095787,
+            "min": 1.0207295417785645e-06,
+            "observed_count": 183
+          },
+          "mlx_peak_gib": {
+            "max": 6.0054090255871415,
+            "min": 0.050770021975040436,
+            "observed_count": 183
+          },
+          "pressure_free_percent": {
+            "max": 56.0,
+            "min": 33.0,
+            "observed_count": 186
+          },
+          "process_rss_gib": {
+            "max": 5.834869384765625,
+            "min": 0.0432281494140625,
+            "observed_count": 186
+          },
+          "swap_used_gib": {
+            "max": 13.315244140625,
+            "min": 12.00005859375,
+            "observed_count": 186
+          }
+        },
+        "child_rows": 186,
+        "guardian_ranges": {
+          "available_gib": {
+            "max": 9.767501831054688,
+            "min": 5.90380859375,
+            "observed_count": 48
+          },
+          "battery_percent": {
+            "max": 94,
+            "min": 93,
+            "observed_count": 48
+          },
+          "mlx_active_gib": {
+            "max": null,
+            "min": null,
+            "observed_count": 0
+          },
+          "mlx_peak_gib": {
+            "max": null,
+            "min": null,
+            "observed_count": 0
+          },
+          "pressure_free_percent": {
+            "max": 55.0,
+            "min": 33.0,
+            "observed_count": 48
+          },
+          "process_rss_gib": {
+            "max": 5.8385162353515625,
+            "min": 0.0178070068359375,
+            "observed_count": 48
+          },
+          "swap_used_gib": {
+            "max": 13.315244140625,
+            "min": 12.00005859375,
+            "observed_count": 48
+          }
+        },
+        "guardian_rows": 48
+      },
+      "3": {
+        "child_colors": {
+          "GREEN": 152,
+          "YELLOW": 1251
+        },
+        "child_ranges": {
+          "available_gib": {
+            "max": 12.477066040039062,
+            "min": 6.6314849853515625,
+            "observed_count": 1403
+          },
+          "battery_percent": {
+            "max": 93,
+            "min": 90,
+            "observed_count": 1403
+          },
+          "mlx_active_gib": {
+            "max": 5.226801653392613,
+            "min": 0.050770021975040436,
+            "observed_count": 1400
+          },
+          "mlx_peak_gib": {
+            "max": 10.355946354568005,
+            "min": 0.050770021975040436,
+            "observed_count": 1400
+          },
+          "pressure_free_percent": {
+            "max": 59.0,
+            "min": 36.0,
+            "observed_count": 1403
+          },
+          "process_rss_gib": {
+            "max": 5.573760986328125,
+            "min": 0.0315399169921875,
+            "observed_count": 1403
+          },
+          "swap_used_gib": {
+            "max": 15.96203125,
+            "min": 13.315244140625,
+            "observed_count": 1403
+          }
+        },
+        "child_rows": 1403,
+        "guardian_ranges": {
+          "available_gib": {
+            "max": 12.49456787109375,
+            "min": 5.7896575927734375,
+            "observed_count": 164
+          },
+          "battery_percent": {
+            "max": 93,
+            "min": 90,
+            "observed_count": 164
+          },
+          "mlx_active_gib": {
+            "max": null,
+            "min": null,
+            "observed_count": 0
+          },
+          "mlx_peak_gib": {
+            "max": null,
+            "min": null,
+            "observed_count": 0
+          },
+          "pressure_free_percent": {
+            "max": 59.0,
+            "min": 32.0,
+            "observed_count": 164
+          },
+          "process_rss_gib": {
+            "max": 5.6485137939453125,
+            "min": 0.013824462890625,
+            "observed_count": 164
+          },
+          "swap_used_gib": {
+            "max": 15.96203125,
+            "min": 13.315244140625,
+            "observed_count": 164
+          }
+        },
+        "guardian_rows": 164
+      }
+    },
+    "swap_first_GiB": 12.00005859375,
+    "swap_growth_GiB": 3.9619726562500013,
+    "swap_last_GiB": 15.96203125
+  },
+  "evidence_FILE_sha256": {
+    "arm_A_receipt": "20e29e9f5f097708b5203a665504797b00e56ae23f9e1858bb164535395738a4",
+    "arm_A_reservation": "9f89ca135d28335e171708d3112c95d37e511f7b75006e53643e8202e828450c",
+    "common_commit": "3cb3d5d8c4b462c224b1353665aaf475cfcfabbdc26863e2841de1f38d3ab04c",
+    "common_record": "4f77d053da9bd38f64fa3ba120cb75304fa8fbff47075cf38d5e617c3762ca8c",
+    "entry_STOP": "a767be78849fd93848234efbc501618d2669a1af54dd1122269007e21c10bb83",
+    "gradient_evidence": "dc2fff18a6eb9ca537d2081474616d4c152158503e22716dc4c84d39c153ae36",
+    "release": "2157227a070c9f9b544f6e747f3c15fd5d3bd252d3331f76a04bbd36377b50f9",
+    "root_exit": "cdf6e19ed83522c32c71759bb2cda7eccf229f1584cf742d308a85eaeef83ea7",
+    "root_stderr": "3a7ae9a7a3a37f91fc6267eb4b5748c0e10691354ac8f2fc0381036a6e75859c",
+    "root_stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "spent_counters": "d51a729ec8974cdadfdd33af772df8af7b43e9324e89bf3b8d82364140b28476",
+    "stage2_guardian_log": "5241d2f2604af9a3c46cc793b298c5dc5732e376d89433bc6ddc1f177ddb6957",
+    "stage2_resource_log": "0d24e50b0438f2d79bae3f5d2661e6c8bc79b03dcaba39bfe688f0d8935993b6",
+    "stage3_exit": "086fe905c507cb94dbbdf57a09905bf0165457d7ec4c801b4a40b1d3e59d6db7",
+    "stage3_guardian_log": "44f9d61981603fdc5440074ae7472b706f3e9499de9c76a6538e2ed2a10ea05d",
+    "stage3_resource_log": "4b1b4edfbb2ef20b61cf1667546ddb89a570d80a27e8f3b01b5c68a141717b7d",
+    "stage3_stderr": "ebd8833d0dfe9f0dfa68586184aea9de825dc13b63f13d74f2bb6f4953a06d45",
+    "stage3_stdout": "2b1c4931d911458817b74e343a48f60bd7a7d0e052a3ae73edf94d27441fe31b",
+    "training_STOP": "080d9352c26e6ec70598421965494c461ac04e97a3b8255a3abb45694ec448db"
+  },
+  "evidence_tier": "REPRODUCED_SAVED_NATIVE_FAILURE",
+  "experiment_status": "FAILED_PARENT_RESTORE_AFTER_ACTUAL_A_UPDATE",
+  "limitations": [
+    "Saved-only failure review; no model calls, tests, live resource checks, parameter/optimizer/RNG array loading, source edits or checkpoint writes. A checkpoint and original-parent payloads were each stream-hashed once, without decoding; the common journal R1 payload was also hash-verified.",
+    "Saved A checkpoint/receipt prove an actual step and intact saved bytes, not a completed arm transaction or a natively qualified recoverable checkpoint. The missing outer arm commit forbids replay.",
+    "Failure is directly observed at parent restore full-state integrity. Optimizer-snapshot aliasing or another component cause remains NOT_VERIFIED by these saved receipts; this review does not assign a unique native cause.",
+    "The live model reference was cleared but allocator release verification failed before exit. Later reaping/unlock are separate evidence.",
+    "Original parent canonical adapter/config/optimizer files match the pre-existing receipt; this does not establish that the failed live rollback succeeded.",
+    "No Parent/A/B DEV24 comparison or MRI accuracy gain exists. Training response correctness and active-group counts are not accuracy evidence.",
+    "All-observation memory minima include guardian samples; child-boundary-only minima must be labeled separately. Thermal telemetry is unavailable. No hardware safety guarantee is established."
+  ],
+  "prior_stage2_review_FILE_sha256": "77810c8bc626f3407aacf6e538997569f115fe04517ac2098398cc50210e6ce6",
+  "private_review_FILE_sha256": "784493d632e15dbbbcb721cace524037e063b9649e423b5c8913bf5484d1de3c",
+  "process_exit_is_not_successful_allocator_release": true,
+  "replay_authorized": false,
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "review_verdict": "PASS_WITH_LIMITATIONS",
+  "reviewer_id": "Codex /root/resource_v2_final_review",
+  "reviewer_kind": "isolated_codex",
+  "saved_GSPO_math_audit": {
+    "admitted_response_weight": 0.125,
+    "admitted_total": 8,
+    "advantages_recomputed_sample_std_epsilon1e6": true,
+    "groups": [
+      {
+        "format_valid_responses": 2,
+        "gate_admitted": false,
+        "group_index": 0,
+        "raw_correct_responses": 2,
+        "responses": 4,
+        "task": "sequence"
+      },
+      {
+        "format_valid_responses": 4,
+        "gate_admitted": true,
+        "group_index": 1,
+        "raw_correct_responses": 1,
+        "responses": 4,
+        "task": "sequence"
+      },
+      {
+        "format_valid_responses": 4,
+        "gate_admitted": true,
+        "group_index": 0,
+        "raw_correct_responses": 2,
+        "responses": 4,
+        "task": "dallas"
+      },
+      {
+        "format_valid_responses": 2,
+        "gate_admitted": false,
+        "group_index": 1,
+        "raw_correct_responses": 2,
+        "responses": 4,
+        "task": "dallas"
+      }
+    ],
+    "inactive_response_weight": 0.0,
+    "joint_gradient_L2": 0.3817254932701475,
+    "max_advantage_recompute_error": 0.0,
+    "rewards_equal_common_bundle_grades": true,
+    "saved_old_current_max_abs": 0.0,
+    "saved_ratio1_losses_match_minus_advantage_within": 2e-07,
+    "supervised_auxiliary_evidence": "NONE_IN_REVIEWED_ARM_PATH",
+    "training_response_counts_are_not_validation_accuracy": true
+  },
+  "schema": "safe-micro-dynamic-v3-stage3-actual-failure-independent-review-v1",
+  "scope_FILE_sha256": "da7ef34ccf171922d601bb3160c99758c0873a518e58ea981f39e8f86012c279",
+  "scope_canonical_sha256": "bc01fd061005f888fe2d9236f1c23f5d9e654be4d36927f23d78f280ff6c376b",
+  "verified_actual_outcome": {
+    "A_Adam_before": 52,
+    "A_Adam_checkpoint_after": 53,
+    "A_actual_optimizer_updates": 1,
+    "A_backward_calls": 8,
+    "A_checkpoint_file_hashes": {
+      "adapter.safetensors": "bc836be274586358253757b53d0dbf297c23be7b108b40d122a12cc101ae8bf2",
+      "optimizer/manifest.json": "c5a806554b15a25c19c9f286a68f5f8f27121ee3e9ca71a762c4686910a6abd9",
+      "optimizer/state.safetensors": "33578d002f892dac49e9fcd7c63e9a96d4e28a5ad0f3d89d97c75b78c60c6a70"
+    },
+    "A_checkpoint_saved_and_stream_hash_verified": true,
+    "A_gradient_forwards": 8,
+    "A_journal_status": "INDETERMINATE_NO_REPLAY",
+    "A_outer_arm_commit": false,
+    "A_receipt_verified": true,
+    "A_valid_completed_arm": false,
+    "B_started": false,
+    "B_updates": 0,
+    "Stage4": "NOT_RUN",
+    "automatic_recoveries": 0,
+    "both_children_reaped": true,
+    "common_R1_saved_and_receipt_bound": true,
+    "common_committed": true,
+    "common_old_forwards": 16,
+    "common_responses": 16,
+    "guardian_stop_or_signals": false,
+    "original_parent_four_canonical_file_hashes_match_receipt": true,
+    "parent_live_restore_verified": false,
+    "post_exit_lock_no_open_holders": true,
+    "root_exit_code": 1,
+    "stage3_exit_code": 1
+  }
+}
