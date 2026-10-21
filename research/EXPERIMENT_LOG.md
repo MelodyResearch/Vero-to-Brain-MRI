@@ -105,3 +105,13 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 - 新研究者指令要求find-skills但不能阻塞A/B。已真实执行8组CLI搜索（research/RL/GSPO/Python数值测试/MLX/PyTorch/GitHub/reproducibility），全退出0；检查4候选pinnedSKILL正文+来源metadata，发现阶段结束，新增安装0。
 - 优先复用已有TDD/systematic-debugging/code-review/verification，研究侧Norman/novelty/experiment-design按问题使用。通用MLX不覆盖VLMGSPO+fullstate，verl/TRL仅参考不换backend；scientificpytest候选含错误approx断言，已最小CPU反例验证，未盲从。
 - 独立技能发现者Codex /root/rc_data；actualClaude skilluse本项NOT_VERIFIED，不伪造使用证明。没有上传MRI/权重/Adam/PRIVATEreceipt、没有加载模型或新增训练，见results/SKILL_DISCOVERY_LIGHTWEIGHT_V1.json。
+
+
+## 2026-10-20 / CANONICAL_LOCAL_REMOTE_NORMALIZATION / HUMAN_AUTHORIZED
+
+- 研究者明确决定不恢复旧worktrees；本轮没有旧目录恢复/搜索/重建、没有模型重跑。主目录安全rename为Vero-to-Brain-MRI，同inode/HEAD/refs/config/cleanstatus，随后main正常ff到b8b0493；非重新clone。
+- 当前仅main checkout和一个必要的新.worktrees/shared-rollout-ab，后者从已保存当前research分支6808f58取tracked源码/计划/日志。15个此前消失的历史worktree没有重建；当前prune检查0stale registration。同步当前README canonicalURL，新增CURRENT_DEVELOPMENT.md，不修改冻结plan/lock。
+- 远端18→6branch：删除12个完整被保留分支包含的refs（2merged docs、1被lossfix包含的旧V3experiment、9旧研究refs）；逐tip ancestry核验，局部冗余branch refs删除11。保留main/current及4个仍有unique unmerged历史的分支。关闭superseded PR2/3而不merge，保留所有讨论/PR历史；Issue1仍是未完成整体研究目标，保持open。
+- 已验证ResearchScratch duplicate clone无untracked/ignored/currenthandles、全部refs可由保留主仓历史访问后删除1clone/338files/6,709,248allocatedbytes。另删除4个ignored缓存目录/190files/3,596,565logicalbytes；不扫描删除local_data/work/checkpoint中的独有科研资产。current origin新HTTPS，fetch origin --prune实际退出0。
+- 本轮只核验现存canonical主仓local_data/work中的当前A/B必要资产，不搜索旧worktree/隔离区：找到0个shared bundle，0个匹配1741ff2f...的adaptiveAdam60状态；3个step60 optimizer实际是SFT对照，不能冒充Adam60。因此tracked source与冻结计划存在，但当前不能声称bundle/fullAdam60仍可运行，未申请或执行A/B训练，不重rollout/不换parent/不制造scope。
+- 主线仍minimal real A/B optimizer update；行政整理不更改方法/reward/采样/loss/预算，new16与final100没有用于选择。新模型调用/optimizer更新=0。精确删除/保留清单见results/REPOSITORY_NORMALIZATION_ACTUAL_V1.json；已明确结束旧worktree恢复工作。

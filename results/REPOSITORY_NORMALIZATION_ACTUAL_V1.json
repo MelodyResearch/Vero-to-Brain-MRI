@@ -1,0 +1,177 @@
+{
+  "active_research_branch": "research/vero-mri-shared-rollout-native-v1",
+  "active_worktree": ".worktrees/shared-rollout-ab",
+  "canonical_name": "Vero-to-Brain-MRI",
+  "current_AB_assets": {
+    "authenticated_private_shared_bundle": "NOT_PRESENT_IN_CURRENT_MAIN_ASSET_INVENTORY",
+    "expected_parent_adapter_sha256": "1741ff2feb2f569cfe062b92cb79b62f61f83463e6683a928d2c458a5f547310",
+    "new_rollouts": 0,
+    "old_worktree_recovery_search_or_restore_this_normalization": false,
+    "optimizer_updates": 0,
+    "qualification_repeated": 0,
+    "ready_for_native_AB_execution": false,
+    "required_adaptive_Adam60_fullstate": "NOT_PRESENT_IN_CURRENT_MAIN_ASSET_INVENTORY",
+    "scope_or_math_changed": false,
+    "step60_SFT_snapshots_not_parent_substitutes": 3,
+    "tracked_source_present": true
+  },
+  "local_cleanup": {
+    "cache_directories_deleted": 4,
+    "cache_files_deleted": 190,
+    "cache_logical_bytes": 3596565,
+    "duplicate_clone_allocated_bytes": 6709248,
+    "duplicate_clone_files": 338,
+    "duplicate_clones_deleted": 1,
+    "historical_worktrees_deleted_in_this_normalization": 0,
+    "historical_worktrees_recreated": 0,
+    "new_required_worktrees": 1,
+    "prune_completed": true,
+    "stale_registrations_found": 0,
+    "unique_uncommitted_source_draft_deleted": false
+  },
+  "local_rename": "same inode/HEAD/refs/config/status verified before ordinary main fast-forward",
+  "main_before_new_research_admin_commit": "b8b0493754451befaf5e61285ca8bb05570ca36d",
+  "main_local_directory": "/Users/vv/Documents/Codex/2026-10-15/files-pasted-by-the-user-codex-2/outputs/Vero-to-Brain-MRI",
+  "origin": "https://github.com/MelodyResearch/Vero-to-Brain-MRI.git",
+  "preservation": {
+    "MRI_payloads_or_historical_original_model_states_deleted_in_this_normalization": 0,
+    "existing_log_prefix_preserved": true,
+    "frozen_lock_sha256": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "frozen_plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "historical_unique_evidence_refs_preserved": true
+  },
+  "private": true,
+  "references": {
+    "active_README_synchronized_to_canonical_main": true,
+    "current_code_CI_old_repo_API_reference_matches": 0,
+    "current_development_document_added": true,
+    "old_historical_provenance_hashes_receipts_not_rewritten": true
+  },
+  "remote_cleanup": {
+    "Issue1_retained_open_reason": "Original full heterogeneous transfer research objective remains active;not a resolved blocker.",
+    "PR_history_preserved": true,
+    "closed_superseded_PRs": [
+      2,
+      3
+    ],
+    "deleted_branch_refs": [
+      {
+        "branch": "docs/vero-to-brain-mri-readme-refresh-v1",
+        "retained_reachability": [
+          "main"
+        ],
+        "sha": "61f76a63a7270744e2f1cdcd1e0e6acf1d63a586"
+      },
+      {
+        "branch": "docs/vero-to-brain-mri-repository-rename-v1",
+        "retained_reachability": [
+          "main"
+        ],
+        "sha": "1e9b0aabba25ebdb88895252ada6afa24cb7dbf6"
+      },
+      {
+        "branch": "experiment/mri-prior-cancelled-paired-v3-20261017",
+        "retained_reachability": [
+          "research/mri-v3-loss-receipt-fix"
+        ],
+        "sha": "139c59d7f4da36da74fa920ffe24df3097a7db78"
+      },
+      {
+        "branch": "research/vero-mri-class-margin-aux-v2",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "a6ebe8d12e0dc7a8e1633acb64e5730cc5c6897b"
+      },
+      {
+        "branch": "research/vero-mri-margin-ontology-v1",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "d43379d9e6e8a62d10c755f121862c482afc268a"
+      },
+      {
+        "branch": "research/vero-mri-native-path-qualification-v1",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "80b0128ea4e81b6507a8189673df405c7adf623c"
+      },
+      {
+        "branch": "research/vero-mri-native-probability-resolution-v1",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "cc41a50c47489a3e3481d03f1518e9d999c329e8"
+      },
+      {
+        "branch": "research/vero-mri-paired-signal-v1",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "7e594e6742c7a39f6a505a4d731c0b0750cb9c32"
+      },
+      {
+        "branch": "research/vero-mri-paired-z045-v1",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "e345b89c8cd3b8c04a81f8448b3352824e923c3d"
+      },
+      {
+        "branch": "research/vero-mri-plan-paired-group-v1",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "05b8ba501c03db2782c34c9a6b4d8cae07e801c8"
+      },
+      {
+        "branch": "research/vero-mri-protected-mixture-cpu-v3",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "1f39f5ec748ad4b7686cadf5778096cb16309d75"
+      },
+      {
+        "branch": "research/vero-mri-root-cause-cpu-v1",
+        "retained_reachability": [
+          "research/vero-mri-shared-rollout-native-v1"
+        ],
+        "sha": "e10194aeac2491ccc7d85b7bdb546261cb7a6fae"
+      }
+    ],
+    "every_deleted_tip_reachable_from_a_retained_branch": true,
+    "final_branch_count": 6,
+    "force_push": false,
+    "main_history_rewritten": false,
+    "retained_branches": [
+      {
+        "branch": "codex/vero-accuracy-readout",
+        "sha": "ba53daad3bff8fb995198a9e848247c5869849db"
+      },
+      {
+        "branch": "experiment/paired-mri-visual-accuracy-v2-20261017",
+        "sha": "1f76ad1653bf9d95eafeac6917887c30467731c3"
+      },
+      {
+        "branch": "main",
+        "sha": "b8b0493754451befaf5e61285ca8bb05570ca36d"
+      },
+      {
+        "branch": "research/mri-adaptive-accuracy-gate",
+        "sha": "c8225f73f1fa0ec2f94c67cd9ac0a2dfec501327"
+      },
+      {
+        "branch": "research/mri-v3-loss-receipt-fix",
+        "sha": "cc5420174f2d577262bc4225e3b844a4b86d8b45"
+      },
+      {
+        "branch": "research/vero-mri-shared-rollout-native-v1",
+        "sha": "6808f58dea7b355462395e231b04fe1d80a6cbfd"
+      }
+    ]
+  },
+  "repository": "MelodyResearch/Vero-to-Brain-MRI",
+  "schema": "vero-mri-canonical-normalization-actual-v1",
+  "verification": "Git reachability/CAS-ref deletion/clone-ignored inventory/local rename/ref/config equality/fetch and final branch inventory;no new model validation claimed"
+}
