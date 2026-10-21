@@ -1,0 +1,24 @@
+{
+  "A_salvage": "CPU_ELIGIBLE_PENDING_NATIVE_AND_EXPLICIT_ADOPTION",
+  "B": "NOT_RUN",
+  "CPU_tests": {
+    "native_tests": 0,
+    "passed": 40
+  },
+  "CROSS_MODEL_REVIEW": "NOT_VERIFIED",
+  "DEV24": "NOT_RUN",
+  "actual_new_backward": 0,
+  "actual_new_generation": 0,
+  "actual_new_model_loads": 0,
+  "actual_new_optimizer_updates": 0,
+  "created_at_utc": "2026-10-21T18:09:58.252668+00:00",
+  "metadata_files": 24,
+  "native_restore_qualification": "NOT_RUN",
+  "no_accuracy_improvement_established": true,
+  "original_source_and_plan_preserved": true,
+  "review_FILE_sha256": "5b6d80bf26a5f1f7294e904e6723ae2385387d1c8e9deda0a716420b0f5e5e80",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "scope_sha256": "cd9f6038a680ccb02b0e857f53d9fae97855268927c7a486fee822fd34075f3e",
+  "source_files": 99,
+  "status": "CPU_PREPARED_INDEPENDENTLY_REVIEWED_WAITING_FRESH_HUMAN"
+}

@@ -1,0 +1,144 @@
+{
+  "accuracy_improvement": "NOT_MEASURED",
+  "checked": {
+    "A_native_identity_checked_at_E_before_inference": true,
+    "B_fresh_disk_Adam52_separate_child": true,
+    "B_release_before_commit": true,
+    "Q_release_before_commit": true,
+    "completed_milestones_hash_verified": true,
+    "exact_fresh_preparation_equals_scope": true,
+    "explicit_new_human_adoption_flag_required": true,
+    "full_checkpoint_config_binding": true,
+    "historical_loads": 2,
+    "incomplete_reservation_blocks_replay": true,
+    "lifetime_load_cap": 7,
+    "metadata_file_count": 24,
+    "native_imports_or_execution_in_review": false,
+    "new_load_cap": 5,
+    "no_A_update_or_Common16_repeat": true,
+    "no_auxiliary_loss_or_reward_LR_LoRA_change": true,
+    "old_GSPO_arm_AST_preserved_except_final_rollback": true,
+    "old_fatal_scope_is_not_retried": true,
+    "old_journal_untouched": true,
+    "source_file_count": 99,
+    "spent_counters_not_refunded": {
+      "backward_calls": 8,
+      "generated_response_tokens": 673,
+      "model_loads": 2,
+      "optimizer_updates": 1,
+      "scorer_forwards": 30,
+      "teacherforced_input_positions": 9655
+    }
+  },
+  "combined_historical_and_new_maximum": {
+    "backward_calls": 24,
+    "generated_response_tokens": 19105,
+    "model_load_attempts": 7,
+    "optimizer_updates": 2,
+    "scorer_forwards": 46,
+    "teacherforced_input_positions": 18679
+  },
+  "created_at_utc": "2026-10-21T18:09:15.480219+00:00",
+  "cross_model_review": "NOT_VERIFIED",
+  "human_execution_permission_granted": false,
+  "input_sha256": "625bbb9e757b45931c29e59cbbd6a3ef957a9519079ef6d5c2e3a53754f83f29",
+  "limitations": [
+    "CPU/source review only: no new GPU runtime, model loading, forward, backward, optimizer update or MRI accuracy evaluation occurred in this review.",
+    "The exact pinned installed Optimizer setter and CPU fixtures establish mutable-container aliasing; it is not established as the unique cause of the prior generic native rollback failure.",
+    "The saved A forensic proof authenticates all504 saved weights and1008 moments against the saved gradient and pinned Adam formula, with fixed predeclared F32 bounds. It establishes consistency, not a retrospectively committed transaction.",
+    "Q loads only original disk Adam52. It qualifies three tiny array copy fixtures and two exact full snapshot/restores without live model/optimizer mutation. It does not load or natively qualify saved A.",
+    "A adoption requires actual Q PASS, release/reaped exit and a NEW explicit human grant adopting SALVAGED_FROM_INCOMPLETE_TRANSACTION. The original A outer journal remains uncommitted and is never repaired.",
+    "Saved A full native parameter/Adam/RNG receipt identity is checked when E loads A before inference. If that fails, preserve completed B and do not claim a completed fair A/B result.",
+    "Five new load claims are a hard total in addition to two historical loads; two cooperative recoveries are allowed only if an unused load remains. These permissions do not guarantee all evaluation endpoints finish after a recovery.",
+    "Green/Yellow/Red resources and owned-child watchdog retain sampling/atomic-operation blind spots; this review cannot guarantee prevention of OOM or system instability.",
+    "DEV24 is already explored engineering development data; candidate discrimination, Dallas retention and independent-patient generalization are NOT_MEASURED by greedy-only sequence evaluation. No final100 or new16 outcomes may be used.",
+    "No current cross-family Claude review is claimed; all reviewers and implementers are truthful Codex identities."
+  ],
+  "native_qualification_status": "NOT_RUN",
+  "new_execution_budgets": {
+    "2": {
+      "array_leaf_copies_max": 10000,
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "full_restores_max": 2,
+      "full_snapshots_max": 2,
+      "generated_response_tokens": 0,
+      "generated_responses": 0,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "scorer_forwards": 0,
+      "teacherforced_input_positions": 0,
+      "tiny_array_alias_fixtures": 3,
+      "window_seconds": 900
+    },
+    "3": {
+      "backward_calls": 16,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 0,
+      "generated_responses": 0,
+      "model_loads": 1,
+      "optimizer_updates": 1,
+      "optimizer_updates_per_arm": 1,
+      "scorer_forwards": 16,
+      "teacherforced_input_positions": 9024,
+      "window_seconds": 1800
+    },
+    "4": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "candidate_calls": 0,
+      "generated_response_tokens": 18432,
+      "generated_responses": 72,
+      "greedy_calls": 72,
+      "model_loads": 3,
+      "optimizer_updates": 0,
+      "scorer_forwards": 0,
+      "teacherforced_input_positions": 0,
+      "window_seconds": 2400
+    }
+  },
+  "private_exact_review_FILE_sha256": "5b6d80bf26a5f1f7294e904e6723ae2385387d1c8e9deda0a716420b0f5e5e80",
+  "resolved_material_findings": [
+    {
+      "issue": "Native dispatch checked a flat adoption flag while exact scope used the nested adoption contract.",
+      "resolution": "Fixed to compare scope.adoption exactly with ADOPTION; native Q/B dispatch and flat-flag rejection regressions PASS.",
+      "severity": "BLOCKING",
+      "status": "RESOLVED"
+    },
+    {
+      "issue": "RNG restoration recopied full optimizer each DEV row, deterministically exhausting the10000 array-copy bound.",
+      "resolution": "RNG-only restoration now copies/sets only Python+MLX RNG, checks bit identity and unchanged full Adam digest, never requests/reinstalls optimizer; regression PASS.",
+      "severity": "BLOCKING",
+      "status": "RESOLVED"
+    }
+  ],
+  "review_artifact_source_sha256": {
+    "scripts/run_safe_micro_recovery_v1.py": "ce028751510a4907c03b217cad7d29e498b7b557a5484c0f60419ea6a8eebb92",
+    "scripts/verify_safe_micro_A_salvage_v1.py": "4c37b819d29bc32feb20715b8ef2056f1d24708565391e7f4c4f5eb728d01e1a",
+    "src/mri_rl/safe_micro_recovery_entry_v1.py": "f9f1015b1196573b5a57d7cc4076292431e3a311a7c2190f679b4cc0f3d3e0ab",
+    "src/mri_rl/safe_micro_recovery_native_v1.py": "a92467cc7ac40752be35f72f223f889395e96990ec95934f8daf677abe559caa",
+    "tests/test_safe_micro_recovery_independent_review_v1.py": "87b23d6a491af3765bd76455865e9c2243e610028e730bf6317414c36b8b7a81"
+  },
+  "reviewer_id": "Codex /root/recovery_exact_scope_review",
+  "reviewer_kind": "isolated_codex",
+  "saved_A_status": "CPU_QUALIFIED_SALVAGE_PENDING_NATIVE_Q_AND_HUMAN",
+  "schema": "safe-micro-recovery-QBE-exact-independent-review-v1",
+  "scientific_change": "None: recovery fix and conditional adoption only. B still differs from A only in original frozen grouping.",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "scope_sha256": "cd9f6038a680ccb02b0e857f53d9fae97855268927c7a486fee822fd34075f3e",
+  "spec_FILE_sha256": "8e3789d218878791a902131fc4c5ac2e6761fe84101c3179424340dbcfad625c",
+  "tests": [
+    {
+      "actual_result": "29 passed in0.28s",
+      "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=src python3 -m pytest -q tests/test_safe_micro_recovery_entry_v1.py tests/test_safe_micro_A_salvage_v1.py tests/test_safe_micro_recovery_native_v1.py tests/test_safe_micro_restore_v1.py tests/test_safe_micro_recovery_independent_review_v1.py",
+      "kind": "CPU_SYNTHETIC_SOURCE_ONLY",
+      "note": "Actual29-test command used the identical4 reviewer fixtures at its temporary source path; a later4-test run verified the checked-in portable-path copy."
+    },
+    {
+      "actual_result": "4 passed in0.07s",
+      "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=src python3 -m pytest -q tests/test_safe_micro_recovery_independent_review_v1.py",
+      "kind": "SAME_FOUR_REVIEWER_FIXTURES_PORTABLE_COPY_NOT_ADDITIONAL_TESTS"
+    }
+  ],
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

@@ -1,0 +1,119 @@
+{
+  "additional_native_execution_authorized": false,
+  "adoption_authorized": false,
+  "created_at_utc": "2026-10-21T18:01:44.605772+00:00",
+  "eligibility": "ELIGIBLE_PENDING_NATIVE_RESTORE_AND_EXPLICIT_ADOPTION_PERMISSION",
+  "evidence_tier": "REPRODUCED_CPU_SAVED_SINGLE_UPDATE",
+  "frozen_original_scope_FILE_sha256": "da7ef34ccf171922d601bb3160c99758c0873a518e58ea981f39e8f86012c279",
+  "interpretation": "Saved A is numerically consistent with exactly one persistent Adam52\u219253 update using the authenticated saved GSPO joint gradient and terminal common R1. It is eligible only for prospective native restore qualification and an explicit new adoption decision; the original arm transaction remains incomplete.",
+  "label": "SALVAGED_FROM_INCOMPLETE_TRANSACTION",
+  "limitations": [
+    "CPU NumPy executes exact pinned installed Adam.apply_single AST; predeclared float32 rounding bounds allow CPU/MLX execution-order differences, not arbitrary numerical changes.",
+    "This proves consistency of saved adapter/m/v/step/R1 with one saved-gradient update, not correctness of a new native restore or a repaired live transaction.",
+    "Real reward/gate/common provenance and failure ordering are authenticated through the exact independently reviewed saved-failure proof and bound immutable artifacts; no image/base model/test outcomes are accessed.",
+    "The original A arm journal remains reserved and uncommitted. This new forensic artifact does not retroactively commit, adopt, rerun or authorize anything.",
+    "The CPU container-alias mechanism is confirmed separately; the unique native cause of the generic full-state restore failure remains unproven.",
+    "Native restoration of full saved state and explicit new human adoption/execution permission remain required. No MRI accuracy gain is established.",
+    "The historical full-state rollback failed after checkpoint/receipt publication; this new proof does not retroactively make the old transaction successful.",
+    "The CPU source/container alias mechanism and saved recurrence consistency are separate from native repair qualification. Array-leaf mutation semantics require native verification.",
+    "No validation/test accuracy or Parent/A/B comparison was run; no MRI accuracy gain or method superiority is established."
+  ],
+  "lossless_original_transaction_completed": false,
+  "native_restore_qualified": false,
+  "numerics": {
+    "all504_first_moments_bitexact": true,
+    "all504_weights_bitexact": true,
+    "component_aggregates": {
+      "m": {
+        "failed_elements": 0,
+        "max": 0.00960314180701971,
+        "max_abs_error": 0.0,
+        "max_error_over_bound": 0.0,
+        "min": -0.019823962822556496
+      },
+      "v": {
+        "failed_elements": 0,
+        "max": 0.00021991555695421994,
+        "max_abs_error": 1.1617190263985888e-38,
+        "max_error_over_bound": 1.1617190263985888e-22,
+        "min": 0.0
+      },
+      "w": {
+        "failed_elements": 0,
+        "max": 0.01825357787311077,
+        "max_abs_error": 0.0,
+        "max_error_over_bound": 0.0,
+        "min": -0.018128087744116783
+      }
+    },
+    "failed_tensors": 0,
+    "formula_source": "Exact SHA-pinned installed Adam.apply_single AST executed using NumPy CPU operations",
+    "installed_optimizer_source_sha256": "a649eeb65133d1a21eec61ab83529badd0ec50938ee6476b1e59f7ee36def1f2",
+    "optimizer_profile": {
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "bias_correction": false,
+      "eps": 1e-08,
+      "learning_rate": 1e-05,
+      "name": "Adam"
+    },
+    "preregistered_bounds": {
+      "eps32": 1.1920928955078125e-07,
+      "m": "8*eps32*(abs(.9*m0)+abs(.1*g))+1e-12",
+      "policy": "PREREGISTERED_F32_FORWARD_ROUNDING_V1",
+      "relaxation_after_actual_outcome": false,
+      "v": "8*eps32*(abs(.999*v0)+abs(.001*g*g))+1e-16",
+      "w": "8*eps32*(abs(w0)+abs(lr*m1/(sqrt(v1)+1e-8)))+1e-10"
+    },
+    "recomputed_gradient_L2": 0.3817254871863172,
+    "saved_gradient_L2": 0.3817254932701475
+  },
+  "original_scope_canonical_sha256": "bc01fd061005f888fe2d9236f1c23f5d9e654be4d36927f23d78f280ff6c376b",
+  "private_qualification_FILE_sha256": "24769962ff994eb7e95128a2835ef14b78d2707e82a78fc21e6f87733dd5d4fa",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewer_id": "Codex /root/resource_v2_final_review",
+  "reviewer_kind": "isolated_codex",
+  "saved_failure_independent_review_FILE_sha256": "27697bfaa667158bb9f8856232c244bff992bd3336014237605e15daa57bb1a2",
+  "schema": "safe-micro-A-salvage-cpu-independent-qualification-v1",
+  "status": "CPU_QUALIFIED_SALVAGE_PENDING_NATIVE_Q_AND_HUMAN",
+  "test_source_sha256": "f859bcd1053efeb30646eb82f25cb93ef21cfc3363734bb3e1488fd7a5ab77fa",
+  "verification": {
+    "actual_bounded_CPU_verifier_exit_code": 0,
+    "actual_verifier_wall_seconds_reported_by_command": 0.382254208,
+    "authoring_and_review_identity_note": "This isolated Codex agent authored the bounded verifier and performed this forensic computation; separate source review by root/final-scope reviewer remains distinct evidence.",
+    "base_model_or_heldout_data_reads": false,
+    "maximum_held_input_tensor_bytes": 1376256,
+    "memory_note": "At most one parameter index with seven input arrays held; bound excludes NumPy/runtime and arithmetic intermediates. No full adapter/state tree or base model was loaded.",
+    "model_calls": 0,
+    "native_imports": false,
+    "targeted_tests": "5 passed in0.06s; initial5RED thenGREEN"
+  },
+  "verified": {
+    "R1_Python_and_MLX_bits_equal": true,
+    "R1_rng_serialized_leaves_equal": 628,
+    "actual_prior_A_updates": 1,
+    "all_arrays_finite": true,
+    "candidate_checkpoint_file_hashes": {
+      "adapter.safetensors": "bc836be274586358253757b53d0dbf297c23be7b108b40d122a12cc101ae8bf2",
+      "adapter_config.json": "032becabb7cbb6d2af6f3451eb127e5f944551d42eb51eaee3e8d75b839b2f6a",
+      "optimizer/manifest.json": "c5a806554b15a25c19c9f286a68f5f8f27121ee3e9ca71a762c4686910a6abd9",
+      "optimizer/state.safetensors": "33578d002f892dac49e9fcd7c63e9a96d4e28a5ad0f3d89d97c75b78c60c6a70"
+    },
+    "candidate_config_matches_original_parent_config": true,
+    "candidate_step": 53,
+    "common16_own_old_R1_authenticated": true,
+    "first_moments_verified": 504,
+    "full_checkpoint_state_tensors": 1011,
+    "new_updates": 0,
+    "original_journal_or_checkpoint_modified": false,
+    "original_outer_journal_committed": false,
+    "parent_canonical_files_match_original_receipt": true,
+    "parent_step": 52,
+    "second_moments_nonnegative": true,
+    "second_moments_verified": 504,
+    "weights_verified": 504
+  },
+  "verifier_source_sha256": "4c37b819d29bc32feb20715b8ef2056f1d24708565391e7f4c4f5eb728d01e1a"
+}
