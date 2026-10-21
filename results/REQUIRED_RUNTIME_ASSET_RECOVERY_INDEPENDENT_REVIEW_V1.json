@@ -1,0 +1,100 @@
+{
+  "AB_readiness": "NOT_READY_MISSING_AUTHENTICATED_RUNTIME_PAYLOADS",
+  "Plan_B_activated": false,
+  "Trash_review": {
+    "Finder_nonempty_root_open_recorded": true,
+    "absence_or_unrecoverable_inferred": false,
+    "basis": "Authenticated private root access record; reviewer did not operate Finder or reread Trash.",
+    "concurrent_Finder_control_and_observation_error_recorded": true,
+    "root_UI_top_level_item_count_recorded": 200,
+    "shell_access_denied_recorded": true,
+    "status": "BLOCKED_TRASH_SEARCH_CONCURRENT_FINDER_CONTROL",
+    "target_asset_search_complete": false
+  },
+  "actions_by_reviewer": {
+    "Trash_reads_or_UI_actions": 0,
+    "backward": 0,
+    "commits_or_pushes": 0,
+    "generation": 0,
+    "model_loads": 0,
+    "optimizer_updates": 0,
+    "qualification_repeats": 0,
+    "runtime_payload_reads": 0,
+    "source_log_or_plan_edits": 0
+  },
+  "as_of_utc": "2026-10-21T00:39:00.493757+00:00",
+  "claim_and_privacy_findings": [
+    "Public report accurately distinguishes earlier Git snapshot counts from unrecovered runtime payloads; later ordinary report commits do not establish payload recovery.",
+    "Git references and summary JSONs preserve evidence but cannot recreate the exact eight-response bundle or complete trained Adam60 state.",
+    "SFT step60 is not adaptive Adam60, and no replacement parent or fabricated original bundle is accepted.",
+    "Trash is nonempty according to the recorded UI observation, but target search is incomplete because of access/control failures. This is a specific unresolved recovery step, not unrecoverability.",
+    "Published fields are aggregate counts, fixed artifact digests and status only; no patient IDs, MRI bytes, response text/tokens, credentials or model/RNG state exported."
+  ],
+  "cross_model_review": "NOT_VERIFIED; independent reviewer is the truthfully identified Codex agent.",
+  "evidence_sha256": {
+    "CURRENT_PATH_RECOVERY_AUDIT_PRIVATE.json": "1d8d60a72c56075734e97fecef52eccd6173dffa3a5ffc9e77337e258d7c3d41",
+    "GIT_CANONICAL_DIGEST_SUPPLEMENT_PRIVATE.json": "9f8d88d2a7aeecedb9931496306c62751697b20aa2d6b4d64a10224f97c33ce8",
+    "GIT_OBJECT_PAYLOAD_AUDIT_PRIVATE.json": "090e04433bdf668457a380ed661d6b24df39fc98b4a14dc5abe67610493d933a",
+    "TRASH_ACCESS_ACTUAL_PRIVATE.json": "20dd847aca256bcf027d90e108ee737f96ddf6d595ee34f44ddb277e1d8cc2d2",
+    "bundle_validator_source": "c9fc3f999d7e349250bca8dc8db524cbb595a8a87caeaac6ebfea57e24a2f12e",
+    "prior_public_normalization": "dca4adfc7edd7b99bb20d30c86a69f7288f0024ddc95cf2c8a7a0dd12f48d01c"
+  },
+  "independently_recomputed_current_path_checks": {
+    "bounded_scope": "Canonical outputs parent; filename/directory metadata only, excluding Git/cache/node_modules.",
+    "exact_named_runtime_bundle_or_qualification_proof_files": 0,
+    "exact_qualification_run_or_uniform_continuation_directories": 0,
+    "limitations": "This bounded naming scan is not a byte-hash search over every arbitrary external location and is not proof of global absence.",
+    "scan_errors": 0
+  },
+  "independently_recomputed_git_checks": {
+    "Git_conclusion": "Existing inspected Git object database contains source/aggregate evidence but not the required original bundle or Adam60 adapter/full-state runtime payload.",
+    "JSON_blobs_examined": 376,
+    "LFS_pointer_blobs": 0,
+    "NUL_binary_blobs": 0,
+    "all_deleted_tips_retained_as_ancestors": true,
+    "all_objects_at_independent_scan": 2426,
+    "audit_ref_tips_equal_or_retained_ancestors_after_normal_report_commit": true,
+    "blobs_at_independent_scan": 1293,
+    "candidate_responses_fields": "Integer aggregate counts; all three lack runtime contexts and parent objects.",
+    "commits_with_local_data_path_history": 0,
+    "deleted_tip_ancestry_checks": 12,
+    "exact_frozen_core_bundle_schema_matches": 0,
+    "expected_adaptive_Adam60_adapter_SHA256_matches": 0,
+    "maximum_blob_bytes": 198016,
+    "non_UTF8_blobs": 0,
+    "original_actual_qualification_proof_exact_file_SHA256_matches": 0,
+    "original_bundle_exact_canonical_digest_matches": 0,
+    "remote_tracking_branches": 6,
+    "root_initial_snapshot_reported": {
+      "all_objects": 2418,
+      "blobs": 1289
+    },
+    "runtime_shaped_JSON_candidates_verified_as_aggregates": 3,
+    "snapshot_growth_interpretation": "Initial 2418/1289 is the earlier audit snapshot; subsequent recovery-report/log Git objects are text evidence, not recovered historical payload. The independent broader scan below includes them."
+  },
+  "limitations": [
+    "The original all-object OID list was not persisted in the supplied initial audit; its exact historical 2418/1289 snapshot count is retained as root-observed. The independent scan over all currently available objects is broader and reproduces the negative payload/hash/schema conclusions.",
+    "Remote-branch API/fetch exit and prior UI/TCC observations are authenticated reported evidence, not newly repeated network or GUI operations by this reviewer.",
+    "No claim about unadvertised external backups, unsearched Trash contents, other drives or differently named files beyond the declared bounded scope.",
+    "This is a recovery-evidence review, not a model, full-state, qualification, A/B source-compatibility or native execution approval."
+  ],
+  "new_native_or_training_execution_authorized": false,
+  "next_action": "Complete the remaining target Trash search without competing Finder control, or receive user-provided candidate files in staging and verify their exact bundle/full-state bindings.",
+  "operational_status": "BLOCKED_TRASH_SEARCH_CONCURRENT_FINDER_CONTROL",
+  "ordinary_recovery_report_commit_observed": "0f9cb118034622708e2255984577e30c6a16b67f",
+  "original_assets_declared_unrecoverable": false,
+  "parent_identity_check": {
+    "SFT_step60_accepted_as_substitute": false,
+    "adaptive_Adam60_required": true,
+    "full_Adam_RNG_recoverability_from_summary_claimed": false,
+    "prior_candidate_count_scope": "Inherited prior normalization inventory only; not a fresh claim that those files remain present.",
+    "prior_normalization_recorded_SFT_candidates": 3
+  },
+  "report_sha256": "9910a83d97d27ceef5dfa338db838d0badb9bd3c085f621f865747058c90ccef",
+  "reviewed_research_start_commit": "58e3c0aaa81204d3ae40bacf97c1c5b07aa48626",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "required-runtime-asset-recovery-independent-review-v1",
+  "scope": "CPU metadata/Git-object/current-path and aggregate-claim/privacy review only. No Trash UI interaction or runtime model payload read.",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

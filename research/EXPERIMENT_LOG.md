@@ -125,3 +125,5 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 - 原bundle canonical SHA f8305d64...与adaptive adapter SHA1741ff2f...仍为唯一接受目标；没有copy/覆盖runtime，源码、权重、Adam/RNG、冻结plan/lock不变。新增model/generation/backward/optimizer updates全部0。精确metadata证据PRIVATE存于local_data/recovery_staging；sanitized结果见results/REQUIRED_RUNTIME_ASSET_RECOVERY_ACTUAL_V1.json。
 
 - 同轮后续Finder重新绑定成功并实际打开Trash，显示200顶层items，因此已排除Trash为空的推测；但目标文件尚未完成查找。下一操作再次USER_CHANGED_APPLICATION，实际AX变为外部输入的/Users/vv/.keras/ GoToWindow。本任务停止争用并请求暂停其他Finder控制或复制必要候选。最终状态更新为BLOCKED_TRASH_SEARCH_CONCURRENT_FINDER_CONTROL；未宣告unrecoverable/未启动PlanB。
+
+- 同轮独立Codex /root/full_arm_execution_contract复算Git/current-path metadata并核对脱敏表述，结果PASS_WITH_LIMITATIONS仅针对恢复证据，不是资产恢复或A/B许可。review SHA ad696d32fe68fb25b09e47b68bfdef5886a6039a64bc1e5eb64c3fe128873ceb；保留Trash未完成查找及A/B NOT_READY边界。
