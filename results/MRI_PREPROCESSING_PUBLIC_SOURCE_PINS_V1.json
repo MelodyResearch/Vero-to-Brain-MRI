@@ -1,0 +1,509 @@
+{
+  "bounded_scope": "Six requested core repositories plus previously requested M3D supplemental 3D/VQA interface reference; selected public text only, no dataset/model download or third-party run. Paper/source reading depth specified in accompanying audit; fetch does not prove full reading or reproduction.",
+  "model_calls": 0,
+  "optimizer_updates": 0,
+  "paper_public_text": [
+    {
+      "bytes": 44261,
+      "id": "2509.25889v3",
+      "kind": "abs",
+      "sha256": "bfea290148f40a553ad57db294ead1280989627d45075cc866c4cd729a6a9197",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/abs/2509.25889v3"
+    },
+    {
+      "bytes": 374882,
+      "id": "2509.25889v3",
+      "kind": "html",
+      "sha256": "27e2ba34e069bfa0ce69c7674d9e4840e2ed317941b9eb3c3a9829bf912d9d0a",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/html/2509.25889v3"
+    },
+    {
+      "bytes": 43797,
+      "id": "2602.22955v1",
+      "kind": "abs",
+      "sha256": "c0c49409efa89b43c96118ec7c5dacae3f0546fbd941d78e3a51ce3f264e2c88",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/abs/2602.22955v1"
+    },
+    {
+      "bytes": 349415,
+      "id": "2602.22955v1",
+      "kind": "html",
+      "sha256": "9d5cc97a46a8a2420c430fc0dd29a1edb8710836e82bd5e5e2796ce073512e10",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/html/2602.22955v1"
+    },
+    {
+      "bytes": 45730,
+      "id": "2603.24846v1",
+      "kind": "abs",
+      "sha256": "0e6cb570d677cf473a93461da5112a7e30f46f809b42c15622d4e01fd30f6034",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/abs/2603.24846v1"
+    },
+    {
+      "bytes": 949065,
+      "id": "2603.24846v1",
+      "kind": "html",
+      "sha256": "cc5e0ecfab0440af2d39c1c97e55392df1ffefe33117e7f3321fa13ae2437aa8",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/html/2603.24846v1"
+    },
+    {
+      "bytes": 42667,
+      "id": "2605.26621v1",
+      "kind": "abs",
+      "sha256": "675a5b95d15daaf71ed8826e0075904921ca51f2989c218091fa3c0561d6cdf4",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/abs/2605.26621v1"
+    },
+    {
+      "bytes": 125610,
+      "id": "2605.26621v1",
+      "kind": "html",
+      "sha256": "d37d74907aba642148dd71a584063aee416574de9932980158798926be5f4fea",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/html/2605.26621v1"
+    },
+    {
+      "bytes": 45303,
+      "id": "2503.13939v5",
+      "kind": "abs",
+      "sha256": "fa6cfdc216142b53415307dcaa3eec7533ef06b25d77c32811cc085f11e795fc",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/abs/2503.13939v5"
+    },
+    {
+      "bytes": 431740,
+      "id": "2503.13939v5",
+      "kind": "html",
+      "sha256": "8d066339d49438c1198a36bf5f68977e212cade410299bc647df189a1ac21b52",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/html/2503.13939v5"
+    },
+    {
+      "bytes": 43078,
+      "id": "2604.04917v3",
+      "kind": "abs",
+      "sha256": "25ca726a90febfd9dd8ce9643e4cf6cd059011108b30bac4a50bb1c2886ac98d",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/abs/2604.04917v3"
+    },
+    {
+      "bytes": 1374004,
+      "id": "2604.04917v3",
+      "kind": "html",
+      "sha256": "6adecb483f7204c574b7bff07cd706caa42d220d6b14d492f110e95604056500",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/html/2604.04917v3"
+    },
+    {
+      "bytes": 42126,
+      "id": "2404.00578v1",
+      "kind": "abs",
+      "sha256": "ca6890cee4f9063f2a3241e6c958b2163f3c63f5c99880f6b4ddd731f97e0ad7",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/abs/2404.00578v1"
+    },
+    {
+      "bytes": 346872,
+      "id": "2404.00578v1",
+      "kind": "html",
+      "sha256": "60457aba2d839f1d5857fd291ee3b683d26640f0005dab7f97cf6f3f7b4413c4",
+      "status": "FETCHED_PUBLIC_TEXT",
+      "url": "https://arxiv.org/html/2404.00578v1"
+    }
+  ],
+  "private_data_sent": false,
+  "record_created_utc": "2026-10-21T04:12:45.942807+00:00",
+  "schema": "mri-preprocessing-public-source-pins-v1",
+  "source_file_count": 43,
+  "source_text_bytes": 603160,
+  "sources": [
+    {
+      "commit_date": "2026-10-05T06:38:42Z",
+      "commit_sha": "051b20f64e28e87f6da2d3a720341c95c5e7c8b0",
+      "license_api_metadata": null,
+      "repository": "AdvancingEther/MedVol-R1",
+      "source_files": [
+        {
+          "bytes": 5865,
+          "path": "README.md",
+          "sha256": "8cbd7342d3ad4af2e967e0951b26abed7b8db26fc1aa27755d3493233dae3e08",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/AdvancingEther/MedVol-R1/blob/051b20f64e28e87f6da2d3a720341c95c5e7c8b0/README.md"
+        },
+        {
+          "bytes": 16352,
+          "path": "data_preparation/ctorg/convert_volumes.py",
+          "sha256": "664b91ec9b9a49ab9c3984827a3ff45762ce88b520173364ce355c97a2a1292b",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/AdvancingEther/MedVol-R1/blob/051b20f64e28e87f6da2d3a720341c95c5e7c8b0/data_preparation/ctorg/convert_volumes.py"
+        },
+        {
+          "bytes": 15738,
+          "path": "data_preparation/ctorg/select_slices.py",
+          "sha256": "e8e22bb08ed852141e753382e5f380a82d1c092508e97001739b243497abe55e",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/AdvancingEther/MedVol-R1/blob/051b20f64e28e87f6da2d3a720341c95c5e7c8b0/data_preparation/ctorg/select_slices.py"
+        },
+        {
+          "bytes": 19969,
+          "path": "data_preparation/ctorg/generate_rl.py",
+          "sha256": "c16af5a49b4c51878007832cbb1994d6ba11b6caff99eafd8d922389f9e14e1b",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/AdvancingEther/MedVol-R1/blob/051b20f64e28e87f6da2d3a720341c95c5e7c8b0/data_preparation/ctorg/generate_rl.py"
+        },
+        {
+          "bytes": 9260,
+          "path": "evaluation/grounding/eval_slice_hit_by_frame.py",
+          "sha256": "9c2d748828b687ddc79c6ddd8c1a9dc56a640be6a1c93296ca30f4adad55e746",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/AdvancingEther/MedVol-R1/blob/051b20f64e28e87f6da2d3a720341c95c5e7c8b0/evaluation/grounding/eval_slice_hit_by_frame.py"
+        },
+        {
+          "bytes": 10646,
+          "path": "third_party/EasyR1/examples/reward_function/ct_grounding.py",
+          "sha256": "956eff4c46a6b0e0854dd4c30bba912eb501b1d560a80c6c07ffa4f6580a759d",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/AdvancingEther/MedVol-R1/blob/051b20f64e28e87f6da2d3a720341c95c5e7c8b0/third_party/EasyR1/examples/reward_function/ct_grounding.py"
+        }
+      ],
+      "tree_truncated": false
+    },
+    {
+      "commit_date": "2025-04-13T17:44:11Z",
+      "commit_sha": "63e72005a2304eda74579870239bfc7b04b0edae",
+      "license_api_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "node_id": "MDc6TGljZW5zZTEz",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit"
+      },
+      "repository": "BAAI-DCAI/M3D",
+      "source_files": [
+        {
+          "bytes": 11171,
+          "path": "README.md",
+          "sha256": "98a09e49eb37a2739e174ad551391140222d84ed19a0218f8e614332e7ea40d8",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/BAAI-DCAI/M3D/blob/63e72005a2304eda74579870239bfc7b04b0edae/README.md"
+        },
+        {
+          "bytes": 4468,
+          "path": "Data/process/m3d_cap_data_prepare.py",
+          "sha256": "d7fbbf96cbf65c8f2b173f156f45c461fcd55fce6b7dc329bcc7f8e9b5eb995e",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/BAAI-DCAI/M3D/blob/63e72005a2304eda74579870239bfc7b04b0edae/Data/process/m3d_cap_data_prepare.py"
+        },
+        {
+          "bytes": 5617,
+          "path": "Data/process/m3d_seg_data_prepare.py",
+          "sha256": "ec771e758c71f6782c0d5519da880fc2c9af4579aee3023fe3b9e49dc3ec592f",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/BAAI-DCAI/M3D/blob/63e72005a2304eda74579870239bfc7b04b0edae/Data/process/m3d_seg_data_prepare.py"
+        },
+        {
+          "bytes": 42843,
+          "path": "Bench/dataset/multi_dataset.py",
+          "sha256": "bb854aee5e6cd70a9e347fd87b7d0f2ab768c221def568c6a25412465e0d6eb1",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/BAAI-DCAI/M3D/blob/63e72005a2304eda74579870239bfc7b04b0edae/Bench/dataset/multi_dataset.py"
+        },
+        {
+          "bytes": 6526,
+          "path": "Bench/eval/eval_vqa.py",
+          "sha256": "748069adaed9f3eb6770de2a272f1e1d41aa7037f3217f4a9606882342b2891c",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/BAAI-DCAI/M3D/blob/63e72005a2304eda74579870239bfc7b04b0edae/Bench/eval/eval_vqa.py"
+        }
+      ],
+      "tree_truncated": false
+    },
+    {
+      "commit_date": "2026-01-01T19:07:31Z",
+      "commit_sha": "6e87ba48ed7df921a4ca4040836f580add264549",
+      "license_api_metadata": null,
+      "repository": "ChatMED/neurovlm-bench",
+      "source_files": [
+        {
+          "bytes": 3217,
+          "path": "README.md",
+          "sha256": "610a5e631b43c55328af031b875b2a3562cd274cf480f6ddf40a9a4e1687939c",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/ChatMED/neurovlm-bench/blob/6e87ba48ed7df921a4ca4040836f580add264549/README.md"
+        },
+        {
+          "bytes": 11735,
+          "path": "map_images.py",
+          "sha256": "fe12bea329bb5f68d7e134612275d97c1126afeed4b9ff91e097978ece2ad3bf",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/ChatMED/neurovlm-bench/blob/6e87ba48ed7df921a4ca4040836f580add264549/map_images.py"
+        },
+        {
+          "bytes": 7647,
+          "path": "split.py",
+          "sha256": "dd28e11020df3bf5e0a3d44282eab1455c055b948b3039b4f292415645f8fe03",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/ChatMED/neurovlm-bench/blob/6e87ba48ed7df921a4ca4040836f580add264549/split.py"
+        },
+        {
+          "bytes": 11592,
+          "path": "evaluate.py",
+          "sha256": "fd326a15b1a322d96cb1c36e9217dead6d699b7cc98123f2f8b79e5c096d6bbd",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/ChatMED/neurovlm-bench/blob/6e87ba48ed7df921a4ca4040836f580add264549/evaluate.py"
+        },
+        {
+          "bytes": 189188,
+          "path": "evaluate_detailed.py",
+          "sha256": "c1962d7add14b2b0852a75210328c1b6fc87d85837931741e9747e0f3584b332",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/ChatMED/neurovlm-bench/blob/6e87ba48ed7df921a4ca4040836f580add264549/evaluate_detailed.py"
+        }
+      ],
+      "tree_truncated": false
+    },
+    {
+      "commit_date": "2025-07-07T21:39:30Z",
+      "commit_sha": "88d76c73e7d21cd958a2b2dc32eca038be766f8f",
+      "license_api_metadata": null,
+      "repository": "Yuxiang-Lai117/Med-R1",
+      "source_files": [
+        {
+          "bytes": 6776,
+          "path": "README.md",
+          "sha256": "5f8bc3f1b533e2fabc337610d18561321d56587f6d9c1d4a225dfe65c1bffe2b",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/Yuxiang-Lai117/Med-R1/blob/88d76c73e7d21cd958a2b2dc32eca038be766f8f/README.md"
+        },
+        {
+          "bytes": 4855,
+          "path": "src/r1-v/local_scripts/prepare_hf_data.py",
+          "sha256": "e4b4d948e14bd5a118a6c6a38c503e77f221c40cf3d6dabc941e3fc49e8deef8",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/Yuxiang-Lai117/Med-R1/blob/88d76c73e7d21cd958a2b2dc32eca038be766f8f/src/r1-v/local_scripts/prepare_hf_data.py"
+        },
+        {
+          "bytes": 8134,
+          "path": "src/r1-v/src/open_r1/grpo_vqa.py",
+          "sha256": "e544906e6918ab0d3bfb58c38362179d02214388ab4ec6045e1dbf2fbc65b805",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/Yuxiang-Lai117/Med-R1/blob/88d76c73e7d21cd958a2b2dc32eca038be766f8f/src/r1-v/src/open_r1/grpo_vqa.py"
+        },
+        {
+          "bytes": 5069,
+          "path": "src/eval_vqa/test_qwen2_5vl_vqa.py",
+          "sha256": "b96d6eba2fe52aae4e463256308793f5040fe487466655a2a44071b0f8a5b21c",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/Yuxiang-Lai117/Med-R1/blob/88d76c73e7d21cd958a2b2dc32eca038be766f8f/src/eval_vqa/test_qwen2_5vl_vqa.py"
+        }
+      ],
+      "tree_truncated": false
+    },
+    {
+      "commit_date": "2026-02-18T19:17:11Z",
+      "commit_sha": "88336c3c0f3ad0aa014ea7836befaf6d24f3631d",
+      "license_api_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "node_id": "MDc6TGljZW5zZTI=",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0"
+      },
+      "repository": "arvindmvepa/mpLLM",
+      "source_files": [
+        {
+          "bytes": 5337,
+          "path": "README.md",
+          "sha256": "459fde65b4c6d4a01f97125ad4c948ad01262cc355ed9acf426f64aa3f02300a",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/arvindmvepa/mpLLM/blob/88336c3c0f3ad0aa014ea7836befaf6d24f3631d/README.md"
+        },
+        {
+          "bytes": 11357,
+          "path": "LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/arvindmvepa/mpLLM/blob/88336c3c0f3ad0aa014ea7836befaf6d24f3631d/LICENSE"
+        },
+        {
+          "bytes": 2156,
+          "path": "dataset/prepare_brats_3d_dataset.py",
+          "sha256": "f83cbe8699103f293491f6e9d7fec25304ae0df0d9a83f9aa071fc362ba52857",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/arvindmvepa/mpLLM/blob/88336c3c0f3ad0aa014ea7836befaf6d24f3631d/dataset/prepare_brats_3d_dataset.py"
+        },
+        {
+          "bytes": 7864,
+          "path": "dataset/create_brats_3d_vqa_dataset.py",
+          "sha256": "ed200fe92689ac8e7d38556ccb5f9862a39f6b3d7a1531a5c867f060fb44e10e",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/arvindmvepa/mpLLM/blob/88336c3c0f3ad0aa014ea7836befaf6d24f3631d/dataset/create_brats_3d_vqa_dataset.py"
+        },
+        {
+          "bytes": 11791,
+          "path": "dataset/create_brats_imaging_dataset.py",
+          "sha256": "30f2b8997c710456fe8d82f162a6a35c5c970f8921a94614b0b631cfde165c7b",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/arvindmvepa/mpLLM/blob/88336c3c0f3ad0aa014ea7836befaf6d24f3631d/dataset/create_brats_imaging_dataset.py"
+        },
+        {
+          "bytes": 23180,
+          "path": "data/vqa_dataset.py",
+          "sha256": "0376c4ccef846312959a9e5882b3b5a15f2097cb4b783423f121eeb2ce4a2761",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/arvindmvepa/mpLLM/blob/88336c3c0f3ad0aa014ea7836befaf6d24f3631d/data/vqa_dataset.py"
+        },
+        {
+          "bytes": 42249,
+          "path": "dataset/vqa_3d_utils.py",
+          "sha256": "2e5f93fcc34cf110e7ca7d984b2f869cf4471f5a0a3035444d15922f54cb78fc",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/arvindmvepa/mpLLM/blob/88336c3c0f3ad0aa014ea7836befaf6d24f3631d/dataset/vqa_3d_utils.py"
+        }
+      ],
+      "tree_truncated": false
+    },
+    {
+      "commit_date": "2026-08-07T08:00:08Z",
+      "commit_sha": "320537c15881d62dc0d8cab3313a5a083da9dc05",
+      "license_api_metadata": null,
+      "repository": "gfnnnb/MM-NeuroOnco",
+      "source_files": [
+        {
+          "bytes": 5639,
+          "path": "README.md",
+          "sha256": "030dfb14545b63f1bde88dec6a5da1576083a89c4d3123f24b9be7ed0acfdfd0",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/README.md"
+        },
+        {
+          "bytes": 891,
+          "path": "CITATION.cff",
+          "sha256": "08948d9cbad82f558cf3f43bbc5ca6ed22b1f96c3ccaf43ee9a70e55745959a4",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/CITATION.cff"
+        },
+        {
+          "bytes": 482,
+          "path": "DATA.md",
+          "sha256": "1f6f78bb038c6d149ef94867ba7cf63c26d0f5a69987b2797c2c552f15ea4466",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/DATA.md"
+        },
+        {
+          "bytes": 6443,
+          "path": "data_processing/metadata_extraction/metadata_no_mask.py",
+          "sha256": "2523dd49865c120849b822a5c3993db25b38cfa3b5fb502e60b37a81105c8365",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/data_processing/metadata_extraction/metadata_no_mask.py"
+        },
+        {
+          "bytes": 7156,
+          "path": "data_processing/metadata_extraction/metadata_tumor_05.py",
+          "sha256": "6fddeb4300dcf1c6e6e2df63f33a0d3ddd49b9a562492cdcea406f5121c0210b",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/data_processing/metadata_extraction/metadata_tumor_05.py"
+        },
+        {
+          "bytes": 3339,
+          "path": "docs/data_sources.md",
+          "sha256": "e41486e00b930623a0f25600b8f7040ab79fd9e660db13440c29463579aa2397",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/docs/data_sources.md"
+        },
+        {
+          "bytes": 3184,
+          "path": "evaluation/README.md",
+          "sha256": "ca9a692ca726a4fa7e915064018c7e7787d63cd638a9debd6ac6dd91e619ed07",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/evaluation/README.md"
+        },
+        {
+          "bytes": 18042,
+          "path": "evaluation/claude-sonnet-4-0.py",
+          "sha256": "d88dc750f19d54cd456597f2ae1225ce2260b4694d4baed648196671a29f9f7d",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/evaluation/claude-sonnet-4-0.py"
+        },
+        {
+          "bytes": 3670,
+          "path": "pipeline/README.md",
+          "sha256": "70e5122f027a9cba02d3e4da7db957121cabec5cda8a6ccc06e68921c68e9bb2",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/gfnnnb/MM-NeuroOnco/blob/320537c15881d62dc0d8cab3313a5a083da9dc05/pipeline/README.md"
+        }
+      ],
+      "tree_truncated": false
+    },
+    {
+      "commit_date": "2026-08-29T20:48:24Z",
+      "commit_sha": "025ca3c800fc95224c86323c1f7fd33dceed3090",
+      "license_api_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "node_id": "MDc6TGljZW5zZTI=",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0"
+      },
+      "repository": "zlab-princeton/vero",
+      "source_files": [
+        {
+          "bytes": 13034,
+          "path": "README.md",
+          "sha256": "b2a10848290c3f538a00b56b89115a52ceb0fa66632875507cbd0484af2ccd4d",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/README.md"
+        },
+        {
+          "bytes": 7663,
+          "path": "docs/DATA.md",
+          "sha256": "5b4e28bbc41c86cb1591bf575cd08f70220b08650fec142050a210b47d3ca2ec",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/docs/DATA.md"
+        },
+        {
+          "bytes": 8383,
+          "path": "docs/TRAINING.md",
+          "sha256": "077662e423d10b1ce038fcda117ceb692b25cccd67de038ef2de6c40aef63495",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/docs/TRAINING.md"
+        },
+        {
+          "bytes": 19921,
+          "path": "docs/EVALUATION.md",
+          "sha256": "21a4a5fed9ba65c74dfff80409ea5aac48c006560c635521c1bbf1d8c72370d0",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/docs/EVALUATION.md"
+        },
+        {
+          "bytes": 729,
+          "path": "scripts/filtering/README.md",
+          "sha256": "df8e5c7dbfc422a4117791d616bdaf95397caa6918691b918b6821cbbedd4676",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/scripts/filtering/README.md"
+        },
+        {
+          "bytes": 1535,
+          "path": "vero-rl/README.md",
+          "sha256": "a277dade7c09504f3ca1c9d15206fead7aba5d09b852dad063db5cd54c03e3ee",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-rl/README.md"
+        },
+        {
+          "bytes": 2447,
+          "path": "vero-eval/README.md",
+          "sha256": "0274dea5bd4d425ef98abe532506cb09bfff887865eb2a96adab2900f2efdca1",
+          "status": "FETCHED_PUBLIC_TEXT",
+          "url": "https://github.com/zlab-princeton/vero/blob/025ca3c800fc95224c86323c1f7fd33dceed3090/vero-eval/README.md"
+        }
+      ],
+      "tree_truncated": false
+    }
+  ],
+  "status": "FETCHED_PUBLIC_SOURCE_NOT_THIRD_PARTY_EXECUTION"
+}

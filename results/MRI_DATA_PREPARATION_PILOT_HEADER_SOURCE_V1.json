@@ -1,0 +1,173 @@
+{
+  "UTC": "2026-10-21T04:12:39.203754+00:00",
+  "author": "Codex /root/rc_data",
+  "builder_sha256": "4cad0b9a5ee481a0321a74f13783bd92f792aeaae2b3e733239e4ff456450486",
+  "common_coded_qform": [
+    [
+      -1.0,
+      0.0,
+      0.0,
+      90.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      -126.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      -72.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "common_coded_sform": [
+    [
+      -1.0,
+      -0.0,
+      0.0,
+      90.0
+    ],
+    [
+      -0.0,
+      1.0,
+      -0.0,
+      -126.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      -72.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "common_effective_affine_RAS_world": [
+    [
+      -1.0,
+      -0.0,
+      0.0,
+      90.0
+    ],
+    [
+      -0.0,
+      1.0,
+      -0.0,
+      -126.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      -72.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "counts": {
+    "TRAINpeople": 3,
+    "distinct_verified_sites": 3,
+    "modalities": 2,
+    "selected_volumes": 6
+  },
+  "frozen_input_sha256": "70a2d38f735ce92a0575813e542ec1b627496e7262a32b044bf7202261321c45",
+  "header_geometry": {
+    "across_selected_volumes_max_affine_delta": 0.0,
+    "across_selected_volumes_same_affine_atol1e_minus6": true,
+    "all_shapes": {
+      "[182, 218, 182]": 6
+    },
+    "all_spacings": {
+      "[1.0, 1.0, 1.0]": 6
+    },
+    "orientation_counts": {
+      "LAS": 6
+    },
+    "physical_z045_superior_coordinate_ranges_mm": [
+      [
+        -27.0,
+        -27.0
+      ]
+    ],
+    "qform_code_counts": {
+      "1:scanner": 6
+    },
+    "same_pair_grids": 3,
+    "same_pair_physical_z045": 3,
+    "same_pair_raw_scanner_metadata": 3,
+    "sform_code_counts": {
+      "1:scanner": 6
+    },
+    "stored_dtype_counts": {
+      "float32": 6
+    },
+    "unique_compressed_payload_hashes": 6,
+    "unit_counts": {
+      "['mm', 'unknown']": 6
+    }
+  },
+  "limitations": [
+    "Common valid header grid andtransformcodes cannot prove accurate anatomicalregistration,skullstripping or N4 effectiveness.",
+    "No deformationfields,registrationmetrics,brainmasks,landmarks or raw-to-processed transformchain inspected;no need to infer suchquality fromshape.",
+    "Different sourcepersonkeys and sixdistinctcompressedpayloadhashes do notruleout samepersonacrossdatasets,renamedsourcealiases,near-duplicates or pretrainedmodelexposure.",
+    "Thisis3alreadyusedTRAINpeople,not independentholdout;no globalidentitydedup ornew16/finalsourcecomparison performed.",
+    "Reregistering,deskulling,N4correcting orzscoring thesederivatives again would be anexplicitnewpreprocessingintervention andmaydoubleprocess data;no benefit/safety established bythisheaderproof."
+  ],
+  "model_calls": 0,
+  "new_renders": 0,
+  "new_voxel_decodes": 0,
+  "optimizer_updates": 0,
+  "overlap_deduplication": {
+    "across_dataset_same_person_or_near_duplicate_exclusion": "NOT_VERIFIED",
+    "exact_compressed_payload_hashes_distinct": 6,
+    "independent_holdout_claim": false,
+    "source_train_people_distinct": 3
+  },
+  "private_header_proof_sha256": "17ee279491e19f6aae6304f4fe9bfa2043f9b0c0b96bc1aff5239d9757f73f9c",
+  "reprocessing_interpretation": "Existing source-lineage claims already include MNIregistration/skullstrip/N4. Headercoordinates are independentlyobserved;anatomicalquality isNOT_VERIFIED. No secondregistration/skullstrip/N4/zscore justifiedsolely bythisproof.",
+  "schema": "mri-data-prep-pilot-header-source-aggregate-candidate-v1",
+  "source_claims": [
+    {
+      "claim": "Chosen derivative has prior skull stripping,MNI152registration,andN4 biasfield correction;it is not the separate z-scored variant.",
+      "independently_observed": "Pinned selectedfile identity andactualheadergeometry,not upstreamalgorithm execution orregistration/skullstrip quality.",
+      "source_sections": "README derivativeprocessing_MNI152_skull-stripped_N4 andseparate_z-scored paragraphs;processedannexpointer membership verified.",
+      "source_sha256": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+      "status": "EXPLICIT_OFFICIAL_SOURCE_LINEAGE_CLAIM"
+    },
+    {
+      "claim": "T1run-02 is postGd and paired FLAIR sidecars identify acquisitionmodality.",
+      "limits": "Selected rawacquisition sidecars are source-linked;no DICOM/rawimage content or processed-vs-raw spatialcorrespondence wasreconstructed.",
+      "source_sha256": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+      "status": "EXPLICIT_OFFICIAL_SOURCE_MAPPING_PLUS_BOUND_SIDECAR_COLLECTION"
+    },
+    {
+      "claim": "Prior per-volume display percentile normalization is distinct from selected source N4 correction and optionalsource zscore.",
+      "limits": "No displayintensities ornormalization windows recomputed here.",
+      "source_sha256": "4d7a353c4b6da53bd9781a0073544fb610cc8012512e31fdf68024f9cc31588e",
+      "status": "OBSERVED_RENDERER_SOURCE_CONTRACT_ONLY"
+    }
+  ],
+  "source_metadata_pins": {
+    "README_sha256": "66efa8e9ffd194b0aca9e52e9a62201db1b447f9b1f38a11ec8daec265293d96",
+    "dataset_description_sha256": "748fb52a1d943c6f50bb6e4795082e973c4a8694e01a287383a9bf1f20fff763",
+    "source_metadata_git_commit": "283007b96977b5b3285bd22cd67b7d97114b1eed"
+  },
+  "status": "HEADER_SOURCE_CHECKS_COMPLETE_NO_VOXELS_NO_RENDER",
+  "training_authorized": false
+}

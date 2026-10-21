@@ -1,0 +1,123 @@
+{
+  "bound_evidence_sha256": {
+    "derived_pilot_manifest_private": "194ab5ddab00e801d8b1d389220f94422f767b986d3f6f83851e45a1686342c4",
+    "exported_candidate_manifest_private": "5532024e4fe32f73523f72384a34a021509ded7fc32ac523acb87d439ce019ac",
+    "frozen_input_private": "70a2d38f735ce92a0575813e542ec1b627496e7262a32b044bf7202261321c45",
+    "independent_detail_private": "3434941155a08cc6b225982c7b72ea57e0454afc804ae9bfb207e0454699fb0c",
+    "independent_verifier_private": "c1c893e01cec3d30b3848455ac00c8d6cf03201e7c3b1fcdca0cccfcf65a3a57",
+    "operator_tool_exit_witness_private": "a2d00fabaf59ef86ca1371d15e091f95286198787e192b615e13ee9676e09605",
+    "original_actual_proof_private": "b43419944b4c0652d4cbce6d3e31c5007ef20bcf29dc7bd62d4a348ba389fccc",
+    "original_saved_aggregate_private": "37cab1bfcf5cb0abd503a793f552c479e7525a4387bb343cc6d3d3d6f682cfba",
+    "results/MRI_DATA_PREPARATION_ACTUAL_CPU_PILOT_V1.json": "2443b49aa63e8db35bb9bcb050539d3cb0a11f7c62fa8fbb71405c0c73dd252d",
+    "results/MRI_DATA_PREPARATION_INDEPENDENT_CPU_REVIEW_V1.json": "f395ab403432cc03bf6996ee992d4a4427cbdf7188e1635e61506e19f6d902a5",
+    "src/mri_rl/mri_data_prep_v1.py": "33a6cf5cc7b2b5b37f560f87ecb9003ab831bb9f5223fe63ce619d588f9323b4"
+  },
+  "execution_provenance": {
+    "exit_evidence": "Explicit operator-recorded tool transcript witness; reviewer did not independently witness the processes. Saved files alone do not prove exit codes.",
+    "initial_failure_stage": "After all six render results/contact sheet; exporter assertion before candidate manifest write",
+    "initial_wrapper_actual_exit_code": 1,
+    "new_generation_or_updates": 0,
+    "new_model_calls": 0,
+    "pilot_rerun": false,
+    "saved_only_export_actual_exit_code": 0,
+    "saved_only_export_repairs": [
+      "Binds both images list and typed prompt image",
+      "Preserves prompt text and original answer",
+      "Matches original TRAIN id/canonical row hash; index is metadata"
+    ]
+  },
+  "independently_recomputed": {
+    "all_original_prompt_text_and_other_original_fields": "EXACTLY_PRESERVED",
+    "all_per_row_arrays_match_declared_opaque_case_order": true,
+    "candidate_images_per_prompt": 1,
+    "candidate_records": 6,
+    "candidate_training_approved": false,
+    "center_abstentions": 0,
+    "center_coverage_range": [
+      0.9812133072407045,
+      0.9976956111867602
+    ],
+    "center_indices_sorted": [
+      80,
+      80,
+      82,
+      82,
+      83,
+      83
+    ],
+    "center_world_superior_mm_sorted": [
+      8.0,
+      8.0,
+      10.0,
+      10.0,
+      11.0,
+      11.0
+    ],
+    "coarse_cross_patient_near_hash_alerts": 18,
+    "distinct_metadata_sites": 3,
+    "exact_cross_patient_pixel_duplicate_alerts": 0,
+    "existing_original_PNG_vs_regenerated_legacy_PNG_exact_RGB_pairs": 6,
+    "filesystem_duration_estimate_seconds": 39.05067229270935,
+    "frozen_TRAIN_people": 3,
+    "legacy_coverage_range": [
+      0.555829056248036,
+      0.7744618395303327
+    ],
+    "old_world_superior_mm": [
+      -27.0,
+      -27.0,
+      -27.0,
+      -27.0,
+      -27.0,
+      -27.0
+    ],
+    "original_TRAIN_registry_hash_and_unique_row_ids_and_canonical_row_hashes": "MATCH",
+    "original_index_metadata_preserved_not_used_as_array_position": true,
+    "original_modality_labels_and_reward_ground_truth": "MATCH",
+    "pairs_with_three_zero_world_z_mapping_residuals": 3,
+    "per_volume_elapsed_sum_seconds": 23.458,
+    "primary_preview_abstentions": 0,
+    "primary_preview_records": 18,
+    "saved_affine_corner_roundtrip_max_error_mm": 0.0,
+    "saved_center_PNG_vs_original_PNG_differences": "ALL_SIX_MATCH_OPERATOR_PROOF",
+    "saved_display_aspect_distortion": 1.0,
+    "source_volumes": 6,
+    "top_level_images_and_typed_prompt_image_bindings": "EXACT_SAVED_CENTER_IMAGE"
+  },
+  "limitations": [
+    "Technical pixel/geometry result only for the six fixed already-used TRAIN volumes; not an independent holdout or model accuracy result.",
+    "Metadata/header consistency and zero affine roundtrip do not establish anatomical registration, clinical answerability, lesion visibility, skull-stripping or N4 effectiveness. No real mask is bound.",
+    "The 18 coarse near-hash alerts concern correlated rendered view pairs, not 18 independent patients or confirmed duplicate/leak cases; no exclusion is justified by them.",
+    "Initial presentation used different case orders for pixel-change versus coverage/world-z arrays. Corrected proof explicitly declares array_opaque_id_order; reviewer verified all per-row arrays against the already independently computed private case map, without rereading images, rerendering or changing numerical values.",
+    "39.05067229270935 seconds is a saved-file timestamp interval, not a directly captured whole-run timer; per-volume timings omit pair NMI/export work. Render peak RSS was not captured; 103.078125MiB is saved-only exporter peak.",
+    "Renderer canonical intensity/display equality and process exit statuses rely on preserved renderer assertions/operator tool witness; reviewer reran neither renderer nor processes.",
+    "No model use, training, task admission, further rollout, accuracy benefit or research-plan change is authorized by this review."
+  ],
+  "native_training_approval": false,
+  "privacy_review": {
+    "images_contact_sheet_manifest_and_per_case_identity_mapping_remain_private": true,
+    "no_patient_identifiers_or_private_paths_or_images_or_response_text_in_public_result": true,
+    "public_combined_actual_and_saved_fields_match_original_files": true
+  },
+  "reviewer_execution": {
+    "NIfTI_voxel_decodes": 0,
+    "model_or_MLX_calls": 0,
+    "optimizer_updates": 0,
+    "rerenders": 0
+  },
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "saved_renderer_attestations_not_independently_reexecuted": {
+    "actual_source_payload_sha_and_pre_post_immutability": "Bound original input, full-geometry SHA fields and operator assertions agree; original compressed NIfTI files not reread by reviewer.",
+    "canonical_voxel_intensity_mapping_and_legacy_display_plane_equality": {
+      "saved_equal_planes": 6,
+      "saved_max_roundtrip_error_mm": 0.0
+    },
+    "render_peak_RSS": "NOT_CAPTURED",
+    "render_threads": 1,
+    "saved_only_export_peak_RSS_MiB": 103.078125
+  },
+  "schema": "mri-data-preparation-actual-saved-cpu-independent-review-v1",
+  "scope": "Saved fixed-six TRAIN pilot metadata, six original-versus-regenerated PNG comparisons, six saved center-image pixel differences, exported candidate metadata/text/image binding, public aggregate privacy. No rerender or NIfTI voxel decode.",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

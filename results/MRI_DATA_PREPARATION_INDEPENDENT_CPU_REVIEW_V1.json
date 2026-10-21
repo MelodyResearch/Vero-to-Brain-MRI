@@ -1,0 +1,91 @@
+{
+  "actual_pilot_status_at_review": "NOT_RUN_BY_REVIEWER",
+  "binding_note": "Exact per-file SHA values bind reviewed working-tree bytes, including final metadata-cause patch and wording changes; base commit alone does not bind these changes.",
+  "implementation_provenance": {
+    "final_reference_cause_metadata_patch": "Codex /root",
+    "independent_review": "Codex /root/full_arm_execution_contract",
+    "primary_implementation": "Claude Code"
+  },
+  "limitations": [
+    "No actual six-volume pilot result is approved or reproduced by this review; forthcoming saved outputs require separate bounded arithmetic review.",
+    "Valid affine/header lineage does not establish anatomical registration, skull stripping, N4 quality, visible lesion truth or clinical task eligibility.",
+    "TRAIN authorization and actual source/image SHA membership must be supplied by the separately frozen operator manifest; a split string alone does not authenticate provenance.",
+    "Masked spatial/presence helpers remain NOT_ADMITTED; support is an explicit proxy, not a clinically qualified brain mask.",
+    "Source facts concern the inspected files and selected paper passages only; no full-paper reading, upstream pipeline reproduction or proof of absent unpublished deduplication.",
+    "Within-source identity checks and exact/near image heuristics do not establish global cross-source deduplication or independent-patient status.",
+    "Low-level geometry helpers assume caller-established input preconditions; the reviewed fail-closed contract is the run_pilot path.",
+    "No model execution, training, native qualification, accuracy improvement or change to the fixed plan is approved."
+  ],
+  "mission_alignment": {
+    "evidence_tier": "CPU_SOURCE_SYNTHETIC_AND_PUBLIC_METADATA",
+    "purpose": "Qualify MRI input preparation for the fixed Vero-to-MRI study without changing the research plan or active reward/model route"
+  },
+  "native_or_training_authorization": false,
+  "private_reproducibility_detail_sha256": "d431102b5e8901d3deffd5917df4dc505e122125f7639daaf3762408b27b13a6",
+  "public_text_and_privacy": {
+    "five_source_facts_checked": [
+      "mpLLM inspected preprocessing min-max/crop/resize, no spacing/reorientation operation in that file",
+      "NeuroVLM inspected splitter lacks patient grouping; upstream isolation is unverified",
+      "MM-NeuroOnco A.5 reports pixel deduplication; implementation unverified in fetched materials",
+      "MedVol inspected windowing is CT, not an MRI parameter prescription",
+      "Vero routes reward_type and discards exclusively binary datasets during heuristic curation"
+    ],
+    "header_numeric_consistency": "Three people/six volumes/two modalities; common affine maps voxel index45 to world superior coordinate -27mm. Underlying real header/payload collection was operator evidence, not repeated by this reviewer.",
+    "paper_html_files_hash_and_size_verified": 14,
+    "pinned_repositories": 7,
+    "public_pins_and_header_aggregate": "No patient identifiers, private filesystem paths, images, voxel values or model responses observed. Public source repository paths and shared anonymous grid metadata are not individual record paths.",
+    "source_text_bytes_verified": 603160,
+    "source_text_files_hash_and_size_verified": 43
+  },
+  "resolved_independent_counterexamples": [
+    "Low-contrast primary candidate now abstains with causes",
+    "Spatial mask outside provided support abstains",
+    "Hidden metadata cannot override explicit bound truth",
+    "Entire mask foreground loss is ineligible and fails exact label-set preservation",
+    "Reference selection abstention and LOW_COVERAGE cause reach emitted partner candidate"
+  ],
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "mri-data-preparation-independent-cpu-review-v1",
+  "scope": "Source and bounded synthetic CPU verification of MRI preparation; selected pinned public-text facts; public pins/header aggregate privacy. Not actual six-volume pilot verification.",
+  "source_and_public_evidence_sha256": {
+    "research/MRI_DATA_PREPARATION_CONTRACT_V1.md": "34a28207dace50115900099487469a4346077fb220818d350cf45ab45ac9b84f",
+    "research/MRI_PREPROCESSING_LITERATURE_AUDIT_V1.md": "09ecef0772f1417978cec208a909d922d307f1949061a00132bf89e365c7460d",
+    "results/MRI_DATA_PREPARATION_PILOT_HEADER_SOURCE_V1.json": "b795e496fdc21f37d31c5574d0ec9c831486f3b76cdf67011abaac5bbf0ca23a",
+    "results/MRI_PREPROCESSING_PUBLIC_SOURCE_PINS_V1.json": "dd97d877f974db2016c9d9fc691fdf8c06f4a59e0c4a38a9bf59ad167b744edc",
+    "scripts/run_mri_data_prep_v1.py": "9518d10d5189a83f860cf48c6446ac8e468252cc5dced08ffd0e676c119921c8",
+    "src/mri_rl/mri_data_prep_v1.py": "33a6cf5cc7b2b5b37f560f87ecb9003ab831bb9f5223fe63ce619d588f9323b4",
+    "tests/test_mri_data_prep_v1.py": "a055339ce8f4900b89c89edd62d74d4bb7cff94d16e53e82834b03d63a9c8f26",
+    "tests/test_mri_data_prep_v1_final_fixes.py": "be8bd3b021b37476663240800214cf33a62a441e8b7f06ced4a10ecbaad12a4e",
+    "tests/test_mri_data_prep_v1_review_fixes.py": "513a5eb92d91ca18e05ca29b97d2dec3a3285e553c066c26e0c966a28d6b23e2"
+  },
+  "source_base_commit": "be53b9d4e4d2b76804523a4606abf32d4bfc5981",
+  "targeted_source_inspection": [
+    "Physical candidate path gates unsupported units, conflicting transforms, oblique/non-axis-aligned geometry and non-LAS storage before voxel decoding",
+    "Existing RGB PNG comparison is distinguished from renderer self-determinism and may report NOT_SUPPLIED",
+    "Canonical orientation preserves sampled voxel/world mapping; grid compatibility and intensity association are explicitly not registration proof",
+    "Discrete mask integrality is checked; masks remain outside model input",
+    "Paired primary selects a predeclared reference modality and maps physical height to partner; independently selected alternatives are marked exploratory/noncorresponding"
+  ],
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "MLX_imports": 0,
+    "independent_synthetic_tests": {
+      "failed": 0,
+      "initial_actual_red_cases": 5,
+      "passed": 5,
+      "seconds": 0.36,
+      "source_snapshot_isolated": true
+    },
+    "model_calls": 0,
+    "no_final100_or_new16_inputs_read": true,
+    "no_real_mri_payloads_used_by_reviewer": true,
+    "optimizer_updates": 0,
+    "source_sha256_unchanged_after_tests": true,
+    "specified_author_focused_tests_independently_executed": {
+      "failed": 0,
+      "passed": 64,
+      "seconds": 1.36
+    }
+  }
+}
