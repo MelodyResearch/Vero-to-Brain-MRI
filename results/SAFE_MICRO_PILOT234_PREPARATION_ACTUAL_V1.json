@@ -1,0 +1,117 @@
+{
+  "schema": "safe-micro-pilot234-source-preparation-v1",
+  "status": "SOURCE_CPU_AND_EXACT_REVIEW_READY_PENDING_FRESH_HUMAN",
+  "execution_scope_file_sha256": "3927e15080b582e57be370151abe8fc34a6833f1bbcb8c4991681fd93ea8c01c",
+  "canonical_scope_sha256": "3e14e49641f43720dcf6ef681bbb63727bfcd90ef60aabe21b7ce876fc7eca2a",
+  "input_sha256": "f23e7d8f4c7bf5c844056d8a6c31eeae365e35519cf593a36cb1aac8afa81573",
+  "sources_bound": 89,
+  "metadata_bound": 17,
+  "parent": "P_calibrated13 / Adam52 / boundary114",
+  "budgets": {
+    "2": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 512,
+      "generated_responses": 2,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "scorer_forwards": 6,
+      "teacherforced_input_positions": 2808,
+      "window_seconds": 900
+    },
+    "3": {
+      "backward_calls": 32,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 4096,
+      "generated_responses": 16,
+      "model_loads": 1,
+      "optimizer_updates": 2,
+      "optimizer_updates_per_arm": 1,
+      "scorer_forwards": 48,
+      "teacherforced_input_positions": 27072,
+      "window_seconds": 1800
+    },
+    "4": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "candidate_calls": 0,
+      "generated_response_tokens": 18432,
+      "generated_responses": 72,
+      "greedy_calls": 72,
+      "model_loads": 3,
+      "optimizer_updates": 0,
+      "scorer_forwards": 0,
+      "teacherforced_input_positions": 0,
+      "window_seconds": 2400
+    }
+  },
+  "total": {
+    "max_returned_tokens": 23040,
+    "scorer_forward_calls": 54,
+    "teacherforced_input_positions": 29880,
+    "backward_calls": 32,
+    "optimizer_updates": 2,
+    "optimizer_updates_per_arm": 1,
+    "model_loads": 5,
+    "operation_start_window_seconds": 5100,
+    "cache_operations": 0
+  },
+  "evaluation": "All frozen DEV24 real sequence rows;12FLAIR+12enhancedT1/4TRAIN-disjoint previously exploredDEV people; strict greedy only; Parent/A/B matchedF32/256/temp0. No candidates/Dallas retention readout. Zero-update terminal can alias authenticated Parent.",
+  "stage2": "Two realF/T on-policy generations and6F32scorers; own generated-vs-scored selected logp maxabs<=.002; fixedFLAIR canonical token target real-image contrast is sensitivity only, not anatomical grounding or full classificationmargin. Zero measured effect =>PARTIAL and stop progression.",
+  "stage3": "Same frozen firstcomplete pairedMRI+2Dallas round; shared16responses generated once; A same-prompt/B paired-prompt;0.5sequence+0.5Dallas jointgradient; no inactive renormalization;0or1persistentAdamstep perarm, no resampling or auxiliaryloss.",
+  "execution": "Separate real child perstage; verifiedexact PASS/release/closedexitlogs/globalunlock before nextchild; fresh10GiB/free40 model admission everyload; no retry afterSTOP; boundedHOLD120s; nativecall cannot be interrupted by softoperation-start window.",
+  "source_tests": {
+    "new_and_reused_focused_tests": 52,
+    "seconds": 0.53,
+    "kind": "SyntheticCPU only; initial newmodule/helperREDs recorded beforeimplementation.",
+    "Claude_this_round": "NOT_USED; Codex implemented; collaborating implementer unavailable due modelcapacity; independentCodex reviewer used."
+  },
+  "resource_snapshot": {
+    "utc": "2026-10-21T08:01:29.887557+00:00",
+    "sample": {
+      "monotonic_seconds": 422623.246646916,
+      "available_gib": 10.410308837890625,
+      "pressure_free_percent": 57.0,
+      "swap_used_gib": 14.634580078125,
+      "process_rss_gib": 0.0225677490234375,
+      "thermal_state": "SENSOR_UNAVAILABLE",
+      "power_source": "BATTERY",
+      "battery_percent": 70,
+      "other_heavy_processes": 0,
+      "mlx_active_gib": null,
+      "mlx_peak_gib": null
+    },
+    "OS_pressure_level": 1,
+    "model_loading_decision": "CONTINUE",
+    "reasons": [],
+    "original_baseline_swap_growth_GiB": 0.664912109374999,
+    "global_lock": {
+      "exists": true,
+      "no_open_holders": true,
+      "inspection_error": null,
+      "lock_acquired_or_modified": false
+    },
+    "disk_free_GiB": 294.68688201904297,
+    "MLX_imported": false,
+    "authorization_consumed": false
+  },
+  "this_round_actual_native": {
+    "model_loads": 0,
+    "generation": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "accuracy": "NOT_RUN"
+  },
+  "fresh_human_grant": "NOT_ISSUED",
+  "frozen_plan_unchanged": true,
+  "old_final100_and_new16_predictions_accessed": false,
+  "independent_review": {
+    "path": "results/SAFE_MICRO_PILOT234_SOURCE_SCOPE_INDEPENDENT_REVIEW_V1.json",
+    "sha256": "d24054d58279a1a0686eddd9117c27117fc2f625110b18d84d4c3ce70d2f32f4",
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "reviewer_id": "/root/full_arm_execution_contract",
+    "synthetic_tests": 23,
+    "seconds": 0.66,
+    "scope": "new21 author tests plus2isolated binding cases; no native calls"
+  }
+}

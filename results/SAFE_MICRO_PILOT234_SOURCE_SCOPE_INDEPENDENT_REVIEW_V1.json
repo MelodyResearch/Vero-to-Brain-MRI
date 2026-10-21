@@ -1,0 +1,78 @@
+{
+  "schema": "safe-micro-pilot234-source-scope-independent-review-v1",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "scope_sha256": "3e14e49641f43720dcf6ef681bbb63727bfcd90ef60aabe21b7ce876fc7eca2a",
+  "scope_file_sha256": "3927e15080b582e57be370151abe8fc34a6833f1bbcb8c4991681fd93ea8c01c",
+  "input_sha256": "f23e7d8f4c7bf5c844056d8a6c31eeae365e35519cf593a36cb1aac8afa81573",
+  "spec_file_sha256": "dc85414a38189b0361c41409eb3ba73edc4c4c8be9525d75821b1f0a1c0a8504",
+  "metadata_reprepare_equal": true,
+  "metadata_binding_receipt_sha256": "2622066bc719c50fcaa265050e7bf950213eea26670d110843004619853a24c5",
+  "reviewer_findings": [
+    "Metadata reprepare equals exact frozen scope;89 source and17 metadata bindings verified; all four previously tested new source/test files still match the isolated reviewed snapshot.",
+    "New genuine compound authorization derives restricted2/3/4 child scopes; current source/input fingerprints, exact human/review hashes, finite grant time and once-only stage ledgers are required before native work.",
+    "Bound12 third-party numerical-runtime source files are merged and checked; external ar fixture tampering is rejected. No numerical backend/formula changes were introduced by this review.",
+    "Stage3 terminal receipt must match its canonical self-hash and certified completed-stage summary before Stage4 selects a checkpoint or zero-update Parent alias.",
+    "Constructor assigns resident before init, so partial model loads reach existing failure cleanup; full checkpoint/Adam/RNG loads and per-arm parent restore use the existing reviewed APIs.",
+    "Fixed serial load/forward, micro and DEV24 greedy routes; no old three-hour run, cache quantization, SmallPilot stage or automatic retry in this scope.",
+    "Prior isolated source verification passed23 CPU tests in.66s (21 new author fixtures plus2 independent binding checks). The initial malformed-terminal-receipt counterexample failed before the explicit verify-terminal fix. No tests were rerun for final metadata binding."
+  ],
+  "limitations": [
+    "Source/metadata and synthetic CPU engineering review only. Stages2/3/4 native/model/training have NOT_RUN; no numerical, gradient or accuracy success is claimed.",
+    "Fresh explicit researcher grant for this exact combined scope remains required. Consumed Stage1/cache and revoked full-run permissions cannot authorize this pilot.",
+    "Stage2 same-target score difference tests local image sensitivity, not two-class accuracy, anatomical grounding or broad visual capability. PARTIAL/failed parity/release/child exit must stop advancement without retry.",
+    "Stage3 uses one TRAIN pair plus two Dallas contexts, shared16 responses once and at most one joint Adam step per arm; inactive groups are not forced or renormalized. A zero-update terminal is not a training improvement.",
+    "Stage4 is all24 existing sequence DEV rows from four explored patients, greedy only. It does not measure candidate accuracy or Dallas retention and cannot establish independent generalization or authorize expansion.",
+    "API endpoint counters are not physical kernel/FLOP counts; autoregressive lookahead and checkpoint recomputation remain distinct from returned-token and teacher-forced position budgets.",
+    "Resources are checked at safe boundaries with10GiB/free40% load admission, original swap debt, battery20 reserve, serial global flock and phase/global operation-start limits. They cannot interrupt atomic calls or guarantee macOS stability; unavailable thermal telemetry remains a limitation.",
+    "Successful child exit, closed logs, complete terminal, actual release and unlocked inspection must gate the next child. Exit witness does not independently attest full parameter/Adam/RNG integrity; native receipts must supply those audits."
+  ],
+  "native_status": "NOT_RUN",
+  "model_calls_by_reviewer": 0,
+  "optimizer_updates_by_reviewer": 0,
+  "human_permission_issued_by_review": false,
+  "fresh_exact_human_permission_required": true,
+  "automatic_execution_authorized": false,
+  "private_review_file_sha256": "3b3efd1b7646d3d7430ea81bf16b533b19b2bc4bb28aa4982bacc457c6ccdd7f",
+  "source_files_bound": 89,
+  "metadata_files_bound": 17,
+  "new_source_sha256": {
+    "scripts/run_safe_micro_pilot_v1.py": "be6074c7475e67293de99ddebce032414eebbe17d50736ad8c013e36e85845e5",
+    "src/mri_rl/safe_micro_native_v1.py": "25c65864a457b7d3129ee45386de389735a6b0620b853c89584b50314bb48549",
+    "src/mri_rl/safe_micro_pilot_entry_v1.py": "91f14397cc018eaa0463de2a2557bdfec50b7f59d84851f5997f67060022a176",
+    "src/mri_rl/safe_micro_pilot_native_v1.py": "0d610c83318de1c646528d2cd17661a74949dfd5925722cabfbb9056c1de1902",
+    "src/mri_rl/safe_micro_resources_v1.py": "137d71430c688cb225fb339ebd8e3d945232e2e6d49f8c68e29b31b2c9b6c3c5",
+    "src/mri_rl/safe_micro_training_v1.py": "071b2d2bb1b2a25d342ec6416a443f9d269123afaa343c3899403d11168e26ed",
+    "src/mri_rl/safe_micro_witness_v1.py": "3edff80ad8116e92a6240f0c11ded1def8564dd441801f5272f25d5e85091868"
+  },
+  "planned_limits": {
+    "combined_returned_tokens_max": 23040,
+    "combined_scorer_API_forwards_max": 54,
+    "combined_teacherforced_positions_max": 29880,
+    "combined_backward_API_calls_max": 32,
+    "combined_optimizer_updates_max": 2,
+    "optimizer_updates_per_arm_max": 1,
+    "model_loads_max": 5,
+    "phase_operation_start_seconds": {
+      "2": 900,
+      "3": 1800,
+      "4": 2400
+    },
+    "global_operation_start_seconds": 5100,
+    "stage2_generated_responses_max": 2,
+    "stage3_common_generated_responses_max": 16,
+    "stage4_greedy_max": 72,
+    "stage4_candidate_calls": 0,
+    "cache_recovery_operations": 0
+  },
+  "evidence_counts": {
+    "source_CPU_tests_passed": 23,
+    "source_CPU_seconds": 0.66,
+    "independent_cases_included": 2,
+    "final_metadata_binding_tests_rerun": 0,
+    "real_images_read_by_reviewer": 0,
+    "weight_payloads_read_by_reviewer": 0
+  },
+  "privacy": "Aggregate counts, reviewed code paths and whole-artifact digests only; no private paths, patient identifiers, image pixels, responses, token IDs or state tensors."
+}
