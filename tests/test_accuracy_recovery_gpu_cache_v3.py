@@ -113,7 +113,7 @@ def test_single_sample_decisions(tmp_path, kw, decision):
 
 
 def test_os_critical_or_unknown_os_level_decisions(tmp_path):
-    for level, want in ((1, 'CONTINUE'), (2, 'CONTINUE'), (4, 'STOP'), (5, 'STOP'), (None, 'HOLD')):
+    for level, want in ((1, 'CONTINUE'), (2, 'CONTINUE'), (4, 'STOP'), (5, 'HOLD'), (3, 'HOLD'), (0, 'HOLD'), (None, 'HOLD')):
         c, _ = ctl(tmp_path, seq(S()), level=level)
         assert c.observe('x')[1] == want
 
@@ -219,8 +219,8 @@ def test_swap_cap_is_cumulative_1p5gib_from_the_first_sample_and_never_resets(tm
     assert rows[-1]['baseline_swap_gib'] == 14.0 and rows[-1]['swap_growth_gib'] == pytest.approx(1.5001)
 
 
-def test_large_absolute_swap_is_fine_and_decreases_do_not_reset_the_baseline(tmp_path):
-    c, _ = ctl(tmp_path, seq(S(swap_used_gib=40.0), S(swap_used_gib=39.0), S(swap_used_gib=41.4), S(swap_used_gib=41.6)))
+def test_decreases_do_not_reset_the_baseline(tmp_path):
+    c, _ = ctl(tmp_path, seq(S(swap_used_gib=12.0), S(swap_used_gib=11.0), S(swap_used_gib=13.4), S(swap_used_gib=13.6)))
     assert [c.observe(k)[1] for k in 'abc'] == ['CONTINUE'] * 3 and c.observe('d')[1] == 'STOP'
 
 
@@ -231,9 +231,9 @@ def test_fast_swap_growth_alone_is_trend_only_when_memory_is_healthy(tmp_path):
 
 
 def test_baseline_is_the_first_known_swap_sample(tmp_path):
-    c, _ = ctl(tmp_path, seq(S(swap_used_gib=None), S(swap_used_gib=20.0), S(swap_used_gib=21.0)))
+    c, _ = ctl(tmp_path, seq(S(swap_used_gib=None), S(swap_used_gib=12.0), S(swap_used_gib=13.0)))
     assert c.observe('a')[1] == 'HOLD' and c.observe('b')[1] == 'CONTINUE' and c.observe('c')[1] == 'CONTINUE'
-    assert log(tmp_path)[2]['baseline_swap_gib'] == 20.0
+    assert log(tmp_path)[2]['baseline_swap_gib'] == 12.0
 
 
 def test_unit_dependent_forecast_reserve_holds_when_transient_and_does_not_lower_the_floor(tmp_path):
@@ -263,6 +263,9 @@ OLD_DIGEST = 'd' * 64
 OLD_INSTRUCTION = 'e' * 64
 
 
+REAL_LOG = [dict(r, boundary='x') for r in REAL]
+
+
 def env3(tmp_path):
     e = env2(tmp_path); adopt2(e)                                             # old v2 work root: 406 (here 1) retained units, authenticated
     plan, hist, proofs = loaded2(e)
@@ -276,15 +279,15 @@ def env3(tmp_path):
                             'rerun_allowed': False, 'partial': True, 'gpu_unit_attempts': 1, 'gpu_direct_quantize_ops': 1, 'gpu_module_path_quantizations': 1,
                             'gpu_underlying_quantizations': 2, 'current_unit': 0, 'units_with_passing_receipts': 1, 'reasons': ['sustained_swap_growth', 'insufficient_memory_headroom']},
         'ledger': {'scope_sha256': OLD_DIGEST, 'human_instruction_sha256': OLD_INSTRUCTION, 'pending_quantized_units': 2},
-        'resource_log': {'a': 1}, 'rss_log': {'b': 1}, 'launcher_record': {'child': {'native_exit_code': 1}}, 'summary': {'s': 1}, 'stdout': None, 'stderr': {'e': 1},
+        'resource_log': REAL_LOG, 'rss_log': {'b': 1}, 'launcher_record': {'child': {'native_exit_code': 1}}, 'summary': {'s': 1}, 'stdout': None, 'stderr': {'e': 1},
         'independent_detail': {'d': 1}, 'scope': {'old': 'scope'}, 'human': {'old': 'human'}, 'review': {'old': 'review'},
         'consumed_scope': {'scope_sha256': OLD_DIGEST, 'state': 'STARTED'}, 'consumed_instruction': {'consumed': OLD_INSTRUCTION},
         'consumed_outcome': {'scope_sha256': OLD_DIGEST, 'state': 'FAILED'}}
     for name, doc in files.items():
         p = prev[name]; p.parent.mkdir(parents=True, exist_ok=True)
-        p.write_text('' if doc is None else json.dumps(doc))
+        p.write_text('' if doc is None else ''.join(json.dumps(r) + '\n' for r in doc) if name == 'resource_log' else json.dumps(doc))
     e.pins = {n: SHA(p) for n, p in prev.items() if n != 'receipts'}
-    e.pins['receipts'] = SHA(prev['receipts']); e.pins['scope_digest'] = OLD_DIGEST
+    e.pins['receipts'] = SHA(prev['receipts']); e.pins['scope_digest'] = OLD_DIGEST; e.pins['swap_baseline_gib'] = REAL[0]['swap_used_gib']
     e.prev = prev; e.work3 = e.repo / 'work' / v3.WORK_ROOT_NAME; e.old_work = e.work
     e.proofs, e.hist, e.plan = proofs, hist, plan
     return e
@@ -370,7 +373,7 @@ def test_production_pins_are_the_independently_recorded_hashes():
     assert P['scope'] == '1f2bd2db5a7b6161334979fdea2a4d0d225a2b5a4b8fbe51506f820b49509b7e' and P['scope_digest'] == '3edf070143c8a7e42eca71a8a5817005d359fb0f4ea591322e397f4cc1a41dc7'
     assert P['human'] == '2eeb5c9c0035b40f56b916cc357b82e8947df558060486bbfc1221751684772d' and P['review'] == 'ab88f04b767609ba8eac75fb94dd5520bc689fa127989f8a53186b17514b0562'
     assert P['failure_receipt'] == '629a60e1bb8d06848288031b7df33a4952f75272c8a1e30a82def3deec9b4394' and P['unit0_file'] == '6cc6fa0558040faa6efa1b95535d58595246fc53843618b796cfc7ebb2912258'
-    assert all(len(v) == 64 for v in P.values())
+    assert all(len(v) == 64 for k, v in P.items() if k != 'swap_baseline_gib') and P['swap_baseline_gib'] == 13.96966796875
 
 
 def test_real_previous_attempt_evidence_matches_the_production_pins_when_present():
@@ -459,7 +462,11 @@ def test_scope_documents_policy_budgets_cumulative_accounting_adoption_and_previ
 
 def test_prepare_scope_v3_binds_roots_files_previous_attempt_adoption_policy_closure_and_installed(tmp_path):
     e = env3(tmp_path); info = prep3(e); scope = json.loads(Path(info['scope_path']).read_text())
-    assert scope['limits'] == v3.SCOPE and scope['static_scope_sha256'] == v3.SCOPE_SHA256 and scope['action'] == v3.ACTION and scope['installed'] == installed_fn()
+    assert scope['limits'] == v3.SCOPE
+    assert scope['static_scope_sha256'] == v3.SCOPE_SHA256
+    assert scope['action'] == v3.ACTION
+    assert scope['installed'] == installed_fn()
+    assert scope['previous_attempt']['swap_baseline_gib'] == 13.96966796875 and scope['limits']['resource_policy']['swap_used_absolute_cap_gib'] == 16.0
     assert scope['roots'] == v3.canonical_roots(e.repo, e.args['source_dir']) and scope['roots']['work_root'].endswith(v3.WORK_ROOT_NAME)
     assert scope['roots']['previous_work_root'].endswith(v2.WORK_ROOT_NAME) and scope['roots']['consumed_dir'].endswith('historical_gpu_cache_v3_consumed')
     assert {'plan', 'quant_map', 'historical_certificate', 'historical_proof'} <= set(scope['files']) and 'prev_failure_receipt' in scope['files'] and 'prev_scope' in scope['files']
@@ -683,7 +690,7 @@ def test_execute_v3_first_payload_mismatch_stops_with_counts_and_no_second_attem
 def test_execute_v3_swap_over_the_cumulative_cap_stops_mid_run(tmp_path):
     e = env3(tmp_path); adopt3(e); n = []
     def smp():
-        n.append(1); return S(swap_used_gib=10.0 if len(n) < 4 else 11.6)
+        n.append(1); return S(swap_used_gib=14.0 if len(n) < 4 else 15.6)
     with pytest.raises(cc.ResourceStop):
         run3(e, sampler_fn=smp)
     assert 'swap_net_growth_over_cap' in json.loads((e.work3 / 'v3_failure_001.json').read_text())['reasons']

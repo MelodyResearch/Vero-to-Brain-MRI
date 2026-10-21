@@ -29,6 +29,7 @@ from __future__ import annotations
 import fcntl
 import hashlib
 import json
+import math
 import os
 import shutil
 import stat
@@ -50,11 +51,13 @@ POLICY = {
     'continue_available_gib_min': 5.5, 'continue_pressure_free_percent_min': 30.0, 'stop_pressure_free_percent_max': 15.0, 'stop_available_gib_below': 2.0,
     'sustained_low_available_gib': 4.0, 'sustained_low_seconds': 30.0, 'sample_interval_seconds': 5.0, 'hold_seconds_per_boundary_max': 120.0,
     'operation_start_window_seconds': v2.WINDOW_SECONDS, 'swap_cumulative_net_growth_cap_gib': 1.5,
-    'swap_baseline': 'first known sample of the whole run; never reset', 'swap_rate': 'trend-only (logged, never decides)',
+    'swap_baseline': 'ORIGINAL authenticated v2 first sample (13.96966796875 GiB, hash-pinned old resource log), carried into the controller; never reset',
+    'swap_used_absolute_cap_gib': 16.0, 'swap_used_absolute_cap_note': 'NEW in v3: no absolute swap-used cap existed historically; STOP strictly above 16 GiB',
+    'mlx_active_gib_stop_above': 18.0, 'mlx_active_note': 'optional native MLX active-memory guard (old paced_resources >18 GiB), applied whenever the sampler reports it', 'swap_rate': 'trend-only (logged, never decides)',
     'rss_envelope_gib': cc.RSS_ENVELOPE_GIB, 'unit_reserve_gib': qc.RESERVE_GIB, 'disk_reserve_gib': v2.DISK_RESERVE_GIB,
     'mlx_memory_limit_bytes': v2.MLX_MEMORY_LIMIT_BYTES, 'mlx_cache_limit_bytes': v2.MLX_CACHE_LIMIT_BYTES, 'ac_required': True, 'other_heavy_processes_allowed': 0,
-    'os_critical_mask': 4, 'warning_only_inherited_supervisor_reasons_terminate': False,
-    'unknown_essential_sensors': 'HOLD (no operation starts) then STOP at the per-boundary bound',
+    'os_pressure_levels': {'1': 'normal', '2': 'warning', '4': 'critical'}, 'os_critical_level': 4, 'warning_only_inherited_supervisor_reasons_terminate': False,
+    'unknown_essential_sensors': 'HOLD (no operation starts) then STOP at the per-boundary bound; non-finite / out-of-range / non-integer essential readings are treated as unknown',
     'thermal_limitation': 'THROTTLED holds; SENSOR_UNAVAILABLE cannot refuse (documented current limitation)'}
 SCOPE = {
     'name': 'VERO_TO_MRI_ACCURACY_RECOVERY_V1/historical_gpu_cache_v3_continuation', 'plan_sha256': v2.PLAN_SHA256, 'plan_units': 750,
@@ -83,7 +86,7 @@ PRODUCTION_PINS = {
     'receipts': 'ffee25145812b615f9f21c3ed9c4e440f01cf2ac83cbfdb5b51e5bd607667ae1', 'resource_log': 'ef0dd867c5cdcf7600b92f053c5cb3c188818ae83395056c6b1eac47ae953fa2',
     'rss_log': '476c18377f30d05f83cffecd0c2fb979984fc01ed7feb2fcf591d67096594c4c', 'stdout': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
     'stderr': '022263a225e962b5e41a9ea82198a5c3ea22028edfa18d78904a315e04e7fcd6', 'summary': 'aba97e91f850b42d3bc7516fa177f96cf79c3c806c93c68b6e23360113a81356',
-    'unit0_file': '6cc6fa0558040faa6efa1b95535d58595246fc53843618b796cfc7ebb2912258'}
+    'unit0_file': '6cc6fa0558040faa6efa1b95535d58595246fc53843618b796cfc7ebb2912258', 'swap_baseline_gib': 13.96966796875}
 ScopeRefused = v2.ScopeRefused
 
 
@@ -115,6 +118,16 @@ def previous_paths(repo_root, scope_digest, instruction_sha=None):
     return paths
 
 
+def original_swap_baseline(resource_log_path):
+    """The first valid swap-used sample of the hash-pinned closed v2 resource log (the run's ORIGINAL baseline). Raises ValueError when absent or malformed."""
+    for line in Path(resource_log_path).read_text().splitlines():
+        v = json.loads(line).get('swap_used_gib') if line.strip() else None
+        if _valid_number(v, 0.0, None):
+            return float(v)
+        raise ValueError('First v2 resource sample has no valid swap_used_gib baseline')
+    raise ValueError('v2 resource log has no samples')
+
+
 def verify_previous_attempt(repo_root, pins=PRODUCTION_PINS, expected=cc.Expected()):
     """Authenticate the closed v2 attempt's evidence by hash and content; bind its exact operation counts. Raises ValueError on any difference."""
     ledger_p = previous_paths(repo_root, pins['scope_digest'])['ledger']
@@ -144,8 +157,11 @@ def verify_previous_attempt(repo_root, pins=PRODUCTION_PINS, expected=cc.Expecte
     retained = sum(r['action'] == 'retain' for r in rec); quantized = sum(r['action'] == 'quantize' for r in rec)
     if retained != expected.retained or quantized != 0:
         raise ValueError('Previous attempt receipts differ: %d retained, %d quantized' % (retained, quantized))
+    baseline = original_swap_baseline(paths['resource_log'])
+    if pins.get('swap_baseline_gib') is not None and baseline != pins['swap_baseline_gib']:
+        raise ValueError('Original v2 swap baseline %r differs from the pinned %r' % (baseline, pins['swap_baseline_gib']))
     return {'files': files, 'counts': counts, 'scope_digest': pins['scope_digest'], 'instruction_sha256': ledger['human_instruction_sha256'],
-            'retained_receipts': retained, 'quantized_receipts': quantized}
+            'retained_receipts': retained, 'quantized_receipts': quantized, 'swap_baseline_gib': baseline}
 
 
 # ---- the saved exact unit 0 --------------------------------------------------------------------------------------
@@ -201,24 +217,40 @@ def adoption_record(plan, proofs, unit, path, source_dir, prev, pins):
 
 
 # ---- local resource controller ------------------------------------------------------------------------------------
-def os_pressure_level(run=subprocess.run):
-    """Real macOS dispatch memory-pressure level (1 normal, 2 warn, 4 critical); None when unavailable."""
+OS_PRESSURE_COMMAND = ('sysctl', '-n', 'kern.memorystatus_vm_pressure_level')
+OS_PRESSURE_LEVELS = {'1': 1, '2': 2, '4': 4}          # exact external output of running xnu-11417.140.69: 1 normal / 2 warning / 4 critical (handler conversion; header constants)
+
+
+def os_pressure_level(run=None):
+    """Real macOS memory-pressure level via the exact sysctl; ONLY the output '1' / '2' / '4' is accepted, anything else (EPERM, empty, other digits, junk) is None (unknown -> HOLD)."""
+    run = run or subprocess.run                                                  # resolved at call time (testable wiring)
     try:
-        p = run(['sysctl', '-n', 'kern.memorystatus_vm_pressure_level'], capture_output=True, text=True, timeout=2)
-        return int(p.stdout.strip()) if p.returncode == 0 else None
-    except (OSError, ValueError, subprocess.TimeoutExpired):
+        p = run(list(OS_PRESSURE_COMMAND), capture_output=True, text=True, timeout=2)
+        if p.returncode != 0 or not isinstance(p.stdout, str):
+            return None
+        return OS_PRESSURE_LEVELS.get(p.stdout.strip())
+    except (OSError, ValueError, TypeError, AttributeError, subprocess.TimeoutExpired):
         return None
+
+
+def _valid_number(v, lo, hi):
+    """Finite real number (not bool) within [lo, hi]; hi None = unbounded."""
+    return (isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v >= lo and (hi is None or v <= hi))
 
 
 class ResourceController:
     """Local boundary controller. HOLD = no operation may start; STOP = fail closed. The inherited supervisor is logged as information only."""
 
-    def __init__(self, *, sampler=None, os_level=None, clock=time.monotonic, sleep=time.sleep, utc=None, log_path=None, policy=POLICY):
+    def __init__(self, *, sampler=None, os_level=None, clock=time.monotonic, sleep=time.sleep, utc=None, log_path=None, policy=POLICY, baseline_swap_gib=None):
+        """baseline_swap_gib: the immutable ORIGINAL swap baseline (production passes the authenticated v2 first sample). None = standalone fixture: the first valid sample."""
+        if baseline_swap_gib is not None and not _valid_number(baseline_swap_gib, 0.0, None):
+            raise ValueError('Swap baseline must be a finite non-negative number')
         self.sampler = sampler or resource_supervisor.sample_macos
         self.os_level = os_level or os_pressure_level
         self.clock, self.sleep, self.policy, self.log_path = clock, sleep, policy, log_path
         self.utc = utc or (lambda: datetime.now(timezone.utc).isoformat())
-        self.baseline_swap = self.low_since = self.t0 = self.last_swap = self.last_swap_time = None
+        self.baseline_swap = None if baseline_swap_gib is None else float(baseline_swap_gib)
+        self.low_since = self.t0 = self.last_swap = self.last_swap_time = None
         self.last = None; self.peak_rss_gib = 0.0; self.hold_samples = 0
         self._inherited = resource_supervisor.ResourcePolicy()
 
@@ -228,13 +260,22 @@ class ResourceController:
     def _decide(self, s, level, required, now):
         P = self.policy; stop, hold = [], []
         avail, pr, swap, rss = s.available_gib, s.pressure_free_percent, s.swap_used_gib, s.process_rss_gib
-        if avail is None: hold.append('available_unknown')
-        if pr is None: hold.append('pressure_unknown')
-        if rss is None: hold.append('rss_unknown')
-        if swap is None: hold.append('swap_unknown')
-        if level is None: hold.append('os_pressure_level_unknown')
-        if s.other_heavy_processes is None: hold.append('other_heavy_unknown')
-        elif s.other_heavy_processes: hold.append('other_heavy_process')
+        heavy, mlx_active = s.other_heavy_processes, getattr(s, 'mlx_active_gib', None)
+        # essential readings must be finite and in range; malformed = unknown (HOLD), and never reaches a threshold comparison or the baseline
+        for name, v, hi in (('available', avail, None), ('pressure', pr, 100.0), ('rss', rss, None), ('swap', swap, None)):
+            if v is None: hold.append(name + '_unknown')
+            elif not _valid_number(v, 0.0, hi): hold.append(name + '_invalid')
+        if not _valid_number(avail, 0.0, None): avail = None
+        if not _valid_number(pr, 0.0, 100.0): pr = None
+        if not _valid_number(rss, 0.0, None): rss = None
+        if not _valid_number(swap, 0.0, None): swap = None
+        if not (isinstance(level, int) and not isinstance(level, bool) and level in OS_PRESSURE_LEVELS.values()): hold.append('os_pressure_level_unknown'); level = None
+        if heavy is None: hold.append('other_heavy_unknown')
+        elif not (isinstance(heavy, int) and not isinstance(heavy, bool) and heavy >= 0): hold.append('other_heavy_invalid')
+        elif heavy: hold.append('other_heavy_process')
+        if mlx_active is not None:                                                  # optional native MLX guard (old paced >18 GiB), kept whenever the sampler reports it
+            if not _valid_number(mlx_active, 0.0, None): hold.append('mlx_active_invalid')
+            elif mlx_active > P['mlx_active_gib_stop_above']: stop.append('active_mlx_memory_above_guideline')
         if s.power_source == 'AC': pass
         elif s.power_source == 'BATTERY': hold.append('not_ac')
         else: hold.append('power_unknown')
@@ -242,7 +283,7 @@ class ResourceController:
         if pr is not None:
             if pr <= P['stop_pressure_free_percent_max']: stop.append('pressure_free_at_or_below_15')
             elif pr < P['continue_pressure_free_percent_min']: hold.append('low_pressure_free')
-        if level is not None and level & P['os_critical_mask']: stop.append('os_memory_pressure_critical')
+        if level is not None and level == P['os_critical_level']: stop.append('os_memory_pressure_critical')
         if rss is not None:
             self.peak_rss_gib = max(self.peak_rss_gib, rss)
             if rss > P['rss_envelope_gib']: stop.append('process_rss_above_8gib')
@@ -260,6 +301,7 @@ class ResourceController:
             if self.baseline_swap is None: self.baseline_swap = swap
             growth = swap - self.baseline_swap
             if growth > P['swap_cumulative_net_growth_cap_gib']: stop.append('swap_net_growth_over_cap')
+            if swap > P['swap_used_absolute_cap_gib']: stop.append('swap_used_above_absolute_cap_16gib')
             t = getattr(s, 'monotonic_seconds', None)
             if self.last_swap is not None and t is not None and self.last_swap_time is not None and t - self.last_swap_time > 0:
                 trend = (swap - self.last_swap) / ((t - self.last_swap_time) / 60.0)
@@ -553,7 +595,7 @@ def prepare_scope_v3(*, plan_path, expected_plan_sha256, cert_path, cert_sha256,
                   'proof_payload_sha256': rep['_proofs'][u['index']]['output_tensor_payload_sha256']} for u in plan['units']]
     files = {'plan': v2._file_binding(plan_path), 'quant_map': v2._file_binding(quant_map_path), 'historical_certificate': v2._file_binding(cert_path),
              'historical_proof': v2._file_binding(proof_path), **{'prev_' + k: dict(v) for k, v in prev['files'].items()}}
-    previous_attempt = {k: prev[k] for k in ('counts', 'scope_digest', 'instruction_sha256', 'retained_receipts', 'quantized_receipts')}
+    previous_attempt = {k: prev[k] for k in ('counts', 'scope_digest', 'instruction_sha256', 'retained_receipts', 'quantized_receipts', 'swap_baseline_gib')}
     inputs = {'roots': roots, 'files': files, 'source_shards': {k: dict(v) for k, v in plan['source_shards'].items()}, 'inventory_sha256': shared.identity(inventory),
               'plan_sha256': plan['plan_sha256'], 'expected': asdict(expected), 'installed': inst, 'previous_attempt': previous_attempt, 'adoption': adoption}
     scope = {'schema': SCOPE_SCHEMA, 'scope_kind': SCOPE_KIND, 'experiment': 'VERO_TO_MRI_ACCURACY_RECOVERY_V1', 'action': ACTION, 'implemented_by': v2.IMPLEMENTED_BY,
@@ -640,7 +682,8 @@ def admit_v3(*, scope_path, scope_sha256, human_path, human_sha256, review_path,
     inputs = {k: scope.get(k) for k in ('roots', 'files', 'source_shards', 'inventory_sha256', 'plan_sha256', 'expected', 'installed', 'previous_attempt', 'adoption')}
     _req(scope.get('input_sha256') == shared.identity(inputs), 'Scope input digest is inconsistent with its inputs')
     pa, ad = scope.get('previous_attempt'), scope.get('adoption')
-    _req(isinstance(pa, dict) and pa.get('counts') == OLD_COUNTS and pa.get('scope_digest') == previous_pins.get('scope_digest') and pa.get('quantized_receipts') == 0,
+    _req(isinstance(pa, dict) and pa.get('counts') == OLD_COUNTS and pa.get('scope_digest') == previous_pins.get('scope_digest') and pa.get('quantized_receipts') == 0 and
+         _valid_number(pa.get('swap_baseline_gib'), 0.0, None) and pa.get('swap_baseline_gib') == previous_pins.get('swap_baseline_gib', pa.get('swap_baseline_gib')),
          'Scope does not bind the closed v2 attempt (counts / old scope digest)')
     _req(isinstance(ad, dict) and ad.get('schema') == ADOPTION_SCHEMA and ad.get('unit_index') == ADOPTED_UNIT and ad.get('old_receipt_fabricated') is False and
          ad.get('receipt_equivalent') is False and ad.get('old_attempt_opcounts') == OLD_COUNTS, 'Scope lacks the explicit saved-unit adoption record')
@@ -736,7 +779,8 @@ def execute(*, scope_path, scope_sha256, human_path, human_sha256, review_path, 
                 {p.name for p in units_dir.glob('unit_*.safetensors')} != {f.name for _, f in retained.values()} | {record['file']}:
             raise ValueError('Work root must hold exactly the authenticated retained units and the adopted unit; every other unit is pending GPU quantization')
         _req(prev['counts']['gpu_underlying_quantizations'] + 2 * len(pending) <= MAX_CUMULATIVE_UNDERLYING, 'Cumulative underlying quantizations would exceed the cap')
-        ctrl = ResourceController(sampler=sampler, os_level=os_level, clock=clock, sleep=sleep, log_path=work / 'v3_resource.jsonl')
+        ctrl = ResourceController(sampler=sampler, os_level=os_level, clock=clock, sleep=sleep, log_path=work / 'v3_resource.jsonl',
+                                 baseline_swap_gib=prev['swap_baseline_gib'])          # ORIGINAL authenticated v2 baseline: never reset by preflight / hold / assembly
         ctrl.preflight()
         v2.disk_gate(work, v2.disk_estimate_bytes(plan, pending), usage=disk_usage)
         adm.check('before_consumption', full=True)
@@ -764,7 +808,7 @@ def execute(*, scope_path, scope_sha256, human_path, human_sha256, review_path, 
             assemble_v3(plan, units_dir, cache_dir, done)
             finalize_cache(plan, units_dir, cache_dir, roots['source_dir'], qmap)
             cert = verify_historical_v3(plan, units_dir, cache_dir, roots['source_dir'], qmap, hist, expected, done)
-            ctrl.observe('post_verify')
+            ctrl.boundary('post_verify', enforce_window=False)       # a final STOP (or an unresolved HOLD) is persisted by the failure path below and can never publish SUCCEEDED
         except Exception as exc:
             doneN = qc.load_done(plan, units_dir) if (units_dir / 'receipts.jsonl').exists() else {}
             write_failure(work, plan, exc, backend, {'stage': 'execute', 'last_resource_sample': ctrl.last, 'units_with_passing_receipts': len(doneN), 'partial': True,
