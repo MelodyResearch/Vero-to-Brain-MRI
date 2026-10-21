@@ -1,0 +1,10 @@
+# PROPOSED, UNAPPLIED. Not a plan change: CURRENT_RESEARCH_PLAN.md and its lock are frozen; section 8 requires an explicit researcher approval record.
+# Rationale (CPU/preparation only, no new native evidence): the Adam60 parent artifacts are not recoverable; the authentic existing
+# P_calibrated13 Adam52/boundary114 parent matches its original proof. No result-based selection; final100/new16 were not used.
+--- a/research/CURRENT_RESEARCH_PLAN.md
++++ b/research/CURRENT_RESEARCH_PLAN.md
+@@ -67,3 +67,3 @@
+ 
+-机制与源代码检验通过后，仅准备一次有限匹配A/B小试：相同已训练父checkpoint（Adam60按训练链连续性预定，不按final挑优）、F32策略、架构/LoRA、Adam/RNG、reward/LR、真实TRAIN配对图像及每类曝光。每arm有限8个sequence响应与相同Dallas控制响应；有效更新数为结果，不以重抽/补训强求匹配。两arm分别恢复同一父状态，串行单模型，不把原18臂重跑。
++机制与源代码检验通过后，仅准备一次有限匹配A/B小试：相同已训练父checkpoint（原P_calibrated13 boundary114/Adam52，step52/group114，adapter c70b426b…329db6、receipt e0696a81…cc882a；按原训练链祖先连续性预定，不按final挑优；Adam60不可复现，不使用）、F32策略、架构/LoRA、Adam/RNG、reward/LR、真实TRAIN配对图像及每类曝光。每arm有限8个sequence响应与相同Dallas控制响应；有效更新数为结果，不以重抽/补训强求匹配。两arm分别恢复同一父状态，串行单模型，不把原18臂重跑。
+ 
