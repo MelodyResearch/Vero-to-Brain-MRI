@@ -1,0 +1,115 @@
+{
+  "schema": "safe-micro-stage1-cache-actual-v1",
+  "status": "CACHE_RECOVERY_PASS_THEN_STOP",
+  "scope_file_sha256": "49dad3571308ed23af9efb1cec6fd78cbeb8e66e7760a724953fb3316d332419",
+  "certificate_sha256": "f3d0cdc0a00c2c7bc94938c0f594f677e7660542184f3b50129ead092777ff89",
+  "inventory": {
+    "units": 750,
+    "quantized_modules": 344,
+    "retained_tensors": 406,
+    "tensors_checked": 1438
+  },
+  "gpu": {
+    "adopted_saved_units": 1,
+    "adopted_unit_evidence_missing": [
+      "module_path_bitwise_equal_result",
+      "reload_bitwise_equal_result",
+      "mlx_peak_mib",
+      "mlx_active_after_release_mib",
+      "residual_within_budget",
+      "post_unit_resource_receipt"
+    ],
+    "cumulative_underlying_quantizations": 688,
+    "cumulative_underlying_quantizations_max": 688,
+    "device": "gpu",
+    "elapsed_seconds": 84.454032833979,
+    "model_loaded": false,
+    "new_direct_quantize_ops": 343,
+    "new_gpu_unit_attempts": 343,
+    "new_module_path_quantizations": 343,
+    "new_underlying_quantizations": 686,
+    "original_swap_baseline_gib": 13.96966796875,
+    "power_sample_not_falsified": true,
+    "previous_attempt_underlying_quantizations": 2,
+    "retained_units_adopted": 406,
+    "scope_sha256": "31e1c8fe5ab5ff0d6c31d1bd8a20ff7785e13c86d2fcadeca85e0a444568fb70",
+    "training": false
+  },
+  "shards": {
+    "model-00001-of-00002.safetensors": {
+      "bytes": 4207002792,
+      "sha256": "6a332d4977c95fd6b51ac7155e039016d90041da1bf3cdd3e500192ea00fa626"
+    },
+    "model-00002-of-00002.safetensors": {
+      "bytes": 920772600,
+      "sha256": "2c94dc6761ab4641a4e2c612eb3ff5fd62d939c5704f8301025e741650b9e1e8"
+    }
+  },
+  "root_independent_final_shard_stream_hashes_match": true,
+  "new_unit_checks": {
+    "receipts": 343,
+    "all_passed": true,
+    "all_reload_bitwise_equal": true,
+    "all_module_path_bitwise_equal": true
+  },
+  "actual_exit": {
+    "code": 0,
+    "child_reaped": true,
+    "wall_seconds": 85.10271295794519,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+    "exact_child_peak_RSS_GiB": 1.9616851806640625,
+    "child_PID_absent_on_postcheck": true
+  },
+  "resources": {
+    "min_available_GiB": 6.3365631103515625,
+    "min_pressure_free_percent": 38.0,
+    "max_sampled_RSS_GiB": 1.43206787109375,
+    "max_MLX_unit_peak_MiB": 2262.722667694092,
+    "max_MLX_after_unit_clear_MiB": 7.62939453125e-06,
+    "swap_start_GiB": 14.689267578125,
+    "swap_end_GiB": 14.689267578125,
+    "swap_max_GiB": 14.689267578125,
+    "swap_growth_during_cache_GiB": 0.0,
+    "original_baseline_GiB": 13.96966796875,
+    "original_baseline_net_growth_GiB": 0.719599609374999,
+    "effective_cap_GiB": 15.46966796875,
+    "all_boundary_decisions_CONTINUE": true,
+    "post_exit_available_GiB": 8.527969360351562,
+    "post_exit_pressure_free_percent": 47.0,
+    "post_exit_swap_GiB": 14.681455078125,
+    "post_exit_OS_pressure_level": 2,
+    "battery_start_percent": 76,
+    "battery_end_percent": 75,
+    "post_exit_lock_has_no_holders": true,
+    "thermal": "SENSOR_UNAVAILABLE"
+  },
+  "release_evidence": {
+    "backend_release_returned": true,
+    "exact_child_reaped": true,
+    "final_allocator_byte_measurement": "NOT_SEPARATELY_MEASURED",
+    "last_unit_allocator_residual_not_global_release_proof": true
+  },
+  "model_loads": 0,
+  "model_forward": 0,
+  "generation": 0,
+  "native_model_backward": 0,
+  "optimizer_updates": 0,
+  "MRI_accuracy": "NOT_RUN",
+  "automatic_next_stage": false,
+  "later_stage_authorized": false,
+  "parent": "Preserved P_calibrated13 / Adam52 / boundary114; no model/optimizer/RNG accessed for mutation",
+  "limitations": [
+    "Original adopted unit0 remains missing its six historical metrics; not fabricated.",
+    "This is cache byte-identity PASS, not a model-loader/GSPO/accuracy qualification.",
+    "Thermal sensor unavailable; OS level2 warning observed, no level4 critical.",
+    "Model loading still needs fresh scope/review/permission and resource gate."
+  ],
+  "independent_review": {
+    "path": "results/SAFE_MICRO_STAGE1_CACHE_ACTUAL_INDEPENDENT_REVIEW_V1.json",
+    "sha256": "a1f75e99695bbc4d7542b9ce5dbad22097acdb6c569e9899d83c144f21670abf",
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "reviewer_id": "/root/full_arm_execution_contract",
+    "scope": "saved-only actual metadata/log/receipt arithmetic; root final-shard streaming proof authenticated, not duplicate shard read"
+  }
+}

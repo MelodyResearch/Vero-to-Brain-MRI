@@ -1,0 +1,119 @@
+{
+  "schema": "safe-micro-stage1-cache-actual-independent-review-v1",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "reviewer_id": "/root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "scope_file_sha256": "49dad3571308ed23af9efb1cec6fd78cbeb8e66e7760a724953fb3316d332419",
+  "scope_sha256": "d372c429c46536c928297e5066f088e92dfff15fff0291dcd4f9e3c16bb576ee",
+  "source_files_hash_verified": 66,
+  "metadata_files_hash_verified": 3,
+  "private_detail_sha256": "3d641a424e910a38443ab7c728370bdf4320e04cc2c69b6914409f9d2da3122d",
+  "reviewed_public_aggregate_sha256": "a0235afec05ca7c7a9617937df52abc7bf6108e9503cbe68b1226df583e2e3a8",
+  "certificate_sha256": "f3d0cdc0a00c2c7bc94938c0f594f677e7660542184f3b50129ead092777ff89",
+  "actual_exit_witness_sha256": "1f5b4c35e667a82b40e3ba693d226bc75d0b2a1155284401ad2fd237c86199bb",
+  "actual_result": "CACHE_BYTE_IDENTITY_RECOVERY_COMPLETED_THEN_STOP",
+  "inventory": {
+    "units": 750,
+    "quantized_modules": 344,
+    "retained_tensors": 406,
+    "tensors_checked": 1438
+  },
+  "receipts": {
+    "ordinary": 749,
+    "retained_inherited": 406,
+    "new_quantized": 343,
+    "adopted_unit0_no_ordinary_receipt": 1,
+    "new_passed": 343,
+    "new_reload_equal": 343,
+    "new_module_path_equal": 343,
+    "ordinary_receipt_file_source_unit_hash_metadata_matches_historical": 749
+  },
+  "quantization_operations": {
+    "new_direct": 343,
+    "new_module": 343,
+    "new_total": 686,
+    "old_total": 2,
+    "cumulative": 688
+  },
+  "historical_shards": {
+    "model-00001-of-00002.safetensors": {
+      "bytes": 4207002792,
+      "sha256": "6a332d4977c95fd6b51ac7155e039016d90041da1bf3cdd3e500192ea00fa626"
+    },
+    "model-00002-of-00002.safetensors": {
+      "bytes": 920772600,
+      "sha256": "2c94dc6761ab4641a4e2c612eb3ff5fd62d939c5704f8301025e741650b9e1e8"
+    }
+  },
+  "historical_identity_provenance": {
+    "certificate_equal_to_historical": true,
+    "root_independent_stream_hash_record_authenticated": true,
+    "reviewer_large_payload_rehash": false,
+    "reviewer_unit_payload_reread": false
+  },
+  "actual_exit": {
+    "code": 0,
+    "reaped": true,
+    "closed_log_SHA_verified": true,
+    "external_wall_seconds": 85.10271295794519,
+    "certificate_elapsed_seconds": 84.454032833979
+  },
+  "resources": {
+    "boundary_samples": 690,
+    "CONTINUE": 690,
+    "HOLD": 0,
+    "STOP": 0,
+    "supervisor_NORMAL": 690,
+    "OS_NORMAL": 1,
+    "OS_WARNING": 689,
+    "OS_CRITICAL": 0,
+    "thermal_sensor_unavailable": 690,
+    "power_BATTERY": 690,
+    "battery_percent_min": 75,
+    "battery_percent_max": 76,
+    "available_GiB_min": 6.3365631103515625,
+    "pressure_free_percent_min": 38,
+    "swap_used_GiB_constant": 14.689267578125,
+    "original_baseline_GiB": 13.96966796875,
+    "original_baseline_net_growth_GiB": 0.719599609374999,
+    "exact_child_wait4_peak_RSS_GiB": 1.9616851806640625,
+    "boundary_sample_peak_RSS_GiB": 1.43206787109375,
+    "operation_RSS_samples": 1715,
+    "operation_sample_peak_RSS_GiB": 1.960113525390625,
+    "new_quantized_unit_MLX_peak_MiB": 2262.722667694092,
+    "new_quantized_unit_after_clear_MiB": 7.62939453125e-06,
+    "essential_numeric_sensor_missing": 0
+  },
+  "release": {
+    "source_ordered_backend_release_returned": true,
+    "exact_child_reaped": true,
+    "post_exit_lock_inspection_no_open_holders": true,
+    "global_allocator_final_release_bytes": "NOT_SEPARATELY_MEASURED",
+    "postprocess_monitor_OS_and_PID_record": "Operator saved record authenticated; not resampled by reviewer"
+  },
+  "adopted_unit0_missing_metrics": [
+    "module_path_bitwise_equal_result",
+    "reload_bitwise_equal_result",
+    "mlx_peak_mib",
+    "mlx_active_after_release_mib",
+    "residual_within_budget",
+    "post_unit_resource_receipt"
+  ],
+  "model_loads": 0,
+  "model_forward": 0,
+  "generation": 0,
+  "native_model_backward": 0,
+  "optimizer_updates": 0,
+  "automatic_next_stage": false,
+  "later_stage_authorized": false,
+  "limitations": [
+    "This is cache bytes/lineage identity evidence, not model-loader, effective-weight, F32 probability, GSPO or MRI accuracy qualification.",
+    "Full final shard bytes were independently streamed by root; this reviewer authenticated that saved hash record and exact historical certificate metadata without duplicating the large reads.",
+    "749 ordinary receipt hash fields match pinned historical proof metadata; no unit or weight payload was reopened by reviewer. Adopted unit0 is separate and its six missing metrics remain missing.",
+    "Boundary, operation-RSS, os.wait4 RSS and MLX per-unit peaks measure different endpoints. Last-unit clear and post-release sampled allocator state do not establish a separate global allocator release measurement.",
+    "Thermal sensor was unavailable throughout; OS warning was observed. No guarantee of macOS stability follows.",
+    "Parent Adam/RNG tensors were not independently read; source/action and closed receipts establish no model/optimizer execution, not a new full-state tensor audit.",
+    "Permission is consumed for CACHE_ONLY; no retry, model loading, later phase, training or evaluation is authorized."
+  ],
+  "privacy": "Aggregate counts and whole-artifact/source/cache hashes only; no patient identifiers, private paths, image pixels, responses, token IDs or model/state payloads."
+}
