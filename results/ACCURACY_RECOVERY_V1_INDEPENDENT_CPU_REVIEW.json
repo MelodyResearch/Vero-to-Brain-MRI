@@ -1,0 +1,106 @@
+{
+  "actual_operations_by_reviewer": {
+    "model_loads": 0,
+    "native_backwards": 0,
+    "native_forwards": 0,
+    "native_generations": 0,
+    "real_checkpoint_payloads_read": 0,
+    "real_optimizer_updates": 0
+  },
+  "actual_verification": {
+    "command": "env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 ACCURACY_REVIEW_SOURCE_ROOT=<pinned_snapshot> PYTHONPATH=src python3 -m pytest -q <independent_transaction_faults.py> <independent_GO_faults.py> tests/test_accuracy_recovery_v1.py tests/test_accuracy_recovery_driver_v1.py tests/test_accuracy_recovery_entry_v1.py tests/test_accuracy_recovery_two_phase_v1.py tests/test_accuracy_recovery_eval_v1.py tests/test_accuracy_recovery_round2_v1.py tests/test_accuracy_recovery_criterion_v1.py tests/test_accuracy_recovery_policy_v1.py",
+    "critical_original_sources_unchanged_since_9b03f90": [
+      "accuracy_recovery_v1.py",
+      "accuracy_recovery_driver_v1.py",
+      "accuracy_recovery_entry_v1.py",
+      "shared_rollout_gspo_core_v1.py",
+      "shared_rollout_gspo_backend_v1.py",
+      "paired_prompt_groups_v1.py",
+      "vero_mri_reward.py",
+      "paired_z045_f32_backend_v1.py"
+    ],
+    "diff_check": "PASS on evaluation and protocol changes",
+    "elapsed_seconds": 2.57,
+    "failed": 0,
+    "metadata_import_check_mlx_imported": false,
+    "passed": 156,
+    "snapshot": "git archive of reviewed_commit; matching hashes against current worktree",
+    "test_accounting": {
+      "additional_author_criterion_policy_score_summary_cases": 37,
+      "independent_GO_counterexamples": 5,
+      "independent_transaction_faults": 4,
+      "original_author_cases": 110
+    }
+  },
+  "confirmed": {
+    "GO": "Both B-A and B-Parent must strictly improve strict sequence balanced accuracy, T1 recall and mean-candidate balanced accuracy. FLAIR and Dallas overall/same/different must not fall versus either reference. When swap summaries are supplied, B opposite-class changes must not fall versus A. Counts/cosine are diagnostics only.",
+    "admission": "Current human action, independent different-agent-kind source/input/scope digest, once-only ledger, source rehash and canonical persistent output root are required. This review is not an accepted exact launch-scope review.",
+    "audit": "Backward mutation of a parameter is refused before any update. Author synthetic faults also require pre-restore Adam/RNG equality; rollout permits intentional R1 only while preserving optimizer/parameters.",
+    "crash_recovery": "Injected fault after atomic terminal rename recovers the committed boundary without another rollout, old scoring, backward or update. Incomplete reserved attempts fail closed.",
+    "evaluation": "New authentic Adam52 parent/child validator and matched F32 serial evaluator; no-update arms alias parent without duplicate calls. Prospective records/token/source/policy/budget freeze contains no fabricated child hashes; terminal finalization must reproduce frozen part.",
+    "fairness": "One shared F4+T4 rollout. A=F4/T4 and B=F2T2/F2T2; 1/8 per admitted response; both arms restore identical parent R0 and independently receive at most one update. Gate is identical in arms, explicitly a stage change from the original parent strict gate.",
+    "numerical_gate": "State preflight makes no probability claim. Fresh shared8 own-context rollout-versus-old scoring parity <=0.002 must pass before any gradient/step; parity failure may consume the sole rollout, with no resampling.",
+    "parent": "Original non-nested boundary114/Adam52 metadata schema and frozen receipt/adapter identities, not the lost Adam60 or a fabricated offset conversion.",
+    "saved_summary": "Mean is primary; sum and first are separate secondary readouts. Exact40 rows, class recalls, invalids, correct-minus-wrong margins, deltas and costs are reported without best-readout selection.",
+    "two_phase": "Both parent-state gradients and hash-bound tensor/metadata archives plus CPU comparison precede the first persistent optimizer step. Injected B-gradient failure leaves zero updates."
+  },
+  "independent_fixture_sha256": {
+    "GO_faults": "5837b3d561c1129c17efbd377779d8f88d84572b3b0510344601e81af366fadd",
+    "transaction_faults": "c48fcc2a73e50780991bd4003f1a8ff41ec9784919ec3bcc7fcd1f9dc750f52a"
+  },
+  "limitations": [
+    "CPU numpy fake-backend and synthetic-row fixtures do not establish native F32 gradients, probabilities, cache compatibility, actual parameter integrity or accuracy.",
+    "Exact real runtime/source/input closure and final launch scope still require preparation and independent binding review, plus genuine human authorization. No launch token is issued here.",
+    "Operation-start deadlines and API counters are not interruptible hard wall limits or hardware kernel counts; autograd checkpoint recomputation and generation lookahead are additional work.",
+    "Engineering evaluation is internal dev only (four sequence people); it does not establish independent generalization or clinical utility. Swap aliases reuse real rows and are not independent samples.",
+    "A GO means only a candidate requiring new authorization, not permission for more training. Mean/sum/first cannot be selected after outcomes.",
+    "The inherited parent-to-stage gate change is explicit and shared by A/B, so this is a local Vero-style control rather than a complete official Vero reproduction.",
+    "Whole legacy suite was not rerun. Parent-reported legacy workspace/dependency failures are not independently resolved by these targeted passes.",
+    "CPU cache reconstruction has a separate independent review; no actual conversion or native execution result is certified by this main-source review."
+  ],
+  "native_execution_status": "NOT_RUN",
+  "primary_implementer": "Claude Code; independent Codex fixtures and review",
+  "privacy": "Review contains aggregate/source/test hashes only; no patient identities, response text/token arrays, MRI pixels, weights, optimizer arrays or private absolute runtime paths.",
+  "reviewed_commit": "1f73b8348b987d9536366f915f6c06ffc40c0f53",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "accuracy-recovery-v1-independent-cpu-review-v1",
+  "scope": "Frozen source, synthetic CPU transaction faults, evaluation admission and conservative GO policy; not a native launch or accuracy approval",
+  "scope_approval_issued": false,
+  "source_and_protocol_sha256": {
+    "configs/accuracy_recovery_runtime_v1.json": "045457a11b62dc2c9ca8e3d281843f4b0c2ee4eefac2c7a6315a8806337d75d2",
+    "research/PROPOSED_PLAN_DIFF_ADAM60_TO_ADAM52_UNAPPLIED.patch": "074a92ff7fc86da4ec0e82f40caba7792daa176e3641c1bef9bd33970ce3c488",
+    "research/VERO_TO_MRI_ACCURACY_RECOVERY_V1.md": "028e601d7a1f886e9b7f5b003d0af9b11e2d16837d192b9653f2e8c10d748d0f",
+    "scripts/run_accuracy_recovery_eval_v1.py": "38097525b043b41827128a657958429958beabf9fae5292c28901eb601c5ecb8",
+    "scripts/run_accuracy_recovery_v1.py": "1d1b44bd28daef2b0fc0ce1b0229f40417a56d5f0398e705a90f59111691f284",
+    "src/mri_rl/accuracy_recovery_driver_v1.py": "f66d18bf48bb27458c8343f212501134ddaf6f507ae2667916adcbcee28185e4",
+    "src/mri_rl/accuracy_recovery_entry_v1.py": "8abb5d64210f4c595590a25dea82425306302b86ecb327237fd58138fb1ce679",
+    "src/mri_rl/accuracy_recovery_eval_v1.py": "1d17ab4d11b8ef8a21e0692f5357961cb6c8e6f17207fcf3e25069a9b7bb0698",
+    "src/mri_rl/accuracy_recovery_v1.py": "c00c7772ddb61d88159847243c671e921162bc1a88f437a9cc32ff2003cb8718",
+    "src/mri_rl/answer_likelihood.py": "b27b8d7d6788290a643ec59d7cc4da61eb6d5d72da90a1f6471501b2c889f4eb",
+    "src/mri_rl/class_margin_aux_v2.py": "4343fe861ac4d060afd8509939578b3c87f3fc1d92bfd38983ed09e11086ebb8",
+    "src/mri_rl/continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+    "src/mri_rl/optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+    "src/mri_rl/paired_prompt_groups_v1.py": "4a8fea69ba4e14b110b192a89cda27d72bce05aecf5f33ca14a0728cef7ffa2e",
+    "src/mri_rl/paired_z045_continuation_driver_v1.py": "18131e9d1f1a70c2f76f75b5ca7d7ff6de205cc1587fed413c4e92af88ce5f00",
+    "src/mri_rl/paired_z045_continuation_entry_v1.py": "98e05a4c8b2bdee6818d3fbbd46886b2c9fd59b5b610cad33221b614a41a78ed",
+    "src/mri_rl/paired_z045_evaluation_v1.py": "7f874193cb172e2890fc29a80139c3e0cf284607cb3bc9e9d4ed6dc2343179d7",
+    "src/mri_rl/paired_z045_f32_backend_v1.py": "1b7e75cac1f30b3f888cfc6dcad5235f6614a81247d9edebca464d4b65e5df07",
+    "src/mri_rl/paired_z045_matched_f32_eval_v1.py": "1174a904fd2440f6cc919a0048ccbec21824bba80c451e5406ce61c321a85626",
+    "src/mri_rl/shared_rollout_gspo_backend_v1.py": "13e72e584258fe4ca02f10d6c3b065ce19270cd96b62648a709188194113ad7c",
+    "src/mri_rl/shared_rollout_gspo_core_v1.py": "c9fc3f999d7e349250bca8dc8db524cbb595a8a87caeaac6ebfea57e24a2f12e",
+    "src/mri_rl/vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8"
+  },
+  "test_sha256": {
+    "tests/test_accuracy_recovery_criterion_v1.py": "0eb0c4a1cd86bb9cecec3d99f611512f7d70dfb018af21ff2ec1c875b03e8978",
+    "tests/test_accuracy_recovery_driver_v1.py": "8a9e262fc726a22d2aaebc61fb11e441ba4922b16aa79b7fb1faae2bb91183fb",
+    "tests/test_accuracy_recovery_entry_v1.py": "322e582dd223d9639cbedc9deb23def407f843b794dec5f606e76c306acc6ff2",
+    "tests/test_accuracy_recovery_eval_v1.py": "5d14f809c8f302206968c095fc5f4f0c3659d556f1f56270b44d236cf811e3ba",
+    "tests/test_accuracy_recovery_policy_v1.py": "f359c4ef3821caaf04bf851ae3335b7906a48aefa11f8202261ffd5a7ddba446",
+    "tests/test_accuracy_recovery_round2_v1.py": "784a27eab0dfddb280e287631405569990a6e4e07b406df7e6b4aea82c26317a",
+    "tests/test_accuracy_recovery_two_phase_v1.py": "e3f1172ba60b6954d1b0be62801ea10fa0e896d4a24d47db0bd97e1e39a33a05",
+    "tests/test_accuracy_recovery_v1.py": "0f4faefa81a4bcd230352a735c6dca3be943737bbd848ea65a7c4a1e0b243d98"
+  },
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

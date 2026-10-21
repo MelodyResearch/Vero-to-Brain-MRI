@@ -1,0 +1,154 @@
+{
+  "actual_runtime": {
+    "base_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "base_shard_bytes": 17534339512,
+    "base_shards_verified": 4,
+    "cpu_cache": {
+      "attempted_units": 750,
+      "distinct_failures": [
+        "plan-derived assembler part-order assumption",
+        "real quantized payload differs from historical even apart from layout"
+      ],
+      "independent_private_payload_comparison_sha256": "14ddada2fb883130a14fcdf5e179eec19f9912888c729e2f9a6261f7e1714370",
+      "quantized_units": 344,
+      "quantized_units_fully_matching_historical_payload": 0,
+      "resources": {
+        "all_resource_stop_reasons": [],
+        "backwards": 0,
+        "certificate_emitted": false,
+        "min_available_gib": 7.9169769287109375,
+        "model_forwards": 0,
+        "models_loaded": 0,
+        "not_certified": "all344quantized unit payloads differ from historical; retained406 exact; no retry/substitute",
+        "observed_error": "Cache index differs from the plan-derived key/shard mapping",
+        "optimizer_updates": 0,
+        "quantized": 344,
+        "resource_samples": 1502,
+        "sampled_peak_process_rss_gib": 2.2822418212890625,
+        "unit_rss_samples": 9220,
+        "units": 750,
+        "whole_run_max_swap_growth_gib": 0.0
+      },
+      "retained_payload_and_file_matches": 406,
+      "source_unit_matches": 750,
+      "status": "FAILED_NOT_CERTIFIED_NO_RETRY"
+    },
+    "historical_installed_source_matches": "5/5 checked",
+    "historical_transitive_equivalence": "NOT_VERIFIED",
+    "pins": {
+      "mlx": "0.32.4",
+      "mlx-metal": "0.32.4",
+      "mlx-vlm": "0.7.8",
+      "transformers": "5.20.0"
+    },
+    "python": "3.13.6",
+    "runtime_source_closure_bound": 12
+  },
+  "actual_scientific_execution": {
+    "accuracy_improvement": "NOT_MEASURED",
+    "generated_responses": 0,
+    "model_backwards": 0,
+    "model_forwards": 0,
+    "native_F32_new_parent_path": "NOT_VERIFIED",
+    "new_full_model_loads": 0,
+    "optimizer_updates": 0
+  },
+  "cache_recovery_preparation": {
+    "GPU_execution": "NOT_RUN",
+    "actual_cpu_preparation": "All4source shards rehashed;406retained copied and independently authenticated;0quantized CPU outputs adopted",
+    "actual_global_lock": "canonical project local_data/c_two_task_pool_v1/tier_c_v1/remaining20_bundle_v1/remaining20.lock",
+    "budgets": {
+      "backwards": 0,
+      "direct_quantizations_max": 344,
+      "generated_tokens": 0,
+      "model_forwards": 0,
+      "model_loads": 0,
+      "module_path_quantizations_max": 344,
+      "operation_start_seconds": 1800,
+      "optimizer_updates": 0,
+      "quantized_units_max": 344,
+      "total_underlying_quantizations_max": 688
+    },
+    "claude_final_commit": "ae4a4838683af02a27ad0c2f41849c9ec7763b64",
+    "human_authorization": "NOT_GRANTED_THIS_SCOPE; none fabricated",
+    "independent_tests": "103passed1skipped author targeted;9 independent passed; overlapping with other runs, not additive",
+    "input_sha256": "23a58cd1e51ebc882abf4fbe92ff67da153e6dd728e3928ef48a3eddd4f56a8a",
+    "installed_MLX_files_fingerprinted": 452,
+    "review": "results/ACCURACY_RECOVERY_HISTORICAL_GPU_CACHE_V2_INDEPENDENT_REVIEW.json",
+    "reviewed_source_files": 22,
+    "scope_FILE_sha256": "1f2bd2db5a7b6161334979fdea2a4d0d225a2b5a4b8fbe51506f820b49509b7e",
+    "scope_canonical_sha256": "3edf070143c8a7e42eca71a8a5817005d359fb0f4ea591322e397f4cc1a41dc7",
+    "status": "CPU_PREPARED_EXACT_SCOPE_INDEPENDENTLY_REVIEWED_GPU_NOT_RUN"
+  },
+  "claude_commits": [
+    "ae4a4838683af02a27ad0c2f41849c9ec7763b64 GPU cache v2: real independent-review admission, immutable execution scope, canonical remaining20 flock, 688-quantization accounting",
+    "054ed618c54416b4bee98524a02b9077bb732a2c Prepare gated GPU historical-cache v2 (not executed): adopt 406 retained, 344 GPU quantizations vs pinned proof",
+    "18c8e06e472634a2e69931341c16160866d0a2e2 Fix cache layout checker: derive sorted unit-header order and exact shard headers/bytes from the plan",
+    "2cdb3860a46fc0e60965de5cd5ab612f79446979 Record failed CPU quant-cache rebuild: hashes differ from historical, not certified",
+    "1f73b8348b987d9536366f915f6c06ffc40c0f53 Freeze conservative GO policy (B-A and B-Parent strict benefit; FLAIR/Dallas protection) and saved-only score summary",
+    "5ad9d1d2893dffee2f6e3a782afa8121669ef3bf Fix accuracy-recovery criterion: admitted counts are diagnostics only; add prospective evaluation proposal/finalize",
+    "043d9d68c660b968f9d3865d7ca4e0dc51753f88 Add CPU-only exact quant cache wrapper with pinned historical identity and strict resource gate",
+    "f718098631abf15593d5571d8d5c4489a637f004 Record recovered Qwen base and pinned MLX runtime for accuracy recovery v1",
+    "9b03f90846b4c88c8a4f894ed580763af1c061d8 Add VERO_TO_MRI_ACCURACY_RECOVERY_V1: Adam52 two-phase gradient-first driver, evaluator, protocol"
+  ],
+  "codex_role": "Independent real-parent/source/image evidence binding, adversarial transaction/GO/cache fixtures, reviews and orchestration; no Codex replacement of the Claude production implementation",
+  "confirmed_codex_findings_returned_to_claude": [
+    "Both gradient archives/comparison must precede any step; parameter/Adam/RNG audits must happen before restoration",
+    "Admitted-count/cosine tie is not an accuracy decision; independent five false-GO examples fixed",
+    "Cache output must match externally pinned history, not only self-consistency",
+    "Actual serializer-order assumption fixed while historical payload mismatch still refuses",
+    "GPU draft rejected absent review evidence/human instruction/source closure/global flock; final actual-artifact admission fixed"
+  ],
+  "data_scope": {
+    "engineering_evaluation": "all24sequence and16Dallas previously explored internal-dev;4sequence people; no independent generalization claim",
+    "fixed_training_pair": "existing original TRAIN, first patient by predeclared metadata ordering; same z045 FLAIR/T1;2exact source/pixel checks; no168-image rerender",
+    "frozen_plan_modified": false,
+    "new16_or_final100_used_for_selection": false,
+    "payload_root": "canonical project local_data/accuracy_recovery_v1 outside worktree"
+  },
+  "experiment": "VERO_TO_MRI_ACCURACY_RECOVERY_V1",
+  "fixture_hygiene": "Two temporary source-mutation test mishaps were byte-restored with no model/converter active; final core/driver/entry/eval hashes independently match frozen review. Subsequent mutations restricted to unique isolated snapshots. Preserved in experiment log; no historical parameter/RNG changes.",
+  "implemented": {
+    "explicit_stage_change": "same narrow informative group gate in both arms, distinct from original parent all-full-format gate; local Vero-style control, not official reproduction",
+    "main_driver": "Both full gradients and norms/cosine persisted before either independent <=1 Adam update; parent state and disk immutable; no artificial advantages or momentum-only update",
+    "matched_evaluator": "Parent/A/B same F32; fixed40 internal-dev and8 real-output swap aliases; mean primary, sum/first secondary; class recalls/invalids/margins/costs",
+    "numerical_gate": "fresh on-policy own-old parity <=0.002 before any step; state preflight not probability qualification",
+    "scientific_criterion": "B-A and B-Parent strict greedy BA/T1 recall/mean-candidate BA improvements; FLAIR and Dallas overall and both recalls nondecreasing vs both references. Counts/norms/cos are diagnostic, not GO/STOP substitutes."
+  },
+  "next": "One fresh GPU-cache-only authorization for exact reviewed scope; first mismatch STOP/no retry. No A/B, model inference, evaluation or optimizer update authorized by it. Once actual historical cache passes, bind real native experiment scope separately.",
+  "parent": {
+    "Adam_step": 52,
+    "adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+    "arm": "P_calibrated13",
+    "boundary": 114,
+    "label": "NEW EXPERIMENT FROM AUTHENTIC ADAM52 ANCESTOR",
+    "metadata_file_authentication": "PASS_CPU",
+    "native_restore": "NOT_RUN",
+    "not_recovered_Adam60": true,
+    "receipt_sha256": "e0696a8186d413b2bb35034b5c5eb2568ddc0b05e1b719778de42fa491cc882a"
+  },
+  "primary_implementer": {
+    "actual_sessions": [
+      "e97f56ad-9c0f-4020-b1e0-f1ccd17a785e",
+      "2a2ef2c1-462f-433b-b890-c6c2771c2b33",
+      "ef1f8629-cead-485d-8fec-8efe75b67f41"
+    ],
+    "agent": "Claude Code",
+    "cli_version": "2.1.303",
+    "model_observed": "claude-sonnet-5-5",
+    "permission_method": "Normal tool permissions and explicit path/tool allowances; no skip/bypass mode. Initial denials preserved in private logs.",
+    "role": "Research reasoning, source implementation, tests, fixes, pinned runtime installation/download and one CPU exact-cache attempt"
+  },
+  "privacy": "Source/version/count/hash aggregates only. No MRI/IDs/raw responses/tokens/weights/Adam/RNG/credentials.",
+  "readiness": "A/B source and matched evaluation implemented/CPU reviewed; native A/B remains BLOCKED by absent historically identical cache. Only finite GPU per-tensor cache restoration scope is now ready for a fresh explicit human decision.",
+  "schema": "claude-primary-accuracy-recovery-actual-work-v1",
+  "verification": {
+    "independent_main_snapshot": "156 passed in2.57s; includes4transaction faults and5GO counterexamples",
+    "independent_review_files": [
+      "results/ACCURACY_RECOVERY_V1_INDEPENDENT_CPU_REVIEW.json",
+      "results/ACCURACY_RECOVERY_CPU_CACHE_INDEPENDENT_REVIEW_V1.json"
+    ],
+    "legacy_full_suite": "Claude-reported prior full run1475pass/23fail/8errors; missing historical workspace/dependencies remain. Root did not rerun the full suite; not claimed green.",
+    "root_targeted_run": "170 passed in2.47s including37CPU cache tests; overlapping tests, not an additive total"
+  }
+}

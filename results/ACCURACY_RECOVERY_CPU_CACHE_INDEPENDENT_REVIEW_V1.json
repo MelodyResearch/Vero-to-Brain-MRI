@@ -1,0 +1,87 @@
+{
+  "actual_operations_by_reviewer": {
+    "backwards": 0,
+    "forwards": 0,
+    "mlx_imports": 0,
+    "model_loads": 0,
+    "real_conversions": 0,
+    "updates": 0
+  },
+  "cache_implementation_commit": "043d9d6",
+  "findings": [
+    "All actual cache operations are forced through the CPU default device and CPU stream; failure to establish CPU default refuses before arrays. No full Qwen constructor is used.",
+    "Historical certificate file hash is mandatory. Publication requires exact historical shard hashes, config hashes, non-weight hashes, counts, plan binding and independently plan-derived index/byte mapping. Uniformly altered but internally consistent fake quantization is rejected.",
+    "Real telemetry remains visible. Existing paced resource reasons including HOLD are rejected; whole-stage swap baseline is retained through conversion, assembly, finalize and certification.",
+    "Maximum 750 unit attempts and 344 quantizations; no automatic retry of failed unit evidence."
+  ],
+  "frozen_cache_files_equal_043d9d6": true,
+  "limitations": [
+    "No real MLX import, quantization, native kernel, cache reconstruction, model load, forward, backward or update was executed by this reviewer.",
+    "Real four-shard source files were checked for existence and exact byte sizes only. Their 17,534,339,512 payload bytes were not independently rehashed in this review; execution must retain the implemented full source SHA verification.",
+    "CPU MLX uses unified memory. RSS is sampled at operation boundaries, not a hard interruptible mid-operation ceiling; no claim of zero Metal allocator initialization is made.",
+    "A CPU/GPU or runtime quantization difference must stop on historical certificate mismatch; this review does not authorize replacing the historical identity target.",
+    "This verdict covers runtime preparation only and provides no inference, training or accuracy qualification."
+  ],
+  "observed_head": "1f73b8348b987d9536366f915f6c06ffc40c0f53",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "accuracy-recovery-cpu-cache-independent-review-v1",
+  "scope": "CPU source and fake-backend tests for exact historical quant-cache reconstruction; no model execution approval",
+  "source_sha256": {
+    "scripts/rebuild_accuracy_recovery_cpu_cache_v1.py": "76436e20a5b01f7df30e55f8dfe8ac2c55fd8b5862e073e1ff32e59c9f596aa5",
+    "src/mri_rl/accuracy_recovery_cpu_cache_v1.py": "4259b83e1b73342b6c45d6a07878b15eac6ad4e2e91e2ec90705bd2b7bdc1cc8",
+    "src/mri_rl/paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+    "src/mri_rl/quant_cache.py": "25b6c8c3778d1a0d60d2841ba8076239f64f572493d2fe2f1d96ecb876008c13",
+    "src/mri_rl/quant_convert.py": "808682cf79242cf530e6dc67e57ce705ca474a6fb4fe99d2927697c01d21c2d5",
+    "src/mri_rl/resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+    "tests/test_accuracy_recovery_cpu_cache_v1.py": "7e59252e18e0444512a253813517b0194a34b7bea4d71fbc015075fe4c1c5472"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "independent_adversarial_cases": {
+      "AC_memory_HOLD": [
+        "insufficient_memory_headroom"
+      ],
+      "non_AC": [
+        "power_not_verified_AC"
+      ],
+      "uniform_altered_quantization": "REJECTED_WITH_DURABLE_FAILURE_NO_CERTIFICATE"
+    },
+    "independent_reproducer_sha256": "9a6d53c53fa8fb4a962ad891b376992d97befefc54b0666e4b1c022023ced789",
+    "private_result_sha256": "25408c32f95ff4a53376fd5af7c44b8162f028ab7c0e388fba7b0e388c16743e",
+    "real_metadata": {
+      "historical_certificate_file_sha256": "8fcd2b0bd1122d78153ed8e2114204cdbe7fb095bb7a6273005731f907928160",
+      "historical_shards": {
+        "model-00001-of-00002.safetensors": {
+          "bytes": 4207002792,
+          "sha256": "6a332d4977c95fd6b51ac7155e039016d90041da1bf3cdd3e500192ea00fa626"
+        },
+        "model-00002-of-00002.safetensors": {
+          "bytes": 920772600,
+          "sha256": "2c94dc6761ab4641a4e2c612eb3ff5fd62d939c5704f8301025e741650b9e1e8"
+        }
+      },
+      "plan_file_sha256": "0ee3efbb9e9c13e2d907500f8475b162ae86034cc234fa3952fe08d5c14c1ac5",
+      "plan_sha256": "71e2ca2709ae295d2b7aa3860701fd6ddc8ab3cd04e1a1cd011c07b420f2a68d",
+      "quant_map_file_sha256": "0cca74febacca9cccf0481bfa03f2b22edf4c46b97cb53523de40269aad9c139",
+      "quantized": 344,
+      "retained": 406,
+      "source_payload_bytes": 17534339512,
+      "source_payload_sha256_independently_rehashed": false,
+      "source_shard_stat_sizes_match": {
+        "model-00001-of-00004.safetensors": true,
+        "model-00002-of-00004.safetensors": true,
+        "model-00003-of-00004.safetensors": true,
+        "model-00004-of-00004.safetensors": true
+      },
+      "tensors": 1438,
+      "units": 750
+    },
+    "targeted_pytest": {
+      "command": "PYTHONPATH=src OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q tests/test_accuracy_recovery_cpu_cache_v1.py",
+      "elapsed_seconds": 0.34,
+      "failed": 0,
+      "passed": 37
+    }
+  }
+}

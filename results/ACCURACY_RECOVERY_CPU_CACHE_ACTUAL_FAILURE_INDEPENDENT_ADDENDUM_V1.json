@@ -1,0 +1,66 @@
+{
+  "actual_operations_by_reviewer": {
+    "backwards": 0,
+    "forwards": 0,
+    "mlx_imports": 0,
+    "model_loads": 0,
+    "new_conversions": 0,
+    "updates": 0
+  },
+  "actual_saved_verification": {
+    "actual_failure_receipt_sha256": "387e9097216fa35bf613f9e4cd9ac6098ef01f745431c3cb21ff512a86c62e3f",
+    "actual_receipts_sha256": "46ace085e2de4c54ca44a5703d6f4d7e09d8eaba5c42719e542a647dacddd814",
+    "certificate_present": false,
+    "elapsed_seconds": 4.671353124955203,
+    "historical_inventory_sha256": "8e0fa9f6b74a2f84b1b72c13322fd92fc94644afe17467ed7bdc06ec5c9ed941",
+    "independent_reproducer_sha256": "afb79d32978ed4ed15a16ccf46cdab54ee53904c7c06e1dd0ab20bd53e42c1ad",
+    "method": "Pure Python bounded streaming hashes of every existing unit file and every tensor payload; compare actual receipt file hashes and externally saved historical per-part/file hashes. Recompute index grouping from actual saved unit-header order. No numeric array load.",
+    "operator_comparison_sha256": "14ddada2fb883130a14fcdf5e179eec19f9912888c729e2f9a6261f7e1714370",
+    "operator_failure_report_sha256": "8112c97a72ff3058cfab1b804ab1bd59e8d50a92d0d6cf6d9825a2bfeb061a2d",
+    "parts": 1438,
+    "private_numeric_result_sha256": "8ddaed723b2253f5fe313a28ed690a21e96e71ee8198b92fc583b57c8dce10b7",
+    "source_receipt_hashes_equal_to_historical": 750,
+    "summary": {
+      "quantize": {
+        "count": 344,
+        "file_exact": 0,
+        "payload_exact": 0
+      },
+      "retain": {
+        "count": 406,
+        "file_exact": 406,
+        "payload_exact": 406
+      }
+    },
+    "unit0_parts_exact": {
+      "biases": true,
+      "scales": false,
+      "weight": false
+    },
+    "units": 750
+  },
+  "cache_admissibility": "FAIL_NOT_CERTIFIED_DO_NOT_USE",
+  "confirmed_causes": {
+    "checker": "The old checker assumes quantized part order weight/scales/biases. All actual quantized unit headers iterate biases/scales/weight. Existing assembler follows header order. Recomputed actual-order mapping equals the cache index; the wrong assumed order changes exactly lm_head biases and scales shard placement.",
+    "payload_identity": "Separate from the index defect: every one of344 quantized unit files differs from its historical target, and none has all parts equal. All406 retained unit files and payloads match. Unit0 biases match but scales/weight differ. Fixing the checker cannot certify this cache.",
+    "safety_outcome": "The one CPU run reached750unit attempts/344quantizations and preserved durable failure, without a certificate. It must not be adopted for training/evaluation."
+  },
+  "failed_implementation_source_sha256": {
+    "src/mri_rl/accuracy_recovery_cpu_cache_v1.py": "4259b83e1b73342b6c45d6a07878b15eac6ad4e2e91e2ec90705bd2b7bdc1cc8",
+    "src/mri_rl/quant_convert.py": "808682cf79242cf530e6dc67e57ce705ca474a6fb4fe99d2927697c01d21c2d5"
+  },
+  "limits": [
+    "The750 source_exact checks compare actual conversion receipt hashes against historical receipt hashes; this review did not rehash17.5GB of raw source shards a second time.",
+    "No prior complete historical quant files are required or reconstructed here: the comparison target is the preserved hash-bound historical750-unit inventory.",
+    "The operator reports process exit1; independently read durable failure confirms the rejection stage/counters. This addendum does not supply a new external process witness.",
+    "No GPU converter source, exact recovery scope, fresh resources or human authorization is approved by this addendum. Any necessary GPU per-tensor recovery must receive its separate source/scope review and authorization; all future outputs must match historical per-unit and final certificate identities.",
+    "Numerical CPU-vs-GPU differences are observed as byte differences; no unmeasured kernel cause, loader equivalence or accuracy consequence is inferred."
+  ],
+  "prior_source_cpu_review_sha256": "9a81f1b2689f2f15125b86b688b0e8fd75804d4c2a410f01e44668f588c5ca02",
+  "privacy": "Only aggregate counts/hashes and generic parameter-part names published; no raw tensor payloads, MRI data, patient identities or private absolute runtime paths.",
+  "review_correction": "The earlier37 fake-backend tests and source review did not expose the real serializer part-order mismatch. That source-only verdict did not establish real MLX or historical cache identity; this actual-evidence addendum records the newly confirmed failure and supersedes any inference of cache usability. The historical identity requirement remains unchanged.",
+  "review_verdict": "PASS_WITH_LIMITATIONS_FOR_FAILURE_EVIDENCE",
+  "reviewer_id": "Codex /root/full_arm_execution_contract",
+  "reviewer_kind": "isolated_codex",
+  "schema": "accuracy-recovery-cpu-cache-actual-failure-independent-addendum-v1"
+}
