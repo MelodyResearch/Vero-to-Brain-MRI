@@ -1,0 +1,88 @@
+{
+  "counts": {
+    "directed_tests_passed": 22,
+    "model_loads_executed": 0,
+    "native_calls": 0,
+    "scope_metadata": 20,
+    "scope_sources": 92,
+    "updates_executed": 0
+  },
+  "created_at_utc": "2026-10-21T08:45:53.970315+00:00",
+  "evidence_tier": "REPRODUCED_CPU_ONLY",
+  "human_execution_permission": "NOT_ISSUED",
+  "input_sha256": "941c9e5161d95ac0ab9c4bf76d96d6dacda732bfed915c66a4f2351384690db5",
+  "limitations": [
+    "CPU source/metadata review and synthetic telemetry/tiny owned Python child tests only. No MLX/GPU/model/image/checkpoint payload read, native execution, training, update or actual resource qualification occurred.",
+    "The independent parent cannot observe the child MLX allocator. The unchanged 12GiB child allocator gate and actual release/state receipts remain required at native boundaries.",
+    "Sampling and TERM/KILL are best effort; sensor commands and kernel/GPU operations may delay observation or termination. This review provides no OOM, kernel-panic or hardware-safety guarantee.",
+    "Independent Codex review is an isolated agent review, not verification by a distinct model family. CROSS_MODEL_REVIEW=NOT_VERIFIED.",
+    "The reviewed allowance is prospective only. Fresh explicit human execution permission is NOT_ISSUED; the prior STOP/grant and this review cannot authorize execution."
+  ],
+  "material_blockers": [],
+  "native_execution_authorized": false,
+  "private_review_FILE_sha256": "c0fbf24b1f2f6b16aedd11742d21a47339c7f6b94321b5784c008f52128a1f16",
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "review_facts": [
+    {
+      "evidence": "emergency_reap_owned begins with exact os.wait4(child.pid, os.WNOHANG); ECHILD returns before any signal; the same independent ownership fixture passed.",
+      "status": "CONFIRMED_CORRECTED",
+      "subject": "Emergency cleanup ownership"
+    },
+    {
+      "evidence": "Parent samples the exact Popen PID during atomic load, owns the wait4 exit witness, and sends SIGTERM only to its unreaped child followed by SIGKILL after 10 seconds. Monitor log failure and parent interrupt cleanup have tiny child coverage.",
+      "status": "NO_ISSUE_FOUND",
+      "subject": "Owned-child monitor"
+    },
+    {
+      "evidence": "V2 changes only local load admission from 10GiB/40% to 9GiB/50%; inherited resident 6GiB/35%, RSS14GiB, MLX12GiB, original swap baseline13.96966796875 +1.5GiB and absolute16GiB, disk20GiB reserve and battery20 floor persist. Parent hard guardian does not kill for ordinary swap rate or a soft 9GiB admission shortfall.",
+      "status": "NO_ISSUE_FOUND",
+      "subject": "Threshold isolation"
+    },
+    {
+      "evidence": "V2 Authorization subclasses historical Authorization, so its derived phase tokens legitimately satisfy unchanged native isinstance guard. V2 schema/kind/action, exact9GiB/50% policy and guardian scope are required at admission; old action/grant is rejected before once-only consumption.",
+      "status": "NO_ISSUE_FOUND",
+      "subject": "Authorization identity"
+    },
+    {
+      "evidence": "CPU prepare reproduced the exact R2 scope with92 source and20 metadata bindings and the supplied input identity. Stage2/3/4 budgets equal V1:23040 returned-token maximum,29880 teacher-forced positions,2 total updates at most1 per arm,5 serial model loads and5100s combined operation-start window. DEV24 remains engineering-only.",
+      "status": "NO_ISSUE_FOUND",
+      "subject": "Exact frozen scope and finite budgets"
+    }
+  ],
+  "reviewer_id": "Codex /root/resource_v2_final_review",
+  "reviewer_kind": "isolated_codex",
+  "schema": "safe-micro-pilot234-resource-v2-independent-review-v1",
+  "scope_FILE_sha256": "5dd24d8dc73241d11460e18fc4b25ac8597bbf6a3d0b2f6283df12b43a2c039c",
+  "scope_canonical_sha256": "c96a71b4e9680f6af36b666f6aa2aa6e85c74906809790efff12430502434665",
+  "source_changes": {
+    "scripts/run_safe_micro_pilot_v2.py": {
+      "sha256": "831ca7e8c405bb0bee74e8b6595e021af1bab5a1f6147ad11ee53ae3e1cf59d0",
+      "status": "NEW_V2_PREPARATION_ONLY"
+    },
+    "src/mri_rl/safe_micro_pilot_entry_v2.py": {
+      "sha256": "f1fe164880e36f055d1990011228026a3d1749ba8f87738dc319c78984be339f",
+      "status": "NEW_V2_PREPARATION_ONLY"
+    },
+    "src/mri_rl/safe_micro_resources_v2.py": {
+      "sha256": "ecc985d279c4751d7b20de8f7affc2553bcb0146c1eef58bdfb0247e214f704d",
+      "status": "NEW_V2_PREPARATION_ONLY"
+    },
+    "src/mri_rl/safe_micro_watchdog_v1.py": {
+      "sha256": "f344c30253acfb491dda9327d0c41cd06b60c86795718aecb42c1253ed655266",
+      "status": "NEW_V2_PREPARATION_ONLY"
+    }
+  },
+  "test_facts": {
+    "directed_cpu_tests": "22 passed in0.37s, exit0",
+    "exact_R2_cpu_prepare": "PASS",
+    "native_imports": false,
+    "payload_reads": false,
+    "same_prior_ownership_fixture": "PASS"
+  },
+  "test_sources_sha256": {
+    "tests/test_safe_micro_pilot_entry_v2.py": "d1ee789d4899d9499396e1db520213b2703674765e73ea8d2f867d72deba2fd5",
+    "tests/test_safe_micro_resources_v2.py": "315b06d95027582c458ebf90db8eb3bb57d211960c152d2137f60f82a37c3b3a",
+    "tests/test_safe_micro_watchdog_v1.py": "33a63d1c3526a5dcfbd8adca8bee52baea6c52ef190ccd718b811d3477a4bf87"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

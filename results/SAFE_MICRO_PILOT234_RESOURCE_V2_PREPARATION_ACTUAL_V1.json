@@ -1,0 +1,211 @@
+{
+  "schema": "safe-micro-pilot234-resource-v2-preparation-v1",
+  "status": "INDEPENDENTLY_REVIEWED_CPU_READY_PENDING_FRESH_HUMAN_EXECUTION",
+  "scope_file_sha256": "5dd24d8dc73241d11460e18fc4b25ac8597bbf6a3d0b2f6283df12b43a2c039c",
+  "canonical_scope_sha256": "c96a71b4e9680f6af36b666f6aa2aa6e85c74906809790efff12430502434665",
+  "source_files_bound": 92,
+  "metadata_files_bound": 20,
+  "input_sha256": "941c9e5161d95ac0ab9c4bf76d96d6dacda732bfed915c66a4f2351384690db5",
+  "loading_policy_changes_only": {
+    "load_available_gib_min": {
+      "old": 10.0,
+      "new": 9.0
+    },
+    "load_pressure_free_percent_min": {
+      "old": 40.0,
+      "new": 50.0
+    }
+  },
+  "all_other_model_policy_fields_equal_to_v1": true,
+  "native_algorithm_and_budget_unchanged": true,
+  "original_swap_baseline_GiB": 13.96966796875,
+  "original_baseline_swap_growth_cap_GiB": 1.5,
+  "effective_swap_cap_GiB": 15.46966796875,
+  "absolute_swap_cap_GiB": 16.0,
+  "new_independent_parent_guardian": {
+    "MLX_external": "UNAVAILABLE; child12GiB gate and after-call allocator observations remain required",
+    "OS_CRITICAL": 4,
+    "RSS_stop_above_GiB": 14.0,
+    "SIGTERM_grace_seconds": 10.0,
+    "automatic_retry": false,
+    "available_immediate_stop_below_GiB": 2.0,
+    "available_sustained_below_GiB": 4.0,
+    "battery_floor": 20.0,
+    "disk_forecast_plus_reserve_GiB": 26.0,
+    "essential_unknown_timeout_seconds": 120.0,
+    "monitor_log_failure": "STOP exact owned child; preserve exit if destination still writable",
+    "ordinary_swap_rate": "trend only; no stop from rate alone",
+    "original_swap_baseline_GiB": 13.96966796875,
+    "pressure_free_stop_at_or_below": 15.0,
+    "sample_interval_seconds": 2.0,
+    "stop_target": "ONLY exact Popen-owned child PID, never app/other process/group",
+    "sustained_low_seconds": 30.0,
+    "swap_absolute_cap_GiB": 16.0,
+    "swap_net_cap_GiB": 1.5
+  },
+  "previous_stopped_scope_file_sha256": "3927e15080b582e57be370151abe8fc34a6833f1bbcb8c4991681fd93ea8c01c",
+  "previous_scope_reused": false,
+  "cache_recovery_operations": 0,
+  "parent": "Original P_calibrated13 / Adam52 / boundary114",
+  "budgets": {
+    "2": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 512,
+      "generated_responses": 2,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "scorer_forwards": 6,
+      "teacherforced_input_positions": 2808,
+      "window_seconds": 900
+    },
+    "3": {
+      "backward_calls": 32,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 4096,
+      "generated_responses": 16,
+      "model_loads": 1,
+      "optimizer_updates": 2,
+      "optimizer_updates_per_arm": 1,
+      "scorer_forwards": 48,
+      "teacherforced_input_positions": 27072,
+      "window_seconds": 1800
+    },
+    "4": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "candidate_calls": 0,
+      "generated_response_tokens": 18432,
+      "generated_responses": 72,
+      "greedy_calls": 72,
+      "model_loads": 3,
+      "optimizer_updates": 0,
+      "scorer_forwards": 0,
+      "teacherforced_input_positions": 0,
+      "window_seconds": 2400
+    }
+  },
+  "total_budget": {
+    "returned_tokens": 23040,
+    "scorer_forwards": 54,
+    "TF_positions": 29880,
+    "backward": 32,
+    "optimizer_updates": 2,
+    "updates_per_arm": 1,
+    "serial_model_loads": 5,
+    "operation_start_window_seconds": 5100
+  },
+  "CPU_verification": {
+    "root_focused_tests": 43,
+    "seconds": 0.43,
+    "includes": "42 author/reused cases plus same independent ownership counterexample",
+    "red_green": "New module/helper REDs; wait4 race, monitor logging failure, parent interrupt and independent sensor-range/ownership regressions corrected; no original assert weakened.",
+    "process_scope": "Synthetic tests create/terminate/reap only their own tiny CPU Python children; no signals to existing user tasks."
+  },
+  "actual_readonly_resources": {
+    "rows": [
+      {
+        "utc": "2026-10-21T08:40:22.300588+00:00",
+        "sample": {
+          "monotonic_seconds": 424955.673239041,
+          "available_gib": 9.773590087890625,
+          "pressure_free_percent": 54.0,
+          "swap_used_gib": 14.525205078125,
+          "process_rss_gib": 0.024383544921875,
+          "thermal_state": "SENSOR_UNAVAILABLE",
+          "power_source": "AC",
+          "battery_percent": 72,
+          "other_heavy_processes": 0,
+          "mlx_active_gib": null,
+          "mlx_peak_gib": null
+        },
+        "OS_pressure_level": 1,
+        "decision": "CONTINUE",
+        "reasons": [],
+        "original_baseline_swap_growth_GiB": 0.555537109374999,
+        "swap_rate_GiB_per_min": null
+      },
+      {
+        "utc": "2026-10-21T08:40:27.388361+00:00",
+        "sample": {
+          "monotonic_seconds": 424960.759339125,
+          "available_gib": 10.177474975585938,
+          "pressure_free_percent": 56.0,
+          "swap_used_gib": 14.525205078125,
+          "process_rss_gib": 0.024749755859375,
+          "thermal_state": "SENSOR_UNAVAILABLE",
+          "power_source": "AC",
+          "battery_percent": 72,
+          "other_heavy_processes": 0,
+          "mlx_active_gib": null,
+          "mlx_peak_gib": null
+        },
+        "OS_pressure_level": 1,
+        "decision": "CONTINUE",
+        "reasons": [],
+        "original_baseline_swap_growth_GiB": 0.555537109374999,
+        "swap_rate_GiB_per_min": 0.0
+      },
+      {
+        "utc": "2026-10-21T08:40:32.478823+00:00",
+        "sample": {
+          "monotonic_seconds": 424965.850172541,
+          "available_gib": 10.194061279296875,
+          "pressure_free_percent": 56.0,
+          "swap_used_gib": 14.525205078125,
+          "process_rss_gib": 0.025299072265625,
+          "thermal_state": "SENSOR_UNAVAILABLE",
+          "power_source": "AC",
+          "battery_percent": 72,
+          "other_heavy_processes": 0,
+          "mlx_active_gib": null,
+          "mlx_peak_gib": null
+        },
+        "OS_pressure_level": 1,
+        "decision": "CONTINUE",
+        "reasons": [],
+        "original_baseline_swap_growth_GiB": 0.555537109374999,
+        "swap_rate_GiB_per_min": 0.0
+      }
+    ],
+    "disk_free_GiB": 294.64154052734375,
+    "global_lock": {
+      "exists": true,
+      "no_open_holders": true,
+      "inspection_error": null,
+      "lock_acquired_or_modified": false
+    },
+    "MLX_imported": false,
+    "model_loads": 0,
+    "GPU_operations": 0,
+    "new_execution_grant_issued": false
+  },
+  "new_native_execution": {
+    "model_loads": 0,
+    "generation": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "GPU_operations": 0,
+    "accuracy": "NOT_RUN"
+  },
+  "new_human_execution_authorization": "NOT_ISSUED",
+  "limitations": [
+    "Independent parent cannot observe child MLX allocator; actual child boundary/peak/release receipts remain separately required.",
+    "Sampling may miss a transient peak; wait4 exact child RSS provides process peak after exit.",
+    "Atomic GPU or kernel work may be uninterruptible; TERM/KILL and memory checks cannot guarantee avoidance of OOM/system failure.",
+    "DEV24 is repeatedly explored engineering readout; candidate accuracy and Dallas retention not measured in greedy sequence-only evaluation."
+  ],
+  "frozen_plan_or_native_v1_changed": false,
+  "independent_review": {
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "reviewer_id": "Codex /root/resource_v2_final_review",
+    "public_path": "results/SAFE_MICRO_PILOT234_RESOURCE_V2_INDEPENDENT_REVIEW_V1.json",
+    "public_file_sha256": "7ac2d978149fb756021e7564805bf95ae35c44256641e8f8dcddd92102fd82cc",
+    "private_file_sha256": "c0fbf24b1f2f6b16aedd11742d21a47339c7f6b94321b5784c008f52128a1f16",
+    "focused_cpu_tests_passed": 22,
+    "seconds": 0.37,
+    "source_bindings_rechecked": 92,
+    "metadata_bindings": 20,
+    "execution_authority": false
+  }
+}
