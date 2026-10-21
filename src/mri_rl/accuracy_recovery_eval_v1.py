@@ -66,9 +66,9 @@ def evaluated_labels(arms):
 
 
 # ---------------------------------------------------------------- CPU preparation
-def pending_inputs(spec):
+def pending_inputs(spec,*,need_training=True):
     blockers=[];runtime=None
-    for key in ('runtime_spec','evaluation','training_run'):
+    for key in ('runtime_spec','evaluation',*(('training_run',) if need_training else ())):
         if key not in spec:blockers.append(f'SPEC_KEY_NOT_BOUND:{key}')
     if blockers:return blockers,None
     if not Path(spec['runtime_spec']).is_file():return ['RUNTIME_SPEC_NOT_PRESENT'],None
@@ -79,7 +79,7 @@ def pending_inputs(spec):
         if not (Path(runtime['cache_certificate']).is_file() and Path(runtime['cache_dir']).is_dir() and Path(runtime['model']).exists()):blockers.append('CERTIFIED_BASE_CACHE_OR_MODEL_NOT_PRESENT')
         if not runtime['runtime_source_sha256']:blockers.append('RUNTIME_SOURCE_CLOSURE_NOT_BOUND')
     if not Path(spec['evaluation']).is_file():blockers.append('EVALUATION_SPEC_NOT_PRESENT')
-    if not (Path(spec['training_run'])/'complete_SAFE.json').is_file():blockers.append('TRAINING_RUN_NOT_COMPLETE')
+    if need_training and not (Path(spec['training_run'])/'complete_SAFE.json').is_file():blockers.append('TRAINING_RUN_NOT_COMPLETE')
     return blockers,runtime
 
 
@@ -92,15 +92,8 @@ def _encode(runtime,encode):
     tok=Tokenizer.from_file(str(Path(runtime['model'])/'tokenizer.json'));return (lambda text:tok.encode(text,add_special_tokens=False).ids),[]
 
 
-def prepare(spec,*,encode=None,verify_images=False,start=None):
-    """Bind exact checkpoints/records/tokens/sources. Never loads a model or weights; optional image hash verification only."""
-    train_entry.refuse_forbidden(spec)
-    blockers,runtime=pending_inputs(spec)
-    base={'schema':'accuracy-recovery-evaluation-preparation-v1','implementation_status':core.STATUS,'experiment':core.EXPERIMENT,'scope_kind':'PREPARATION_ONLY_NOT_LAUNCH_SCOPE',
-          'model_loads_this_preparation':0,'optimizer_updates':0,'model_PASS':False,'blockers':list(blockers),'implemented_by':train_entry.IMPLEMENTED_BY}
-    if blockers:return base
-    encode,missing=_encode(runtime,encode)
-    if missing:return {**base,'blockers':missing}
+def _frozen(spec,runtime,encode,verify_images):
+    """Everything that is fixed BEFORE any terminal exists: records, tokens, expected images, parent, evaluation sources, policy, decoding, 3-model budget ceiling."""
     anchor=core.adam52_parent_anchor(runtime['parent_checkpoint'],runtime['parent_receipt_sha256'])
     evaluation_sha=inherited.digest(spec['evaluation']);require(spec.get('evaluation_sha256',evaluation_sha)==evaluation_sha,'Frozen evaluation records changed')
     evaluation=json.loads(Path(spec['evaluation']).read_text());plan=matched.compile_records(evaluation)
@@ -109,20 +102,69 @@ def prepare(spec,*,encode=None,verify_images=False,start=None):
     tokens={task:matched.token_plan(task,PREFIX,encode) for task in ev.LABELS}
     expected={r['id']:r['image_sha256'] for r in plan['real']}
     if verify_images:inherited.verify_images([r['row_PRIVATE'] for r in plan['real']],expected)
-    arms={arm:arm_checkpoint(spec['training_run'],arm,anchor) for arm in ('A','B')}
-    require(arms['A']['bundle_sha256']==arms['B']['bundle_sha256'],'Arms were trained on different bundles')
-    labels=evaluated_labels(arms);output=core.require_canonical_output(spec['output'],start=start)
     sources=inherited.source_closure(runtime)
     for name in (*core.OWN_SOURCES,*core.EVAL_OWN_SOURCES):sources[str(ROOT/name)]=inherited.digest(ROOT/name)
     parent={**{k:anchor[k] for k in ('receipt_sha256','adapter_sha256','optimizer_manifest_sha256','optimizer_state_sha256','groups','updates')},'path':str(Path(runtime['parent_checkpoint']).resolve())}
+    frozen={'evaluation_sha256':evaluation_sha,'records_sha256':core.identity(plan['real']),'aliases_sha256':core.identity(plan['aliases']),'expected_image_sha256':expected,
+            'token_plans_sha256':core.identity(tokens),'parent':parent,'source_sha256':sources,'policy':core.POLICY,'decoding':matched.greedy_settings(),
+            'derived_cache':inherited.cache_metadata(runtime)['expected_binding'],'max_checkpoints':3,'budget_ceiling':eval_budget(3),'runtime_spec_sha256':inherited.digest(spec['runtime_spec']),
+            'stop_rule':STOP_RULE}
+    return frozen,plan,tokens,anchor
+
+
+def propose(spec,*,encode=None,verify_images=False):
+    """PROSPECTIVE evaluation admission proposal, producible NOW (before any terminal exists). It freezes only what does not depend on the run and
+    states the deterministic rule by which the child checkpoint identities will be derived. It contains no child hash, is not executable and is not a PASS."""
+    train_entry.refuse_forbidden(spec)
+    blockers,runtime=pending_inputs(spec,need_training=False)
+    base={'schema':'accuracy-recovery-evaluation-proposal-v1','status':'PROPOSAL_NOT_EXECUTABLE_BEFORE_TERMINALS','experiment':core.EXPERIMENT,'model_loads_this_preparation':0,
+          'optimizer_updates':0,'model_PASS':False,'blockers':list(blockers)}
+    if blockers:return base
+    encode,missing=_encode(runtime,encode)
+    if missing:return {**base,'blockers':missing}
+    frozen,_,_,_=_frozen(spec,runtime,encode,verify_images)
+    proposal={**base,'frozen':frozen,'derivation':{
+        'child_checkpoints':{arm:{'path_rule':'<training_run>/arm_'+arm+'/boundary_0001','identity':'PENDING_DERIVED_ONLY_FROM_AUTHENTICATED_TERMINAL_RECEIPT','validator':'accuracy_recovery_eval_v1.arm_checkpoint'} for arm in ('A','B')},
+        'alias_rule':'an arm whose committed receipt has updated=false aliases the Parent: no checkpoint, no model, no duplicate calls',
+        'budget_rule':'eval_budget(1 + number of updated arms) which must not exceed budget_ceiling (3 serial models)',
+        'finalize':'accuracy_recovery_eval_v1.finalize(proposal, spec): re-derives everything, requires the frozen part byte-identical, then emits the exact scope for review and human admission',
+        'no_phantom_hashes':'child receipt/adapter hashes do not exist until the run commits; none is stated here'}}
+    return {**proposal,'proposal_sha256':core.identity(proposal)}
+
+
+def prepare(spec,*,encode=None,verify_images=False,start=None):
+    """Bind exact checkpoints/records/tokens/sources AFTER the terminals exist. Never loads a model or weights; optional image hash verification only."""
+    train_entry.refuse_forbidden(spec)
+    blockers,runtime=pending_inputs(spec)
+    base={'schema':'accuracy-recovery-evaluation-preparation-v1','implementation_status':core.STATUS,'experiment':core.EXPERIMENT,'scope_kind':'PREPARATION_ONLY_NOT_LAUNCH_SCOPE',
+          'model_loads_this_preparation':0,'optimizer_updates':0,'model_PASS':False,'blockers':list(blockers),'implemented_by':train_entry.IMPLEMENTED_BY}
+    if blockers:return base
+    encode,missing=_encode(runtime,encode)
+    if missing:return {**base,'blockers':missing}
+    frozen,plan,tokens,anchor=_frozen(spec,runtime,encode,verify_images)
+    arms={arm:arm_checkpoint(spec['training_run'],arm,anchor) for arm in ('A','B')}
+    require(arms['A']['bundle_sha256']==arms['B']['bundle_sha256'],'Arms were trained on different bundles')
+    labels=evaluated_labels(arms);output=core.require_canonical_output(spec['output'],start=start)
     run_identity=Path(spec['training_run'])/'run_identity_PRIVATE.json'
-    input_sha=core.identity({'evaluation_sha256':evaluation_sha,'expected_image_sha256':expected,'tokens':tokens,'parent':parent['receipt_sha256'],'arms':{a:v['receipt_sha256'] for a,v in arms.items()},
-                             'bundle_sha256':arms['A']['bundle_sha256'],'runtime_spec_sha256':inherited.digest(spec['runtime_spec'])})
-    return {**base,'parent':parent,'arms':arms,'evaluated_checkpoints':labels,'records_PRIVATE':plan['real'],'aliases_PRIVATE':plan['aliases'],'token_plans_PRIVATE':tokens,
-            'expected_image_sha256':expected,'source_sha256':sources,'input_sha256':input_sha,'numerical_contract_sha256':'NOT_REQUIRED_NO_OLD_QUALIFICATION_PROOF',
-            'derived_cache':inherited.cache_metadata(runtime)['expected_binding'],'budget':eval_budget(len(labels)),'output':str(output),'policy':core.POLICY,'decoding':matched.greedy_settings(),
+    input_sha=core.identity({'evaluation_sha256':frozen['evaluation_sha256'],'expected_image_sha256':frozen['expected_image_sha256'],'tokens':tokens,'parent':frozen['parent']['receipt_sha256'],
+                             'arms':{a:v['receipt_sha256'] for a,v in arms.items()},'bundle_sha256':arms['A']['bundle_sha256'],'runtime_spec_sha256':frozen['runtime_spec_sha256']})
+    return {**base,'frozen':frozen,'parent':frozen['parent'],'arms':arms,'evaluated_checkpoints':labels,'records_PRIVATE':plan['real'],'aliases_PRIVATE':plan['aliases'],'token_plans_PRIVATE':tokens,
+            'expected_image_sha256':frozen['expected_image_sha256'],'source_sha256':frozen['source_sha256'],'input_sha256':input_sha,'numerical_contract_sha256':'NOT_REQUIRED_NO_OLD_QUALIFICATION_PROOF',
+            'derived_cache':frozen['derived_cache'],'budget':eval_budget(len(labels)),'output':str(output),'policy':core.POLICY,'decoding':frozen['decoding'],
             'training_run':{'path':str(Path(spec['training_run']).resolve()),'run_identity_sha256':old.digest(run_identity),'complete_sha256':old.digest(Path(spec['training_run'])/'complete_SAFE.json')},
             'stop_rule':STOP_RULE,'scope_limitation':'Engineering diagnostic on the internal-dev records (4 people / 24 sequence rows / 16 Dallas rows); parent and committed arms only; no independent-generalization or clinical claim.'}
+
+
+def finalize(proposal,spec,*,encode=None,verify_images=False,start=None):
+    """After the run: re-derive the actual scope from the authenticated terminals and require the prospective frozen part to be unchanged."""
+    require(isinstance(proposal,dict) and proposal.get('status')=='PROPOSAL_NOT_EXECUTABLE_BEFORE_TERMINALS' and proposal.get('proposal_sha256')==core.identity({k:v for k,v in proposal.items() if k!='proposal_sha256'}),
+            'Intact prospective proposal required')
+    prepared=prepare(spec,encode=encode,verify_images=verify_images,start=start)
+    require(not prepared['blockers'],'Terminals/inputs still pending: '+','.join(prepared['blockers']))
+    require(prepared['frozen']==proposal['frozen'],'Prospectively frozen evaluation inputs/sources/policy changed since the proposal')
+    ceiling=proposal['frozen']['budget_ceiling']
+    require(len(prepared['evaluated_checkpoints'])<=proposal['frozen']['max_checkpoints'] and all(prepared['budget'][k]<=ceiling[k] for k in ceiling if isinstance(ceiling[k],(int,float))),'Actual budget exceeds the prospective 3-model ceiling')
+    return prepared
 
 
 def launch_scope(prepared):
@@ -149,7 +191,8 @@ def run_checkpoints(prepared,token,*,backend_factory,runner,before,out,counter,r
     token.check('eval_complete');return results
 
 
-STOP_RULE={'primary_benefit':'B must beat A on strict-greedy sequence balanced accuracy AND T1 recall (B-A>0 on both)',
+STOP_RULE={'training_signal_diagnostics':'Admitted-group/response counts, gradient norms and cosine are DIAGNOSTICS ONLY: equal counts do not imply equal advantage coefficients (group means/std differ) and different counts do not decide accuracy. The authenticated-terminal accuracy comparison is always completed.',
+           'primary_benefit':'B must beat A on strict-greedy sequence balanced accuracy AND T1 recall (B-A>0 on both)',
            'degrade':'Stop if B FLAIR recall or Dallas accuracy is below the Parent, or Dallas accuracy is below A (retention); a no-update arm equals the Parent',
            'decision':'CONTINUE_CANDIDATE_REQUIRES_NEW_AUTHORIZATION only if benefit and no degrade, else STOP_CANDIDATE; never a training authorization',
            'resolution':'24 sequence rows = 12 FLAIR + 12 T1 from 4 people: one row moves a recall by 1/12; engineering diagnostic, not statistical evidence'}
@@ -181,7 +224,7 @@ def swap_summaries(rows,aliases):
     return ev.swap_summary(real,swapped,truth)
 
 
-def verdict(parent,a,b,swaps=None):
+def verdict(parent,a,b,swaps=None,diagnostics=None):
     """Pre-declared stop rule on saved endpoint vectors (see STOP_RULE). Alias arms must be passed as the Parent vector/summary."""
     for vector in (parent,a,b):ev._validate_vector(vector)
     delta={k:b[k]-a[k] for k in ev.KEYS}
@@ -190,7 +233,7 @@ def verdict(parent,a,b,swaps=None):
              'Dallas_accuracy_below_A':b['Dallas_accuracy']<a['Dallas_accuracy']}
     if swaps is not None:degrade['swap_valid_opposite_class_changes_below_A']=swaps['B']['valid_opposite_class_changes']<swaps['A']['valid_opposite_class_changes']
     go=benefit and not any(degrade.values())
-    return {'decision':'CONTINUE_CANDIDATE_REQUIRES_NEW_AUTHORIZATION' if go else 'STOP_CANDIDATE','B_minus_A':delta,'benefit':benefit,'degrade':degrade,'swap_summaries':swaps,
+    return {'decision':'CONTINUE_CANDIDATE_REQUIRES_NEW_AUTHORIZATION' if go else 'STOP_CANDIDATE','B_minus_A':delta,'benefit':benefit,'degrade':degrade,'swap_summaries':swaps,'training_signal_diagnostics':{'diagnostic_only_never_a_criterion':True,**(diagnostics or {})},
             'A_vs_parent':ev.decide(parent,a)['decision'],'B_vs_parent':ev.decide(parent,b)['decision'],'training_authorized':False,'generalization_proven':False,'stop_rule':STOP_RULE}
 
 
@@ -202,14 +245,14 @@ def load_rows(checkpoint_dir):
     return rows
 
 
-def analyze(evaluation_output,arms,aliases=None):
+def analyze(evaluation_output,arms,aliases=None,diagnostics=None):
     """Vectors for Parent/A/B (an alias arm reuses the Parent rows, no duplicate evaluation) and the verdict."""
     root=Path(evaluation_output);rows={'parent':load_rows(root/'parent_PRIVATE')}
     for arm in ('A','B'):rows[arm]=rows['parent'] if arms[arm]['alias_of_parent'] else load_rows(root/f'{arm}_PRIVATE')
     vectors={label:endpoint_vector(value) for label,value in rows.items()}
     swaps={label:swap_summaries(value,aliases) for label,value in rows.items() if label in ('A','B')} if aliases else None
     return {'schema':'accuracy-recovery-evaluation-analysis-v1','vectors':vectors,'aliases_of_parent':[a for a in ('A','B') if arms[a]['alias_of_parent']],
-            'verdict':verdict(vectors['parent'],vectors['A'],vectors['B'],swaps)}
+            'verdict':verdict(vectors['parent'],vectors['A'],vectors['B'],swaps,diagnostics)}
 
 
 # ---------------------------------------------------------------- guarded native execution
@@ -260,14 +303,15 @@ def execute(args):
         results=run_checkpoints(prepared,token,backend_factory=factory,runner=lambda backend,p,label,checkpoint,rows,c,b:matched.run_checkpoint(backend,p,label,checkpoint,rows,c,b),
                                 before=before,out=out,counter=counter,releaser=releaser,load_state=load_state)
         require(prepare(spec)==prepared,'Frozen sources/artifacts changed during evaluation')
-        analysis=analyze(out,prepared['arms'],prepared['aliases_PRIVATE'])
+        comparison=Path(prepared['training_run']['path'])/'comparison_PRIVATE.json'
+        analysis=analyze(out,prepared['arms'],prepared['aliases_PRIVATE'],json.loads(comparison.read_text()) if comparison.is_file() else None)
         utility.durable(out/'complete_PRIVATE.json',{'status':'ACTUAL_ACCURACY_RECOVERY_V1_MATCHED_F32_EVALUATION_COMPLETE','scope_sha256':core.scope_digest(scope),'checkpoints':results,
                                                     'aliases_of_parent':analysis['aliases_of_parent'],'actual_calls':counter.values,'optimizer_updates':0,'analysis':analysis})
         return analysis
 
 
 def main(argv=None,*,start=None):
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('action',choices=('prepare','run','analyze'))
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('action',choices=('propose','prepare','run','analyze'))
     for name in ('spec','output','scope','human','review','evaluation-output'):parser.add_argument('--'+name,type=Path)
     for name in ('scope','human','review'):parser.add_argument('--expected-'+name+'-sha256')
     args=parser.parse_args(argv)
@@ -277,6 +321,10 @@ def main(argv=None,*,start=None):
     if args.action=='analyze':
         require(args.evaluation_output,'Evaluation output directory required');prepared=prepare(spec,start=start)
         print(json.dumps(analyze(args.evaluation_output,prepared['arms'],prepared['aliases_PRIVATE']),sort_keys=True));return
+    if args.action=='propose':
+        proposal=propose(spec);require(args.output and not args.output.exists(),'Fresh private proposal output required');core.require_canonical_output(args.output,start=start)
+        args.output.parent.mkdir(parents=True,exist_ok=True);core.publish_once(args.output,proposal)
+        print(json.dumps({'status':proposal['status'],'blockers':proposal['blockers'],'proposal_sha256':proposal.get('proposal_sha256'),'model_loads':0,'model_PASS':False}));return
     prepared=prepare(spec,start=start)
     require(args.output and not args.output.exists(),'Fresh private CPU preparation output required');core.require_canonical_output(args.output,start=start)
     args.output.parent.mkdir(parents=True,exist_ok=True);core.publish_once(args.output,prepared)
