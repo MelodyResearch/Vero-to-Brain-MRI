@@ -115,3 +115,13 @@ Append-only。此文件记录事实、失败、实现及资源，不改变CURREN
 - 已验证ResearchScratch duplicate clone无untracked/ignored/currenthandles、全部refs可由保留主仓历史访问后删除1clone/338files/6,709,248allocatedbytes。另删除4个ignored缓存目录/190files/3,596,565logicalbytes；不扫描删除local_data/work/checkpoint中的独有科研资产。current origin新HTTPS，fetch origin --prune实际退出0。
 - 本轮只核验现存canonical主仓local_data/work中的当前A/B必要资产，不搜索旧worktree/隔离区：找到0个shared bundle，0个匹配1741ff2f...的adaptiveAdam60状态；3个step60 optimizer实际是SFT对照，不能冒充Adam60。因此tracked source与冻结计划存在，但当前不能声称bundle/fullAdam60仍可运行，未申请或执行A/B训练，不重rollout/不换parent/不制造scope。
 - 主线仍minimal real A/B optimizer update；行政整理不更改方法/reward/采样/loss/预算，new16与final100没有用于选择。新模型调用/optimizer更新=0。精确删除/保留清单见results/REPOSITORY_NORMALIZATION_ACTUAL_V1.json；已明确结束旧worktree恢复工作。
+
+
+## 2026-10-20 / REQUIRED_RUNTIME_RECOVERY / BLOCKED_TRASH_ACCESS
+
+- 最新研究者附件仅授权恢复原shared8 bundle和adaptive Adam60必要payload，不重建旧worktrees、不重qualification、不训练。实际fetch origin --prune成功，六远端refs核实；全部2418本地Git对象（含unreachable）、1289blob逐项检查，最大198016B，无二进制、LFSpointer、目标adapterSHA或bundle schema。12个已删除branch tips仍可由保留refs访问；GitHub保留aggregate evidence，不包含runtime payload。
+- 限定canonical repo与原outputs parent的metadata扫描0个bundle文件、0个qualification/uniform目录；现有三个SFT step60不匹配adaptive parent。没有读取new16/final100 outcomes，没有替换parent或伪造state。
+- 已按新授权尝试Trash：shell返回macOS Operation not permitted；Finder初次连接成功，但GoTo未确认进入Trash，随后出现用户改变app控制提示与ScreenCaptureKit -3812。Trash内容未读取，因此本轮状态严格为BLOCKED_TRASH_ACCESS_NOT_UNRECOVERABLE，不能宣称Trash空/原资产不可恢复，也不启动Plan B。已请求研究者用Finder检查或复制候选至canonical local_data/recovery_staging。
+- 原bundle canonical SHA f8305d64...与adaptive adapter SHA1741ff2f...仍为唯一接受目标；没有copy/覆盖runtime，源码、权重、Adam/RNG、冻结plan/lock不变。新增model/generation/backward/optimizer updates全部0。精确metadata证据PRIVATE存于local_data/recovery_staging；sanitized结果见results/REQUIRED_RUNTIME_ASSET_RECOVERY_ACTUAL_V1.json。
+
+- 同轮后续Finder重新绑定成功并实际打开Trash，显示200顶层items，因此已排除Trash为空的推测；但目标文件尚未完成查找。下一操作再次USER_CHANGED_APPLICATION，实际AX变为外部输入的/Users/vv/.keras/ GoToWindow。本任务停止争用并请求暂停其他Finder控制或复制必要候选。最终状态更新为BLOCKED_TRASH_SEARCH_CONCURRENT_FINDER_CONTROL；未宣告unrecoverable/未启动PlanB。

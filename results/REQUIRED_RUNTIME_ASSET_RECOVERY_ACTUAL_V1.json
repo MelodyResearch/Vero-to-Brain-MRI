@@ -1,0 +1,81 @@
+{
+  "schema": "vero-mri-required-runtime-recovery-v1",
+  "as_of_utc": "2026-10-21T00:32:02.010266+00:00",
+  "repository": "MelodyResearch/Vero-to-Brain-MRI",
+  "research_branch": "research/vero-mri-shared-rollout-native-v1",
+  "starting_research_commit": "58e3c0aaa81204d3ae40bacf97c1c5b07aa48626",
+  "main_commit": "b8b0493754451befaf5e61285ca8bb05570ca36d",
+  "status": "BLOCKED_TRASH_SEARCH_CONCURRENT_FINDER_CONTROL",
+  "github_recovery": {
+    "status": "GITHUB_HAS_EVIDENCE_BUT_NOT_RUNTIME_PAYLOAD",
+    "fetch_origin_prune_exit": 0,
+    "actual_remote_branches": 6,
+    "all_git_objects_including_unreachable": 2418,
+    "blobs_inspected": 1289,
+    "largest_blob_bytes": 198016,
+    "runtime_bundle_schema_matches": 0,
+    "target_adapter_SHA_matches": 0,
+    "binary_blobs": 0,
+    "LFS_pointer_blobs": 0,
+    "LFS_object_directory_present": false,
+    "LFS_CLI_installed": false,
+    "deleted_branch_tips_checked": 12,
+    "all_deleted_tips_reachable_from_retained_refs": true,
+    "local_data_history_commits": 0,
+    "three_runtime_shaped_JSON_candidates_are_aggregates": true
+  },
+  "current_paths": {
+    "bounded_scope": "canonical repository plus original Codex outputs parent; excluded Git/cache/node_modules",
+    "named_bundle_files_found": 0,
+    "qualification_or_uniform_directory_candidates": 0,
+    "scan_errors": 0,
+    "prior_step60_SFT_candidates_not_parent_substitutes": 3,
+    "authenticated_adaptive_Adam60_found": false
+  },
+  "Trash": {
+    "shell_read": "DENIED_MACOS_OPERATION_NOT_PERMITTED",
+    "Finder_initial_connection": "SUCCESS",
+    "Trash_directory_contents_read": false,
+    "Finder_path_navigation": "NOT_CONFIRMED",
+    "Finder_subsequent_control": "USER_CHANGED_APPLICATION;latest GoToWindow points to unrelated .keras path not entered by this task",
+    "empty": false,
+    "required_action": "Pause competing Finder control or copy only required candidate assets to staging; do not clear Trash",
+    "root_opened_in_Finder": true,
+    "top_level_item_count_shown": 200,
+    "target_asset_search_complete": false
+  },
+  "expected_assets": {
+    "bundle_canonical_sha256": "f8305d640c21ae929e1c1490b4b5ce49a2619a3e934f05cceaec48b1448ab5d7",
+    "adaptive_Adam60_adapter_sha256": "1741ff2feb2f569cfe062b92cb79b62f61f83463e6683a928d2c458a5f547310",
+    "canonical_digest_not_misrepresented_as_file_digest": true,
+    "runtime_payload_recovered": false,
+    "fullstate_verified": false
+  },
+  "actions": {
+    "model_loads": 0,
+    "generation": 0,
+    "backward": 0,
+    "optimizer_updates": 0,
+    "qualification_repeats": 0,
+    "runtime_files_copied": 0,
+    "historical_files_modified": 0,
+    "plan_or_lock_modified": false,
+    "new16_or_final100_outcomes_read": false
+  },
+  "AB_readiness": "NOT_READY_MISSING_AUTHENTICATED_RUNTIME_PAYLOADS",
+  "original_runtime_assets_unrecoverable_declared": false,
+  "Plan_B": "NOT_ACTIVATED_TRASH_CONTENTS_NOT_YET_CHECKED",
+  "next_model_authorization_requested": false,
+  "private_evidence_file_sha256": {
+    "GIT_OBJECT_PAYLOAD_AUDIT_PRIVATE.json": "090e04433bdf668457a380ed661d6b24df39fc98b4a14dc5abe67610493d933a",
+    "CURRENT_PATH_RECOVERY_AUDIT_PRIVATE.json": "1d8d60a72c56075734e97fecef52eccd6173dffa3a5ffc9e77337e258d7c3d41",
+    "TRASH_ACCESS_ACTUAL_PRIVATE.json": "20dd847aca256bcf027d90e108ee737f96ddf6d595ee34f44ddb277e1d8cc2d2",
+    "GIT_CANONICAL_DIGEST_SUPPLEMENT_PRIVATE.json": "9f8d88d2a7aeecedb9931496306c62751697b20aa2d6b4d64a10224f97c33ce8"
+  },
+  "limitations": [
+    "All existing local Git objects and six fetched branch heads checked; no claim about an unadvertised external backup.",
+    "Finder opened nonempty Trash (200 top-level items), but concurrent control prevented completion of the target asset search. This is not proof of absence.",
+    "No full Adam/RNG state can be reconstructed from a summary or substituted from SFT step60.",
+    "No current accuracy improvement or new native qualification claimed."
+  ]
+}
