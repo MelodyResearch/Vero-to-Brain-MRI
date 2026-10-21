@@ -14,7 +14,7 @@ Root fetched public sources with its authorized GitHub CLI into `local_data/mri_
 | gfnnnb/MM-NeuroOnco | `320537c15881` (2026-08-07) | **GitHub license = null**; README badge says "Research Only" and links `./LICENSE`, but no `LICENSE` blob is in the fetched tree (80 entries) | arXiv 2602.22955v1; no venue in abs page |
 | ChatMED/neurovlm-bench | `6e87ba48ed7d` (2026-01-01) | GitHub license = null; no license file in tree | arXiv 2603.24846v1; abs comment: "Manuscript **submitted** to BMC Medical Informatics and Decision Making" (submitted, not shown accepted) |
 | AdvancingEther/MedVol-R1 | `051b20f64e28` (2026-10-05) | GitHub license = null; README badge says MIT (`README.md:9`); no root `LICENSE` blob in tree (third_party dirs have their own) | arXiv 2605.26621v1; no venue in abs page |
-| Yuxiang-Lai117/Med-R1 | `88d76c73e7d2` (2025-07-07) | GitHub license = null; README badge MIT (`README.md:9`); no `LICENSE` blob in tree | arXiv 2503.13939v5 (revised 27 Oct 2025); no venue in abs page |
+| Yuxiang-Lai117/Med-R1 | `88d76c73e7d2` (2025-07-07) | GitHub license = null; no license badge found in the fetched `README.md` (the earlier `README.md:9` reference was a `<div>`, corrected); no `LICENSE` blob in tree | arXiv 2503.13939v5 (revised 27 Oct 2025); no venue in abs page |
 | zlab-princeton/vero | `025ca3c800fc` (2026-08-29) | Apache-2.0 (`LICENSE` in tree) | arXiv 2604.04917v3 (revised 18 Jun 2026); abs comment "Project page" only |
 | BAAI-DCAI/M3D (interface ref only) | `63e72005a230` (2025-04-13) | MIT (metadata + `LICENSE`) | arXiv 2404.00578v1; comment "MLLM, 3D medical image analysis" |
 
@@ -33,7 +33,7 @@ Root fetched public sources with its authorized GitHub CLI into `local_data/mri_
 - **Dedup**: none found in fetched files.
 
 ### MM-NeuroOnco (2D slice benchmark/instruction data)
-- **Input**: mostly already-2D Kaggle/Zenodo/Figshare images plus BraTS21 (`docs/data_sources.md`, dataset table); `data_processing/metadata_extraction/metadata_tumor_05.py:10,109-116` looks up a same-stem `.png` mask — **no NIfTI loading, reorientation, or normalization code** in the fetched tree.
+- **Input**: mostly already-2D Kaggle/Zenodo/Figshare images plus BraTS21 (`docs/data_sources.md`, dataset table); `data_processing/metadata_extraction/metadata_tumor_05.py:10,109-116` looks up a same-stem `.png` mask — **no NIfTI handling found in the fetched files** (`files/` text search for nifti/.nii/nibabel returned nothing); the full upstream tree contents were not all read.
 - **Paper vs repo on dedup**: the paper states "Global pixel-level deduplication is performed prior to partitioning", one 2D slice per volume, stratified partition, and admits slice-only datasets lack patient ids (`2602.22955v1_html.txt:1638-1640`). **The repo tree has no dedup/hash script** (80 paths; none contain "dup"/"hash"); the only split artifact is `benchmark/splits/mm-neuroonco_test_ids_v1.0.json` (**NOT_FETCHED**). So the claimed global dedup is **a paper promise with no implementation observed in the public repo** (`OBSERVED` absence in tree; dedup may exist elsewhere, e.g. in the gated HF data — `NOT_VERIFIED`).
 - **Labels**: silver labels produced by LLM pipeline (`pipeline/Step1_…`, `Step2_double_blind…`, `Step3_gemini_audit`; scripts not read beyond names) — label provenance is model-derived; `NOT_VERIFIED` beyond file names.
 
@@ -55,13 +55,13 @@ Root fetched public sources with its authorized GitHub CLI into `local_data/mri_
 - Dataset curation = heuristic dataset filter (<1K examples, <200K px, binary-only), manual 50-sample inspection, LLM question filter (Qwen3-VL-235B), LLM answer normalization, per-sample `reward_type` routing (`docs/DATA.md:89-145,164-193`). **No dedup or benchmark-decontamination step appears in the fetched docs/scripts** (grep for dedup/decontam finds only skill-codebook dedup in the paper, `2604.04917v3_html.txt:1858,4458`). "Missing global dedup implementation" therefore applies to all seven repos' fetched content; Vero's overlap handling beyond the fetched files is `NOT_VERIFIED`.
 
 ### M3D (interface reference)
-- Same CropForeground + Resize[32,256,256] + per-volume min-max recipe (`Data/process/m3d_seg_data_prepare.py:14-18,52-53`; `m3d_cap_data_prepare.py:22-24,107-108`). Bench training augmentation includes **random flips on all three spatial axes at p=0.1 and RandRotate90** (`Bench/dataset/multi_dataset.py:34-39`): left-right flips would corrupt any lateralised label; we do not adopt them.
+- Same CropForeground + Resize[32,256,256] + per-volume min-max recipe (`Data/process/m3d_seg_data_prepare.py:14-18,52-53`; `m3d_cap_data_prepare.py:22-24,107-108`). Bench training augmentation includes **random flips on all three spatial axes at p=0.1 and RandRotate90** (`Bench/dataset/multi_dataset.py:34-39`): left-right flips would corrupt a lateralised label **only if the target text is not also transformed**; whether the M3D code transforms any target text was not established here (see the cited `multi_dataset.py` lines). We do not adopt flips.
 
 ## 3. Cross-source synthesis (what this changes in our contract)
 
 | Question | Finding | Action here |
 |---|---|---|
-| Reorient / resample? | No source reorients or resamples spacing (mpLLM, M3D resize only) | Ours records orientation and refuses non-axis-aligned input; no silent resample |
+| Reorient / resample? | In the inspected code, none of the fetched sources reorients or resamples spacing (mpLLM, M3D resize only); not a claim about other code | Ours records orientation and refuses non-axis-aligned input; no silent resample |
 | Normalization | per-volume min-max (mpLLM/M3D), per-slice max (mpLLM PNG), CT HU window (MedVol); none train-fit | Ours: legacy per-volume window is the control; alternatives are named controls |
 | Mask cast | `astype(np.uint8)` without integrality check (mpLLM `:263`) | Ours rejects non-integer/nonfinite labels |
 | Split | volume-id (mpLLM, patient-grouping NOT_VERIFIED), image-level stratified (NeuroVLM), paper-only claims (MM-NeuroOnco dedup, NeuroVLM patient-disjoint) | Ours: patient-level disjointness check per source namespace + exact/near-duplicate guard, global lineage `NOT_VERIFIED` |
@@ -84,3 +84,10 @@ From `results/SEQUENCE_QUALIFICATION_V1.json`, `research/ROOT_CAUSE_CPU_FIXES_20
 ## 6. Limits
 
 No claim of reproducing any published pipeline. No unrun code is described as reproduced. `CROSS_MODEL_REVIEW=NOT_VERIFIED` (a second Claude agent would not be an independent model family).
+
+## 7. Audit 4 — selected-source processing facts (supersedes §4's `NOT_VERIFIED` for lineage)
+
+Source: root's anonymous `LOCAL_SOURCE_PROCESSING_PUBLIC_FACTS_FOR_CLAUDE.json` (header-only; I did not read MRI or private paths). §4 above said no ds007045 documentation was available; root's pinned official README (commit `283007b9…`) now provides it:
+- `OBSERVED` (source-author claim): the selected variant `processing_MNI152_skull-stripped_N4` is stated to be skull-stripped, registered to the MNI152 template and N4 bias-corrected. The z-scored variant is a different folder and is **not** the selected one.
+- `OBSERVED` (headers, 6 volumes): qform = sform with code **1 (scanner)**, not 4 (MNI152); LAS, 1 mm, 182×218×182, one shared affine; z045 = −27 mm. These are consistent with, but are **not proof of**, MNI alignment: `NOT_VERIFIED` registration accuracy, skull-strip/N4 effectiveness, global duplicate/pretraining exposure.
+- Consequence: no automatic second registration, crop, resample, N4 or z-score; "foreground" is nonzero support, not a validated brain mask.

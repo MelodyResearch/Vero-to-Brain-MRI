@@ -259,8 +259,21 @@ def check_image_mask_geometry(volume, img_aff, mask, mask_aff, allowed_labels):
     frac = float((np.asarray(volume)[nz] != 0).mean()) if nz.any() else None
     if frac is not None and frac < 0.5:
         flags.append("MASK_OUTSIDE_IMAGE_SUPPORT")
+    ineligible = []
+    if len(before - {0}) and not nz.any():  # a nonempty mask entirely cropped by the image grid
+        flags.append("MASK_OUTSIDE_IMAGE_SUPPORT")
+        ineligible.append("ENTIRE_NONEMPTY_MASK_LOST")
+    if missing:
+        ineligible.append("LABEL_MISSING_AFTER_RESAMPLE")
+    if novel_nonzero:
+        ineligible.append("LABEL_NOVEL_AFTER_RESAMPLE")
+    if outside:
+        ineligible.append("LABEL_OUTSIDE_ALLOWED")
+    if "MASK_OUTSIDE_IMAGE_SUPPORT" in flags:
+        ineligible.append("MASK_OUTSIDE_IMAGE_SUPPORT")
     return {"grid_compatible": bool(g["same_voxel_grid"]), "grid": g, "label_set_before": sorted(before), "label_set_after": sorted(after),
-            "label_set_exact_preserved": bool(exact), "missing_labels": missing, "novel_nonzero_labels": novel_nonzero,
+            "label_set_exact_preserved": bool(exact),
+            "mask_eligible": not ineligible, "ineligible_reasons": list(dict.fromkeys(ineligible)), "missing_labels": missing, "novel_nonzero_labels": novel_nonzero,
             "background_zero_introduced": bg_zero, "mask_nonzero_voxels": int(nz.sum()), "fraction_inside_support": frac,
             "registration_proven": False, "mask_is_model_input": False,
             "scope": "geometric grid check + image-support proxy; a grid-compatible mask can still be misregistered", "flags": flags}
@@ -480,9 +493,14 @@ def duplicate_guard(rows, hamming=6):
             "flagged_pairs": flagged, "scope": "within provided rows; global external duplication NOT_VERIFIED"}
 
 
+RESERVED_BINDING_KEYS = ("truth", "opaque_id", "prompt_visible", "hidden_metadata")
+
+
 def bind_source_label(opaque_id, prompt, options, truth, hidden, extra_prompt_images=()):
     """Truth and source identifiers live in hidden metadata; scan the visible prompt/image names for leakage."""
     require(truth in options, "Truth must be one of the options")
+    clash = sorted(k for k in hidden if str(k).lower() in RESERVED_BINDING_KEYS)
+    require(not clash, f"Hidden metadata uses reserved key(s) {clash}; explicit truth is authoritative and may not be overwritten")
     secrets = set()
     for v in hidden.values():
         s = str(v)
@@ -512,8 +530,8 @@ TASK_CANDIDATES = {
                         "existing binary exact-match route (unchanged)", "QC LOW_COVERAGE/LOW_CONTRAST slices abstain",
                         "ENGINEERING_BASELINE: label from metadata, limited visual check; not clinical reasoning",
                         "one skill (sequence recognition); per-slice repeats of one patient are not independent"),
-    "B_spatial": _task("Lesion mask centroid in physical/display frame, brain-support midline from the same image",
-                       "Lesion visible on the shown slice AND inside brain support; display frame stated in prompt",
+    "B_spatial": _task("Lesion mask centroid in physical/display frame, nonzero-support midline from the same image",
+                       "Lesion visible on the shown slice AND inside nonzero support; display frame stated in prompt",
                        "left|right (anatomical) via display convention right=L,up=A", "verify_lateral_side on hidden mask",
                        "binary exact-match", "mask straddles midline, offset < margin, tiny area, or low-contrast proxy",
                        "NOT_ADMITTED: visibility and endpoint qualification unverified; engineering only",
@@ -532,10 +550,24 @@ TASK_CANDIDATES = {
 }
 
 
-def verify_lesion_presence(mask2d, pixel_area_mm2, min_area_mm2=30.0):
+MIN_MASK_INSIDE_SUPPORT = 0.80  # conservative; a supplied support is a proxy, not a clinical brain mask
+
+
+def mask_inside_fraction(mask2d, support2d):
+    m, s = np.asarray(mask2d, bool), np.asarray(support2d, bool)
+    return float((m & s).sum() / m.sum()) if m.any() else None
+
+
+def verify_lesion_presence(mask2d, pixel_area_mm2, min_area_mm2=30.0, support2d=None):
     area = float(np.count_nonzero(mask2d) * pixel_area_mm2)
     ans = "absent" if area == 0 else ("present" if area >= min_area_mm2 else None)
-    return {"answer": ans, "area_mm2": area, "visibility": "NOT_VERIFIED",
+    out = {"support_checked": support2d is not None}
+    if support2d is not None and area > 0:
+        inside = mask_inside_fraction(mask2d, support2d)
+        out["fraction_inside_support"] = inside
+        if inside < MIN_MASK_INSIDE_SUPPORT:
+            return {"answer": None, "reason": "MASK_OUTSIDE_SUPPORT", "area_mm2": area, "visibility": "NOT_VERIFIED", **out}
+    return {"answer": ans, "area_mm2": area, "visibility": "NOT_VERIFIED", **out,
             "note": "mask-derived truth; mask extent does not prove the lesion is visibly discernible"}
 
 
@@ -546,6 +578,9 @@ def verify_lateral_side(mask2d, support2d, display_right_is, margin_frac=0.1):
     cols = np.flatnonzero(s.any(axis=0))
     c0, c1 = cols.min(), cols.max()
     mid, width = (c0 + c1) / 2, c1 - c0 + 1
+    inside = mask_inside_fraction(m, s)
+    if inside < MIN_MASK_INSIDE_SUPPORT:
+        return {"answer": None, "reason": "MASK_OUTSIDE_SUPPORT", "fraction_inside_support": inside}
     mc = np.nonzero(m)[1]
     off = (mc.mean() - mid) / width
     far = (mc < mid).mean() if off > 0 else (mc > mid).mean()
@@ -704,9 +739,11 @@ def run_pilot(manifest, private_dir, public_dir):
         leg = legacy_px.get(oid, {}).get(levels[i]) if i is not None and i < len(levels) else None
         diff = float(np.abs(leg.astype(float) - px).mean()) if leg is not None else None
         dup_rows.append({"id": f"{oid}P{int(round(fraction * 100))}", "patient": loaded[oid][0]["pair_key"], "pixels": px})
+        all_flags = flags + [f for f in qc_flags_for_plane(px) if f not in flags]
         return {"fraction": fraction, "index": index, "world_z_mm": world_z, "coverage_vs_max": cov, "role": role,
-                "world_z_residual_mm": residual, "abstain": bool(flags), "window": win, "pixel_hash16": _h16(px),
-                "qc_flags": flags + [f for f in qc_flags_for_plane(px) if f not in flags],
+                "world_z_residual_mm": residual, "abstain": bool(all_flags), "abstain_before_pixel_qc": bool(flags),
+                "abstain_reasons": list(all_flags), "window": win, "pixel_hash16": _h16(px),
+                "qc_flags": all_flags,
                 "mean_abs_pixel_diff_vs_legacy_level": diff,
                 "difference_reason": ("same axial index" if diff == 0 else "different axial index / physical height") if diff is not None else None}
 
@@ -729,7 +766,8 @@ def run_pilot(manifest, private_dir, public_dir):
             rows_pub[par_id]["candidate_primary"] = [
                 primary_entry(par_id, q["fraction"], q["index"], q["world_z_mm"], q["coverage_vs_max"], q["qc_flags"], "mapped_from_reference_world_z", q["world_z_residual_mm"])
                 if not q["out_of_volume"] else {"fraction": q["fraction"], "index": q["index"], "world_z_mm": q["world_z_mm"], "role": "mapped_from_reference_world_z",
-                                                "abstain": True, "qc_flags": q["qc_flags"], "world_z_residual_mm": q["world_z_residual_mm"]}
+                                                "abstain": True, "abstain_before_pixel_qc": True, "abstain_reasons": ["OUT_OF_VOLUME"] + list(q["qc_flags"]),
+                                                "qc_flags": q["qc_flags"], "world_z_residual_mm": q["world_z_residual_mm"]}
                 for q in ps["partner"]]
             pair_geo[key]["paired_selection"] = {"reference_modality": ref_m, "rule": "reference_modality_world_z_mapped_to_partner",
                                                  "correspondence": ps["correspondence"],
