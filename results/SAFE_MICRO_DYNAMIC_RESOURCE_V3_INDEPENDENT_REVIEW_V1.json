@@ -1,0 +1,158 @@
+{
+  "all_exact_binding_hashes_verified": true,
+  "budgets": {
+    "2": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 512,
+      "generated_responses": 2,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "scorer_forwards": 6,
+      "teacherforced_input_positions": 2808,
+      "window_seconds": 900
+    },
+    "3": {
+      "backward_calls": 32,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 4096,
+      "generated_responses": 16,
+      "model_loads": 1,
+      "optimizer_updates": 2,
+      "optimizer_updates_per_arm": 1,
+      "scorer_forwards": 48,
+      "teacherforced_input_positions": 27072,
+      "window_seconds": 1800
+    },
+    "4": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "candidate_calls": 0,
+      "generated_response_tokens": 18432,
+      "generated_responses": 72,
+      "greedy_calls": 72,
+      "model_loads": 3,
+      "optimizer_updates": 0,
+      "scorer_forwards": 0,
+      "teacherforced_input_positions": 0,
+      "window_seconds": 2400
+    }
+  },
+  "created_at_utc": "2026-10-21T17:01:29.492052+00:00",
+  "evidence_tier": "REPRODUCED_CPU_ONLY",
+  "findings": [
+    {
+      "evidence": "GREEN/YELLOW permit serial bounded work without fixed9/10GiB admission or120s ordinary HOLD failure. Unknown/thermal/other-heavy conditions wait nonresident or request resident release. Critical pressure requests owned-child release; RSS14/MLX12/disk26/battery20 and severe available/free safeguards override colors. Coupled swap deterioration now STOPs with explicit rate/interval/streak and disk/memory conditions.",
+      "status": "NO_REMAINING_MATERIAL_BLOCKER",
+      "subject": "Resource color precedence"
+    },
+    {
+      "evidence": "Directed pre-work fsync fixture initially failed; SAME fixture passed after recursive durable directory creation and journal-parent sync. Single writer lock, durable reservations, manifest-last commit, file hashes and no-replay indeterminate operations reviewed.",
+      "status": "CONFIRMED_CORRECTED",
+      "subject": "Crash durability and exact journal replay"
+    },
+    {
+      "evidence": "Stubbed execute_chain fixture initially showed --resume dispatching after prior exit1; SAME fixture passed after validate_pause_exit reconciles exact scope/closed logs/exit75/reaped/unlock/pause artifact and rejects forced signals or monitor errors before every restart.",
+      "status": "CONFIRMED_CORRECTED",
+      "subject": "Fatal resume bypass"
+    },
+    {
+      "evidence": "Tiny owned-child fixture initially showed monitor log failure qualifying for cooperative75 recovery; SAME fixture passed after log failures become fatal and root rejects monitor errors. A later hard risk escalates an earlier cooperative request to TERM. Wait4 ownership-first emergency cleanup retained.",
+      "status": "CONFIRMED_CORRECTED",
+      "subject": "Monitor audit failure and escalation"
+    },
+    {
+      "evidence": "ResourcePause75 is rejected if a session release failure or negative release receipt exists. Pause artifact explicitly requires external reaping and keeps separate actual allocator receipts versus no-model/unmeasured evidence. Restart requires child reaped and no open lock holders.",
+      "status": "NO_REMAINING_MATERIAL_BLOCKER",
+      "subject": "Release evidence"
+    },
+    {
+      "evidence": "Stage3 retains raw common16 responses, own-old evidence, parent and R1 identity and actual counters; replay rebuilds and validates bundles and reuses unchanged V1 arm implementation/full checkpoint files. Stage4 completed greedy rows preserve result/RNG/counters/file hashes and require prior session release. Native final result is published inside the final claimed journal operation.",
+      "status": "NO_REMAINING_MATERIAL_BLOCKER",
+      "subject": "Common bundle, arms and row milestones"
+    },
+    {
+      "evidence": "Exact new V3 schema/action/resource/recovery contract and independent source/input/scope review required. Historical Authorization subclass compatibility preserves native type guard. Original compound5100s and stage900/1800/2400s clocks persist through waits/recovery. Explicit7 model-load attempts/2 recoveries/3 controller launches; science budget unchanged.",
+      "status": "NO_REMAINING_MATERIAL_BLOCKER",
+      "subject": "Authorization and finite scope"
+    }
+  ],
+  "global_operation_start_window_seconds": 5100,
+  "human_execution_permission": "NOT_ISSUED",
+  "input_sha256": "338cf8eb706eb02bbd2fb9bccf83835244fc1876c870c50d996490cb08cfa04e",
+  "limitations": [
+    "CPU source/metadata review, synthetic state/counter comparisons and tiny owned-child fixtures only. Native MLX execution, full model loading, actual memory fit, training and MRI accuracy remain NOT_RUN.",
+    "Recovery reuses only hash-verified completed coarse milestones. A claimed operation lacking a complete valid commit is INDETERMINATE_NO_REPLAY; generation/backward/update-level lossless resume is not promised. Reserved cost is not refunded.",
+    "The guardian cannot observe another process MLX allocator. Child boundary allocator observations and genuine release/session receipts remain separate requirements. Unobserved allocator memory is not zero.",
+    "Final resource_gate.peaks describes the current child observation. Cumulative resource reporting must aggregate saved logs/exit witnesses across all attempts rather than use the last session alone.",
+    "Sampling/cooperative release/TERM/KILL are best effort; kernel or GPU work may delay them. No OOM, kernel-panic, hardware-safety or universal numerical-equivalence guarantee is established.",
+    "The old swap-only effective15.46966796875GiB and absolute16GiB STOP caps are explicitly retired only in this new scope. Swap alone is logged; numerically coupled deterioration and hard resource protections govern the new policy.",
+    "Independent reviewer is an isolated Codex agent, not a distinct model-family review. CROSS_MODEL_REVIEW=NOT_VERIFIED.",
+    "Fresh explicit human permission for this V3 scope is NOT_ISSUED. Neither earlier consumed permissions, this JSON review nor CPU PASS authorizes model execution."
+  ],
+  "material_blockers": [],
+  "metadata_count": 20,
+  "native_calls": 0,
+  "native_execution_authorized": false,
+  "private_review_FILE_sha256": "c7aa3225014b4c0e4e2c29a435db1e293b523f53b3cde79f34492f906a9a7f2a",
+  "recovery_contract": {
+    "completed_results": "HASH_VERIFIED_REUSE_ONLY",
+    "incomplete_operation": "INDETERMINATE_NO_REPLAY",
+    "max_automatic_recoveries": 2,
+    "max_controller_launches": 3,
+    "max_model_load_attempts": 7,
+    "old_scope_retry": false,
+    "wait_counts_against_original_deadlines": true,
+    "wait_samples_before_restart": 3
+  },
+  "research_tag": "ENGINEERING_UNBLOCK",
+  "reviewer_id": "Codex /root/resource_v2_final_review",
+  "reviewer_kind": "isolated_codex",
+  "schema": "safe-micro-dynamic-resource-v3-independent-review-v1",
+  "scope_FILE_sha256": "da7ef34ccf171922d601bb3160c99758c0873a518e58ea981f39e8f86012c279",
+  "scope_canonical_sha256": "bc01fd061005f888fe2d9236f1c23f5d9e654be4d36927f23d78f280ff6c376b",
+  "source_changes_sha256": {
+    "scripts/run_safe_micro_pilot_v3.py": "89340ac4a417c076419a1983bc0445ec099b62402727351d9dc782fde3502dc0",
+    "src/mri_rl/safe_micro_dynamic_resources_v1.py": "e8c50a8bf9539711d1818e227effa16c15d536b14a41b29df8d3178a7cd4252a",
+    "src/mri_rl/safe_micro_journal_v1.py": "7351cbdc83b3b5da07b2afc022172e48c621be53690156d819eaf32d9e259b4a",
+    "src/mri_rl/safe_micro_pilot_entry_v3.py": "65729dc295077ab2809e97915bc7e3d4b3a96b8d351bbbeb81af340938c7ef59",
+    "src/mri_rl/safe_micro_pilot_native_v2.py": "9a687b7f00c4ca3df17f0464ccba86275a8681b07fc12f8497631de0501ce993",
+    "src/mri_rl/safe_micro_training_v2.py": "57461b374ba297da65c0f4481b28d2de330ad4b9f137ef7d6e9b9c3180cc8366",
+    "src/mri_rl/safe_micro_watchdog_v2.py": "1c0da420bb1e4124d13f71afa1a29b652d4944e9e51ce02590b0ef694e7f3fad"
+  },
+  "source_count": 95,
+  "test_facts": {
+    "author_final_suite_report": {
+      "provenance": "Reported by implementation lead; not independently rerun as a broader suite",
+      "result": "58 passed in0.79s"
+    },
+    "exact_frozen_cpu_prepare": {
+      "all_binding_hashes_verified": true,
+      "metadata_count": 20,
+      "native_calls": 0,
+      "native_imports": false,
+      "payload_reads": false,
+      "scope_FILE_sha256": "da7ef34ccf171922d601bb3160c99758c0873a518e58ea981f39e8f86012c279",
+      "scope_sha256": "bc01fd061005f888fe2d9236f1c23f5d9e654be4d36927f23d78f280ff6c376b",
+      "source_count": 95,
+      "status": "PASS"
+    },
+    "independently_run_native_resume_suite": {
+      "coverage": [
+        "Actual run_phase2 control flow with CPU-only backend stub; qualify/release/commit/replay",
+        "Resumed versus uninterrupted synthetic arm endpoints and V1 endpoints",
+        "Persistent counter limits; claimed incomplete operation refusal",
+        "Committed checkpoint corruption; greedy row/RNG replay; previous release requirement",
+        "Pause before final native commit does not publish unbound result"
+      ],
+      "exit_code": 0,
+      "result": "11 passed in0.38s"
+    },
+    "independently_run_root_and_same_private_fixtures": {
+      "exit_code": 0,
+      "includes_same_private_counterexamples": 4,
+      "result": "16 passed in0.22s"
+    }
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

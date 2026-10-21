@@ -1,0 +1,215 @@
+{
+  "CPU_verification": {
+    "author_tests": 54,
+    "red_green": "Missing implementation; root monitor logging/forced-resume and journal directory durability; native journal lifetime; actualmockStage2 callback NameError; native completion publish ordering. Unchanged counterexamples repaired.",
+    "root_directed_tests_passed": 58,
+    "same_independent_counterexamples": 4,
+    "seconds": 0.79
+  },
+  "Claude_actual": {
+    "Claude_execution_claimed": false,
+    "implementation_by": "Codex/root and isolated Codex native_resume_implementation",
+    "logged_in": false,
+    "version": "2.1.306"
+  },
+  "actual_readonly_resources": {
+    "GPU_operations": 0,
+    "MLX_imported": false,
+    "execution_grant_issued": false,
+    "global_lock": {
+      "exists": true,
+      "inspection_error": null,
+      "lock_acquired_or_modified": false,
+      "no_open_holders": true
+    },
+    "model_loads": 0,
+    "rows": [
+      {
+        "OS_pressure_level": 1,
+        "action": "CONTINUE",
+        "color": "GREEN",
+        "disk_free_GiB": 297.8577880859375,
+        "reasons": [],
+        "sample": {
+          "available_gib": 10.24444580078125,
+          "battery_percent": 96,
+          "mlx_active_gib": null,
+          "mlx_peak_gib": null,
+          "monotonic_seconds": 454950.722725666,
+          "other_heavy_processes": 0,
+          "power_source": "BATTERY",
+          "pressure_free_percent": 57.0,
+          "process_rss_gib": 0.0229034423828125,
+          "swap_used_gib": 12.00787109375,
+          "thermal_state": "SENSOR_UNAVAILABLE"
+        },
+        "swap_rate_GiB_per_min": null,
+        "utc": "2026-10-21T17:00:17.390062+00:00"
+      },
+      {
+        "OS_pressure_level": 1,
+        "action": "CONTINUE",
+        "color": "GREEN",
+        "disk_free_GiB": 297.8577690124512,
+        "reasons": [],
+        "sample": {
+          "available_gib": 9.949676513671875,
+          "battery_percent": 96,
+          "mlx_active_gib": null,
+          "mlx_peak_gib": null,
+          "monotonic_seconds": 454955.804100916,
+          "other_heavy_processes": 0,
+          "power_source": "BATTERY",
+          "pressure_free_percent": 56.0,
+          "process_rss_gib": 0.0237579345703125,
+          "swap_used_gib": 12.00787109375,
+          "thermal_state": "SENSOR_UNAVAILABLE"
+        },
+        "swap_rate_GiB_per_min": 0.0,
+        "utc": "2026-10-21T17:00:22.472319+00:00"
+      },
+      {
+        "OS_pressure_level": 1,
+        "action": "CONTINUE",
+        "color": "GREEN",
+        "disk_free_GiB": 297.85778427124023,
+        "reasons": [],
+        "sample": {
+          "available_gib": 10.181427001953125,
+          "battery_percent": 96,
+          "mlx_active_gib": null,
+          "mlx_peak_gib": null,
+          "monotonic_seconds": 454960.885259,
+          "other_heavy_processes": 0,
+          "power_source": "BATTERY",
+          "pressure_free_percent": 57.0,
+          "process_rss_gib": 0.0238800048828125,
+          "swap_used_gib": 12.00787109375,
+          "thermal_state": "SENSOR_UNAVAILABLE"
+        },
+        "swap_rate_GiB_per_min": 0.0,
+        "utc": "2026-10-21T17:00:27.553007+00:00"
+      }
+    ]
+  },
+  "canonical_scope_sha256": "bc01fd061005f888fe2d9236f1c23f5d9e654be4d36927f23d78f280ff6c376b",
+  "extra_load_attempts": "Original5 plus at most2 recovery loads; no extra generation/backward/update budget",
+  "frozen_research_plan_changed": false,
+  "historical_cache_recovery_repeated": false,
+  "human_execution_permission": "NOT_ISSUED",
+  "input_sha256": "338cf8eb706eb02bbd2fb9bccf83835244fc1876c870c50d996490cb08cfa04e",
+  "limitations": [
+    "Only complete coarse scientific milestones resume. Claimed incomplete operations block; no token/backward/optimizer-level lossless recovery claim.",
+    "Current-child resource peaks are not cumulative; future actual reporting must aggregate every saved attempt log and exact wait4 peaks.",
+    "Native dynamic behavior and MRI accuracy unverified. CPU passing is not model qualification.",
+    "DEV24 is explored four-patient engineering readout; no Dallas retention or candidate accuracy evaluation in this greedy-only scope.",
+    "External MLX allocator unavailable; sampling and atomic GPU calls give no OOM or OS-crash guarantee."
+  ],
+  "metadata_bindings": 20,
+  "new_native_execution": {
+    "GPU_operations": 0,
+    "Parent_A_B_accuracy": "NOT_RUN",
+    "backward": 0,
+    "generation": 0,
+    "model_loads": 0,
+    "optimizer_updates": 0
+  },
+  "old_scope_permission_reused": false,
+  "recovery_contract": {
+    "completed_results": "HASH_VERIFIED_REUSE_ONLY",
+    "incomplete_operation": "INDETERMINATE_NO_REPLAY",
+    "max_automatic_recoveries": 2,
+    "max_controller_launches": 3,
+    "max_model_load_attempts": 7,
+    "old_scope_retry": false,
+    "wait_counts_against_original_deadlines": true,
+    "wait_samples_before_restart": 3
+  },
+  "resource_policy": {
+    "MLX_cache_bytes": 268435456,
+    "MLX_limit_GiB": 12.0,
+    "RSS_limit_GiB": 14.0,
+    "available_emergency_below_GiB": 2.0,
+    "available_sustained_below_GiB": 4.0,
+    "battery_min_percent": 20.0,
+    "compound_seconds": 5100.0,
+    "coupled_available_below_GiB": 4.0,
+    "coupled_disk_below_GiB": 30.0,
+    "coupled_free_below_percent": 20.0,
+    "coupled_min_interval_seconds": 5.0,
+    "coupled_rate_GiB_per_min": 0.25,
+    "coupled_streak": 2,
+    "critical": 4,
+    "disk_min_GiB": 26.0,
+    "extra_recovery_loads_max": 2,
+    "model_load_attempts_max": 7,
+    "no_oom_guarantee": true,
+    "normal": 1,
+    "old_effective15_4697_and_absolute16_caps": "RETIRED_THIS_SCOPE_ONLY; logged, not standalone stops",
+    "original_planned_model_loads": 5,
+    "parent_wait_seconds": 5.0,
+    "pressure_free_emergency_at_or_below_percent": 15.0,
+    "recoveries_max": 2,
+    "recovery_good_samples": 3,
+    "resident_wait_on_RED": false,
+    "sample_seconds": 2.0,
+    "sustained_seconds": 30.0,
+    "swap_standalone_stop": false,
+    "unknown_action": "WAIT_NONRESIDENT_OR_PAUSE_RELEASE_RESIDENT",
+    "version": "MICRO_COLOR_V1",
+    "warning": 2,
+    "warning_action": "CONTINUE_SERIAL_LOW_CACHE; coupled sustained swap plus severe memory or disk risk is emergency STOP"
+  },
+  "schema": "safe-micro-dynamic-color-recovery-preparation-v3",
+  "scope_file_sha256": "da7ef34ccf171922d601bb3160c99758c0873a518e58ea981f39e8f86012c279",
+  "source_bindings": 95,
+  "status": "INDEPENDENTLY_REVIEWED_CPU_READY_PENDING_FRESH_HUMAN_EXECUTION",
+  "unchanged_scientific_budgets": {
+    "2": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 512,
+      "generated_responses": 2,
+      "model_loads": 1,
+      "optimizer_updates": 0,
+      "scorer_forwards": 6,
+      "teacherforced_input_positions": 2808,
+      "window_seconds": 900
+    },
+    "3": {
+      "backward_calls": 32,
+      "cache_quantizations": 0,
+      "generated_response_tokens": 4096,
+      "generated_responses": 16,
+      "model_loads": 1,
+      "optimizer_updates": 2,
+      "optimizer_updates_per_arm": 1,
+      "scorer_forwards": 48,
+      "teacherforced_input_positions": 27072,
+      "window_seconds": 1800
+    },
+    "4": {
+      "backward_calls": 0,
+      "cache_quantizations": 0,
+      "candidate_calls": 0,
+      "generated_response_tokens": 18432,
+      "generated_responses": 72,
+      "greedy_calls": 72,
+      "model_loads": 3,
+      "optimizer_updates": 0,
+      "scorer_forwards": 0,
+      "teacherforced_input_positions": 0,
+      "window_seconds": 2400
+    }
+  },
+  "independent_review": {
+    "reviewer_id": "Codex /root/resource_v2_final_review",
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "public_path": "results/SAFE_MICRO_DYNAMIC_RESOURCE_V3_INDEPENDENT_REVIEW_V1.json",
+    "public_file_sha256": "c5532f3d01afd02fc320fd5b0a43d493de02fa3d85770645692595fdb77bf38c",
+    "private_file_sha256": "c7aa3225014b4c0e4e2c29a435db1e293b523f53b3cde79f34492f906a9a7f2a",
+    "independent_root_fixture_tests": 16,
+    "independent_native_stub_tests": 11,
+    "execution_permission": false
+  }
+}
