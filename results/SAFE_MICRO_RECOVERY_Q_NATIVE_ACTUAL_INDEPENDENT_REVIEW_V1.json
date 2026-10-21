@@ -1,0 +1,71 @@
+{
+  "actual_resource_summary": {
+    "exact_wait4_peak_RSS_GiB": 5.63482666015625,
+    "maximum_reported_MLX_peak_GiB": 4.89990583434701,
+    "minimum_available_GiB": 8.686676025390625,
+    "minimum_pressure_free_percent": 49.0,
+    "release_active_MLX_bytes": [
+      1032,
+      1032
+    ],
+    "resource_colors": [
+      "GREEN"
+    ],
+    "swap_end_GiB": 14.805361328125,
+    "swap_start_GiB": 14.813173828125,
+    "wall_seconds": 81.83742104202975
+  },
+  "additional_execution_permission_issued": false,
+  "checks": {
+    "Q_manifest_last_journals_authenticated": true,
+    "actual_lock_released": true,
+    "all_resource_observations_continue": 66,
+    "array_leaf_copies": 7074,
+    "backward": 0,
+    "closed_logs_match": true,
+    "complete_restores": 2,
+    "complete_snapshots": 2,
+    "exact_99_source_bindings": true,
+    "exact_original_parent_identity_matches_saved_Common16_parent": true,
+    "exit0_reaped": true,
+    "full_parameters_identical": 1942,
+    "full_policy_Adam_Python_MLX_RNG_identity_restored": true,
+    "generation": 0,
+    "no_forced_signal_or_guardian_stop": true,
+    "optimizer_arrays_identical": 1010,
+    "optimizer_step": 52,
+    "optimizer_updates": 0,
+    "teacher_forced_model_calls": 0,
+    "tiny_F32_U32_U64_copy_isolation_all_pass": true,
+    "trainable_parameters": 504
+  },
+  "created_at_utc": "2026-10-21T18:59:57.438017+00:00",
+  "cross_model_review": "NOT_VERIFIED",
+  "current_B_or_E_result": "NOT_REVIEWED",
+  "evidence_FILE_sha256": {
+    "PILOT_RECOVERY_QBE_V1_EXECUTION_SCOPE_PRIVATE.json": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+    "Q_restore_actual_PRIVATE.json": "c28df8ef36d7372f8e999a6d9e1048defab055c92d5b027db2aa2e3830188a71",
+    "actual_exit_PRIVATE.json": "ca66b99a2cccbef234bbe96aac2b06563f432b15053b347296815ba025c2e181",
+    "dynamic_resources_PRIVATE.jsonl": "40ba293b0a06276b7b0da8e919deac0bfdb2a00774e35f633894231be926607d",
+    "stage2_verified_PRIVATE.json": "9ed03103c0f002d0031f20c6c1bfc79a7d1487ba035f29f25f4f52a489ac5db1",
+    "stderr_PRIVATE.log": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+    "stdout_PRIVATE.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "terminal_PRIVATE.json": "d2c601ab0f513fecdbb102d0188f0e3ae7e5b6b302e78ef02690602d8ddfe3a4"
+  },
+  "limitations": [
+    "Q loads original Adam52 only, not saved A. Saved A still requires full native parameter/Adam/RNG identity validation at E before inference.",
+    "The Q test proves installed tiny array-copy isolation and exact full state roundtrip without mutating live model or optimizer; it does not uniquely attribute the old generic native rollback failure.",
+    "A remains explicitly SALVAGED_FROM_INCOMPLETE_TRANSACTION; this does not retrospectively commit its old journal.",
+    "B and E active phase outputs were not opened or scored in this review. No MRI accuracy result is inferred.",
+    "Resource sampling and atomic operation blind spots remain; no OOM/system stability guarantee."
+  ],
+  "new_model_calls_by_reviewer": 0,
+  "private_actual_review_FILE_sha256": "3fd52b19e5f6e2178e33cc48438519e7a3facaee305214365fb3d5b567099f5f",
+  "reviewer_id": "Codex /root/recovery_exact_scope_review",
+  "reviewer_kind": "isolated_codex",
+  "schema": "safe-micro-Q-native-actual-independent-review-v1",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "scope_sha256": "cd9f6038a680ccb02b0e857f53d9fae97855268927c7a486fee822fd34075f3e",
+  "stage2_phase_scope_sha256": "06c633e693c0c84be7d915f1f9d7041a2868c25ed7981baec90cbb03cae28202",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

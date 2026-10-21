@@ -1,0 +1,268 @@
+{
+  "actual_metrics": {
+    "A": {
+      "FLAIR_recall": 0.4166666666666667,
+      "T1_recall": 0.5,
+      "accuracy": 0.4583333333333333,
+      "actual_updates": 1,
+      "balanced_accuracy": 0.45833333333333337,
+      "cases": 24,
+      "class_correct": [
+        5,
+        6
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "confusion_true_FLAIR_T1_by_pred_FLAIR_T1_INVALID": [
+        [
+          5,
+          2,
+          5
+        ],
+        [
+          2,
+          6,
+          4
+        ]
+      ],
+      "correct": 11,
+      "invalid": 9
+    },
+    "B": {
+      "FLAIR_recall": 0.4166666666666667,
+      "T1_recall": 0.5833333333333334,
+      "accuracy": 0.5,
+      "actual_updates": 1,
+      "balanced_accuracy": 0.5,
+      "cases": 24,
+      "class_correct": [
+        5,
+        7
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "confusion_true_FLAIR_T1_by_pred_FLAIR_T1_INVALID": [
+        [
+          5,
+          2,
+          5
+        ],
+        [
+          1,
+          7,
+          4
+        ]
+      ],
+      "correct": 12,
+      "invalid": 9
+    },
+    "Parent": {
+      "FLAIR_recall": 0.4166666666666667,
+      "T1_recall": 0.4166666666666667,
+      "accuracy": 0.4166666666666667,
+      "actual_updates": 0,
+      "balanced_accuracy": 0.4166666666666667,
+      "cases": 24,
+      "class_correct": [
+        5,
+        5
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "confusion_true_FLAIR_T1_by_pred_FLAIR_T1_INVALID": [
+        [
+          5,
+          3,
+          4
+        ],
+        [
+          2,
+          5,
+          5
+        ]
+      ],
+      "correct": 10,
+      "invalid": 9
+    }
+  },
+  "actual_resource_summary": {
+    "after_root_available_GiB": 13.473388671875,
+    "after_root_no_other_heavy": true,
+    "after_root_pressure_free_percent": 59.0,
+    "stage_E_child_observation_count": 17542,
+    "stage_E_colors": [
+      "GREEN",
+      "YELLOW"
+    ],
+    "stage_E_exact_wait4_peak_RSS_GiB": 5.9696044921875,
+    "stage_E_maximum_reported_MLX_peak_GiB": 5.776223893277347,
+    "stage_E_min_available_GiB": 5.265350341796875,
+    "stage_E_min_pressure_free_percent": 28.0,
+    "stage_E_seconds": 2384.3057595419814,
+    "stage_E_swap_end_GiB": 15.51763671875,
+    "stage_E_swap_start_GiB": 14.890625,
+    "whole_root_seconds": 2635.5621961250436
+  },
+  "additional_training_authorized": false,
+  "caps_at_256_tokens": {
+    "A": 9,
+    "B": 9,
+    "Parent": 9
+  },
+  "checks": {
+    "0candidate_calls": true,
+    "4_DEV_people_disjoint_from_current_TRAIN_pair": true,
+    "A_and_B_full_native_checkpoint_restore": {
+      "A": {
+        "Adam_step": 53,
+        "full_optimizer_arrays": 1010,
+        "full_parameters": 1942,
+        "policy_Adam_RNG_matches_terminal_receipt": true
+      },
+      "B": {
+        "Adam_step": 53,
+        "full_optimizer_arrays": 1010,
+        "full_parameters": 1942,
+        "policy_Adam_RNG_matches_terminal_receipt": true
+      }
+    },
+    "Stage4_actual_exit0_reaped_no_forced_signal": true,
+    "all_3_eval_readonly_parameter_Adam_integrity": {
+      "A": {
+        "allocator_release_MLX_bytes": 1050,
+        "before_equals_after": true,
+        "full_optimizer_arrays": 1010,
+        "full_parameters": 1942
+      },
+      "B": {
+        "allocator_release_MLX_bytes": 1050,
+        "before_equals_after": true,
+        "full_optimizer_arrays": 1010,
+        "full_parameters": 1942
+      },
+      "Parent": {
+        "allocator_release_MLX_bytes": 1050,
+        "before_equals_after": true,
+        "full_optimizer_arrays": 1010,
+        "full_parameters": 1942
+      }
+    },
+    "all_5_new_loads_used_no_recovery_or_replay": true,
+    "all_72_exact_frozen_balanced_DEV24_rows_authenticated": true,
+    "all_99_source_24_metadata_bindings_match": true,
+    "all_recorded_generation_F32_embeddings_logits_KV": true,
+    "closed_logs_match": true,
+    "explicit_human_A_adoption_permission_bound": true,
+    "independent_structural_strict_parser_agrees_all72": true,
+    "old_A_outer_journal_still_uncommitted": true,
+    "same_actual_image_prompt_input_tensor_fingerprints_across_Parent_A_B": true,
+    "whole_compound_complete_exit0_reaped_unlocked": true
+  },
+  "conclusion": "POSITIVE_SMALL_ENGINEERING_SIGNAL_NOT_GENERALIZATION_OR_AUTOMATIC_SCALE",
+  "created_at_utc": "2026-10-21T19:43:49.356051+00:00",
+  "cross_model_review": "NOT_VERIFIED",
+  "cumulative_including_saved_A_and_Common16": {
+    "TF_positions": 12367,
+    "backwards": 16,
+    "model_loads": 7,
+    "returned_tokens": 9161,
+    "scorer_forwards": 38,
+    "updates": 2
+  },
+  "limitations": [
+    "B has1extra correct T1 versusA and2versusParent on already explored24MRI/4DEVpatients, with FLAIR5/12 unchanged; this is a tiny local engineering result.",
+    "No candidate/margin/image-swap evaluation was performed. These accuracy changes do not distinguish genuine image-grounded learning from a class-prior shift.",
+    "Dallas retention was not evaluated in the greedy-sequence-only scope, although unchanged Dallas TRAIN control contributes to both updates.",
+    "All models still have9invalid generations; all were256-token caps in this actual evaluation.",
+    "Parameter and full Adam before/after equality is independently read from each readonly receipt. RNG full restore is enforced by the frozen native assertion and Q-qualified implementation; a separate post-readonly RNG digest artifact is not saved.",
+    "The A checkpoint is explicitly SALVAGED_FROM_INCOMPLETE_TRANSACTION; its full native policy/Adam/RNG load matched its terminal receipt before A inference. No old journal was retrospectively committed.",
+    "Direct A and paired B each have1real update but only oneTRAINpatientpair and shared16responses. No multi-patient/repeated-seed/generalization claim follows.",
+    "ExactF32 runtime is a local Vero-style MLX implementation, not complete officialPrincetonVero/veRL equivalence.",
+    "Resource monitors have sampling and atomic-operation blind spots; actual exit/release success does not guarantee future system stability.",
+    "No new native call, parameter update or model outcome selection was performed by the independent reviewer; no final100/new16outputs were read."
+  ],
+  "new_native_calls_by_reviewer": 0,
+  "new_optimizer_updates_by_reviewer": 0,
+  "new_work": {
+    "TF_positions": 2712,
+    "backwards": 8,
+    "model_loads": 5,
+    "returned_tokens": 8488,
+    "scorer_forwards": 8,
+    "updates": 1
+  },
+  "paired_changes": {
+    "B_minus_A": {
+      "FLAIR_recall_percentage_points": 0.0,
+      "T1_recall_percentage_points": 8.333333333333337,
+      "accuracy_percentage_points": 4.166666666666669,
+      "changed_predictions": 1,
+      "correct_to_wrong": 0,
+      "invalid_to_correct": 0,
+      "valid_wrong_to_correct": 1,
+      "wrong_to_correct": 1
+    },
+    "B_minus_Parent": {
+      "FLAIR_recall_percentage_points": 0.0,
+      "T1_recall_percentage_points": 16.666666666666668,
+      "accuracy_percentage_points": 8.333333333333332,
+      "changed_predictions": 4,
+      "correct_to_wrong": 0,
+      "invalid_to_correct": 0,
+      "valid_wrong_to_correct": 2,
+      "wrong_to_correct": 2
+    }
+  },
+  "per_model_generation_cost": {
+    "A": {
+      "returned_tokens": 2800,
+      "row_generation_wall_seconds": 681.1641166259651
+    },
+    "B": {
+      "returned_tokens": 2756,
+      "row_generation_wall_seconds": 697.0253313299618
+    },
+    "Parent": {
+      "returned_tokens": 2932,
+      "row_generation_wall_seconds": 692.1952322529396
+    }
+  },
+  "privacy_review": {
+    "content": "Aggregatecounts/scalars/hashes/sourcepaths_only",
+    "credentials_or_private_human_text": false,
+    "image_paths_or_images": false,
+    "patient_or_study_identifiers": false,
+    "raw_responses_or_tokens": false,
+    "weights_optimizer_RNG_arrays": false
+  },
+  "private_review_FILE_sha256": "395afec11590bde3764070f0a48eb785b159f1c40c51600d80cb88bcdfec4806",
+  "reviewer_id": "Codex /root/recovery_exact_scope_review",
+  "reviewer_kind": "isolated_codex",
+  "root_source_commit": "748922f61bf12f75d76c62322ec92dd9ae3eee16",
+  "row_FILE_hash_inventory_digest": "c13a6cf383ea0e2365ef137e404c2b994a7f3e37696375872e017af428ce4fac",
+  "schema": "safe-micro-QBE-whole-actual-independent-review-v1",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "scope_sha256": "cd9f6038a680ccb02b0e857f53d9fae97855268927c7a486fee822fd34075f3e",
+  "selected_evidence_FILE_sha256": {
+    "PILOT_RECOVERY_QBE_V1_EXECUTION_SCOPE_PRIVATE.json": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+    "PILOT_RECOVERY_QBE_V1_ROOT_ACTUAL_EXIT_PRIVATE.json": "6def82b8ab30779b5c1a93c0aff1582ae5b7cc3970a687d54d0f6a717ac43b81",
+    "PILOT_RECOVERY_QBE_V1_ROOT_STDERR_PRIVATE.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PILOT_RECOVERY_QBE_V1_ROOT_STDOUT_PRIVATE.log": "50d1c23e244ca5a46f9c9e331e51bef6f491dc43e04ef17c76eee0f35f8d5da0",
+    "PILOT_RECOVERY_QBE_V1_SPEC_PRIVATE.json": "8e3789d218878791a902131fc4c5ac2e6761fe84101c3179424340dbcfad625c",
+    "actual_exit_PRIVATE.json": "f791017fd1bd352d02dfa3153001a903070f8bf7698e73d7537a7e69c100c2cd",
+    "compound_complete_PRIVATE.json": "1b516f01f76be481a765d2aa301472013e75ba43a9c70fec78a75c685e3d60e1",
+    "dynamic_resources_PRIVATE.jsonl": "508584d799e0b075fe4cc4476b1614e8b7e7c7524bce827b082808328ca17a2d",
+    "model_load_ledger_PRIVATE.json": "6e9998cad3b268570c7725f80147449aff5470d9b91d43ab5b13e73035cd13bf",
+    "stage4_verified_PRIVATE.json": "335b9aa88a4705d812cb97c867c9952b8862fba21809616b7e451ae6dd7ea684",
+    "stderr_PRIVATE.log": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+    "stdout_PRIVATE.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "terminal_PRIVATE.json": "74a8bcc05822dd26462d798dff5916adf1f22ecf899eaeaf873e52a003d1f679"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

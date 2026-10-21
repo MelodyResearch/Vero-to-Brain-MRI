@@ -1,0 +1,328 @@
+{
+  "A": {
+    "actual_native_full_restore_before_inference_PASS": true,
+    "adapter_sha256": "bc836be274586358253757b53d0dbf297c23be7b108b40d122a12cc101ae8bf2",
+    "fresh_human_adoption_and_Q_PASS": true,
+    "label": "SALVAGED_FROM_INCOMPLETE_TRANSACTION",
+    "new_updates": 0,
+    "old_outer_journal_committed": false,
+    "saved_historical_updates": 1,
+    "updates_repeated": false
+  },
+  "B": {
+    "Adam_step_after": 53,
+    "TF_positions": 2712,
+    "admitted_responses": 8,
+    "backward_calls": 8,
+    "checkpoint_files_sha256": {
+      "adapter.safetensors": "3015643f20b24d13087f579e2dd01a6129346e895e31800effb882e8f7b21fb8",
+      "optimizer/manifest.json": "7e658655fb39baf288428b16eb46b95b40c67c78e05d290da8fd82405a4f732e",
+      "optimizer/state.safetensors": "541d830ceb98a9a947210fee3acad54da0641d4dc9d188a1705c17c62cc5b80c"
+    },
+    "effective_groups": 2,
+    "fresh_original_disk_Adam52": true,
+    "generated_responses": 0,
+    "gradient_forwards": 8,
+    "new_optimizer_updates": 1,
+    "receipt_sha256": "1381ad6decd484a2d8066fb9b73802069c57fa848cd825bacfe008ae99e3c47b",
+    "refreshed_old_scores": 0
+  },
+  "CROSS_MODEL_REVIEW": "NOT_VERIFIED",
+  "Q": {
+    "Adam_arrays": 1010,
+    "TF": 0,
+    "backward": 0,
+    "full_parameters": 1942,
+    "generation": 0,
+    "leaf_copies": 7074,
+    "native_PASS": true,
+    "restores": 2,
+    "snapshots": 2,
+    "tiny_copy_fixtures_PASS": 3,
+    "trainable_parameters": 504,
+    "updates": 0
+  },
+  "additional_training_authorized": false,
+  "automatic_expansion": false,
+  "combined_with_original_attempt": {
+    "TF_positions": 12367,
+    "backward_calls": 16,
+    "generations": 90,
+    "model_loads": 7,
+    "optimizer_updates": 2,
+    "returned_tokens": 9161,
+    "scorer_forwards": 38
+  },
+  "created_at_utc": "2026-10-21T19:45:10.107969+00:00",
+  "evaluation": {
+    "B_minus_A_T1_recall_pp": 8.333333333333337,
+    "B_minus_A_accuracy_pp": 4.166666666666669,
+    "B_minus_Parent_FLAIR_recall_pp": 0.0,
+    "B_minus_Parent_T1_recall_pp": 16.666666666666668,
+    "B_minus_Parent_accuracy_pp": 8.333333333333332,
+    "TRAIN_disjoint": true,
+    "calls": {
+      "LM": 8632,
+      "generated_tokens": 8488,
+      "generations": 72,
+      "sampler": 8560,
+      "vision": 72
+    },
+    "candidate_calls": 0,
+    "class_index": {
+      "-1": "INVALID",
+      "0": "FLAIR",
+      "1": "contrast-enhanced T1"
+    },
+    "classes": [
+      12,
+      12
+    ],
+    "cohort": "FROZEN_INTERNAL_DEV24_PREVIOUSLY_EXPLORED",
+    "cost_by_model": {
+      "A": {
+        "confusion_with_invalid": {
+          "0": {
+            "-1": 5,
+            "0": 5,
+            "1": 2
+          },
+          "1": {
+            "-1": 4,
+            "0": 2,
+            "1": 6
+          }
+        },
+        "finish_reasons": {
+          "length": 9,
+          "stop": 15
+        },
+        "generation_wall_seconds": 681.1641166259651,
+        "predicted_class_counts": {
+          "-1": 9,
+          "0": 7,
+          "1": 8
+        },
+        "tokens": 2800
+      },
+      "B": {
+        "confusion_with_invalid": {
+          "0": {
+            "-1": 5,
+            "0": 5,
+            "1": 2
+          },
+          "1": {
+            "-1": 4,
+            "0": 1,
+            "1": 7
+          }
+        },
+        "finish_reasons": {
+          "length": 9,
+          "stop": 15
+        },
+        "generation_wall_seconds": 697.0253313299618,
+        "predicted_class_counts": {
+          "-1": 9,
+          "0": 6,
+          "1": 9
+        },
+        "tokens": 2756
+      },
+      "Parent": {
+        "confusion_with_invalid": {
+          "0": {
+            "-1": 4,
+            "0": 5,
+            "1": 3
+          },
+          "1": {
+            "-1": 5,
+            "0": 2,
+            "1": 5
+          }
+        },
+        "finish_reasons": {
+          "length": 9,
+          "stop": 15
+        },
+        "generation_wall_seconds": 692.1952322529396,
+        "predicted_class_counts": {
+          "-1": 9,
+          "0": 7,
+          "1": 8
+        },
+        "tokens": 2932
+      }
+    },
+    "decision": "POSITIVE_ENGINEERING_SIGNAL_NO_AUTOMATIC_SCALE",
+    "max_tokens": 256,
+    "metrics": {
+      "A": {
+        "FLAIR_recall": 0.4166666666666667,
+        "T1_recall": 0.5,
+        "accuracy": 0.4583333333333333,
+        "actual_updates": 1,
+        "balanced_accuracy": 0.45833333333333337,
+        "cases": 24,
+        "class_correct": [
+          5,
+          6
+        ],
+        "class_counts": [
+          12,
+          12
+        ],
+        "correct": 11,
+        "invalid": 9
+      },
+      "B": {
+        "FLAIR_recall": 0.4166666666666667,
+        "T1_recall": 0.5833333333333334,
+        "accuracy": 0.5,
+        "actual_updates": 1,
+        "balanced_accuracy": 0.5,
+        "cases": 24,
+        "class_correct": [
+          5,
+          7
+        ],
+        "class_counts": [
+          12,
+          12
+        ],
+        "correct": 12,
+        "invalid": 9
+      },
+      "Parent": {
+        "FLAIR_recall": 0.4166666666666667,
+        "T1_recall": 0.4166666666666667,
+        "accuracy": 0.4166666666666667,
+        "actual_updates": 0,
+        "balanced_accuracy": 0.4166666666666667,
+        "cases": 24,
+        "class_correct": [
+          5,
+          5
+        ],
+        "class_counts": [
+          12,
+          12
+        ],
+        "correct": 10,
+        "invalid": 9
+      }
+    },
+    "patients": 4,
+    "same_F32_contract": true,
+    "strict_greedy": true,
+    "temperature": 0,
+    "transitions": {
+      "B_vs_A": {
+        "correct_to_correct": 11,
+        "invalid_to_invalid": 9,
+        "valid_wrong_to_correct": 1,
+        "valid_wrong_to_valid_wrong": 3
+      },
+      "B_vs_Parent": {
+        "correct_to_correct": 10,
+        "invalid_to_invalid": 8,
+        "invalid_to_valid_wrong": 1,
+        "valid_wrong_to_correct": 2,
+        "valid_wrong_to_invalid": 1,
+        "valid_wrong_to_valid_wrong": 2
+      }
+    }
+  },
+  "evidence_tier": "OBSERVED_NATIVE_AND_INDEPENDENTLY_REPRODUCED_SAVED_RESULTS",
+  "independent_reviews": {
+    "SAFE_MICRO_RECOVERY_B_NATIVE_ACTUAL_INDEPENDENT_REVIEW_V1.json": "b7a368a3fcb4751a2e49d93fb73cec854c0bbb41963113d3501720872b776844",
+    "SAFE_MICRO_RECOVERY_QBE_ADOPTION_RESOURCE_INDEPENDENT_REVIEW_V1.json": "772a1d58a19840691bcf280e9d758248348242df6b9e37cfd3d954d2e84a7114",
+    "SAFE_MICRO_RECOVERY_QBE_FINAL_ACTUAL_INDEPENDENT_REVIEW_V1.json": "f002843dd48663ae8e693e73194f7089d5d6f54e8149af0bd76ee77586746b20",
+    "SAFE_MICRO_RECOVERY_Q_NATIVE_ACTUAL_INDEPENDENT_REVIEW_V1.json": "25350eaf68de9c368f4b3305107c04e08d9aa6f19192f528a04d8d3b9f226988"
+  },
+  "limitations": [
+    "One TRAIN pair and one update per arm; one shared draw, no multi-seed replication.",
+    "DEV24 has four previously explored DEV patients; no independent-patient generalization demonstrated.",
+    "Nine cap/invalid responses per checkpoint remain; aggregate equal FLAIR recall does not imply every case is unchanged.",
+    "B makes two valid-wrong to correct transitions versus Parent and one versus A, but no image-swap/null/candidate controls in this authorized evaluation; image-grounding versus changed class preference is not resolved.",
+    "Dallas retention, candidate discrimination and sealed new16 outcomes NOT_MEASURED.",
+    "Read-only evaluation has saved full parameter/Adam before-after fingerprints; RNG restoration is a successful native full-state assertion, not an independent raw final RNG pair claim.",
+    "Q verifies this isolated new restore path; not every historical training implementation.",
+    "Sampled resource telemetry cannot guarantee absence of atomic-GPU/OOM/system risk; thermal sensor unavailable."
+  ],
+  "new_actual_operations": {
+    "TF_positions": 2712,
+    "backward_calls": 8,
+    "cache_quantizations": 0,
+    "generations": 72,
+    "model_loads": 5,
+    "optimizer_updates": 1,
+    "returned_tokens": 8488,
+    "scorer_forwards": 8
+  },
+  "private_evidence_FILE_sha256": {
+    "PILOT_RECOVERY_QBE_V1_72_COMMITTED_OUTPUTS_MANIFEST_PRIVATE.json": "e51c814bcd736a83f97d589b041bf8d33fd7082b80c5d612eae379af22efbf1e",
+    "PILOT_RECOVERY_QBE_V1_A_ADOPTION_ACTUAL_PRIVATE.json": "9f9ded888602dc1177c84c57835083f5ee328b9848616c9fc0f5cfe84024f0d5",
+    "PILOT_RECOVERY_QBE_V1_ROOT_ACTUAL_EXIT_PRIVATE.json": "6def82b8ab30779b5c1a93c0aff1582ae5b7cc3970a687d54d0f6a717ac43b81",
+    "PILOT_RECOVERY_QBE_V1_ROOT_RESOURCE_AGGREGATE_PRIVATE.json": "62c09b3a99913cc934ed1e361d8a284f1df3f998d7e5ce9db24fd6ef63baddd3",
+    "PILOT_RECOVERY_QBE_V1_ROOT_SAVED_METRICS_RECOMPUTATION_PRIVATE.json": "78f53cd6c7e1f02694b7b2e86298e797a9506bc21000105e1347984a95892ef8",
+    "stage2_PRIVATE/terminal_PRIVATE.json": "d2c601ab0f513fecdbb102d0188f0e3ae7e5b6b302e78ef02690602d8ddfe3a4",
+    "stage2_attempt0_exit_PRIVATE/actual_exit_PRIVATE.json": "ca66b99a2cccbef234bbe96aac2b06563f432b15053b347296815ba025c2e181",
+    "stage2_verified_PRIVATE.json": "9ed03103c0f002d0031f20c6c1bfc79a7d1487ba035f29f25f4f52a489ac5db1",
+    "stage3_PRIVATE/terminal_PRIVATE.json": "b68c8f9943b9a227a07a20d12b009ae6006a61a08ccfc1f3dd30ef826036d522",
+    "stage3_attempt0_exit_PRIVATE/actual_exit_PRIVATE.json": "36fa2d3b1fbe7e946daabb5246288d6a51c0306d1b34d9c43b0af40abb0bfe18",
+    "stage3_verified_PRIVATE.json": "990b60c8c35f1f045c6a6b9483d8c2ba7d858b3cfd5ba88b2e2741b60fd4634d",
+    "stage4_PRIVATE/terminal_PRIVATE.json": "74a8bcc05822dd26462d798dff5916adf1f22ecf899eaeaf873e52a003d1f679",
+    "stage4_attempt0_exit_PRIVATE/actual_exit_PRIVATE.json": "f791017fd1bd352d02dfa3153001a903070f8bf7698e73d7537a7e69c100c2cd",
+    "stage4_verified_PRIVATE.json": "335b9aa88a4705d812cb97c867c9952b8862fba21809616b7e451ae6dd7ea684"
+  },
+  "resources": {
+    "MLX_peak_GiB": 10.355949711054564,
+    "colors": {
+      "GREEN": 16470,
+      "YELLOW": 2488
+    },
+    "exact_peak_RSS_GiB": 5.9696044921875,
+    "logged_STOP_count": 0,
+    "max_release_active_MLX_bytes": 1050,
+    "min_available_GiB": 5.265350341796875,
+    "min_free_percent": 28.0,
+    "model_sessions_released": 5,
+    "new_loads_claimed": 5,
+    "phases": {
+      "2": {
+        "MLX_peak_GiB": 4.899860046803951,
+        "exact_child_peak_RSS_GiB": 5.63482666015625,
+        "exit0_reaped": true,
+        "wall_seconds": 81.83742104202975
+      },
+      "3": {
+        "MLX_peak_GiB": 10.355949711054564,
+        "exact_child_peak_RSS_GiB": 5.82537841796875,
+        "exit0_reaped": true,
+        "wall_seconds": 137.36531979200663
+      },
+      "4": {
+        "MLX_peak_GiB": 5.776223893277347,
+        "exact_child_peak_RSS_GiB": 5.9696044921875,
+        "exit0_reaped": true,
+        "wall_seconds": 2384.3057595419814
+      }
+    },
+    "post_lock_free": true,
+    "recoveries": 0,
+    "root_wall_seconds": 2635.5621961250436,
+    "swap_growth_to_peak_GiB": 0.813837890624999,
+    "swap_peak_GiB": 15.62701171875,
+    "swap_post_root_GiB": 15.51763671875,
+    "swap_start_GiB": 14.813173828125,
+    "thermal": "SENSOR_UNAVAILABLE"
+  },
+  "schema": "SAFE_MICRO_RECOVERY_QBE_ACTUAL_V1",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "scope_sha256": "cd9f6038a680ccb02b0e857f53d9fae97855268927c7a486fee822fd34075f3e",
+  "source_commit": "748922f61bf12f75d76c62322ec92dd9ae3eee16",
+  "status": "ACTUAL_Q_B_DEV24_COMPLETE_INDEPENDENTLY_VERIFIED_WITH_LIMITATIONS"
+}

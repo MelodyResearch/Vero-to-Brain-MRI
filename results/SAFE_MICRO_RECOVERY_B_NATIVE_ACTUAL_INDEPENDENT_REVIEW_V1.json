@@ -1,0 +1,107 @@
+{
+  "accuracy_improvement": "NOT_MEASURED",
+  "actual_resource_summary": {
+    "exact_wait4_peak_RSS_GiB": 5.82537841796875,
+    "maximum_reported_MLX_peak_GiB": 10.355949711054564,
+    "minimum_available_GiB": 8.79547119140625,
+    "minimum_pressure_free_percent": 47.0,
+    "release_active_MLX_bytes": [
+      1032,
+      1032
+    ],
+    "resource_colors": [
+      "GREEN",
+      "YELLOW"
+    ],
+    "swap_end_GiB": 14.890625,
+    "swap_start_GiB": 14.805361328125,
+    "wall_seconds": 137.36531979200663
+  },
+  "checks": {
+    "Adam_step": 53,
+    "actual_backwards": 8,
+    "actual_generated_tokens": 0,
+    "actual_gradient_TF_positions": 2712,
+    "actual_new_optimizer_updates": 1,
+    "actual_own_old_scores": 0,
+    "adapter_config_same_as_original_parent": true,
+    "all_F32_finite_second_moments_nonnegative": true,
+    "exact_same_A_B_Common16_ownold_rewards_inputs": true,
+    "exact_saved_R1_rng_leaves": 628,
+    "exit0_reaped_closedlogs_released": true,
+    "full_504_weight_1008_moment_saved_gradient_recurrence": {
+      "m": {
+        "failed_elements": 0,
+        "max_abs_error": 0.0,
+        "max_error_over_bound": 0.0
+      },
+      "v": {
+        "failed_elements": 0,
+        "max_abs_error": 1.1269937294138484e-38,
+        "max_error_over_bound": 1.1269937294138484e-22
+      },
+      "w": {
+        "failed_elements": 0,
+        "max_abs_error": 0.0,
+        "max_error_over_bound": 0.0
+      }
+    },
+    "full_state_tensor_count": 1011,
+    "independently_recomputed_groups": [
+      {
+        "admitted_groups": 1,
+        "admitted_responses": 4,
+        "block": "sequence",
+        "gradient_L2": 0.6036029129157824,
+        "grouping": "paired_prompt",
+        "max_old_current_abs": 0.0
+      },
+      {
+        "admitted_groups": 1,
+        "admitted_responses": 4,
+        "block": "dallas",
+        "gradient_L2": 0.5462623396941043,
+        "grouping": "same_prompt",
+        "max_old_current_abs": 0.0
+      }
+    ],
+    "manifest_last_B_and_native_complete_journals": true,
+    "no_A_replay_or_common_regeneration": true,
+    "old_A_journal_still_uncommitted": true,
+    "recomputed_joint_gradient_L2": 0.4371735491203476,
+    "same_original_Adam52_parent": true,
+    "saved_joint_gradient_L2": 0.437173555417397
+  },
+  "created_at_utc": "2026-10-21T19:03:06.024111+00:00",
+  "cross_model_review": "NOT_VERIFIED",
+  "evidence_FILE_sha256": {
+    "PILOT_RECOVERY_QBE_V1_EXECUTION_SCOPE_PRIVATE.json": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+    "actual_exit_PRIVATE.json": "36fa2d3b1fbe7e946daabb5246288d6a51c0306d1b34d9c43b0af40abb0bfe18",
+    "dynamic_resources_PRIVATE.jsonl": "ad776d7b8174d44b838c007b9f9b088f810aa02b306adf3beae0c785c9c614c6",
+    "gradient_evidence_PRIVATE.json": "090d0ca764c1ff09b0a752e3bb2f69924e8a5df79b30f8d3857926fdf9db9f54",
+    "inputs_PRIVATE.json": "7887ed38b8c75daa1c3c50646c999b2fc8509d6ee8a7fc73410e0c3c8877a492",
+    "joint_gradient_float32_PRIVATE.safetensors": "69f42d3463fdde0707eef019d9f5b50379d1f73b0d855ae00e1b1919a4c554f0",
+    "receipt.json": "e0696a8186d413b2bb35034b5c5eb2568ddc0b05e1b719778de42fa491cc882a",
+    "receipt_PRIVATE.json": "fa5d5f2e3fb5325e660c2cb04ea048fa69a17af64ed7a0018c863be51f91d20c",
+    "stage3_verified_PRIVATE.json": "990b60c8c35f1f045c6a6b9483d8c2ba7d858b3cfd5ba88b2e2741b60fd4634d",
+    "stderr_PRIVATE.log": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+    "stdout_PRIVATE.log": "19afffaecedbd12e97d56421d7dc300f950fad48cfadd9c2ee66e62793be8e91",
+    "terminal_PRIVATE.json": "b68c8f9943b9a227a07a20d12b009ae6006a61a08ccfc1f3dd30ef826036d522"
+  },
+  "limitations": [
+    "Saved B recurrence CPU proof uses original predeclared float32 bounds and exact pinned installed Adam.apply_single; it does not rerun native backward.",
+    "Grouping/gates/advantages/own-old provenance were recomputed from immutable sameCommon16, with unchanged Dallas same-prompt grouping; no new generation or fabricated advantages.",
+    "A native full restore remains checked at E before inference; no completed fair A/B accuracy claim follows from this stage alone.",
+    "Active E model outputs were not read or scored. DEV24 engineering accuracy and Dallas retention are not established by training/gradient norms.",
+    "The reviewer performed0native calls and0new optimizer updates; actual B update belongs to approved native process."
+  ],
+  "new_native_calls_by_reviewer": 0,
+  "private_actual_review_FILE_sha256": "aec64e4d71c98d3d97cbd1f2c00afb91f1c27b135950a9e043134ae3978ca508",
+  "reviewer_id": "Codex /root/recovery_exact_scope_review",
+  "reviewer_kind": "isolated_codex",
+  "schema": "safe-micro-B-native-actual-independent-review-v1",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "scope_sha256": "cd9f6038a680ccb02b0e857f53d9fae97855268927c7a486fee822fd34075f3e",
+  "stage3_phase_scope_sha256": "18e579ac3eb2714f079c1d3c3d09660d5fb76574e604393daee1619459143f71",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

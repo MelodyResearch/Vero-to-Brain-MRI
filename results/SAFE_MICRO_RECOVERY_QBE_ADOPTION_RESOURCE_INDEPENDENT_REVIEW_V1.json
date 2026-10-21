@@ -1,0 +1,46 @@
+{
+  "A_adoption_actual_FILE_sha256": "9f9ded888602dc1177c84c57835083f5ee328b9848616c9fc0f5cfe84024f0d5",
+  "actual_whole_resources": {
+    "MLX_peak_GiB": 10.355949711054564,
+    "colors": {
+      "GREEN": 16470,
+      "YELLOW": 2488
+    },
+    "exact_peak_RSS_GiB": 5.9696044921875,
+    "max_release_active_MLX_bytes": 1050,
+    "min_available_GiB": 5.265350341796875,
+    "min_free_percent": 28.0,
+    "model_sessions_released": 5,
+    "recoveries": 0,
+    "swap_peak_GiB": 15.62701171875,
+    "swap_post_root_GiB": 15.51763671875,
+    "swap_start_GiB": 14.813173828125
+  },
+  "checks": {
+    "A_fresh_human_Q_and_native_full_restore_bindings_verified": true,
+    "A_historical_1_update_adopted_0_repeats": true,
+    "all_18958_child_and_guardian_observations_recomputed": true,
+    "all_3_eval_invalid_sets_exactly_correspond_to_256_token_caps": true,
+    "all_5_model_sessions_allocator_released": true,
+    "no_cooperative_recovery_or_replay": true,
+    "no_other_heavy_process_at_any_observation": true,
+    "old_A_journal_uncommitted_absence_and_bound_metadata_unchanged": true
+  },
+  "created_at_utc": "2026-10-21T19:45:04.177374+00:00",
+  "cross_model_review": "NOT_VERIFIED",
+  "limitations": [
+    "Whole observed GREEN/YELLOW completion and allocator release do not guarantee absence of unobserved transient allocation risk.",
+    "A adoption is a new explicitly labeled salvage qualification; it does not repair or commit the incomplete historical journal.",
+    "Accuracy improvement is limited to the already explored24sequence inputs; no Dallas retention, candidate margin, image-swap or independent-patient result is established."
+  ],
+  "new_native_calls": 0,
+  "new_optimizer_updates": 0,
+  "private_review_FILE_sha256": "27074a1c21149c86f6544a4263d72826d6cfbf3d943c35da8cbae6b6fe869688",
+  "reviewer_id": "Codex /root/recovery_exact_scope_review",
+  "reviewer_kind": "isolated_codex",
+  "root_resource_aggregate_FILE_sha256": "62c09b3a99913cc934ed1e361d8a284f1df3f998d7e5ce9db24fd6ef63baddd3",
+  "schema": "safe-micro-recovery-A-adoption-and-whole-resource-independent-review-v1",
+  "scope_FILE_sha256": "8be74ec824bc4daa9a11497dd07ba7501c98cc3f261f4169c2433f3840dda1c7",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "whole_actual_review_FILE_sha256": "395afec11590bde3764070f0a48eb785b159f1c40c51600d80cb88bcdfec4806"
+}
