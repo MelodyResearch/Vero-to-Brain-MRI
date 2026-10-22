@@ -1,0 +1,4261 @@
+{
+  "Claude_CLI_closed_log_sha256": "dc3d9773714ac8438a51fd06b1537e12a1147d004731c9e3c4b6175e5deff4ec",
+  "Claude_CLI_exit_code": 0,
+  "Claude_CLI_exit_sha256": "79c2e9142db58216afd75ad66b3b74ea0ae16c0b9c955050a90e63f46f33547a",
+  "Claude_CLI_wall_seconds_including_scientific_analysis": 590.0920252919896,
+  "actual_Claude_models": [
+    "claude-opus-5-5"
+  ],
+  "analysis_actual": {
+    "boundaries": {
+      "LM_max": 2080,
+      "backward_calls": 0,
+      "final100_or_new16_outputs": 0,
+      "greedy_generations": 8,
+      "model_loads_max": 2,
+      "new_train_generation": 0,
+      "optimizer_updates": 0,
+      "recoveries": 0,
+      "returned_tokens_max": 2048,
+      "sampler_max": 2056,
+      "teacher_forced_scorer_forwards": 64,
+      "vision_max": 8
+    },
+    "dev": {
+      "A53": {
+        "correct": 3,
+        "divergence_relative_to_decision_vs_parent": {
+          "BEFORE_DECISION": 2,
+          "IDENTICAL": 2
+        },
+        "identical_tokens_to_54": 3,
+        "identical_tokens_to_parent": 2,
+        "images": 4,
+        "invalid": 0,
+        "pair_categories": {
+          "CONSTANT_T1": 1,
+          "DISCRIMINATES_CORRECTLY": 1
+        },
+        "pair_categories_54": {
+          "CONSTANT_FLAIR": 1,
+          "CONSTANT_T1": 1
+        },
+        "pair_categories_parent": {
+          "DISCRIMINATES_CORRECTLY": 2
+        },
+        "partner_outcomes": {
+          "PARENT_CORRECT_53_CORRECT_54_CORRECT": 2
+        },
+        "regression_timing": {
+          "NOT_A_REGRESSION_IN_THIS_ARM": 0,
+          "REGRESSION_APPEARS_AT_54": 1,
+          "REGRESSION_PRESENT_AT_53": 1
+        },
+        "returned_tokens": 150
+      },
+      "A53_vs_B53": {
+        "identical_predictions": 4,
+        "identical_token_sequences": 4
+      },
+      "B53": {
+        "correct": 3,
+        "divergence_relative_to_decision_vs_parent": {
+          "BEFORE_DECISION": 2,
+          "IDENTICAL": 2
+        },
+        "identical_tokens_to_54": 3,
+        "identical_tokens_to_parent": 2,
+        "images": 4,
+        "invalid": 0,
+        "pair_categories": {
+          "CONSTANT_T1": 1,
+          "DISCRIMINATES_CORRECTLY": 1
+        },
+        "pair_categories_54": {
+          "CONSTANT_FLAIR": 1,
+          "CONSTANT_T1": 1
+        },
+        "pair_categories_parent": {
+          "DISCRIMINATES_CORRECTLY": 2
+        },
+        "partner_outcomes": {
+          "PARENT_CORRECT_53_CORRECT_54_CORRECT": 2
+        },
+        "regression_timing": {
+          "NOT_A_REGRESSION_IN_THIS_ARM": 0,
+          "REGRESSION_APPEARS_AT_54": 1,
+          "REGRESSION_PRESENT_AT_53": 1
+        },
+        "returned_tokens": 150
+      },
+      "scope_label": "DIAGNOSTIC_ONLY: 4 preselected, previously explored DEV images per checkpoint (2 regressions + partners); NOT Adam53 DEV24 accuracy, NOT independent generalization"
+    },
+    "public_schema": {
+      "certifies_unlinkability": false,
+      "forbidden_keys_checked": 24,
+      "status": "PASS"
+    },
+    "schema": "v2-native-readonly-scope-v1-aggregate",
+    "train": {
+      "answer_measurement": {
+        "A53": {
+          "by_status": {
+            "FORMAT_INVALID": {
+              "ineligibility_reasons": {},
+              "label_metric_eligible": 0,
+              "n": 5
+            },
+            "STRICT_CANONICAL": {
+              "ineligibility_reasons": {},
+              "label_metric_eligible": 27,
+              "n": 27
+            }
+          },
+          "by_task": {
+            "DALLAS": {
+              "label_metric_eligible": 14,
+              "n": 16
+            },
+            "MRI": {
+              "label_metric_eligible": 13,
+              "n": 16
+            }
+          },
+          "decoded_text_exact": 32,
+          "label_metric_eligible": 27,
+          "label_metric_ineligible": 5,
+          "label_only": {
+            "delta_label_first": {
+              "max": 0.06240975856781006,
+              "mean": -0.00125035526717612,
+              "min": -0.04265105724334717,
+              "n": 27
+            },
+            "delta_label_mean": {
+              "max": 0.06240975856781006,
+              "mean": -0.001360736362284519,
+              "min": -0.04265105724334717,
+              "n": 27
+            },
+            "delta_label_sum": {
+              "max": 0.06240975856781006,
+              "mean": -0.0011310244961443324,
+              "min": -0.04265105724334717,
+              "n": 27
+            },
+            "label": "LABEL_ONLY: strict-canonical single answer box whose selected tokens hold exactly the label bytes; ineligible responses excluded (never pooled)",
+            "n": 27
+          },
+          "label_only_by_task": {
+            "DALLAS": {
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "label": "LABEL_ONLY: strict-canonical single answer box whose selected tokens hold exactly the label bytes; ineligible responses excluded (never pooled)",
+              "n": 14
+            },
+            "MRI": {
+              "delta_label_first": {
+                "max": 0.004823267459869385,
+                "mean": 0.0003360994348370766,
+                "min": -0.00020744604989886284,
+                "n": 13
+              },
+              "delta_label_mean": {
+                "max": 0.0014972756453062175,
+                "mean": 0.00010684639115040156,
+                "min": -0.00010372302494943142,
+                "n": 13
+              },
+              "delta_label_sum": {
+                "max": 0.007486378226531087,
+                "mean": 0.00058394026698002,
+                "min": -0.00020744604989886284,
+                "n": 13
+              },
+              "label": "LABEL_ONLY: strict-canonical single answer box whose selected tokens hold exactly the label bytes; ineligible responses excluded (never pooled)",
+              "n": 13
+            }
+          },
+          "measurement_kind_counts": {
+            "LABEL_ONLY": 27,
+            "NONE": 3,
+            "WHOLE_OVERLAPPING_TOKEN_DIAGNOSTIC": 2
+          },
+          "parser_format_differs_from_recorded_grade": 0,
+          "whole_overlapping_token_diagnostic_by_status": {
+            "FORMAT_INVALID": {
+              "delta_overlap_first": {
+                "max": -1.3055745512247086e-05,
+                "mean": -0.00016019889153540134,
+                "min": -0.0003073420375585556,
+                "n": 2
+              },
+              "delta_overlap_mean": {
+                "max": -6.527872756123543e-06,
+                "mean": -8.009944576770067e-05,
+                "min": -0.0001536710187792778,
+                "n": 2
+              },
+              "delta_overlap_sum": {
+                "max": -1.3055745512247086e-05,
+                "mean": -0.00016019889153540134,
+                "min": -0.0003073420375585556,
+                "n": 2
+              },
+              "label": "CONTENT_OVERLAP_DIAGNOSTIC (WHOLE_OVERLAPPING_TOKEN): label-ineligible spans only, whole tokens may include brace/wrapper/tag bytes or non-label/ambiguous/format-invalid content; NOT visual accuracy, NOT a label probability",
+              "n": 2
+            }
+          }
+        },
+        "B53": {
+          "by_status": {
+            "FORMAT_INVALID": {
+              "ineligibility_reasons": {},
+              "label_metric_eligible": 0,
+              "n": 5
+            },
+            "STRICT_CANONICAL": {
+              "ineligibility_reasons": {},
+              "label_metric_eligible": 27,
+              "n": 27
+            }
+          },
+          "by_task": {
+            "DALLAS": {
+              "label_metric_eligible": 14,
+              "n": 16
+            },
+            "MRI": {
+              "label_metric_eligible": 13,
+              "n": 16
+            }
+          },
+          "decoded_text_exact": 32,
+          "label_metric_eligible": 27,
+          "label_metric_ineligible": 5,
+          "label_only": {
+            "delta_label_first": {
+              "max": 0.0626453161239624,
+              "mean": -0.001266411174044522,
+              "min": -0.043157756328582764,
+              "n": 27
+            },
+            "delta_label_mean": {
+              "max": 0.0626453161239624,
+              "mean": -0.0013837451007618626,
+              "min": -0.043157756328582764,
+              "n": 27
+            },
+            "delta_label_sum": {
+              "max": 0.0626453161239624,
+              "mean": -0.0011476340395204345,
+              "min": -0.043157756328582764,
+              "n": 27
+            },
+            "label": "LABEL_ONLY: strict-canonical single answer box whose selected tokens hold exactly the label bytes; ineligible responses excluded (never pooled)",
+            "n": 27
+          },
+          "label_only_by_task": {
+            "DALLAS": {
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "label": "LABEL_ONLY: strict-canonical single answer box whose selected tokens hold exactly the label bytes; ineligible responses excluded (never pooled)",
+              "n": 14
+            },
+            "MRI": {
+              "delta_label_first": {
+                "max": 0.005056142807006836,
+                "mean": 0.00035386013188634446,
+                "min": -0.00020234333351254463,
+                "n": 13
+              },
+              "delta_label_mean": {
+                "max": 0.0015426135458255885,
+                "mean": 0.00011016659178109804,
+                "min": -0.00010117166675627232,
+                "n": 13
+              },
+              "delta_label_sum": {
+                "max": 0.007713067729127943,
+                "mean": 0.0006005511035902181,
+                "min": -0.00020234333351254463,
+                "n": 13
+              },
+              "label": "LABEL_ONLY: strict-canonical single answer box whose selected tokens hold exactly the label bytes; ineligible responses excluded (never pooled)",
+              "n": 13
+            }
+          },
+          "measurement_kind_counts": {
+            "LABEL_ONLY": 27,
+            "NONE": 3,
+            "WHOLE_OVERLAPPING_TOKEN_DIAGNOSTIC": 2
+          },
+          "parser_format_differs_from_recorded_grade": 0,
+          "whole_overlapping_token_diagnostic_by_status": {
+            "FORMAT_INVALID": {
+              "delta_overlap_first": {
+                "max": -1.2106262147426605e-05,
+                "mean": -0.00017014099285006523,
+                "min": -0.00032817572355270386,
+                "n": 2
+              },
+              "delta_overlap_mean": {
+                "max": -6.053131073713303e-06,
+                "mean": -8.507049642503262e-05,
+                "min": -0.00016408786177635193,
+                "n": 2
+              },
+              "delta_overlap_sum": {
+                "max": -1.2106262147426605e-05,
+                "mean": -0.00017014099285006523,
+                "min": -0.00032817572355270386,
+                "n": 2
+              },
+              "label": "CONTENT_OVERLAP_DIAGNOSTIC (WHOLE_OVERLAPPING_TOKEN): label-ineligible spans only, whole tokens may include brace/wrapper/tag bytes or non-label/ambiguous/format-invalid content; NOT visual accuracy, NOT a label probability",
+              "n": 2
+            }
+          }
+        }
+      },
+      "cross_checkpoint": {
+        "mean_abs_delta_mean_difference": 0.0006851583647148586,
+        "mean_delta_mean_A53_minus_B53": 7.889394763844422e-05,
+        "n": 32,
+        "same_sign_delta_mean": 29
+      },
+      "interpretation_limits": [
+        "Fixed responses sampled from the 52 parent; post-update scores are expected to differ (no parity gate).",
+        "Full-response mean logp and answer-span changes are not canonical class margins.",
+        "Label-only metrics pool ONLY label_metric_eligible spans; whole-overlapping-token metrics are per-status content-overlap diagnostics, not visual accuracy.",
+        "Joint strata are descriptive cells of a fixed 32-response sample; small cells (n=1) are single responses.",
+        "The 2x2 crosses checkpoint with fixed plan descriptively; it is not a counterfactual training result."
+      ],
+      "joint_strata": {
+        "A53": {
+          "DALLAS|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+            "delta_eos": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_first": {
+              "max": -0.00037836283445358276,
+              "mean": -0.0004237685352563858,
+              "min": -0.00046917423605918884,
+              "n": 2
+            },
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_sum": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_mean": {
+              "max": 0.0003061685744114584,
+              "mean": -9.723073184630948e-05,
+              "min": -0.0005006300381040774,
+              "n": 2
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.0003061685744114584,
+              "mean": -9.723073184630948e-05,
+              "min": -0.0005006300381040774,
+              "n": 2
+            },
+            "delta_sum": {
+              "max": 0.07837915504933335,
+              "mean": -0.024891067352655227,
+              "min": -0.1281612897546438,
+              "n": 2
+            },
+            "label_metric_eligible": 0,
+            "measurement_kind_counts": {
+              "NONE": 2
+            },
+            "n": 2,
+            "plans": {
+              "A": {
+                "admitted": 1,
+                "advantage_negative": 1,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": -8.836248134188457e-06
+              },
+              "B": {
+                "admitted": 1,
+                "advantage_negative": 1,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": -8.836248134188457e-06
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0003062154487932,
+              "mean": 0.9999028553524985,
+              "min": 0.9994994952562039,
+              "n": 2
+            }
+          },
+          "DALLAS|STRICT_VALID|CORRECT": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 9
+            },
+            "delta_first": {
+              "max": -0.00037894025444984436,
+              "mean": -0.0005754033724466959,
+              "min": -0.0012101233005523682,
+              "n": 9
+            },
+            "delta_label_first": {
+              "max": 0.06240975856781006,
+              "mean": 0.004855843858220194,
+              "min": -0.018702149391174316,
+              "n": 9
+            },
+            "delta_label_mean": {
+              "max": 0.06240975856781006,
+              "mean": 0.004855843858220194,
+              "min": -0.018702149391174316,
+              "n": 9
+            },
+            "delta_label_sum": {
+              "max": 0.06240975856781006,
+              "mean": 0.004855843858220194,
+              "min": -0.018702149391174316,
+              "n": 9
+            },
+            "delta_mean": {
+              "max": 0.017315648331612678,
+              "mean": 0.0016526652803224367,
+              "min": -0.006922313934731339,
+              "n": 9
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.01839787635233847,
+              "mean": 0.001733585927090068,
+              "min": -0.007354958555652047,
+              "n": 9
+            },
+            "delta_sum": {
+              "max": 0.29436602163741554,
+              "mean": 0.036611904688205264,
+              "min": -0.11767933689043275,
+              "n": 9
+            },
+            "label_metric_eligible": 9,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 9
+            },
+            "n": 9,
+            "plans": {
+              "A": {
+                "admitted": 6,
+                "advantage_negative": 0,
+                "advantage_positive": 6,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0004476456355807165
+              },
+              "B": {
+                "admitted": 6,
+                "advantage_negative": 0,
+                "advantage_positive": 6,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0004476456355807165
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0174664332256342,
+              "mean": 1.0016799275833657,
+              "min": 0.993101590091513,
+              "n": 9
+            }
+          },
+          "DALLAS|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 5
+            },
+            "delta_first": {
+              "max": -0.00038366764783859253,
+              "mean": -0.0007490068674087524,
+              "min": -0.0012101233005523682,
+              "n": 5
+            },
+            "delta_label_first": {
+              "max": 0.002716854214668274,
+              "mean": -0.016366295918123795,
+              "min": -0.04265105724334717,
+              "n": 5
+            },
+            "delta_label_mean": {
+              "max": 0.002716854214668274,
+              "mean": -0.016366295918123795,
+              "min": -0.04265105724334717,
+              "n": 5
+            },
+            "delta_label_sum": {
+              "max": 0.002716854214668274,
+              "mean": -0.016366295918123795,
+              "min": -0.04265105724334717,
+              "n": 5
+            },
+            "delta_mean": {
+              "max": 0.01134463946667097,
+              "mean": 0.001151889916490027,
+              "min": -0.01021023861839391,
+              "n": 5
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.012100948764449034,
+              "mean": 0.0013396871794248508,
+              "min": -0.01065416203658495,
+              "n": 5
+            },
+            "delta_sum": {
+              "max": 0.1815142314667355,
+              "mean": -0.020935955759705395,
+              "min": -0.24504572684145387,
+              "n": 5
+            },
+            "label_metric_eligible": 5,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 5
+            },
+            "n": 5,
+            "plans": {
+              "A": {
+                "admitted": 5,
+                "advantage_negative": 5,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.00027178180154537827
+              },
+              "B": {
+                "admitted": 5,
+                "advantage_negative": 5,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.00027178180154537827
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0114092339248306,
+              "mean": 1.0011913562253896,
+              "min": 0.9898417089186845,
+              "n": 5
+            }
+          },
+          "MRI|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+            "delta_eos": {
+              "max": 4.1057122871279716e-05,
+              "mean": -0.003521306673064828,
+              "min": -0.010554075241088867,
+              "n": 3
+            },
+            "delta_first": {
+              "max": 0.009417533874511719,
+              "mean": 0.0031317919492721558,
+              "min": -1.1079013347625732e-05,
+              "n": 3
+            },
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_sum": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_mean": {
+              "max": 0.004893081473710481,
+              "mean": 0.0023690421380224806,
+              "min": 0.0010796580814488538,
+              "n": 3
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.005222680365356306,
+              "mean": 0.002535856813810186,
+              "min": 0.001143652365145707,
+              "n": 3
+            },
+            "delta_sum": {
+              "max": 0.13499203621006473,
+              "mean": 0.09736545991173291,
+              "min": 0.0782893035793677,
+              "n": 3
+            },
+            "label_metric_eligible": 0,
+            "measurement_kind_counts": {
+              "NONE": 1,
+              "WHOLE_OVERLAPPING_TOKEN_DIAGNOSTIC": 2
+            },
+            "n": 3,
+            "plans": {
+              "A": {
+                "admitted": 0,
+                "advantage_negative": 0,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0
+              },
+              "B": {
+                "admitted": 3,
+                "advantage_negative": 3,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.00025589471525684637
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0049050721459996,
+              "mean": 1.0023734479290296,
+              "min": 1.0010802411220445,
+              "n": 3
+            }
+          },
+          "MRI|STRICT_VALID|CORRECT": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 6
+            },
+            "delta_first": {
+              "max": 0.0004558078944683075,
+              "mean": 0.00011703620354334514,
+              "min": -1.187250018119812e-05,
+              "n": 6
+            },
+            "delta_label_first": {
+              "max": -8.344504749402404e-07,
+              "mean": -1.7617870374427486e-05,
+              "min": -7.681595161557198e-05,
+              "n": 6
+            },
+            "delta_label_mean": {
+              "max": 0.0001071301216370557,
+              "mean": 1.0976872003235864e-05,
+              "min": -3.840797580778599e-05,
+              "n": 6
+            },
+            "delta_label_sum": {
+              "max": 0.0005356506081852785,
+              "mean": 7.551880482499958e-05,
+              "min": -7.681595161557198e-05,
+              "n": 6
+            },
+            "delta_mean": {
+              "max": 0.0047009003736901735,
+              "mean": -0.0001771818609748302,
+              "min": -0.006080870037938742,
+              "n": 6
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.004977423925083713,
+              "mean": -0.00017155055296865616,
+              "min": -0.006345255691762166,
+              "n": 6
+            },
+            "delta_sum": {
+              "max": 0.11420185515100911,
+              "mean": -0.01154842256602251,
+              "min": -0.1459408809105298,
+              "n": 6
+            },
+            "label_metric_eligible": 6,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 6
+            },
+            "n": 6,
+            "plans": {
+              "A": {
+                "admitted": 4,
+                "advantage_negative": 0,
+                "advantage_positive": 4,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.00013305719000835693
+              },
+              "B": {
+                "admitted": 6,
+                "advantage_negative": 0,
+                "advantage_positive": 6,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.00026454916440474263
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0047119669399984,
+              "mean": 0.9998298020683465,
+              "min": 0.9939375810338031,
+              "n": 6
+            }
+          },
+          "MRI|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 7
+            },
+            "delta_first": {
+              "max": 0.0004558078944683075,
+              "mean": 0.0002443625458649227,
+              "min": 8.411332964897156e-05,
+              "n": 7
+            },
+            "delta_label_first": {
+              "max": 0.004823267459869385,
+              "mean": 0.0006392856964469372,
+              "min": -0.00020744604989886284,
+              "n": 7
+            },
+            "delta_label_mean": {
+              "max": 0.0014972756453062175,
+              "mean": 0.00018902026470511504,
+              "min": -0.00010372302494943142,
+              "n": 7
+            },
+            "delta_label_sum": {
+              "max": 0.007486378226531087,
+              "mean": 0.0010197300916843233,
+              "min": -0.00020744604989886284,
+              "n": 7
+            },
+            "delta_mean": {
+              "max": 0.0017268725014053582,
+              "mean": -0.0029879819481714517,
+              "min": -0.006434139562553237,
+              "n": 7
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.0017588516218017536,
+              "mean": -0.0031172598103160307,
+              "min": -0.006726600451760201,
+              "n": 7
+            },
+            "delta_sum": {
+              "max": 0.0949779875772947,
+              "mean": -0.06928908380473331,
+              "min": -0.14798520993872444,
+              "n": 7
+            },
+            "label_metric_eligible": 7,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 7
+            },
+            "n": 7,
+            "plans": {
+              "A": {
+                "admitted": 4,
+                "advantage_negative": 4,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 6.695422957644914e-05
+              },
+              "B": {
+                "admitted": 7,
+                "advantage_negative": 7,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 5.048762383880537e-06
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0017283644043753,
+              "mean": 0.9970191079628543,
+              "min": 0.9935865151911376,
+              "n": 7
+            }
+          }
+        },
+        "B53": {
+          "DALLAS|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+            "delta_eos": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_first": {
+              "max": 0.000423286110162735,
+              "mean": 0.00041631609201431274,
+              "min": 0.0004093460738658905,
+              "n": 2
+            },
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_sum": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_mean": {
+              "max": 0.00031249951882728055,
+              "mean": -0.00011429772523996462,
+              "min": -0.0005410949693072098,
+              "n": 2
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.00031249951882728055,
+              "mean": -0.00011429772523996462,
+              "min": -0.0005410949693072098,
+              "n": 2
+            },
+            "delta_sum": {
+              "max": 0.07999987681978382,
+              "mean": -0.029260217661430943,
+              "min": -0.1385203121426457,
+              "n": 2
+            },
+            "label_metric_eligible": 0,
+            "measurement_kind_counts": {
+              "NONE": 2
+            },
+            "n": 2,
+            "plans": {
+              "A": {
+                "admitted": 1,
+                "advantage_negative": 1,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": -8.836248134188457e-06
+              },
+              "B": {
+                "admitted": 1,
+                "advantage_negative": 1,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": -8.836248134188457e-06
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0003125483518887,
+              "mean": 0.999885799874032,
+              "min": 0.9994590513961753,
+              "n": 2
+            }
+          },
+          "DALLAS|STRICT_VALID|CORRECT": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 9
+            },
+            "delta_first": {
+              "max": 0.00043811090290546417,
+              "mean": 0.00027886881596512266,
+              "min": -0.0002270527184009552,
+              "n": 9
+            },
+            "delta_label_first": {
+              "max": 0.0626453161239624,
+              "mean": 0.0048668675096147735,
+              "min": -0.018837779760360718,
+              "n": 9
+            },
+            "delta_label_mean": {
+              "max": 0.0626453161239624,
+              "mean": 0.0048668675096147735,
+              "min": -0.018837779760360718,
+              "n": 9
+            },
+            "delta_label_sum": {
+              "max": 0.0626453161239624,
+              "mean": 0.0048668675096147735,
+              "min": -0.018837779760360718,
+              "n": 9
+            },
+            "delta_mean": {
+              "max": 0.017215837391123548,
+              "mean": 0.0016439854093894628,
+              "min": -0.0067549905178405905,
+              "n": 9
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.01829182722806877,
+              "mean": 0.0017260675981381494,
+              "min": -0.0071771774252056275,
+              "n": 9
+            },
+            "delta_sum": {
+              "max": 0.2926692356491003,
+              "mean": 0.03503604534705573,
+              "min": -0.11483483880329004,
+              "n": 9
+            },
+            "label_metric_eligible": 9,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 9
+            },
+            "n": 9,
+            "plans": {
+              "A": {
+                "admitted": 6,
+                "advantage_negative": 0,
+                "advantage_positive": 6,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0004388401486370083
+              },
+              "B": {
+                "admitted": 6,
+                "advantage_negative": 0,
+                "advantage_positive": 6,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0004388401486370083
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0173648840119633,
+              "mean": 1.0016706590419644,
+              "min": 0.9932677731456573,
+              "n": 9
+            }
+          },
+          "DALLAS|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 5
+            },
+            "delta_first": {
+              "max": 0.00043811090290546417,
+              "mean": 0.0001656997948884964,
+              "min": -0.0002270527184009552,
+              "n": 5
+            },
+            "delta_label_first": {
+              "max": 0.0027587488293647766,
+              "mean": -0.016519018200051507,
+              "min": -0.043157756328582764,
+              "n": 5
+            },
+            "delta_label_mean": {
+              "max": 0.0027587488293647766,
+              "mean": -0.016519018200051507,
+              "min": -0.043157756328582764,
+              "n": 5
+            },
+            "delta_label_sum": {
+              "max": 0.0027587488293647766,
+              "mean": -0.016519018200051507,
+              "min": -0.043157756328582764,
+              "n": 5
+            },
+            "delta_mean": {
+              "max": 0.011635201560494579,
+              "mean": 0.0013255123627440451,
+              "min": -0.01024422819693882,
+              "n": 5
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.012410881664527551,
+              "mean": 0.0015241346605638535,
+              "min": -0.010689629422892682,
+              "n": 5
+            },
+            "delta_sum": {
+              "max": 0.18616322496791327,
+              "mean": -0.01792774370396728,
+              "min": -0.2458614767265317,
+              "n": 5
+            },
+            "label_metric_eligible": 5,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 5
+            },
+            "n": 5,
+            "plans": {
+              "A": {
+                "admitted": 5,
+                "advantage_negative": 5,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0002978748601413254
+              },
+              "B": {
+                "admitted": 5,
+                "advantage_negative": 5,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0002978748601413254
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0117031538084729,
+              "mean": 1.0013660941995681,
+              "min": 0.9898080651879435,
+              "n": 5
+            }
+          },
+          "MRI|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+            "delta_eos": {
+              "max": 3.689178265631199e-05,
+              "mean": -0.0038846608561774096,
+              "min": -0.011598587036132812,
+              "n": 3
+            },
+            "delta_first": {
+              "max": 0.0013080723583698273,
+              "mean": -0.02436090260744095,
+              "min": -0.0756988525390625,
+              "n": 3
+            },
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_label_sum": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0
+            },
+            "delta_mean": {
+              "max": 0.00073034998320054,
+              "mean": -0.0008548892476955558,
+              "min": -0.003697068852488883,
+              "n": 3
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.0007362267476119318,
+              "mean": -0.0008774780726016875,
+              "min": -0.003937387621651093,
+              "n": 3
+            },
+            "delta_sum": {
+              "max": 0.08691164800086426,
+              "mean": 0.019036092857921478,
+              "min": -0.059153101639822125,
+              "n": 3
+            },
+            "label_metric_eligible": 0,
+            "measurement_kind_counts": {
+              "NONE": 1,
+              "WHOLE_OVERLAPPING_TOKEN_DIAGNOSTIC": 2
+            },
+            "n": 3,
+            "plans": {
+              "A": {
+                "admitted": 0,
+                "advantage_negative": 0,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.0
+              },
+              "B": {
+                "admitted": 3,
+                "advantage_negative": 3,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 2.6818743316732452e-05
+              }
+            },
+            "raw_ratio": {
+              "max": 1.000730616753691,
+              "mean": 0.9991475018685,
+              "min": 0.9963097568922208,
+              "n": 3
+            }
+          },
+          "MRI|STRICT_VALID|CORRECT": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 6
+            },
+            "delta_first": {
+              "max": 0.0016491860151290894,
+              "mean": 0.0013768747448921204,
+              "min": 0.0013080723583698273,
+              "n": 6
+            },
+            "delta_label_first": {
+              "max": -8.344504749402404e-07,
+              "mean": -1.7359934039025877e-05,
+              "min": -7.348647341132164e-05,
+              "n": 6
+            },
+            "delta_label_mean": {
+              "max": 0.00010499744096250651,
+              "mean": 1.0908815242297956e-05,
+              "min": -3.674323670566082e-05,
+              "n": 6
+            },
+            "delta_label_sum": {
+              "max": 0.0005249872048125326,
+              "mean": 7.431635096584917e-05,
+              "min": -7.348647341132164e-05,
+              "n": 6
+            },
+            "delta_mean": {
+              "max": 0.007452289111117554,
+              "mean": 0.0008047155670710991,
+              "min": -0.005622182260784332,
+              "n": 6
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.007890659058830352,
+              "mean": 0.000852535550681783,
+              "min": -0.005866624967774956,
+              "n": 6
+            },
+            "delta_sum": {
+              "max": 0.13414120400011598,
+              "mean": 0.01693483001374337,
+              "min": -0.13493237425882398,
+              "n": 6
+            },
+            "label_metric_eligible": 6,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 6
+            },
+            "n": 6,
+            "plans": {
+              "A": {
+                "admitted": 4,
+                "advantage_negative": 0,
+                "advantage_positive": 4,
+                "advantage_zero": 0,
+                "surrogate_delta": 8.845390767459743e-05
+              },
+              "B": {
+                "admitted": 6,
+                "advantage_negative": 0,
+                "advantage_positive": 6,
+                "advantage_zero": 0,
+                "surrogate_delta": 0.00013882613207550493
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0074801265254698,
+              "mean": 1.0008132218417742,
+              "min": 0.9943935926289551,
+              "n": 6
+            }
+          },
+          "MRI|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+            "delta_eos": {
+              "max": 0.0,
+              "mean": 0.0,
+              "min": 0.0,
+              "n": 7
+            },
+            "delta_first": {
+              "max": 0.0016491860151290894,
+              "mean": 0.001477626817567008,
+              "min": 0.0013314858078956604,
+              "n": 7
+            },
+            "delta_label_first": {
+              "max": 0.005056142807006836,
+              "mean": 0.0006720487598223761,
+              "min": -0.00020234333351254463,
+              "n": 7
+            },
+            "delta_label_mean": {
+              "max": 0.0015426135458255885,
+              "mean": 0.00019524468595721244,
+              "min": -0.00010117166675627232,
+              "n": 7
+            },
+            "delta_label_sum": {
+              "max": 0.007713067729127943,
+              "mean": 0.0010516094629825343,
+              "min": -0.00020234333351254463,
+              "n": 7
+            },
+            "delta_mean": {
+              "max": 0.002334150108932094,
+              "mean": -0.002916561396976837,
+              "min": -0.00733233936509113,
+              "n": 7
+            },
+            "delta_mean_excluding_eos": {
+              "max": 0.0023773751109493553,
+              "mean": -0.003044778812003507,
+              "min": -0.007665627518049819,
+              "n": 7
+            },
+            "delta_sum": {
+              "max": 0.12837825599126518,
+              "mean": -0.06479483416202518,
+              "min": -0.168643805397096,
+              "n": 7
+            },
+            "label_metric_eligible": 7,
+            "measurement_kind_counts": {
+              "LABEL_ONLY": 7
+            },
+            "n": 7,
+            "plans": {
+              "A": {
+                "admitted": 4,
+                "advantage_negative": 4,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 9.547807749725468e-05
+              },
+              "B": {
+                "admitted": 7,
+                "advantage_negative": 7,
+                "advantage_positive": 0,
+                "advantage_zero": 0,
+                "surrogate_delta": 1.4556711690814558e-05
+              }
+            },
+            "raw_ratio": {
+              "max": 1.0023368763580431,
+              "mean": 0.9970913886012388,
+              "min": 0.9926944766537796,
+              "n": 7
+            }
+          }
+        }
+      },
+      "strata": {
+        "A53": {
+          "advantage_sign_plan_A": {
+            "NEGATIVE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 9
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00027570351958274843,
+                "min": -0.0012101233005523682,
+                "n": 10
+              },
+              "delta_label_first": {
+                "max": 0.004823267459869385,
+                "mean": -0.008579676519982767,
+                "min": -0.04265105724334717,
+                "n": 9
+              },
+              "delta_label_mean": {
+                "max": 0.002716854214668274,
+                "mean": -0.008937626913317823,
+                "min": -0.04265105724334717,
+                "n": 9
+              },
+              "delta_label_sum": {
+                "max": 0.007486378226531087,
+                "mean": -0.008283775323687022,
+                "min": -0.04265105724334717,
+                "n": 9
+              },
+              "delta_mean": {
+                "max": 0.01134463946667097,
+                "mean": -0.00020949856090743852,
+                "min": -0.01021023861839391,
+                "n": 10
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012100948764449034,
+                "mean": -0.00014723960119619194,
+                "min": -0.01065416203658495,
+                "n": 10
+              },
+              "delta_sum": {
+                "max": 0.1815142314667355,
+                "mean": -0.03908611993474551,
+                "min": -0.24504572684145387,
+                "n": 10
+              },
+              "label_metric_eligible": 9,
+              "n": 10,
+              "raw_ratio": {
+                "max": 1.0114092339248306,
+                "mean": 0.9998118591575438,
+                "min": 0.9898417089186845,
+                "n": 10
+              }
+            },
+            "NOT_ADMITTED": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.0009603563653813167,
+                "min": -0.010554075241088867,
+                "n": 11
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.0006758837650219599,
+                "min": -0.00037894025444984436,
+                "n": 12
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": 0.007773195631614271,
+                "min": -0.00013807974755764008,
+                "n": 8
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": 0.007786820319296339,
+                "min": -6.903987377882004e-05,
+                "n": 8
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": 0.007773195631614271,
+                "min": -0.00013807974755764008,
+                "n": 8
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": 0.0014940283936874185,
+                "min": -0.006434139562553237,
+                "n": 12
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": 0.00160475138745106,
+                "min": -0.006726600451760201,
+                "n": 12
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": 0.04143722273891134,
+                "min": -0.14798520993872444,
+                "n": 12
+              },
+              "label_metric_eligible": 8,
+              "n": 12,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 1.0015115542355115,
+                "min": 0.9935865151911376,
+                "n": 12
+              }
+            },
+            "POSITIVE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 10
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00033166408538818357,
+                "min": -0.0012101233005523682,
+                "n": 10
+              },
+              "delta_label_first": {
+                "max": 6.1907339841127396e-06,
+                "mean": -0.001872806858682452,
+                "min": -0.018702149391174316,
+                "n": 10
+              },
+              "delta_label_mean": {
+                "max": 0.0001071301216370557,
+                "mean": -0.0018595802116192317,
+                "min": -0.018702149391174316,
+                "n": 10
+              },
+              "delta_label_sum": {
+                "max": 0.0005356506081852785,
+                "mean": -0.0018169248535627957,
+                "min": -0.018702149391174316,
+                "n": 10
+              },
+              "delta_mean": {
+                "max": 0.007157172399201954,
+                "mean": -0.0010266217862496896,
+                "min": -0.006922313934731339,
+                "n": 10
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.007455387915835369,
+                "mean": -0.0010920924408802145,
+                "min": -0.007354958555652047,
+                "n": 10
+              },
+              "delta_sum": {
+                "max": 0.17892930998004886,
+                "mean": -0.019355798712354044,
+                "min": -0.1459408809105298,
+                "n": 10
+              },
+              "label_metric_eligible": 10,
+              "n": 10,
+              "raw_ratio": {
+                "max": 1.007182846171567,
+                "mean": 0.9989857509617808,
+                "min": 0.993101590091513,
+                "n": 10
+              }
+            }
+          },
+          "advantage_sign_plan_B": {
+            "NEGATIVE": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.0007042613346129656,
+                "min": -0.010554075241088867,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.00043073156848549843,
+                "min": -0.0012101233005523682,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.004823267459869385,
+                "mean": -0.006446373309624202,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.002716854214668274,
+                "mean": -0.006709028144806932,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.007486378226531087,
+                "mean": -0.006224447412402394,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.01134463946667097,
+                "mean": -0.0005343704799241665,
+                "min": -0.01021023861839391,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012100948764449034,
+                "mean": -0.0005009651482350924,
+                "min": -0.01065416203658495,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.1815142314667355,
+                "mean": -0.026610517215694074,
+                "min": -0.24504572684145387,
+                "n": 16
+              },
+              "label_metric_eligible": 12,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0114092339248306,
+                "mean": 0.9994818984943887,
+                "min": 0.9898417089186845,
+                "n": 16
+              }
+            },
+            "NOT_ADMITTED": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 3
+              },
+              "delta_first": {
+                "max": -0.00037836283445358276,
+                "mean": -0.00037879589945077896,
+                "min": -0.00037894025444984436,
+                "n": 4
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": 0.020801186685275752,
+                "min": -4.291243385523558e-06,
+                "n": 3
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": 0.020801186685275752,
+                "min": -4.291243385523558e-06,
+                "n": 3
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": 0.020801186685275752,
+                "min": -4.291243385523558e-06,
+                "n": 3
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": 0.004984630243571069,
+                "min": 0.0003061685744114584,
+                "n": 4
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": 0.005271028464504246,
+                "min": 0.0003061685744114584,
+                "n": 4
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": 0.11502208284770177,
+                "min": 0.020456466914993143,
+                "n": 4
+              },
+              "label_metric_eligible": 3,
+              "n": 4,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 1.005022751326173,
+                "min": 1.0003062154487932,
+                "n": 4
+              }
+            },
+            "POSITIVE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 12
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00027829936395088833,
+                "min": -0.0012101233005523682,
+                "n": 12
+              },
+              "delta_label_first": {
+                "max": 6.1907339841127396e-06,
+                "mean": -0.0015672227128410061,
+                "min": -0.018702149391174316,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.0001071301216370557,
+                "mean": -0.0015529253416521746,
+                "min": -0.018702149391174316,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.0005356506081852785,
+                "mean": -0.0015206543752412927,
+                "min": -0.018702149391174316,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.007157172399201954,
+                "mean": -0.00048512133690165553,
+                "min": -0.006922313934731339,
+                "n": 12
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.007455387915835369,
+                "mean": -0.0005170812714672377,
+                "min": -0.007354958555652047,
+                "n": 12
+              },
+              "delta_sum": {
+                "max": 0.17892930998004886,
+                "mean": -0.010124380795313451,
+                "min": -0.1459408809105298,
+                "n": 12
+              },
+              "label_metric_eligible": 12,
+              "n": 12,
+              "raw_ratio": {
+                "max": 1.007182846171567,
+                "mean": 0.999526114233706,
+                "min": 0.993101590091513,
+                "n": 12
+              }
+            }
+          },
+          "answer_status": {
+            "FORMAT_INVALID": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.003521306673064828,
+                "min": -0.010554075241088867,
+                "n": 3
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.001709567755460739,
+                "min": -0.00046917423605918884,
+                "n": 5
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.004893081473710481,
+                "mean": 0.0013825329900749646,
+                "min": -0.0005006300381040774,
+                "n": 5
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.005222680365356306,
+                "mean": 0.0014826217955475878,
+                "min": -0.0005006300381040774,
+                "n": 5
+              },
+              "delta_sum": {
+                "max": 0.13499203621006473,
+                "mean": 0.04846284900597766,
+                "min": -0.1281612897546438,
+                "n": 5
+              },
+              "label_metric_eligible": 0,
+              "n": 5,
+              "raw_ratio": {
+                "max": 1.0049050721459996,
+                "mean": 1.0013852108984171,
+                "min": 0.9994994952562039,
+                "n": 5
+              }
+            },
+            "STRICT_CANONICAL": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 27
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00024114480173146284,
+                "min": -0.0012101233005523682,
+                "n": 27
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": -0.00125035526717612,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": -0.001360736362284519,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": -0.0011310244961443324,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": -4.983435917396589e-05,
+                "min": -0.01021023861839391,
+                "n": 27
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": -2.034862033664019e-05,
+                "min": -0.01065416203658495,
+                "n": 27
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": -0.012203213282738809,
+                "min": -0.24504572684145387,
+                "n": 27
+              },
+              "label_metric_eligible": 27,
+              "n": 27,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 0.9999699517602703,
+                "min": 0.9898417089186845,
+                "n": 27
+              }
+            }
+          },
+          "format": {
+            "FORMAT_INVALID": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.003521306673064828,
+                "min": -0.010554075241088867,
+                "n": 3
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.001709567755460739,
+                "min": -0.00046917423605918884,
+                "n": 5
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.004893081473710481,
+                "mean": 0.0013825329900749646,
+                "min": -0.0005006300381040774,
+                "n": 5
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.005222680365356306,
+                "mean": 0.0014826217955475878,
+                "min": -0.0005006300381040774,
+                "n": 5
+              },
+              "delta_sum": {
+                "max": 0.13499203621006473,
+                "mean": 0.04846284900597766,
+                "min": -0.1281612897546438,
+                "n": 5
+              },
+              "label_metric_eligible": 0,
+              "n": 5,
+              "raw_ratio": {
+                "max": 1.0049050721459996,
+                "mean": 1.0013852108984171,
+                "min": 0.9994994952562039,
+                "n": 5
+              }
+            },
+            "STRICT_VALID": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 27
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00024114480173146284,
+                "min": -0.0012101233005523682,
+                "n": 27
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": -0.00125035526717612,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": -0.001360736362284519,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": -0.0011310244961443324,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": -4.983435917396589e-05,
+                "min": -0.01021023861839391,
+                "n": 27
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": -2.034862033664019e-05,
+                "min": -0.01065416203658495,
+                "n": 27
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": -0.012203213282738809,
+                "min": -0.24504572684145387,
+                "n": 27
+              },
+              "label_metric_eligible": 27,
+              "n": 27,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 0.9999699517602703,
+                "min": 0.9898417089186845,
+                "n": 27
+              }
+            }
+          },
+          "image": {
+            "DALLAS": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 14
+              },
+              "delta_first": {
+                "max": -0.00037836283445358276,
+                "mean": -0.0006107001099735498,
+                "min": -0.0012101233005523682,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": 0.0012774359776037154,
+                "min": -0.01021023861839391,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": 0.0013816404860776403,
+                "min": -0.01065416203658495,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": 0.010940326793125621,
+                "min": -0.24504572684145387,
+                "n": 16
+              },
+              "label_metric_eligible": 14,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 1.0013051150051397,
+                "min": 0.9898417089186845,
+                "n": 16
+              }
+            },
+            "FLAIR_IMAGE": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.0013141272647771984,
+                "min": -0.010554075241088867,
+                "n": 8
+              },
+              "delta_first": {
+                "max": 8.986145257949829e-05,
+                "mean": 3.9264094084501266e-05,
+                "min": -1.187250018119812e-05,
+                "n": 8
+              },
+              "delta_label_first": {
+                "max": 0.004823267459869385,
+                "mean": 0.0007901216134390173,
+                "min": -7.681595161557198e-05,
+                "n": 6
+              },
+              "delta_label_mean": {
+                "max": 0.0014972756453062175,
+                "mean": 0.00024266779261476282,
+                "min": -3.840797580778599e-05,
+                "n": 6
+              },
+              "delta_label_sum": {
+                "max": 0.007486378226531087,
+                "mean": 0.0012339734078826343,
+                "min": -7.681595161557198e-05,
+                "n": 6
+              },
+              "delta_mean": {
+                "max": 0.0047009003736901735,
+                "mean": -0.0001689840078766157,
+                "min": -0.006080870037938742,
+                "n": 8
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.004977423925083713,
+                "mean": -0.00015974258302568913,
+                "min": -0.006345255691762166,
+                "n": 8
+              },
+              "delta_sum": {
+                "max": 0.13499203621006473,
+                "mean": 0.015661584148247698,
+                "min": -0.1459408809105298,
+                "n": 8
+              },
+              "label_metric_eligible": 6,
+              "n": 8,
+              "raw_ratio": {
+                "max": 1.0047119669399984,
+                "mean": 0.9998354740396818,
+                "min": 0.9939375810338031,
+                "n": 8
+              }
+            },
+            "T1_IMAGE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": -6.362737622112036e-06,
+                "min": -5.0901900976896286e-05,
+                "n": 8
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.0014367522671818733,
+                "min": 8.411332964897156e-05,
+                "n": 8
+              },
+              "delta_label_first": {
+                "max": -3.576265044102911e-07,
+                "mean": -5.306243253601549e-05,
+                "min": -0.00020744604989886284,
+                "n": 7
+              },
+              "delta_label_mean": {
+                "max": 0.0001071301216370557,
+                "mean": -9.57195296190808e-06,
+                "min": -0.00010372302494943142,
+                "n": 7
+              },
+              "delta_label_sum": {
+                "max": 0.0005356506081852785,
+                "mean": 2.6769003349207715e-05,
+                "min": -0.00020744604989886284,
+                "n": 7
+              },
+              "delta_mean": {
+                "max": 0.004893081473710481,
+                "mean": -0.0016899957907460972,
+                "min": -0.006434139562553237,
+                "n": 8
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.005222680365356306,
+                "mean": -0.0017455763605485099,
+                "min": -0.006726600451760201,
+                "n": 8
+              },
+              "delta_sum": {
+                "max": 0.11420185515100911,
+                "mean": -0.04843880193500638,
+                "min": -0.14798520993872444,
+                "n": 8
+              },
+              "label_metric_eligible": 7,
+              "n": 8,
+              "raw_ratio": {
+                "max": 1.0049050721459996,
+                "mean": 0.9983186399524615,
+                "min": 0.9935865151911376,
+                "n": 8
+              }
+            }
+          },
+          "measurement_kind": {
+            "LABEL_ONLY": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 27
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00024114480173146284,
+                "min": -0.0012101233005523682,
+                "n": 27
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": -0.00125035526717612,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": -0.001360736362284519,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": -0.0011310244961443324,
+                "min": -0.04265105724334717,
+                "n": 27
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": -4.983435917396589e-05,
+                "min": -0.01021023861839391,
+                "n": 27
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": -2.034862033664019e-05,
+                "min": -0.01065416203658495,
+                "n": 27
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": -0.012203213282738809,
+                "min": -0.24504572684145387,
+                "n": 27
+              },
+              "label_metric_eligible": 27,
+              "n": 27,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 0.9999699517602703,
+                "min": 0.9898417089186845,
+                "n": 27
+              }
+            },
+            "NONE": {
+              "delta_eos": {
+                "max": -0.010554075241088867,
+                "mean": -0.010554075241088867,
+                "min": -0.010554075241088867,
+                "n": 1
+              },
+              "delta_first": {
+                "max": -1.1079013347625732e-05,
+                "mean": -0.00028620536128679913,
+                "min": -0.00046917423605918884,
+                "n": 3
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.0010796580814488538,
+                "mean": 0.0002950655392520783,
+                "min": -0.0005006300381040774,
+                "n": 3
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.0012412377109285444,
+                "mean": 0.0003489254157453085,
+                "min": -0.0005006300381040774,
+                "n": 3
+              },
+              "delta_sum": {
+                "max": 0.07881503994576633,
+                "mean": 0.009677635080151958,
+                "min": -0.1281612897546438,
+                "n": 3
+              },
+              "label_metric_eligible": 0,
+              "n": 3,
+              "raw_ratio": {
+                "max": 1.0010802411220445,
+                "mean": 1.0002953172756806,
+                "min": 0.9994994952562039,
+                "n": 3
+              }
+            },
+            "WHOLE_OVERLAPPING_TOKEN_DIAGNOSTIC": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -4.922389052808285e-06,
+                "min": -5.0901900976896286e-05,
+                "n": 2
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.0047032274305820465,
+                "min": -1.1079013347625732e-05,
+                "n": 2
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.004893081473710481,
+                "mean": 0.003013734166309294,
+                "min": 0.001134386858908107,
+                "n": 2
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.005222680365356306,
+                "mean": 0.003183166365251007,
+                "min": 0.001143652365145707,
+                "n": 2
+              },
+              "delta_sum": {
+                "max": 0.13499203621006473,
+                "mean": 0.10664066989471621,
+                "min": 0.0782893035793677,
+                "n": 2
+              },
+              "label_metric_eligible": 0,
+              "n": 2,
+              "raw_ratio": {
+                "max": 1.0049050721459996,
+                "mean": 1.003020051332522,
+                "min": 1.0011350305190445,
+                "n": 2
+              }
+            }
+          },
+          "raw": {
+            "CORRECT": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00029842754205067955,
+                "min": -0.0012101233005523682,
+                "n": 15
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": 0.0029064591667823454,
+                "min": -0.018702149391174316,
+                "n": 15
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": 0.002917897063733411,
+                "min": -0.018702149391174316,
+                "n": 15
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": 0.002943713836862116,
+                "min": -0.018702149391174316,
+                "n": 15
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": 0.00092072642380353,
+                "min": -0.006922313934731339,
+                "n": 15
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": 0.0009715313350665783,
+                "min": -0.007354958555652047,
+                "n": 15
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": 0.017347773786514153,
+                "min": -0.1459408809105298,
+                "n": 15
+              },
+              "label_metric_eligible": 15,
+              "n": 15,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 1.0009398773773581,
+                "min": 0.993101590091513,
+                "n": 15
+              }
+            },
+            "RAW_ZERO": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.0007042613346129656,
+                "min": -0.010554075241088867,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.00038313778007731717,
+                "min": -0.0012101233005523682,
+                "n": 17
+              },
+              "delta_label_first": {
+                "max": 0.004823267459869385,
+                "mean": -0.006446373309624202,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.002716854214668274,
+                "mean": -0.006709028144806932,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.007486378226531087,
+                "mean": -0.006224447412402394,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.01134463946667097,
+                "mean": -0.00048492700613971803,
+                "min": -0.01021023861839391,
+                "n": 17
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012100948764449034,
+                "mean": -0.0004534866939617659,
+                "min": -0.01065416203658495,
+                "n": 17
+              },
+              "delta_sum": {
+                "max": 0.1815142314667355,
+                "mean": -0.020434654141280695,
+                "min": -0.24504572684145387,
+                "n": 17
+              },
+              "label_metric_eligible": 12,
+              "n": 17,
+              "raw_ratio": {
+                "max": 1.0114092339248306,
+                "mean": 0.9995303877270006,
+                "min": 0.9898417089186845,
+                "n": 17
+              }
+            }
+          },
+          "raw_outcome": {
+            "CORRECT": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00029842754205067955,
+                "min": -0.0012101233005523682,
+                "n": 15
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": 0.0029064591667823454,
+                "min": -0.018702149391174316,
+                "n": 15
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": 0.002917897063733411,
+                "min": -0.018702149391174316,
+                "n": 15
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": 0.002943713836862116,
+                "min": -0.018702149391174316,
+                "n": 15
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": 0.00092072642380353,
+                "min": -0.006922313934731339,
+                "n": 15
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": 0.0009715313350665783,
+                "min": -0.007354958555652047,
+                "n": 15
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": 0.017347773786514153,
+                "min": -0.1459408809105298,
+                "n": 15
+              },
+              "label_metric_eligible": 15,
+              "n": 15,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 1.0009398773773581,
+                "min": 0.993101590091513,
+                "n": 15
+              }
+            },
+            "RAW0_CANONICAL_WRONG_CLASS": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 12
+              },
+              "delta_first": {
+                "max": 0.0004558078944683075,
+                "mean": -0.00016954137633244196,
+                "min": -0.0012101233005523682,
+                "n": 12
+              },
+              "delta_label_first": {
+                "max": 0.004823267459869385,
+                "mean": -0.006446373309624202,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.002716854214668274,
+                "mean": -0.006709028144806932,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.007486378226531087,
+                "mean": -0.006224447412402394,
+                "min": -0.04265105724334717,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.01134463946667097,
+                "mean": -0.0012630353378958357,
+                "min": -0.01021023861839391,
+                "n": 12
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012100948764449034,
+                "mean": -0.0012601985645906632,
+                "min": -0.01065416203658495,
+                "n": 12
+              },
+              "delta_sum": {
+                "max": 0.1815142314667355,
+                "mean": -0.04914194711930501,
+                "min": -0.24504572684145387,
+                "n": 12
+              },
+              "label_metric_eligible": 12,
+              "n": 12,
+              "raw_ratio": {
+                "max": 1.0114092339248306,
+                "mean": 0.9987575447389107,
+                "min": 0.9898417089186845,
+                "n": 12
+              }
+            },
+            "RAW0_FORMAT_GATE": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.003521306673064828,
+                "min": -0.010554075241088867,
+                "n": 3
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.001709567755460739,
+                "min": -0.00046917423605918884,
+                "n": 5
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.004893081473710481,
+                "mean": 0.0013825329900749646,
+                "min": -0.0005006300381040774,
+                "n": 5
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.005222680365356306,
+                "mean": 0.0014826217955475878,
+                "min": -0.0005006300381040774,
+                "n": 5
+              },
+              "delta_sum": {
+                "max": 0.13499203621006473,
+                "mean": 0.04846284900597766,
+                "min": -0.1281612897546438,
+                "n": 5
+              },
+              "label_metric_eligible": 0,
+              "n": 5,
+              "raw_ratio": {
+                "max": 1.0049050721459996,
+                "mean": 1.0013852108984171,
+                "min": 0.9994994952562039,
+                "n": 5
+              }
+            }
+          },
+          "task": {
+            "DALLAS": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 14
+              },
+              "delta_first": {
+                "max": -0.00037836283445358276,
+                "mean": -0.0006107001099735498,
+                "min": -0.0012101233005523682,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_label_mean": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_label_sum": {
+                "max": 0.06240975856781006,
+                "mean": -0.002723491776188374,
+                "min": -0.04265105724334717,
+                "n": 14
+              },
+              "delta_mean": {
+                "max": 0.017315648331612678,
+                "mean": 0.0012774359776037154,
+                "min": -0.01021023861839391,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01839787635233847,
+                "mean": 0.0013816404860776403,
+                "min": -0.01065416203658495,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.29436602163741554,
+                "mean": 0.010940326793125621,
+                "min": -0.24504572684145387,
+                "n": 16
+              },
+              "label_metric_eligible": 14,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0174664332256342,
+                "mean": 1.0013051150051397,
+                "min": 0.9898417089186845,
+                "n": 16
+              }
+            },
+            "MRI": {
+              "delta_eos": {
+                "max": 4.1057122871279716e-05,
+                "mean": -0.0006602450011996552,
+                "min": -0.010554075241088867,
+                "n": 16
+              },
+              "delta_first": {
+                "max": 0.009417533874511719,
+                "mean": 0.0007380081806331873,
+                "min": -1.187250018119812e-05,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.004823267459869385,
+                "mean": 0.0003360994348370766,
+                "min": -0.00020744604989886284,
+                "n": 13
+              },
+              "delta_label_mean": {
+                "max": 0.0014972756453062175,
+                "mean": 0.00010684639115040156,
+                "min": -0.00010372302494943142,
+                "n": 13
+              },
+              "delta_label_sum": {
+                "max": 0.007486378226531087,
+                "mean": 0.00058394026698002,
+                "min": -0.00020744604989886284,
+                "n": 13
+              },
+              "delta_mean": {
+                "max": 0.004893081473710481,
+                "mean": -0.0009294898993113564,
+                "min": -0.006434139562553237,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.005222680365356306,
+                "mean": -0.0009526594717870995,
+                "min": -0.006726600451760201,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.13499203621006473,
+                "mean": -0.01638860889337934,
+                "min": -0.14798520993872444,
+                "n": 16
+              },
+              "label_metric_eligible": 13,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0049050721459996,
+                "mean": 0.9990770569960716,
+                "min": 0.9935865151911376,
+                "n": 16
+              }
+            }
+          }
+        },
+        "B53": {
+          "advantage_sign_plan_A": {
+            "NEGATIVE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 9
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0007530717179179191,
+                "min": -0.0002270527184009552,
+                "n": 10
+              },
+              "delta_label_first": {
+                "max": 0.005056142807006836,
+                "mean": -0.008638080225106629,
+                "min": -0.043157756328582764,
+                "n": 9
+              },
+              "delta_label_mean": {
+                "max": 0.0027587488293647766,
+                "mean": -0.009017151596754047,
+                "min": -0.043157756328582764,
+                "n": 9
+              },
+              "delta_label_sum": {
+                "max": 0.007713067729127943,
+                "mean": -0.00834286634487095,
+                "min": -0.043157756328582764,
+                "n": 9
+              },
+              "delta_mean": {
+                "max": 0.011635201560494579,
+                "mean": 4.907472222390997e-05,
+                "min": -0.01024422819693882,
+                "n": 10
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012410881664527551,
+                "mean": 0.00012305092213508212,
+                "min": -0.010689629422892682,
+                "n": 10
+              },
+              "delta_sum": {
+                "max": 0.18616322496791327,
+                "mean": -0.03249318464008866,
+                "min": -0.2458614767265317,
+                "n": 10
+              },
+              "label_metric_eligible": 9,
+              "n": 10,
+              "raw_ratio": {
+                "max": 1.0117031538084729,
+                "mean": 1.000070841217084,
+                "min": 0.9898080651879435,
+                "n": 10
+              }
+            },
+            "NOT_ADMITTED": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0010594529607756572,
+                "min": -0.011598587036132812,
+                "n": 11
+              },
+              "delta_first": {
+                "max": 0.0013554245233535767,
+                "mean": -0.005396976446111997,
+                "min": -0.0756988525390625,
+                "n": 12
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": 0.007801991833673583,
+                "min": -0.00014671636745333672,
+                "n": 8
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": 0.007815940767585516,
+                "min": -7.335818372666836e-05,
+                "n": 8
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": 0.007801991833673583,
+                "min": -0.00014671636745333672,
+                "n": 8
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0008750391457068336,
+                "min": -0.00733233936509113,
+                "n": 12
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.0009481321786601874,
+                "min": -0.007665627518049819,
+                "n": 12
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": 0.027066350412582096,
+                "min": -0.168643805397096,
+                "n": 12
+              },
+              "label_metric_eligible": 8,
+              "n": 12,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.000893950280546,
+                "min": 0.9926944766537796,
+                "n": 12
+              }
+            },
+            "POSITIVE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 10
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0006925879046320915,
+                "min": -0.0002270527184009552,
+                "n": 10
+              },
+              "delta_label_first": {
+                "max": 5.4764095693826675e-06,
+                "mean": -0.0018866314342631085,
+                "min": -0.018837779760360718,
+                "n": 10
+              },
+              "delta_label_mean": {
+                "max": 0.00010499744096250651,
+                "mean": -0.0018734279490468,
+                "min": -0.018837779760360718,
+                "n": 10
+              },
+              "delta_label_sum": {
+                "max": 0.0005249872048125326,
+                "mean": -0.0018316256632601835,
+                "min": -0.018837779760360718,
+                "n": 10
+              },
+              "delta_mean": {
+                "max": 0.007008438209777523,
+                "mean": -0.0007948686042473575,
+                "min": -0.0067549905178405905,
+                "n": 10
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.007300456468518253,
+                "mean": -0.00085120817274293,
+                "min": -0.0071771774252056275,
+                "n": 10
+              },
+              "delta_sum": {
+                "max": 0.17521095524443808,
+                "mean": -0.012754568474724693,
+                "min": -0.13493237425882398,
+                "n": 10
+              },
+              "label_metric_eligible": 10,
+              "n": 10,
+              "raw_ratio": {
+                "max": 1.0070330547871658,
+                "mean": 0.9992163743451009,
+                "min": 0.9932677731456573,
+                "n": 10
+              }
+            }
+          },
+          "advantage_sign_plan_B": {
+            "NEGATIVE": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0007769321712354819,
+                "min": -0.011598587036132812,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": -0.003842970938421786,
+                "min": -0.0756988525390625,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.005056142807006836,
+                "mean": -0.006490895806791741,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.0027587488293647766,
+                "mean": -0.006769031516546419,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.007713067729127943,
+                "mean": -0.006269485396614982,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.011635201560494579,
+                "mean": -0.0010558831673444695,
+                "min": -0.01024422819693882,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012410881664527551,
+                "mean": -0.0010541442230198473,
+                "min": -0.010689629422892682,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.18616322496791327,
+                "mean": -0.039038411951430874,
+                "min": -0.2458614767265317,
+                "n": 16
+              },
+              "label_metric_eligible": 12,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0117031538084729,
+                "mean": 0.9989607342630118,
+                "min": 0.9898080651879435,
+                "n": 16
+              }
+            },
+            "NOT_ADMITTED": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 3
+              },
+              "delta_first": {
+                "max": 0.0004093460738658905,
+                "mean": 0.000409172847867012,
+                "min": 0.00040911510586738586,
+                "n": 4
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": 0.020879705870659866,
+                "min": -4.291243385523558e-06,
+                "n": 3
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": 0.020879705870659866,
+                "min": -4.291243385523558e-06,
+                "n": 3
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": 0.020879705870659866,
+                "min": -4.291243385523558e-06,
+                "n": 3
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.004932517912202076,
+                "min": 0.00031249951882728055,
+                "n": 4
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.005216527856570115,
+                "min": 0.00031249951882728055,
+                "n": 4
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": 0.11397284706146138,
+                "min": 0.017988577461665045,
+                "n": 4
+              },
+              "label_metric_eligible": 3,
+              "n": 4,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.0049701766905588,
+                "min": 1.0003125483518887,
+                "n": 4
+              }
+            },
+            "POSITIVE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 12
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0007953102079530557,
+                "min": -0.0002270527184009552,
+                "n": 12
+              },
+              "delta_label_first": {
+                "max": 5.4764095693826675e-06,
+                "mean": -0.0015784558024733997,
+                "min": -0.018837779760360718,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.00010499744096250651,
+                "mean": -0.0015643214278327378,
+                "min": -0.018837779760360718,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.0005249872048125326,
+                "mean": -0.0015326176599709622,
+                "min": -0.018837779760360718,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.007452289111117554,
+                "mean": 1.7215829745894704e-05,
+                "min": -0.0067549905178405905,
+                "n": 12
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.007890659058830352,
+                "mean": 8.017481656738746e-06,
+                "min": -0.0071771774252056275,
+                "n": 12
+              },
+              "delta_sum": {
+                "max": 0.17521095524443808,
+                "mean": 0.0034201563983250103,
+                "min": -0.13493237425882398,
+                "n": 12
+              },
+              "label_metric_eligible": 12,
+              "n": 12,
+              "raw_ratio": {
+                "max": 1.0074801265254698,
+                "mean": 1.0000289253348316,
+                "min": 0.9932677731456573,
+                "n": 12
+              }
+            }
+          },
+          "answer_status": {
+            "FORMAT_INVALID": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0038846608561774096,
+                "min": -0.011598587036132812,
+                "n": 3
+              },
+              "delta_first": {
+                "max": 0.0013080723583698273,
+                "mean": -0.014450015127658844,
+                "min": -0.0756988525390625,
+                "n": 5
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.00073034998320054,
+                "mean": -0.0005586526387133193,
+                "min": -0.003697068852488883,
+                "n": 5
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.0007362267476119318,
+                "mean": -0.0005722059336569984,
+                "min": -0.003937387621651093,
+                "n": 5
+              },
+              "delta_sum": {
+                "max": 0.08691164800086426,
+                "mean": -0.0002824313498194897,
+                "min": -0.1385203121426457,
+                "n": 5
+              },
+              "label_metric_eligible": 0,
+              "n": 5,
+              "raw_ratio": {
+                "max": 1.000730616753691,
+                "mean": 0.9994428210707127,
+                "min": 0.9963097568922208,
+                "n": 5
+              }
+            },
+            "STRICT_CANONICAL": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 27
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0008127020189055691,
+                "min": -0.0002270527184009552,
+                "n": 27
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": -0.001266411174044522,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": -0.0013837451007618626,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": -0.0011476340395204345,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0002161405230301528,
+                "min": -0.01024422819693882,
+                "n": 27
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.00025766827059736153,
+                "min": -0.010689629422892682,
+                "n": 27
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": -0.004676635905483366,
+                "min": -0.2458614767265317,
+                "n": 27
+              },
+              "label_metric_eligible": 27,
+              "n": 27,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.0002364982827718,
+                "min": 0.9898080651879435,
+                "n": 27
+              }
+            }
+          },
+          "format": {
+            "FORMAT_INVALID": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0038846608561774096,
+                "min": -0.011598587036132812,
+                "n": 3
+              },
+              "delta_first": {
+                "max": 0.0013080723583698273,
+                "mean": -0.014450015127658844,
+                "min": -0.0756988525390625,
+                "n": 5
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.00073034998320054,
+                "mean": -0.0005586526387133193,
+                "min": -0.003697068852488883,
+                "n": 5
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.0007362267476119318,
+                "mean": -0.0005722059336569984,
+                "min": -0.003937387621651093,
+                "n": 5
+              },
+              "delta_sum": {
+                "max": 0.08691164800086426,
+                "mean": -0.0002824313498194897,
+                "min": -0.1385203121426457,
+                "n": 5
+              },
+              "label_metric_eligible": 0,
+              "n": 5,
+              "raw_ratio": {
+                "max": 1.000730616753691,
+                "mean": 0.9994428210707127,
+                "min": 0.9963097568922208,
+                "n": 5
+              }
+            },
+            "STRICT_VALID": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 27
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0008127020189055691,
+                "min": -0.0002270527184009552,
+                "n": 27
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": -0.001266411174044522,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": -0.0013837451007618626,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": -0.0011476340395204345,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0002161405230301528,
+                "min": -0.01024422819693882,
+                "n": 27
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.00025766827059736153,
+                "min": -0.010689629422892682,
+                "n": 27
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": -0.004676635905483366,
+                "min": -0.2458614767265317,
+                "n": 27
+              },
+              "label_metric_eligible": 27,
+              "n": 27,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.0002364982827718,
+                "min": 0.9898080651879435,
+                "n": 27
+              }
+            }
+          },
+          "image": {
+            "DALLAS": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 14
+              },
+              "delta_first": {
+                "max": 0.00043811090290546417,
+                "mean": 0.0002606844063848257,
+                "min": -0.0002270527184009552,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0013246771904840914,
+                "min": -0.01024422819693882,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.0014329178897239177,
+                "min": -0.010689629422892682,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": 0.010447828392550207,
+                "min": -0.2458614767265317,
+                "n": 16
+              },
+              "label_metric_eligible": 14,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.001352375132724,
+                "min": 0.9898080651879435,
+                "n": 16
+              }
+            },
+            "FLAIR_IMAGE": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0014452119066845626,
+                "min": -0.011598587036132812,
+                "n": 8
+              },
+              "delta_first": {
+                "max": 0.0013314858078956604,
+                "mean": 0.0013199616223573685,
+                "min": 0.0013080723583698273,
+                "n": 8
+              },
+              "delta_label_first": {
+                "max": 0.005056142807006836,
+                "mean": 0.0008295089513315664,
+                "min": -7.348647341132164e-05,
+                "n": 6
+              },
+              "delta_label_mean": {
+                "max": 0.0015426135458255885,
+                "mean": 0.00025051149938614493,
+                "min": -3.674323670566082e-05,
+                "n": 6
+              },
+              "delta_label_sum": {
+                "max": 0.007713067729127943,
+                "mean": 0.001272329771685084,
+                "min": -7.348647341132164e-05,
+                "n": 6
+              },
+              "delta_mean": {
+                "max": 0.007452289111117554,
+                "mean": 0.0005930132044550028,
+                "min": -0.005622182260784332,
+                "n": 8
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.007890659058830352,
+                "mean": 0.0006387794937152615,
+                "min": -0.005866624967774956,
+                "n": 8
+              },
+              "delta_sum": {
+                "max": 0.13414120400011598,
+                "mean": 0.03129733296113102,
+                "min": -0.13493237425882398,
+                "n": 8
+              },
+              "label_metric_eligible": 6,
+              "n": 8,
+              "raw_ratio": {
+                "max": 1.0074801265254698,
+                "mean": 1.0005989882244266,
+                "min": 0.9943935926289551,
+                "n": 8
+              }
+            },
+            "T1_IMAGE": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": -1.1535914381965995e-05,
+                "min": -9.228731505572796e-05,
+                "n": 8
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": -0.008129720576107502,
+                "min": -0.0756988525390625,
+                "n": 8
+              },
+              "delta_label_first": {
+                "max": -3.576265044102911e-07,
+                "mean": -5.3838856209560095e-05,
+                "min": -0.00020234333351254463,
+                "n": 7
+              },
+              "delta_label_mean": {
+                "max": 0.00010499744096250651,
+                "mean": -1.0129043308942139e-05,
+                "min": -0.00010117166675627232,
+                "n": 7
+              },
+              "delta_label_sum": {
+                "max": 0.0005249872048125326,
+                "mean": 2.4740816651761372e-05,
+                "min": -0.00020234333351254463,
+                "n": 7
+              },
+              "delta_mean": {
+                "max": 0.003550738985120882,
+                "mean": -0.0028620512193922444,
+                "min": -0.00733233936509113,
+                "n": 8
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.0036873058691639926,
+                "mean": -0.0029926135684326255,
+                "min": -0.007665627518049819,
+                "n": 8
+              },
+              "delta_sum": {
+                "max": 0.09586995259826381,
+                "mean": -0.06815315552087498,
+                "min": -0.168643805397096,
+                "n": 8
+              },
+              "label_metric_eligible": 7,
+              "n": 8,
+              "raw_ratio": {
+                "max": 1.0035570503265556,
+                "mean": 0.9971462063836757,
+                "min": 0.9926944766537796,
+                "n": 8
+              }
+            }
+          },
+          "measurement_kind": {
+            "LABEL_ONLY": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 27
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0008127020189055691,
+                "min": -0.0002270527184009552,
+                "n": 27
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": -0.001266411174044522,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": -0.0013837451007618626,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": -0.0011476340395204345,
+                "min": -0.043157756328582764,
+                "n": 27
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0002161405230301528,
+                "min": -0.01024422819693882,
+                "n": 27
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.00025766827059736153,
+                "min": -0.010689629422892682,
+                "n": 27
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": -0.004676635905483366,
+                "min": -0.2458614767265317,
+                "n": 27
+              },
+              "label_metric_eligible": 27,
+              "n": 27,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.0002364982827718,
+                "min": 0.9898080651879435,
+                "n": 27
+              }
+            },
+            "NONE": {
+              "delta_eos": {
+                "max": -0.011598587036132812,
+                "mean": -0.011598587036132812,
+                "min": -0.011598587036132812,
+                "n": 1
+              },
+              "delta_first": {
+                "max": 0.0013080723583698273,
+                "mean": 0.0007135681807994843,
+                "min": 0.0004093460738658905,
+                "n": 3
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.00040205112620167536,
+                "mean": 5.7818558573915373e-05,
+                "min": -0.0005410949693072098,
+                "n": 3
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.0005687266562340988,
+                "mean": 0.0001133770685847232,
+                "min": -0.0005410949693072098,
+                "n": 3
+              },
+              "delta_sum": {
+                "max": 0.07999987681978382,
+                "mean": -0.009723567703379862,
+                "min": -0.1385203121426457,
+                "n": 3
+              },
+              "label_metric_eligible": 0,
+              "n": 3,
+              "raw_ratio": {
+                "max": 1.0004021319595884,
+                "mean": 1.0000579105692176,
+                "min": 0.9994590513961753,
+                "n": 3
+              }
+            },
+            "WHOLE_OVERLAPPING_TOKEN_DIAGNOSTIC": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -2.7697766199707985e-05,
+                "min": -9.228731505572796e-05,
+                "n": 2
+              },
+              "delta_first": {
+                "max": 0.0013080723583698273,
+                "mean": -0.037195390090346336,
+                "min": -0.0756988525390625,
+                "n": 2
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.00073034998320054,
+                "mean": -0.0014833594346441714,
+                "min": -0.003697068852488883,
+                "n": 2
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.0007362267476119318,
+                "mean": -0.0016005804370195806,
+                "min": -0.003937387621651093,
+                "n": 2
+              },
+              "delta_sum": {
+                "max": 0.08691164800086426,
+                "mean": 0.013879273180521068,
+                "min": -0.059153101639822125,
+                "n": 2
+              },
+              "label_metric_eligible": 0,
+              "n": 2,
+              "raw_ratio": {
+                "max": 1.000730616753691,
+                "mean": 0.9985201868229558,
+                "min": 0.9963097568922208,
+                "n": 2
+              }
+            }
+          },
+          "raw": {
+            "CORRECT": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0007180711875359217,
+                "min": -0.0002270527184009552,
+                "n": 15
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": 0.0029131765321532537,
+                "min": -0.018837779760360718,
+                "n": 15
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": 0.002924484031865783,
+                "min": -0.018837779760360718,
+                "n": 15
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": 0.0029498470461552036,
+                "min": -0.018837779760360718,
+                "n": 15
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0013082774724621174,
+                "min": -0.0067549905178405905,
+                "n": 15
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.001376654779155603,
+                "min": -0.0071771774252056275,
+                "n": 15
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": 0.027795559213730787,
+                "min": -0.13493237425882398,
+                "n": 15
+              },
+              "label_metric_eligible": 15,
+              "n": 15,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.0013276841618883,
+                "min": 0.9932677731456573,
+                "n": 15
+              }
+            },
+            "RAW_ZERO": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0007769321712354819,
+                "min": -0.011598587036132812,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": -0.003592834643581334,
+                "min": -0.0756988525390625,
+                "n": 17
+              },
+              "delta_label_first": {
+                "max": 0.005056142807006836,
+                "mean": -0.006490895806791741,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.0027587488293647766,
+                "mean": -0.006769031516546419,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.007713067729127943,
+                "mean": -0.006269485396614982,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.011635201560494579,
+                "mean": -0.000975390068157896,
+                "min": -0.01024422819693882,
+                "n": 17
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012410881664527551,
+                "mean": -0.0009737534146758986,
+                "min": -0.010689629422892682,
+                "n": 17
+              },
+              "delta_sum": {
+                "max": 0.18616322496791327,
+                "mean": -0.03203615967077118,
+                "min": -0.2458614767265317,
+                "n": 17
+              },
+              "label_metric_eligible": 12,
+              "n": 17,
+              "raw_ratio": {
+                "max": 1.0117031538084729,
+                "mean": 0.9990402527388281,
+                "min": 0.9898080651879435,
+                "n": 17
+              }
+            }
+          },
+          "raw_outcome": {
+            "CORRECT": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 15
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0007180711875359217,
+                "min": -0.0002270527184009552,
+                "n": 15
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": 0.0029131765321532537,
+                "min": -0.018837779760360718,
+                "n": 15
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": 0.002924484031865783,
+                "min": -0.018837779760360718,
+                "n": 15
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": 0.0029498470461552036,
+                "min": -0.018837779760360718,
+                "n": 15
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0013082774724621174,
+                "min": -0.0067549905178405905,
+                "n": 15
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.001376654779155603,
+                "min": -0.0071771774252056275,
+                "n": 15
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": 0.027795559213730787,
+                "min": -0.13493237425882398,
+                "n": 15
+              },
+              "label_metric_eligible": 15,
+              "n": 15,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.0013276841618883,
+                "min": 0.9932677731456573,
+                "n": 15
+              }
+            },
+            "RAW0_CANONICAL_WRONG_CLASS": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 12
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": 0.0009309905581176281,
+                "min": -0.0002270527184009552,
+                "n": 12
+              },
+              "delta_label_first": {
+                "max": 0.005056142807006836,
+                "mean": -0.006490895806791741,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_label_mean": {
+                "max": 0.0027587488293647766,
+                "mean": -0.006769031516546419,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_label_sum": {
+                "max": 0.007713067729127943,
+                "mean": -0.006269485396614982,
+                "min": -0.043157756328582764,
+                "n": 12
+              },
+              "delta_mean": {
+                "max": 0.011635201560494579,
+                "mean": -0.0011490306637598029,
+                "min": -0.01024422819693882,
+                "n": 12
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.012410881664527551,
+                "mean": -0.00114106486510044,
+                "min": -0.010689629422892682,
+                "n": 12
+              },
+              "delta_sum": {
+                "max": 0.18616322496791327,
+                "mean": -0.04526687980450106,
+                "min": -0.2458614767265317,
+                "n": 12
+              },
+              "label_metric_eligible": 12,
+              "n": 12,
+              "raw_ratio": {
+                "max": 1.0117031538084729,
+                "mean": 0.998872515933876,
+                "min": 0.9898080651879435,
+                "n": 12
+              }
+            },
+            "RAW0_FORMAT_GATE": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0038846608561774096,
+                "min": -0.011598587036132812,
+                "n": 3
+              },
+              "delta_first": {
+                "max": 0.0013080723583698273,
+                "mean": -0.014450015127658844,
+                "min": -0.0756988525390625,
+                "n": 5
+              },
+              "delta_label_first": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_mean": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_label_sum": {
+                "max": null,
+                "mean": null,
+                "min": null,
+                "n": 0
+              },
+              "delta_mean": {
+                "max": 0.00073034998320054,
+                "mean": -0.0005586526387133193,
+                "min": -0.003697068852488883,
+                "n": 5
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.0007362267476119318,
+                "mean": -0.0005722059336569984,
+                "min": -0.003937387621651093,
+                "n": 5
+              },
+              "delta_sum": {
+                "max": 0.08691164800086426,
+                "mean": -0.0002824313498194897,
+                "min": -0.1385203121426457,
+                "n": 5
+              },
+              "label_metric_eligible": 0,
+              "n": 5,
+              "raw_ratio": {
+                "max": 1.000730616753691,
+                "mean": 0.9994428210707127,
+                "min": 0.9963097568922208,
+                "n": 5
+              }
+            }
+          },
+          "task": {
+            "DALLAS": {
+              "delta_eos": {
+                "max": 0.0,
+                "mean": 0.0,
+                "min": 0.0,
+                "n": 14
+              },
+              "delta_first": {
+                "max": 0.00043811090290546417,
+                "mean": 0.0002606844063848257,
+                "min": -0.0002270527184009552,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_label_mean": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_label_sum": {
+                "max": 0.0626453161239624,
+                "mean": -0.0027709488152660405,
+                "min": -0.043157756328582764,
+                "n": 14
+              },
+              "delta_mean": {
+                "max": 0.017215837391123548,
+                "mean": 0.0013246771904840914,
+                "min": -0.01024422819693882,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.01829182722806877,
+                "mean": 0.0014329178897239177,
+                "min": -0.010689629422892682,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.2926692356491003,
+                "mean": 0.010447828392550207,
+                "min": -0.2458614767265317,
+                "n": 16
+              },
+              "label_metric_eligible": 14,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0173648840119633,
+                "mean": 1.001352375132724,
+                "min": 0.9898080651879435,
+                "n": 16
+              }
+            },
+            "MRI": {
+              "delta_eos": {
+                "max": 3.689178265631199e-05,
+                "mean": -0.0007283739105332643,
+                "min": -0.011598587036132812,
+                "n": 16
+              },
+              "delta_first": {
+                "max": 0.0016491860151290894,
+                "mean": -0.0034048794768750668,
+                "min": -0.0756988525390625,
+                "n": 16
+              },
+              "delta_label_first": {
+                "max": 0.005056142807006836,
+                "mean": 0.00035386013188634446,
+                "min": -0.00020234333351254463,
+                "n": 13
+              },
+              "delta_label_mean": {
+                "max": 0.0015426135458255885,
+                "mean": 0.00011016659178109804,
+                "min": -0.00010117166675627232,
+                "n": 13
+              },
+              "delta_label_sum": {
+                "max": 0.007713067729127943,
+                "mean": 0.0006005511035902181,
+                "min": -0.00020234333351254463,
+                "n": 13
+              },
+              "delta_mean": {
+                "max": 0.007452289111117554,
+                "mean": -0.0011345190074686208,
+                "min": -0.00733233936509113,
+                "n": 16
+              },
+              "delta_mean_excluding_eos": {
+                "max": 0.007890659058830352,
+                "mean": -0.001176917037358682,
+                "min": -0.007665627518049819,
+                "n": 16
+              },
+              "delta_sum": {
+                "max": 0.13414120400011598,
+                "mean": -0.018427911279871978,
+                "min": -0.168643805397096,
+                "n": 16
+              },
+              "label_metric_eligible": 13,
+              "n": 16,
+              "raw_ratio": {
+                "max": 1.0074801265254698,
+                "mean": 0.9988725973040511,
+                "min": 0.9926944766537796,
+                "n": 16
+              }
+            }
+          }
+        }
+      },
+      "surrogate_2x2": {
+        "A53": {
+          "A": {
+            "admitted": 20,
+            "by_task": {
+              "mri_sequence": {
+                "admitted": 8,
+                "delta": 0.00020001141958480607
+              },
+              "mri_visit_correspondence": {
+                "admitted": 12,
+                "delta": 0.0007105911889919063
+              }
+            },
+            "delta": 0.0009106026085767124,
+            "delta_unclipped": -0.00019568993193737425,
+            "label": "DESCRIPTIVE fixed-plan clipped GSPO surrogate on fixed saved responses (float64 recomputation; own-old = saved 52 scores); NOT a counterfactual training result, NOT accuracy evidence",
+            "objective_new": 0.0009106026085768147,
+            "objective_old": 1.0234868508263162e-16,
+            "outside_clip": 20
+          },
+          "B": {
+            "admitted": 28,
+            "by_task": {
+              "mri_sequence": {
+                "admitted": 16,
+                "delta": 0.0005254926420454695
+              },
+              "mri_visit_correspondence": {
+                "admitted": 12,
+                "delta": 0.0007105911889919063
+              }
+            },
+            "delta": 0.0012360838310373759,
+            "delta_unclipped": -0.00010698333737815119,
+            "label": "DESCRIPTIVE fixed-plan clipped GSPO surrogate on fixed saved responses (float64 recomputation; own-old = saved 52 scores); NOT a counterfactual training result, NOT accuracy evidence",
+            "objective_new": 0.0012360838310374453,
+            "objective_old": 6.938893903907228e-17,
+            "outside_clip": 27
+          }
+        },
+        "B53": {
+          "A": {
+            "admitted": 20,
+            "by_task": {
+              "mri_sequence": {
+                "admitted": 8,
+                "delta": 0.0001839319851718521
+              },
+              "mri_visit_correspondence": {
+                "admitted": 12,
+                "delta": 0.0007278787606441453
+              }
+            },
+            "delta": 0.0009118107458159974,
+            "delta_unclipped": -0.00014210008526659764,
+            "label": "DESCRIPTIVE fixed-plan clipped GSPO surrogate on fixed saved responses (float64 recomputation; own-old = saved 52 scores); NOT a counterfactual training result, NOT accuracy evidence",
+            "objective_new": 0.0009118107458160997,
+            "objective_old": 1.0234868508263162e-16,
+            "outside_clip": 19
+          },
+          "B": {
+            "admitted": 28,
+            "by_task": {
+              "mri_sequence": {
+                "admitted": 16,
+                "delta": 0.00018020158708305194
+              },
+              "mri_visit_correspondence": {
+                "admitted": 12,
+                "delta": 0.0007278787606441453
+              }
+            },
+            "delta": 0.0009080803477271972,
+            "delta_unclipped": -0.0006734084366686833,
+            "label": "DESCRIPTIVE fixed-plan clipped GSPO surrogate on fixed saved responses (float64 recomputation; own-old = saved 52 scores); NOT a counterfactual training result, NOT accuracy evidence",
+            "objective_new": 0.0009080803477272666,
+            "objective_old": 6.938893903907228e-17,
+            "outside_clip": 27
+          }
+        }
+      }
+    }
+  },
+  "checkpoint_exits": {
+    "A53": {
+      "Adam_arrays_checked": 1010,
+      "TF_counters": {
+        "backward_calls": 0,
+        "detached_old_forwards": 32,
+        "generated_response_tokens": 0,
+        "generation_language_model_calls": 0,
+        "generation_vision_embedding_calls": 0,
+        "gradient_forwards": 0,
+        "optimizer_updates": 0,
+        "sampler_draws": 0,
+        "scorer_language_model_calls": 32,
+        "scorer_vision_embedding_calls": 32,
+        "teacherforced_input_positions": 11641
+      },
+      "actual_exit_sha256": "5e9121035c7cb264068c4c9d41845b5e0558f51e01510d226d5a1c28f7c9cca4",
+      "checkpoint_disk_unchanged": true,
+      "child_reaped": true,
+      "closed_stderr_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+      "closed_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_loaded_state_unchanged": true,
+      "global_lock_released": true,
+      "greedy_counters": {
+        "LM": 158,
+        "generated_tokens": 150,
+        "generations": 4,
+        "sampler": 154,
+        "vision": 4
+      },
+      "native_exit_code": 0,
+      "optimizer_step": 53,
+      "parameters_checked": 1942,
+      "release_MLX_active_bytes": 1070,
+      "wall_seconds": 183.6572604170069
+    },
+    "B53": {
+      "Adam_arrays_checked": 1010,
+      "TF_counters": {
+        "backward_calls": 0,
+        "detached_old_forwards": 32,
+        "generated_response_tokens": 0,
+        "generation_language_model_calls": 0,
+        "generation_vision_embedding_calls": 0,
+        "gradient_forwards": 0,
+        "optimizer_updates": 0,
+        "sampler_draws": 0,
+        "scorer_language_model_calls": 32,
+        "scorer_vision_embedding_calls": 32,
+        "teacherforced_input_positions": 11641
+      },
+      "actual_exit_sha256": "e6a117cb283d1390b673bf1dba986fbc40d9456cce26dd121e223d11b16b7310",
+      "checkpoint_disk_unchanged": true,
+      "child_reaped": true,
+      "closed_stderr_sha256": "2dc2928bf9d0f0825548562e67d1efaf146f324aecbb621ce3c51c5194b29c6c",
+      "closed_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_loaded_state_unchanged": true,
+      "global_lock_released": true,
+      "greedy_counters": {
+        "LM": 158,
+        "generated_tokens": 150,
+        "generations": 4,
+        "sampler": 154,
+        "vision": 4
+      },
+      "native_exit_code": 0,
+      "optimizer_step": 53,
+      "parameters_checked": 1942,
+      "release_MLX_active_bytes": 1070,
+      "wall_seconds": 183.20709845802048
+    }
+  },
+  "created_utc": "2026-10-22T04:45:47.989831+00:00",
+  "executed_source_commit": "d3a8ea8cc38b4f9597c94896d4572ba30663abfb",
+  "execution_actor": "Actual Claude Code CLI 2.1.306",
+  "execution_actual": {
+    "TF_calls": 64,
+    "TF_positions": 23282,
+    "generated_tokens": 300,
+    "greedy_LM_calls": 316,
+    "greedy_calls": 8,
+    "greedy_sampler_calls": 308,
+    "input_sha256": "c6e47be37980681ea0d6b966faf2bce4b1c23e7b0d9ab3c8dde768f0136634a3",
+    "models": 2,
+    "native_status": "COMPLETE",
+    "new_backward": 0,
+    "optimizer_updates": 0,
+    "same_A53_B53_predictions": 4,
+    "same_A53_B53_texts": 4,
+    "same_A53_B53_tokens": 4,
+    "scope_canonical_sha256": "bf03456cd4ecd630b83c15be6047d6ba5b1863ee3c5bb64ba4e12d50bdbb8b70",
+    "scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+    "sum_child_wall_seconds": 366.8643588750274
+  },
+  "first_child_start_to_last_child_exit_seconds": 377.45422196388245,
+  "human_approval_evidence_sha256": "292b05a69d8ecc8851be472516f046fdb2c316171dc2d42b93574d0bb5148db8",
+  "independent_review_sha256": "3ec9d67c6e7653601cbb923186a5280f5db9b27d1a64ba353f33e380d943590c",
+  "independent_selected_token_baseline_extension_sha256": "536776b80e4f3a4f4addd918cd4b9750ac6d0077dafb1fbd38cd741aef2c181e",
+  "input_sha256": "c6e47be37980681ea0d6b966faf2bce4b1c23e7b0d9ab3c8dde768f0136634a3",
+  "limits": [
+    "Exactly the four predeclared diagnostic DEV images, not fullAdam53DEV24 accuracy or independentgeneralization.",
+    "AllCommon32 are fixed originalParent52 samples; no newTRAIN rollout.",
+    "Selected-label same-prefix probabilities and fullresponse scores are not normalized class probabilities or canonical class margins.",
+    "Clipped surrogate worsens while unclipped surrogate improves; neither is accuracy.",
+    "HistoricalAdam, taskinterference and creditallocation causal contributions remain unseparated.",
+    "No task-specific gradients, new backward or optimizer update.",
+    "No final100 or sealednew16 model outputs accessed.",
+    "No new training or automatic expansion authorized.",
+    "Atomic GPU operations and sampling retain risk; thermal sensor unavailable."
+  ],
+  "native_aggregate_sha256": "f560c8ca8674a71ac259fb9ca14ec13e442f5e63223ffd3088bc1f5841e9fb6b",
+  "native_command_Bash_invocations": 1,
+  "previous_full_DEV24_reference": {
+    "Direct_A54": {
+      "FLAIR_correct": 9,
+      "FLAIR_total": 12,
+      "T1_correct": 7,
+      "T1_total": 12,
+      "correct": 16,
+      "total": 24
+    },
+    "Paired_B54": {
+      "FLAIR_correct": 9,
+      "FLAIR_total": 12,
+      "T1_correct": 7,
+      "T1_total": 12,
+      "correct": 16,
+      "total": 24
+    },
+    "Parent": {
+      "FLAIR_correct": 10,
+      "FLAIR_total": 12,
+      "T1_correct": 8,
+      "T1_total": 12,
+      "correct": 18,
+      "total": 24
+    },
+    "new_accuracy_improvement_demonstrated": false,
+    "new_full_Adam53_DEV24_accuracy": "NOT_MEASURED"
+  },
+  "resources_actual": {
+    "OS_pressure_levels": [
+      1
+    ],
+    "external_MLX": "NOT_OBSERVABLE; native model process provides separate active/peak attestations",
+    "forced_TERM_or_KILL": 0,
+    "guardian_samples": 178,
+    "guardian_stops": 0,
+    "max_native_reported_MLX_peak_GiB": 6.372484993189573,
+    "max_native_sampled_MLX_active_GiB": 5.060288245789707,
+    "max_swap_GiB": 15.428525390625,
+    "max_wait4_child_RSS_GiB": 6.00567626953125,
+    "min_available_GiB": 9.304229736328125,
+    "min_battery_percent": 75,
+    "min_disk_free_GiB": 294.3791275024414,
+    "min_pressure_free_percent": 46.0,
+    "native_samples": 906,
+    "sample_colors": {
+      "GREEN": 906,
+      "RED": 0,
+      "YELLOW": 0
+    },
+    "swap_end_GiB": 15.420712890625,
+    "swap_start_GiB": 15.428525390625,
+    "thermal": "SENSOR_UNAVAILABLE"
+  },
+  "schema": "v2-native-readonly-actual-results-v1",
+  "scope_canonical_sha256": "bf03456cd4ecd630b83c15be6047d6ba5b1863ee3c5bb64ba4e12d50bdbb8b70",
+  "scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+  "status": "ACTUAL_NATIVE_COMPLETE_INDEPENDENTLY_REPRODUCED"
+}

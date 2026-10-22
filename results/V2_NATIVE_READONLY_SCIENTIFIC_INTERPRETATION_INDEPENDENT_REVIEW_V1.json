@@ -1,0 +1,96 @@
+{
+  "checks": {
+    "Dallas_guard_is_explicit_NOT_READY_execution_blocker": true,
+    "actual_native_counts_resources_and_state_claims_match_independent_proof": true,
+    "all24_include_prior4_in_future_success_denominator": true,
+    "all_TRAIN_numeric_tables_and_sign_counts_match_independent_saved_row_recomputation": true,
+    "all_four_clipped_surrogate_changes_positive_and_unclipped_negative_correctly_interpreted": true,
+    "conditional_real_arithmetic_Adam_identity_distinguished_from_unverified_native_F32_equality": true,
+    "cosine_similarity_not_misrepresented_as_contribution_percentage": true,
+    "four_selected_DEV_outcomes_timing_and_trajectory_localization_match": true,
+    "future_B53_state_control_distinguished_from_Direct_A53_anchor": true,
+    "larger_Dallas_probability_changes_not_misrepresented_as_gradient_dominance": true,
+    "no_claim_of_actual_accuracy_improvement_or_generalization": true,
+    "no_new_method_loss_or_norm_rescaling_authorized": true,
+    "normal_Claude_closed_log_actual_model_and_single_launch_authentication": true,
+    "original_historical_checkpoints_and_original_Adam_algorithm_preserved_by_future_proposal": true,
+    "pooled_wrong_MRI_mean_single_outlier_and_modality_counts_disclosed": true,
+    "public_wrapper_exact_production_aggregate_and_independent_counters_resources": true,
+    "same_prefix_selected_token_baseline_ranges_match": true,
+    "selected_prediction_counts_disclosed_without_class_prior_or_anatomical_grounding_exclusion": true
+  },
+  "confirmed_summary": {
+    "new_accuracy_improvement": false,
+    "own_plan_surrogate": {
+      "A53_clipped_delta": 0.0009106026085767124,
+      "A53_unclipped_delta": -0.00019568993193737425,
+      "B53_clipped_delta": 0.0009080803477271972,
+      "B53_unclipped_delta": -0.0006734084366686833
+    },
+    "read_only_experiment": {
+      "TF_forwards": 64,
+      "TF_positions": 23282,
+      "backward": 0,
+      "greedy_generations": 8,
+      "model_loads": 2,
+      "optimizer_updates": 0,
+      "returned_tokens": 300
+    },
+    "selected_DEV": {
+      "A53_B53_predictions_texts_and_tokens_identical": 4,
+      "A53_correct": 3,
+      "B53_correct": 3,
+      "FLAIR_regression_present_at53": true,
+      "Parent_correct": 4,
+      "T1_regression_appears_at54": true,
+      "second_correct_but_divergent_trajectory": "FLAIR partner at20thtoken; not the later-regressedT1 response",
+      "total": 4
+    }
+  },
+  "evidence_sha256": {
+    "actual_wrapper_sha256": "15726f139a3cd37dd305ba86fc7888409ead2d5d306b367b46cb0dc8d638b02b",
+    "independent_actual_review_sha256": "3ec9d67c6e7653601cbb923186a5280f5db9b27d1a64ba353f33e380d943590c",
+    "independent_selected_token_baseline_sha256": "536776b80e4f3a4f4addd918cd4b9750ac6d0077dafb1fbd38cd741aef2c181e",
+    "production_native_aggregate_sha256": "f560c8ca8674a71ac259fb9ca14ec13e442f5e63223ffd3088bc1f5841e9fb6b",
+    "report_sha256": "7d81cf8c29c2c5d279b7f760bc9a60bdcb2819934e3d340762beb8d1d1e12d3d"
+  },
+  "new_training_or_native_scope_approved": false,
+  "privacy": {
+    "case_or_pair_indices": false,
+    "no_unlinkability_certificate": true,
+    "patient_identifiers": false,
+    "private_absolute_paths": false,
+    "raw_response_text": false,
+    "status": "PASS_FOCUSED_CONTENT_REVIEW",
+    "token_or_pixel_arrays": false
+  },
+  "remaining_limits": [
+    "FourselectedexploredDEVimages are not fullAdam53DEV24accuracy or generalization.",
+    "No task-specific gradient vectors or canonicalclassmargins exist; no establishedMRI-Dallasgradientconflict.",
+    "Firstmomentreset changes both direction and step norm; native F32 effects remain unmeasured.",
+    "A future state-treatment result must report candidate-minus-matchedB53; exceedingParent alone does not establish that resettingmoments helped.",
+    "Paired-versus-Direct methodbenefit would require matchedDirect firstmomentreset; originalA53 is onlyananchor.",
+    "Dallaspost-trainingaccuracy and retentiontolerance were not measured or established byV2.",
+    "Statisticalpopulation/generalization conclusions remain unsupported."
+  ],
+  "review_target": "research/V2_NATIVE_READONLY_ACTUAL_DIAGNOSIS_2026-10-21.md",
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_new_operations": {
+    "backward": 0,
+    "generation": 0,
+    "model_loads": 0,
+    "native_calls": 0,
+    "optimizer_updates": 0
+  },
+  "schema": "v2-native-readonly-scientific-interpretation-independent-review-v1",
+  "scientific_verdict": {
+    "inherited_first_moment": "Plausible shared component and supported candidate hypothesis; not proven cause of specific errors",
+    "next_intervention": "PROPOSED first-moment-only state ablation at fixedPairedB, preservev/step/originalAdam/LR/reward/loss; no execution authorization",
+    "next_intervention_status": "NOT_READY_FOR_EXECUTION; Dallas retention design and exact fresh source/input/budget review plus human permission remain required",
+    "root_cause": "INCONCLUSIVE; timing and finite-update behavior localized, causal contributions not identified",
+    "selected_token_saturation": "Observed on saved teacher-forced paths; not normalized class confidence, margin, anatomical grounding or proof that MRI gradient is weak"
+  },
+  "scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

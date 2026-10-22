@@ -1,0 +1,652 @@
+{
+  "definition": {
+    "first_label_probability": "exp(selected first-label-token log probability) at that token's identical saved prefix under old and new model.",
+    "headroom": "1 minus selected first-label-token probability; this is an observed-path upper-probability headroom, not a class margin.",
+    "not_a_canonical_correct_vs_wrong_margin": true,
+    "not_a_class_probability": true,
+    "selected_label_geometric_mean": "For each eligible saved response, exp(mean of the OLD or NEW log probabilities at exactly its saved label-token positions); then aggregate across responses."
+  },
+  "existing_actual_review_sha256_unchanged": "3ec9d67c6e7653601cbb923186a5280f5db9b27d1a64ba353f33e380d943590c",
+  "groups": {
+    "A53": {
+      "DALLAS_ALL_VALID": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.017024188419211772,
+          "mean": -0.002684398585364337,
+          "min": -0.023017535118044496,
+          "n": 14
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.7186184990197465,
+          "mean": 0.14780693894222918,
+          "min": 9.417444964854305e-06,
+          "n": 14
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8521930610577708,
+          "min": 0.2813815009802535,
+          "n": 14
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8521930610577708,
+          "min": 0.2813815009802535,
+          "n": 14
+        },
+        "new_label_mean_logp": {
+          "max": -9.417489309271332e-06,
+          "mean": -0.2184323707686287,
+          "min": -1.268043875694275,
+          "n": 14
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.7356426874389583,
+          "mean": 0.14512254035686484,
+          "min": 8.582995633776846e-06,
+          "n": 14
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.8548774596431352,
+          "min": 0.2643573125610417,
+          "n": 14
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.8548774596431352,
+          "min": 0.2643573125610417,
+          "n": 14
+        },
+        "old_label_mean_logp": {
+          "max": -8.583032467868179e-06,
+          "mean": -0.21570887899244034,
+          "min": -1.330453634262085,
+          "n": 14
+        }
+      },
+      "DALLAS_CORRECT": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.017024188419211772,
+          "mean": 0.0003064070833982475,
+          "min": -0.01426150252541225,
+          "n": 9
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.7186184990197465,
+          "mean": 0.10718771840800571,
+          "min": 9.417444964854305e-06,
+          "n": 9
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8928122815919942,
+          "min": 0.2813815009802535,
+          "n": 9
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8928122815919942,
+          "min": 0.2813815009802535,
+          "n": 9
+        },
+        "new_label_mean_logp": {
+          "max": -9.417489309271332e-06,
+          "mean": -0.17222300730473863,
+          "min": -1.268043875694275,
+          "n": 9
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.7356426874389583,
+          "mean": 0.10749412549140397,
+          "min": 8.582995633776846e-06,
+          "n": 9
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.892505874508596,
+          "min": 0.2643573125610417,
+          "n": 9
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.892505874508596,
+          "min": 0.2643573125610417,
+          "n": 9
+        },
+        "old_label_mean_logp": {
+          "max": -8.583032467868179e-06,
+          "mean": -0.17707885116295882,
+          "min": -1.330453634262085,
+          "n": 9
+        }
+      },
+      "DALLAS_WRONG": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.002463459313858718,
+          "mean": -0.008067848789136989,
+          "min": -0.023017535118044496,
+          "n": 5
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.5365217503857871,
+          "mean": 0.2209215359038314,
+          "min": 9.202110272443775e-05,
+          "n": 5
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999079788972756,
+          "mean": 0.7790784640961685,
+          "min": 0.46347824961421297,
+          "n": 5
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999079788972756,
+          "mean": 0.7790784640961685,
+          "min": 0.46347824961421297,
+          "n": 5
+        },
+        "new_label_mean_logp": {
+          "max": -9.202533692587167e-05,
+          "mean": -0.30160922500363085,
+          "min": -0.7689958214759827,
+          "n": 5
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.5166474904050655,
+          "mean": 0.21285368711469443,
+          "min": 8.844546685049526e-05,
+          "n": 5
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999115545331495,
+          "mean": 0.7871463128853056,
+          "min": 0.4833525095949345,
+          "n": 5
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999115545331495,
+          "mean": 0.7871463128853056,
+          "min": 0.4833525095949345,
+          "n": 5
+        },
+        "old_label_mean_logp": {
+          "max": -8.844937838148326e-05,
+          "mean": -0.2852429290855071,
+          "min": -0.7270090579986572,
+          "n": 5
+        }
+      },
+      "MRI_CORRECT": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.00010690672684066094,
+          "mean": 1.0947695665490068e-05,
+          "min": -3.8359694228051744e-05,
+          "n": 6
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.0032914661621797903,
+          "mean": 0.0009972463267181968,
+          "min": 1.8238689446281597e-05,
+          "n": 6
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999817613105537,
+          "mean": 0.9990027536732818,
+          "min": 0.9967085338378202,
+          "n": 6
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999908210095994,
+          "mean": 0.9994368051806676,
+          "min": 0.9979681883536999,
+          "n": 6
+        },
+        "new_label_mean_logp": {
+          "max": -9.179032527839581e-06,
+          "mean": -0.0005636752979790789,
+          "min": -0.002033878575798553,
+          "n": 6
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.0032683727130760065,
+          "mean": 0.0009796733230196253,
+          "min": 1.7404253842556727e-05,
+          "n": 6
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999825957461574,
+          "mean": 0.9990203266769804,
+          "min": 0.996731627286924,
+          "n": 6
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999912382310941,
+          "mean": 0.999425857485002,
+          "min": 0.9978612816268593,
+          "n": 6
+        },
+        "old_label_mean_logp": {
+          "max": -8.761807290369461e-06,
+          "mean": -0.0005746521699823148,
+          "min": -0.002141008697435609,
+          "n": 6
+        }
+      },
+      "MRI_WRONG": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.0014250984108631348,
+          "mean": 0.00017877926455619634,
+          "min": -0.00010349078769633646,
+          "n": 7
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.19888072182696814,
+          "mean": 0.030145832379485964,
+          "min": 3.933891086660424e-06,
+          "n": 7
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999960661089133,
+          "mean": 0.969854167620514,
+          "min": 0.8011192781730319,
+          "n": 7
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.999997973448,
+          "mean": 0.992346653911485,
+          "min": 0.9525070177569553,
+          "n": 7
+        },
+        "new_label_mean_logp": {
+          "max": -2.026554053458085e-06,
+          "mean": -0.00782114306198634,
+          "min": -0.048657804284584924,
+          "n": 7
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.2027354307538235,
+          "mean": 0.030647032265293132,
+          "min": 3.5762659251759032e-06,
+          "n": 7
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999964237340748,
+          "mean": 0.9693529677347069,
+          "min": 0.7972645692461765,
+          "n": 7
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999981522609058,
+          "mean": 0.9921678746469287,
+          "min": 0.9510819193460922,
+          "n": 7
+        },
+        "old_label_mean_logp": {
+          "max": -1.8477408012529395e-06,
+          "mean": -0.008010163326691456,
+          "min": -0.05015507992989114,
+          "n": 7
+        }
+      }
+    },
+    "B53": {
+      "DALLAS_ALL_VALID": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.01709047776510081,
+          "mean": -0.002713234338441458,
+          "min": -0.023285128046980352,
+          "n": 14
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.7185522096738575,
+          "mean": 0.1478357746953063,
+          "min": 9.417444964854305e-06,
+          "n": 14
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8521642253046936,
+          "min": 0.28144779032614253,
+          "n": 14
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8521642253046936,
+          "min": 0.28144779032614253,
+          "n": 14
+        },
+        "new_label_mean_logp": {
+          "max": -9.417489309271332e-06,
+          "mean": -0.2184798278077064,
+          "min": -1.2678083181381226,
+          "n": 14
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.7356426874389583,
+          "mean": 0.14512254035686484,
+          "min": 8.582995633776846e-06,
+          "n": 14
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.8548774596431352,
+          "min": 0.2643573125610417,
+          "n": 14
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.8548774596431352,
+          "min": 0.2643573125610417,
+          "n": 14
+        },
+        "old_label_mean_logp": {
+          "max": -8.583032467868179e-06,
+          "mean": -0.21570887899244034,
+          "min": -1.330453634262085,
+          "n": 14
+        }
+      },
+      "DALLAS_CORRECT": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.01709047776510081,
+          "mean": 0.00030230939562601405,
+          "min": -0.014363957677995476,
+          "n": 9
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.7185522096738575,
+          "mean": 0.10719181609577794,
+          "min": 9.417444964854305e-06,
+          "n": 9
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8928081839042221,
+          "min": 0.28144779032614253,
+          "n": 9
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999905825550351,
+          "mean": 0.8928081839042221,
+          "min": 0.28144779032614253,
+          "n": 9
+        },
+        "new_label_mean_logp": {
+          "max": -9.417489309271332e-06,
+          "mean": -0.17221198365334406,
+          "min": -1.2678083181381226,
+          "n": 9
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.7356426874389583,
+          "mean": 0.10749412549140397,
+          "min": 8.582995633776846e-06,
+          "n": 9
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.892505874508596,
+          "min": 0.2643573125610417,
+          "n": 9
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999914170043662,
+          "mean": 0.892505874508596,
+          "min": 0.2643573125610417,
+          "n": 9
+        },
+        "old_label_mean_logp": {
+          "max": -8.583032467868179e-06,
+          "mean": -0.17707885116295882,
+          "min": -1.330453634262085,
+          "n": 9
+        }
+      },
+      "DALLAS_WRONG": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.0025014989348072225,
+          "mean": -0.008141213059762908,
+          "min": -0.023285128046980352,
+          "n": 5
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.5366612655637248,
+          "mean": 0.22099490017445733,
+          "min": 9.190191167285366e-05,
+          "n": 5
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999080980883271,
+          "mean": 0.7790050998255427,
+          "min": 0.4633387344362752,
+          "n": 5
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999080980883271,
+          "mean": 0.7790050998255427,
+          "min": 0.4633387344362752,
+          "n": 5
+        },
+        "new_label_mean_logp": {
+          "max": -9.19061349122785e-05,
+          "mean": -0.30176194728555855,
+          "min": -0.7692968845367432,
+          "n": 5
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.5166474904050655,
+          "mean": 0.21285368711469443,
+          "min": 8.844546685049526e-05,
+          "n": 5
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999115545331495,
+          "mean": 0.7871463128853056,
+          "min": 0.4833525095949345,
+          "n": 5
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999115545331495,
+          "mean": 0.7871463128853056,
+          "min": 0.4833525095949345,
+          "n": 5
+        },
+        "old_label_mean_logp": {
+          "max": -8.844937838148326e-05,
+          "mean": -0.2852429290855071,
+          "min": -0.7270090579986572,
+          "n": 5
+        }
+      },
+      "MRI_CORRECT": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.00010477838164113518,
+          "mean": 1.088000726405062e-05,
+          "min": -3.669707836762015e-05,
+          "n": 6
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.0032933609653023055,
+          "mean": 0.0009969887630416248,
+          "min": 1.8238689446281597e-05,
+          "n": 6
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999817613105537,
+          "mean": 0.9990030112369584,
+          "min": 0.9967066390346977,
+          "n": 6
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.9999908210095994,
+          "mean": 0.999436737492266,
+          "min": 0.9979660600085004,
+          "n": 6
+        },
+        "new_label_mean_logp": {
+          "max": -9.179032527839581e-06,
+          "mean": -0.0005637433547400169,
+          "min": -0.0020360112564731026,
+          "n": 6
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.0032683727130760065,
+          "mean": 0.0009796733230196253,
+          "min": 1.7404253842556727e-05,
+          "n": 6
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999825957461574,
+          "mean": 0.9990203266769804,
+          "min": 0.996731627286924,
+          "n": 6
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999912382310941,
+          "mean": 0.999425857485002,
+          "min": 0.9978612816268593,
+          "n": 6
+        },
+        "old_label_mean_logp": {
+          "max": -8.761807290369461e-06,
+          "mean": -0.0005746521699823148,
+          "min": -0.002141008697435609,
+          "n": 6
+        }
+      },
+      "MRI_WRONG": {
+        "delta_label_geomean_selected_token_probability": {
+          "max": 0.0014682840582440626,
+          "mean": 0.00018469771439196973,
+          "min": -0.00010094527080017901,
+          "n": 7
+        },
+        "new_first_label_probability_headroom": {
+          "max": 0.19869413917255807,
+          "mean": 0.030119676599047223,
+          "min": 3.933891086660424e-06,
+          "n": 7
+        },
+        "new_first_label_selected_probability": {
+          "max": 0.9999960661089133,
+          "mean": 0.9698803234009528,
+          "min": 0.8013058608274419,
+          "n": 7
+        },
+        "new_label_geomean_selected_token_probability": {
+          "max": 0.999997973448,
+          "mean": 0.9923525723613207,
+          "min": 0.9525502034043363,
+          "n": 7
+        },
+        "new_label_mean_logp": {
+          "max": -2.026554053458085e-06,
+          "mean": -0.007814918640734244,
+          "min": -0.04861246638406556,
+          "n": 7
+        },
+        "old_first_label_probability_headroom": {
+          "max": 0.2027354307538235,
+          "mean": 0.030647032265293132,
+          "min": 3.5762659251759032e-06,
+          "n": 7
+        },
+        "old_first_label_selected_probability": {
+          "max": 0.9999964237340748,
+          "mean": 0.9693529677347069,
+          "min": 0.7972645692461765,
+          "n": 7
+        },
+        "old_label_geomean_selected_token_probability": {
+          "max": 0.9999981522609058,
+          "mean": 0.9921678746469287,
+          "min": 0.9510819193460922,
+          "n": 7
+        },
+        "old_label_mean_logp": {
+          "max": -1.8477408012529395e-06,
+          "mean": -0.008010163326691456,
+          "min": -0.05015507992989114,
+          "n": 7
+        }
+      }
+    }
+  },
+  "interpretation_limits": [
+    "exp(mean selected-label-token logp) is geometric mean of conditional selected-token probabilities, not a normalized class probability or class margin",
+    "Each label token is scored on its own saved prefix; old and new at that token use the same prefix",
+    "High selected-token probability shows limited upward headroom only along these sampled paths, not inability to learn MRI or proof of cause",
+    "Different label lengths, tasks, answer contexts and smallcells prevent larger Dallas changes from proving gradient dominance",
+    "The MRI selected-label token probabilities are often close to1 on the sampled teacher-forced prefixes, including incorrect answers. Small positive label deltas alone cannot establish a general weak MRI learning signal or improved class discrimination.",
+    "Larger Dallas probability changes do not prove Dallas gradient dominance; tasks, answer lengths and prefix contexts differ, and task-specific gradient vectors were not saved.",
+    "The wrongMRI positive pooled label mean is driven by one wrongFLAIR example, while allsix wrongT1 examples' sampledwronglabel scores decrease. Report counts and modalities rather than general wrong-label reinforcement.",
+    "No anatomy grounding, causal source of the DEV errors, or benefit of changing optimizer/clipping is established."
+  ],
+  "key_baselines": {
+    "Dallas_valid14_old_first_label_probability_range": [
+      0.2643573125610417,
+      0.9999914170043662
+    ],
+    "Dallas_valid14_old_selected_label_geomean_probability_mean": 0.8548774596431352,
+    "MRI_correct6_old_first_label_probability_mean": 0.9990203266769804,
+    "MRI_correct6_old_first_label_probability_range": [
+      0.996731627286924,
+      0.9999825957461574
+    ],
+    "MRI_correct6_old_selected_label_geomean_probability_mean": 0.999425857485002,
+    "MRI_wrong7_old_first_label_probability_mean": 0.9693529677347069,
+    "MRI_wrong7_old_first_label_probability_range": [
+      0.7972645692461765,
+      0.9999964237340748
+    ],
+    "MRI_wrong7_old_selected_label_geomean_probability_mean": 0.9921678746469287
+  },
+  "new_backward": 0,
+  "new_generation": 0,
+  "new_model_calls": 0,
+  "optimizer_updates": 0,
+  "parent_scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+  "predecision_trajectory_localization": {
+    "A53_and_B53_identical": true,
+    "T1_images_token_identical_to_Parent_at53": 2,
+    "changed_groups": [
+      {
+        "before_parent_first_label_token": true,
+        "correct53": false,
+        "count": 1,
+        "first_divergence_ordinal": 3,
+        "first_divergence_zero_based": 2,
+        "role": "REGRESSED",
+        "same_prediction_as_Parent": false,
+        "truth": "FLAIR"
+      },
+      {
+        "before_parent_first_label_token": true,
+        "correct53": true,
+        "count": 1,
+        "first_divergence_ordinal": 20,
+        "first_divergence_zero_based": 19,
+        "role": "PARTNER",
+        "same_prediction_as_Parent": true,
+        "truth": "FLAIR"
+      }
+    ],
+    "correction": "The second still-correct predecision-divergent response is a FLAIR partner, not the enhancedT1 response that later regresses at54.",
+    "nonidentical_to_Parent_trajectories_per_model": 2
+  },
+  "prior_actual_reviews_and_production_aggregate_unchanged": true,
+  "privacy": {
+    "no_absolute_private_paths": true,
+    "no_case_or_pair_indices": true,
+    "no_patient_identifiers": true,
+    "no_raw_response_text": true,
+    "no_token_or_pixel_arrays": true,
+    "small_strata_are_descriptive_not_unlinkability_certification": true
+  },
+  "private_facts_sha256": "97c4a5d41d3532f4781b20fb2df9953547edf5d44d02ae036bd84a1826873ed4",
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "schema": "v2-native-readonly-independent-selected-label-baseline-extension-v1",
+  "status": "ACTUAL_SAVED_LOGPS_CPU_RECOMPUTATION_NOT_NEW_MODEL_CALLS"
+}

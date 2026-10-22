@@ -1,0 +1,1095 @@
+{
+  "217_unique_bound_files_verified": true,
+  "DEV_diagnostic": {
+    "A53_B53_identical_predictions_texts_tokens": 4,
+    "Parent_reference_on_selected_inputs": {
+      "FLAIR_correct": 2,
+      "T1_correct": 2,
+      "correct": 4,
+      "total": 4
+    },
+    "actual_prompt_length_prompt_SHA_image_SHA_and_full_input_fingerprints_match_frozen_Parent_all8": true,
+    "each53_on_selected_inputs": {
+      "FLAIR_correct": 1,
+      "FLAIR_total": 2,
+      "T1_correct": 2,
+      "T1_total": 2,
+      "correct": 3,
+      "total": 4
+    },
+    "each54_reference_on_selected_inputs": {
+      "FLAIR_correct": 1,
+      "T1_correct": 1,
+      "correct": 2,
+      "total": 4
+    },
+    "models": {
+      "A53": {
+        "correct": 3,
+        "identical_tokens_to_54": 3,
+        "identical_tokens_to_Parent": 2,
+        "images": 4,
+        "invalid": 0,
+        "pair_categories": {
+          "CONSTANT_T1": 1,
+          "DISCRIMINATES_CORRECTLY": 1
+        },
+        "regression_timing": {
+          "REGRESSION_APPEARS_AT_54": 1,
+          "REGRESSION_PRESENT_AT_53": 1
+        },
+        "regression_timing_by_modality": {
+          "FLAIR": "REGRESSION_PRESENT_AT_53",
+          "contrast-enhanced T1": "REGRESSION_APPEARS_AT_54"
+        },
+        "returned_tokens": 150
+      },
+      "B53": {
+        "correct": 3,
+        "identical_tokens_to_54": 3,
+        "identical_tokens_to_Parent": 2,
+        "images": 4,
+        "invalid": 0,
+        "pair_categories": {
+          "CONSTANT_T1": 1,
+          "DISCRIMINATES_CORRECTLY": 1
+        },
+        "regression_timing": {
+          "REGRESSION_APPEARS_AT_54": 1,
+          "REGRESSION_PRESENT_AT_53": 1
+        },
+        "regression_timing_by_modality": {
+          "FLAIR": "REGRESSION_PRESENT_AT_53",
+          "contrast-enhanced T1": "REGRESSION_APPEARS_AT_54"
+        },
+        "returned_tokens": 150
+      }
+    },
+    "scope_label": "Four preselected explored DEV images; NOT fullAdam53DEV24 accuracy or generalization"
+  },
+  "TRAIN_fixed_response": {
+    "MRI_valid_by_outcome_and_modality": {
+      "A53": {
+        "CORRECT|ALL_MRI": {
+          "delta_label_first": {
+            "max": -8.344504749402404e-07,
+            "mean": -1.7617870374427486e-05,
+            "min": -7.681595161557198e-05,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.0001071301216370557,
+            "mean": 1.0976872003235864e-05,
+            "min": -3.840797580778599e-05,
+            "n": 6,
+            "negative": 5,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.0047009003736901735,
+            "mean": -0.0001771818609748302,
+            "min": -0.006080870037938742,
+            "n": 6,
+            "negative": 4,
+            "positive": 2,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.11420185515100911,
+            "mean": -0.01154842256602251,
+            "min": -0.1459408809105298,
+            "n": 6,
+            "negative": 4,
+            "positive": 2,
+            "zero": 0
+          }
+        },
+        "CORRECT|FLAIR_IMAGE": {
+          "delta_label_first": {
+            "max": -8.344504749402404e-07,
+            "mean": -1.650755584705621e-05,
+            "min": -7.681595161557198e-05,
+            "n": 5,
+            "negative": 5,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": -4.172252374701202e-07,
+            "mean": -8.253777923528106e-06,
+            "min": -3.840797580778599e-05,
+            "n": 5,
+            "negative": 5,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.0047009003736901735,
+            "mean": -0.001058557900955049,
+            "min": -0.006080870037938742,
+            "n": 5,
+            "negative": 4,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.08461620672642312,
+            "mean": -0.036698478109428834,
+            "min": -0.1459408809105298,
+            "n": 5,
+            "negative": 4,
+            "positive": 1,
+            "zero": 0
+          }
+        },
+        "CORRECT|T1_IMAGE": {
+          "delta_label_first": {
+            "max": -2.3169443011283875e-05,
+            "mean": -2.3169443011283875e-05,
+            "min": -2.3169443011283875e-05,
+            "n": 1,
+            "negative": 1,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.0001071301216370557,
+            "mean": 0.0001071301216370557,
+            "min": 0.0001071301216370557,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.004229698338926263,
+            "mean": 0.004229698338926263,
+            "min": 0.004229698338926263,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.11420185515100911,
+            "mean": 0.11420185515100911,
+            "min": 0.11420185515100911,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          }
+        },
+        "WRONG|ALL_MRI": {
+          "delta_label_first": {
+            "max": 0.004823267459869385,
+            "mean": 0.0006392856964469372,
+            "min": -0.00020744604989886284,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.0014972756453062175,
+            "mean": 0.00018902026470511504,
+            "min": -0.00010372302494943142,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.0017268725014053582,
+            "mean": -0.0029879819481714517,
+            "min": -0.006434139562553237,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.0949779875772947,
+            "mean": -0.06928908380473331,
+            "min": -0.14798520993872444,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          }
+        },
+        "WRONG|FLAIR_IMAGE": {
+          "delta_label_first": {
+            "max": 0.004823267459869385,
+            "mean": 0.004823267459869385,
+            "min": 0.004823267459869385,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.0014972756453062175,
+            "mean": 0.0014972756453062175,
+            "min": 0.0014972756453062175,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.0017268725014053582,
+            "mean": 0.0017268725014053582,
+            "min": 0.0017268725014053582,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.0949779875772947,
+            "mean": 0.0949779875772947,
+            "min": 0.0949779875772947,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          }
+        },
+        "WRONG|T1_IMAGE": {
+          "delta_label_first": {
+            "max": -3.576265044102911e-07,
+            "mean": -5.804459745680409e-05,
+            "min": -0.00020744604989886284,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": -1.7881325220514555e-07,
+            "mean": -2.9022298728402045e-05,
+            "min": -0.00010372302494943142,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": -0.001942221127319499,
+            "mean": -0.0037737910231009203,
+            "min": -0.006434139562553237,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": -0.03884442254638998,
+            "mean": -0.0966669290350713,
+            "min": -0.14798520993872444,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          }
+        }
+      },
+      "B53": {
+        "CORRECT|ALL_MRI": {
+          "delta_label_first": {
+            "max": -8.344504749402404e-07,
+            "mean": -1.7359934039025877e-05,
+            "min": -7.348647341132164e-05,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.00010499744096250651,
+            "mean": 1.0908815242297956e-05,
+            "min": -3.674323670566082e-05,
+            "n": 6,
+            "negative": 5,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.007452289111117554,
+            "mean": 0.0008047155670710991,
+            "min": -0.005622182260784332,
+            "n": 6,
+            "negative": 2,
+            "positive": 4,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.13414120400011598,
+            "mean": 0.01693483001374337,
+            "min": -0.13493237425882398,
+            "n": 6,
+            "negative": 2,
+            "positive": 4,
+            "zero": 0
+          }
+        },
+        "CORRECT|FLAIR_IMAGE": {
+          "delta_label_first": {
+            "max": -8.344504749402404e-07,
+            "mean": -1.581781980348751e-05,
+            "min": -7.348647341132164e-05,
+            "n": 5,
+            "negative": 5,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": -4.172252374701202e-07,
+            "mean": -7.908909901743755e-06,
+            "min": -3.674323670566082e-05,
+            "n": 5,
+            "negative": 5,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.007452289111117554,
+            "mean": 0.00025551088346114265,
+            "min": -0.005622182260784332,
+            "n": 5,
+            "negative": 2,
+            "positive": 3,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.13414120400011598,
+            "mean": 0.0011478054968392826,
+            "min": -0.13493237425882398,
+            "n": 5,
+            "negative": 2,
+            "positive": 3,
+            "zero": 0
+          }
+        },
+        "CORRECT|T1_IMAGE": {
+          "delta_label_first": {
+            "max": -2.507050521671772e-05,
+            "mean": -2.507050521671772e-05,
+            "min": -2.507050521671772e-05,
+            "n": 1,
+            "negative": 1,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.00010499744096250651,
+            "mean": 0.00010499744096250651,
+            "min": 0.00010499744096250651,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.003550738985120882,
+            "mean": 0.003550738985120882,
+            "min": 0.003550738985120882,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.09586995259826381,
+            "mean": 0.09586995259826381,
+            "min": 0.09586995259826381,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          }
+        },
+        "WRONG|ALL_MRI": {
+          "delta_label_first": {
+            "max": 0.005056142807006836,
+            "mean": 0.0006720487598223761,
+            "min": -0.00020234333351254463,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.0015426135458255885,
+            "mean": 0.00019524468595721244,
+            "min": -0.00010117166675627232,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.002334150108932094,
+            "mean": -0.002916561396976837,
+            "min": -0.00733233936509113,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.12837825599126518,
+            "mean": -0.06479483416202518,
+            "min": -0.168643805397096,
+            "n": 7,
+            "negative": 6,
+            "positive": 1,
+            "zero": 0
+          }
+        },
+        "WRONG|FLAIR_IMAGE": {
+          "delta_label_first": {
+            "max": 0.005056142807006836,
+            "mean": 0.005056142807006836,
+            "min": 0.005056142807006836,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": 0.0015426135458255885,
+            "mean": 0.0015426135458255885,
+            "min": 0.0015426135458255885,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": 0.002334150108932094,
+            "mean": 0.002334150108932094,
+            "min": 0.002334150108932094,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": 0.12837825599126518,
+            "mean": 0.12837825599126518,
+            "min": 0.12837825599126518,
+            "n": 1,
+            "negative": 0,
+            "positive": 1,
+            "zero": 0
+          }
+        },
+        "WRONG|T1_IMAGE": {
+          "delta_label_first": {
+            "max": -3.576265044102911e-07,
+            "mean": -5.863358137503383e-05,
+            "min": -0.00020234333351254463,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_label_mean": {
+            "max": -1.7881325220514555e-07,
+            "mean": -2.9316790687516914e-05,
+            "min": -0.00010117166675627232,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_mean": {
+            "max": -0.0012745020203510649,
+            "mean": -0.0037916799812949924,
+            "min": -0.00733233936509113,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          },
+          "delta_sum": {
+            "max": -0.025490040407021297,
+            "mean": -0.09699034918757359,
+            "min": -0.168643805397096,
+            "n": 6,
+            "negative": 6,
+            "positive": 0,
+            "zero": 0
+          }
+        }
+      }
+    },
+    "interpretation": [
+      "All four fixed-plan clipped surrogate changes are positive (worse), while unclipped changes are negative (better); these are measured finite parameter-displacement values, not a sign/optimizer bug or established cause of DEV errors.",
+      "Own-plan ratios outside clip:20/20 admitted A-plan responses underA53,27/28 B-plan responses underB53. This is not a fraction of gradient influence.",
+      "Correct MRI label-first scores decrease6/6 in bothmodels; correct label-mean pooled increase is driven by oneT1 response while fiveFLAIR correctlabelmeans decrease.",
+      "Wrong MRI pooled label-mean increase is driven by oneincorrectFLAIR response; sixincorrectT1 responses have wronglabelmeans and firstscores decreasing. Do not describe allwronglabels as reinforced.",
+      "Same-prefix selected-label changes are not canonical correct-vs-wrong margins."
+    ],
+    "surrogate_2x2": {
+      "A53": {
+        "A": {
+          "admitted": 20,
+          "delta_clipped": 0.0009106026085767124,
+          "delta_unclipped": -0.00019568993193737425,
+          "new": 0.0009106026085768147,
+          "old": 1.0234868508263162e-16,
+          "outside_clip": 20
+        },
+        "B": {
+          "admitted": 28,
+          "delta_clipped": 0.0012360838310373759,
+          "delta_unclipped": -0.00010698333737815119,
+          "new": 0.0012360838310374453,
+          "old": 6.938893903907228e-17,
+          "outside_clip": 27
+        }
+      },
+      "B53": {
+        "A": {
+          "admitted": 20,
+          "delta_clipped": 0.0009118107458159974,
+          "delta_unclipped": -0.00014210008526659764,
+          "new": 0.0009118107458160997,
+          "old": 1.0234868508263162e-16,
+          "outside_clip": 19
+        },
+        "B": {
+          "admitted": 28,
+          "delta_clipped": 0.0009080803477271972,
+          "delta_unclipped": -0.0006734084366686833,
+          "new": 0.0009080803477272666,
+          "old": 6.938893903907228e-17,
+          "outside_clip": 27
+        }
+      }
+    },
+    "task_format_outcome": {
+      "A53": {
+        "DALLAS|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+          "measures": {
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.0003061685744114584,
+              "mean": -9.723073184630948e-05,
+              "min": -0.0005006300381040774,
+              "n": 2,
+              "negative": 1,
+              "positive": 1,
+              "zero": 0
+            }
+          },
+          "n": 2
+        },
+        "DALLAS|STRICT_VALID|CORRECT": {
+          "measures": {
+            "delta_label_first": {
+              "max": 0.06240975856781006,
+              "mean": 0.004855843858220194,
+              "min": -0.018702149391174316,
+              "n": 9,
+              "negative": 7,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.06240975856781006,
+              "mean": 0.004855843858220194,
+              "min": -0.018702149391174316,
+              "n": 9,
+              "negative": 7,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.017315648331612678,
+              "mean": 0.0016526652803224367,
+              "min": -0.006922313934731339,
+              "n": 9,
+              "negative": 4,
+              "positive": 5,
+              "zero": 0
+            }
+          },
+          "n": 9
+        },
+        "DALLAS|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+          "measures": {
+            "delta_label_first": {
+              "max": 0.002716854214668274,
+              "mean": -0.016366295918123795,
+              "min": -0.04265105724334717,
+              "n": 5,
+              "negative": 3,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.002716854214668274,
+              "mean": -0.016366295918123795,
+              "min": -0.04265105724334717,
+              "n": 5,
+              "negative": 3,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.01134463946667097,
+              "mean": 0.001151889916490027,
+              "min": -0.01021023861839391,
+              "n": 5,
+              "negative": 2,
+              "positive": 3,
+              "zero": 0
+            }
+          },
+          "n": 5
+        },
+        "MRI|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+          "measures": {
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.004893081473710481,
+              "mean": 0.0023690421380224806,
+              "min": 0.0010796580814488538,
+              "n": 3,
+              "negative": 0,
+              "positive": 3,
+              "zero": 0
+            }
+          },
+          "n": 3
+        },
+        "MRI|STRICT_VALID|CORRECT": {
+          "measures": {
+            "delta_label_first": {
+              "max": -8.344504749402404e-07,
+              "mean": -1.7617870374427486e-05,
+              "min": -7.681595161557198e-05,
+              "n": 6,
+              "negative": 6,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.0001071301216370557,
+              "mean": 1.0976872003235864e-05,
+              "min": -3.840797580778599e-05,
+              "n": 6,
+              "negative": 5,
+              "positive": 1,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.0047009003736901735,
+              "mean": -0.0001771818609748302,
+              "min": -0.006080870037938742,
+              "n": 6,
+              "negative": 4,
+              "positive": 2,
+              "zero": 0
+            }
+          },
+          "n": 6
+        },
+        "MRI|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+          "measures": {
+            "delta_label_first": {
+              "max": 0.004823267459869385,
+              "mean": 0.0006392856964469372,
+              "min": -0.00020744604989886284,
+              "n": 7,
+              "negative": 6,
+              "positive": 1,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.0014972756453062175,
+              "mean": 0.00018902026470511504,
+              "min": -0.00010372302494943142,
+              "n": 7,
+              "negative": 6,
+              "positive": 1,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.0017268725014053582,
+              "mean": -0.0029879819481714517,
+              "min": -0.006434139562553237,
+              "n": 7,
+              "negative": 6,
+              "positive": 1,
+              "zero": 0
+            }
+          },
+          "n": 7
+        }
+      },
+      "B53": {
+        "DALLAS|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+          "measures": {
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.00031249951882728055,
+              "mean": -0.00011429772523996462,
+              "min": -0.0005410949693072098,
+              "n": 2,
+              "negative": 1,
+              "positive": 1,
+              "zero": 0
+            }
+          },
+          "n": 2
+        },
+        "DALLAS|STRICT_VALID|CORRECT": {
+          "measures": {
+            "delta_label_first": {
+              "max": 0.0626453161239624,
+              "mean": 0.0048668675096147735,
+              "min": -0.018837779760360718,
+              "n": 9,
+              "negative": 7,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.0626453161239624,
+              "mean": 0.0048668675096147735,
+              "min": -0.018837779760360718,
+              "n": 9,
+              "negative": 7,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.017215837391123548,
+              "mean": 0.0016439854093894628,
+              "min": -0.0067549905178405905,
+              "n": 9,
+              "negative": 4,
+              "positive": 5,
+              "zero": 0
+            }
+          },
+          "n": 9
+        },
+        "DALLAS|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+          "measures": {
+            "delta_label_first": {
+              "max": 0.0027587488293647766,
+              "mean": -0.016519018200051507,
+              "min": -0.043157756328582764,
+              "n": 5,
+              "negative": 3,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.0027587488293647766,
+              "mean": -0.016519018200051507,
+              "min": -0.043157756328582764,
+              "n": 5,
+              "negative": 3,
+              "positive": 2,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.011635201560494579,
+              "mean": 0.0013255123627440451,
+              "min": -0.01024422819693882,
+              "n": 5,
+              "negative": 2,
+              "positive": 3,
+              "zero": 0
+            }
+          },
+          "n": 5
+        },
+        "MRI|FORMAT_INVALID|RAW0_FORMAT_GATE": {
+          "measures": {
+            "delta_label_first": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": null,
+              "mean": null,
+              "min": null,
+              "n": 0,
+              "negative": 0,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.00073034998320054,
+              "mean": -0.0008548892476955558,
+              "min": -0.003697068852488883,
+              "n": 3,
+              "negative": 1,
+              "positive": 2,
+              "zero": 0
+            }
+          },
+          "n": 3
+        },
+        "MRI|STRICT_VALID|CORRECT": {
+          "measures": {
+            "delta_label_first": {
+              "max": -8.344504749402404e-07,
+              "mean": -1.7359934039025877e-05,
+              "min": -7.348647341132164e-05,
+              "n": 6,
+              "negative": 6,
+              "positive": 0,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.00010499744096250651,
+              "mean": 1.0908815242297956e-05,
+              "min": -3.674323670566082e-05,
+              "n": 6,
+              "negative": 5,
+              "positive": 1,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.007452289111117554,
+              "mean": 0.0008047155670710991,
+              "min": -0.005622182260784332,
+              "n": 6,
+              "negative": 2,
+              "positive": 4,
+              "zero": 0
+            }
+          },
+          "n": 6
+        },
+        "MRI|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": {
+          "measures": {
+            "delta_label_first": {
+              "max": 0.005056142807006836,
+              "mean": 0.0006720487598223761,
+              "min": -0.00020234333351254463,
+              "n": 7,
+              "negative": 6,
+              "positive": 1,
+              "zero": 0
+            },
+            "delta_label_mean": {
+              "max": 0.0015426135458255885,
+              "mean": 0.00019524468595721244,
+              "min": -0.00010117166675627232,
+              "n": 7,
+              "negative": 6,
+              "positive": 1,
+              "zero": 0
+            },
+            "delta_mean": {
+              "max": 0.002334150108932094,
+              "mean": -0.002916561396976837,
+              "min": -0.00733233936509113,
+              "n": 7,
+              "negative": 6,
+              "positive": 1,
+              "zero": 0
+            }
+          },
+          "n": 7
+        }
+      }
+    }
+  },
+  "compound_complete_sha256": "8b57309c61d6d4aa80347790ba3193d36d97fd614a164c5b13666eca4678020c",
+  "first_child_start_to_last_child_exit_seconds": 377.45422196388245,
+  "frozen_source_file_checkpoint_bindings_unchanged": true,
+  "independent_private_proof_sha256": "70273fb91750caa686de67cf4c96b397c031ea922055d327806607a6abf2f044",
+  "input_sha256": "c6e47be37980681ea0d6b966faf2bce4b1c23e7b0d9ab3c8dde768f0136634a3",
+  "limitations": [
+    "Both diagnostic53endpoints areexistingcheckpoints; thisrun performed no training and demonstrates no newaccuracyimprovement.",
+    "OneFLAIRregression isalreadyat53 and oneT1regression appearsat54 in botharms; temporal localization does not identify cause.",
+    "FourselectedDEVinputs werechosenbecauseofobservedregressions; nofullAdam53DEV24accuracy, independentvalidation or generalizedeffectisestimated.",
+    "No taskgradients or canonicalclassmargins were measured; noMRI-Dallasconflictcausality.",
+    "Clipping saturation and inheritedmomentum areassociatedfinite-update observations, not a causalidentificationofMRIharm.",
+    "Native state-integrity is attested by fullin-processhashes before/after plus immutable diskpayloads; exitwitnessalone doesnotattestAdam/RNG.",
+    "Thermal unavailable and atomicGPUoperations retainsamplingblindspots; noabsoluteOOM orsystemstabilityguarantee."
+  ],
+  "native_child_sum_wall_seconds": 366.8643588750274,
+  "native_counts": {
+    "TF_calls": 64,
+    "TF_positions": 23282,
+    "generated_tokens": 300,
+    "greedy_LM_calls": 316,
+    "greedy_calls": 8,
+    "greedy_sampler_calls": 308,
+    "input_sha256": "c6e47be37980681ea0d6b966faf2bce4b1c23e7b0d9ab3c8dde768f0136634a3",
+    "models": 2,
+    "native_status": "COMPLETE",
+    "new_backward": 0,
+    "optimizer_updates": 0,
+    "same_A53_B53_predictions": 4,
+    "same_A53_B53_texts": 4,
+    "same_A53_B53_tokens": 4,
+    "scope_canonical_sha256": "bf03456cd4ecd630b83c15be6047d6ba5b1863ee3c5bb64ba4e12d50bdbb8b70",
+    "scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+    "sum_child_wall_seconds": 366.8643588750274
+  },
+  "next_training_authorized": false,
+  "no_automatic_expansion": true,
+  "operation_commits_verified": 74,
+  "privacy": {
+    "absolute_private_paths": 0,
+    "certifies_unlinkability": false,
+    "per_case_or_pair_indices": false,
+    "private_identifier_hits": 0,
+    "public_actual_aggregate_checked": true,
+    "raw_answers": false,
+    "recursive_public_schema_PASS": true,
+    "token_or_pixel_arrays": false
+  },
+  "production_actual_aggregate_sha256": "f560c8ca8674a71ac259fb9ca14ec13e442f5e63223ffd3088bc1f5841e9fb6b",
+  "production_private_analysis_sha256": "0c72ae17ee14404d04b65ef1ccd7cf1e44b03f72fde0a507d7d28eb106275733",
+  "resources": {
+    "OS_pressure_levels": [
+      1
+    ],
+    "external_MLX": "NOT_OBSERVABLE; native model process provides separate active/peak attestations",
+    "forced_TERM_or_KILL": 0,
+    "guardian_samples": 178,
+    "guardian_stops": 0,
+    "max_native_reported_MLX_peak_GiB": 6.372484993189573,
+    "max_native_sampled_MLX_active_GiB": 5.060288245789707,
+    "max_swap_GiB": 15.428525390625,
+    "max_wait4_child_RSS_GiB": 6.00567626953125,
+    "min_available_GiB": 9.304229736328125,
+    "min_battery_percent": 75,
+    "min_disk_free_GiB": 294.3791275024414,
+    "min_pressure_free_percent": 46.0,
+    "native_samples": 906,
+    "sample_colors": {
+      "GREEN": 906,
+      "RED": 0,
+      "YELLOW": 0
+    },
+    "swap_end_GiB": 15.420712890625,
+    "swap_start_GiB": 15.428525390625,
+    "thermal": "SENSOR_UNAVAILABLE"
+  },
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "reviewer_operations": {
+    "backward": 0,
+    "generation": 0,
+    "model_loads": 0,
+    "native_calls": 0,
+    "optimizer_updates": 0
+  },
+  "schema": "v2-native-readonly-independent-actual-review-public-v1",
+  "scope_canonical_sha256": "bf03456cd4ecd630b83c15be6047d6ba5b1863ee3c5bb64ba4e12d50bdbb8b70",
+  "scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+  "state_and_release": {
+    "A53": {
+      "Adam_arrays": 1010,
+      "child_reaped": true,
+      "exact_wait4_peak_RSS_GiB": 6.00567626953125,
+      "global_lock_released": true,
+      "guardian_STOP": false,
+      "loaded_after_full_identity_equal": true,
+      "native_exit_code": 0,
+      "native_reported_peak_MLX_GiB": 6.372484993189573,
+      "parameters": 1942,
+      "release_active_bytes": {
+        "operation_release_SAFE.json": 1070,
+        "release_SAFE.json": 1070
+      },
+      "step": 53,
+      "wall_seconds": 183.6572604170069
+    },
+    "B53": {
+      "Adam_arrays": 1010,
+      "child_reaped": true,
+      "exact_wait4_peak_RSS_GiB": 5.96099853515625,
+      "global_lock_released": true,
+      "guardian_STOP": false,
+      "loaded_after_full_identity_equal": true,
+      "native_exit_code": 0,
+      "native_reported_peak_MLX_GiB": 6.372484993189573,
+      "parameters": 1942,
+      "release_active_bytes": {
+        "operation_release_SAFE.json": 1070,
+        "release_SAFE.json": 1070
+      },
+      "step": 53,
+      "wall_seconds": 183.20709845802048
+    }
+  },
+  "status": "ACTUAL_NATIVE_READONLY_COMPLETE_INDEPENDENT_SAVED_EVIDENCE_RECOMPUTATION",
+  "time_limit_caveat": "This span includes the inter-child interval but excludes earlier preparation and initial nonresident waiting; no unmeasured end-to-end CLI wall time is claimed.",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
