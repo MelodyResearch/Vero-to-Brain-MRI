@@ -1,0 +1,191 @@
+{
+  "SLAKE_actual_author_metadata": {
+    "test": {
+      "all_QA_rows": 2094,
+      "author_git_blob_sha1": "a6d8ca96e30bfd5a27d1dadc2fa30da2ba791041",
+      "english_Brain_star_MRI_images": 22,
+      "english_Brain_star_MRI_rows": 193,
+      "english_Brain_star_MRI_vision_only_rows": 176,
+      "english_QA_rows": 1061,
+      "english_images": 96,
+      "prospective_abnormality_yesno_images": 13,
+      "prospective_abnormality_yesno_rows": 13,
+      "prospective_answer_balance": {
+        "no": 6,
+        "yes": 7
+      },
+      "whole_file_sha256": "6be8f7b4c5a46cdbc713a5210a25b6ed5aa1fd1574c83cefb4f998131f17c2c3"
+    },
+    "train": {
+      "all_QA_rows": 9835,
+      "author_git_blob_sha1": "afb9b3d634173aaccdb974f6b3d2754fb105c203",
+      "english_Brain_star_MRI_images": 97,
+      "english_Brain_star_MRI_rows": 855,
+      "english_Brain_star_MRI_vision_only_rows": 790,
+      "english_QA_rows": 4919,
+      "english_images": 450,
+      "prospective_abnormality_yesno_images": 68,
+      "prospective_abnormality_yesno_rows": 68,
+      "prospective_answer_balance": {
+        "no": 26,
+        "yes": 42
+      },
+      "whole_file_sha256": "7a9fb81f9d7bb145c3d7e9bc8d3b9016ba18b6539ea5031a53bae8fd3cd991c3"
+    },
+    "validation": {
+      "all_QA_rows": 2099,
+      "author_git_blob_sha1": "42bd974d0fdf5af0161f119eb016f45fa34f646c",
+      "english_Brain_star_MRI_images": 21,
+      "english_Brain_star_MRI_rows": 184,
+      "english_Brain_star_MRI_vision_only_rows": 167,
+      "english_QA_rows": 1053,
+      "english_images": 96,
+      "prospective_abnormality_yesno_images": 12,
+      "prospective_abnormality_yesno_rows": 12,
+      "prospective_answer_balance": {
+        "no": 2,
+        "yes": 10
+      },
+      "whole_file_sha256": "32b016440b0c3be11056a78a18eeab46333268407fbb6e6b32f9f4c2debc50f6"
+    }
+  },
+  "SLAKE_image_split_overlap": {
+    "ALL": {
+      "train|test": 142,
+      "train|validation": 130,
+      "validation|test": 26
+    },
+    "en": {
+      "train|test": 0,
+      "train|validation": 0,
+      "validation|test": 0
+    },
+    "zh": {
+      "train|test": 0,
+      "train|validation": 0,
+      "validation|test": 0
+    }
+  },
+  "VQARAD_actual_original_metadata": {
+    "HEAD_QA_rows": 715,
+    "HEAD_image_names": 103,
+    "MRI_census_status": "NOT_ESTABLISHED_NO_STANDALONE_ACQUISITION_MODALITY_FIELD; narrow candidates do not exhaust HEAD MRI",
+    "QA_rows": 2248,
+    "QA_unreferenced_official_image_files": 1,
+    "case_URL_ids_with_multiple_images": 1,
+    "conservative_image_case_connected_components": 313,
+    "duplicate_checks": {
+      "cross_official_split_same_image_normalized_question_keys": 1,
+      "exact_image_question_answer_duplicate_extra_rows": 4,
+      "same_image_normalized_question_conflicting_answer_groups": 0
+    },
+    "image_names_in_QA": 314,
+    "images_with_multiple_case_URL_ids": 5,
+    "metadata_image_case_URL_ids": 320,
+    "metadata_sha256": "948b7156059b864cf72344fb10669233526b175c243e5a046d20d4201d297a95",
+    "narrow_MODAlITY_QA_supported_MRI_candidate_images": 37,
+    "narrow_MRI_candidate_QA_rows": 272,
+    "narrow_MRI_candidate_presence_abnormality_evaluated_rows": 26,
+    "narrow_MRI_candidate_presence_abnormality_yesno_images": 25,
+    "narrow_MRI_candidate_presence_abnormality_yesno_rows": 48,
+    "official_image_files": 315,
+    "official_question_split_image_overlap_HEAD": 60,
+    "official_question_split_image_overlap_all": 202,
+    "source_evaluation_counts": {
+      "evaluated": 1448,
+      "given": 243,
+      "not evaluated": 557
+    }
+  },
+  "candidate_code_actual_review": {
+    "actual_candidate_manifest_sha256": "68fad7db7c68b18778469bc8c78d86ede61e15b2477f34ee8fc449fb0f2350af",
+    "all_builder_base_fields_exactly_reproduced": true,
+    "clinical_authority_external_not_AI_certified": true,
+    "complete_314_image_component_equivalence_to_independent_normalized_graph": true,
+    "components": 313,
+    "malformed_credit_semantics_preserved": {
+      "multiple_box_format": 0.5,
+      "multiple_box_invalid": true,
+      "unboxed_answer_format": 0.5,
+      "unboxed_class_accuracy": 1.0,
+      "unboxed_invalid": true,
+      "unboxed_reward": 0.9
+    },
+    "model_visible_keys_only_image_question": true,
+    "module_sha256": "952b8919f5decc5fdde6a5dfa934acf57f3f3cce81513060d6a83cfea7e75ae4",
+    "new_GPU_or_model_calls": 0,
+    "new_image_pixel_decodes": 0,
+    "official_payload_hash_matches": 5,
+    "optimizer_updates": 0,
+    "original_parser_sha256": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "prior_metadata_review_sha256": "8c0dd0a61e8defdb2af70308e00dd37ff8f72c8dfbd65c41c97d86aa95754f73",
+    "private_proof_sha256": "fabbdf122e5fbd59abba446f54234c88ac2130a491329bf0824dc274f3ff33a4",
+    "remaining_runtime_requirement": "Future execution must authenticate source metadata/candidate/official image hashes and exclude complete case components; no execution entry or group gate is activated by this preparation module.",
+    "reviewer_id": "/root/v2_actual_verifier",
+    "schema": "vqarad-midline-task-independent-code-candidate-review-v1",
+    "selected_components": 5,
+    "source_edited_by_reviewer": false,
+    "source_metadata_sha256": "948b7156059b864cf72344fb10669233526b175c243e5a046d20d4201d297a95",
+    "source_questions_verbatim_answers_strip_lower_only": true,
+    "standalone_trust_boundary": "Builder receives trusted source rows and official SHA mapping from separately authenticated metadata; current candidate pins actual source_json_sha256. Generic caller-supplied input does not itself certify clinical truth or a patient registry.",
+    "strict_evaluation_condition": "strict_accuracy==1 iff accuracy==1 AND format==1 and invalid is false. Accuracy alone is not strict greedy correctness.",
+    "targeted_cpu_tests": {
+      "actual_passed": 10,
+      "pytest_seconds": 0.04
+    },
+    "tests_sha256": "95594070c05db90c55100cc0b52c5dddf7b7dc749c4b165758854797a75304be",
+    "verdict": "PASS_WITH_LIMITATIONS_PREPARATION_ONLY"
+  },
+  "clinical_provenance": {
+    "SLAKE": "Paper: experienced doctors proposed/amended questions; semantic image labels from physicians; dataset includes visual and external-knowledge questions. Existing clinical-source QA is not new project expert adjudication.",
+    "VQARAD": "Paper:15 clinical trainees with completed core rotations created QA; source captions expert-radiologist reviewed; evaluated means second-annotator agreement/validation. Source not-evaluated rows are not silently treated as double-reviewed."
+  },
+  "license_findings": {
+    "SLAKE": "Author official dataset card CC-BY-4.0; author project page directly links this release. Paper license is separate; official page says cleaned1.0 may differ from paper.",
+    "VQARAD": "Original OSF node license relationship authenticates CC0 1.0 Universal. Paper article is CC-BY4 and metadata waiver CC0; do not conflate article and data licenses."
+  },
+  "limits": [
+    "VQA-RAD paper asserts one image per unique teaching patient, but source metadata has case aliases and a shared case across images. Connected components are conservative source-case proxies, not verified patient IDs or a global registry.",
+    "Original VQA-RAD train/test is question-level and heavily shares images; must not reuse it as patient-disjoint evaluation.",
+    "SLAKE English and Chinese are each image-disjoint, but pooling both languages leaks images across named splits. No released patient/source-volume linkage is established by the examined QA metadata.",
+    "MRI on VQA-RAD is QA-derived evidence; the narrow37-image rule is not a complete MRI count. Selected clinical-question MRI evidence extends beyond that rule.",
+    "Five source questions and two held-out case proxies do not establish reliable generalization, task-level visual dependence, absence of pretraining contamination, or clinical performance.",
+    "No independent image pixels, scan headers, clinical answers or anatomy were evaluated by this reviewer. Root technical image observations are separate evidence."
+  ],
+  "new_model_calls": 0,
+  "optimizer_updates": 0,
+  "primary_source_urls": {
+    "SLAKE_author_card": "https://huggingface.co/datasets/BoKelvin/SLAKE/raw/a9083ce6c34ac3ffb17671a605962924d8a8f9e9/README.md",
+    "SLAKE_author_revision": "a9083ce6c34ac3ffb17671a605962924d8a8f9e9",
+    "SLAKE_official": "https://www.med-vqa.com/slake/",
+    "SLAKE_paper": "https://arxiv.org/html/2102.09542v1",
+    "VQARAD_license_API": "https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96c/",
+    "VQARAD_node_API": "https://api.osf.io/v2/nodes/89kps/",
+    "VQARAD_original_metadata": "https://osf.io/download/6qdas/",
+    "VQARAD_paper": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6244189/"
+  },
+  "private_proof_sha256": "a9223d8c138a833f122df066734540095596705e1b2144fff28929626059e01d",
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_image_pixel_decodes": 0,
+  "reviewer_kind": "isolated_codex",
+  "reviewer_new_downloads": 0,
+  "schema": "two-path-clinical-dataset-independent-review-v1",
+  "selected_tiny_midline_shift_candidate": {
+    "all_five_source_questions_no_conflicting_answer_duplicates": true,
+    "component_overlap_between_roles": 0,
+    "distinct_complete_source_case_graph_components": 5,
+    "evaluation_items": 2,
+    "future_ingestion_requires_whole_component_exclusion": true,
+    "items": 5,
+    "official_OSF_byte_hash_and_size_matches": 5,
+    "one_selected_component_contains_another_unselected_image": true,
+    "readiness": "FEASIBLE_TINY_SOURCE_CASE_PROXY_DISJOINT_PILOT_PREPARATION;NOT_GLOBAL_PATIENT_CERTIFICATION;NO_MODEL_EXECUTION_AUTHORIZATION",
+    "reserve_items": 1,
+    "source_PRES_CLOSED_HEAD_all_true": true,
+    "source_evaluation_all_evaluated": true,
+    "source_question_answers_not_rewritten_or_adjudicated_by_reviewer": true,
+    "train_and_evaluation_each_class_balanced": true,
+    "train_items": 2
+  },
+  "verdict": "PASS_WITH_LIMITATIONS_METADATA_AND_TINY_SOURCE_CASE_PILOT_ONLY"
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "two_path_clinical_dataset_recovery_v1",
+  "date": "2026-10-22",
+  "base_commit": "d7d10a3985310cc38a1ec51abeb3cf9b0586d1e0",
+  "decision": "PATH_B_READY_FOR_SMALL_PILOT",
+  "decision_scope": "Original clinical-source midline-shift QA; tiny case-proxy-disjoint feasibility only. Not cohort clinical qualification, not adaptation efficacy or training authorization.",
+  "selected_dataset": "VQA-RAD",
+  "selected_endpoint": "midline_shift_presence_original_evaluated_QA",
+  "downloads": {
+    "VQA_RAD_images": 5,
+    "VQA_RAD_image_bytes": 132278,
+    "SLAKE_images": 0,
+    "BraTS2021_images": 0,
+    "BraTS_METS_images": 0,
+    "large_dataset_download": false
+  },
+  "actual_preparation": {
+    "source_QA_json_SHA256": "948b7156059b864cf72344fb10669233526b175c243e5a046d20d4201d297a95",
+    "image_OSF_hashes_matched": 5,
+    "selected_case_components": 5,
+    "train": {
+      "items": 2,
+      "yes": 1,
+      "no": 1
+    },
+    "eval": {
+      "items": 2,
+      "yes": 1,
+      "no": 1
+    },
+    "reserve_not_for_training_or_eval": 1,
+    "patient_registry_independence": "NOT_VERIFIED",
+    "case_proxy_split_disjoint": true,
+    "linked_unselected_images_must_remain_excluded": true,
+    "original_question_unchanged": true,
+    "source_answers_normalization": "strip/lower only",
+    "technical_visual_inspection_by": "Codex /root",
+    "clinical_expert_review_by_AI": false,
+    "non_answer_burn_in_present": true,
+    "new_expert_adjudication": false,
+    "candidate_manifest_SHA256": "68fad7db7c68b18778469bc8c78d86ede61e15b2477f34ee8fc449fb0f2350af",
+    "offline_reproduced_candidate_SHA256": "0a50021e6cb693a17cdf6db4613fc2876030dc0c16acb8b93810287c3ef04c40",
+    "source_binding_actual": "PASS",
+    "CPU_focused_tests": {
+      "count": 10,
+      "result": "PASS"
+    }
+  },
+  "SLAKE": {
+    "author_revision": "a9083ce6c34ac3ffb17671a605962924d8a8f9e9",
+    "english_brain_MRI_metadata_images": [
+      97,
+      21,
+      22
+    ],
+    "english_brain_MRI_metadata_QAs": [
+      855,
+      184,
+      193
+    ],
+    "english_brain_MRI_vision_only_QAs": [
+      790,
+      167,
+      176
+    ],
+    "patient_or_volume_ID_available": false,
+    "pooled_language_cross_split_image_counts": [
+      130,
+      142,
+      26
+    ],
+    "data_license": "CC-BY-4.0",
+    "selected": false
+  },
+  "VQA_RAD": {
+    "metadata_QAs": 2248,
+    "metadata_images": 314,
+    "official_image_files": 315,
+    "HEAD_QAs": 715,
+    "HEAD_images": 103,
+    "standalone_modality_field": false,
+    "MRI_supported_by_narrow_QA_rule_lower_bound_images": 37,
+    "whole_HEAD_MRI_census": "NOT_ESTABLISHED",
+    "original_split_cross_images": 202,
+    "original_split_HEAD_cross_images": 60,
+    "data_license": "CC0-1.0"
+  },
+  "BraTS2021": {
+    "public_TCIA_subjects": 1480,
+    "original_labels": "segmentation, not QA",
+    "expert_review": "Expert manual refinement, two senior board-certified neuroradiologists approve/return",
+    "UCSF_PDGM_excerpt_cases": 299,
+    "data_license": "CC-BY-4.0",
+    "image_mask_payload_alignment_this_round": "NOT_RUN",
+    "new_QA_qualification": "NOT_ESTABLISHED"
+  },
+  "BraTS_METS": {
+    "paper_version": "2306.00838v3",
+    "challenge_studies": [
+      402,
+      31,
+      59
+    ],
+    "original_labels": "expert-reviewed segmentation, not QA",
+    "current_access": "Synapse registration and post-challenge terms; not accepted on behalf of user",
+    "data_license_exact_current_terms": "NOT_VERIFIED",
+    "new_QA_qualification": "NOT_ESTABLISHED"
+  },
+  "research_execution": {
+    "Claude_CLI": "2.1.306",
+    "primary_model_actual": "claude-opus-5-5",
+    "Claude_primary_tasks": [
+      "primary-source clinical QA and split assessment",
+      "selected midline-shift endpoint",
+      "revised factual errors after Codex review",
+      "tiny feasibility design"
+    ],
+    "Claude_successful_calls": 3,
+    "Claude_initial_assessment_corrected": true,
+    "Codex_tasks": [
+      "official metadata/payload acquisition and hashes",
+      "independent counts/clinical attribution/license corrections",
+      "technical contact-sheet inspection",
+      "CPU binding/verifier implementation",
+      "source-case component review"
+    ],
+    "independent_reviewer": "Codex /root/v2_actual_verifier",
+    "expert_contacts_sent": 0,
+    "new_GPU_operations": 0,
+    "new_model_calls": 0,
+    "new_optimizer_updates": 0
+  },
+  "next_experiment": {
+    "Parent": "existing Adam52; no endpoint/model selection from final100",
+    "direct_control": "same-prompt K4 GSPO, existing sequence pair plus 2 midline TRAIN cases, at most1joint update, no resampling",
+    "evaluation": "2 separate source-case midline EVAL items plus existing DEV24 sequence engineering control",
+    "native_execution_authorized": false,
+    "MRI_specific_adaptation": "NOT_SELECTED__NO_SUPPORTED_VARIANT_INVENTED",
+    "matched_adaptation_experiment_readiness": "NOT_READY",
+    "full_native_scope": "NOT_PREPARED_OR_AUTHORIZED",
+    "success_claim_limit": "feasibility/individual outcomes only, no accuracy improvement/generalization established"
+  },
+  "primary_sources": [
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC6244189/",
+    "https://osf.io/89kps/",
+    "https://api.osf.io/v2/nodes/89kps/",
+    "https://api.osf.io/v2/licenses/563c1cf88c5e4a3877f9e96c/",
+    "https://www.med-vqa.com/slake/",
+    "https://huggingface.co/datasets/BoKelvin/SLAKE",
+    "https://arxiv.org/html/2102.09542v1",
+    "https://www.cancerimagingarchive.net/analysis-result/rsna-asnr-miccai-brats-2021/",
+    "https://arxiv.org/html/2107.02314",
+    "https://arxiv.org/html/2306.00838v3",
+    "https://www.synapse.org/Synapse:syn51156910/wiki/627000"
+  ],
+  "independent_review_SHA256": "9c00b676c95235e3524e362495b43513a32ec3806355672560036f35e5f90bae"
+}
