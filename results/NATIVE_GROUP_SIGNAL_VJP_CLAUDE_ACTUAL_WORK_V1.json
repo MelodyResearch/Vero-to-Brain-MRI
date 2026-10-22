@@ -1,0 +1,69 @@
+{
+  "schema": "native-group-signal-vjp-Claude-actual-work-v1",
+  "recorded_utc": "2026-10-22T18:58:02.406048+00:00",
+  "cli_version": "2.1.306",
+  "prior_implementation_commit": "3cebca8bd2d760352067e4c39f8a8ea140663134",
+  "passes": [
+    {
+      "task": "authorized_once_launch",
+      "role": "Normal Bash invocation of the bound administrative launcher; approved native entry enforces scope/locks/budget",
+      "exit_code": 0,
+      "elapsed_seconds": 10.913609166047536,
+      "model": "claude-opus-5-5",
+      "normal_tools_used": [
+        "Bash"
+      ],
+      "exit_receipt_sha256": "1f668c9919069a46f85e9f08313ca4a4e11ab416865d7ef0efd724a499d103cc",
+      "tool_transcript_sha256": "d933d4a7da46ccc6ee872a3d6639a70d03c592b1a668c12a5961a04ca2a26bf1"
+    },
+    {
+      "task": "CPU_export_schema_fix",
+      "role": "Only two scalar aggregate count keys renamed; no native/math/backend/entry change",
+      "exit_code": 0,
+      "elapsed_seconds": 33.61228083400056,
+      "model": "claude-opus-5-5",
+      "normal_tools_used": [
+        "Read",
+        "Read",
+        "Edit",
+        "Edit",
+        "Edit"
+      ],
+      "exit_receipt_sha256": "438367debf6fe7cff5c077035583bccfc8117580d9ad9faf26f1d4c56e90d101",
+      "tool_transcript_sha256": "1edb90d38cbfbde80a31295bf2e37dd0dcde92a0fa9e34982260c24c9c7bd3bd"
+    },
+    {
+      "task": "scientific_result_interpretation",
+      "role": "Read only approved sanitized actual aggregates and authored result report; final claim precision edits by Codex",
+      "exit_code": 0,
+      "elapsed_seconds": 78.17193766694982,
+      "model": "claude-opus-5-5",
+      "normal_tools_used": [
+        "Read",
+        "Write",
+        "Read"
+      ],
+      "exit_receipt_sha256": "919be400ea164d52f8aa8c5f35e2a923b8d2971181695c71ed65274b1046735c",
+      "tool_transcript_sha256": "6b5fed0aa28896764867707a95709e1bd5d88d230a3921ca707f68d19c8f8a59"
+    }
+  ],
+  "once_native_launcher": {
+    "actual_normal_Bash_calls": 1,
+    "script_sha256": "682a6071106890c15d9745440287c115c25e69f07fd4823181e0da80a9bdd332",
+    "script_role": "CPU-only once process/exit recording; no scientific implementation changes",
+    "native_permission_reused": false,
+    "native_run_repeated": false
+  },
+  "Codex_actual_work": [
+    "Human instruction/source/review/hash and fresh resource verification",
+    "Independent real-shaped export RED regression before minimal Claude fix",
+    "77 focused CPU tests after fix and saved-only CPU postprocess",
+    "Independent isolated saved-vector NumPy recomputation and privacy review",
+    "Scientific claim precision edits, append-only log and PRIVATE GitHub integration"
+  ],
+  "sharing_boundary": "Claude source/tests and approved sanitized aggregates only; no raw patient image/response/token/vector/weight/Adam/RNG data supplied",
+  "actual_optimizer_updates": 0,
+  "native_calls_after_native_terminal": 0,
+  "accuracy_gain_claimed": false,
+  "frozen_plan_and_lock_modified": false
+}

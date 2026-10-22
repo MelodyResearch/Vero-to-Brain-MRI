@@ -1,0 +1,353 @@
+{
+  "actual_wait4_peak_RSS_GiB": 5.8515777587890625,
+  "allocator_active_bytes_after_release": 1032,
+  "committed_records": 45,
+  "controller_original_exit_code": 1,
+  "counters": {
+    "forwards": 44,
+    "teacherforced_positions": 14291,
+    "vjps": 44
+  },
+  "cpu_postprocess_exit_code": 0,
+  "cpu_postprocess_new_native_calls": 0,
+  "cpu_postprocess_seconds": 24.221880791941658,
+  "direction_cosines": {
+    "adam52_formula": {
+      "AB": 0.9896590890041671,
+      "AC": 0.9948611958681577,
+      "BC": 0.9975952819887975
+    },
+    "adam52_incremental_formula": {
+      "AB": 0.6229725803102901,
+      "AC": 0.7821753253977107,
+      "BC": 0.9259191203217756
+    },
+    "adam52_incremental_rounded": {
+      "AB": 0.6229725785780817,
+      "AC": 0.7821753465804747,
+      "BC": 0.9259191128267754
+    },
+    "adam52_rounded": {
+      "AB": 0.9896590891662976,
+      "AC": 0.9948611959702244,
+      "BC": 0.9975952818218433
+    },
+    "momentum_only_formula": {
+      "AB": 0.9999999999999999,
+      "AC": 0.9999999999999999,
+      "BC": 0.9999999999999999
+    },
+    "momentum_only_rounded": {
+      "AB": 1.0,
+      "AC": 1.0,
+      "BC": 1.0
+    },
+    "negative_gradient": {
+      "AB": 0.6825630120022637,
+      "AC": 0.82025839933161,
+      "BC": 0.935786112294532
+    }
+  },
+  "direction_norms": {
+    "A": {
+      "adam52_formula": 0.030003988790370608,
+      "adam52_incremental_formula": 0.0037723074029873916,
+      "adam52_incremental_rounded": 0.003772307499401774,
+      "adam52_rounded": 0.030003988669255285,
+      "momentum_only_formula": 0.030151143290547643,
+      "momentum_only_rounded": 0.0301511432483721,
+      "negative_gradient": 0.27507083925302367
+    },
+    "B": {
+      "adam52_formula": 0.0303335248786628,
+      "adam52_incremental_formula": 0.005547555185574674,
+      "adam52_incremental_rounded": 0.005547555145521247,
+      "adam52_rounded": 0.030333525013658918,
+      "momentum_only_formula": 0.030151143290547643,
+      "momentum_only_rounded": 0.0301511432483721,
+      "negative_gradient": 0.3666807532701852
+    },
+    "C": {
+      "adam52_formula": 0.030356509830905973,
+      "adam52_incremental_formula": 0.004940846035906356,
+      "adam52_incremental_rounded": 0.004940846158579913,
+      "adam52_rounded": 0.030356509652275068,
+      "momentum_only_formula": 0.030151143290547643,
+      "momentum_only_rounded": 0.0301511432483721,
+      "negative_gradient": 0.331421489059077
+    }
+  },
+  "executed_source_and_postprocess_source_distinguished": true,
+  "export_only_fix": {
+    "exact_two_literal_key_replacements": true,
+    "executed_core_sha256": "204727d473b1590b5612ee28f78c2dfacd7cf8284b75afe33fa7daf5ac7851f1",
+    "postprocess_core_sha256": "08d6b249902fd738ee5df4bb8a9fd461ea1d2156f9cbf83b119a17ed6053a630",
+    "privacy_checker_unchanged": true
+  },
+  "first_token_alignment_max_abs": 0.0,
+  "frozen_C_decision": "FAIL_REJECT_C",
+  "generation": 0,
+  "global_lock_no_open_holders": true,
+  "historical_53_rounding": {
+    "A": {
+      "bad": 0,
+      "elements": 10911744,
+      "max_abs": 1.8189894035458565e-12
+    },
+    "B": {
+      "bad": 0,
+      "elements": 10911744,
+      "max_abs": 1.8189894035458565e-12
+    }
+  },
+  "identity_before_after_equal": true,
+  "independent_final_cpu_targeted_tests": {
+    "passed": 47,
+    "seconds": 0.3,
+    "test_source_sha256": "6becde20029675c1c762d483053209b337861036531e2b37b60d2f05e62171db"
+  },
+  "limitations": [
+    "Local first-order TRAIN directional screen; no actual C update or accuracy measurement.",
+    "Empirical tau is an engineering sensitivity screen, not a formal C error or uncertainty bound.",
+    "Native phase exit0 and CPU-controller original export failure are separate facts; CPU-only postprocess repaired two aggregate count-key names.",
+    "External guardian cannot observe MLX active/peak; native attestation provides those values. Thermal sensor unavailable.",
+    "All image/context-specific values remain PRIVATE."
+  ],
+  "margin_value_max_abs_error": 0.0,
+  "native_child_reaped": true,
+  "native_exit_code": 0,
+  "native_phase_status": "PASS",
+  "native_wall_seconds": 310.2003913340159,
+  "new_C_accuracy_result": false,
+  "new_native_calls_by_reviewer": 0,
+  "optimizer_updates": 0,
+  "own_old_max_abs": 0,
+  "primary_class_aggregates": {
+    "DALLAS": {
+      "count": 4,
+      "effects": {
+        "A": {
+          "max": 0.08438721089260237,
+          "mean": -0.0005863937220024935,
+          "min": -0.08749351788224626
+        },
+        "B": {
+          "max": 0.0847338994504693,
+          "mean": -0.0005010648660269922,
+          "min": -0.08791206299322045
+        },
+        "C": {
+          "max": 0.084482824388516,
+          "mean": -0.0003389120821251472,
+          "min": -0.0876191722108959
+        }
+      },
+      "tau": {
+        "max": 1e-06,
+        "min": 1e-06
+      }
+    },
+    "MRI_FLAIR": {
+      "count": 2,
+      "effects": {
+        "A": {
+          "max": -0.0005458482416247968,
+          "mean": -0.001237223593891112,
+          "min": -0.0019285989461574275
+        },
+        "B": {
+          "max": -6.334326085628519e-05,
+          "mean": -0.0008565785741510959,
+          "min": -0.0016498138874459067
+        },
+        "C": {
+          "max": -0.0005372749386345956,
+          "mean": -0.0012433695174771603,
+          "min": -0.001949464096319725
+        }
+      },
+      "tau": {
+        "max": 1e-06,
+        "min": 1e-06
+      }
+    },
+    "MRI_T1": {
+      "count": 2,
+      "effects": {
+        "A": {
+          "max": 0.0019683465739880504,
+          "mean": 0.0019634674453913384,
+          "min": 0.001958588316794626
+        },
+        "B": {
+          "max": 0.0017610775246207277,
+          "mean": 0.0016226642323198559,
+          "min": 0.001484250940018984
+        },
+        "C": {
+          "max": 0.002356302500738182,
+          "mean": 0.002158666537516491,
+          "min": 0.0019610305742948
+        }
+      },
+      "tau": {
+        "max": 1e-06,
+        "min": 1e-06
+      }
+    }
+  },
+  "primary_verdict_counts": {
+    "DALLAS:FAIL": 2,
+    "DALLAS:PASS": 2,
+    "MRI_FLAIR:FAIL": 2,
+    "MRI_T1:PASS": 2
+  },
+  "private_proof_sha256": "c5383913f31ae20abb5893f339846ab90d64b7532b71171d81789b3dc063a64b",
+  "production_comparison": {
+    "analysis_file_sha256": "bbd195bb9810d9c3e2afb60c9caf68a4aae9e2052b6ca384c33b475b1aebd1cb",
+    "decision_equal": true,
+    "max_effect_abs_error": 0.0,
+    "max_tau_abs_error": 0.0
+  },
+  "public_actual_wrapper_sha256": "440f9b01986d0d297fd1c36e0bbf759b796242d63a54fb712f6efa7e6da0c2fc",
+  "public_wrapper_facts_and_privacy": "PASS_WITH_LIMITATIONS",
+  "reconstruction": {
+    "A": {
+      "cosine": 0.9999999998563023,
+      "dot": 0.07566366231434513,
+      "error2": 2.2969196258512757e-11,
+      "max_abs": 2.4354085326194763e-07,
+      "rec2": 0.07566396660736278,
+      "relative_l2": 1.742328711333942e-05,
+      "saved2": 0.07566335804429652
+    },
+    "B": {
+      "cosine": 0.9999999996193287,
+      "dot": 0.1344550212929738,
+      "error2": 1.0281851044215776e-10,
+      "max_abs": 3.838213160634041e-07,
+      "rec2": 0.13445477481879042,
+      "relative_l2": 2.7653285840463974e-05,
+      "saved2": 0.1344552678699755
+    }
+  },
+  "resources": {
+    "OS_pressure_levels": {
+      "1": 57,
+      "2": 94
+    },
+    "guardian": {
+      "available_gib": {
+        "first": 10.0543212890625,
+        "last": 14.680343627929688,
+        "maximum": 14.735260009765625,
+        "minimum": 6.267974853515625
+      },
+      "battery_percent": {
+        "first": 89.0,
+        "last": 84.0,
+        "maximum": 89.0,
+        "minimum": 84.0
+      },
+      "mlx_active_gib": null,
+      "mlx_peak_gib": null,
+      "other_heavy_max": 0,
+      "pressure_free_percent": {
+        "first": 56.0,
+        "last": 56.0,
+        "maximum": 57.0,
+        "minimum": 33.0
+      },
+      "process_rss_gib": {
+        "first": 0.017364501953125,
+        "last": 0.6450653076171875,
+        "maximum": 5.81103515625,
+        "minimum": 0.017364501953125
+      },
+      "rows": 151,
+      "swap_used_gib": {
+        "first": 12.5096484375,
+        "last": 14.05810546875,
+        "maximum": 14.10498046875,
+        "minimum": 12.5096484375
+      },
+      "thermal_states": {
+        "SENSOR_UNAVAILABLE": 151
+      }
+    },
+    "guardian_disk_min_gib": 294.4224853515625,
+    "guardian_stop_rows": 0,
+    "native": {
+      "available_gib": {
+        "first": 10.06292724609375,
+        "last": 14.6800537109375,
+        "maximum": 14.6800537109375,
+        "minimum": 7.26361083984375
+      },
+      "battery_percent": {
+        "first": 89.0,
+        "last": 84.0,
+        "maximum": 89.0,
+        "minimum": 84.0
+      },
+      "mlx_active_gib": {
+        "first": 0.050770021975040436,
+        "last": 9.611248970031738e-07,
+        "maximum": 4.906283367425203,
+        "minimum": 9.611248970031738e-07
+      },
+      "mlx_peak_gib": {
+        "first": 0.050770021975040436,
+        "last": 10.193520170636475,
+        "maximum": 10.193520170636475,
+        "minimum": 0.050770021975040436
+      },
+      "other_heavy_max": 0,
+      "pressure_free_percent": {
+        "first": 56.0,
+        "last": 56.0,
+        "maximum": 57.0,
+        "minimum": 41.0
+      },
+      "process_rss_gib": {
+        "first": 0.1610565185546875,
+        "last": 0.6450653076171875,
+        "maximum": 5.8472747802734375,
+        "minimum": 0.1610565185546875
+      },
+      "rows": 164,
+      "swap_used_gib": {
+        "first": 12.5096484375,
+        "last": 14.05810546875,
+        "maximum": 14.10498046875,
+        "minimum": 12.5096484375
+      },
+      "thermal_states": {
+        "SENSOR_UNAVAILABLE": 164
+      }
+    },
+    "native_actions": {
+      "CONTINUE": 164
+    },
+    "native_colors": {
+      "GREEN": 59,
+      "YELLOW": 105
+    }
+  },
+  "reviewer": "/root/v2_actual_verifier",
+  "schema": "native-group-vjp-independent-actual-review-v1",
+  "scientific_report_review": {
+    "authorship": "Claude scientific draft and authorized launch; Codex numerical precision integration and independent CPU review explicitly attributed.",
+    "causal_claim_limits": "Total Adam direction, complete joint negative gradient, nonlinear Adam(g)-Adam(0) difference and zero-new-gradient reference are explicitly distinguished; no MRI-only/Dallas-only causal isolation, no finite-update accuracy, grounding or generalization claim.",
+    "frozen_decision": "FAIL_REJECT_C",
+    "numeric_tables": "MATCH_INDEPENDENT_SAVED_VECTOR_RECOMPUTATION",
+    "privacy": "PASS_NO_PATIENT_IDS_RAW_RESPONSES_TOKEN_ARRAYS_OR_PRIVATE_PATHS",
+    "report_sha256": "3e5694d8c2df45ecfd7ae5615eb753f460f6f36721838938f93c0190e51263ae",
+    "reviewer_new_native_calls": 0,
+    "reviewer_new_optimizer_updates": 0,
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "scope_file_sha256": "069520b290c3758fb6514029dc21d82000f93448d56ed3e2942255113f4461d1",
+  "scope_sha256": "7d4890be03f4d27474f56162cd105a7a1aaf4e9cfe0714f4e420a311855facbe",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

@@ -631,6 +631,28 @@ def test_public_view_of_an_actual_style_decision_carries_no_context_ids(tmp_path
         ngs.public_aggregate({'decision': d}, forbidden_values=list(ids))       # a raw decision with IDs is refused, not silently published
 
 
+def test_public_count_fields_pass_the_unchanged_strict_case_key_check():
+    """Regression for the actual CPU export failure: scalar counts are published as 'count', never as the forbidden 'contexts' key."""
+    ids = {'u0_F': 'MRI_FLAIR', 'u0_T': 'MRI_T1', 'u1_F': 'MRI_FLAIR', 'u1_T': 'MRI_T1', 'u2_D0': 'DALLAS', 'u2_D1': 'DALLAS', 'u3_D0': 'DALLAS', 'u3_D1': 'DALLAS'}
+    fams = ('negative_gradient', 'adam52_formula', 'adam52_rounded', 'momentum_only_formula', 'momentum_only_rounded',
+            'adam52_incremental_formula', 'adam52_incremental_rounded')
+    eff = {x: {f: {m: {c: .001 * (i + 1) for i, c in enumerate(ids)} for m in ('mean', 'sum', 'first')} for f in fams} for x in 'ABC'}
+    taus = {c: 1e-6 for c in ids}
+    values = {c: {'mean': .5, 'sum': 1., 'first': .25} for c in ids}
+    summary = ngs.kind_summary(ids, eff, taus, values)                         # the ACTUAL producer
+    assert {k: v['count'] for k, v in summary.items()} == ngs.REQUIRED_CONTEXT_COUNTS and all('contexts' not in v for v in summary.values())
+    alignment = {c: {'max_abs': 1e-4, 'PASS': True} for c in ('u0_F', 'u0_T', 'u1_F', 'u1_T')}
+    report = {'kind_summary': summary, 'first_token_alignment': {'count': len(alignment), 'max_abs': 1e-4, 'tolerance': .002, 'all_PASS': True},
+              'first_token_alignment_PRIVATE': alignment}
+    pub = ngs.public_aggregate(report, forbidden_values=list(ids))
+    assert pub['public_case_keys']['status'] == 'PASS' and pub['first_token_alignment']['count'] == 4
+    with pytest.raises(ValueError, match='case/group'):                       # the strict check itself is NOT loosened
+        ngs.public_aggregate({'first_token_alignment': {'contexts': 4}})
+    source = (SRC / 'mri_rl' / 'native_group_signal_vjp_v1.py').read_text()   # the actual analyze() producer uses 'count'
+    assert "'first_token_alignment': {'count': len(alignment)" in source and "'first_token_alignment': {'contexts'" not in source
+    assert "{'contexts': len(ids)" not in source
+
+
 def test_public_aggregate_carries_no_vectors_paths_or_case_keys(tmp_path):
     report = {'decision': {'decision': 'INCONCLUSIVE', 'flags': []}, 'effects_PRIVATE': {'C': {'x': 1}},
               'summary': {'by_kind': {'MRI_T1': {'C_adam_mean_min': .1}}}, 'vectors_PRIVATE': [str(tmp_path / 'v.npz')]}

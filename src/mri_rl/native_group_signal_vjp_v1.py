@@ -557,7 +557,7 @@ def kind_summary(kinds, effects, taus, values):
                 if fam in SCREEN_FAMILIES:
                     cell['tau'] = stat([_tau(taus, fam, met, c) for c in ids])
                 fams[fam][met] = cell
-        out[kind] = {'contexts': len(ids), 'parent_margin_value': {met: stat([values[c][met] for c in ids]) for met in METRICS},
+        out[kind] = {'count': len(ids), 'parent_margin_value': {met: stat([values[c][met] for c in ids]) for met in METRICS},
                      'first_order_change': fams}
     return out
 
@@ -890,7 +890,7 @@ def analyze(scope, *, out=None):
     report.update({'effects_PRIVATE': eff, 'reconstruction_error_effects_PRIVATE': err, 'taus_PRIVATE': taus, 'direction_norms': norms, 'direction_cosines': cosines,
                    'margin_gradient_norms_PRIVATE': {cid: {m: math.sqrt(v) for m, v in d.items()} for cid, d in hn.items()},
                    'margin_values_PRIVATE': values, 'first_token_alignment_PRIVATE': alignment,
-                   'first_token_alignment': {'contexts': len(alignment), 'max_abs': max((a['max_abs'] for a in alignment.values()), default=None),
+                   'first_token_alignment': {'count': len(alignment), 'max_abs': max((a['max_abs'] for a in alignment.values()), default=None),
                                              'tolerance': scope['tolerances']['first_token_alignment_max_abs'], 'all_PASS': all(a['PASS'] for a in alignment.values())},
                    'historical_53_rounded_adam_consistency': hist_report, 'decision_PRIVATE': decision, 'decision': public_decision(decision),
                    'kind_summary': kind_summary(kinds, eff, taus, values) if not decision.get('preconditions_failed') else None,
