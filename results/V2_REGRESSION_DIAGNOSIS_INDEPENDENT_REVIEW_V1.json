@@ -1,0 +1,241 @@
+{
+  "schema": "vero-mri-v2-regression-diagnosis-independent-review-v1",
+  "status": "PASS_SOURCE_CPU_OUTPUTS_TESTS_AGGREGATE_PRIVACY_AND_REPORT_CLAIMS",
+  "reviewer": {
+    "actor": "Codex",
+    "isolated_agent": "/root/v2_actual_verifier",
+    "role": "Independent numerical and privacy reviewer",
+    "lead_implementation": "Claude Code; implementation not performed by this reviewer"
+  },
+  "scope": {
+    "new_model_loads": 0,
+    "new_model_inference": 0,
+    "new_GPU_calls": 0,
+    "new_gradients": 0,
+    "new_optimizer_updates": 0,
+    "final100_or_sealed16_outputs_accessed": 0,
+    "method_or_native_training_source_changes": 0
+  },
+  "source_sha256": {
+    "src/mri_rl/v2_regression_diagnosis_v1.py": "11b0ce6292ce57e023f8315152ea89c820fb29f0641529407d3939f11b5d6a8f",
+    "scripts/analyze_v2_regression_v1.py": "e16080dba8f9c4cfaa9d395297a0db7511f92290c566fa61181c9b40eadef6ce",
+    "tests/test_v2_regression_diagnosis_v1.py": "9e68d151d5dda0e595156c47a7e63d874185f57bdcfe8502d95ed28dd6e10ae8"
+  },
+  "actual_cpu_evidence": {
+    "private_report_sha256": "6f8873ee6b69b7ab4cf317cb902922496677957f9dc6bb0e9a67dc0e9fa2d47d",
+    "aggregate_sha256": "fcd3028fb0226a21db7cb54ef20bec50a00047b4dc416781a68e5e58edef8bfa",
+    "actual_exit_sha256": "2ea4289ade57a8aa8725ebb35ece9b75b1a2de8edce32a1ed3d0293304e80e8a",
+    "exit_code": 0,
+    "elapsed_seconds": 5.772637624992058,
+    "peak_child_rss_bytes": 1038712832,
+    "source_unchanged": true,
+    "forbidden_modules_loaded": [],
+    "inputs_unchanged_after_analysis": true,
+    "reused_source_pins_match": 13,
+    "production_reward_regrader": true
+  },
+  "tests": {
+    "observed_receipt_sha256": "52081e3b81536ad99aa3a387f37533e9387f6caafe25028f758b36e8b282ff8c",
+    "stdout_sha256": "5a6543783f5d29c33141a4c222003a3857d1f00910d155ccc638f6ef028be9fa",
+    "exit_code": 0,
+    "passed": 35,
+    "pytest_seconds": 0.52,
+    "wrapper_seconds": 0.7650817499961704,
+    "source_unchanged": true,
+    "reviewer_independently_executed_counterexamples": [
+      "NaN prediction rejected",
+      "infinite prediction and bound rejected",
+      "NaN bound rejected",
+      "negative bound rejected"
+    ]
+  },
+  "reviewed_fixes": {
+    "finite_checks": {
+      "status": "PASS",
+      "previous_false_PASS_counterexamples": 4,
+      "patched_counterexamples_each_violations": 1,
+      "patched_counterexamples_each_PASS": false,
+      "negative_saved_second_moments_rejected_before_sqrt": true
+    },
+    "authentication": {
+      "status": "PASS_WITH_EXPLICIT_LIMITS",
+      "anchored_closed_stages": 7,
+      "verified_journal_commits": 77,
+      "checks": [
+        "Journal exact schema and self-hash",
+        "Reservation file hash, operation key and binding hash",
+        "Every journal file-map entry",
+        "Committed terminal and closed-exit hashes",
+        "A/B segment receipt links to anchored terminals",
+        "DEV rows reproduce anchored terminal metrics"
+      ],
+      "limits": "Terminal metric equality externally anchors aggregate outcomes, not every individual row or log probability. Earlier independent full digest review remains separate evidence and was not repeated in this pass."
+    },
+    "contrast_semantics": {
+      "status": "PASS",
+      "definition": "All-response and format-valid-only within-image raw-correctness contrasts reported separately",
+      "admitted_MRI_groups_A0_A1_B0_B1": [
+        2,
+        0,
+        4,
+        4
+      ],
+      "within_all_responses": [
+        2,
+        0,
+        3,
+        2
+      ],
+      "within_format_valid_responses": [
+        2,
+        0,
+        2,
+        0
+      ],
+      "caveat": "No within-image contrast does not prove absence of an MRI gradient; cross-image grouping is the candidate mechanism."
+    },
+    "aggregate_privacy": {
+      "status": "PASS",
+      "per_DEV_case_pair_partner_indices": false,
+      "per_response_members_contexts_rewards": false,
+      "raw_answers": false,
+      "token_or_pixel_arrays": false,
+      "patient_identifiers": false,
+      "absolute_private_paths": false,
+      "dev_outputs": "Modality counts, transitions, pair-category counts and coarse histograms",
+      "certifies_unlinkability": false
+    }
+  },
+  "independent_numeric_findings": {
+    "joint_gradient_dot_actual_delta": {
+      "A0": -0.0002526768782361217,
+      "A1": -0.00494433138955216,
+      "B0": -0.0007683723238761073,
+      "B1": -0.0029642378482333644
+    },
+    "joint_descent_caveat": "Negative joint gradient dot parameter delta is a first-order joint-objective result, not a finite loss decrease, MRI class-margin improvement, or generalization result.",
+    "adam_replay": {
+      "steps": 4,
+      "parameters_per_step": 504,
+      "elements_per_step": 10911744,
+      "first_moments_and_parameters_bitwise_equal_all_elements": true,
+      "second_moment_nonbitwise_counts": [
+        482,
+        534,
+        478,
+        505
+      ],
+      "second_moment_max_absolute_error": 1.1754943508222875e-38,
+      "all_declared_elementwise_checks_PASS": true
+    },
+    "custom_two_step_streamed_numpy": {
+      "A": {
+        "total_delta_l2": 0.05791350064977689,
+        "parent_history_projection_share": 0.9571966126288243,
+        "segment0_projection_share": 0.0022748940191735395,
+        "segment1_projection_share": 0.040528529724794475,
+        "projection_share_sum": 1.0000000363727923,
+        "residual_l2_over_delta_l2": 1.1159357754143073e-05
+      },
+      "B": {
+        "total_delta_l2": 0.058027647278183325,
+        "parent_history_projection_share": 0.9458394097408246,
+        "segment0_projection_share": 0.031413845086779274,
+        "segment1_projection_share": 0.022746776126311326,
+        "projection_share_sum": 1.0000000309539152,
+        "residual_l2_over_delta_l2": 1.1135304340336262e-05
+      },
+      "interpretation": "Algebraic projections given saved Adam denominators, with measured F32 reconstruction residual; not causal damage percentages or task contribution/norm shares."
+    },
+    "raw_reward_scalar_counterfactual": {
+      "fixed_plans_admission_and_weights": true,
+      "total_advantage_sign_flips": 2,
+      "location": "B segment 1 MRI; incorrect format-valid responses",
+      "actual_advantage_each": 0.01776339196540306,
+      "counterfactual_advantage_each": -0.2100415714286575,
+      "actual_absolute_MRI_advantage_mass_fraction": 0.0028124482887238746,
+      "all_16_admitted_raw_correct_MRI_plan_occurrences_remain_positive": true,
+      "no_counterfactual_gradients_or_accuracy_available": true,
+      "not_a_reward_change_recommendation": true
+    },
+    "accuracy": {
+      "Parent": {
+        "correct": 18,
+        "total": 24,
+        "FLAIR_correct": 10,
+        "FLAIR_total": 12,
+        "T1_correct": 8,
+        "T1_total": 12,
+        "invalid": 0
+      },
+      "Direct": {
+        "correct": 16,
+        "total": 24,
+        "FLAIR_correct": 9,
+        "FLAIR_total": 12,
+        "T1_correct": 7,
+        "T1_total": 12,
+        "invalid": 0
+      },
+      "Adapted": {
+        "correct": 16,
+        "total": 24,
+        "FLAIR_correct": 9,
+        "FLAIR_total": 12,
+        "T1_correct": 7,
+        "T1_total": 12,
+        "invalid": 0
+      },
+      "Direct_Adapted_predictions_identical": 24,
+      "correct_to_wrong_each": 2,
+      "wrong_to_correct_each": 0,
+      "accuracy_improvement": false
+    }
+  },
+  "scientific_limits": [
+    "Only four saved JOINT gradient archives; MRI-vs-Dallas task vectors/cosines cannot be reconstructed.",
+    "A second segment has zero admitted MRI groups; its fresh joint gradient is Dallas-only, but inherited Adam history remains; Dallas causation is not established.",
+    "No current-pilot Adam53 DEV output; timing of the two observed regressions remains NOT_VERIFIED.",
+    "No correct-versus-wrong canonical DEV class margins; saved greedy-path selected-token log probabilities are not class margins.",
+    "No independent anatomical grounding established by paired outputs or zero-pixel similarity.",
+    "Explored small DEV24 results are engineering evidence, not independent generalization.",
+    "No new native measurement or training authorization inferred from this CPU review."
+  ],
+  "publication": {
+    "aggregate_target": "results/V2_REGRESSION_DIAGNOSIS_ACTUAL_CPU_V1.json",
+    "aggregate_exact_sha256": "fcd3028fb0226a21db7cb54ef20bec50a00047b4dc416781a68e5e58edef8bfa",
+    "report_claim_review": "PASS_WITH_LIMITATIONS",
+    "review_does_not_approve_unseen_report": false,
+    "review_applies_only_to_bound_report_hash": true
+  },
+  "decision": "PRESERVE_NEGATIVE_RESULT_NO_AUTOMATIC_TRAINING_OR_SCALE_UP",
+  "report_review": {
+    "status": "PASS_WITH_LIMITATIONS",
+    "report": "research/V2_REGRESSION_ROOT_CAUSE_INVESTIGATION_2026-10-21.md",
+    "report_sha256": "519ef2c5ee184a0f718ed236ae62f89da98e99534aed678f6fab51f3a3e54b41",
+    "author_attribution": "Claude primary scientific author and implementation author; Codex independently reviewed and executed CPU analysis and tests",
+    "confirmed_claim_boundaries": [
+      "Two observed local deterministic regressions; patient/population effect inconclusive.",
+      "Case-level p=0.5 descriptive only; no equivalence, no-effect or generalization conclusion.",
+      "Greedy divergence positions zero-based2/4 are3rd/5th tokens before answer; selected-token probability is not a class margin.",
+      "Common inherited-state alignment is consistent with shared predictions, not an established cause of specific errors.",
+      "Scalar raw-reward counterexample is not a gradient-influence estimate or a sufficient basis for reward changes.",
+      "Unchanged aggregate predicted-class counts exclude only a changed global count as the sole explanation.",
+      "128 plan occurrences comprise32K4 group instances across4macroplans;96unique actual TRAIN responses.",
+      "Hypothetical future grouping fixed as Paired-Prompt B with existingB53 control; no duplicate historical control update.",
+      "Resetting both first and second moments is one optimizer-state treatment, not isolation of first-moment causality or step scale.",
+      "Further read-only measurement is proposed, not executable or authorized; no training recommendation is GO."
+    ],
+    "privacy": "No patient identifiers, case/pair indices, raw answers, token/pixel arrays or absolute private paths observed; aggregate scientific quantities only.",
+    "remaining_limits": [
+      "Root cause INCONCLUSIVE; actual accuracy did not improve.",
+      "No task-specific saved gradient vectors, canonical margins or current-pilot Adam53 DEV outputs.",
+      "Single-seed repeatedly explored4-patient DEV24; no independent generalization evidence.",
+      "Full checkpoint identity and fresh exact native authorization remain necessary for any proposed measurement or treatment."
+    ],
+    "source_and_test_revalidation_required": false,
+    "reason": "Final changes after full claim review only remove stale review-PENDING metadata and refer to this separate verdict; module, CLI, tests and actual aggregate hashes unchanged.",
+    "causal_judgment": "INCONCLUSIVE; descriptive numerical findings supported, causal attribution not established",
+    "next_native_measurement": "PROPOSED_NOT_EXECUTABLE; requires exact source/input/budget review and fresh human authorization"
+  }
+}
