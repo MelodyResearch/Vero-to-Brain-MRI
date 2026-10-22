@@ -1,0 +1,144 @@
+{
+  "schema": "second-mri-task-finite-gate-actual-v1",
+  "date_utc": "2026-10-22T20:43:21.141947+00:00",
+  "base_commit": "9049c5794b1aa66dc9e26b67c98a36b943444c7c",
+  "decision": "SCIENTIFIC_ELIGIBILITY_BLOCKED",
+  "gate1": "STOP_SCIENTIFIC_ADMISSION_NOT_MET",
+  "gates2_to4": "NOT_ENTERED",
+  "historical15": {
+    "rows": 15,
+    "TRAIN_people": 13,
+    "scientific_admitted_at_saved_review": 0,
+    "member_packet_at_recorded_paths": "NOT_AVAILABLE",
+    "later_saved_report_membership": "NOT_RECOVERED",
+    "new3_membership_relative_to15": "UNKNOWN_NOT_ASSERTED",
+    "original_packet_rebuilt_or_recovered": false
+  },
+  "current_saved_cohort": {
+    "TRAIN_rows": 3,
+    "distinct_TRAIN_patients": 3,
+    "distinct_TRAIN_sites": 2,
+    "all_splits_TRAIN": true,
+    "technical_clean": 1,
+    "ABSTAIN": 2,
+    "abstain_reasons": {
+      "MULTICOMPONENT_2D": 2,
+      "SMALL_SOURCE_MASK": 1
+    },
+    "expert_forms": 3,
+    "expert_fields": 21,
+    "all_expert_fields_null": true,
+    "AI_expert_assertions": 0,
+    "scientifically_admitted": 0,
+    "future_potential_admission_count": "UNKNOWN_PENDING_EVIDENCE",
+    "qualified_patient_disjoint_spatial_evaluation": "NOT_ESTABLISHED"
+  },
+  "bounded_existing_metadata_check": {
+    "files_verified": 6,
+    "all_match_existing_independent_review": true,
+    "whole_artifact_sha256": {
+      "spatial_original_input_private": "b4a2ba137efbb7ffe34857a45a60ffa4385d501b1b8e797e685484cfd60d0cec",
+      "spatial_adapter_private": "cad8aca845d8d366d64b95c661aa78808d17aa5e6e6120a8d0ba4a96188296b7",
+      "blank_expert_packet_private": "3207388723c4ac33005fdfc5facb67983aa01d3d2f8262c87cdaef7a78c8855b",
+      "candidate_jsonl_private": "6c7019dfee4d3787f496fba9d0e5326f66f7369a295fb49e8bbb6b2df3caf2b6",
+      "candidate_admission_sidecar_private": "f0c64fdfb460a902a4c6e5ca46bafd9213397523369ed019d0bb829099c5d798",
+      "spatial_run_receipt_private": "2eda0eed4f707ccc813533a3e80fcd47794a12f4acb25faeae982ee60dc63d20"
+    },
+    "actual_check_proof_sha256": "891c7c989b3efeb3c81ec9b55ec15c41c219163a0b41496ce883950ceb4045b7",
+    "no_repeat_source_mask_orientation_or_pixel_audit": true
+  },
+  "minimal_expert_item": {
+    "prepared_items": 1,
+    "source": "Existing arithmetic-clean single-T1ce candidate; no asserted membership in historic15",
+    "original_image_and_question_preserved": true,
+    "image_binding_prompt_and_images_match": true,
+    "phase1_MRI_only_then_separate_phase2_answer_key": true,
+    "mask_derived_answer_visible_in_phase1": false,
+    "phase1_template_sha256": "a06cad735e98a00077c088e66b789264070462ccaefd46ae7be1c66908b2a898",
+    "hidden_phase2_key_sha256": "f51fa6a59983d317b5bd20b38061722fcc2f6dccacd400e9c426b2510da78da9",
+    "preparation_proof_sha256": "1d272f113aab6d594a25b0121980c8f7adffa229d13a71f01f5e417d725105ec",
+    "AI_clinical_judgments": 0,
+    "human_adjudication_completed": false,
+    "training_authorized": false,
+    "passing_this_case_does_not_establish_cohort_or_independent_evaluation": true
+  },
+  "scientific_blockers": [
+    "Qualified brain-MRI human visibility/answerability and exact question-to-annotation endpoint evidence absent.",
+    "Whole-mask mass centroid is not automatically an MRI-visible lesion center; subtype numeric3 lineage remains separate.",
+    "No qualified spatial evaluation set with verified patient independence from all project historical TRAIN exposure.",
+    "Historical15 per-item packet is unavailable at recorded paths; later3 cannot be represented as recovered15."
+  ],
+  "experiment_status": {
+    "new_adaptation_defined": false,
+    "C_variants_or_loss_optimizer_prompt_search": false,
+    "training_scope_created": false,
+    "GPU_authorization_requested": false,
+    "new_models_or_GPU_calls": 0,
+    "new_generations": 0,
+    "new_backward": 0,
+    "optimizer_updates": 0,
+    "MRI_or_mask_decodes": 0,
+    "new_renders": 0,
+    "sealed16_or_final100_outputs_read": false,
+    "clinical_expert_review_completed": false
+  },
+  "conditional_future_comparison": "Only after task eligibility: common Parent and matched Direct Vero versus ONE separately justified adaptation on the same two qualified tasks; no adaptation or compute scope chosen now.",
+  "conditional_metrics": [
+    "task-specific strict accuracy on identical task evaluation inputs",
+    "FLAIR and enhanced-T1 recall",
+    "equal-task and worst-task accuracy",
+    "invalid responses and per-task negative transfer",
+    "generation/scoring/backward/update/wall-clock cost"
+  ],
+  "conditional_success": "Beat both Parent and matched Direct in equal-task strict accuracy with predeclared per-task/class protection; actual cohorts, denominators and tolerances must freeze after eligibility and before new model outputs. No numerical success threshold is represented as ready today.",
+  "Claude_actual_work": {
+    "cli_version": "2.1.306",
+    "model": "claude-opus-5-5",
+    "primary_decision": "SCIENTIFIC_ELIGIBILITY_BLOCKED",
+    "initial_exit": {
+      "exit_code": 0,
+      "elapsed_seconds": 49.60305595805403,
+      "finished_utc": "2026-10-22T20:39:14.023313+00:00"
+    },
+    "consolidated_precision_fix_exit": {
+      "exit_code": 0,
+      "elapsed_seconds": 31.892769792000763,
+      "finished_utc": "2026-10-22T20:42:00.136535+00:00"
+    },
+    "source_reads": "existing frozen plan and saved public task-card/eligibility/ontology/CPU-pilot evidence only; no private images or state shared",
+    "reviewed_decision_sha256": "439e383195dbb021266d65b2bf7250417f243b20e27edec61412e422c1ca6ea3"
+  },
+  "frozen_plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+  "frozen_plan_lock_sha256": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+  "main_modified": false,
+  "private_patient_images_state_or_case_answers_in_public_output": false,
+  "independent_review": {
+    "reviewer_kind": "isolated_codex",
+    "reviewer_id": "/root/v2_actual_verifier",
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "public_pre_review_sha256": "e9eb833373e2907cce321e32c2d7aeceaff8324f48896fa8f2e3e8efe4a8ae5d",
+    "reviewed_Claude_decision_sha256": "439e383195dbb021266d65b2bf7250417f243b20e27edec61412e422c1ca6ea3",
+    "private_proof_sha256": "d97a62e500238df954a8775d61198f35a103014665c366b93bb603b5f737db68",
+    "existing_metadata_file_hashes_verified": 6,
+    "counts_recomputed": {
+      "TRAIN_rows": 3,
+      "patients": 3,
+      "sites": 2,
+      "technical_clean": 1,
+      "ABSTAIN": 2,
+      "expert_forms": 3,
+      "all21_original_expert_fields_null": true,
+      "scientifically_admitted": 0
+    },
+    "one_existing_candidate_binding_and_phase_separation": "PASS_METADATA_ONLY",
+    "historical15_membership": "UNKNOWN_NOT_ASSERTED",
+    "no_visual_or_clinical_adjudication": true,
+    "no_model_GPU_training_or_new_render": true,
+    "decision": "SCIENTIFIC_ELIGIBILITY_BLOCKED",
+    "limitations": [
+      "One-case feasibility packet does not qualify a cohort or establish independent spatial evaluation.",
+      "Separate phase files are prepared; no completed expert judgment or enforced blind-access process is claimed.",
+      "Current3 historical15 membership is unknown; only saved aggregate history is reused."
+    ]
+  }
+}
