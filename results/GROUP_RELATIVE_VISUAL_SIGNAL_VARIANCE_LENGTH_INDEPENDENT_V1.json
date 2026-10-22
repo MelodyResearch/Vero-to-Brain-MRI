@@ -1,0 +1,67 @@
+{
+  "basis_sha256": "5488ad2e1bb1b1908da1a564159348593a093b8eb63d5028644ecbf0fcd22f2c",
+  "limits": [
+    "SSE terms are descriptive scalar reward variance; covariance prevents assigning a simple additive causal percentage to accuracy and format.",
+    "All valid-only reward SSE excludes invalid-format responses before computing context means; its denominator differs from all-response SSE.",
+    "Per-token coefficients are on-policy first-order scalar weights, not gradient vectors or anatomy-grounding measures.",
+    "Wrong-positive token-weight share sums one coefficient per response, not all token occurrences; sequence occurrence-weighted mass is reported separately in the basis."
+  ],
+  "macros": {
+    "A0": {
+      "absolute_per_token_coefficient_wrong_positive": 0.0,
+      "accuracy_component_SSE": 0.21723083248625547,
+      "admitted_groups": 2,
+      "format_component_SSE": 0.0,
+      "max_token_coefficient_ratio_within_macro": 4.333333333333335,
+      "reward_SSE": 0.21723083248625552,
+      "twice_accuracy_format_crossproduct": 0.0,
+      "valid_only_between_image_SSE": 0.0,
+      "valid_only_reward_SSE": 0.21723083248625552,
+      "valid_only_within_image_SSE": 0.21723083248625552,
+      "wrong_positive_token_weight_share": 0.0
+    },
+    "A1": {
+      "absolute_per_token_coefficient_wrong_positive": 0.0,
+      "accuracy_component_SSE": 0.0,
+      "admitted_groups": 0,
+      "format_component_SSE": 0.0,
+      "max_token_coefficient_ratio_within_macro": null,
+      "reward_SSE": 0.0,
+      "twice_accuracy_format_crossproduct": 0.0,
+      "valid_only_between_image_SSE": 0.0,
+      "valid_only_reward_SSE": 0.0,
+      "valid_only_within_image_SSE": 0.0,
+      "wrong_positive_token_weight_share": null
+    },
+    "B0": {
+      "absolute_per_token_coefficient_wrong_positive": 0.0,
+      "accuracy_component_SSE": 0.5068719424679294,
+      "admitted_groups": 4,
+      "format_component_SSE": 0.09000000000000001,
+      "max_token_coefficient_ratio_within_macro": 12.384721562921927,
+      "reward_SSE": 0.787148422222284,
+      "twice_accuracy_format_crossproduct": 0.1902764797543544,
+      "valid_only_between_image_SSE": 0.2534359712339648,
+      "valid_only_reward_SSE": 0.39825652622480184,
+      "valid_only_within_image_SSE": 0.144820554990837,
+      "wrong_positive_token_weight_share": 0.0
+    },
+    "B1": {
+      "absolute_per_token_coefficient_wrong_positive": 5.17948802236651e-05,
+      "accuracy_component_SSE": 0.5068719424679294,
+      "admitted_groups": 4,
+      "format_component_SSE": 0.08000000000000002,
+      "max_token_coefficient_ratio_within_macro": 387.9945269116842,
+      "reward_SSE": 0.7390931262714131,
+      "twice_accuracy_format_crossproduct": 0.15222118380348354,
+      "valid_only_between_image_SSE": 0.43446166497251104,
+      "valid_only_reward_SSE": 0.43446166497251104,
+      "valid_only_within_image_SSE": 0.0,
+      "wrong_positive_token_weight_share": 0.002723134804198533
+    }
+  },
+  "new_backward": 0,
+  "new_model_calls": 0,
+  "new_optimizer_updates": 0,
+  "schema": "group-relative-visual-signal-independent-variance-extension-v1"
+}

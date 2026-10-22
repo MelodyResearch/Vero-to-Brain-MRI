@@ -1,0 +1,90 @@
+{
+  "actual_execution": {
+    "backward": 0,
+    "exit_code": 0,
+    "exit_receipt_sha256": "a30b62c41c53cebee07ad225378bec5a8f1d87fcdf84e55ef9e9a98c9cb4f162",
+    "generation": 0,
+    "model_loads": 0,
+    "native_TF": 0,
+    "optimizer_updates": 0,
+    "peak_child_RSS_bytes": 115605504,
+    "seconds": 2.257185375026893,
+    "source_unchanged_during_run": true
+  },
+  "actual_public_results_sha256": "c5a97a38db35d525b193a8b15acb1a9484547db4279784eca34614feed882c40",
+  "docstring_only_postexecution_edit": {
+    "AST_without_module_docstring_identical": true,
+    "executed_sha256": "d3998ac46caa23ce9659e5d6c8c5d475dba4772a955354f74c631227cc60467d",
+    "final_sha256": "a1a54b9a75a327f0de4815ae450e0371e534e5904082b0f6e4d2183cc7be58ac",
+    "metadata_file_sha256": "c71be2cfd3ef16788964657a1e1745d8f7e24514fb911e32250eb50ffa96336d"
+  },
+  "executed_source_sha256": {
+    "scripts/compare_answer_matched_baseline_v1.py": "ee7162200997f279440d0c2dc5aab5798f5088514ff8c72c91955ea02fdeb925",
+    "src/mri_rl/answer_matched_baseline_v1.py": "d3998ac46caa23ce9659e5d6c8c5d475dba4772a955354f74c631227cc60467d",
+    "src/mri_rl/group_relative_visual_signal_v1.py": "920a73b2f27b2fbbdca9fc4a740348d8334de9acda9ac8f40b9a3990f03242d2",
+    "tests/test_answer_matched_baseline_v1.py": "a70171cf928f09027992c7db0afd1c4a4045e217368d4c2de9a361e84ed3337d",
+    "tests/test_group_relative_visual_signal_v1.py": "22e9820dc28353e120725d1fb18e00e55d7af781f5d9f951a8368c74fcd6afd0"
+  },
+  "final_C_source_sha256": "a1a54b9a75a327f0de4815ae450e0371e534e5904082b0f6e4d2183cc7be58ac",
+  "independent_recompute": {
+    "PASS": true,
+    "artifact_sha256": "2b87f143861645f246b8f6e842bcfffb298019d366e4ac949b8d899cfe3fe407",
+    "comparison_count": 64,
+    "max_abs_error": 1.1102230246251565e-16,
+    "source": "independent stdlib reconstruction; no production C helper"
+  },
+  "key_independent_findings": {
+    "common32_C_admitted_MRI": 16,
+    "common32_C_baseline_kinds": {
+      "ANSWER_MATCHED": 11,
+      "SAME_IMAGE_FALLBACK": 5
+    },
+    "common32_C_format_component_mass_share": 0.10384006979950144,
+    "common32_C_prior_inactive_images_credited": 2,
+    "common32_C_signed_jointweighted_MRI_advantage": -0.09625116277930679,
+    "common32_C_valid_correctness_advantage_correlation": 0.9798114444760402
+  },
+  "limits": [
+    "No new MRI accuracy, canonical margin, per-response VJP or C parameter gradient has been measured.",
+    "A0/B0 share Common32 and are matched; A1/B1 use distinct policies and remain observational.",
+    "Scalar variance and advantage mass cannot identify anatomy grounding or MRI/Dallas gradient interference.",
+    "Current C changes baseline, scale/admission and global centering together; action-dependent expected-gradient bias and norm/direction risks remain.",
+    "The one possible next native read-only falsification study has no implemented/reviewed executable scope or authority in this review. No call budget or training GO endorsed.",
+    "Original exploratory DEV24 Parent18/24,A54/B54 16/24 are unchanged and do not demonstrate MRI accuracy improvement."
+  ],
+  "privacy": {
+    "patient_IDs": false,
+    "pixel_arrays": false,
+    "private_absolute_paths": false,
+    "public_aggregate_only": true,
+    "raw_responses": false,
+    "token_arrays": false
+  },
+  "report_review": "PENDING_SEPARATE_FOCUSED_REVIEW",
+  "resolved_findings": [
+    "Public export removes per-image/per-group tables and recursively rejects case keys/record lists.",
+    "Response-label indicator projections explicitly do not identify bias or visual parameter gradients; score normalizer counterexample covered.",
+    "C baseline is action dependent and can change expected score-function gradient; biased-population counterexample covered.",
+    "Matching parsed class labels does not match complete response/prefix/length or identify visual causality.",
+    "Pair8 scale and pair-level gate form one versioned advantage-plan treatment; not an isolated baseline causal test.",
+    "Matched sets center individually, overlapping same-image fallbacks lose global centering; reported and not silently recentered.",
+    "Correct/incorrect advantage sign gains in matched cohorts are by construction, not independent learning evidence.",
+    "Original A/B inference, reward, source artifacts and weights were not changed by CPU analysis."
+  ],
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "schema": "group-relative-visual-signal-independent-review-v1",
+  "scientific_decision": "INCONCLUSIVE_CPU_COEFFICIENT_ONLY",
+  "scope": "CPU saved-scalar mechanism and C counterfactual implementation/results only",
+  "targeted_tests": {
+    "independent_command_options": "CPU system Python3; PYTHONDONTWRITEBYTECODE=1, BLAS threads=1, pytest -p no:cacheprovider",
+    "independent_exit_code": 0,
+    "independent_pytest_reported_seconds": 0.19,
+    "independent_tests": 27,
+    "root_exit_code": 0,
+    "root_receipt_sha256": "1a60726a3f68eb02fdbd692cb49644ea45182ac1840d2cafdf725b3ab88a46c1",
+    "root_tests": 27
+  },
+  "training_readiness": "NOT_READY",
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

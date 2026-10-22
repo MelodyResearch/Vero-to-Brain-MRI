@@ -1,0 +1,684 @@
+{
+  "diagnosis_sha256": "6f8873ee6b69b7ab4cf317cb902922496677957f9dc6bb0e9a67dc0e9fa2d47d",
+  "interpretation_limits": [
+    "All response-level coefficients are scalar allocation descriptors, not parameter-gradient norms or image-grounding evidence.",
+    "The 1/length coefficient applies to each selected response token at on-policy ratio=1; summing token occurrences recovers sequence weight. It is not an answer-token attribution.",
+    "Group variance between contexts describes task/image-conditioned reward means; it does not establish that advantage uses anatomy or that cross-image comparison is intrinsically invalid.",
+    "Format-invalid raw accuracy is forced zero by the unchanged grader; format-valid correct/wrong contrast is therefore reported separately.",
+    "A0/B0 reuse the same32actual responses with different plans; A1/B1 are separate on-policy generations. Across all4plans there are128plan-items but96unique generated responses, MRI64plan-items/48unique responses.",
+    "Only JOINTgradient tensors and unit L2 scalar receipts are retained. No MRI-vs-Dallas gradient cosine or causal interference inference is possible.",
+    "No C intervention selected in this independent evidence decomposition; Claude remains scientific lead."
+  ],
+  "macros": {
+    "A0": {
+      "DALLAS_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0.27935650232884723,
+          "format": 0.03312361098076609,
+          "overlong": 0.0
+        },
+        "abs_sequence_advantage_mass": 0.2903977059891026,
+        "admitted_responses": 12,
+        "admitted_sign_counts": {
+          "CORRECT_POSITIVE": 6,
+          "WRONG_NEGATIVE": 6
+        },
+        "all_format_valid": 14,
+        "all_raw_correct": 9,
+        "all_responses": 16,
+        "component_mass_sum": 0.31248011330961334,
+        "correct_abs_sequence_mass": 0.14519885299455126,
+        "correct_per_token_abs_coefficient_sum": 0.007252217499807063,
+        "format_share_of_abs_component_masses": 0.1060023008502508,
+        "per_token_coefficient_abs_max": 0.0026041555154799733,
+        "per_token_coefficient_abs_min": 0.00011505531424724151,
+        "per_token_coefficient_abs_sum": 0.013019563326767052,
+        "response_length_max": 256,
+        "response_length_median": 19.0,
+        "response_length_min": 14,
+        "signed_sequence_advantage_mass": -6.765421556309548e-17,
+        "tokens_admitted_total": 523,
+        "wrong_abs_sequence_mass": 0.14519885299455135,
+        "wrong_per_token_abs_coefficient_sum": 0.00576734582695999,
+        "wrong_positive_mass": 0,
+        "wrong_positive_share_of_total_mass": 0.0
+      },
+      "MRI_admitted_format_varies": 0,
+      "MRI_admitted_group_contrast_counts": {
+        "WITHIN_IMAGE_VALID_CLASS": 2
+      },
+      "MRI_admitted_groups": 2,
+      "MRI_admitted_reward_SSE_sum": {
+        "between_image_SSE": 0.0,
+        "total_SSE": 0.21723083248625552,
+        "within_image_SSE": 0.21723083248625552
+      },
+      "MRI_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0.1874990145969967,
+          "format": 0.0,
+          "overlong": 0.0
+        },
+        "abs_sequence_advantage_mass": 0.18749901459699675,
+        "admitted_responses": 8,
+        "admitted_sign_counts": {
+          "CORRECT_POSITIVE": 4,
+          "WRONG_NEGATIVE": 4
+        },
+        "all_format_valid": 13,
+        "all_raw_correct": 6,
+        "all_responses": 16,
+        "component_mass_sum": 0.1874990145969967,
+        "correct_abs_sequence_mass": 0.09374950729849835,
+        "correct_per_token_abs_coefficient_sum": 0.003467123408002962,
+        "format_share_of_abs_component_masses": 0.0,
+        "per_token_coefficient_abs_max": 0.001736101987009229,
+        "per_token_coefficient_abs_min": 0.00040063892007905275,
+        "per_token_coefficient_abs_sum": 0.00614229874253082,
+        "response_length_max": 55,
+        "response_length_median": 28.5,
+        "response_length_min": 20,
+        "signed_sequence_advantage_mass": -3.469446951953614e-17,
+        "tokens_admitted_total": 248,
+        "wrong_abs_sequence_mass": 0.09374950729849839,
+        "wrong_per_token_abs_coefficient_sum": 0.002675175334527858,
+        "wrong_positive_mass": 0,
+        "wrong_positive_share_of_total_mass": 0.0
+      },
+      "MRI_group_contrast_counts": {
+        "FORMAT_OR_VALIDITY_ONLY": 2,
+        "WITHIN_IMAGE_VALID_CLASS": 2
+      },
+      "MRI_group_reward_SSE_sum": {
+        "between_image_SSE": 0.0,
+        "total_SSE": 0.5842725712805761,
+        "within_image_SSE": 0.5842725712805761
+      },
+      "MRI_groups": 4,
+      "MRI_images": 4,
+      "MRI_images_with_all_response_contrast": 3,
+      "MRI_images_with_valid_correct_wrong_contrast": 2,
+      "MRI_modality_allocation": {
+        "FLAIR_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0.09374950729849836,
+            "format": 0.0,
+            "overlong": 0.0
+          },
+          "abs_sequence_advantage_mass": 0.09374950729849836,
+          "admitted_responses": 4,
+          "admitted_sign_counts": {
+            "CORRECT_POSITIVE": 3,
+            "WRONG_NEGATIVE": 1
+          },
+          "all_format_valid": 6,
+          "all_raw_correct": 5,
+          "all_responses": 8,
+          "component_mass_sum": 0.09374950729849836,
+          "correct_abs_sequence_mass": 0.04687475364924917,
+          "correct_per_token_abs_coefficient_sum": 0.0017310214209937333,
+          "format_share_of_abs_component_masses": 0.0,
+          "per_token_coefficient_abs_max": 0.0008522682481681672,
+          "per_token_coefficient_abs_min": 0.00040063892007905275,
+          "per_token_coefficient_abs_sum": 0.0025832896691619003,
+          "response_length_max": 55,
+          "response_length_median": 31.5,
+          "response_length_min": 23,
+          "signed_sequence_advantage_mass": -2.42861286636753e-17,
+          "tokens_admitted_total": 141,
+          "wrong_abs_sequence_mass": 0.046874753649249194,
+          "wrong_per_token_abs_coefficient_sum": 0.0008522682481681672,
+          "wrong_positive_mass": 0,
+          "wrong_positive_share_of_total_mass": 0.0
+        },
+        "T1_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0.09374950729849835,
+            "format": 0.0,
+            "overlong": 0.0
+          },
+          "abs_sequence_advantage_mass": 0.09374950729849837,
+          "admitted_responses": 4,
+          "admitted_sign_counts": {
+            "CORRECT_POSITIVE": 1,
+            "WRONG_NEGATIVE": 3
+          },
+          "all_format_valid": 7,
+          "all_raw_correct": 1,
+          "all_responses": 8,
+          "component_mass_sum": 0.09374950729849835,
+          "correct_abs_sequence_mass": 0.04687475364924918,
+          "correct_per_token_abs_coefficient_sum": 0.001736101987009229,
+          "format_share_of_abs_component_masses": 0.0,
+          "per_token_coefficient_abs_max": 0.001736101987009229,
+          "per_token_coefficient_abs_min": 0.0005208305961027688,
+          "per_token_coefficient_abs_sum": 0.0035590090733689196,
+          "response_length_max": 30,
+          "response_length_median": 28.5,
+          "response_length_min": 20,
+          "signed_sequence_advantage_mass": -1.0408340855860843e-17,
+          "tokens_admitted_total": 107,
+          "wrong_abs_sequence_mass": 0.04687475364924919,
+          "wrong_per_token_abs_coefficient_sum": 0.0018229070863596908,
+          "wrong_positive_mass": 0,
+          "wrong_positive_share_of_total_mass": 0.0
+        }
+      },
+      "MRI_share_joint_weighted_abs_sequence_advantage_mass": 0.3923421243967636,
+      "max_replayed_advantage_error": 2.220446049250313e-16,
+      "native_MRI_unit_gradient_l2": [
+        0.527112059305541,
+        0.4952069610684492
+      ],
+      "native_joint_gradient_l2": 0.27506973748981256,
+      "native_unit_gradient_l2": [
+        0.527112059305541,
+        0.6782869931618825,
+        0.4952069610684492,
+        0.6005100776123312
+      ],
+      "rollout_origin": "COMMON_PARENT"
+    },
+    "A1": {
+      "DALLAS_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0.31080061246841023,
+          "format": 0.13375722362149878,
+          "overlong": 0.0
+        },
+        "abs_sequence_advantage_mass": 0.3712687062761352,
+        "admitted_responses": 16,
+        "admitted_sign_counts": {
+          "CORRECT_POSITIVE": 5,
+          "WRONG_NEGATIVE": 11
+        },
+        "all_format_valid": 11,
+        "all_raw_correct": 5,
+        "all_responses": 16,
+        "component_mass_sum": 0.444557836089909,
+        "correct_abs_sequence_mass": 0.1856343531380676,
+        "correct_per_token_abs_coefficient_sum": 0.006146309260104153,
+        "format_share_of_abs_component_masses": 0.30087699004016033,
+        "per_token_coefficient_abs_max": 0.009818053482431276,
+        "per_token_coefficient_abs_min": 8.325476870566534e-05,
+        "per_token_coefficient_abs_sum": 0.021920630210378912,
+        "response_length_max": 256,
+        "response_length_median": 20.0,
+        "response_length_min": 3,
+        "signed_sequence_advantage_mass": -5.0523821237824507e-17,
+        "tokens_admitted_total": 1177,
+        "wrong_abs_sequence_mass": 0.18563435313806761,
+        "wrong_per_token_abs_coefficient_sum": 0.01577432095027476,
+        "wrong_positive_mass": 0,
+        "wrong_positive_share_of_total_mass": 0.0
+      },
+      "MRI_admitted_format_varies": 0,
+      "MRI_admitted_group_contrast_counts": {},
+      "MRI_admitted_groups": 0,
+      "MRI_admitted_reward_SSE_sum": {
+        "between_image_SSE": 0,
+        "total_SSE": 0,
+        "within_image_SSE": 0
+      },
+      "MRI_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0,
+          "format": 0,
+          "overlong": 0
+        },
+        "abs_sequence_advantage_mass": 0,
+        "admitted_responses": 0,
+        "admitted_sign_counts": {},
+        "all_format_valid": 10,
+        "all_raw_correct": 5,
+        "all_responses": 16,
+        "component_mass_sum": 0,
+        "correct_abs_sequence_mass": 0,
+        "correct_per_token_abs_coefficient_sum": 0,
+        "format_share_of_abs_component_masses": null,
+        "per_token_coefficient_abs_max": null,
+        "per_token_coefficient_abs_min": null,
+        "per_token_coefficient_abs_sum": 0,
+        "response_length_max": null,
+        "response_length_median": null,
+        "response_length_min": null,
+        "signed_sequence_advantage_mass": 0,
+        "tokens_admitted_total": 0,
+        "wrong_abs_sequence_mass": 0,
+        "wrong_per_token_abs_coefficient_sum": 0,
+        "wrong_positive_mass": 0,
+        "wrong_positive_share_of_total_mass": null
+      },
+      "MRI_group_contrast_counts": {
+        "FORMAT_OR_VALIDITY_ONLY": 4
+      },
+      "MRI_group_reward_SSE_sum": {
+        "between_image_SSE": 0.0,
+        "total_SSE": 0.659823042890061,
+        "within_image_SSE": 0.659823042890061
+      },
+      "MRI_groups": 4,
+      "MRI_images": 4,
+      "MRI_images_with_all_response_contrast": 2,
+      "MRI_images_with_valid_correct_wrong_contrast": 0,
+      "MRI_modality_allocation": {
+        "FLAIR_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0,
+            "format": 0,
+            "overlong": 0
+          },
+          "abs_sequence_advantage_mass": 0,
+          "admitted_responses": 0,
+          "admitted_sign_counts": {},
+          "all_format_valid": 5,
+          "all_raw_correct": 5,
+          "all_responses": 8,
+          "component_mass_sum": 0,
+          "correct_abs_sequence_mass": 0,
+          "correct_per_token_abs_coefficient_sum": 0,
+          "format_share_of_abs_component_masses": null,
+          "per_token_coefficient_abs_max": null,
+          "per_token_coefficient_abs_min": null,
+          "per_token_coefficient_abs_sum": 0,
+          "response_length_max": null,
+          "response_length_median": null,
+          "response_length_min": null,
+          "signed_sequence_advantage_mass": 0,
+          "tokens_admitted_total": 0,
+          "wrong_abs_sequence_mass": 0,
+          "wrong_per_token_abs_coefficient_sum": 0,
+          "wrong_positive_mass": 0,
+          "wrong_positive_share_of_total_mass": null
+        },
+        "T1_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0,
+            "format": 0,
+            "overlong": 0
+          },
+          "abs_sequence_advantage_mass": 0,
+          "admitted_responses": 0,
+          "admitted_sign_counts": {},
+          "all_format_valid": 5,
+          "all_raw_correct": 0,
+          "all_responses": 8,
+          "component_mass_sum": 0,
+          "correct_abs_sequence_mass": 0,
+          "correct_per_token_abs_coefficient_sum": 0,
+          "format_share_of_abs_component_masses": null,
+          "per_token_coefficient_abs_max": null,
+          "per_token_coefficient_abs_min": null,
+          "per_token_coefficient_abs_sum": 0,
+          "response_length_max": null,
+          "response_length_median": null,
+          "response_length_min": null,
+          "signed_sequence_advantage_mass": 0,
+          "tokens_admitted_total": 0,
+          "wrong_abs_sequence_mass": 0,
+          "wrong_per_token_abs_coefficient_sum": 0,
+          "wrong_positive_mass": 0,
+          "wrong_positive_share_of_total_mass": null
+        }
+      },
+      "MRI_share_joint_weighted_abs_sequence_advantage_mass": 0.0,
+      "max_replayed_advantage_error": 1.1102230246251565e-16,
+      "native_MRI_unit_gradient_l2": [
+        0.0,
+        0.0
+      ],
+      "native_joint_gradient_l2": 0.8034194242627047,
+      "native_unit_gradient_l2": [
+        0.0,
+        2.8834397806183567,
+        0.0,
+        1.256196795310206
+      ],
+      "rollout_origin": "OWN_POLICY"
+    },
+    "B0": {
+      "DALLAS_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0.27935650232884723,
+          "format": 0.03312361098076609,
+          "overlong": 0.0
+        },
+        "abs_sequence_advantage_mass": 0.2903977059891026,
+        "admitted_responses": 12,
+        "admitted_sign_counts": {
+          "CORRECT_POSITIVE": 6,
+          "WRONG_NEGATIVE": 6
+        },
+        "all_format_valid": 14,
+        "all_raw_correct": 9,
+        "all_responses": 16,
+        "component_mass_sum": 0.31248011330961334,
+        "correct_abs_sequence_mass": 0.14519885299455126,
+        "correct_per_token_abs_coefficient_sum": 0.007252217499807063,
+        "format_share_of_abs_component_masses": 0.1060023008502508,
+        "per_token_coefficient_abs_max": 0.0026041555154799733,
+        "per_token_coefficient_abs_min": 0.00011505531424724151,
+        "per_token_coefficient_abs_sum": 0.013019563326767052,
+        "response_length_max": 256,
+        "response_length_median": 19.0,
+        "response_length_min": 14,
+        "signed_sequence_advantage_mass": -6.765421556309548e-17,
+        "tokens_admitted_total": 523,
+        "wrong_abs_sequence_mass": 0.14519885299455135,
+        "wrong_per_token_abs_coefficient_sum": 0.00576734582695999,
+        "wrong_positive_mass": 0,
+        "wrong_positive_share_of_total_mass": 0.0
+      },
+      "MRI_admitted_format_varies": 3,
+      "MRI_admitted_group_contrast_counts": {
+        "BETWEEN_IMAGE_VALID_CLASS_ONLY": 2,
+        "WITHIN_IMAGE_VALID_CLASS": 2
+      },
+      "MRI_admitted_groups": 4,
+      "MRI_admitted_reward_SSE_sum": {
+        "between_image_SSE": 0.2852861284371264,
+        "total_SSE": 0.787148422222284,
+        "within_image_SSE": 0.5018622937851576
+      },
+      "MRI_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0.3317348999742923,
+          "format": 0.10346311553354907,
+          "overlong": 0.0
+        },
+        "abs_sequence_advantage_mass": 0.387832957964776,
+        "admitted_responses": 16,
+        "admitted_sign_counts": {
+          "CORRECT_POSITIVE": 6,
+          "WRONG_NEGATIVE": 10
+        },
+        "all_format_valid": 13,
+        "all_raw_correct": 6,
+        "all_responses": 16,
+        "component_mass_sum": 0.4351980155078414,
+        "correct_abs_sequence_mass": 0.193916478982388,
+        "correct_per_token_abs_coefficient_sum": 0.007303469376003169,
+        "format_share_of_abs_component_masses": 0.23773802234097016,
+        "per_token_coefficient_abs_max": 0.0023995852962084767,
+        "per_token_coefficient_abs_min": 0.0001937536733480137,
+        "per_token_coefficient_abs_sum": 0.013713173589621715,
+        "response_length_max": 119,
+        "response_length_median": 26.5,
+        "response_length_min": 16,
+        "signed_sequence_advantage_mass": -1.734723475976807e-18,
+        "tokens_admitted_total": 596,
+        "wrong_abs_sequence_mass": 0.193916478982388,
+        "wrong_per_token_abs_coefficient_sum": 0.006409704213618546,
+        "wrong_positive_mass": 0,
+        "wrong_positive_share_of_total_mass": 0.0
+      },
+      "MRI_group_contrast_counts": {
+        "BETWEEN_IMAGE_VALID_CLASS_ONLY": 2,
+        "WITHIN_IMAGE_VALID_CLASS": 2
+      },
+      "MRI_group_reward_SSE_sum": {
+        "between_image_SSE": 0.2852861284371264,
+        "total_SSE": 0.787148422222284,
+        "within_image_SSE": 0.5018622937851576
+      },
+      "MRI_groups": 4,
+      "MRI_images": 4,
+      "MRI_images_with_all_response_contrast": 3,
+      "MRI_images_with_valid_correct_wrong_contrast": 2,
+      "MRI_modality_allocation": {
+        "FLAIR_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0.19374365425327744,
+            "format": 0.05817023394938238,
+            "overlong": 0.0
+          },
+          "abs_sequence_advantage_mass": 0.25191388820265986,
+          "admitted_responses": 8,
+          "admitted_sign_counts": {
+            "CORRECT_POSITIVE": 5,
+            "WRONG_NEGATIVE": 3
+          },
+          "all_format_valid": 6,
+          "all_raw_correct": 5,
+          "all_responses": 8,
+          "component_mass_sum": 0.2519138882026598,
+          "correct_abs_sequence_mass": 0.16795418148204144,
+          "correct_per_token_abs_coefficient_sum": 0.006341902801916259,
+          "format_share_of_abs_component_masses": 0.23091316784640933,
+          "per_token_coefficient_abs_max": 0.0023995852962084767,
+          "per_token_coefficient_abs_min": 0.0002652715540409393,
+          "per_token_coefficient_abs_sum": 0.007394927798131933,
+          "response_length_max": 119,
+          "response_length_median": 44.0,
+          "response_length_min": 18,
+          "signed_sequence_advantage_mass": 0.08399447476142305,
+          "tokens_admitted_total": 400,
+          "wrong_abs_sequence_mass": 0.0839597067206184,
+          "wrong_per_token_abs_coefficient_sum": 0.0010530249962156738,
+          "wrong_positive_mass": 0,
+          "wrong_positive_share_of_total_mass": 0.0
+        },
+        "T1_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0.13799124572101482,
+            "format": 0.045292881584166694,
+            "overlong": 0.0
+          },
+          "abs_sequence_advantage_mass": 0.13591906976211618,
+          "admitted_responses": 8,
+          "admitted_sign_counts": {
+            "CORRECT_POSITIVE": 1,
+            "WRONG_NEGATIVE": 7
+          },
+          "all_format_valid": 7,
+          "all_raw_correct": 1,
+          "all_responses": 8,
+          "component_mass_sum": 0.1832841273051815,
+          "correct_abs_sequence_mass": 0.02596229750034656,
+          "correct_per_token_abs_coefficient_sum": 0.0009615665740869097,
+          "format_share_of_abs_component_masses": 0.24711840708797836,
+          "per_token_coefficient_abs_max": 0.0022979671191664724,
+          "per_token_coefficient_abs_min": 0.0001937536733480137,
+          "per_token_coefficient_abs_sum": 0.006318245791489782,
+          "response_length_max": 30,
+          "response_length_median": 25.0,
+          "response_length_min": 16,
+          "signed_sequence_advantage_mass": -0.08399447476142305,
+          "tokens_admitted_total": 196,
+          "wrong_abs_sequence_mass": 0.10995677226176961,
+          "wrong_per_token_abs_coefficient_sum": 0.005356679217402872,
+          "wrong_positive_mass": 0,
+          "wrong_positive_share_of_total_mass": 0.0
+        }
+      },
+      "MRI_share_joint_weighted_abs_sequence_advantage_mass": 0.5718304679765255,
+      "max_replayed_advantage_error": 2.220446049250313e-16,
+      "native_MRI_unit_gradient_l2": [
+        0.9710537125967604,
+        0.7274334804825691
+      ],
+      "native_joint_gradient_l2": 0.36668143070129633,
+      "native_unit_gradient_l2": [
+        0.9710537125967604,
+        0.6782869931618825,
+        0.7274334804825691,
+        0.6005100776123312
+      ],
+      "rollout_origin": "COMMON_PARENT"
+    },
+    "B1": {
+      "DALLAS_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0.24122120864885876,
+          "format": 0.09403133590491769,
+          "overlong": 0.0
+        },
+        "abs_sequence_advantage_mass": 0.2818263585982932,
+        "admitted_responses": 12,
+        "admitted_sign_counts": {
+          "CORRECT_POSITIVE": 4,
+          "WRONG_NEGATIVE": 8
+        },
+        "all_format_valid": 11,
+        "all_raw_correct": 4,
+        "all_responses": 16,
+        "component_mass_sum": 0.33525254455377645,
+        "correct_abs_sequence_mass": 0.14091317929914657,
+        "correct_per_token_abs_coefficient_sum": 0.007511373210475373,
+        "format_share_of_abs_component_masses": 0.2804791117397008,
+        "per_token_coefficient_abs_max": 0.0024554259278255558,
+        "per_token_coefficient_abs_min": 0.00010098291954497398,
+        "per_token_coefficient_abs_sum": 0.01002675587567916,
+        "response_length_max": 256,
+        "response_length_median": 21.0,
+        "response_length_min": 17,
+        "signed_sequence_advantage_mass": -5.204170427930421e-17,
+        "tokens_admitted_total": 843,
+        "wrong_abs_sequence_mass": 0.14091317929914662,
+        "wrong_per_token_abs_coefficient_sum": 0.0025153826652037858,
+        "wrong_positive_mass": 0,
+        "wrong_positive_share_of_total_mass": 0.0
+      },
+      "MRI_admitted_format_varies": 2,
+      "MRI_admitted_group_contrast_counts": {
+        "BETWEEN_IMAGE_VALID_CLASS_ONLY": 4
+      },
+      "MRI_admitted_groups": 4,
+      "MRI_admitted_reward_SSE_sum": {
+        "between_image_SSE": 0.36205138747709253,
+        "total_SSE": 0.7390931262714131,
+        "within_image_SSE": 0.37704173879432057
+      },
+      "MRI_allocation": {
+        "abs_component_masses": {
+          "accuracy": 0.3468576816128442,
+          "format": 0.0913423920383052,
+          "overlong": 0.0
+        },
+        "abs_sequence_advantage_mass": 0.3947493016276722,
+        "admitted_responses": 16,
+        "admitted_sign_counts": {
+          "CORRECT_POSITIVE": 6,
+          "WRONG_NEGATIVE": 8,
+          "WRONG_POSITIVE": 2
+        },
+        "all_format_valid": 12,
+        "all_raw_correct": 6,
+        "all_responses": 16,
+        "component_mass_sum": 0.4382000736511494,
+        "correct_abs_sequence_mass": 0.19626443881599842,
+        "correct_per_token_abs_coefficient_sum": 0.006081088559308506,
+        "format_share_of_abs_component_masses": 0.2084490567909461,
+        "per_token_coefficient_abs_max": 0.007426830670219151,
+        "per_token_coefficient_abs_min": 1.9141586169615364e-05,
+        "per_token_coefficient_abs_sum": 0.01902031443460224,
+        "response_length_max": 65,
+        "response_length_median": 30.0,
+        "response_length_min": 3,
+        "signed_sequence_advantage_mass": 3.903127820947816e-18,
+        "tokens_admitted_total": 531,
+        "wrong_abs_sequence_mass": 0.1984848628116738,
+        "wrong_per_token_abs_coefficient_sum": 0.012939225875293732,
+        "wrong_positive_mass": 0.0011102119978376912,
+        "wrong_positive_share_of_total_mass": 0.0028124482887238746
+      },
+      "MRI_group_contrast_counts": {
+        "BETWEEN_IMAGE_VALID_CLASS_ONLY": 4
+      },
+      "MRI_group_reward_SSE_sum": {
+        "between_image_SSE": 0.36205138747709253,
+        "total_SSE": 0.7390931262714131,
+        "within_image_SSE": 0.37704173879432057
+      },
+      "MRI_groups": 4,
+      "MRI_images": 4,
+      "MRI_images_with_all_response_contrast": 2,
+      "MRI_images_with_valid_correct_wrong_contrast": 0,
+      "MRI_modality_allocation": {
+        "FLAIR_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0.1951542268181607,
+            "format": 0.0456711960191526,
+            "overlong": 0.0
+          },
+          "abs_sequence_advantage_mass": 0.2408254228373133,
+          "admitted_responses": 8,
+          "admitted_sign_counts": {
+            "CORRECT_POSITIVE": 6,
+            "WRONG_NEGATIVE": 2
+          },
+          "all_format_valid": 6,
+          "all_raw_correct": 6,
+          "all_responses": 8,
+          "component_mass_sum": 0.24082542283731329,
+          "correct_abs_sequence_mass": 0.19626443881599842,
+          "correct_per_token_abs_coefficient_sum": 0.006081088559308506,
+          "format_share_of_abs_component_masses": 0.1896444132893944,
+          "per_token_coefficient_abs_max": 0.007426830670219151,
+          "per_token_coefficient_abs_min": 0.0003427768001639608,
+          "per_token_coefficient_abs_sum": 0.013850696029691616,
+          "response_length_max": 65,
+          "response_length_median": 39.0,
+          "response_length_min": 3,
+          "signed_sequence_advantage_mass": 0.1517034547946835,
+          "tokens_admitted_total": 287,
+          "wrong_abs_sequence_mass": 0.044560984021314906,
+          "wrong_per_token_abs_coefficient_sum": 0.007769607470383111,
+          "wrong_positive_mass": 0,
+          "wrong_positive_share_of_total_mass": 0.0
+        },
+        "T1_IMAGE": {
+          "abs_component_masses": {
+            "accuracy": 0.15170345479468347,
+            "format": 0.0456711960191526,
+            "overlong": 0.0
+          },
+          "abs_sequence_advantage_mass": 0.15392387879035888,
+          "admitted_responses": 8,
+          "admitted_sign_counts": {
+            "WRONG_NEGATIVE": 6,
+            "WRONG_POSITIVE": 2
+          },
+          "all_format_valid": 6,
+          "all_raw_correct": 0,
+          "all_responses": 8,
+          "component_mass_sum": 0.19737465081383607,
+          "correct_abs_sequence_mass": 0,
+          "correct_per_token_abs_coefficient_sum": 0,
+          "format_share_of_abs_component_masses": 0.23139342276648134,
+          "per_token_coefficient_abs_max": 0.001288722413942932,
+          "per_token_coefficient_abs_min": 1.9141586169615364e-05,
+          "per_token_coefficient_abs_sum": 0.005169618404910621,
+          "response_length_max": 47,
+          "response_length_median": 29.0,
+          "response_length_min": 17,
+          "signed_sequence_advantage_mass": -0.1517034547946835,
+          "tokens_admitted_total": 244,
+          "wrong_abs_sequence_mass": 0.15392387879035888,
+          "wrong_per_token_abs_coefficient_sum": 0.005169618404910621,
+          "wrong_positive_mass": 0.0011102119978376912,
+          "wrong_positive_share_of_total_mass": 0.007212734025172123
+        }
+      },
+      "MRI_share_joint_weighted_abs_sequence_advantage_mass": 0.5834518219231124,
+      "max_replayed_advantage_error": 0.0,
+      "native_MRI_unit_gradient_l2": [
+        0.9790508242036707,
+        2.1903027671767483
+      ],
+      "native_joint_gradient_l2": 0.6208485900437912,
+      "native_unit_gradient_l2": [
+        0.9790508242036707,
+        0.3801720968464603,
+        2.1903027671767483,
+        0.602645870821829
+      ],
+      "rollout_origin": "OWN_POLICY"
+    }
+  },
+  "new_gradients": 0,
+  "new_native_calls": 0,
+  "optimizer_updates": 0,
+  "reviewer": "/root/v2_actual_verifier",
+  "schema": "group-relative-visual-signal-independent-scalar-v1"
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "group-relative-synthetic-score-vs-feature-projection-v1",
+  "SYNTHETIC_NOT_MRI_EVIDENCE": true,
+  "policy": "P(FLAIR|x)=sigmoid(beta+gamma*x),x_F=+1,x_T=-1",
+  "observed_responses": "All4respondFLAIR (2F,2T); Fcorrect/Twrong, equal lengths",
+  "sample_std_advantages_abs": 0.8660254037844386,
+  "P_FLAIR_given_F": 0.8,
+  "P_FLAIR_given_T": 0.6,
+  "raw_answer_indicator_projection": 0.0,
+  "actual_score_function_gradient_beta": -0.34641016151377557,
+  "actual_score_function_gradient_gamma": 1.0392304845413263,
+  "margin_F_direction_under_gradient_ascent": 0.6928203230275507,
+  "margin_T_direction_under_gradient_ascent": 1.3856406460551018,
+  "normalization_note": "Shown sum-gradient without commonpositive group/length scalars. Score derivative has normalizer -E_policy[feature]. Zero indicatorprojection does NOT imply zero global-bias parametergradient.",
+  "new_native_calls": 0,
+  "new_backward": 0,
+  "optimizer_updates": 0,
+  "epsilon": 0.0
+}

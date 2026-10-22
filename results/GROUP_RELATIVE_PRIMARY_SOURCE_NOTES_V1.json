@@ -1,0 +1,93 @@
+{
+  "schema": "group-relative-bounded-primary-method-notes-v1",
+  "scope": "Targeted original-method comparison only; not a new literature survey or MRI replication",
+  "sources": [
+    {
+      "title": "Group Sequence Policy Optimization",
+      "version": "arXiv:2507.18071v2 (2025-07-28)",
+      "url": "https://arxiv.org/html/2507.18071v2",
+      "access": "Primary HTML methods read; no reproduction",
+      "location": "Sections 4.1 (Eqs5-7),4.2 (Eq10)",
+      "verified_method": "Same-query normalized rewards; sequence likelihood ratio exponent1/response_length and sequence clipping. At on-policy ratio1 each token score gradient has the scalar advantage divided by response length. This scalar does not determine a parameter-space direction without token VJPs.",
+      "MRI_result": "NOT_ESTABLISHED by this source",
+      "venue_status": "NOT_VERIFIED in this bounded check"
+    },
+    {
+      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+      "version": "arXiv:2402.03300v3 (2024-04-27)",
+      "url": "https://arxiv.org/html/2402.03300v3",
+      "access": "Primary HTML methods/discussion read; no reproduction",
+      "location": "Section4.1; Section5.2.1 Gradient Coefficient; AppendixA.1.6",
+      "verified_method": "GRPO compares responses to the same query using a group baseline and standardized reward. The paper separates data source, verifier and gradient coefficient; its mathematical-task results do not establish MRI transfer.",
+      "MRI_result": "NOT_ESTABLISHED",
+      "venue_status": "NOT_VERIFIED in this bounded check"
+    },
+    {
+      "title": "DAPO: An Open-Source LLM Reinforcement Learning System at Scale",
+      "version": "arXiv:2503.14476v2 (2025-05-20)",
+      "url": "https://arxiv.org/html/2503.14476v2",
+      "access": "Primary HTML Sections3.2-3.3 andAlgorithm1 read; no reproduction",
+      "location": "Section3.2, Eq11 andAlgorithm1; Section3.3",
+      "verified_method": "Filters prompts whose sampled accuracy is0or1 and resamples to fill a batch; also changes token-level loss aggregation. A fixed-response conditional admission proposal shares a filtering ancestor but must explicitly differ in conditional criterion and absence of oversampling; it cannot claim filtering itself is new.",
+      "MRI_result": "NOT_ESTABLISHED",
+      "venue_status": "NOT_VERIFIED in this bounded check"
+    },
+    {
+      "title": "Understanding R1-Zero-Like Training: A Critical Perspective",
+      "version": "arXiv:2503.20783v2 (2025-10-06)",
+      "url": "https://arxiv.org/html/2503.20783v2",
+      "access": "Primary HTML Sections3.1-3.2 read; no reproduction",
+      "location": "Sections3.1-3.2",
+      "verified_method": "Analyzes response-length and question-level standard-deviation weighting; Dr.GRPO removes those normalization factors. This is a close precedent for normalization claims, not proof that changing GSPO sequence ratios is appropriate for MRI. We retain current GSPO unless an independently specified candidate explicitly changes it.",
+      "MRI_result": "NOT_ESTABLISHED",
+      "venue_status": "NOT_VERIFIED in this bounded check"
+    },
+    {
+      "title": "Princeton Vero official code/training guide",
+      "version": "Git commit025ca3c800fc95224c86323c1f7fd33dceed3090 (current publicHEAD independently matches existing pinned review)",
+      "url": "https://github.com/zlab-princeton/vero/tree/025ca3c800fc95224c86323c1f7fd33dceed3090",
+      "access": "Official training guide read; existing pinned source review reused, no repeat formula audit",
+      "location": "docs/TRAINING.md; vero-rl/verl/trainer/ppo/core_algos.py",
+      "verified_method": "Task-routed verifiers and GSPO with seq-mean-token-mean aggregation; same-query normalization is inherited. Historical local Paired-Prompt cross-query grouping is a separate adaptation, not an official method.",
+      "existing_code_evidence": "results/ROOT_CAUSE_GSPO_PARITY_V1.json",
+      "MRI_result": "NOT_ESTABLISHED by original Vero",
+      "direct_GitHub_blob_fetch": "Web cache miss; existing pinned code evidence retained"
+    }
+  ],
+  "claims_not_made": [
+    "Global novelty",
+    "Known-method clinical MRI validation",
+    "Changed loss is standard Vero",
+    "CPU coefficient diagnostics prove image-conditioned learning"
+  ],
+  "candidate_C_not_selected_by_this_note": true,
+  "bounded_candidate_specific_extension": {
+    "queries": [
+      "site:arxiv.org GRPO same answer image contrastive advantage baseline",
+      "site:arxiv.org answer conditioned baseline group relative policy optimization cross prompt"
+    ],
+    "retrieval_scope": "Exactly two targeted queries after Claude selected answer-matched baseline; read only two directly relevant primary method sections, no broader survey",
+    "sources": [
+      {
+        "title": "mDPO: Conditional Preference Optimization for Multimodal Large Language Models",
+        "version": "arXiv:2406.11839v2 (2024-10-07)",
+        "url": "https://arxiv.org/html/2406.11839v2",
+        "access": "Primary HTML Section3.1 method equation read; no experiment reproduction",
+        "verified_method": "CoPO compares the SAME chosen full response under a preferred versus less-compatible image using DPO reference ratios and a logistic preference objective. It also has a separate reward anchor. Matching an answer category across independently sampled MRI responses is weaker than holding the entire response fixed; it does not eliminate reasoning-text nuisance.",
+        "comparison_boundary": "Same-answer/different-image preference is a known conceptual precedent; not global novelty. An on-policy group-relative conditional baseline has a different estimator/objective and is not thereby proven superior or original.",
+        "results_audit": "No numerical performance or MRI transfer claim checked in this bounded methods comparison",
+        "venue_status": "NOT_VERIFIED here"
+      },
+      {
+        "title": "Spurious Advantage Hidden in GRPO",
+        "version": "arXiv:2609.04063v1 (2026-09-03)",
+        "url": "https://arxiv.org/html/2609.04063v1",
+        "access": "Primary HTML Section3.1 and Section3.4 method read; no implementation/experiment reproduction",
+        "verified_method": "SignBalance keeps verifier signs, replaces composition-dependent magnitudes with a global scale and balances positive/negative reward classes. It treats guessing in bounded-answer tasks as a risk. This does not identify which of our MRI answers were guessed or provide anatomical evidence.",
+        "comparison_boundary": "Reward-sign balancing differs from grouping matched generated answer labels across true images. Neither literature similarity nor correct sign proves visual parameter-gradient improvement.",
+        "results_audit": "No MRI result or head-to-head reproduction checked",
+        "venue_status": "Preprint source; publication status beyond this not verified"
+      }
+    ]
+  }
+}

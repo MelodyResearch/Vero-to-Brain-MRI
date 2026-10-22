@@ -1,0 +1,9 @@
+{
+  "actual_results_remain_bound_to_executed_source_sha256": true,
+  "edit": "Clarify that same parsed label preserves verifier correctness variation across images; no full-response/visual-causal control.",
+  "executable_AST_without_module_docstring_identical": true,
+  "executed_source_sha256": "d3998ac46caa23ce9659e5d6c8c5d475dba4772a955354f74c631227cc60467d",
+  "final_source_sha256": "a1a54b9a75a327f0de4815ae450e0371e534e5904082b0f6e4d2183cc7be58ac",
+  "new_computation": 0,
+  "schema": "C-post-run-docstring-only-precision-v1"
+}

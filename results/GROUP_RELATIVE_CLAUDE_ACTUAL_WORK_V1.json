@@ -1,0 +1,44 @@
+{
+  "actual_model": "claude-opus-5-5",
+  "actual_numerical_evidence": "results/GROUP_RELATIVE_C_MATCHED_ACTUAL_CPU_V1.json",
+  "attribution": "Claude wrote the main implementation and report. Codex executed local actual-data CPU commands, independently reviewed and integrated. No claim Claude ran normally denied Bash commands or authored a separate git commit.",
+  "claude_cli_version": "2.1.306",
+  "claude_commands_run_by_root": [
+    "Targeted pytest",
+    "Actual immutable saved-response CPU analysis and C comparison"
+  ],
+  "independent_review": "results/GROUP_RELATIVE_C_IMPLEMENTATION_INDEPENDENT_REVIEW_V1.json",
+  "native_calls": 0,
+  "new_optimizer_updates": 0,
+  "normal_claude_permissions_preserved": true,
+  "passes": {
+    "final_scientific_interpretation": {
+      "elapsed_seconds": 157.37206754198996,
+      "exit_code": 0,
+      "finished_utc": "2026-10-22T07:47:05.710282+00:00",
+      "private_exit_receipt_sha256": "2aed453ba91dce73d94c5ec6f10353f5fdd3df07a94c970063a56108743a88c0"
+    },
+    "initial_implementation": {
+      "elapsed_seconds": 461.3886339580058,
+      "exit_code": 0,
+      "finished_utc": "2026-10-22T07:19:27.745586+00:00",
+      "private_exit_receipt_sha256": "a3ff87ee1c252120bfad0330ec7d814c85d69d85240bb88f81f6b7bf84649655"
+    },
+    "mathematical_corrections": {
+      "elapsed_seconds": 137.51974979200168,
+      "exit_code": 0,
+      "finished_utc": "2026-10-22T07:42:14.299883+00:00",
+      "private_exit_receipt_sha256": "cad36b1e9cabfeeaf4a38557970b467370a359e848db01d8bba2f566a8b3f0d1"
+    },
+    "one_candidate": {
+      "elapsed_seconds": 652.3704525000066,
+      "exit_code": 0,
+      "finished_utc": "2026-10-22T07:35:19.011688+00:00",
+      "private_exit_receipt_sha256": "0bb568b77578a452af9889d2c6f2cbb2f3fb0772575de180098bcb5166dd53c0"
+    }
+  },
+  "private_patient_images_weights_RNG_raw_responses_sent_to_Claude_this_task": false,
+  "role": "Primary method selection, CPU implementation, tests, review corrections and scientific report",
+  "schema": "group-relative-claude-actual-work-and-codex-verification-v1",
+  "scientific_decision": "INCONCLUSIVE"
+}

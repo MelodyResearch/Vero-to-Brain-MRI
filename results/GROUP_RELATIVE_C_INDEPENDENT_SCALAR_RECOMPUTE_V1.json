@@ -1,0 +1,140 @@
+{
+  "basis_sha256": "6f8873ee6b69b7ab4cf317cb902922496677957f9dc6bb0e9a67dc0e9fa2d47d",
+  "limits": [
+    "C is a counterfactual scalar advantage PLAN only; actual response vectors/gradients/margins/accuracy unavailable.",
+    "Action-dependent cohort baseline is not guaranteed unbiased. Answer-label matching is not identical full-response control.",
+    "Pair8 normalization/admission also differs from original A/BK4 planning; comparison cannot isolate baseline alone.",
+    "A0/B0 share data, their C reconstructions match exactly; A1/B1 from separate policies are observational.",
+    "Correlation/sign gains on correct labels are partially guaranteed by this construction, not independent learning validation."
+  ],
+  "macros": {
+    "A0": {
+      "abs_baseline_component_masses": {
+        "accuracy": 0.39125319614927395,
+        "format": 0.04533538917359199,
+        "overlong": 0.0
+      },
+      "abs_sequence_advantage_mass": 0.436588585322866,
+      "admitted_MRI_responses": 16,
+      "baseline_kinds": {
+        "ANSWER_MATCHED": 11,
+        "SAME_IMAGE_FALLBACK": 5
+      },
+      "credited_previously_inactive_images": 2,
+      "direct_inactive_images": 2,
+      "format_share_of_abs_component_mass": 0.10384006979950144,
+      "modality_signed_advantage_mass": {
+        "F": 0.023790583818775645,
+        "T": -0.12004174659808244
+      },
+      "nonzero_MRI_responses": 16,
+      "per_token_abs_coefficient_sum": 0.014563099093548179,
+      "sign_counts_nonzero": {
+        "CORRECT_POSITIVE": 6,
+        "WRONG_INVALID_NEGATIVE": 3,
+        "WRONG_VALID_NEGATIVE": 7
+      },
+      "signed_sequence_advantage_mass": -0.09625116277930679,
+      "valid_correctness_advantage_correlation": 0.9798114444760402,
+      "valid_credited_responses": 5,
+      "valid_credited_sign_correct": 5
+    },
+    "A1": {
+      "abs_baseline_component_masses": {
+        "accuracy": 0.3175305970808325,
+        "format": 0.08648361913710402,
+        "overlong": 0.0
+      },
+      "abs_sequence_advantage_mass": 0.40401421621793654,
+      "admitted_MRI_responses": 16,
+      "baseline_kinds": {
+        "ANSWER_MATCHED": 10,
+        "SAME_IMAGE_FALLBACK": 6
+      },
+      "credited_previously_inactive_images": 4,
+      "direct_inactive_images": 4,
+      "format_share_of_abs_component_mass": 0.21406083168729972,
+      "modality_signed_advantage_mass": {
+        "F": -0.007895000571819261,
+        "T": -0.16086761159440707
+      },
+      "nonzero_MRI_responses": 16,
+      "per_token_abs_coefficient_sum": 0.008846138304389422,
+      "sign_counts_nonzero": {
+        "CORRECT_POSITIVE": 5,
+        "WRONG_INVALID_NEGATIVE": 6,
+        "WRONG_VALID_NEGATIVE": 5
+      },
+      "signed_sequence_advantage_mass": -0.16876261216622634,
+      "valid_correctness_advantage_correlation": 0.9999978985336418,
+      "valid_credited_responses": 10,
+      "valid_credited_sign_correct": 10
+    },
+    "B0": {
+      "abs_baseline_component_masses": {
+        "accuracy": 0.39125319614927395,
+        "format": 0.04533538917359199,
+        "overlong": 0.0
+      },
+      "abs_sequence_advantage_mass": 0.436588585322866,
+      "admitted_MRI_responses": 16,
+      "baseline_kinds": {
+        "ANSWER_MATCHED": 11,
+        "SAME_IMAGE_FALLBACK": 5
+      },
+      "credited_previously_inactive_images": 2,
+      "direct_inactive_images": 2,
+      "format_share_of_abs_component_mass": 0.10384006979950144,
+      "modality_signed_advantage_mass": {
+        "F": 0.023790583818775645,
+        "T": -0.12004174659808244
+      },
+      "nonzero_MRI_responses": 16,
+      "per_token_abs_coefficient_sum": 0.014563099093548179,
+      "sign_counts_nonzero": {
+        "CORRECT_POSITIVE": 6,
+        "WRONG_INVALID_NEGATIVE": 3,
+        "WRONG_VALID_NEGATIVE": 7
+      },
+      "signed_sequence_advantage_mass": -0.09625116277930679,
+      "valid_correctness_advantage_correlation": 0.9798114444760402,
+      "valid_credited_responses": 5,
+      "valid_credited_sign_correct": 5
+    },
+    "B1": {
+      "abs_baseline_component_masses": {
+        "accuracy": 0.35346808996732726,
+        "format": 0.074306207561471,
+        "overlong": 0.0
+      },
+      "abs_sequence_advantage_mass": 0.4277742975287983,
+      "admitted_MRI_responses": 16,
+      "baseline_kinds": {
+        "ANSWER_MATCHED": 12,
+        "SAME_IMAGE_FALLBACK": 4
+      },
+      "credited_previously_inactive_images": 4,
+      "direct_inactive_images": 4,
+      "format_share_of_abs_component_mass": 0.17370423606731214,
+      "modality_signed_advantage_mass": {
+        "F": 0.03354051421272999,
+        "T": -0.1785403397676664
+      },
+      "nonzero_MRI_responses": 16,
+      "per_token_abs_coefficient_sum": 0.029932741256831798,
+      "sign_counts_nonzero": {
+        "CORRECT_POSITIVE": 6,
+        "WRONG_INVALID_NEGATIVE": 4,
+        "WRONG_VALID_NEGATIVE": 6
+      },
+      "signed_sequence_advantage_mass": -0.1449998255549364,
+      "valid_correctness_advantage_correlation": 1.0,
+      "valid_credited_responses": 12,
+      "valid_credited_sign_correct": 12
+    }
+  },
+  "new_gradients": 0,
+  "new_model_calls": 0,
+  "optimizer_updates": 0,
+  "schema": "answer-matched-C-independent-scalar-check-v1"
+}

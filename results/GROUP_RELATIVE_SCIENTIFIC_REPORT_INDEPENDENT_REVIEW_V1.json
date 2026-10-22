@@ -1,0 +1,62 @@
+{
+  "actual_results_sha256": "c5a97a38db35d525b193a8b15acb1a9484547db4279784eca34614feed882c40",
+  "checked_actual_values": {
+    "B1_format_abs_component_mass_share": 0.20844905679094608,
+    "B1_per_token_max_min": 387.9945269116842,
+    "B1_valid_correctness_advantage_correlation": 0.9196135768710267,
+    "C_common32_signed_weighted_MRI_sum": -0.09625116277930684,
+    "C_on_B1_format_abs_component_mass_share": 0.1737042360673121,
+    "C_on_B1_per_token_max_min": 44.50906022900101,
+    "C_on_B1_valid_correctness_advantage_correlation": 1.0,
+    "Common32_response_tokens": 1465,
+    "Common32_responses": 32
+  },
+  "executed_source_sha256": {
+    "scripts/compare_answer_matched_baseline_v1.py": "ee7162200997f279440d0c2dc5aab5798f5088514ff8c72c91955ea02fdeb925",
+    "src/mri_rl/answer_matched_baseline_v1.py": "d3998ac46caa23ce9659e5d6c8c5d475dba4772a955354f74c631227cc60467d",
+    "src/mri_rl/group_relative_visual_signal_v1.py": "920a73b2f27b2fbbdca9fc4a740348d8334de9acda9ac8f40b9a3990f03242d2",
+    "tests/test_answer_matched_baseline_v1.py": "a70171cf928f09027992c7db0afd1c4a4045e217368d4c2de9a361e84ed3337d",
+    "tests/test_group_relative_visual_signal_v1.py": "22e9820dc28353e120725d1fb18e00e55d7af781f5d9f951a8368c74fcd6afd0"
+  },
+  "final_C_source_sha256": "a1a54b9a75a327f0de4815ae450e0371e534e5904082b0f6e4d2183cc7be58ac",
+  "implementation_numeric_review_sha256": "5138aca0dbbfb3c4aa4e52d275c929bb751e43a1f900dde46e1cc44b2b7c2588",
+  "limits": [
+    "C is one combinedadvantage-plan treatment; baseline/scale/gate andglobalcentering change together.",
+    "C labelconditioned baseline changes expectedscore; sign/correlation gains are partly byconstruction.",
+    "Classlabelmatching does notfixfullresponse,prefix,length oridentifyanatomicalgrounding.",
+    "No newMRIaccuracy,Cgradient,canonicalmargin orcross-taskretentionresult.",
+    "OnlyCommon32 ismatched; segment1counterfactuals areobservational,notcausalmethodcomparison.",
+    "Prior-art discussion is explicitlybounded andclaimsnonovelty; this review isnotanindependentfullpaperreproduction."
+  ],
+  "new_gradients": 0,
+  "new_model_calls": 0,
+  "new_native_calls": 0,
+  "optimizer_updates": 0,
+  "privacy": {
+    "case_or_group_tables": false,
+    "patient_ids": false,
+    "private_paths": false,
+    "raw_responses": false,
+    "token_or_pixel_arrays": false,
+    "verdict": "PASS_AGGREGATE_ONLY"
+  },
+  "report_sha256": "52b64f1008743e2e0a6f3d255609d924a239c7a9ac432fbe801dd23e911aa1bc",
+  "resolved_final_report_findings": [
+    "Independent agreement stated as64checks,maxabsolute1.11e-16; notbitwise floating identity.",
+    "A1 Dallas-only statement limited to newlycomputed gradient; originalAdam moment history retained.",
+    "Prospective Cjoint gradient requires exactGSPO own-old ratios/clip derivatives and reconstruction against savedA/B vectors.",
+    "Prospective T1 check requires actuallypositive firstorderdirection plus comparison, withnumeric tolerance/aggregation frozenbeforeVJP.",
+    "Prospective read-only study is explicitlynotanimplemented/reviewedexecutablescope andnotanexecutionauthorization."
+  ],
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "schema": "group-relative-visual-learning-mechanism-final-scientific-review-v1",
+  "scientific_judgment": {
+    "C": "INCONCLUSIVE_CPU_COEFFICIENT_ONLY",
+    "MRI_accuracy_improvement": "NOT_DEMONSTRATED",
+    "native_scope_readiness": "PROSPECTIVE_ONLY_NOT_IMPLEMENTED_OR_REVIEWED",
+    "root_cause": "OBSERVED_SCALAR_SIGNAL_LIMITATIONS;CAUSAL_EXPLANATION_NOT_IDENTIFIED",
+    "training_readiness": "NOT_READY"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

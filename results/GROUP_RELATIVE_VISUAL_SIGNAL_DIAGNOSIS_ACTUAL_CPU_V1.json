@@ -1,0 +1,1783 @@
+{
+  "authentication": {
+    "parent_adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+    "prompt_condition": "concise",
+    "reward_calibration_sha256": "c5cbb6cb4c1dc4cb9fdfd8e5bd1d98b3e49b535dbab76f7100678ac435081c1f",
+    "scope_file_sha256": "afb0d7ef4af2bc581ffce761faba8975a00f32d6ff2ba9c2f4975c838c115482",
+    "segment_receipts": {
+      "A0": "068f6803a571d369103437664cc4777edfc9b30fbcf1e1cac927aabda7f7a292",
+      "A1": "44ee39dfc0888d581a33edadf358cd23263035df1a538d779abfe721efb358d3",
+      "B0": "fcedc58cdef6c7032c08014071c6470e235e0afbeb2abb9a7ca40b7aa0f97774",
+      "B1": "8004f4e58a8de1b9be432ebe2e82e1806a420a9e00a6755db25a4139e0f0137e"
+    },
+    "spec_sha256": "be933948d1e8680e15c3a393ecac0beb409c14c99185d4cb6814ced0acfffb87"
+  },
+  "boundaries": {
+    "DEV_or_final100_or_new16_reads_for_selection": 0,
+    "GPU": 0,
+    "backward_or_VJP": 0,
+    "generation": 0,
+    "heavy_runtime_imports": 0,
+    "model_loads": 0,
+    "new_rollouts_rewards_or_advantages": 0,
+    "optimizer_calls": 0,
+    "teacher_forced_forwards": 0,
+    "writes_inside_run_directory": 0
+  },
+  "claims": {
+    "accuracy": "NO_NEW_ACCURACY_RESULT",
+    "class_margins": "NOT_MEASURED here (diagnostic-only quantities need native canonical scoring)",
+    "existing_accuracy_context": "Parent Adam52 18/24, A54 16/24, B54 16/24 (DEV24, previously explored, unchanged)",
+    "gradient_direction": "NOT_IDENTIFIED: per-response/task gradient vectors were not saved; no cosine inferred",
+    "learning": "NOT_CLAIMED: scalar coefficients of saved sequences, not learning"
+  },
+  "implemented_by": "Claude Code (claude-opus-5-5)",
+  "inputs_unchanged_after_analysis": true,
+  "parent": {
+    "adam_step": 52,
+    "common_parent_state_bound": true,
+    "segment0_receipts_start_at_common_parent": true
+  },
+  "privacy": {
+    "absolute_paths": 0,
+    "checked_values": 115,
+    "hits": 0,
+    "status": "PASS"
+  },
+  "public_schema": {
+    "certifies_unlinkability": false,
+    "forbidden_keys_checked": 24,
+    "status": "PASS"
+  },
+  "regrade_status": "PRODUCTION_GRADER",
+  "schema": "group-relative-visual-signal-v1-aggregate",
+  "segment0_common32_matched": {
+    "B_minus_A": {
+      "admitted_groups": 2,
+      "allocation_by_task": {
+        "DALLAS": {
+          "abs_per_token_coefficient": 0.0,
+          "abs_weighted_advantage": 0.0,
+          "admitted_responses": 0,
+          "signed_per_token_coefficient": 0.0,
+          "signed_weighted_advantage": 0.0,
+          "sum_w": 0.0,
+          "tokens": 0
+        },
+        "MRI": {
+          "abs_per_token_coefficient": 0.0075708748470908966,
+          "abs_weighted_advantage": 0.2003339433677794,
+          "admitted_responses": 8,
+          "signed_per_token_coefficient": 0.00010181708890951845,
+          "signed_weighted_advantage": 3.8163916471489756e-17,
+          "sum_w": 0.25,
+          "tokens": 348
+        }
+      },
+      "allocation_total": {
+        "abs_per_token_coefficient": 0.007570874847090889,
+        "abs_weighted_advantage": 0.20033394336777915,
+        "admitted_responses": 8,
+        "signed_per_token_coefficient": 0.00010181708890951834,
+        "signed_weighted_advantage": 4.163336342344337e-17,
+        "sum_w": 0.25,
+        "tokens": 348
+      },
+      "push_per_token": {
+        "answer_prior_FLAIR_minus_T1": 0.0035814329498560244,
+        "image_conditioned": 0.004503972147764805,
+        "invalid_or_other_answers": -0.0030669026993260908
+      },
+      "push_sequence": {
+        "answer_prior_FLAIR_minus_T1": 0.08442750350967189,
+        "image_conditioned": 0.0952316806235804,
+        "invalid_or_other_answers": -0.10510226274419888
+      }
+    },
+    "arms": {
+      "A": {
+        "allocation": {
+          "by_correctness": {
+            "DALLAS|INVALID": {
+              "abs_per_token_coefficient": 0.00011505531424724151,
+              "abs_weighted_advantage": 0.029454160447293827,
+              "admitted_responses": 1,
+              "signed_per_token_coefficient": -0.00011505531424724151,
+              "signed_weighted_advantage": -0.029454160447293827,
+              "sum_w": 0.03125,
+              "tokens": 256
+            },
+            "DALLAS|VALID_CORRECT": {
+              "abs_per_token_coefficient": 0.007252217499807063,
+              "abs_weighted_advantage": 0.14519885299455126,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": 0.007252217499807063,
+              "signed_weighted_advantage": 0.14519885299455126,
+              "sum_w": 0.1875,
+              "tokens": 166
+            },
+            "DALLAS|VALID_WRONG": {
+              "abs_per_token_coefficient": 0.005652290512712748,
+              "abs_weighted_advantage": 0.1157446925472575,
+              "admitted_responses": 5,
+              "signed_per_token_coefficient": -0.005652290512712748,
+              "signed_weighted_advantage": -0.1157446925472575,
+              "sum_w": 0.15625,
+              "tokens": 101
+            },
+            "MRI|VALID_CORRECT": {
+              "abs_per_token_coefficient": 0.003467123408002962,
+              "abs_weighted_advantage": 0.09374950729849835,
+              "admitted_responses": 4,
+              "signed_per_token_coefficient": 0.003467123408002962,
+              "signed_weighted_advantage": 0.09374950729849835,
+              "sum_w": 0.125,
+              "tokens": 113
+            },
+            "MRI|VALID_WRONG": {
+              "abs_per_token_coefficient": 0.002675175334527858,
+              "abs_weighted_advantage": 0.09374950729849839,
+              "admitted_responses": 4,
+              "signed_per_token_coefficient": -0.002675175334527858,
+              "signed_weighted_advantage": -0.09374950729849839,
+              "sum_w": 0.125,
+              "tokens": 135
+            }
+          },
+          "by_image": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.013019563326767054,
+              "abs_weighted_advantage": 0.29039770598910253,
+              "admitted_responses": 12,
+              "signed_per_token_coefficient": 0.0014848716728470728,
+              "signed_weighted_advantage": -6.245004513516506e-17,
+              "sum_w": 0.375,
+              "tokens": 523
+            },
+            "MRI|F": {
+              "abs_per_token_coefficient": 0.0025832896691619003,
+              "abs_weighted_advantage": 0.09374950729849836,
+              "admitted_responses": 4,
+              "signed_per_token_coefficient": 0.000878753172825566,
+              "signed_weighted_advantage": -2.42861286636753e-17,
+              "sum_w": 0.125,
+              "tokens": 141
+            },
+            "MRI|T": {
+              "abs_per_token_coefficient": 0.0035590090733689196,
+              "abs_weighted_advantage": 0.09374950729849837,
+              "admitted_responses": 4,
+              "signed_per_token_coefficient": -8.68050993504618e-05,
+              "signed_weighted_advantage": -6.938893903907228e-18,
+              "sum_w": 0.125,
+              "tokens": 107
+            }
+          },
+          "by_image_and_answer": {
+            "F|FLAIR": {
+              "abs_per_token_coefficient": 0.001731021420993733,
+              "abs_weighted_advantage": 0.04687475364924917,
+              "admitted_responses": 3,
+              "signed_per_token_coefficient": 0.001731021420993733,
+              "signed_weighted_advantage": 0.04687475364924917,
+              "sum_w": 0.09375,
+              "tokens": 86
+            },
+            "F|contrast-enhanced T1": {
+              "abs_per_token_coefficient": 0.0008522682481681672,
+              "abs_weighted_advantage": 0.046874753649249194,
+              "admitted_responses": 1,
+              "signed_per_token_coefficient": -0.0008522682481681672,
+              "signed_weighted_advantage": -0.046874753649249194,
+              "sum_w": 0.03125,
+              "tokens": 55
+            },
+            "T|FLAIR": {
+              "abs_per_token_coefficient": 0.0018229070863596908,
+              "abs_weighted_advantage": 0.04687475364924919,
+              "admitted_responses": 3,
+              "signed_per_token_coefficient": -0.0018229070863596908,
+              "signed_weighted_advantage": -0.04687475364924919,
+              "sum_w": 0.09375,
+              "tokens": 80
+            },
+            "T|contrast-enhanced T1": {
+              "abs_per_token_coefficient": 0.001736101987009229,
+              "abs_weighted_advantage": 0.04687475364924918,
+              "admitted_responses": 1,
+              "signed_per_token_coefficient": 0.001736101987009229,
+              "signed_weighted_advantage": 0.04687475364924918,
+              "sum_w": 0.03125,
+              "tokens": 27
+            }
+          },
+          "by_task": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.013019563326767054,
+              "abs_weighted_advantage": 0.29039770598910253,
+              "admitted_responses": 12,
+              "signed_per_token_coefficient": 0.0014848716728470728,
+              "signed_weighted_advantage": -6.245004513516506e-17,
+              "sum_w": 0.375,
+              "tokens": 523
+            },
+            "MRI": {
+              "abs_per_token_coefficient": 0.00614229874253082,
+              "abs_weighted_advantage": 0.18749901459699672,
+              "admitted_responses": 8,
+              "signed_per_token_coefficient": 0.0007919480734751043,
+              "signed_weighted_advantage": -3.469446951953614e-17,
+              "sum_w": 0.25,
+              "tokens": 248
+            }
+          },
+          "label": "Admitted responses under the real joint weights. signed_weighted_advantage is zero-sum per group; abs mass and per-token coefficients (w*A/L: GSPO mean-over-tokens) are coefficients on sequence log-prob gradients, NOT_A_GRADIENT norm or direction.",
+          "push": {
+            "label": "SEQUENCE_COEFFICIENT push: sums of w*A (or w*A/L) over sampled responses by image x answer. answer_prior is the image-independent part; image_conditioned the image x answer interaction. NOT a gradient, margin or accuracy.",
+            "per_token": {
+              "answer_prior_FLAIR_minus_T1": -0.0009757194042070195,
+              "image_conditioned": 0.00614229874253082,
+              "invalid_or_other_answers": 0
+            },
+            "sequence": {
+              "answer_prior_FLAIR_minus_T1": 0.0,
+              "image_conditioned": 0.18749901459699675,
+              "invalid_or_other_answers": 0
+            }
+          },
+          "sign_vs_correctness": {
+            "CORRECT_NEGATIVE": 0,
+            "CORRECT_POSITIVE": 10,
+            "CORRECT_ZERO": 0,
+            "WRONG_INVALID_NEGATIVE": 1,
+            "WRONG_INVALID_POSITIVE": 0,
+            "WRONG_INVALID_ZERO": 0,
+            "WRONG_VALID_NEGATIVE": 9,
+            "WRONG_VALID_POSITIVE": 0,
+            "WRONG_VALID_ZERO": 0,
+            "agreement_fraction": 1.0,
+            "n": 20,
+            "point_biserial_correct_vs_advantage": 0.8829280518697705
+          },
+          "sign_vs_correctness_by_task": {
+            "DALLAS": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 6,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 1,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 5,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 12,
+              "point_biserial_correct_vs_advantage": 0.8941964679902467
+            },
+            "MRI": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 4,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 0,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 4,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 8,
+              "point_biserial_correct_vs_advantage": 0.8660254037844386
+            }
+          },
+          "task_shares": {
+            "abs_per_token_coefficient": {
+              "DALLAS": 0.6794518862354025,
+              "MRI": 0.32054811376459746
+            },
+            "abs_weighted_advantage": {
+              "DALLAS": 0.6076578756032363,
+              "MRI": 0.39234212439676347
+            },
+            "sum_w": {
+              "DALLAS": 0.6,
+              "MRI": 0.4
+            }
+          },
+          "total": {
+            "abs_per_token_coefficient": 0.019161862069297875,
+            "abs_weighted_advantage": 0.4778967205860994,
+            "admitted_responses": 20,
+            "signed_per_token_coefficient": 0.002276819746322177,
+            "signed_weighted_advantage": -1.0408340855860843e-16,
+            "sum_w": 0.625,
+            "tokens": 771
+          }
+        },
+        "anova_MRI": {
+          "correct": {
+            "between_image_ss": 1.25,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 3.75,
+            "value": "correct",
+            "within_image_share": 0.6666666666666666,
+            "within_image_ss": 2.5
+          },
+          "format": {
+            "between_image_ss": 0.625,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 2.375,
+            "value": "format",
+            "within_image_share": 0.7368421052631579,
+            "within_image_ss": 1.75
+          },
+          "r": {
+            "between_image_ss": 0.22505334171398172,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 0.8093259129945578,
+            "value": "r",
+            "within_image_share": 0.7219249524814176,
+            "within_image_ss": 0.5842725712805761
+          },
+          "r_raw": {
+            "between_image_ss": 0.865,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 2.8550000000000004,
+            "value": "r_raw",
+            "within_image_share": 0.6970227670753064,
+            "within_image_ss": 1.99
+          }
+        },
+        "anova_MRI_format_valid_only_correct": {
+          "between_image_ss": 1.7142857142857144,
+          "blocks": 2,
+          "n": 13,
+          "total_ss": 3.2142857142857144,
+          "value": "correct",
+          "within_image_share": 0.4666666666666667,
+          "within_image_ss": 1.5
+        },
+        "groups": {
+          "admitted_abs_weighted_component_mass_by_task": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": 0.2793565023288472,
+              "within_format": 0.03312361098076609,
+              "within_overlong": 0.0,
+              "within_unexplained": 7.025630077706069e-17
+            },
+            "MRI": {
+              "between_image": 0.0,
+              "within_accuracy": 0.1874990145969967,
+              "within_format": 0.0,
+              "within_overlong": 0.0,
+              "within_unexplained": 2.7755575615628914e-17
+            }
+          },
+          "admitted_by_task_and_contrast": {
+            "DALLAS|WITHIN_IMAGE_CLASS": 2,
+            "DALLAS|WITHIN_IMAGE_CLASS_WITH_FORMAT": 1,
+            "MRI|WITHIN_IMAGE_CLASS": 2
+          },
+          "admitted_signed_weighted_component_by_task_image": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": -6.938893903907228e-18,
+              "within_format": -3.469446951953614e-18,
+              "within_overlong": 0.0,
+              "within_unexplained": -5.984795992119984e-17
+            },
+            "MRI|F": {
+              "between_image": 0.0,
+              "within_accuracy": -1.734723475976807e-17,
+              "within_format": 0.0,
+              "within_overlong": 0.0,
+              "within_unexplained": -6.938893903907228e-18
+            },
+            "MRI|T": {
+              "between_image": 0.0,
+              "within_accuracy": 6.938893903907228e-18,
+              "within_format": 0.0,
+              "within_overlong": 0.0,
+              "within_unexplained": -2.0816681711721685e-17
+            }
+          },
+          "admitted_total": 5,
+          "decomposition_max_abs_residual": 0.0,
+          "gate_matches_planner_all": true,
+          "recomputed_advantage_max_abs_error": 0.0,
+          "total": 8,
+          "within_image_evidence": {
+            "DALLAS": {
+              "admitted_groups": 3,
+              "all_response_within_image": 3,
+              "between_image_only_or_format_only": 0,
+              "format_valid_within_image": 3,
+              "multi_image_groups": 0
+            },
+            "MRI": {
+              "admitted_groups": 2,
+              "all_response_within_image": 2,
+              "between_image_only_or_format_only": 0,
+              "format_valid_within_image": 2,
+              "multi_image_groups": 0
+            }
+          }
+        },
+        "image_stats": {
+          "MRI_pair_difficulty_patterns": {
+            "F:MIXED_VALID_CONTRAST|T:ALL_WRONG": 1,
+            "F:MIXED|T:MIXED_VALID_CONTRAST": 1
+          },
+          "counts": {
+            "by_task_image": {
+              "DALLAS": {
+                "all_correct": 0,
+                "all_wrong": 0,
+                "images_with_any_contrast": 4,
+                "images_with_format_valid_contrast": 3,
+                "images_with_only_format_or_invalid_contrast": 1
+              },
+              "MRI|F": {
+                "all_correct": 0,
+                "all_wrong": 0,
+                "images_with_any_contrast": 2,
+                "images_with_format_valid_contrast": 1,
+                "images_with_only_format_or_invalid_contrast": 1
+              },
+              "MRI|T": {
+                "all_correct": 0,
+                "all_wrong": 1,
+                "images_with_any_contrast": 1,
+                "images_with_format_valid_contrast": 1,
+                "images_with_only_format_or_invalid_contrast": 0
+              }
+            },
+            "images_with_any_contrast": 7,
+            "images_with_format_valid_contrast": 5
+          }
+        },
+        "regrade": {
+          "checked": 32,
+          "mismatches": 0
+        },
+        "responses": 32,
+        "reward_component_ss_MRI": {
+          "between_image": {
+            "reward_ss": 0.2250533417139817,
+            "terms": {
+              "accuracy": 0.18102569373854624,
+              "accuracy_x_format": 0.01902764797543545,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.025000000000000005,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "label": "Exact bilinear split of the calibrated-reward SS; format terms are variation caused by formatting, not MRI correctness",
+          "total": {
+            "reward_ss": 0.8093259129945577,
+            "terms": {
+              "accuracy": 0.5430770812156387,
+              "accuracy_x_format": 0.17124883177891898,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.09500000000000001,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "within_image": {
+            "reward_ss": 0.5842725712805761,
+            "terms": {
+              "accuracy": 0.3620513874770925,
+              "accuracy_x_format": 0.15222118380348354,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.07,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          }
+        }
+      },
+      "B": {
+        "allocation": {
+          "by_correctness": {
+            "DALLAS|INVALID": {
+              "abs_per_token_coefficient": 0.00011505531424724151,
+              "abs_weighted_advantage": 0.029454160447293827,
+              "admitted_responses": 1,
+              "signed_per_token_coefficient": -0.00011505531424724151,
+              "signed_weighted_advantage": -0.029454160447293827,
+              "sum_w": 0.03125,
+              "tokens": 256
+            },
+            "DALLAS|VALID_CORRECT": {
+              "abs_per_token_coefficient": 0.007252217499807063,
+              "abs_weighted_advantage": 0.14519885299455126,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": 0.007252217499807063,
+              "signed_weighted_advantage": 0.14519885299455126,
+              "sum_w": 0.1875,
+              "tokens": 166
+            },
+            "DALLAS|VALID_WRONG": {
+              "abs_per_token_coefficient": 0.005652290512712748,
+              "abs_weighted_advantage": 0.1157446925472575,
+              "admitted_responses": 5,
+              "signed_per_token_coefficient": -0.005652290512712748,
+              "signed_weighted_advantage": -0.1157446925472575,
+              "sum_w": 0.15625,
+              "tokens": 101
+            },
+            "MRI|INVALID": {
+              "abs_per_token_coefficient": 0.0030669026993260903,
+              "abs_weighted_advantage": 0.10510226274419888,
+              "admitted_responses": 3,
+              "signed_per_token_coefficient": -0.0030669026993260903,
+              "signed_weighted_advantage": -0.10510226274419888,
+              "sum_w": 0.09375,
+              "tokens": 208
+            },
+            "MRI|VALID_CORRECT": {
+              "abs_per_token_coefficient": 0.007303469376003169,
+              "abs_weighted_advantage": 0.193916478982388,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": 0.007303469376003169,
+              "signed_weighted_advantage": 0.193916478982388,
+              "sum_w": 0.1875,
+              "tokens": 180
+            },
+            "MRI|VALID_WRONG": {
+              "abs_per_token_coefficient": 0.0033428015142924557,
+              "abs_weighted_advantage": 0.08881421623818912,
+              "admitted_responses": 7,
+              "signed_per_token_coefficient": -0.0033428015142924557,
+              "signed_weighted_advantage": -0.08881421623818912,
+              "sum_w": 0.21875,
+              "tokens": 208
+            }
+          },
+          "by_image": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.013019563326767054,
+              "abs_weighted_advantage": 0.29039770598910253,
+              "admitted_responses": 12,
+              "signed_per_token_coefficient": 0.0014848716728470728,
+              "signed_weighted_advantage": -6.245004513516506e-17,
+              "sum_w": 0.375,
+              "tokens": 523
+            },
+            "MRI|F": {
+              "abs_per_token_coefficient": 0.007394927798131933,
+              "abs_weighted_advantage": 0.25191388820265986,
+              "admitted_responses": 8,
+              "signed_per_token_coefficient": 0.005288877805700585,
+              "signed_weighted_advantage": 0.08399447476142305,
+              "sum_w": 0.25,
+              "tokens": 400
+            },
+            "MRI|T": {
+              "abs_per_token_coefficient": 0.006318245791489781,
+              "abs_weighted_advantage": 0.13591906976211618,
+              "admitted_responses": 8,
+              "signed_per_token_coefficient": -0.004395112643315962,
+              "signed_weighted_advantage": -0.08399447476142305,
+              "sum_w": 0.25,
+              "tokens": 196
+            }
+          },
+          "by_image_and_answer": {
+            "F|FLAIR": {
+              "abs_per_token_coefficient": 0.006341902801916259,
+              "abs_weighted_advantage": 0.16795418148204144,
+              "admitted_responses": 5,
+              "signed_per_token_coefficient": 0.006341902801916259,
+              "signed_weighted_advantage": 0.16795418148204144,
+              "sum_w": 0.15625,
+              "tokens": 153
+            },
+            "F|INVALID_FORMAT": {
+              "abs_per_token_coefficient": 0.0007689355801596182,
+              "abs_weighted_advantage": 0.06833478883753533,
+              "admitted_responses": 2,
+              "signed_per_token_coefficient": -0.0007689355801596182,
+              "signed_weighted_advantage": -0.06833478883753533,
+              "sum_w": 0.0625,
+              "tokens": 192
+            },
+            "F|contrast-enhanced T1": {
+              "abs_per_token_coefficient": 0.0002840894160560557,
+              "abs_weighted_advantage": 0.015624917883083064,
+              "admitted_responses": 1,
+              "signed_per_token_coefficient": -0.0002840894160560557,
+              "signed_weighted_advantage": -0.015624917883083064,
+              "sum_w": 0.03125,
+              "tokens": 55
+            },
+            "T|FLAIR": {
+              "abs_per_token_coefficient": 0.0030587120982364,
+              "abs_weighted_advantage": 0.07318929835510606,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": -0.0030587120982364,
+              "signed_weighted_advantage": -0.07318929835510606,
+              "sum_w": 0.1875,
+              "tokens": 153
+            },
+            "T|INVALID_FORMAT": {
+              "abs_per_token_coefficient": 0.0022979671191664724,
+              "abs_weighted_advantage": 0.03676747390666356,
+              "admitted_responses": 1,
+              "signed_per_token_coefficient": -0.0022979671191664724,
+              "signed_weighted_advantage": -0.03676747390666356,
+              "sum_w": 0.03125,
+              "tokens": 16
+            },
+            "T|contrast-enhanced T1": {
+              "abs_per_token_coefficient": 0.0009615665740869097,
+              "abs_weighted_advantage": 0.02596229750034656,
+              "admitted_responses": 1,
+              "signed_per_token_coefficient": 0.0009615665740869097,
+              "signed_weighted_advantage": 0.02596229750034656,
+              "sum_w": 0.03125,
+              "tokens": 27
+            }
+          },
+          "by_task": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.013019563326767054,
+              "abs_weighted_advantage": 0.29039770598910253,
+              "admitted_responses": 12,
+              "signed_per_token_coefficient": 0.0014848716728470728,
+              "signed_weighted_advantage": -6.245004513516506e-17,
+              "sum_w": 0.375,
+              "tokens": 523
+            },
+            "MRI": {
+              "abs_per_token_coefficient": 0.013713173589621716,
+              "abs_weighted_advantage": 0.3878329579647761,
+              "admitted_responses": 16,
+              "signed_per_token_coefficient": 0.0008937651623846227,
+              "signed_weighted_advantage": 3.469446951953614e-18,
+              "sum_w": 0.5,
+              "tokens": 596
+            }
+          },
+          "label": "Admitted responses under the real joint weights. signed_weighted_advantage is zero-sum per group; abs mass and per-token coefficients (w*A/L: GSPO mean-over-tokens) are coefficients on sequence log-prob gradients, NOT_A_GRADIENT norm or direction.",
+          "push": {
+            "label": "SEQUENCE_COEFFICIENT push: sums of w*A (or w*A/L) over sampled responses by image x answer. answer_prior is the image-independent part; image_conditioned the image x answer interaction. NOT a gradient, margin or accuracy.",
+            "per_token": {
+              "answer_prior_FLAIR_minus_T1": 0.002605713545649005,
+              "image_conditioned": 0.010646270890295625,
+              "invalid_or_other_answers": -0.0030669026993260908
+            },
+            "sequence": {
+              "answer_prior_FLAIR_minus_T1": 0.08442750350967189,
+              "image_conditioned": 0.28273069522057714,
+              "invalid_or_other_answers": -0.10510226274419888
+            }
+          },
+          "sign_vs_correctness": {
+            "CORRECT_NEGATIVE": 0,
+            "CORRECT_POSITIVE": 12,
+            "CORRECT_ZERO": 0,
+            "WRONG_INVALID_NEGATIVE": 4,
+            "WRONG_INVALID_POSITIVE": 0,
+            "WRONG_INVALID_ZERO": 0,
+            "WRONG_VALID_NEGATIVE": 12,
+            "WRONG_VALID_POSITIVE": 0,
+            "WRONG_VALID_ZERO": 0,
+            "agreement_fraction": 1.0,
+            "n": 28,
+            "point_biserial_correct_vs_advantage": 0.9043111453039827
+          },
+          "sign_vs_correctness_by_task": {
+            "DALLAS": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 6,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 1,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 5,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 12,
+              "point_biserial_correct_vs_advantage": 0.8941964679902467
+            },
+            "MRI": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 6,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 3,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 7,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 16,
+              "point_biserial_correct_vs_advantage": 0.9250393493662314
+            }
+          },
+          "task_shares": {
+            "abs_per_token_coefficient": {
+              "DALLAS": 0.487026950045855,
+              "MRI": 0.5129730499541453
+            },
+            "abs_weighted_advantage": {
+              "DALLAS": 0.42816953202347446,
+              "MRI": 0.5718304679765257
+            },
+            "sum_w": {
+              "DALLAS": 0.42857142857142855,
+              "MRI": 0.5714285714285714
+            }
+          },
+          "total": {
+            "abs_per_token_coefficient": 0.026732736916388763,
+            "abs_weighted_advantage": 0.6782306639538785,
+            "admitted_responses": 28,
+            "signed_per_token_coefficient": 0.0023786368352316954,
+            "signed_weighted_advantage": -6.245004513516506e-17,
+            "sum_w": 0.875,
+            "tokens": 1119
+          }
+        },
+        "anova_MRI": {
+          "correct": {
+            "between_image_ss": 1.25,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 3.75,
+            "value": "correct",
+            "within_image_share": 0.6666666666666666,
+            "within_image_ss": 2.5
+          },
+          "format": {
+            "between_image_ss": 0.625,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 2.375,
+            "value": "format",
+            "within_image_share": 0.7368421052631579,
+            "within_image_ss": 1.75
+          },
+          "r": {
+            "between_image_ss": 0.22505334171398172,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 0.8093259129945578,
+            "value": "r",
+            "within_image_share": 0.7219249524814176,
+            "within_image_ss": 0.5842725712805761
+          },
+          "r_raw": {
+            "between_image_ss": 0.865,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 2.8550000000000004,
+            "value": "r_raw",
+            "within_image_share": 0.6970227670753064,
+            "within_image_ss": 1.99
+          }
+        },
+        "anova_MRI_format_valid_only_correct": {
+          "between_image_ss": 1.7142857142857144,
+          "blocks": 2,
+          "n": 13,
+          "total_ss": 3.2142857142857144,
+          "value": "correct",
+          "within_image_share": 0.4666666666666667,
+          "within_image_ss": 1.5
+        },
+        "groups": {
+          "admitted_abs_weighted_component_mass_by_task": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": 0.2793565023288472,
+              "within_format": 0.03312361098076609,
+              "within_overlong": 0.0,
+              "within_unexplained": 7.025630077706069e-17
+            },
+            "MRI": {
+              "between_image": 0.21120965514811416,
+              "within_accuracy": 0.19374365425327747,
+              "within_format": 0.06897541035569937,
+              "within_overlong": 0.0,
+              "within_unexplained": 3.2959746043559335e-17
+            }
+          },
+          "admitted_by_task_and_contrast": {
+            "DALLAS|WITHIN_IMAGE_CLASS": 2,
+            "DALLAS|WITHIN_IMAGE_CLASS_WITH_FORMAT": 1,
+            "MRI|BETWEEN_IMAGE_ONLY_WITH_FORMAT": 2,
+            "MRI|WITHIN_IMAGE_CLASS": 1,
+            "MRI|WITHIN_IMAGE_CLASS_WITH_FORMAT": 1
+          },
+          "admitted_signed_weighted_component_by_task_image": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": -6.938893903907228e-18,
+              "within_format": -3.469446951953614e-18,
+              "within_overlong": 0.0,
+              "within_unexplained": -5.984795992119984e-17
+            },
+            "MRI|F": {
+              "between_image": 0.08399447476142305,
+              "within_accuracy": 0.0,
+              "within_format": 0.0,
+              "within_overlong": 0.0,
+              "within_unexplained": 1.0408340855860843e-17
+            },
+            "MRI|T": {
+              "between_image": -0.08399447476142305,
+              "within_accuracy": 0.0,
+              "within_format": 0.0,
+              "within_overlong": 0.0,
+              "within_unexplained": 5.204170427930421e-18
+            }
+          },
+          "admitted_total": 7,
+          "decomposition_max_abs_residual": 1.1102230246251565e-16,
+          "gate_matches_planner_all": true,
+          "recomputed_advantage_max_abs_error": 0.0,
+          "total": 8,
+          "within_image_evidence": {
+            "DALLAS": {
+              "admitted_groups": 3,
+              "all_response_within_image": 3,
+              "between_image_only_or_format_only": 0,
+              "format_valid_within_image": 3,
+              "multi_image_groups": 0
+            },
+            "MRI": {
+              "admitted_groups": 4,
+              "all_response_within_image": 3,
+              "between_image_only_or_format_only": 2,
+              "format_valid_within_image": 2,
+              "multi_image_groups": 4
+            }
+          }
+        },
+        "image_stats": {
+          "MRI_pair_difficulty_patterns": {
+            "F:MIXED_VALID_CONTRAST|T:ALL_WRONG": 1,
+            "F:MIXED|T:MIXED_VALID_CONTRAST": 1
+          },
+          "counts": {
+            "by_task_image": {
+              "DALLAS": {
+                "all_correct": 0,
+                "all_wrong": 0,
+                "images_with_any_contrast": 4,
+                "images_with_format_valid_contrast": 3,
+                "images_with_only_format_or_invalid_contrast": 1
+              },
+              "MRI|F": {
+                "all_correct": 0,
+                "all_wrong": 0,
+                "images_with_any_contrast": 2,
+                "images_with_format_valid_contrast": 1,
+                "images_with_only_format_or_invalid_contrast": 1
+              },
+              "MRI|T": {
+                "all_correct": 0,
+                "all_wrong": 1,
+                "images_with_any_contrast": 1,
+                "images_with_format_valid_contrast": 1,
+                "images_with_only_format_or_invalid_contrast": 0
+              }
+            },
+            "images_with_any_contrast": 7,
+            "images_with_format_valid_contrast": 5
+          }
+        },
+        "regrade": {
+          "checked": 32,
+          "mismatches": 0
+        },
+        "responses": 32,
+        "reward_component_ss_MRI": {
+          "between_image": {
+            "reward_ss": 0.2250533417139817,
+            "terms": {
+              "accuracy": 0.18102569373854624,
+              "accuracy_x_format": 0.01902764797543545,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.025000000000000005,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "label": "Exact bilinear split of the calibrated-reward SS; format terms are variation caused by formatting, not MRI correctness",
+          "total": {
+            "reward_ss": 0.8093259129945577,
+            "terms": {
+              "accuracy": 0.5430770812156387,
+              "accuracy_x_format": 0.17124883177891898,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.09500000000000001,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "within_image": {
+            "reward_ss": 0.5842725712805761,
+            "terms": {
+              "accuracy": 0.3620513874770925,
+              "accuracy_x_format": 0.15222118380348354,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.07,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          }
+        }
+      }
+    },
+    "exposure": {
+      "by_task": {
+        "DALLAS": 16,
+        "MRI": 16
+      },
+      "identical": true,
+      "responses": 32,
+      "tokens_total": 1465
+    },
+    "label": "EXACT_MATCHED: same Parent Adam52 policy, identical 32 responses/tokens/images/rewards; only grouping differs",
+    "shared_block_anova": {
+      "correct": {
+        "between_image_ss": 1.25,
+        "blocks": 2,
+        "n": 16,
+        "total_ss": 3.75,
+        "value": "correct",
+        "within_image_share": 0.6666666666666666,
+        "within_image_ss": 2.5
+      },
+      "format": {
+        "between_image_ss": 0.625,
+        "blocks": 2,
+        "n": 16,
+        "total_ss": 2.375,
+        "value": "format",
+        "within_image_share": 0.7368421052631579,
+        "within_image_ss": 1.75
+      },
+      "r": {
+        "between_image_ss": 0.22505334171398172,
+        "blocks": 2,
+        "n": 16,
+        "total_ss": 0.8093259129945578,
+        "value": "r",
+        "within_image_share": 0.7219249524814176,
+        "within_image_ss": 0.5842725712805761
+      },
+      "r_raw": {
+        "between_image_ss": 0.865,
+        "blocks": 2,
+        "n": 16,
+        "total_ss": 2.8550000000000004,
+        "value": "r_raw",
+        "within_image_share": 0.6970227670753064,
+        "within_image_ss": 1.99
+      }
+    },
+    "shared_block_anova_format_valid_only_correct": {
+      "between_image_ss": 1.7142857142857144,
+      "blocks": 2,
+      "n": 13,
+      "total_ss": 3.2142857142857144,
+      "value": "correct",
+      "within_image_share": 0.4666666666666667,
+      "within_image_ss": 1.5
+    },
+    "shared_image_stats": {
+      "MRI_pair_difficulty_patterns": {
+        "F:MIXED_VALID_CONTRAST|T:ALL_WRONG": 1,
+        "F:MIXED|T:MIXED_VALID_CONTRAST": 1
+      },
+      "counts": {
+        "by_task_image": {
+          "MRI|F": {
+            "all_correct": 0,
+            "all_wrong": 0,
+            "images_with_any_contrast": 2,
+            "images_with_format_valid_contrast": 1,
+            "images_with_only_format_or_invalid_contrast": 1
+          },
+          "MRI|T": {
+            "all_correct": 0,
+            "all_wrong": 1,
+            "images_with_any_contrast": 1,
+            "images_with_format_valid_contrast": 1,
+            "images_with_only_format_or_invalid_contrast": 0
+          }
+        },
+        "images_with_any_contrast": 3,
+        "images_with_format_valid_contrast": 2
+      }
+    },
+    "shared_reward_component_ss": {
+      "between_image": {
+        "reward_ss": 0.2250533417139817,
+        "terms": {
+          "accuracy": 0.18102569373854624,
+          "accuracy_x_format": 0.01902764797543545,
+          "accuracy_x_overlong": 0.0,
+          "format": 0.025000000000000005,
+          "format_x_overlong": 0.0,
+          "overlong": 0.0
+        }
+      },
+      "label": "Exact bilinear split of the calibrated-reward SS; format terms are variation caused by formatting, not MRI correctness",
+      "total": {
+        "reward_ss": 0.8093259129945577,
+        "terms": {
+          "accuracy": 0.5430770812156387,
+          "accuracy_x_format": 0.17124883177891898,
+          "accuracy_x_overlong": 0.0,
+          "format": 0.09500000000000001,
+          "format_x_overlong": 0.0,
+          "overlong": 0.0
+        }
+      },
+      "within_image": {
+        "reward_ss": 0.5842725712805761,
+        "terms": {
+          "accuracy": 0.3620513874770925,
+          "accuracy_x_format": 0.15222118380348354,
+          "accuracy_x_overlong": 0.0,
+          "format": 0.07,
+          "format_x_overlong": 0.0,
+          "overlong": 0.0
+        }
+      }
+    }
+  },
+  "segment1_own_policy_observational": {
+    "arms": {
+      "A": {
+        "allocation": {
+          "by_correctness": {
+            "DALLAS|INVALID": {
+              "abs_per_token_coefficient": 0.013122865106467674,
+              "abs_weighted_advantage": 0.13748469362257046,
+              "admitted_responses": 5,
+              "signed_per_token_coefficient": -0.013122865106467674,
+              "signed_weighted_advantage": -0.13748469362257046,
+              "sum_w": 0.15625,
+              "tokens": 668
+            },
+            "DALLAS|VALID_CORRECT": {
+              "abs_per_token_coefficient": 0.006146309260104153,
+              "abs_weighted_advantage": 0.18563435313806756,
+              "admitted_responses": 5,
+              "signed_per_token_coefficient": 0.006146309260104153,
+              "signed_weighted_advantage": 0.18563435313806756,
+              "sum_w": 0.15625,
+              "tokens": 396
+            },
+            "DALLAS|VALID_WRONG": {
+              "abs_per_token_coefficient": 0.0026514558438070863,
+              "abs_weighted_advantage": 0.048149659515497156,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": -0.0026514558438070863,
+              "signed_weighted_advantage": -0.048149659515497156,
+              "sum_w": 0.1875,
+              "tokens": 113
+            }
+          },
+          "by_image": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.021920630210378916,
+              "abs_weighted_advantage": 0.37126870627613523,
+              "admitted_responses": 16,
+              "signed_per_token_coefficient": -0.009628011690170609,
+              "signed_weighted_advantage": -4.9439619065339e-17,
+              "sum_w": 0.5,
+              "tokens": 1177
+            }
+          },
+          "by_image_and_answer": {},
+          "by_task": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.021920630210378916,
+              "abs_weighted_advantage": 0.37126870627613523,
+              "admitted_responses": 16,
+              "signed_per_token_coefficient": -0.009628011690170609,
+              "signed_weighted_advantage": -4.9439619065339e-17,
+              "sum_w": 0.5,
+              "tokens": 1177
+            }
+          },
+          "label": "Admitted responses under the real joint weights. signed_weighted_advantage is zero-sum per group; abs mass and per-token coefficients (w*A/L: GSPO mean-over-tokens) are coefficients on sequence log-prob gradients, NOT_A_GRADIENT norm or direction.",
+          "push": {
+            "label": "SEQUENCE_COEFFICIENT push: sums of w*A (or w*A/L) over sampled responses by image x answer. answer_prior is the image-independent part; image_conditioned the image x answer interaction. NOT a gradient, margin or accuracy.",
+            "per_token": {
+              "answer_prior_FLAIR_minus_T1": 0.0,
+              "image_conditioned": 0.0,
+              "invalid_or_other_answers": 0
+            },
+            "sequence": {
+              "answer_prior_FLAIR_minus_T1": 0.0,
+              "image_conditioned": 0.0,
+              "invalid_or_other_answers": 0
+            }
+          },
+          "sign_vs_correctness": {
+            "CORRECT_NEGATIVE": 0,
+            "CORRECT_POSITIVE": 5,
+            "CORRECT_ZERO": 0,
+            "WRONG_INVALID_NEGATIVE": 5,
+            "WRONG_INVALID_POSITIVE": 0,
+            "WRONG_INVALID_ZERO": 0,
+            "WRONG_VALID_NEGATIVE": 6,
+            "WRONG_VALID_POSITIVE": 0,
+            "WRONG_VALID_ZERO": 0,
+            "agreement_fraction": 1.0,
+            "n": 16,
+            "point_biserial_correct_vs_advantage": 0.9249064007352423
+          },
+          "sign_vs_correctness_by_task": {
+            "DALLAS": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 5,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 5,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 6,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 16,
+              "point_biserial_correct_vs_advantage": 0.9249064007352423
+            }
+          },
+          "task_shares": {
+            "abs_per_token_coefficient": {
+              "DALLAS": 1.0
+            },
+            "abs_weighted_advantage": {
+              "DALLAS": 1.0
+            },
+            "sum_w": {
+              "DALLAS": 1.0
+            }
+          },
+          "total": {
+            "abs_per_token_coefficient": 0.021920630210378916,
+            "abs_weighted_advantage": 0.37126870627613523,
+            "admitted_responses": 16,
+            "signed_per_token_coefficient": -0.009628011690170609,
+            "signed_weighted_advantage": -4.9439619065339e-17,
+            "sum_w": 0.5,
+            "tokens": 1177
+          }
+        },
+        "anova_MRI": {
+          "correct": {
+            "between_image_ss": 1.625,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 3.375,
+            "value": "correct",
+            "within_image_share": 0.5185185185185185,
+            "within_image_ss": 1.75
+          },
+          "format": {
+            "between_image_ss": 0.0,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 3.5,
+            "value": "format",
+            "within_image_share": 1.0,
+            "within_image_ss": 3.5
+          },
+          "r": {
+            "between_image_ss": 0.23533340186011015,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 0.8951564447501712,
+            "value": "r",
+            "within_image_share": 0.7371036054755891,
+            "within_image_ss": 0.6598230428900611
+          },
+          "r_raw": {
+            "between_image_ss": 1.04,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 2.8600000000000003,
+            "value": "r_raw",
+            "within_image_share": 0.6363636363636364,
+            "within_image_ss": 1.82
+          }
+        },
+        "anova_MRI_format_valid_only_correct": {
+          "between_image_ss": 2.5,
+          "blocks": 2,
+          "n": 10,
+          "total_ss": 2.5,
+          "value": "correct",
+          "within_image_share": 0.0,
+          "within_image_ss": 0.0
+        },
+        "groups": {
+          "admitted_abs_weighted_component_mass_by_task": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": 0.3108006124684102,
+              "within_format": 0.13375722362149875,
+              "within_overlong": 0.0,
+              "within_unexplained": 7.28583859910259e-17
+            }
+          },
+          "admitted_by_task_and_contrast": {
+            "DALLAS|WITHIN_IMAGE_CLASS_WITH_FORMAT": 4
+          },
+          "admitted_signed_weighted_component_by_task_image": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": 1.9081958235744878e-17,
+              "within_format": -5.204170427930421e-18,
+              "within_overlong": 0.0,
+              "within_unexplained": -6.245004513516506e-17
+            }
+          },
+          "admitted_total": 4,
+          "decomposition_max_abs_residual": 6.938893903907228e-18,
+          "gate_matches_planner_all": true,
+          "recomputed_advantage_max_abs_error": 0.0,
+          "total": 8,
+          "within_image_evidence": {
+            "DALLAS": {
+              "admitted_groups": 4,
+              "all_response_within_image": 4,
+              "between_image_only_or_format_only": 0,
+              "format_valid_within_image": 4,
+              "multi_image_groups": 0
+            }
+          }
+        },
+        "image_stats": {
+          "MRI_pair_difficulty_patterns": {
+            "F:MIXED|T:ALL_WRONG": 2
+          },
+          "counts": {
+            "by_task_image": {
+              "DALLAS": {
+                "all_correct": 0,
+                "all_wrong": 0,
+                "images_with_any_contrast": 4,
+                "images_with_format_valid_contrast": 4,
+                "images_with_only_format_or_invalid_contrast": 0
+              },
+              "MRI|F": {
+                "all_correct": 0,
+                "all_wrong": 0,
+                "images_with_any_contrast": 2,
+                "images_with_format_valid_contrast": 0,
+                "images_with_only_format_or_invalid_contrast": 2
+              },
+              "MRI|T": {
+                "all_correct": 0,
+                "all_wrong": 2,
+                "images_with_any_contrast": 0,
+                "images_with_format_valid_contrast": 0,
+                "images_with_only_format_or_invalid_contrast": 0
+              }
+            },
+            "images_with_any_contrast": 6,
+            "images_with_format_valid_contrast": 4
+          }
+        },
+        "regrade": {
+          "checked": 32,
+          "mismatches": 0
+        },
+        "responses": 32,
+        "reward_component_ss_MRI": {
+          "between_image": {
+            "reward_ss": 0.23533340186011012,
+            "terms": {
+              "accuracy": 0.23533340186011012,
+              "accuracy_x_format": 0.0,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.0,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "label": "Exact bilinear split of the calibrated-reward SS; format terms are variation caused by formatting, not MRI correctness",
+          "total": {
+            "reward_ss": 0.895156444750171,
+            "terms": {
+              "accuracy": 0.4887693730940748,
+              "accuracy_x_format": 0.2663870716560962,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.14,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "within_image": {
+            "reward_ss": 0.659823042890061,
+            "terms": {
+              "accuracy": 0.2534359712339647,
+              "accuracy_x_format": 0.2663870716560962,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.14,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          }
+        }
+      },
+      "B": {
+        "allocation": {
+          "by_correctness": {
+            "DALLAS|INVALID": {
+              "abs_per_token_coefficient": 0.0005925626107717802,
+              "abs_weighted_advantage": 0.09442861515776277,
+              "admitted_responses": 3,
+              "signed_per_token_coefficient": -0.0005925626107717802,
+              "signed_weighted_advantage": -0.09442861515776277,
+              "sum_w": 0.09375,
+              "tokens": 610
+            },
+            "DALLAS|VALID_CORRECT": {
+              "abs_per_token_coefficient": 0.007511373210475373,
+              "abs_weighted_advantage": 0.14091317929914657,
+              "admitted_responses": 4,
+              "signed_per_token_coefficient": 0.007511373210475373,
+              "signed_weighted_advantage": 0.14091317929914657,
+              "sum_w": 0.125,
+              "tokens": 77
+            },
+            "DALLAS|VALID_WRONG": {
+              "abs_per_token_coefficient": 0.0019228200544320053,
+              "abs_weighted_advantage": 0.046484564141383855,
+              "admitted_responses": 5,
+              "signed_per_token_coefficient": -0.0019228200544320053,
+              "signed_weighted_advantage": -0.046484564141383855,
+              "sum_w": 0.15625,
+              "tokens": 156
+            },
+            "MRI|INVALID": {
+              "abs_per_token_coefficient": 0.00902225882030763,
+              "abs_weighted_advantage": 0.08912196804262981,
+              "admitted_responses": 4,
+              "signed_per_token_coefficient": -0.00902225882030763,
+              "signed_weighted_advantage": -0.08912196804262981,
+              "sum_w": 0.125,
+              "tokens": 143
+            },
+            "MRI|VALID_CORRECT": {
+              "abs_per_token_coefficient": 0.006081088559308506,
+              "abs_weighted_advantage": 0.19626443881599842,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": 0.006081088559308506,
+              "signed_weighted_advantage": 0.19626443881599842,
+              "sum_w": 0.1875,
+              "tokens": 219
+            },
+            "MRI|VALID_WRONG": {
+              "abs_per_token_coefficient": 0.003916967054986101,
+              "abs_weighted_advantage": 0.10936289476904396,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": -0.0038133772945387707,
+              "signed_weighted_advantage": -0.10714247077336858,
+              "sum_w": 0.1875,
+              "tokens": 169
+            }
+          },
+          "by_image": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.010026755875679161,
+              "abs_weighted_advantage": 0.28182635859829325,
+              "admitted_responses": 12,
+              "signed_per_token_coefficient": 0.004995990545271588,
+              "signed_weighted_advantage": -4.85722573273506e-17,
+              "sum_w": 0.375,
+              "tokens": 843
+            },
+            "MRI|F": {
+              "abs_per_token_coefficient": 0.013850696029691616,
+              "abs_weighted_advantage": 0.24082542283731334,
+              "admitted_responses": 8,
+              "signed_per_token_coefficient": -0.0016885189110746055,
+              "signed_weighted_advantage": 0.1517034547946835,
+              "sum_w": 0.25,
+              "tokens": 287
+            },
+            "MRI|T": {
+              "abs_per_token_coefficient": 0.00516961840491062,
+              "abs_weighted_advantage": 0.15392387879035888,
+              "admitted_responses": 8,
+              "signed_per_token_coefficient": -0.00506602864446329,
+              "signed_weighted_advantage": -0.15170345479468347,
+              "sum_w": 0.25,
+              "tokens": 244
+            }
+          },
+          "by_image_and_answer": {
+            "F|FLAIR": {
+              "abs_per_token_coefficient": 0.006081088559308506,
+              "abs_weighted_advantage": 0.19626443881599842,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": 0.006081088559308506,
+              "signed_weighted_advantage": 0.19626443881599842,
+              "sum_w": 0.1875,
+              "tokens": 219
+            },
+            "F|INVALID_FORMAT": {
+              "abs_per_token_coefficient": 0.007769607470383111,
+              "abs_weighted_advantage": 0.044560984021314906,
+              "admitted_responses": 2,
+              "signed_per_token_coefficient": -0.007769607470383111,
+              "signed_weighted_advantage": -0.044560984021314906,
+              "sum_w": 0.0625,
+              "tokens": 68
+            },
+            "T|FLAIR": {
+              "abs_per_token_coefficient": 0.003916967054986101,
+              "abs_weighted_advantage": 0.10936289476904396,
+              "admitted_responses": 6,
+              "signed_per_token_coefficient": -0.0038133772945387707,
+              "signed_weighted_advantage": -0.10714247077336858,
+              "sum_w": 0.1875,
+              "tokens": 169
+            },
+            "T|INVALID_FORMAT": {
+              "abs_per_token_coefficient": 0.0012526513499245195,
+              "abs_weighted_advantage": 0.044560984021314906,
+              "admitted_responses": 2,
+              "signed_per_token_coefficient": -0.0012526513499245195,
+              "signed_weighted_advantage": -0.044560984021314906,
+              "sum_w": 0.0625,
+              "tokens": 75
+            }
+          },
+          "by_task": {
+            "DALLAS": {
+              "abs_per_token_coefficient": 0.010026755875679161,
+              "abs_weighted_advantage": 0.28182635859829325,
+              "admitted_responses": 12,
+              "signed_per_token_coefficient": 0.004995990545271588,
+              "signed_weighted_advantage": -4.85722573273506e-17,
+              "sum_w": 0.375,
+              "tokens": 843
+            },
+            "MRI": {
+              "abs_per_token_coefficient": 0.01902031443460224,
+              "abs_weighted_advantage": 0.39474930162767213,
+              "admitted_responses": 16,
+              "signed_per_token_coefficient": -0.006754547555537895,
+              "signed_weighted_advantage": 0.0,
+              "sum_w": 0.5,
+              "tokens": 531
+            }
+          },
+          "label": "Admitted responses under the real joint weights. signed_weighted_advantage is zero-sum per group; abs mass and per-token coefficients (w*A/L: GSPO mean-over-tokens) are coefficients on sequence log-prob gradients, NOT_A_GRADIENT norm or direction.",
+          "push": {
+            "label": "SEQUENCE_COEFFICIENT push: sums of w*A (or w*A/L) over sampled responses by image x answer. answer_prior is the image-independent part; image_conditioned the image x answer interaction. NOT a gradient, margin or accuracy.",
+            "per_token": {
+              "answer_prior_FLAIR_minus_T1": 0.002267711264769735,
+              "image_conditioned": 0.009894465853847276,
+              "invalid_or_other_answers": -0.00902225882030763
+            },
+            "sequence": {
+              "answer_prior_FLAIR_minus_T1": 0.08912196804262984,
+              "image_conditioned": 0.303406909589367,
+              "invalid_or_other_answers": -0.08912196804262981
+            }
+          },
+          "sign_vs_correctness": {
+            "CORRECT_NEGATIVE": 0,
+            "CORRECT_POSITIVE": 10,
+            "CORRECT_ZERO": 0,
+            "WRONG_INVALID_NEGATIVE": 7,
+            "WRONG_INVALID_POSITIVE": 0,
+            "WRONG_INVALID_ZERO": 0,
+            "WRONG_VALID_NEGATIVE": 9,
+            "WRONG_VALID_POSITIVE": 2,
+            "WRONG_VALID_ZERO": 0,
+            "agreement_fraction": 0.9285714285714286,
+            "n": 28,
+            "point_biserial_correct_vs_advantage": 0.9286316318092581
+          },
+          "sign_vs_correctness_by_task": {
+            "DALLAS": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 4,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 3,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 5,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 12,
+              "point_biserial_correct_vs_advantage": 0.9204441101975236
+            },
+            "MRI": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 6,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 4,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 4,
+              "WRONG_VALID_POSITIVE": 2,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 0.875,
+              "n": 16,
+              "point_biserial_correct_vs_advantage": 0.9362398447128029
+            }
+          },
+          "task_shares": {
+            "abs_per_token_coefficient": {
+              "DALLAS": 0.3451899199669072,
+              "MRI": 0.6548100800330929
+            },
+            "abs_weighted_advantage": {
+              "DALLAS": 0.4165481780768877,
+              "MRI": 0.5834518219231125
+            },
+            "sum_w": {
+              "DALLAS": 0.42857142857142855,
+              "MRI": 0.5714285714285714
+            }
+          },
+          "total": {
+            "abs_per_token_coefficient": 0.0290470703102814,
+            "abs_weighted_advantage": 0.6765756602259653,
+            "admitted_responses": 28,
+            "signed_per_token_coefficient": -0.0017585570102663076,
+            "signed_weighted_advantage": -4.163336342344337e-17,
+            "sum_w": 0.875,
+            "tokens": 1374
+          }
+        },
+        "anova_MRI": {
+          "correct": {
+            "between_image_ss": 2.25,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 3.75,
+            "value": "correct",
+            "within_image_share": 0.4,
+            "within_image_ss": 1.5
+          },
+          "format": {
+            "between_image_ss": 0.0,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 3.0,
+            "value": "format",
+            "within_image_share": 1.0,
+            "within_image_ss": 3.0
+          },
+          "r": {
+            "between_image_ss": 0.3258462487293833,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 0.8914088569208641,
+            "value": "r",
+            "within_image_share": 0.6344592650168042,
+            "within_image_ss": 0.565562608191481
+          },
+          "r_raw": {
+            "between_image_ss": 1.44,
+            "blocks": 2,
+            "n": 16,
+            "total_ss": 3.0000000000000004,
+            "value": "r_raw",
+            "within_image_share": 0.5199999999999999,
+            "within_image_ss": 1.56
+          }
+        },
+        "anova_MRI_format_valid_only_correct": {
+          "between_image_ss": 3.0,
+          "blocks": 2,
+          "n": 12,
+          "total_ss": 3.0,
+          "value": "correct",
+          "within_image_share": 0.0,
+          "within_image_ss": 0.0
+        },
+        "groups": {
+          "admitted_abs_weighted_component_mass_by_task": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": 0.24122120864885876,
+              "within_format": 0.09403133590491769,
+              "within_overlong": 0.0,
+              "within_unexplained": 6.765421556309548e-17
+            },
+            "MRI": {
+              "between_image": 0.303406909589367,
+              "within_accuracy": 0.08690154404695441,
+              "within_format": 0.0913423920383052,
+              "within_overlong": 0.0,
+              "within_unexplained": 1.0408340855860843e-17
+            }
+          },
+          "admitted_by_task_and_contrast": {
+            "DALLAS|WITHIN_IMAGE_CLASS_WITH_FORMAT": 3,
+            "MRI|BETWEEN_IMAGE_ONLY": 2,
+            "MRI|BETWEEN_IMAGE_ONLY_WITH_FORMAT": 2
+          },
+          "admitted_signed_weighted_component_by_task_image": {
+            "DALLAS": {
+              "between_image": 0.0,
+              "within_accuracy": 2.0816681711721685e-17,
+              "within_format": -5.204170427930421e-18,
+              "within_overlong": 0.0,
+              "within_unexplained": -6.765421556309548e-17
+            },
+            "MRI|F": {
+              "between_image": 0.1517034547946835,
+              "within_accuracy": 0.0,
+              "within_format": 0.0,
+              "within_overlong": 0.0,
+              "within_unexplained": 0.0
+            },
+            "MRI|T": {
+              "between_image": -0.15170345479468347,
+              "within_accuracy": 0.0,
+              "within_format": 0.0,
+              "within_overlong": 0.0,
+              "within_unexplained": 3.469446951953614e-18
+            }
+          },
+          "admitted_total": 7,
+          "decomposition_max_abs_residual": 2.220446049250313e-16,
+          "gate_matches_planner_all": true,
+          "recomputed_advantage_max_abs_error": 0.0,
+          "total": 8,
+          "within_image_evidence": {
+            "DALLAS": {
+              "admitted_groups": 3,
+              "all_response_within_image": 3,
+              "between_image_only_or_format_only": 0,
+              "format_valid_within_image": 3,
+              "multi_image_groups": 0
+            },
+            "MRI": {
+              "admitted_groups": 4,
+              "all_response_within_image": 2,
+              "between_image_only_or_format_only": 4,
+              "format_valid_within_image": 0,
+              "multi_image_groups": 4
+            }
+          }
+        },
+        "image_stats": {
+          "MRI_pair_difficulty_patterns": {
+            "F:MIXED|T:ALL_WRONG": 2
+          },
+          "counts": {
+            "by_task_image": {
+              "DALLAS": {
+                "all_correct": 0,
+                "all_wrong": 1,
+                "images_with_any_contrast": 3,
+                "images_with_format_valid_contrast": 3,
+                "images_with_only_format_or_invalid_contrast": 0
+              },
+              "MRI|F": {
+                "all_correct": 0,
+                "all_wrong": 0,
+                "images_with_any_contrast": 2,
+                "images_with_format_valid_contrast": 0,
+                "images_with_only_format_or_invalid_contrast": 2
+              },
+              "MRI|T": {
+                "all_correct": 0,
+                "all_wrong": 2,
+                "images_with_any_contrast": 0,
+                "images_with_format_valid_contrast": 0,
+                "images_with_only_format_or_invalid_contrast": 0
+              }
+            },
+            "images_with_any_contrast": 5,
+            "images_with_format_valid_contrast": 3
+          }
+        },
+        "regrade": {
+          "checked": 32,
+          "mismatches": 0
+        },
+        "responses": 32,
+        "reward_component_ss_MRI": {
+          "between_image": {
+            "reward_ss": 0.3258462487293833,
+            "terms": {
+              "accuracy": 0.3258462487293833,
+              "accuracy_x_format": 0.0,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.0,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "label": "Exact bilinear split of the calibrated-reward SS; format terms are variation caused by formatting, not MRI correctness",
+          "total": {
+            "reward_ss": 0.891408856920864,
+            "terms": {
+              "accuracy": 0.5430770812156387,
+              "accuracy_x_format": 0.2283317757052253,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.12000000000000002,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          },
+          "within_image": {
+            "reward_ss": 0.5655626081914807,
+            "terms": {
+              "accuracy": 0.21723083248625547,
+              "accuracy_x_format": 0.2283317757052253,
+              "accuracy_x_overlong": 0.0,
+              "format": 0.12000000000000002,
+              "format_x_overlong": 0.0,
+              "overlong": 0.0
+            }
+          }
+        }
+      }
+    },
+    "label": "OBSERVATIONAL: A and B segment-1 rollouts come from DIFFERENT post-update policies; never mixed or matched"
+  },
+  "status": "EXECUTED_CPU_READ_ONLY",
+  "actual_execution": {
+    "exit_code": 0,
+    "wall_seconds": 2.4034054580261,
+    "peak_RSS_bytes": 145932288,
+    "source_unchanged": true,
+    "source_sha256": {
+      "src/mri_rl/group_relative_visual_signal_v1.py": "19af69ba6ce24f6ba285444ce4b4e7da5b78f07a436d7e2502bd28ff0834c7bb",
+      "scripts/analyze_group_relative_visual_signal_v1.py": "d9b9c07b9e783e3d1e878a25887ce95f11c95cdf4bfdccc240ffd24b0f7c9c4d"
+    },
+    "new_native_calls": 0,
+    "new_backward": 0,
+    "optimizer_updates": 0
+  },
+  "actual_test_first": {
+    "missing_module_RED_exit": 2,
+    "synthetic_tests_after_implementation_passed": 11,
+    "test_seconds": 0.29,
+    "new_native_calls": 0
+  },
+  "publication_redactions": [
+    "Complete per-group group_stats tables, including locally joinable unit/group indices and per-image outcomes, are PRIVATE; explicitly removed by Codex pending source regression fix."
+  ],
+  "scientific_label_warning": "push fields are indicator coefficient projections only, NOT literal parameter gradients or prior/grounding decomposition; sigmoid score-normalizer counterexample independently verified."
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "group-relative-existing-joint-gradient-evidence-reuse-v1",
+  "source_result": "results/V2_REGRESSION_DIAGNOSIS_ACTUAL_CPU_V1.json",
+  "source_sha256": "fcd3028fb0226a21db7cb54ef20bec50a00047b4dc416781a68e5e58edef8bfa",
+  "status": "REUSED_EXISTING_INDEPENDENTLY_REPRODUCED_EVIDENCE_NO_NEW_TENSOR_COMPUTATION",
+  "common_parent_Common32": true,
+  "gA0_l2": 0.2750697330574495,
+  "gB0_l2": 0.3666814255862649,
+  "cos_gA0_gB0": 0.6825624995285676,
+  "gB0_minus_gA0_l2": 0.2691246462321986,
+  "difference_interpretation": "Segment-0 Dallas units are the same bundles, grouping and parent in both arms; if their native gradients are deterministic, gB0-gA0 = 0.25*(MRI unit differences) only (DERIVED_UNDER_DETERMINISM_ASSUMPTION)",
+  "limitations": [
+    "Actual saved JOINT gradients demonstrate grouping changes the update input, not whether MRI class margins improve.",
+    "The difference can isolate MRI grouping change only under shared identical Dallas-gradient determinism and matching fixed joint weights; this does NOT recover either absolute MRI or Dallas vector.",
+    "No per-response/task VJP, MRI-Dallas cosine, C gradient or canonical-margin direction is fabricated."
+  ],
+  "new_native_calls": 0,
+  "new_gradients": 0,
+  "optimizer_updates": 0
+}

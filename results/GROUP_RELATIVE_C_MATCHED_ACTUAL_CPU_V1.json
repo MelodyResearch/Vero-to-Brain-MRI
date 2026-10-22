@@ -1,0 +1,768 @@
+{
+  "actual_execution": {
+    "backward": 0,
+    "elapsed_seconds": 2.257185375026893,
+    "exit_code": 0,
+    "finished_utc": "2026-10-22T07:42:46.770435+00:00",
+    "generation": 0,
+    "model_loads": 0,
+    "native_TF": 0,
+    "optimizer_updates": 0,
+    "peak_child_RSS_bytes": 115605504,
+    "source_sha256": {
+      "scripts/compare_answer_matched_baseline_v1.py": "ee7162200997f279440d0c2dc5aab5798f5088514ff8c72c91955ea02fdeb925",
+      "src/mri_rl/answer_matched_baseline_v1.py": "d3998ac46caa23ce9659e5d6c8c5d475dba4772a955354f74c631227cc60467d",
+      "src/mri_rl/group_relative_visual_signal_v1.py": "920a73b2f27b2fbbdca9fc4a740348d8334de9acda9ac8f40b9a3990f03242d2",
+      "tests/test_answer_matched_baseline_v1.py": "a70171cf928f09027992c7db0afd1c4a4045e217368d4c2de9a361e84ed3337d",
+      "tests/test_group_relative_visual_signal_v1.py": "22e9820dc28353e120725d1fb18e00e55d7af781f5d9f951a8368c74fcd6afd0"
+    },
+    "source_unchanged": true
+  },
+  "analysis": {
+    "authentication": {
+      "parent_adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+      "prompt_condition": "concise",
+      "reward_calibration_sha256": "c5cbb6cb4c1dc4cb9fdfd8e5bd1d98b3e49b535dbab76f7100678ac435081c1f",
+      "scope_file_sha256": "afb0d7ef4af2bc581ffce761faba8975a00f32d6ff2ba9c2f4975c838c115482",
+      "segment_receipts": {
+        "A0": "068f6803a571d369103437664cc4777edfc9b30fbcf1e1cac927aabda7f7a292",
+        "A1": "44ee39dfc0888d581a33edadf358cd23263035df1a538d779abfe721efb358d3",
+        "B0": "fcedc58cdef6c7032c08014071c6470e235e0afbeb2abb9a7ca40b7aa0f97774",
+        "B1": "8004f4e58a8de1b9be432ebe2e82e1806a420a9e00a6755db25a4139e0f0137e"
+      }
+    },
+    "boundaries": {
+      "DEV_or_final100_or_new16_reads_for_selection": 0,
+      "GPU": 0,
+      "backward_or_VJP": 0,
+      "generation": 0,
+      "heavy_runtime_imports": 0,
+      "model_loads": 0,
+      "new_rollouts_rewards_or_advantages": 0,
+      "optimizer_calls": 0,
+      "teacher_forced_forwards": 0,
+      "writes_inside_run_directory": 0
+    },
+    "candidate": "ANSWER_MATCHED_CROSS_IMAGE_BASELINE",
+    "claims": {
+      "accuracy": "NO_NEW_ACCURACY_RESULT",
+      "class_margins": "NOT_MEASURED here (diagnostic-only quantities need native canonical scoring)",
+      "existing_accuracy_context": "Parent Adam52 18/24, A54 16/24, B54 16/24 (DEV24, previously explored, unchanged)",
+      "gradient_direction": "NOT_IDENTIFIED: per-response/task gradient vectors were not saved; no cosine inferred",
+      "learning": "NOT_CLAIMED: scalar coefficients of saved sequences, not learning"
+    },
+    "common32_matched_A_B_C": {
+      "arms": {
+        "A_direct_actual_plan": {
+          "MRI_admitted_responses": 8,
+          "baseline_kind_counts_admitted": {
+            "GROUP_MEAN": 8
+          },
+          "by_image": {
+            "F": {
+              "abs_per_token_coefficient": 0.0025832896691619003,
+              "abs_weighted_advantage": 0.09374950729849836,
+              "admitted_responses": 4,
+              "signed_weighted_advantage": -2.42861286636753e-17
+            },
+            "T": {
+              "abs_per_token_coefficient": 0.0035590090733689196,
+              "abs_weighted_advantage": 0.09374950729849837,
+              "admitted_responses": 4,
+              "signed_weighted_advantage": -1.0408340855860843e-17
+            }
+          },
+          "centering": {
+            "answer_matched_set_max_abs_sum": null,
+            "answer_matched_sets": 0,
+            "global_centering_lost": false,
+            "limitation": "Matched cohorts are individually centered; same-image fallback baselines overlap them, so the summed advantage is generally nonzero. Deliberately NOT recentered (that would be another candidate).",
+            "signed_unweighted_advantage_MRI_admitted_total": -1.1102230246251565e-15,
+            "signed_weighted_advantage_MRI_total": -3.469446951953614e-17,
+            "signed_weighted_advantage_by_image": {
+              "F": -2.42861286636753e-17,
+              "T": -1.0408340855860843e-17
+            }
+          },
+          "compute": {
+            "MRI_admitted_responses": 8,
+            "admitted_response_tokens": 771,
+            "new_generations": 0,
+            "new_rewards": 0,
+            "note": "Counts a native GSPO step WOULD need (one backward per admitted response); nothing here is executed.",
+            "optimizer_updates_if_trained": 1,
+            "per_response_backward_calls_if_trained": 20
+          },
+          "definitions": {
+            "format_share": "sum w|format part| / sum w(|acc|+|format|+|overlong|+|unexplained|) relative to each response's OWN baseline set; a coefficient-mass descriptor, NOT a variance or gradient share"
+          },
+          "format_share_of_abs_baseline_split_mass": 0.0,
+          "hard_modality_coverage": {
+            "direct_inactive_images": 2,
+            "images_receiving_nonzero_C_credit": 0,
+            "valid_credited_responses": 0,
+            "valid_credited_sign_correct": 0
+          },
+          "label_indicator_projection": {
+            "label": "RESPONSE_LABEL_INDICATOR_COEFFICIENT_PROJECTION: sums of w*A (or w*A/L) over sampled responses, projected onto response-label indicators 1[answer] and 1[image]x1[answer]. These are NOT parameter-gradient parts and NOT even a literal bias-parameter gradient: a score-function gradient also carries the policy normalizer -E_policy[feature], which matters whenever the per-image advantage sum is nonzero (results/GROUP_RELATIVE_SYNTHETIC_SCORE_NORMALIZER_COUNTEREXAMPLE_V1.json: zero answer-indicator projection with nonzero bias and image-feature score gradients). Not a margin or accuracy.",
+            "sequence": {
+              "answer_indicator_projection_FLAIR_minus_T1": 0.0,
+              "image_x_answer_indicator_projection": 0.18749901459699675,
+              "invalid_or_other_answer_indicator_projection": 0
+            }
+          },
+          "max_abs_unexplained": 2.220446049250313e-16,
+          "per_token_coefficient_max_over_min": 4.333333333333335,
+          "point_biserial_valid_admitted": 0.8660254037844386,
+          "sign": {
+            "CORRECT_NEGATIVE": 0,
+            "CORRECT_POSITIVE": 4,
+            "CORRECT_ZERO": 0,
+            "WRONG_INVALID_NEGATIVE": 0,
+            "WRONG_INVALID_POSITIVE": 0,
+            "WRONG_INVALID_ZERO": 0,
+            "WRONG_VALID_NEGATIVE": 4,
+            "WRONG_VALID_POSITIVE": 0,
+            "WRONG_VALID_ZERO": 0,
+            "agreement_fraction": 1.0,
+            "n": 8,
+            "point_biserial_correct_vs_advantage": 0.8660254037844386
+          },
+          "sign_note": "For C answer-matched responses sign = correctness BY CONSTRUCTION; not independent learning evidence",
+          "task_shares": {
+            "abs_per_token_coefficient": {
+              "DALLAS": 0.6794518862354025,
+              "MRI": 0.32054811376459746
+            },
+            "abs_weighted_advantage": {
+              "DALLAS": 0.6076578756032363,
+              "MRI": 0.39234212439676347
+            },
+            "sum_w": {
+              "DALLAS": 0.6,
+              "MRI": 0.4
+            }
+          }
+        },
+        "B_paired_actual_plan": {
+          "MRI_admitted_responses": 16,
+          "baseline_kind_counts_admitted": {
+            "GROUP_MEAN": 16
+          },
+          "by_image": {
+            "F": {
+              "abs_per_token_coefficient": 0.007394927798131933,
+              "abs_weighted_advantage": 0.25191388820265986,
+              "admitted_responses": 8,
+              "signed_weighted_advantage": 0.08399447476142305
+            },
+            "T": {
+              "abs_per_token_coefficient": 0.006318245791489782,
+              "abs_weighted_advantage": 0.13591906976211618,
+              "admitted_responses": 8,
+              "signed_weighted_advantage": -0.08399447476142305
+            }
+          },
+          "centering": {
+            "answer_matched_set_max_abs_sum": null,
+            "answer_matched_sets": 0,
+            "global_centering_lost": false,
+            "limitation": "Matched cohorts are individually centered; same-image fallback baselines overlap them, so the summed advantage is generally nonzero. Deliberately NOT recentered (that would be another candidate).",
+            "signed_unweighted_advantage_MRI_admitted_total": -5.551115123125783e-17,
+            "signed_weighted_advantage_MRI_total": -1.734723475976807e-18,
+            "signed_weighted_advantage_by_image": {
+              "F": 0.08399447476142305,
+              "T": -0.08399447476142305
+            }
+          },
+          "compute": {
+            "MRI_admitted_responses": 16,
+            "admitted_response_tokens": 1119,
+            "new_generations": 0,
+            "new_rewards": 0,
+            "note": "Counts a native GSPO step WOULD need (one backward per admitted response); nothing here is executed.",
+            "optimizer_updates_if_trained": 1,
+            "per_response_backward_calls_if_trained": 28
+          },
+          "definitions": {
+            "format_share": "sum w|format part| / sum w(|acc|+|format|+|overlong|+|unexplained|) relative to each response's OWN baseline set; a coefficient-mass descriptor, NOT a variance or gradient share"
+          },
+          "format_share_of_abs_baseline_split_mass": 0.23773802234097013,
+          "hard_modality_coverage": {
+            "direct_inactive_images": 2,
+            "images_receiving_nonzero_C_credit": 2,
+            "valid_credited_responses": 5,
+            "valid_credited_sign_correct": 5
+          },
+          "label_indicator_projection": {
+            "label": "RESPONSE_LABEL_INDICATOR_COEFFICIENT_PROJECTION: sums of w*A (or w*A/L) over sampled responses, projected onto response-label indicators 1[answer] and 1[image]x1[answer]. These are NOT parameter-gradient parts and NOT even a literal bias-parameter gradient: a score-function gradient also carries the policy normalizer -E_policy[feature], which matters whenever the per-image advantage sum is nonzero (results/GROUP_RELATIVE_SYNTHETIC_SCORE_NORMALIZER_COUNTEREXAMPLE_V1.json: zero answer-indicator projection with nonzero bias and image-feature score gradients). Not a margin or accuracy.",
+            "sequence": {
+              "answer_indicator_projection_FLAIR_minus_T1": 0.08442750350967189,
+              "image_x_answer_indicator_projection": 0.28273069522057714,
+              "invalid_or_other_answer_indicator_projection": -0.10510226274419888
+            }
+          },
+          "max_abs_unexplained": 2.220446049250313e-16,
+          "per_token_coefficient_max_over_min": 12.384721562921927,
+          "point_biserial_valid_admitted": 0.9554617203179048,
+          "sign": {
+            "CORRECT_NEGATIVE": 0,
+            "CORRECT_POSITIVE": 6,
+            "CORRECT_ZERO": 0,
+            "WRONG_INVALID_NEGATIVE": 3,
+            "WRONG_INVALID_POSITIVE": 0,
+            "WRONG_INVALID_ZERO": 0,
+            "WRONG_VALID_NEGATIVE": 7,
+            "WRONG_VALID_POSITIVE": 0,
+            "WRONG_VALID_ZERO": 0,
+            "agreement_fraction": 1.0,
+            "n": 16,
+            "point_biserial_correct_vs_advantage": 0.9250393493662314
+          },
+          "sign_note": "For C answer-matched responses sign = correctness BY CONSTRUCTION; not independent learning evidence",
+          "task_shares": {
+            "abs_per_token_coefficient": {
+              "DALLAS": 0.487026950045855,
+              "MRI": 0.5129730499541453
+            },
+            "abs_weighted_advantage": {
+              "DALLAS": 0.42816953202347446,
+              "MRI": 0.5718304679765257
+            },
+            "sum_w": {
+              "DALLAS": 0.42857142857142855,
+              "MRI": 0.5714285714285714
+            }
+          }
+        },
+        "C_answer_matched_COUNTERFACTUAL": {
+          "MRI_admitted_responses": 16,
+          "baseline_kind_counts_admitted": {
+            "ANSWER_MATCHED": 11,
+            "SAME_IMAGE_FALLBACK": 5
+          },
+          "by_image": {
+            "F": {
+              "abs_per_token_coefficient": 0.006544415766768324,
+              "abs_weighted_advantage": 0.24585322073131807,
+              "admitted_responses": 8,
+              "signed_weighted_advantage": 0.023790583818775628
+            },
+            "T": {
+              "abs_per_token_coefficient": 0.008018683326779857,
+              "abs_weighted_advantage": 0.19073536459154794,
+              "admitted_responses": 8,
+              "signed_weighted_advantage": -0.12004174659808248
+            }
+          },
+          "centering": {
+            "answer_matched_set_max_abs_sum": 6.661338147750939e-16,
+            "answer_matched_sets": 2,
+            "global_centering_lost": true,
+            "limitation": "Matched cohorts are individually centered; same-image fallback baselines overlap them, so the summed advantage is generally nonzero. Deliberately NOT recentered (that would be another candidate).",
+            "signed_unweighted_advantage_MRI_admitted_total": -3.080037208937819,
+            "signed_weighted_advantage_MRI_total": -0.09625116277930684,
+            "signed_weighted_advantage_by_image": {
+              "F": 0.023790583818775628,
+              "T": -0.12004174659808248
+            }
+          },
+          "compute": {
+            "MRI_admitted_responses": 16,
+            "admitted_response_tokens": 1119,
+            "new_generations": 0,
+            "new_rewards": 0,
+            "note": "Counts a native GSPO step WOULD need (one backward per admitted response); nothing here is executed.",
+            "optimizer_updates_if_trained": 1,
+            "per_response_backward_calls_if_trained": 28
+          },
+          "definitions": {
+            "format_share": "sum w|format part| / sum w(|acc|+|format|+|overlong|+|unexplained|) relative to each response's OWN baseline set; a coefficient-mass descriptor, NOT a variance or gradient share"
+          },
+          "format_share_of_abs_baseline_split_mass": 0.10384006979950142,
+          "hard_modality_coverage": {
+            "direct_inactive_images": 2,
+            "images_receiving_nonzero_C_credit": 2,
+            "valid_credited_responses": 5,
+            "valid_credited_sign_correct": 5
+          },
+          "label_indicator_projection": {
+            "label": "RESPONSE_LABEL_INDICATOR_COEFFICIENT_PROJECTION: sums of w*A (or w*A/L) over sampled responses, projected onto response-label indicators 1[answer] and 1[image]x1[answer]. These are NOT parameter-gradient parts and NOT even a literal bias-parameter gradient: a score-function gradient also carries the policy normalizer -E_policy[feature], which matters whenever the per-image advantage sum is nonzero (results/GROUP_RELATIVE_SYNTHETIC_SCORE_NORMALIZER_COUNTEREXAMPLE_V1.json: zero answer-indicator projection with nonzero bias and image-feature score gradients). Not a margin or accuracy.",
+            "sequence": {
+              "answer_indicator_projection_FLAIR_minus_T1": 0.0037866949434045213,
+              "image_x_answer_indicator_projection": 0.3441241174869637,
+              "invalid_or_other_answer_indicator_projection": -0.0924644678359023
+            }
+          },
+          "max_abs_unexplained": 2.220446049250313e-16,
+          "per_token_coefficient_max_over_min": 5.200306758101716,
+          "point_biserial_valid_admitted": 0.9798114444760402,
+          "sign": {
+            "CORRECT_NEGATIVE": 0,
+            "CORRECT_POSITIVE": 6,
+            "CORRECT_ZERO": 0,
+            "WRONG_INVALID_NEGATIVE": 3,
+            "WRONG_INVALID_POSITIVE": 0,
+            "WRONG_INVALID_ZERO": 0,
+            "WRONG_VALID_NEGATIVE": 7,
+            "WRONG_VALID_POSITIVE": 0,
+            "WRONG_VALID_ZERO": 0,
+            "agreement_fraction": 1.0,
+            "n": 16,
+            "point_biserial_correct_vs_advantage": 0.9740125526891202
+          },
+          "sign_note": "For C answer-matched responses sign = correctness BY CONSTRUCTION; not independent learning evidence",
+          "task_shares": {
+            "abs_per_token_coefficient": {
+              "DALLAS": 0.47201981913021784,
+              "MRI": 0.5279801808697822
+            },
+            "abs_weighted_advantage": {
+              "DALLAS": 0.3994541705388024,
+              "MRI": 0.6005458294611977
+            },
+            "sum_w": {
+              "DALLAS": 0.42857142857142855,
+              "MRI": 0.5714285714285714
+            }
+          }
+        }
+      },
+      "decision": {
+        "criteria": {
+          "Q1_sign": "C: zero WRONG_VALID_POSITIVE and zero CORRECT_NEGATIVE among admitted MRI responses with nonzero advantage",
+          "Q2_format": "C format share of absolute baseline-split mass strictly below the actual Paired (B) plan on the same responses",
+          "Q3_hard_modality": "at least one MRI image whose Direct same-image group is inactive receives nonzero C credit, and every format-valid credited response there is sign-correct",
+          "Q4_correctness_alignment": "C point-biserial(correct, A) among admitted format-valid MRI >= the actual Paired (B) plan (None fails)",
+          "declared_before_actual_C_results": true,
+          "not_criteria": "More admitted groups/responses is NOT a success criterion; DEV/final100/new16 are never consulted.",
+          "rule": "Any failure -> REJECT_C_BEFORE_GPU. All pass -> INCONCLUSIVE_CPU_COEFFICIENT_ONLY (never GO: margins/VJPs/accuracy unmeasured)."
+        },
+        "decision": "INCONCLUSIVE_CPU_COEFFICIENT_ONLY",
+        "meaning": "C passes the predeclared scalar coefficient descriptors on the exact Common32 responses only (Q1 largely by construction; C is an action-dependent changed estimator without global centering). Gradient direction, canonical class margins and accuracy remain NOT_MEASURED; the most that may follow is ONE separately scoped read-only VJP check after independent review and fresh human permission. Not training, not GO replication.",
+        "results": {
+          "Q1_sign": true,
+          "Q2_format": true,
+          "Q3_hard_modality": true,
+          "Q4_correctness_alignment": true
+        }
+      },
+      "exposure": {
+        "by_task": {
+          "DALLAS": 16,
+          "MRI": 16
+        },
+        "identical": true,
+        "responses": 32,
+        "tokens_total": 1465
+      },
+      "label": "EXACT_MATCHED: Parent Adam52, identical 32 responses/tokens/images/rewards/exposure; only the advantage plan differs"
+    },
+    "inputs_unchanged_after_analysis": true,
+    "intervention": {
+      "changed_jointly_vs_B": [
+        "baseline set: parsed-label-matched across images, else same-image fallback",
+        "scale: SD of the pair's 8 rewards (B: SD of each K4 half-split group)",
+        "admission: one inherited gate on the pair's 8 grades (B: one gate per K4 group)"
+      ],
+      "estimator": "ACTION_DEPENDENT_CHANGED_SURROGATE: baseline depends on the sampled label; expected score gradient changes",
+      "global_centering": "NOT_GUARANTEED: matched sets centered, overlapping same-image fallbacks are not; signed sums reported, not recentered",
+      "isolated_baseline_only_causal_test": false,
+      "kind": "ONE_VERSIONED_MRI_ADVANTAGE_PLAN",
+      "label_matching": "parsed canonical class label only; full text/reasoning prefix/length NOT held fixed; no visual causality identified",
+      "unchanged": [
+        "verifier reward",
+        "GSPO sequence ratio/clip/length mean",
+        "unit weight .25 x 1/8",
+        "Dallas plans",
+        "LR",
+        "LoRA",
+        "optimizer",
+        "concise prompt"
+      ]
+    },
+    "label": "COUNTERFACTUAL_CPU_ADVANTAGES_NOT_HISTORICAL_TRAINING",
+    "privacy": {
+      "absolute_paths": 0,
+      "checked_values": 115,
+      "hits": 0,
+      "status": "PASS"
+    },
+    "public_case_keys": {
+      "case_keys_checked": 12,
+      "per_record_lists": 0,
+      "status": "PASS"
+    },
+    "public_schema": {
+      "certifies_unlinkability": false,
+      "forbidden_keys_checked": 24,
+      "status": "PASS"
+    },
+    "schema": "answer-matched-baseline-v1-aggregate",
+    "segment1_observational_counterfactual": {
+      "arms": {
+        "A": {
+          "C_COUNTERFACTUAL": {
+            "MRI_admitted_responses": 16,
+            "baseline_kind_counts_admitted": {
+              "ANSWER_MATCHED": 10,
+              "SAME_IMAGE_FALLBACK": 6
+            },
+            "by_image": {
+              "F": {
+                "abs_per_token_coefficient": 0.004401987074244237,
+                "abs_weighted_advantage": 0.24314660462352947,
+                "admitted_responses": 8,
+                "signed_weighted_advantage": -0.007895000571819282
+              },
+              "T": {
+                "abs_per_token_coefficient": 0.0044441512301451845,
+                "abs_weighted_advantage": 0.1608676115944071,
+                "admitted_responses": 8,
+                "signed_weighted_advantage": -0.1608676115944071
+              }
+            },
+            "centering": {
+              "answer_matched_set_max_abs_sum": 6.661338147750939e-16,
+              "answer_matched_sets": 2,
+              "global_centering_lost": true,
+              "limitation": "Matched cohorts are individually centered; same-image fallback baselines overlap them, so the summed advantage is generally nonzero. Deliberately NOT recentered (that would be another candidate).",
+              "signed_unweighted_advantage_MRI_admitted_total": -5.400403589319244,
+              "signed_weighted_advantage_MRI_total": -0.16876261216622637,
+              "signed_weighted_advantage_by_image": {
+                "F": -0.007895000571819282,
+                "T": -0.1608676115944071
+              }
+            },
+            "definitions": {
+              "format_share": "sum w|format part| / sum w(|acc|+|format|+|overlong|+|unexplained|) relative to each response's OWN baseline set; a coefficient-mass descriptor, NOT a variance or gradient share"
+            },
+            "format_share_of_abs_baseline_split_mass": 0.2140608316872997,
+            "hard_modality_coverage": {
+              "direct_inactive_images": 4,
+              "images_receiving_nonzero_C_credit": 4,
+              "valid_credited_responses": 10,
+              "valid_credited_sign_correct": 10
+            },
+            "label_indicator_projection": {
+              "label": "RESPONSE_LABEL_INDICATOR_COEFFICIENT_PROJECTION: sums of w*A (or w*A/L) over sampled responses, projected onto response-label indicators 1[answer] and 1[image]x1[answer]. These are NOT parameter-gradient parts and NOT even a literal bias-parameter gradient: a score-function gradient also carries the policy normalizer -E_policy[feature], which matters whenever the per-image advantage sum is nonzero (results/GROUP_RELATIVE_SYNTHETIC_SCORE_NORMALIZER_COUNTEREXAMPLE_V1.json: zero answer-indicator projection with nonzero bias and image-feature score gradients). Not a margin or accuracy.",
+              "sequence": {
+                "answer_indicator_projection_FLAIR_minus_T1": -1.3877787807814457e-17,
+                "image_x_answer_indicator_projection": 0.2352516040517102,
+                "invalid_or_other_answer_indicator_projection": -0.16876261216622637
+              }
+            },
+            "max_abs_unexplained": 2.220446049250313e-16,
+            "per_token_coefficient_max_over_min": 11.289737798758361,
+            "point_biserial_valid_admitted": 0.9999978985336418,
+            "sign": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 5,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 6,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 5,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 16,
+              "point_biserial_correct_vs_advantage": 0.9247009507482694
+            },
+            "sign_note": "For C answer-matched responses sign = correctness BY CONSTRUCTION; not independent learning evidence",
+            "task_shares": {
+              "abs_per_token_coefficient": {
+                "DALLAS": 0.712477496616416,
+                "MRI": 0.28752250338358376
+              },
+              "abs_weighted_advantage": {
+                "DALLAS": 0.47888157407333337,
+                "MRI": 0.5211184259266667
+              },
+              "sum_w": {
+                "DALLAS": 0.5,
+                "MRI": 0.5
+              }
+            }
+          },
+          "actual_plan": {
+            "MRI_admitted_responses": 0,
+            "baseline_kind_counts_admitted": {},
+            "by_image": {
+              "F": {
+                "abs_per_token_coefficient": 0,
+                "abs_weighted_advantage": 0,
+                "admitted_responses": 0,
+                "signed_weighted_advantage": 0
+              },
+              "T": {
+                "abs_per_token_coefficient": 0,
+                "abs_weighted_advantage": 0,
+                "admitted_responses": 0,
+                "signed_weighted_advantage": 0
+              }
+            },
+            "centering": {
+              "answer_matched_set_max_abs_sum": null,
+              "answer_matched_sets": 0,
+              "global_centering_lost": false,
+              "limitation": "Matched cohorts are individually centered; same-image fallback baselines overlap them, so the summed advantage is generally nonzero. Deliberately NOT recentered (that would be another candidate).",
+              "signed_unweighted_advantage_MRI_admitted_total": 0,
+              "signed_weighted_advantage_MRI_total": 0,
+              "signed_weighted_advantage_by_image": {
+                "F": 0,
+                "T": 0
+              }
+            },
+            "definitions": {
+              "format_share": "sum w|format part| / sum w(|acc|+|format|+|overlong|+|unexplained|) relative to each response's OWN baseline set; a coefficient-mass descriptor, NOT a variance or gradient share"
+            },
+            "format_share_of_abs_baseline_split_mass": null,
+            "hard_modality_coverage": {
+              "direct_inactive_images": 4,
+              "images_receiving_nonzero_C_credit": 0,
+              "valid_credited_responses": 0,
+              "valid_credited_sign_correct": 0
+            },
+            "label_indicator_projection": {
+              "label": "RESPONSE_LABEL_INDICATOR_COEFFICIENT_PROJECTION: sums of w*A (or w*A/L) over sampled responses, projected onto response-label indicators 1[answer] and 1[image]x1[answer]. These are NOT parameter-gradient parts and NOT even a literal bias-parameter gradient: a score-function gradient also carries the policy normalizer -E_policy[feature], which matters whenever the per-image advantage sum is nonzero (results/GROUP_RELATIVE_SYNTHETIC_SCORE_NORMALIZER_COUNTEREXAMPLE_V1.json: zero answer-indicator projection with nonzero bias and image-feature score gradients). Not a margin or accuracy.",
+              "sequence": {
+                "answer_indicator_projection_FLAIR_minus_T1": 0.0,
+                "image_x_answer_indicator_projection": 0.0,
+                "invalid_or_other_answer_indicator_projection": 0
+              }
+            },
+            "max_abs_unexplained": 1.6653345369377348e-16,
+            "per_token_coefficient_max_over_min": null,
+            "point_biserial_valid_admitted": null,
+            "sign": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 0,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 0,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 0,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": null,
+              "n": 0,
+              "point_biserial_correct_vs_advantage": null
+            },
+            "sign_note": "For C answer-matched responses sign = correctness BY CONSTRUCTION; not independent learning evidence",
+            "task_shares": {
+              "abs_per_token_coefficient": {
+                "DALLAS": 1.0
+              },
+              "abs_weighted_advantage": {
+                "DALLAS": 1.0
+              },
+              "sum_w": {
+                "DALLAS": 1.0
+              }
+            }
+          }
+        },
+        "B": {
+          "C_COUNTERFACTUAL": {
+            "MRI_admitted_responses": 16,
+            "baseline_kind_counts_admitted": {
+              "ANSWER_MATCHED": 12,
+              "SAME_IMAGE_FALLBACK": 4
+            },
+            "by_image": {
+              "F": {
+                "abs_per_token_coefficient": 0.023324116389941574,
+                "abs_weighted_advantage": 0.24923395776113186,
+                "admitted_responses": 8,
+                "signed_weighted_advantage": 0.033540514212729945
+              },
+              "T": {
+                "abs_per_token_coefficient": 0.0066086248668902215,
+                "abs_weighted_advantage": 0.17854033976766645,
+                "admitted_responses": 8,
+                "signed_weighted_advantage": -0.17854033976766645
+              }
+            },
+            "centering": {
+              "answer_matched_set_max_abs_sum": 6.661338147750939e-16,
+              "answer_matched_sets": 2,
+              "global_centering_lost": true,
+              "limitation": "Matched cohorts are individually centered; same-image fallback baselines overlap them, so the summed advantage is generally nonzero. Deliberately NOT recentered (that would be another candidate).",
+              "signed_unweighted_advantage_MRI_admitted_total": -4.639994417757968,
+              "signed_weighted_advantage_MRI_total": -0.1449998255549365,
+              "signed_weighted_advantage_by_image": {
+                "F": 0.033540514212729945,
+                "T": -0.17854033976766645
+              }
+            },
+            "definitions": {
+              "format_share": "sum w|format part| / sum w(|acc|+|format|+|overlong|+|unexplained|) relative to each response's OWN baseline set; a coefficient-mass descriptor, NOT a variance or gradient share"
+            },
+            "format_share_of_abs_baseline_split_mass": 0.1737042360673121,
+            "hard_modality_coverage": {
+              "direct_inactive_images": 4,
+              "images_receiving_nonzero_C_credit": 4,
+              "valid_credited_responses": 12,
+              "valid_credited_sign_correct": 12
+            },
+            "label_indicator_projection": {
+              "label": "RESPONSE_LABEL_INDICATOR_COEFFICIENT_PROJECTION: sums of w*A (or w*A/L) over sampled responses, projected onto response-label indicators 1[answer] and 1[image]x1[answer]. These are NOT parameter-gradient parts and NOT even a literal bias-parameter gradient: a score-function gradient also carries the policy normalizer -E_policy[feature], which matters whenever the per-image advantage sum is nonzero (results/GROUP_RELATIVE_SYNTHETIC_SCORE_NORMALIZER_COUNTEREXAMPLE_V1.json: zero answer-indicator projection with nonzero bias and image-feature score gradients). Not a margin or accuracy.",
+              "sequence": {
+                "answer_indicator_projection_FLAIR_minus_T1": -5.551115123125783e-17,
+                "image_x_answer_indicator_projection": 0.28277447197386185,
+                "invalid_or_other_answer_indicator_projection": -0.14499982555493646
+              }
+            },
+            "max_abs_unexplained": 2.220446049250313e-16,
+            "per_token_coefficient_max_over_min": 44.50906022900101,
+            "point_biserial_valid_admitted": 1.0,
+            "sign": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 6,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 4,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 6,
+              "WRONG_VALID_POSITIVE": 0,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 1.0,
+              "n": 16,
+              "point_biserial_correct_vs_advantage": 0.9284572229842988
+            },
+            "sign_note": "For C answer-matched responses sign = correctness BY CONSTRUCTION; not independent learning evidence",
+            "task_shares": {
+              "abs_per_token_coefficient": {
+                "DALLAS": 0.2509229743915225,
+                "MRI": 0.7490770256084778
+              },
+              "abs_weighted_advantage": {
+                "DALLAS": 0.39716191940473256,
+                "MRI": 0.6028380805952676
+              },
+              "sum_w": {
+                "DALLAS": 0.42857142857142855,
+                "MRI": 0.5714285714285714
+              }
+            }
+          },
+          "actual_plan": {
+            "MRI_admitted_responses": 16,
+            "baseline_kind_counts_admitted": {
+              "GROUP_MEAN": 16
+            },
+            "by_image": {
+              "F": {
+                "abs_per_token_coefficient": 0.013850696029691616,
+                "abs_weighted_advantage": 0.2408254228373133,
+                "admitted_responses": 8,
+                "signed_weighted_advantage": 0.1517034547946835
+              },
+              "T": {
+                "abs_per_token_coefficient": 0.005169618404910621,
+                "abs_weighted_advantage": 0.15392387879035888,
+                "admitted_responses": 8,
+                "signed_weighted_advantage": -0.1517034547946835
+              }
+            },
+            "centering": {
+              "answer_matched_set_max_abs_sum": null,
+              "answer_matched_sets": 0,
+              "global_centering_lost": false,
+              "limitation": "Matched cohorts are individually centered; same-image fallback baselines overlap them, so the summed advantage is generally nonzero. Deliberately NOT recentered (that would be another candidate).",
+              "signed_unweighted_advantage_MRI_admitted_total": 1.249000902703301e-16,
+              "signed_weighted_advantage_MRI_total": 3.903127820947816e-18,
+              "signed_weighted_advantage_by_image": {
+                "F": 0.1517034547946835,
+                "T": -0.1517034547946835
+              }
+            },
+            "definitions": {
+              "format_share": "sum w|format part| / sum w(|acc|+|format|+|overlong|+|unexplained|) relative to each response's OWN baseline set; a coefficient-mass descriptor, NOT a variance or gradient share"
+            },
+            "format_share_of_abs_baseline_split_mass": 0.20844905679094608,
+            "hard_modality_coverage": {
+              "direct_inactive_images": 4,
+              "images_receiving_nonzero_C_credit": 4,
+              "valid_credited_responses": 12,
+              "valid_credited_sign_correct": 10
+            },
+            "label_indicator_projection": {
+              "label": "RESPONSE_LABEL_INDICATOR_COEFFICIENT_PROJECTION: sums of w*A (or w*A/L) over sampled responses, projected onto response-label indicators 1[answer] and 1[image]x1[answer]. These are NOT parameter-gradient parts and NOT even a literal bias-parameter gradient: a score-function gradient also carries the policy normalizer -E_policy[feature], which matters whenever the per-image advantage sum is nonzero (results/GROUP_RELATIVE_SYNTHETIC_SCORE_NORMALIZER_COUNTEREXAMPLE_V1.json: zero answer-indicator projection with nonzero bias and image-feature score gradients). Not a margin or accuracy.",
+              "sequence": {
+                "answer_indicator_projection_FLAIR_minus_T1": 0.08912196804262984,
+                "image_x_answer_indicator_projection": 0.303406909589367,
+                "invalid_or_other_answer_indicator_projection": -0.08912196804262981
+              }
+            },
+            "max_abs_unexplained": 2.7755575615628914e-16,
+            "per_token_coefficient_max_over_min": 387.9945269116842,
+            "point_biserial_valid_admitted": 0.9196135768710267,
+            "sign": {
+              "CORRECT_NEGATIVE": 0,
+              "CORRECT_POSITIVE": 6,
+              "CORRECT_ZERO": 0,
+              "WRONG_INVALID_NEGATIVE": 4,
+              "WRONG_INVALID_POSITIVE": 0,
+              "WRONG_INVALID_ZERO": 0,
+              "WRONG_VALID_NEGATIVE": 4,
+              "WRONG_VALID_POSITIVE": 2,
+              "WRONG_VALID_ZERO": 0,
+              "agreement_fraction": 0.875,
+              "n": 16,
+              "point_biserial_correct_vs_advantage": 0.9362398447128029
+            },
+            "sign_note": "For C answer-matched responses sign = correctness BY CONSTRUCTION; not independent learning evidence",
+            "task_shares": {
+              "abs_per_token_coefficient": {
+                "DALLAS": 0.3451899199669072,
+                "MRI": 0.6548100800330929
+              },
+              "abs_weighted_advantage": {
+                "DALLAS": 0.4165481780768877,
+                "MRI": 0.5834518219231125
+              },
+              "sum_w": {
+                "DALLAS": 0.42857142857142855,
+                "MRI": 0.5714285714285714
+              }
+            }
+          }
+        }
+      },
+      "label": "OBSERVATIONAL: each arm's own post-update rollouts re-planned under C; A and B segment-1 responses come from DIFFERENT policies, are never mixed, and are not common-parent evidence"
+    },
+    "status": "EXECUTED_CPU_READ_ONLY"
+  },
+  "limitations": [
+    "Counterfactual advantage plan on authenticated saved TRAIN responses; not historical training and not new on-policy sampling.",
+    "Action-dependent baseline changes the expected estimator. Correctness-sign and correlation criteria are partly by construction, not independent learning evidence.",
+    "Pair8 scale, pair admission and baseline/fallback change together; one versioned advantage-plan treatment, not isolated baseline causal evidence.",
+    "No per-response or margin VJP, native C gradient, finite Adam step, image-grounding or new accuracy measured.",
+    "Historical DEV24 is explored internal development evidence only."
+  ],
+  "private_proof_sha256": {
+    "C_CPU_ACTUAL_EXIT_PRIVATE.json": "a30b62c41c53cebee07ad225378bec5a8f1d87fcdf84e55ef9e9a98c9cb4f162",
+    "C_CPU_ACTUAL_LAUNCH_PRIVATE.json": "2747652df76f26007e020dcfdccaf1f9f4e3ca93f353146f82656722d4b2f179",
+    "C_CPU_ACTUAL_STDERR_PRIVATE.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "C_CPU_ACTUAL_STDOUT_PRIVATE.json": "88a29e57aec481ab9e37e6ec4e187d1eefad854af663f8193783238a64e9cfc8",
+    "C_CPU_TEST_ACTUAL_PRIVATE.json": "1a60726a3f68eb02fdbd692cb49644ea45182ac1840d2cafdf725b3ab88a46c1"
+  },
+  "public_aggregate_file_sha256": "f3a98212e1ebab94d4674e0e0b15adc56d74b22666ae2cd6ac584d09adbff85d",
+  "schema": "group-relative-C-matched-actual-cpu-evidence-v1",
+  "scientific_decision": "INCONCLUSIVE",
+  "status": "EXECUTED_CPU_READ_ONLY",
+  "tests": {
+    "elapsed_seconds": 0.506182249984704,
+    "exit_code": 0,
+    "output": "...........................                                              [100%]\n27 passed in 0.32s",
+    "source_sha256": {
+      "scripts/compare_answer_matched_baseline_v1.py": "ee7162200997f279440d0c2dc5aab5798f5088514ff8c72c91955ea02fdeb925",
+      "src/mri_rl/answer_matched_baseline_v1.py": "d3998ac46caa23ce9659e5d6c8c5d475dba4772a955354f74c631227cc60467d",
+      "src/mri_rl/group_relative_visual_signal_v1.py": "920a73b2f27b2fbbdca9fc4a740348d8334de9acda9ac8f40b9a3990f03242d2",
+      "tests/test_answer_matched_baseline_v1.py": "a70171cf928f09027992c7db0afd1c4a4045e217368d4c2de9a361e84ed3337d",
+      "tests/test_group_relative_visual_signal_v1.py": "22e9820dc28353e120725d1fb18e00e55d7af781f5d9f951a8368c74fcd6afd0"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "LR_stored_float32": 9.999999747378752e-06,
+  "RNG_arrays_read_or_written": false,
+  "checkpoint_or_adapter_writes": 0,
+  "elapsed_seconds": 0.7157481660251506,
+  "elements": 10911744,
+  "forbidden_modules_loaded": [],
+  "input_evidence": {
+    "B53_adapter_sha256": "cd143a344e7315e94c1e650e4f0e438af9610e73719ba496da2d94ef584c6a1e",
+    "parent52_adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+    "saved_B0_joint_gradient_sha256": "537d2fdddcd38e2916f744d7a0acc3c26e6fb84f7d97bf367f0b6afa94dc2b99"
+  },
+  "inputs_unchanged": true,
+  "limits": [
+    "PureCPUformula counterfactual using existing savedJOINTgradient; no actualMRIinference or accuracyimprovement.",
+    "m-onlyreset changes both direction and norm; alignmentwithdescent doesnotidentifycause ofDEVerror.",
+    "vstepCPUrecurrence matchesnativewithinpredeclaredtolerance, notnecessarilybitwise atsubnormalvalues.",
+    "Root/Claude must separately bind serializedcandidate payload/RNG and evaluate only afterfresh exactscope authorization."
+  ],
+  "metrics": {
+    "analytic_removed_history_term_l2": 0.030103633107710574,
+    "changed_elements": {
+      "original_parameter_elements": 10910874,
+      "reset_parameter_elements": 10909815,
+      "reset_vs_original_parameter_elements": 10910893
+    },
+    "cos_actual_reset_minus_original_vs_removed_history": 0.9999999997699552,
+    "cos_descent_vs_original_delta": 0.0690811850946582,
+    "cos_descent_vs_reset_delta": 0.5248737395646653,
+    "finite_candidate_elements": 10911744,
+    "g_dot_original_delta": -0.0007683723238761067,
+    "g_dot_reset_delta": -0.0010660092360261517,
+    "gradient_l2": 0.3666814255862649,
+    "m_reset_delta_l2": 0.005538819488600746,
+    "original_delta_l2": 0.03033353487126884,
+    "original_vs_analytic_split_relative_residual": 1.5054768354621229e-05,
+    "original_vs_reset_delta_cosine": 0.13264879667146218,
+    "reset_minus_original_delta_l2": 0.03010363245077626,
+    "reset_over_original_delta_l2": 0.1825972314834621,
+    "reset_vs_analytic_fresh_term_relative_residual": 8.245031408442725e-05
+  },
+  "new_gradients": 0,
+  "new_model_calls": 0,
+  "original_replay_PASS": true,
+  "original_replay_checks": {
+    "m": {
+      "bitwise_equal": 10911744,
+      "elements": 10911744,
+      "max_abs_error": 0.0,
+      "violations": 0
+    },
+    "theta_full_replay": {
+      "bitwise_equal": 10911744,
+      "elements": 10911744,
+      "max_abs_error": 0.0,
+      "violations": 0
+    },
+    "theta_saved_moments": {
+      "bitwise_equal": 10911744,
+      "elements": 10911744,
+      "max_abs_error": 0.0,
+      "violations": 0
+    },
+    "v": {
+      "bitwise_equal": 10911266,
+      "elements": 10911744,
+      "max_abs_error": 1.1754943508222875e-38,
+      "violations": 0
+    }
+  },
+  "parameters": 504,
+  "peak_RSS_bytes": 390774784,
+  "predeclaration_sha256": "88adb791c7fe5d72a77cc25d8952666d4a4bfad57188f4c98054f4f4f3c3de9f",
+  "real_optimizer_updates": 0,
+  "reviewer": "Codex /root/v2_actual_verifier",
+  "schema": "adam-m-reset-independent-CPU-replay-actual-v1",
+  "script_sha256": "a63bb8ff075f23e256c1a65cc10d10c606fac92bf16544f6164cb91539b495ff",
+  "status": "ORIGINAL_REPLAY_PASS_COUNTERFACTUAL_FINITE",
+  "step_after": 53,
+  "step_before": 52
+}
