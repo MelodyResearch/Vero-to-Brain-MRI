@@ -1,0 +1,56 @@
+{
+  "answer_likelihood_source_sha256": "b27b8d7d6788290a643ec59d7cc4da61eb6d5d72da90a1f6471501b2c889f4eb",
+  "budget": {
+    "Dallas_context_cost_each": 416,
+    "Dallas_contexts": 4,
+    "Dallas_label_tokens": [
+      1,
+      1
+    ],
+    "Dallas_margin_TF_VJPs": 4,
+    "Dallas_margin_TF_positions": 1664,
+    "MRI_context_costs_each": {
+      "F_label_mean": 245,
+      "T_label_mean": 248,
+      "first": 244
+    },
+    "MRI_contexts": 4,
+    "MRI_label_tokens": [
+      2,
+      5
+    ],
+    "MRI_margin_TF_VJPs": 12,
+    "MRI_margin_TF_positions": 2948,
+    "label_boundary_and_distinct_first_tokens": true,
+    "margin_TF_positions": 4612,
+    "model_loads": 1,
+    "native_calls_in_this_preparation": 0,
+    "new_generation": 0,
+    "new_returned_tokens": 0,
+    "optimizer_updates": 0,
+    "prefix_tokens": 11,
+    "prompt_tokens": {
+      "Dallas": 405,
+      "MRI": 233
+    },
+    "response_TF_positions": 9679,
+    "response_VJPs": 28,
+    "total_TF_forwards": 44,
+    "total_TF_positions": 14291,
+    "total_backward_VJPs": 44
+  },
+  "forbidden_modules_loaded": [],
+  "limitations": [
+    "Exact call budget independently derived without model execution; scope/source/entry/resource/authority review remains pending.",
+    "28 selected response VJPs are the admitted A/B/C union, not all32; sixteenMRI+12Dallas. The other4Dallas responses are inactive in allplans.",
+    "MRI unequal-length mean/sum gradients require two labelmean VJPs; first requires shared-prefix contrast. Dallas single-token margins alias allthree.",
+    "No GPU/native run or fresh authorization exists from this preparation."
+  ],
+  "original_scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+  "prefix_literal_sha256": "a1e4514d3a9b0cf1b1d5afd0b2cef85d47a96b8c57c45239bdda329c704fc8b2",
+  "reviewer": "/root/v2_actual_verifier",
+  "schema": "native-group-signal-independent-input-budget-facts-v1-public",
+  "suffix_literal_sha256": "cd96bedddfb9a210c41f4421038599f378b1203a7fdb7747aff1ae269ddb0e7c",
+  "tokenizer_CPU_import_only": true,
+  "tokenizer_json_sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7"
+}

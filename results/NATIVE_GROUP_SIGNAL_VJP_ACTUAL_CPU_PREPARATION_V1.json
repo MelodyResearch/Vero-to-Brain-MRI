@@ -1,0 +1,177 @@
+{
+  "schema": "native-group-signal-vjp-actual-cpu-preparation-v1",
+  "status": "IMPLEMENTED_TESTED_CPU_NATIVE_NOT_RUN",
+  "recorded_at_utc": "2026-10-22T18:27:25.529956+00:00",
+  "base_commit": "ecede7bba3053fc8ebafd71c7e295a98322aa78f",
+  "implemented_by": {
+    "agent": "Claude Code",
+    "model": "claude-opus-5-5",
+    "cli_version": "2.1.306",
+    "passes": [
+      {
+        "purpose": "tests_before_source",
+        "exit_code": 0,
+        "receipt_sha256": "ced07aac46df04b8c5b0b6513a3be845ed0d1e62a75c6cd7d6353f6bccd0b685"
+      },
+      {
+        "purpose": "implementation",
+        "exit_code": 0,
+        "receipt_sha256": "98b7a1641e86f37514535d65e0d71ce3083b89bf5c80a1b3e5c9e827f1f7c797"
+      },
+      {
+        "purpose": "independent_review_fixes",
+        "exit_code": 0,
+        "receipt_sha256": "500c6f84524bae52d6a0fc5f5b43bd09ee802c74a3e90ffb4486600c9769f168"
+      }
+    ],
+    "command_execution": "Codex ran local CPU commands; Claude edited source and synthetic tests with normal Read/Edit/Write permissions"
+  },
+  "verification": {
+    "test_first_RED": {
+      "exit_code": 2,
+      "cause": "new production module not yet present",
+      "receipt_sha256": "a83b37c07265aad7daabf42f180ac8719d73df0a2cdf9f6c39c763e0c2094ed4"
+    },
+    "new_targeted_tests": {
+      "passed": 46,
+      "failed": 0,
+      "elapsed_seconds": 0.35,
+      "receipt_sha256": "fdc7f477bfae15deb586c9bff11cd972e6e820587c7f36ced4680e91086c5751"
+    },
+    "focused_regression": {
+      "passed": 74,
+      "failed": 0,
+      "elapsed_seconds": 0.76,
+      "receipt_sha256": "9a32a04100ed72c9bfb2017f7cb79cb812807ffa16321f2d7dd8bb4de36f3aa9"
+    },
+    "prepare": {
+      "exit_code": 0,
+      "elapsed_seconds": 6.822192416060716,
+      "heavy_modules_loaded": [],
+      "receipt_sha256": "f412072e7d9d92b692a1431cb24526d2f4d50e7c00b71f02afe8504845a7f0c3",
+      "independent_budget_crosscheck": {
+        "margin_TF_positions": {
+          "derived": 4612,
+          "independent": 4612,
+          "match": true
+        },
+        "model_loads": {
+          "derived": 1,
+          "independent": 1,
+          "match": true
+        },
+        "response_TF_positions": {
+          "derived": 9679,
+          "independent": 9679,
+          "match": true
+        },
+        "response_VJPs": {
+          "derived": 28,
+          "independent": 28,
+          "match": true
+        },
+        "total_TF_forwards": {
+          "derived": 44,
+          "independent": 44,
+          "match": true
+        },
+        "total_TF_positions": {
+          "derived": 14291,
+          "independent": 14291,
+          "match": true
+        },
+        "total_backward_VJPs": {
+          "derived": 44,
+          "independent": 44,
+          "match": true
+        }
+      }
+    }
+  },
+  "scope_file_sha256": "069520b290c3758fb6514029dc21d82000f93448d56ed3e2942255113f4461d1",
+  "scope_canonical_sha256": "7d4890be03f4d27474f56162cd105a7a1aaf4e9cfe0714f4e420a311855facbe",
+  "input_sha256": "2f55f0c4c78bf27dbb8ea147f46b0489ee2f2b851f8c0ff68e041ecae187f179",
+  "budget": {
+    "checkpoint_writes": 0,
+    "forwards": 44,
+    "generation": 0,
+    "margin_vjps": 16,
+    "model_loads": 1,
+    "optimizer_updates": 0,
+    "parameter_writes": 0,
+    "response_vjps": 28,
+    "simultaneous_image_autograd_graphs": 1,
+    "teacherforced_positions": 14291,
+    "vjps": 44
+  },
+  "run_limits": {
+    "automatic_recoveries": 0,
+    "automatic_retry": false,
+    "incomplete_operation": "INDETERMINATE_NO_REPLAY",
+    "model_loads_max": 1,
+    "one_fresh_child": true,
+    "operation_window_seconds_including_waits": 3600,
+    "planning_estimate": "~90 s load/release + 44 F32 full-TF forwards with VJP at ~10-15 s each (historical V2 gradient units); PLANNING ONLY, not a wall-time guarantee; the hard limit is the operation-start window",
+    "resume": false
+  },
+  "tolerances": {
+    "clip_edge_relative_guard": 1e-06,
+    "first_token_alignment_max_abs": 0.002,
+    "native_log_ratio_crosscheck_max_abs": 1e-05,
+    "own_old_max_abs": 1e-05,
+    "pair_multiplier": 2.0,
+    "reconstruction_relative_l2_max": 0.0001,
+    "tau_error_multiplier": 5.0,
+    "tau_floor": 1e-06
+  },
+  "response_jobs": {
+    "by_task": {
+      "DALLAS": 12,
+      "MRI": 16
+    },
+    "nonzero_weight_by_plan": {
+      "A": 20,
+      "B": 28,
+      "C": 28
+    },
+    "responses": 28
+  },
+  "margin_contexts": {
+    "DALLAS": 4,
+    "MRI_FLAIR": 2,
+    "MRI_T1": 2
+  },
+  "source_sha256": {
+    "src/mri_rl/native_group_signal_vjp_v1.py": "204727d473b1590b5612ee28f78c2dfacd7cf8284b75afe33fa7daf5ac7851f1",
+    "src/mri_rl/native_group_signal_vjp_entry_v1.py": "e704ceddf01f706b2ef4bbdcef5b9332bbb46f4fa0bb212e7cff996d1ac7de30",
+    "src/mri_rl/native_group_signal_vjp_backend_v1.py": "ad5997dbf05c32b784e5ebb2805cfc48c6383ee1c62bb7f484ab4cf215505e10",
+    "scripts/run_native_group_signal_vjp_v1.py": "9b208c4f66731bc04fb8db3f8c8ebe42301cdbe446cb0dbefbce77d8dce0e435",
+    "tests/test_native_group_signal_vjp_v1.py": "7a76e15cbda98dc281fe04cd3904bada78c1bd8394d695565102d24f1dd80a6d",
+    "research/NATIVE_GROUP_SIGNAL_VJP_DESIGN_V1.md": "8d6e7a8bbbdeb92bd29d027153333bc4bbf97ba2cb38431f75b8606c3c943e31"
+  },
+  "native_actual": {
+    "model_loads": 0,
+    "forwards": 0,
+    "vjps": 0,
+    "generation": 0,
+    "optimizer_updates": 0,
+    "checkpoint_writes": 0,
+    "A_B_gradient_reconstruction": "NOT_RUN",
+    "C_margin_direction": "NOT_RUN",
+    "accuracy_gain": "NOT_MEASURED"
+  },
+  "scientific_limits": [
+    "The relative-L2 vector tolerance is a prospective engineering extension, not an already validated native-vector result.",
+    "Empirical tau from A/B reconstruction effects is not a statistical interval or formal bound for C.",
+    "Primary mean margin uses rounded original Adam52 displacement; negative-gradient and sum/first metrics cannot rescue a failed primary gate.",
+    "Each TRAIN image and all fixed Dallas engineering controls must satisfy the frozen rules; class averages cannot hide failed images.",
+    "Any local first-order PASS would still require fresh authorization for a real accuracy pilot."
+  ],
+  "preservation": {
+    "frozen_plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "frozen_plan_lock_sha256": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "old_final100_used": false,
+    "sealed_new16_outputs_used": false,
+    "training_authorized": false
+  }
+}

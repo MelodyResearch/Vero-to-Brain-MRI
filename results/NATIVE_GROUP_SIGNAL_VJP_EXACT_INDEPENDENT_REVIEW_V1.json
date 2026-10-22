@@ -1,0 +1,145 @@
+{
+  "accuracy_improvement": "NOT_MEASURED",
+  "budget": {
+    "checkpoint_writes": 0,
+    "forwards": 44,
+    "generation": 0,
+    "margin_vjps": 16,
+    "model_loads": 1,
+    "optimizer_updates": 0,
+    "parameter_writes": 0,
+    "response_vjps": 28,
+    "simultaneous_image_autograd_graphs": 1,
+    "teacherforced_positions": 14291,
+    "vjps": 44
+  },
+  "checks": {
+    "A_B_reconstruction_gate_before_any_margin_call": true,
+    "Dallas_four_fixed_common_contexts_one_token_alias": true,
+    "MRI_four_contexts_two_labelmean_plus_first": true,
+    "actual_F32_ratio_captured_inside_same_response_VJP": true,
+    "all504_native_gradient_leaves_exact_F32_inventory_finite": true,
+    "all_bound_sources_files_payload_stream_hash_verified": {
+      "metadata_files": 99,
+      "payload_files": 36,
+      "sources": 115
+    },
+    "canonical_full_boundary_and_distinct_first_token_verified": true,
+    "complete2F2T4Dallas_and_all_metrics_finite_required": true,
+    "empirical_tau_and_per_context_each_control_protection_frozen": true,
+    "historical_A_B_gradients_and_parent52_checkpoint_pinned": true,
+    "independent_earlier_input_budget_facts_sha256": "ca0abe787982c636df24bdc681acaa9bd1a60dbcef3a1440d8515761bad8dfbc",
+    "independent_reprepare_seconds": 6.279756790958345,
+    "independent_response_tokens_oldlogps_and_image_context_bindings_match": true,
+    "independent_scope_reprepare_exact_equal": true,
+    "mean_sum_first_directions_distinct_for_unequal_labels": true,
+    "no_human_grant_created_or_execution_authorized_by_this_review": true,
+    "one_time_grant_before_native_import_synthetic_cli_refused": true,
+    "original_Adam52_rounded_F32_delta_primary_no_moment_reset": true,
+    "partial_constructor_registered_exception_frames_cleared_release_checked": true,
+    "public_per_context_rows_and_identifiers_excluded": true,
+    "ratio_clip_derivative_and_two_level_F32_weights_preserved": true,
+    "read_only_full_weights_Adam_RNG_before_after_and_disk_pins": true,
+    "response_union_exact28_16MRI12Dallas": true,
+    "restores_original_parent_optimizer_binding_and_full_common_state": true,
+    "same_prefix_first_oracle_value_VJP_alignment_checked": true,
+    "single_model_lock_GRY_guardian_last_resort_retained": true,
+    "spent_budget_durable_before_call_and_vectors_fsynced_before_commit": true
+  },
+  "input_sha256": "2f55f0c4c78bf27dbb8ea147f46b0489ee2f2b851f8c0ff68e041ecae187f179",
+  "limitations": [
+    "PREPARED_NOT_NATIVE_RUN: tests and CPU scope derivation do not establish actual MLX gradient reconstruction, margins or MRI accuracy.",
+    "Fresh exact human authorization is still required; no previous scope permission may be reused.",
+    "Relative-L2 1e-4 reconstruction threshold is an engineering extension of existing norm tolerance, not a previously demonstrated native vector result.",
+    "tau=max(1e-6,5*observed A/B reconstruction-error projection) is a frozen engineering screen, not a statistical confidence interval or proven C-error bound.",
+    "C is an action-dependent changed advantage plan; baseline/scale/admission/global-centering changes remain confounded, and mean sum first are distinct endpoints.",
+    "All outputs are local first-order TRAIN-only diagnostics, not a finite update, actual accuracy improvement or anatomical visual grounding.",
+    "Dallas remains ENGINEERING_ONLY and its four Common32 contexts are not independent clinical validation.",
+    "Only one model and44TF/44VJP are allowed; no generation, optimizer call, parameter/checkpoint write, retry, recovery or cache restoration.",
+    "3600seconds is the operation-start window including waits, not a guarantee of completing atomic native calls before a wall-clock deadline.",
+    "Atomic model/GPU operations retain monitoring blind spots; the guardian and allocation limits cannot guarantee zero OOM or OS instability."
+  ],
+  "new_model_calls": 0,
+  "new_native_calls": 0,
+  "optimizer_updates": 0,
+  "primary": {
+    "direction": "adam52_rounded",
+    "metric": "mean"
+  },
+  "private_exact_review_file_sha256": "0801dd554dadaaba5dc80617a4a055a4b36058b565567490312a6dde05e8a0ef",
+  "public_preparation_publication_review": {
+    "claims_checked": {
+      "CPU_scope_budget_exact": true,
+      "actual_Claude_exit_receipts_hash_match": true,
+      "fresh_human_authorization_still_required": true,
+      "native_not_run": true,
+      "no_accuracy_gain_claim": true,
+      "source_hashes_match": true
+    },
+    "focus_regression_receipt_sha256": "9a32a04100ed72c9bfb2017f7cb79cb812807ffa16321f2d7dd8bb4de36f3aa9",
+    "no_new_native": true,
+    "no_new_optimizer_updates": true,
+    "own_targeted_tests_passed": 46,
+    "privacy": {
+      "per_context_ids_or_tables": false,
+      "private_identifier_hits": 0,
+      "private_paths": false,
+      "raw_answers_or_arrays": false
+    },
+    "public_cpu_preparation_sha256": "6cbef7f4681e03221c70267e44b822a097b9a74f8ed956702b413a54939701a7",
+    "reviewer_id": "/root/v2_actual_verifier",
+    "reviewer_kind": "isolated_codex",
+    "root_focused_tests_passed": 74,
+    "schema": "native-group-signal-vjp-publication-independent-review-v1",
+    "scope_file_sha256": "069520b290c3758fb6514029dc21d82000f93448d56ed3e2942255113f4461d1",
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "public_preparation_publication_review_proof_sha256": "7f97442b8a2ebd13e8174bda17188d514186b52e1afe7a1e453fc7ee5e2529bd",
+  "relative_source_test_protocol_sha256": {
+    "research/NATIVE_GROUP_SIGNAL_VJP_DESIGN_V1.md": "8d6e7a8bbbdeb92bd29d027153333bc4bbf97ba2cb38431f75b8606c3c943e31",
+    "scripts/run_native_group_signal_vjp_v1.py": "9b208c4f66731bc04fb8db3f8c8ebe42301cdbe446cb0dbefbce77d8dce0e435",
+    "src/mri_rl/native_group_signal_vjp_backend_v1.py": "ad5997dbf05c32b784e5ebb2805cfc48c6383ee1c62bb7f484ab4cf215505e10",
+    "src/mri_rl/native_group_signal_vjp_entry_v1.py": "e704ceddf01f706b2ef4bbdcef5b9332bbb46f4fa0bb212e7cff996d1ac7de30",
+    "src/mri_rl/native_group_signal_vjp_v1.py": "204727d473b1590b5612ee28f78c2dfacd7cf8284b75afe33fa7daf5ac7851f1",
+    "tests/test_native_group_signal_vjp_v1.py": "7a76e15cbda98dc281fe04cd3904bada78c1bd8394d695565102d24f1dd80a6d"
+  },
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "run_limits": {
+    "automatic_recoveries": 0,
+    "automatic_retry": false,
+    "incomplete_operation": "INDETERMINATE_NO_REPLAY",
+    "model_loads_max": 1,
+    "one_fresh_child": true,
+    "operation_window_seconds_including_waits": 3600,
+    "planning_estimate": "~90 s load/release + 44 F32 full-TF forwards with VJP at ~10-15 s each (historical V2 gradient units); PLANNING ONLY, not a wall-time guarantee; the hard limit is the operation-start window",
+    "resume": false
+  },
+  "schema": "native-group-signal-vjp-exact-independent-review-v1",
+  "scope_file_sha256": "069520b290c3758fb6514029dc21d82000f93448d56ed3e2942255113f4461d1",
+  "scope_sha256": "7d4890be03f4d27474f56162cd105a7a1aaf4e9cfe0714f4e420a311855facbe",
+  "status": "EXACT_SCOPE_REVIEWED_NOT_NATIVE_RUN_AWAITING_FRESH_HUMAN_AUTHORIZATION",
+  "tests": {
+    "independent": {
+      "command": "system Python3 -m pytest -q -p no:cacheprovider tests/test_native_group_signal_vjp_v1.py; bytecode/cache disabled, BLAS threads=1",
+      "exit_code": 0,
+      "passed": 46,
+      "pytest_seconds": 0.28
+    },
+    "root_exit_code": 0,
+    "root_passed": 46,
+    "root_receipt_sha256": "fdc7f477bfae15deb586c9bff11cd972e6e820587c7f36ced4680e91086c5751",
+    "source_stable": true
+  },
+  "tolerances": {
+    "clip_edge_relative_guard": 1e-06,
+    "first_token_alignment_max_abs": 0.002,
+    "native_log_ratio_crosscheck_max_abs": 1e-05,
+    "own_old_max_abs": 1e-05,
+    "pair_multiplier": 2.0,
+    "reconstruction_relative_l2_max": 0.0001,
+    "tau_error_multiplier": 5.0,
+    "tau_floor": 1e-06
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
