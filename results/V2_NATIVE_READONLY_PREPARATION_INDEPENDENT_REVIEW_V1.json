@@ -1,0 +1,118 @@
+{
+  "actual_CPU_preparation_summary": {
+    "answer_status_counts": {
+      "FORMAT_INVALID": 5,
+      "STRICT_CANONICAL": 27
+    },
+    "decoded_text_exact": 32,
+    "greedy_generations": 8,
+    "heavy_modules_loaded": [],
+    "ineligibility_reasons": {},
+    "joint_task_format_outcome_counts": {
+      "DALLAS|FORMAT_INVALID|RAW0_FORMAT_GATE": 2,
+      "DALLAS|STRICT_VALID|CORRECT": 9,
+      "DALLAS|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": 5,
+      "MRI|FORMAT_INVALID|RAW0_FORMAT_GATE": 3,
+      "MRI|STRICT_VALID|CORRECT": 6,
+      "MRI|STRICT_VALID|RAW0_CANONICAL_WRONG_CLASS": 7
+    },
+    "label_metric_eligible_by_task": {
+      "DALLAS": 14,
+      "MRI": 13
+    },
+    "measurement_kind_counts": {
+      "LABEL_ONLY": 27,
+      "NONE": 3,
+      "WHOLE_OVERLAPPING_TOKEN_DIAGNOSTIC": 2
+    },
+    "model_loads_max": 2,
+    "parser_format_differs_from_recorded_grade": 0,
+    "planning_estimate_seconds_per_checkpoint": 518.0,
+    "returned_tokens_max": 2048,
+    "tasks": {
+      "mri_sequence": 16,
+      "mri_visit_correspondence": 16
+    },
+    "tf_forwards": 64,
+    "tf_positions_per_checkpoint": 11641,
+    "tf_positions_total": 23282,
+    "windows": {
+      "per_checkpoint_window_seconds": 1200,
+      "total_window_seconds": 2400
+    }
+  },
+  "budget": {
+    "TRAIN_task_counts": {
+      "Dallas": 16,
+      "MRI": 16
+    },
+    "backward_calls": 0,
+    "estimate_is_not_guaranteed_wall_limit": true,
+    "model_loads_max": 2,
+    "new_TRAIN_generation": 0,
+    "new_greedy_generations_max": 8,
+    "optimizer_updates": 0,
+    "per_checkpoint_window_seconds": 1200,
+    "planning_estimate_seconds_per_checkpoint": 518.0,
+    "recoveries": 0,
+    "returned_tokens_max": 2048,
+    "saved_unique_TRAIN_responses": 32,
+    "teacher_forced_positions_per_checkpoint": 11641,
+    "teacher_forced_positions_total": 23282,
+    "teacher_forced_scorer_forwards": 64,
+    "total_window_seconds": 2400,
+    "waits_count_in_windows": true
+  },
+  "human_permission_created": false,
+  "independent_input_facts_sha256": "b8127575d9101593c247618ecf22d4b17a150fcde3c0acd4ff588e9db7f28c7b",
+  "independent_verification": {
+    "all217_unique_bound_files_match": true,
+    "all32_response_context_token_ownold_bindings_match": true,
+    "both53_checkpoint_payload_and_identity_metadata_match": true,
+    "entry_no_replay_and_fresh_authority_reviewed": true,
+    "exact4DEV_selection_match": true,
+    "measurement_eligibility_and_joint_strata_reviewed": true,
+    "original_manifest_binding_checked": true,
+    "pytest_seconds": 1.01,
+    "read_only_identity_and_release_gates_reviewed": true,
+    "source_unchanged": true,
+    "targeted_tests_passed": 35,
+    "test_receipt_sha256": "50a6e98509b0209be745622cad71445c52258a911cac9b59426af708b7c1e727",
+    "test_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test_stdout_sha256": "f5e33de12f15ac9ea39db0f81795169d8a75aabe729a25dcabff94320b4c4972",
+    "wrapper_seconds": 1.1312189580057748
+  },
+  "input_sha256": "c6e47be37980681ea0d6b966faf2bce4b1c23e7b0d9ab3c8dde768f0136634a3",
+  "limitations": [
+    "Native model restore, F32 calls, actual allocator release and resource behavior remain NOT_NATIVE_RUN; CPU fakes are not native parity.",
+    "All32TRAIN responses remain parent52 samples. New53 log probabilities are fixed-response post-update measurements, not new on-policy sampling or counterfactual training.",
+    "Selected4DEV cases diagnose previously observed regressions only; not Adam53 DEV24 accuracy or independent generalization.",
+    "Pure-label selected-token metrics are eligible-span same-prefix measurements, not canonical correct-vs-wrong class margins.",
+    "No task-specific gradient vectors are reconstructed; this read-only scope cannot establish MRI-Dallas gradient interference or causal accuracy mechanisms.",
+    "Atomic GPU operations and monitor sampling retain an OOM/system-risk blind spot; resource guards do not guarantee absence of system failure.",
+    "Only fresh explicit human permission matching this exact scope may allow launch; prior scopes are not reused."
+  ],
+  "new_backward": 0,
+  "new_model_loads": 0,
+  "new_native_calls": 0,
+  "new_optimizer_updates": 0,
+  "private_independent_review_sha256": "0cf929ced677586ad1d7923178dd18d64d5fc2e2cbf87288e4378abfee387825",
+  "reviewer": {
+    "id": "/root/v2_actual_verifier",
+    "kind": "isolated_codex"
+  },
+  "schema": "v2-native-readonly-independent-preparation-review-public-v1",
+  "scope_canonical_sha256": "bf03456cd4ecd630b83c15be6047d6ba5b1863ee3c5bb64ba4e12d50bdbb8b70",
+  "scope_file_sha256": "dd929c2c961dfd8cb61d9c1a62fec23b183f638c2c6cec6377b874ac6eecb25e",
+  "six_source_test_protocol_sha256": {
+    "research/V2_NATIVE_READONLY_PROTOCOL_V1.md": "2e1a9ac7161a643f3500a5dd5be86ebb1209c05a7bc2134fb79cfae4d36da4a6",
+    "scripts/run_v2_native_readonly_v1.py": "88e7c897b3b966cc4a09cde1ada5c3060ccf14b570e96b9d2a4aa8f2a4cd2a18",
+    "src/mri_rl/v2_native_readonly_backend_v1.py": "460509d9e61308427de360a2b7a17a88d45b0c0e81c6cfb22d9c38a71f5f90dc",
+    "src/mri_rl/v2_native_readonly_entry_v1.py": "265067b5e15a319ac2ec1759c6b170d2c59cb8f84664cd25e180c94b2261aa9f",
+    "src/mri_rl/v2_native_readonly_v1.py": "9a94a5d195a17d850fd369e9aefdbec73f448f5d0e6dc02113a461c69970d4e9",
+    "tests/test_v2_native_readonly_v1.py": "e77bc820c26bce9f4bb2e68adfcb7950d0d44fd47f9ba9e9aa876b971e6ef49c"
+  },
+  "status": "NOT_NATIVE_RUN_FRESH_HUMAN_AUTHORIZATION_REQUIRED",
+  "training_authorized": false,
+  "verdict": "PASS_WITH_LIMITATIONS"
+}
