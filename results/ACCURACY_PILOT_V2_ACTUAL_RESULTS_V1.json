@@ -1,0 +1,577 @@
+{
+  "schema": "accuracy-pilot-v2-actual-results-v1",
+  "status": "TRAINING_AND_MATCHED_DEV_EVALUATION_COMPLETED",
+  "date_local": "2026-10-21",
+  "timezone": "America/Los_Angeles",
+  "scope_file_sha256": "afb0d7ef4af2bc581ffce761faba8975a00f32d6ff2ba9c2f4975c838c115482",
+  "scope_canonical_sha256": "c2b67850da720f2dafc74f349759ca67d031557c19b0a782695155be93a43f7f",
+  "native_source_HEAD": "a10b4a2bc42cf6dc27871070313095ac69173878",
+  "scientific_result": "NO_GO_SAME_CONFIGURATION_NOT_EXPANDED",
+  "protocol": {
+    "parent": "P_calibrated13 / Adam52 / boundary114",
+    "train_patients": 4,
+    "sequence_images": 8,
+    "sequence_level": 45,
+    "dallas_engineering_rows": 8,
+    "shared_first_segment_responses": 32,
+    "own_second_segment_responses_per_arm": 32,
+    "updates_max_per_arm": 2,
+    "changed_factor_between_arms": "sequence same-prompt versus paired-prompt grouping only",
+    "kept_equal": [
+      "parent",
+      "data exposure",
+      "reward",
+      "GSPO loss",
+      "learning rate",
+      "LoRA",
+      "F32 policy",
+      "prompt condition",
+      "budgets"
+    ],
+    "dev_images": 24,
+    "dev_patients": 4,
+    "dev_class_counts": [
+      12,
+      12
+    ],
+    "dev_status": "PREVIOUSLY_EXPLORED_INTERNAL_DEV_NOT_INDEPENDENT_GENERALIZATION",
+    "temperature": 0,
+    "max_tokens": 256,
+    "candidate_calls": 0,
+    "dallas_retention_evaluation": "NOT_RUN_BY_SCOPE",
+    "new16_outputs_accessed": false,
+    "old_final100_accessed": false,
+    "automatic_expansion": false
+  },
+  "execution_attribution": {
+    "implementation_lead": "Claude Code",
+    "claude_version": "2.1.306",
+    "claude_model": "claude-opus-5-5",
+    "claude_actual_implementation_commits": [
+      "8c5af12c46c63c7f9590fa2f79d49e73c490850a",
+      "1b018e644f3e44674b0e3bcf88ef1fdabf41da77"
+    ],
+    "claude_launched_exact_native_scope_once": true,
+    "claude_cli_monitor_exit": "NOT_RECORDED; later observed no longer running",
+    "native_exit_evidence": "independent durable controller and seven native child exits",
+    "monitoring_and_numeric_verification": "Codex root; isolated Codex independent reviewer",
+    "claude_final_numeric_approval": "NOT_CLAIMED"
+  },
+  "metrics": {
+    "A": {
+      "FLAIR_recall": 0.75,
+      "T1_recall": 0.5833333333333334,
+      "accuracy": 0.6666666666666666,
+      "balanced_accuracy": 0.6666666666666667,
+      "cap_hits": 0,
+      "cases": 24,
+      "class_correct": [
+        9,
+        7
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "correct": 16,
+      "generation_wall_seconds": 191.8956152529572,
+      "invalid": 0,
+      "invalid_rate": 0,
+      "predicted_counts": {
+        "FLAIR": 14,
+        "INVALID": 0,
+        "contrast-enhanced T1": 10
+      },
+      "returned_tokens": 739
+    },
+    "B": {
+      "FLAIR_recall": 0.75,
+      "T1_recall": 0.5833333333333334,
+      "accuracy": 0.6666666666666666,
+      "balanced_accuracy": 0.6666666666666667,
+      "cap_hits": 0,
+      "cases": 24,
+      "class_correct": [
+        9,
+        7
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "correct": 16,
+      "generation_wall_seconds": 188.87958720501047,
+      "invalid": 0,
+      "invalid_rate": 0,
+      "predicted_counts": {
+        "FLAIR": 14,
+        "INVALID": 0,
+        "contrast-enhanced T1": 10
+      },
+      "returned_tokens": 738
+    },
+    "Parent": {
+      "FLAIR_recall": 0.8333333333333334,
+      "T1_recall": 0.6666666666666666,
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "cap_hits": 0,
+      "cases": 24,
+      "class_correct": [
+        10,
+        8
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "correct": 18,
+      "generation_wall_seconds": 187.63614387187408,
+      "invalid": 0,
+      "invalid_rate": 0,
+      "predicted_counts": {
+        "FLAIR": 14,
+        "INVALID": 0,
+        "contrast-enhanced T1": 10
+      },
+      "returned_tokens": 713
+    }
+  },
+  "prompt_decision": {
+    "checks": {
+      "invalid_not_higher": true,
+      "no_class_loses_correct": true,
+      "strict_benefit": true
+    },
+    "concise": {
+      "FLAIR_recall": 0.5,
+      "T1_recall": 0.25,
+      "accuracy": 0.375,
+      "balanced_accuracy": 0.375,
+      "cap_hits": 1,
+      "cases": 8,
+      "class_correct": [
+        2,
+        1
+      ],
+      "class_counts": [
+        4,
+        4
+      ],
+      "correct": 3,
+      "generation_wall_seconds": 108.71707587700803,
+      "invalid": 1,
+      "invalid_rate": 0.125,
+      "predicted_counts": {
+        "FLAIR": 4,
+        "INVALID": 1,
+        "contrast-enhanced T1": 3
+      },
+      "returned_tokens": 457
+    },
+    "condition": "concise",
+    "decision": "ADOPT_CONCISE",
+    "label": "GENERATION_PROMPT_EFFECT_NOT_VERO_RL",
+    "original": {
+      "FLAIR_recall": 0.25,
+      "T1_recall": 0,
+      "accuracy": 0.125,
+      "balanced_accuracy": 0.125,
+      "cap_hits": 7,
+      "cases": 8,
+      "class_correct": [
+        1,
+        0
+      ],
+      "class_counts": [
+        4,
+        4
+      ],
+      "correct": 1,
+      "generation_wall_seconds": 401.7505430839374,
+      "invalid": 7,
+      "invalid_rate": 0.875,
+      "predicted_counts": {
+        "FLAIR": 1,
+        "INVALID": 7,
+        "contrast-enhanced T1": 0
+      },
+      "returned_tokens": 1820
+    },
+    "rule": "ADOPT_CONCISE iff, on the SAME 8 frozen TRAIN images and Parent Adam52 greedy: concise invalid <= original invalid, no class loses a correct answer, and (concise invalid < original invalid OR concise correct > original correct). Otherwise KEEP_ORIGINAL. Frozen before any call; DEV24 is never used for this decision.",
+    "token_cap_changed": false,
+    "unbounded_prompt_search": false,
+    "verifier_changed": false
+  },
+  "effects": {
+    "RL_effect_A_vs_Parent_same_prompt": {
+      "FLAIR_recall": -0.08333333333333337,
+      "T1_recall": -0.08333333333333326,
+      "accuracy": -0.08333333333333337,
+      "balanced_accuracy": -0.08333333333333326,
+      "invalid_rate": 0
+    },
+    "RL_effect_B_vs_Parent_same_prompt": {
+      "FLAIR_recall": -0.08333333333333337,
+      "T1_recall": -0.08333333333333326,
+      "accuracy": -0.08333333333333337,
+      "balanced_accuracy": -0.08333333333333326,
+      "invalid_rate": 0
+    },
+    "attribution_rule": "Prompt gains are never attributed to Vero RL; RL effects compare checkpoints under the identical frozen prompt.",
+    "method_effect_B_vs_A": {
+      "FLAIR_recall": 0,
+      "T1_recall": 0,
+      "accuracy": 0,
+      "balanced_accuracy": 0,
+      "invalid_rate": 0
+    },
+    "prompt_effect_on_Parent": {
+      "FLAIR_recall": 0.4166666666666667,
+      "T1_recall": 0.24999999999999994,
+      "accuracy": 0.3333333333333333,
+      "balanced_accuracy": 0.3333333333333333,
+      "invalid_rate": -0.375
+    }
+  },
+  "parent_original_prompt_V1_metrics": {
+    "FLAIR_recall": 0.4166666666666667,
+    "T1_recall": 0.4166666666666667,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.4166666666666667,
+    "cap_hits": 9,
+    "cases": 24,
+    "class_correct": [
+      5,
+      5
+    ],
+    "class_counts": [
+      12,
+      12
+    ],
+    "correct": 10,
+    "generation_wall_seconds": 692.1952322529396,
+    "invalid": 9,
+    "invalid_rate": 0.375,
+    "predicted_counts": {
+      "FLAIR": 7,
+      "INVALID": 9,
+      "contrast-enhanced T1": 8
+    },
+    "returned_tokens": 2932
+  },
+  "mechanism_segment0_same_32_responses": {
+    "A": {
+      "admitted_responses": 20,
+      "effective_groups": 5,
+      "joint_gradient_l2": 0.27506973748981256,
+      "updated": true,
+      "zero_variance_groups": 0
+    },
+    "B": {
+      "admitted_responses": 28,
+      "effective_groups": 7,
+      "joint_gradient_l2": 0.36668143070129633,
+      "updated": true,
+      "zero_variance_groups": 0
+    },
+    "identical_bundles": true
+  },
+  "scale_decision": {
+    "automatic_round2": false,
+    "checks": {
+      "B_FLAIR_not_below_Parent_minus_1_of_12": true,
+      "B_T1_recall_gt_Parent": false,
+      "B_balanced_gt_A": false,
+      "B_balanced_gt_Parent": false,
+      "B_beats_both_by_2_cases": false,
+      "B_vs_A_paired_image_gain": false,
+      "image_conditioned_pair_gain": false,
+      "invalid_or_valid_only_gain": true
+    },
+    "cohort": "FROZEN_INTERNAL_DEV24_PREVIOUSLY_EXPLORED",
+    "decision": "NO_GO",
+    "generalization_claim": false,
+    "method_specific_image_evidence": {
+      "B_minus_A_net_pair_gain": 0,
+      "identical_pair_category_profiles": true,
+      "paired_prompt_image_grounding_demonstrated": false,
+      "pairs_denominator": 12,
+      "reading": "INCONCLUSIVE",
+      "status": "NOT_DEMONSTRATED_IDENTICAL_PAIR_PROFILES"
+    },
+    "rule": "GO_PROPOSE_ROUND2 iff ALL: B balanced accuracy > A and > Parent (same frozen prompt); B correct exceeds both by >=2 cases; B T1 recall > Parent; B FLAIR recall >= Parent - 1/12; B invalid <= Parent invalid OR B beats Parent on cases valid for both; B-vs-Parent pair reading == IMAGE_CONDITIONED_DISCRIMINATION_GAIN; AND (method-specific, frozen 2026-10-21 before any V2 output) B-vs-A over ALL 12 DEV pairs: correct-discriminating pair gains - losses >= 2 with reading IMAGE_CONDITIONED_DISCRIMINATION_GAIN. If only B-vs-Parent passes, the result is INCONCLUSIVE (no Paired-Prompt-specific image evidence). NO_GO iff B balanced accuracy <= A and <= Parent, or B FLAIR recall < Parent - 1/12. Otherwise INCONCLUSIVE. Identical B/A pair category profiles are never reported as Paired-Prompt image grounding. Round 2 (<=8 patients/<=4 updates) is never automatic: it needs independent review and a new human grant."
+  },
+  "valid_both_B_vs_Parent": {
+    "cases_valid_for_both": 24,
+    "child_correct": 16,
+    "reference_correct": 18
+  },
+  "pair_profiles": {
+    "Parent": {
+      "CONSTANT_FLAIR": 3,
+      "CONSTANT_T1": 1,
+      "DISCRIMINATES_CORRECTLY": 7,
+      "INVALID_INVOLVED": 0,
+      "REVERSED": 1
+    },
+    "A": {
+      "CONSTANT_FLAIR": 4,
+      "CONSTANT_T1": 2,
+      "DISCRIMINATES_CORRECTLY": 5,
+      "INVALID_INVOLVED": 0,
+      "REVERSED": 1
+    },
+    "B": {
+      "CONSTANT_FLAIR": 4,
+      "CONSTANT_T1": 2,
+      "DISCRIMINATES_CORRECTLY": 5,
+      "INVALID_INVOLVED": 0,
+      "REVERSED": 1
+    }
+  },
+  "image_substitution": {
+    "all_exact": true,
+    "exact_substitution_pairs": 12,
+    "independent_intervention": false,
+    "label": "PAIRED_IMAGE_SUBSTITUTION_FROM_MAIN_EVALUATION",
+    "pairs": 12
+  },
+  "native_training": {
+    "A": {
+      "adam_step_after": 54,
+      "admitted_responses": 36,
+      "effective_groups": 9,
+      "invalid_format_responses": 16,
+      "optimizer_updates": 2,
+      "own_policy_segments": 1,
+      "patients_exposed": 4,
+      "responses": 64,
+      "zero_variance_groups": 0,
+      "correct_responses": 25
+    },
+    "B": {
+      "adam_step_after": 54,
+      "admitted_responses": 56,
+      "effective_groups": 14,
+      "invalid_format_responses": 14,
+      "optimizer_updates": 2,
+      "own_policy_segments": 1,
+      "patients_exposed": 4,
+      "responses": 64,
+      "zero_variance_groups": 0,
+      "correct_responses": 25
+    }
+  },
+  "root_recomputation": {
+    "root_metrics": {
+      "Parent": {
+        "correct": 18,
+        "class_correct": [
+          10,
+          8
+        ],
+        "invalid": 0,
+        "tokens": 713
+      },
+      "A": {
+        "correct": 16,
+        "class_correct": [
+          9,
+          7
+        ],
+        "invalid": 0,
+        "tokens": 739
+      },
+      "B": {
+        "correct": 16,
+        "class_correct": [
+          9,
+          7
+        ],
+        "invalid": 0,
+        "tokens": 738
+      }
+    },
+    "B_A_identical_class_predictions": true,
+    "B_A_identical_full_response_texts": 23,
+    "case_transitions": {
+      "A": {
+        "gained": 0,
+        "lost": 2,
+        "prediction_changes": 2
+      },
+      "B": {
+        "gained": 0,
+        "lost": 2,
+        "prediction_changes": 2
+      }
+    }
+  },
+  "actual_budget": {
+    "generations": 184,
+    "returned_tokens": 9899,
+    "scorer_forwards": 188,
+    "old_forwards": 96,
+    "backward_calls": 92,
+    "TF_positions": 70689,
+    "optimizer_updates": 4,
+    "model_loads": 7,
+    "recoveries": 0
+  },
+  "stage_call_counters": {
+    "P": {
+      "LM": 2309,
+      "generated_tokens": 2277,
+      "generations": 16,
+      "sampler": 2293,
+      "vision": 16
+    },
+    "C": {
+      "backward_calls": 0,
+      "detached_old_forwards": 32,
+      "generated_response_tokens": 1465,
+      "generation_language_model_calls": 1529,
+      "generation_vision_embedding_calls": 32,
+      "gradient_forwards": 0,
+      "optimizer_updates": 0,
+      "sampler_draws": 1497,
+      "scorer_language_model_calls": 32,
+      "scorer_vision_embedding_calls": 32,
+      "teacherforced_input_positions": 11641
+    },
+    "A": {
+      "backward_calls": 36,
+      "detached_old_forwards": 32,
+      "generated_response_tokens": 2418,
+      "generation_language_model_calls": 2482,
+      "generation_vision_embedding_calls": 32,
+      "gradient_forwards": 36,
+      "optimizer_updates": 2,
+      "sampler_draws": 2450,
+      "scorer_language_model_calls": 68,
+      "scorer_vision_embedding_calls": 68,
+      "teacherforced_input_positions": 27710
+    },
+    "B": {
+      "backward_calls": 56,
+      "detached_old_forwards": 32,
+      "generated_response_tokens": 1549,
+      "generation_language_model_calls": 1613,
+      "generation_vision_embedding_calls": 32,
+      "gradient_forwards": 56,
+      "optimizer_updates": 2,
+      "sampler_draws": 1581,
+      "scorer_language_model_calls": 88,
+      "scorer_vision_embedding_calls": 88,
+      "teacherforced_input_positions": 31338
+    },
+    "EP": {
+      "LM": 761,
+      "generated_tokens": 713,
+      "generations": 24,
+      "sampler": 737,
+      "vision": 24
+    },
+    "EA": {
+      "LM": 787,
+      "generated_tokens": 739,
+      "generations": 24,
+      "sampler": 763,
+      "vision": 24
+    },
+    "EB": {
+      "LM": 786,
+      "generated_tokens": 738,
+      "generations": 24,
+      "sampler": 762,
+      "vision": 24
+    }
+  },
+  "resources": {
+    "controller_wall_seconds": 3956.211521958001,
+    "stage_wall_seconds": {
+      "P": 590.1138132910128,
+      "C": 549.3729937080061,
+      "A": 1021.9760695829755,
+      "B": 935.7783563340199,
+      "EP": 261.7872852079454,
+      "EA": 261.5513215420069,
+      "EB": 259.801684208971
+    },
+    "wait4_peak_RSS_GiB": 5.9214324951171875,
+    "native_reported_peak_MLX_GiB": 10.356618976220489,
+    "sampled_min_available_GiB": 5.250335693359375,
+    "sampled_min_pressure_free_pct": 29,
+    "sampled_swap_min_GiB": 14.798828125,
+    "sampled_swap_peak_GiB": 19.627255859375,
+    "preflight_swap_GiB": 14.861328125,
+    "sampled_swap_peak_growth_from_preflight_GiB": 4.765927734375001,
+    "sampled_OS_pressure_levels": [
+      1,
+      2
+    ],
+    "critical_or_guardian_stop": false,
+    "post_controller_available_GiB": 16.659286499023438,
+    "post_controller_pressure_free_pct": 71,
+    "post_controller_swap_GiB": 18.704833984375,
+    "post_controller_other_heavy_processes": 0,
+    "post_controller_power_source": "AC",
+    "post_controller_battery_pct": 100,
+    "thermal_state": "SENSOR_UNAVAILABLE",
+    "MLX_measurement_limit": "native attestations observed MLX; external watchdog cannot directly observe child MLX",
+    "all_stage_exit0_reaped": true,
+    "native_all_release_verified": true,
+    "controller_exit0_reaped": true,
+    "global_lock_free": true
+  },
+  "evidence": {
+    "artifact_sha256": {
+      "analysis_PRIVATE.json": "e67e5ed074ffecb3a78ece0e09195e7f69ed9129dfc1d7b44dc52a3fa272dc0b",
+      "compound_complete_PRIVATE.json": "a3683b442e19a7cc22dab7213a55f0d1f9bd06b078b617128596fbaa29c02549",
+      "model_load_ledger_PRIVATE.json": "951c30a6f51a78a803c74cb064984c9955eeb3fdae72e09e18111c2b155e64e0",
+      "control_PRIVATE.json": "4fd05c7ea1b7a58b37490d16aa4f68e392767121a90555f8742d7d1f7079015f"
+    },
+    "outer_exit_sha256": "3e064206862be17d35f0e2d97af4d5372b93f23cb4346e4d6e776e67128967b7",
+    "all_stage_hashes": {
+      "P": {
+        "terminal_sha256": "622a8875b2ae8da336b89574887c9a541f43cd02c08584d0fcf2e114acbe2d4c",
+        "exit_sha256": "88418ff75fcb02017449e51397d3bad04fcdcb5263d47cdcebbddcd88c5edcdd"
+      },
+      "C": {
+        "terminal_sha256": "ae8c930dbb55f3de838982b4b7b81bff74f567d66865dbc77e79fd1ac768f96f",
+        "exit_sha256": "538392fe1e131b19ae289038acf82308456bd031be4b7eaa3efc6290655efde6"
+      },
+      "A": {
+        "terminal_sha256": "b3736572b8135c0b0faaaaa594672de8abe37bb9198ac43891420697b833964b",
+        "exit_sha256": "ac1ba57dba1e4f8bf0baa8113dc86cf3b0d58fbdd936d394f0218819190dfc95"
+      },
+      "B": {
+        "terminal_sha256": "ff0d68e4c563c82310a843ef5e4e007c847fadd035b85ea61721654ed353c55a",
+        "exit_sha256": "e8cdf6cdd718a6a44dfc821be91bd5b91fad7d81d1071ded36f042c1c677a66b"
+      },
+      "EP": {
+        "terminal_sha256": "9205ccfb7a6cac3df70518b7ff18f37ac3aa9c6c499980c30f08b64c3501a3de",
+        "exit_sha256": "bb6e1c047a5632dcff20966ebc949794cb1610bcd6247209e262efcbe915660e"
+      },
+      "EA": {
+        "terminal_sha256": "bc02551d0a60e912a79b5ddcb4e816755e928da12e5b481c25cef2c1646b8125",
+        "exit_sha256": "b4f033bd47cc2b4f1ed7e05935b08396b4f9a53ef122a447b1aa0b043f8bb86e"
+      },
+      "EB": {
+        "terminal_sha256": "e8c48d97a8a9f5d7a6ab1aa36a40d6538ad3aee495f751f61d51540c64264c76",
+        "exit_sha256": "2035e7f604e1751c7c427d2358c9c49a5902936166a4e04d0da6a7b35c9718b3"
+      }
+    }
+  },
+  "limitations": [
+    "24 images from four repeatedly explored DEV patients, one fixed pilot seed; no stable generalization or clinical reasoning claim",
+    "Two updates per arm do not establish Paired-Prompt efficacy or inefficacy in general",
+    "F32 numerical qualification is limited native evidence, not full official Vero/veRL parity",
+    "No candidate margins, no-image control or Dallas post-training retention measured",
+    "Image substitution reuses main paired inputs; no independent randomized image intervention or anatomical grounding proof",
+    "V2 versus V1 changes prompt and batch granularity; only within-V2 A/B is the matched grouping comparison",
+    "More admitted groups and backward calls do not imply accuracy improvement",
+    "No new16 or oldfinal100 model output used for selection; frozen research plan unchanged"
+  ]
+}

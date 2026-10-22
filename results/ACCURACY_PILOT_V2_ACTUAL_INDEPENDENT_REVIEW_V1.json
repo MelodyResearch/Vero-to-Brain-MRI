@@ -1,0 +1,321 @@
+{
+  "schema": "accuracy-pilot-v2-actual-independent-review-v1",
+  "reviewer": "Codex /root/v2_actual_verifier",
+  "status": "PASS_WITH_NEGATIVE_ACCURACY_RESULT",
+  "evidence_tier": "REPRODUCED",
+  "format": "Condensed factual record of the isolated reviewer's actual returned numerical and binding review; not an execution authorization",
+  "scope_file_sha256": "afb0d7ef4af2bc581ffce761faba8975a00f32d6ff2ba9c2f4975c838c115482",
+  "scope_canonical_sha256": "c2b67850da720f2dafc74f349759ca67d031557c19b0a782695155be93a43f7f",
+  "source_HEAD": "a10b4a2bc42cf6dc27871070313095ac69173878",
+  "source_files_verified": 104,
+  "journal_file_map_checks": 321,
+  "source_hashes": {
+    "accuracy_pilot_v2_core.py": "5b7d2e377f7cd5a42ef18e6d5a0a404937bfc7cb50a272a47c9a570cf8e65d08",
+    "accuracy_pilot_v2_entry.py": "8d9c9610d22e950d5e91d5d676ed7d999e848273712b94c3ce836471dff3aeaa",
+    "accuracy_pilot_v2_native.py": "75caa4da213ede34d962a174c9d5b596d32b4c9e3507855e8111ccb8a06de797",
+    "paired_z045_evaluation_v1.py": "7f874193cb172e2890fc29a80139c3e0cf284607cb3bc9e9d4ed6dc2343179d7",
+    "vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8"
+  },
+  "plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+  "plan_lock_sha256": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+  "parent_payloads_verified": 9,
+  "parent_adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+  "parent_optimizer_tensors_sha256": "e941a7cb91690bde7b2e9c574fdcfd4d78e74012c9dd62260feeed568055a3d1",
+  "all_seven_stages_exit0_reaped_closed_logs": true,
+  "all_seven_native_allocator_release_verified": true,
+  "max_release_active_MLX_bytes": 1108,
+  "analysis_sha256": "e67e5ed074ffecb3a78ece0e09195e7f69ed9129dfc1d7b44dc52a3fa272dc0b",
+  "compound_complete_sha256": "a3683b442e19a7cc22dab7213a55f0d1f9bd06b078b617128596fbaa29c02549",
+  "controller_exit_sha256": "3e064206862be17d35f0e2d97af4d5372b93f23cb4346e4d6e776e67128967b7",
+  "stage_bindings": {
+    "P": {
+      "terminal_sha256": "622a8875b2ae8da336b89574887c9a541f43cd02c08584d0fcf2e114acbe2d4c",
+      "exit_sha256": "88418ff75fcb02017449e51397d3bad04fcdcb5263d47cdcebbddcd88c5edcdd"
+    },
+    "C": {
+      "terminal_sha256": "ae8c930dbb55f3de838982b4b7b81bff74f567d66865dbc77e79fd1ac768f96f",
+      "exit_sha256": "538392fe1e131b19ae289038acf82308456bd031be4b7eaa3efc6290655efde6"
+    },
+    "A": {
+      "terminal_sha256": "b3736572b8135c0b0faaaaa594672de8abe37bb9198ac43891420697b833964b",
+      "exit_sha256": "ac1ba57dba1e4f8bf0baa8113dc86cf3b0d58fbdd936d394f0218819190dfc95"
+    },
+    "B": {
+      "terminal_sha256": "ff0d68e4c563c82310a843ef5e4e007c847fadd035b85ea61721654ed353c55a",
+      "exit_sha256": "e8cdf6cdd718a6a44dfc821be91bd5b91fad7d81d1071ded36f042c1c677a66b"
+    },
+    "EP": {
+      "terminal_sha256": "9205ccfb7a6cac3df70518b7ff18f37ac3aa9c6c499980c30f08b64c3501a3de",
+      "exit_sha256": "bb6e1c047a5632dcff20966ebc949794cb1610bcd6247209e262efcbe915660e"
+    },
+    "EA": {
+      "terminal_sha256": "bc02551d0a60e912a79b5ddcb4e816755e928da12e5b481c25cef2c1646b8125",
+      "exit_sha256": "b4f033bd47cc2b4f1ed7e05935b08396b4f9a53ef122a447b1aa0b043f8bb86e"
+    },
+    "EB": {
+      "terminal_sha256": "e8c48d97a8a9f5d7a6ab1aa36a40d6538ad3aee495f751f61d51540c64264c76",
+      "exit_sha256": "2035e7f604e1751c7c427d2358c9c49a5902936166a4e04d0da6a7b35c9718b3"
+    }
+  },
+  "controller_wall_seconds": 3956.211521958001,
+  "metrics": {
+    "A": {
+      "FLAIR_recall": 0.75,
+      "T1_recall": 0.5833333333333334,
+      "accuracy": 0.6666666666666666,
+      "balanced_accuracy": 0.6666666666666667,
+      "cap_hits": 0,
+      "cases": 24,
+      "class_correct": [
+        9,
+        7
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "correct": 16,
+      "generation_wall_seconds": 191.8956152529572,
+      "invalid": 0,
+      "invalid_rate": 0,
+      "predicted_counts": {
+        "FLAIR": 14,
+        "INVALID": 0,
+        "contrast-enhanced T1": 10
+      },
+      "returned_tokens": 739
+    },
+    "B": {
+      "FLAIR_recall": 0.75,
+      "T1_recall": 0.5833333333333334,
+      "accuracy": 0.6666666666666666,
+      "balanced_accuracy": 0.6666666666666667,
+      "cap_hits": 0,
+      "cases": 24,
+      "class_correct": [
+        9,
+        7
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "correct": 16,
+      "generation_wall_seconds": 188.87958720501047,
+      "invalid": 0,
+      "invalid_rate": 0,
+      "predicted_counts": {
+        "FLAIR": 14,
+        "INVALID": 0,
+        "contrast-enhanced T1": 10
+      },
+      "returned_tokens": 738
+    },
+    "Parent": {
+      "FLAIR_recall": 0.8333333333333334,
+      "T1_recall": 0.6666666666666666,
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "cap_hits": 0,
+      "cases": 24,
+      "class_correct": [
+        10,
+        8
+      ],
+      "class_counts": [
+        12,
+        12
+      ],
+      "correct": 18,
+      "generation_wall_seconds": 187.63614387187408,
+      "invalid": 0,
+      "invalid_rate": 0,
+      "predicted_counts": {
+        "FLAIR": 14,
+        "INVALID": 0,
+        "contrast-enhanced T1": 10
+      },
+      "returned_tokens": 713
+    }
+  },
+  "original_prompt_parent_DEV24": {
+    "FLAIR_recall": 0.4166666666666667,
+    "T1_recall": 0.4166666666666667,
+    "accuracy": 0.4166666666666667,
+    "balanced_accuracy": 0.4166666666666667,
+    "cap_hits": 9,
+    "cases": 24,
+    "class_correct": [
+      5,
+      5
+    ],
+    "class_counts": [
+      12,
+      12
+    ],
+    "correct": 10,
+    "generation_wall_seconds": 692.1952322529396,
+    "invalid": 9,
+    "invalid_rate": 0.375,
+    "predicted_counts": {
+      "FLAIR": 7,
+      "INVALID": 9,
+      "contrast-enhanced T1": 8
+    },
+    "returned_tokens": 2932
+  },
+  "prompt_effect_case_transitions": {
+    "correct_remained_correct": 10,
+    "invalid_to_correct": 6,
+    "invalid_to_valid_wrong": 3,
+    "valid_wrong_to_correct": 2,
+    "valid_wrong_remained_wrong": 3,
+    "correct_lost": 0
+  },
+  "case_comparisons": {
+    "A": {
+      "gained": 0,
+      "lost": 2,
+      "prediction_changes": 2
+    },
+    "B": {
+      "gained": 0,
+      "lost": 2,
+      "prediction_changes": 2
+    }
+  },
+  "A_B_identity": {
+    "denominator": 24,
+    "predictions": 24,
+    "response_text": 23,
+    "response_token_sequences": 23,
+    "same_policy": false
+  },
+  "pair_profile_counts": {
+    "Parent": {
+      "CONSTANT_FLAIR": 3,
+      "CONSTANT_T1": 1,
+      "DISCRIMINATES_CORRECTLY": 7,
+      "INVALID_INVOLVED": 0,
+      "REVERSED": 1
+    },
+    "A": {
+      "CONSTANT_FLAIR": 4,
+      "CONSTANT_T1": 2,
+      "DISCRIMINATES_CORRECTLY": 5,
+      "INVALID_INVOLVED": 0,
+      "REVERSED": 1
+    },
+    "B": {
+      "CONSTANT_FLAIR": 4,
+      "CONSTANT_T1": 2,
+      "DISCRIMINATES_CORRECTLY": 5,
+      "INVALID_INVOLVED": 0,
+      "REVERSED": 1
+    }
+  },
+  "paired_substitution_exact_pairs": {
+    "Parent": 12,
+    "A": 12,
+    "B": 12
+  },
+  "same_visible_input_contract_all72": true,
+  "anatomical_grounding_demonstrated": false,
+  "training": {
+    "A": {
+      "step_chain": [
+        52,
+        53,
+        54
+      ],
+      "updates": 2,
+      "backwards": 36,
+      "effective_groups": 9
+    },
+    "B": {
+      "step_chain": [
+        52,
+        53,
+        54
+      ],
+      "updates": 2,
+      "backwards": 56,
+      "effective_groups": 14
+    },
+    "first_segment_shared_exact_32": true,
+    "second_segments_own_policy": true
+  },
+  "spent": {
+    "generations": 184,
+    "returned_tokens": 9899,
+    "scorer_forwards": 188,
+    "old_forwards": 96,
+    "backward_calls": 92,
+    "TF_positions": 70689,
+    "optimizer_updates": 4,
+    "model_loads": 7,
+    "recoveries": 0
+  },
+  "resource": {
+    "native_samples": 21408,
+    "independent_watchdog_samples": 1881,
+    "native_actions": {
+      "CONTINUE": 21408
+    },
+    "native_colors": {
+      "GREEN": 12172,
+      "YELLOW": 9236
+    },
+    "peak_wait4_RSS_GiB": 5.9214324951171875,
+    "peak_native_MLX_GiB": 10.356618976220489,
+    "min_available_GiB": 5.250335693359375,
+    "min_pressure_free_percent": 29,
+    "swap_start_GiB": 14.861328125,
+    "swap_peak_GiB": 19.627255859375,
+    "swap_end_GiB": 18.704833984375,
+    "min_disk_GiB": 289.4709281921387,
+    "battery_min_percent": 100,
+    "thermal_state": "SENSOR_UNAVAILABLE",
+    "external_MLX_visibility": "NOT_OBSERVABLE",
+    "guardian_stops": 0,
+    "forced_terminations": 0,
+    "post_exit_available_GiB": 16.659286499023438,
+    "post_exit_pressure_free_percent": 71,
+    "post_exit_lock_no_open_holders": true
+  },
+  "decision": "NO_GO",
+  "automatic_expansion": false,
+  "review_model_calls": 0,
+  "review_optimizer_updates": 0,
+  "review_tensor_arrays_loaded": 0,
+  "forbidden_final100_or_sealed16_outputs_accessed": false,
+  "execution_attribution": {
+    "Claude_Code": "Actual implementation and once-only authorized native launch; final CLI exit and final numeric approval NOT_VERIFIED",
+    "Codex": "Monitoring and independent saved-evidence numeric/privacy review",
+    "native_controller": "All seven completed with authenticated closed external exit0/reaped"
+  },
+  "limitations": [
+    "Four repeatedly explored DEV patients, not independent prospective generalization",
+    "Main-evaluation paired-input reuse is not an independent intervention or proof of anatomical grounding",
+    "Dallas retention, candidate margins and no-image controls not measured",
+    "No independent Adam tensor arithmetic replay in this review; native state/file bindings authenticated",
+    "External watchdog cannot observe MLX allocator directly; native release records are separate evidence",
+    "Thermal unavailable and sampled resources do not guarantee no atomic-operation/system risk",
+    "No Paired-Prompt accuracy or material inference-efficiency gain over Direct or same-prompt Parent"
+  ],
+  "publication_review": {
+    "status": "PASS",
+    "reviewer": "Codex /root/v2_actual_verifier",
+    "results_sha256": "386c90a30bda025f27f95b1aee65a78ca9aefbbce58f2d0186fedd7bd0760af0",
+    "report_sha256": "b2a8cd2ed0367d12db5747dba58eb1a23c9f3a565e03b30b9ea0349322083197",
+    "append_only_log": true,
+    "append_log_bytes": 2656,
+    "numbers_match": true,
+    "privacy_check": "PASS",
+    "known_private_patient_identifiers_checked": 19,
+    "actionable_issues": [],
+    "Claude_init_version": "2.1.306",
+    "Claude_init_model": "claude-opus-5-5",
+    "Claude_init_log_sha256": "02e754f46fbe7a3d818841f184461091c5f3249f34d22baf0774f8c43efc0819"
+  }
+}
