@@ -648,3 +648,34 @@ FINAL EXACT REVIEW: isolated Codex PASS_WITH_LIMITATIONS; independently reran51V
 all115source/169input pins. Private review SHA79f43d9934444cb85c3f81b2fa989926c3ca2149e69055f16eebb3274b37d22d;
 sanitized public review SHAdaf3f20c74471cfb9342d429f3d574d63e1b35f2d6a8e8f830028a4d290609a1.
 This review is preparation only; fresh human execution permission remains pending. Repository visibility independently confirmed PRIVATE.
+
+
+## 2026-10-23 — Approved heterogeneous MRI V2 actual native execution: NO_GSPO_SIGNAL
+
+OBSERVED: explicit new human approval consumed exact FILEa0ce6e0bb5874eb0414fae9ac7d9fccaa9ab85d6ece326277268a488e22603f1.
+Codex executed once (Claude primary implementation/CPU work; its later CLI was unavailable). Fresh host resources3xGREEN, battery96%,
+no other heavy process, model lockfree.1Adam52load,6new-promptTRAINgreedycontrols, all6strictvalid. TRUE correctness1/2,0/2swap flips;
+the unchanged greedy decisions were baseline only and did not veto. No probability-equality/anatomical-grounding claim.
+
+Then16realonpolicyanswers once: Sequence3correct/4wrong/1invalid, Midline2correct/3wrong/3invalid. Sequence1admitted correctness-contrast
+K4;Midline0. Midline valid outcomes were uniform within each image (one group3wrong+1invalid, the other2correct+2invalid).
+Cross-image correct/wrong aggregate cannot substitute for same-prompt GSPO signal. Original rewards/plans/advantages retained.
+Therefore exact outcomeNO_GSPO_SIGNAL:0backward,0updates,Adam52unchanged,nochildcheckpoint. Phase3strictlyskipped0evaluationcalls;
+no new MRI accuracy. HistoricalParentDEV24=18/24 remains an authenticated reuse, not new inference or a performance gain.
+
+Actual22generations/523returnedtokens (121greedy+402sampled),16own-oldforwards/6030TFpositions. Native303.673275s,wrapper315.816739s,
+bothexit0. Nativewait4RSSpeak5.927429GiB/MLXpeak6.430199GiB;runtimeSwap14.513730→15.518799GiB,peak15.635986GiB. G/Ypolicycontinued;
+noRED/STOP/TERM/KILL/monitorerrors. ModelNone/MLXactive1112bytes,snapshotreferencescleared,childreaped,global lockfree,parentdiskunchanged.
+Postexitavailable13.614151GiB/free57%,battery94%. Thermal sensorunavailable. No other app/system protections changed.
+
+SCOPE CLOSED, NO RETRY/RESAMPLING/EXPANSION/EVALUATION from unused budget. Raw image/clinical-answer/token/state artifacts retained
+privately. Public actual:results/HETEROGENEOUS_MRI_PILOT_V2_NATIVE_ACTUAL.json. Independent saved-evidence numerical verification
+pending; no additional native calls are needed for that review. Frozen plan/lock, main and all historical models/results unchanged.
+
+REPRODUCED ACTUAL (isolated Codex): all16grades/all4K4advantage+gate plans match exactly(maxerror0),2journalcommits/13committedfiles
+and Parentdiskhashes authenticated. Sequence230sampledtokens/2086TFmaxselectedlogperror5.865097e-5;Midline172tokens/3944TFmaxerror
+7.033348e-5;bothPASSoriginal0.002. No backward/currentgradient1e-5qualification claimed. Control121tokens ->523total. External
+monitor minavailable5.346619GiB/free29%;internalboundarymin6.011826GiB/free31%. No resource stop. Private actual review SHA
+bf9bc7a486c605a3f8a3542e036cb4fee7579b3582709d3f6db907d08c9f05b2; public review SHA
+20c93033eda952304510321ed613efb1d5791374b0a2106413ee7b7d501d342e, verdictPASS_WITH_LIMITATIONS/scientificNO_GSPO_SIGNAL.
+This saved-evidence review added0nativecalls. The exact once-only permission is closed; no further GPU/evaluation is authorized.

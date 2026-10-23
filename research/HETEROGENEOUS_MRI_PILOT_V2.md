@@ -1,10 +1,9 @@
 # Heterogeneous MRI pilot V2 (sequence FLAIR/T1ce + VQA-RAD midline shift)
 
-**Status:** `SOURCE_IMPLEMENTED_CPU_SYNTHETIC_NOT_NATIVE_RUN`. CPU `prepare` returns
-`PREPARED_PENDING_EXACT_REVIEW_AND_FRESH_HUMAN` (169 input files and 115 sources bound, 0 blockers). The final exact scope and independent review are recorded in the accompanying sanitized result; human execution permission is pending.
+**Current status:** `NO_GSPO_SIGNAL` — the approved one-shot native run completed normally. See [actual result](../results/HETEROGENEOUS_MRI_PILOT_V2_NATIVE_ACTUAL.json). The following CPU preparation is the historical state at implementation commit `b04116709fa17d2948c9ca2063eebe3570f4eee3`. CPU `prepare` returned
+`PREPARED_PENDING_EXACT_REVIEW_AND_FRESH_HUMAN` (169 input files and 115 sources bound, 0 blockers). The final exact scope and independent review are recorded in the accompanying sanitized result; human execution permission was pending at preparation; it was then explicitly granted and consumed by the run below.
 
-**Implementation:** Claude Code (`claude-opus-5-5`) wrote the primary core, native bridge, entry, tests, measurement and diagnosis tools. A follow-up CLI call returned `Not logged in`; Codex fixed the independent-review findings and verified the final changes. No Claude participation is claimed for those follow-up fixes. For this version, 0 model
-loads, generations, teacher-forced passes, backward calls or updates were run. V1 source, results and private receipts are
+**Implementation:** Claude Code (`claude-opus-5-5`) wrote the primary core, native bridge, entry, tests, measurement and diagnosis tools. A follow-up CLI call returned `Not logged in`; Codex fixed the independent-review findings and verified the final changes. No Claude participation is claimed for those follow-up fixes. At CPU preparation, 0 model loads, generations, teacher-forced passes, backward calls or updates had run. The actual run below was executed by Codex; Claude was not its native executor. V1 source, results and private receipts are
 unchanged.
 
 ## 1. V1 diagnosis (saved evidence only; CPU; no replay of the 6 calls)
@@ -112,10 +111,8 @@ or an in-process restore of the trained model. Both conflict with the requested 
   `scripts/diagnose_heterogeneous_pilot_v1_format.py`.
 - `tests/test_heterogeneous_mri_pilot_v2.py`: 51 passing CPU tests. The selected six related CPU suites have 209 passing tests (not an unrestricted repository/native test run). These include observed failing regressions followed by fixes for RED boundaries, missing transaction closure, wrong/unreaped exit witnesses and checkpoint tampering.
 
-## 6. Missing native evidence
-- No V2 native run has happened.
-- The 8 V2 midline F32 contexts are not natively qualified.
-- Whether the Parent boxes its answer under the V2 suffix is unknown until the Phase-1 run.
+## 6. Evidence limits at CPU preparation
+The boxed compliance and native F32 path were unverified when this protocol was prepared. The actual result below now qualifies only the finite observed contexts; no broad official-Vero-equivalence or accuracy claim follows.
 
 ## 7. Final independent scope review (no execution permission)
 Isolated Codex returned **PASS_WITH_LIMITATIONS**, independently reproduced 51 V2 CPU tests and exact preparation,
@@ -125,4 +122,41 @@ and verified all115 source/169 input hashes. See [independent review](../results
 - Canonical scope identity: `a3f8f6f49adcc62630fc6713d0850bfb097d1590e867821a45f0c275b14956c7`.
 - Independent PRIVATE review SHA256: `79f43d9934444cb85c3f81b2fa989926c3ca2149e69055f16eebb3274b37d22d`.
 
-The reviewed source is ready for one fresh explicit native authorization. No new grant, model run or accuracy result exists.
+This exact scope subsequently received explicit human authorization and was executed once. The permission is consumed; the run is closed without retry or budget expansion.
+
+## 8. Actual approved native result — NO_GSPO_SIGNAL
+
+The V2 prompt fixed the observed greedy-format blocker: **6/6 controls were strictly valid**, including both TRUE inputs.
+TRUE correctness was 1/2 and both swapped greedy decisions remained unchanged; these are TRAIN diagnostics, not held-out accuracy
+or conditional-probability equality. The baseline no longer vetoed rollout.
+
+The model generated **16 real on-policy responses once**, then scored all16 under the unchanged F32 path:
+
+| Task | Correct / wrong / invalid (8 responses) | Strict correctness-contrast K4 groups |
+|---|---|---|
+| Sequence | 3 / 4 / 1 | 1 |
+| Midline | 2 / 3 / 3 | 0 |
+
+The two Midline groups were 3 wrong +1 invalid, and 2 correct +2 invalid. Their valid responses were correctness-uniform within
+an image. Aggregate correct and wrong responses across different images cannot provide the required same-prompt group-relative
+signal. The original task group gate admitted neither Midline group. No reward, advantage or parser was changed to manufacture signal.
+
+**Actual:** 1 model load;22 generations (6 controls +16 sampled),523 returned tokens;16 detached scorer forwards/6,030 TF positions;
+**0 backward,0 optimizer updates**, Adam step remains52, no child checkpoint. Because no update existed, Phase3 was skipped exactly
+as authorized: no new Midline EVAL or Sequence DEV24 calls. Historical Parent sequence18/24 remains a reused reference only.
+**There is no demonstrated accuracy improvement.** This result stops the current fixed data/sampling configuration, not Vero research
+as a whole; no re-draw or scale-up follows from unused budget.
+
+Native wall303.673275s, wrapper315.816739s. wait4 RSS peak5.927429GiB, native MLX peak6.430199GiB. Runtime swap14.513730→15.518799GiB
+(peak15.635986GiB). GREEN/YELLOW continued under the approved policy; no RED, guardianSTOP, TERM/KILL or monitor errors. Post-exit
+available memory13.614151GiB/free57%, battery94%; model None and MLX active1,112bytes, snapshot references cleared, child reaped,
+lock free and original Parent disk unchanged. Thermal sensor remained unavailable, so no numeric temperature is claimed.
+
+All raw responses, tokens, true labels, image bindings, own-old scores, full state and receipts remain private. The exact scope is closed;
+no evaluation or further GPU operation is authorized by its unused numerical capacity.
+
+**Actual independent verification:** isolated Codex regraded all16 responses and replayed all4 K4 advantage/gate plans with
+max grade/advantage error0; authenticated2 journal commits/13 committed files and Parent file hashes. Generation vs own-old
+max absolute selected-logp error was5.865097e-5 (Sequence) and7.033348e-5 (Midline), below the unchanged0.002 threshold.
+This verifies the finite observed scoring contexts, not unrun backward parity or official Vero equivalence. External monitor minimum
+available5.346619GiB/free29%; internal boundary minima were6.011826GiB/free31%. See [actual independent review](../results/HETEROGENEOUS_MRI_PILOT_V2_ACTUAL_INDEPENDENT_REVIEW.json).

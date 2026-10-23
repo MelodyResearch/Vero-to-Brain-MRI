@@ -1,0 +1,186 @@
+{
+ "F32_observed_generation_scorer_parity": {
+  "backward_current_scorer_parity": "NOT_RUN_ZERO_BACKWARD; not a 1e-5 gradient qualification",
+  "midline_max_abs_logp_error": 7.033348083496094e-05,
+  "mri_sequence_max_abs_logp_error": 5.8650970458984375e-05,
+  "official_Vero_equivalence": false,
+  "result": "PASS_FINITE_OBSERVED_CONTEXTS",
+  "threshold": 0.002
+ },
+ "accuracy_or_generalization_claim": false,
+ "actual_cost": {
+  "backward": 0,
+  "detached_scorer_forwards": 16,
+  "gradient_forwards": 0,
+  "greedy_calls": 6,
+  "greedy_returned_tokens": 121,
+  "model_loads": 1,
+  "native_wall_seconds": 303.6732749170624,
+  "optimizer_updates": 0,
+  "sampled_responses": 16,
+  "sampled_returned_tokens": 402,
+  "teacherforced_positions": 6030,
+  "total_generations": 22,
+  "total_returned_tokens": 523,
+  "wrapper_wall_seconds": 315.816739
+ },
+ "date": "2026-10-23",
+ "implementation_commit": "b04116709fa17d2948c9ca2063eebe3570f4eee3",
+ "independent_actual_review": {
+  "committed_files": 13,
+  "journal_commits": 2,
+  "max_advantage_error": 0.0,
+  "max_grade_error": 0.0,
+  "path": "results/HETEROGENEOUS_MRI_PILOT_V2_ACTUAL_INDEPENDENT_REVIEW.json",
+  "private_sha256": "bf9bc7a486c605a3f8a3542e036cb4fee7579b3582709d3f6db907d08c9f05b2",
+  "regraded_sampled_responses": 16,
+  "reviewer": "isolated Codex /root/v2_actual_verifier",
+  "sha256": "20c93033eda952304510321ed613efb1d5791374b0a2106413ee7b7d501d342e",
+  "verdict": "PASS_WITH_LIMITATIONS"
+ },
+ "integrity": {
+  "consumed_scope_closed": true,
+  "full_Adam52_retained": true,
+  "no_child_checkpoint": true,
+  "no_extra_phase_or_retry": true,
+  "parent_disk_unchanged": true
+ },
+ "limitations": [
+  "Two TRAIN and two EVAL source-case components only; patient registry independence not certified",
+  "Greedy format success did not make every sampled answer strictly valid",
+  "No update means no child accuracy evaluation; no efficacy claim",
+  "Finite observed generation/scorer checks do not imply full official Vero equivalence",
+  "No anatomical-grounding conclusion from constant greedy or border controls"
+ ],
+ "outcome": "NO_GSPO_SIGNAL",
+ "phase1": {
+  "TRUE_format_valid": 2,
+  "TRUE_strict_correct": 1,
+  "TRUE_strict_n": 2,
+  "border": "NOT_NO_IMAGE_OR_ANATOMICAL_GROUNDING_PROOF",
+  "format_gate": "FORMAT_QUALIFIED",
+  "greedy_controls": 6,
+  "image_dependence": "BASELINE_DIAGNOSTIC_ONLY_NOT_A_VETO",
+  "strict_invalid": 0,
+  "strict_valid": 6,
+  "swap_greedy_label_changes": 0
+ },
+ "phase2": {
+  "backward_calls": 0,
+  "new_TRAIN_sampling": 16,
+  "no_resampling": true,
+  "on_policy_once": true,
+  "optimizer_step_after": 52,
+  "optimizer_updates": 0,
+  "state": "PARENT_POLICY_AND_ADAM_UNCHANGED; no new checkpoint",
+  "tasks": {
+   "mri_sequence": {
+    "admitted_groups": 1,
+    "class_contrast_groups": 1,
+    "same_prompt_K4_counts": [
+     {
+      "CORRECT": 3,
+      "INVALID": 0,
+      "WRONG": 1,
+      "n": 4
+     },
+     {
+      "CORRECT": 0,
+      "INVALID": 1,
+      "WRONG": 3,
+      "n": 4
+     }
+    ],
+    "sampled_responses": 8,
+    "strict_outcome_counts": {
+     "CORRECT": 3,
+     "INVALID": 1,
+     "WRONG": 4
+    }
+   },
+   "vqarad_midline_shift": {
+    "admitted_groups": 0,
+    "class_contrast_groups": 0,
+    "same_prompt_K4_counts": [
+     {
+      "CORRECT": 0,
+      "INVALID": 1,
+      "WRONG": 3,
+      "n": 4
+     },
+     {
+      "CORRECT": 2,
+      "INVALID": 2,
+      "WRONG": 0,
+      "n": 4
+     }
+    ],
+    "sampled_responses": 8,
+    "strict_outcome_counts": {
+     "CORRECT": 2,
+     "INVALID": 3,
+     "WRONG": 3
+    }
+   }
+  }
+ },
+ "phase3": {
+  "accuracy_improvement": "NOT_ESTABLISHED",
+  "historical_Parent_sequence": {
+   "FLAIR_correct": 10,
+   "FLAIR_n": 12,
+   "T1_correct": 8,
+   "T1_n": 12,
+   "correct": 18,
+   "invalid": 0,
+   "n": 24,
+   "use": "Authenticated historical same-contract reference, not new evaluation"
+  },
+  "new_DEV24_generations": 0,
+  "new_Midline_EVAL_generations": 0,
+  "status": "SKIPPED_NO_COMMITTED_UPDATE"
+ },
+ "private_proof_sha256": {
+  "closure": "9ebf7df1f2e65248ef26f8e0e58a3c70dce34049a06a8a6cc29bbc1187ebe99c",
+  "inputs_and_own_old": "88849971e9871b18f5d3388cded6da47290e044d69ae3aac1eeb37889656a70d",
+  "native_analysis": "7abcc2b2b82b63380a9733871da5a34d23385c5f1176aeefb79cd556adc658e5",
+  "native_exit": "aff5e5450ceddcb0f5a5144cf4e724e2f7746f56c197fadc27d6bf92523970cd",
+  "training_receipt": "3d52a5bf19c83c64e49a1c7f4453d190e8b34970808266ea1eeaf45d88e6704a"
+ },
+ "reason": "Midline has no admitted within-prompt strict-valid correct/wrong contrast; task-aggregate correct/wrong answers belong to different contexts and do not create a group-relative signal",
+ "resource": {
+  "KILL": false,
+  "TERM": false,
+  "active_MLX_bytes_after_release": 1112,
+  "child_reaped": true,
+  "colors_internal": {
+   "GREEN": 24,
+   "YELLOW": 1197
+  },
+  "external_min_available_gib": 5.34661865234375,
+  "external_min_pressure_free_percent": 29.0,
+  "global_lock_free": true,
+  "guardian_stop": false,
+  "internal_min_available_gib": 6.0118255615234375,
+  "internal_min_pressure_free_percent": 31.0,
+  "model_is_none": true,
+  "monitor_errors": [],
+  "native_MLX_peak_gib": 6.430199459195137,
+  "native_exit": 0,
+  "post_exit_available_gib": 13.614151000976562,
+  "post_exit_battery_percent": 94,
+  "post_exit_pressure_free_percent": 57.0,
+  "resource_STOP": false,
+  "swap_final_gib": 15.518798828125,
+  "swap_growth_final_gib": 1.0050683593750005,
+  "swap_growth_peak_gib": 1.122255859375,
+  "swap_peak_gib": 15.635986328125,
+  "swap_start_gib": 14.51373046875,
+  "thermal": "SENSOR_UNAVAILABLE",
+  "wait4_peak_RSS_gib": 5.92742919921875,
+  "wrapper_exit": 0
+ },
+ "schema": "heterogeneous-mri-pilot-v2-native-actual-v1",
+ "scope_canonical_sha256": "a3f8f6f49adcc62630fc6713d0850bfb097d1590e867821a45f0c275b14956c7",
+ "scope_file_sha256": "a0ce6e0bb5874eb0414fae9ac7d9fccaa9ab85d6ece326277268a488e22603f1"
+}
