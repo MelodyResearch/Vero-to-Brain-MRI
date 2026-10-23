@@ -1,0 +1,187 @@
+{
+  "aggregate": {
+    "all_explicit_source_MRI_including_not_evaluated": {
+      "QA_evaluation_counts": {
+        "evaluated": 8,
+        "not evaluated": 3
+      },
+      "QA_rows": 11,
+      "component_answer_counts": {
+        "no": 4,
+        "yes": 4
+      },
+      "component_modality_evidence_counts": {
+        "MRI_SOURCE_QA_SUPPORTED": 8
+      },
+      "components_with_conflicting_source_answers": 0,
+      "distinct_case_components": 8,
+      "distinct_images": 8,
+      "distinct_linked_paraphrase_ids": 8,
+      "exact_image_question_duplicate_extra_rows": 0
+    },
+    "ambiguous_mass_shift_separate": {
+      "QA_evaluation_counts": {
+        "evaluated": 2
+      },
+      "QA_rows": 2,
+      "component_answer_counts": {
+        "no": 1
+      },
+      "component_modality_evidence_counts": {
+        "MRI_SOURCE_QA_SUPPORTED": 1
+      },
+      "components_with_conflicting_source_answers": 0,
+      "distinct_case_components": 1,
+      "distinct_images": 1,
+      "distinct_linked_paraphrase_ids": 1,
+      "exact_image_question_duplicate_extra_rows": 0
+    },
+    "explicit_midline_shift_all": {
+      "QA_evaluation_counts": {
+        "evaluated": 11,
+        "not evaluated": 3
+      },
+      "QA_rows": 14,
+      "component_answer_counts": {
+        "no": 5,
+        "yes": 5
+      },
+      "component_modality_evidence_counts": {
+        "MRI_SOURCE_QA_SUPPORTED": 8,
+        "UNCERTAIN": 2
+      },
+      "components_with_conflicting_source_answers": 0,
+      "distinct_case_components": 10,
+      "distinct_images": 10,
+      "distinct_linked_paraphrase_ids": 10,
+      "exact_image_question_duplicate_extra_rows": 0
+    },
+    "explicit_midline_shift_evaluated_HEAD_CLOSED_PRES": {
+      "QA_evaluation_counts": {
+        "evaluated": 11
+      },
+      "QA_rows": 11,
+      "component_answer_counts": {
+        "no": 3,
+        "yes": 4
+      },
+      "component_modality_evidence_counts": {
+        "MRI_SOURCE_QA_SUPPORTED": 5,
+        "UNCERTAIN": 2
+      },
+      "components_with_conflicting_source_answers": 0,
+      "distinct_case_components": 7,
+      "distinct_images": 7,
+      "distinct_linked_paraphrase_ids": 7,
+      "exact_image_question_duplicate_extra_rows": 0
+    },
+    "explicit_midline_shift_evaluated_MRI_source_QA_supported": {
+      "QA_evaluation_counts": {
+        "evaluated": 8
+      },
+      "QA_rows": 8,
+      "component_answer_counts": {
+        "no": 2,
+        "yes": 3
+      },
+      "component_modality_evidence_counts": {
+        "MRI_SOURCE_QA_SUPPORTED": 5
+      },
+      "components_with_conflicting_source_answers": 0,
+      "distinct_case_components": 5,
+      "distinct_images": 5,
+      "distinct_linked_paraphrase_ids": 5,
+      "exact_image_question_duplicate_extra_rows": 0
+    },
+    "midline_family_including_related_paraphrases": {
+      "QA_evaluation_counts": {
+        "evaluated": 14,
+        "not evaluated": 3
+      },
+      "QA_rows": 17,
+      "component_answer_counts": {
+        "no": 5,
+        "yes": 5
+      },
+      "component_modality_evidence_counts": {
+        "MRI_SOURCE_QA_SUPPORTED": 8,
+        "UNCERTAIN": 2
+      },
+      "components_with_conflicting_source_answers": 0,
+      "distinct_case_components": 10,
+      "distinct_images": 10,
+      "distinct_linked_paraphrase_ids": 10,
+      "exact_image_question_duplicate_extra_rows": 0
+    },
+    "related_midline_middle_paraphrases": {
+      "QA_evaluation_counts": {
+        "evaluated": 3
+      },
+      "QA_rows": 3,
+      "component_answer_counts": {
+        "no": 2,
+        "yes": 1
+      },
+      "component_modality_evidence_counts": {
+        "MRI_SOURCE_QA_SUPPORTED": 2,
+        "UNCERTAIN": 1
+      },
+      "components_with_conflicting_source_answers": 0,
+      "distinct_case_components": 3,
+      "distinct_images": 3,
+      "distinct_linked_paraphrase_ids": 3,
+      "exact_image_question_duplicate_extra_rows": 0
+    }
+  },
+  "backward": 0,
+  "decision": "INSUFFICIENT_FOR_FOUR_TRAIN_FOUR_EVAL_EACH_TWO_YES_TWO_NO_UNDER_CURRENT_EVALUATED_MRI_RULE",
+  "feasibility": {
+    "current_evaluated_MRI_rule": false,
+    "even_all_evaluated_HEAD_with_unverified_modality": false,
+    "mass_shift_can_not_be_relabelled_midline_without_endpoint_evidence": true,
+    "not_evaluated_can_not_be_silently_relabelled_evaluated": true,
+    "reason": "Current verified source-text MRI pool has5components3yes2no; even evaluatedHEAD endpoint pool before MRI qualification has only7components4yes3no.",
+    "related_paraphrases_add_independent_components": false
+  },
+  "image_or_NIfTI_or_mask_reads": 0,
+  "limitations": [
+    "Conservative source-case components are not a global patient registry.",
+    "MRI support is original QA text, not new visual adjudication or verified scanner/acquisition metadata.",
+    "Not-evaluated source QA may still be clinician-authored, but lacks the same second-annotator status as the currently required evaluated route.",
+    "The source finite pool is insufficient under current rules; this is not proof no other MRI clinical task or dataset could qualify.",
+    "No image download, new task selection, new train/eval allocation, model execution or training was performed."
+  ],
+  "minimum_required": {
+    "EVAL_components": 4,
+    "EVAL_no": 2,
+    "EVAL_yes": 2,
+    "TRAIN_components": 4,
+    "TRAIN_no": 2,
+    "TRAIN_yes": 2,
+    "total_distinct_components": 8,
+    "total_no": 4,
+    "total_yes": 4
+  },
+  "model_GPU_MLX_calls": 0,
+  "new_downloads": 0,
+  "new_split_frozen": false,
+  "one_bounded_metadata_census": true,
+  "optimizer_updates": 0,
+  "private_proof_sha256": "3be20ff01646cdafa8ff4e7ac5abd4d963e3ccdcabdc502c32af7a84d554d2b3",
+  "reviewer_id": "/root/v2_actual_verifier",
+  "rules": {
+    "HEAD": "image_organ exactly HEAD",
+    "MRI_evidence": "Existing same-image source MODALITY answer/affirmed sequence or explicit MRI wording in original clinical question. This is source-text evidence, not an independent acquisition-label or clinical check.",
+    "ambiguous_mass_shift": "mass and shift without explicit midline; not automatically merged into task",
+    "answer": "source answer strip/casefold yes or no",
+    "dedup": "Full original 2248-row image-case UUID bipartite connected components before filtering; no response/model results used.",
+    "explicit_endpoint": "midline/mid-line/mid line/midlight and shift/shifted/shifting in either order",
+    "related_only": "crossed/deviation midline, or shifting structures across middle; reported separately, no new components"
+  },
+  "schema": "heterogeneous-mri-midline-independent-census-v1",
+  "source_case_graph_components": 313,
+  "source_case_graph_images": 314,
+  "source_rows": 2248,
+  "source_sha256": "948b7156059b864cf72344fb10669233526b175c243e5a046d20d4201d297a95",
+  "unqualified_relaxation_warning": "All explicit MRI-supported source rows yield8components4yes4no only by including3not-evaluated components; that is a qualification change, not an approved split."
+}

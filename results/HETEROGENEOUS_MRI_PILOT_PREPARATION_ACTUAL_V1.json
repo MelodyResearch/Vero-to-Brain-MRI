@@ -1,0 +1,161 @@
+{
+  "CPU_tests": {
+    "command": "PYTHONPATH=src python3 -m pytest -q tests/test_heterogeneous_mri_pilot_v1.py tests/test_multistep_gspo_v1.py tests/test_safe_micro_training_v1.py tests/test_vqarad_midline_task_v1.py tests/test_accuracy_pilot_v2.py",
+    "evidence_kind": "CPU synthetic transactions plus actual public-source census; NOT native performance",
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 158,
+    "pilot_tests": 58,
+    "seconds": 1.27
+  },
+  "base_commit": "2c451f94b4fc3ef951e349fae650d72ff4d0f406",
+  "branch": "research/vero-mri-safe-micro-v1",
+  "data": {
+    "MRI_components_including_not_evaluated": 8,
+    "additional_not_evaluated_components_NOT_ADMITTED": 3,
+    "evaluated_MRI_case_components": 5,
+    "evaluated_MRI_no": 2,
+    "evaluated_MRI_yes": 3,
+    "evaluated_QA": 11,
+    "explicit_HEAD_midline_yesno_QA": 14,
+    "independence": "source image-case components; global patient independence NOT_VERIFIED",
+    "scale_limitation": "Cannot form evaluated MRI 4 TRAIN + 4 EVAL; 2+2 is technical feasibility only",
+    "source_QA_rows": 2248,
+    "split": {
+      "eval": {
+        "components": 2,
+        "no": 1,
+        "yes": 1
+      },
+      "reserve_never_used": 1,
+      "train": {
+        "components": 2,
+        "no": 1,
+        "yes": 1
+      }
+    }
+  },
+  "date_utc": "2026-10-23T00:02:02.609867+00:00",
+  "implementation": {
+    "Codex_work": "independent census, source/safety review, processor recomputation, final resource-boundary regression and integration",
+    "actual_exit_codes": [
+      0,
+      0,
+      0
+    ],
+    "actual_primary_model": "claude-opus-5-5",
+    "completed_CLI_calls": 3,
+    "primary": "Claude Code"
+  },
+  "independent_review": {
+    "artifact": "results/HETEROGENEOUS_MRI_PILOT_INDEPENDENT_REVIEW_V1.json",
+    "artifact_sha256": "2a368e96bd15edcf315541d0ddfcded7d6f2a520497bb7910c66cedfb9b682b0",
+    "independent_pilot_tests_passed": 58,
+    "native_calls": 0,
+    "reviewer": "isolated Codex /root/v2_actual_verifier",
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "next_permission": "one bounded 2+2 technical smoke test only; no efficacy or generalization claim",
+  "preservation": {
+    "frozen_lock_sha256": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+    "frozen_plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+    "historical_results_changed": false,
+    "main_unchanged": "b8b0493754451befaf5e61285ca8bb05570ca36d"
+  },
+  "processor": {
+    "MLX_imported": false,
+    "all_frozen_lengths_matched": true,
+    "independent_rows": 8,
+    "proof_sha256": "3262f1b354f4b474274f698451ff59a651524ae73a0d4e62c8d923a1d538d155",
+    "sequence_length": 233,
+    "sorted_lengths": [
+      143,
+      287,
+      405,
+      405,
+      409,
+      456,
+      460,
+      460
+    ]
+  },
+  "safety_regressions": [
+    "RED after final terminal response blocks fingerprints/RNG reload",
+    "RED after final Parent EVAL blocks rollout RNG reload and training",
+    "segment initial state/snapshot guarded",
+    "any failed operation STOP/no in-process rollback/no replay"
+  ],
+  "schema": "heterogeneous-mri-pilot-preparation-actual-v1",
+  "scientific_contract": {
+    "Dallas_actual_inputs": 0,
+    "control_limit": "central occlusion is not a brain mask; no certified watermark exclusion or anatomical grounding",
+    "missing_either_task_signal": "NO_BACKWARD_NO_UPDATE",
+    "outcomes": [
+      "FEASIBLE",
+      "NO_SIGNAL",
+      "NEGATIVE_TRANSFER",
+      "FAIL_FORMAT_COLLAPSE"
+    ],
+    "preupdate_TRAIN_controls": 6,
+    "reward_loss_LR_LoRA_optimizer_changed": false,
+    "same_prompt_group_size": 4,
+    "task_gradient_weights": {
+      "midline": 0.5,
+      "sequence": 0.5
+    }
+  },
+  "scope": {
+    "FILE_sha256": "fd565a94a47d471e867c9f908aceed956692ac50a0e3f11ac7ca6138c75941e4",
+    "budget": {
+      "automatic_retry": false,
+      "backward_calls_max": 16,
+      "detached_old_forwards": 16,
+      "generated_tokens_max": 12800,
+      "generations_max": 50,
+      "gradient_TF_positions_max": 9404,
+      "gradient_forwards_max": 16,
+      "greedy_breakdown": {
+        "gate_TRAIN_controls": 6,
+        "parent_DEV24": "AUTHENTICATED_V2_EP_ROWS_0_CALLS",
+        "parent_midline_EVAL": 2,
+        "terminal_DEV24": 24,
+        "terminal_midline_EVAL": 2
+      },
+      "greedy_calls_max": 34,
+      "greedy_prompt_prefill_positions_max": 9047,
+      "model_loads_max": 2,
+      "optimizer_updates_max": 1,
+      "own_old_TF_positions_max": 9404,
+      "resampling": false,
+      "resident_models_max": 1,
+      "sampled_rollout_responses": 16,
+      "scorer_forwards_max": 32,
+      "segment_limits_formula": "multistep_gspo_core_v1.unit_worst_case per unit, 1 update"
+    },
+    "canonical_sha256": "883cb2038f7ee3a4656dbf5a9a37fc285bb7a6fba5dea8a80432be856151c064",
+    "cost_model_is_measured_upper_bound": false,
+    "cost_model_seconds": {
+      "parent": 1953.0,
+      "terminal": 1832.0
+    },
+    "fresh_human_authorization": "NOT_GRANTED",
+    "global_operation_start_window_seconds": 4800,
+    "input_files_bound": 165,
+    "phase_windows_seconds": {
+      "parent": 2400,
+      "terminal": 2400
+    },
+    "source_files_bound": 111,
+    "training_TF_total_max": 18808
+  },
+  "status": "DATA_TOO_SMALL_FOR_LEARNING_CLAIM",
+  "technical_preparation": "IMPLEMENTED_CPU_VERIFIED_NATIVE_NOT_RUN",
+  "this_turn_actual_native": {
+    "GPU_operations": 0,
+    "accuracy_improvement": "NOT_MEASURED",
+    "backward": 0,
+    "generations": 0,
+    "model_loads": 0,
+    "optimizer_updates": 0
+  }
+}

@@ -536,3 +536,40 @@ Researcher-directed Path B priority: Claude Code2.1.306 / actual claude-opus-5-5
 Decision PATH_B_READY_FOR_SMALL_PILOT is limited to original clinical-source feasibility:2TRAIN and2EVAL source-case components, each1yes/1no, plus1unused reserve. One TRAIN component includes an unselected linked image which must stay excluded fromEVAL. Global patient identity and independent clinical slice adjudication remain NOT_VERIFIED. Original VQA-RAD question split leaks202images(60HEAD); rebuilt split does not reuse it. SLAKE English brainMRI metadata has97/21/22images, no patient/volume linkage; pooled bilingual splits leakimages. BraTS2021 source explicitly includes299UCSF-PDGM cases; expert masks in it andBraTS-METS do not qualify inventedQA. No new scientific adaptation is selected simply to fill a comparison arm; exact native scope/permission and a justified intervention remain prerequisites for adaptation efficacy work.
 
 Evidence:research/TWO_PATH_CLINICAL_DATASET_CLAUDE_V1.md; results/TWO_PATH_CLINICAL_DATASET_ACTUAL_V1.json; results/TWO_PATH_CLINICAL_DATASET_INDEPENDENT_REVIEW_V1.json. Private source/candidate/receipts stay in canonical root local_data/two_path_clinical_dataset_v1; no image, caseUUID, rawpatient-linked manifest or weight is committed. Offline CLI scripts/prepare_vqarad_midline_task_v1.py produced actual source-bound candidate0a50021e...; technicalQC candidate68fad7db... remains separate and nonauthorizing. OfficialUSC contacts and an UNSENT1–3image inquiry are recorded; existing single-item packet is preserved. No experts contacted.0GPU/model calls/optimizer updates; no history reruns, sealed16/final100 outputs, plan/lock/main changes or cleanup.
+
+
+## 2026-10-22 — First heterogeneous MRI pilot preparation (no native execution)
+
+Claude Code (`claude-opus-5-5`) actually implemented the sequence + source-evaluated VQA-RAD midline task route, same-prompt K4
+training, fixed equal task weighting, strict evaluator, bounded authority and processor measurement; all three CLI calls exited 0.
+Codex independently counted the original source (5 evaluated MRI-supported case components: 3 yes / 2 no), reviewed and fixed
+execution/resource boundaries, and recomputed all 8 CPU processor contexts. Eight broader MRI components include 3 not-evaluated
+components, which are reported but not admitted. The existing 2 TRAIN + 2 EVAL remains a technical smoke test; no 4+4 dataset or
+patient independence was invented. Final data status: DATA_TOO_SMALL_FOR_LEARNING_CLAIM.
+
+Targeted independent CPU verification: 157 passed across pilot, multistep, safe-micro training, VQA-RAD and Accuracy Pilot V2.
+Missing signal in either task blocks all backward/update; failed or incomplete operations remain charged and cannot replay.
+The late-RED-after-last-response regression prevents further native fingerprints/RNG reload on danger. Full per-call image,
+prompt and F32 traces are preserved, and historical certified cache/runtime checks remain before native loading.
+
+Privately frozen scope FILE SHA256: 2e52bf50aa6fd526d849a55540ee99bdf81f08178c00a87b33cffbc567426cf4.
+Maximum future budget: 2 serial loads, 50 responses / 12,800 returned tokens, 32 scorer forwards / 18,808 total training TF
+positions, 16 backward, 1 joint Adam52→53 update; parent/terminal windows 2,400 s each, 4,800 s total including waits.
+Parent Concise DEV24 rows are reused only after journal/file authentication. New midline Parent/terminal results are NOT_RUN.
+GREEN/YELLOW/RED, RSS/MLX/disk/battery/global lock protection is retained. No fresh human permission exists yet.
+
+Actual this turn: 0 GPU operations, 0 model loads, 0 generation, 0 backward, 0 optimizer updates. No MRI accuracy improvement
+was measured. Main, frozen plan/lock, source images, historical checkpoints and negative results remain unchanged.
+Evidence: research/HETEROGENEOUS_MRI_PILOT_V1.md and results/HETEROGENEOUS_MRI_PILOT_PREPARATION_ACTUAL_V1.json.
+
+Final pre-authorization refinement (same preparation, no native execution): independent review identified the analogous
+Parent post-EVAL RNG boundary. A targeted regression failed before the fix and passed after adding the resource check
+before RNG reload plus segment state/snapshot checks. Final targeted verification is **158 passed**, 58 pilot tests.
+The earlier never-authorized scope is preserved and marked superseded. The only current final scope FILE SHA256 is
+fd565a94a47d471e867c9f908aceed956692ac50a0e3f11ac7ca6138c75941e4, canonical digest
+883cb2038f7ee3a4656dbf5a9a37fc285bb7a6fba5dea8a80432be856151c064. Scientific scope and budgets are unchanged.
+
+Final isolated Codex review: PASS_WITH_LIMITATIONS for the final scope only; 58 independently run pilot tests passed
+(0.32 s), all 111 source / 165 input hashes verified, and no heavy module/native execution. Public review:
+results/HETEROGENEOUS_MRI_PILOT_INDEPENDENT_REVIEW_V1.json, SHA256
+2a368e96bd15edcf315541d0ddfcded7d6f2a520497bb7910c66cedfb9b682b0. Human execution authorization remains absent.
