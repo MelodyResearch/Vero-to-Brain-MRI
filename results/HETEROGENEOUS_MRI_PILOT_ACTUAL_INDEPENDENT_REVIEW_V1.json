@@ -1,0 +1,112 @@
+{
+  "actual_operations": {
+    "TF_positions": 0,
+    "backward_calls": 0,
+    "greedy_generations": 6,
+    "model_loads": 1,
+    "optimizer_updates": 0,
+    "returned_tokens": 110,
+    "sampled_responses": 0,
+    "scorer_forwards": 0,
+    "terminal_evaluation_generations": 0
+  },
+  "diagnostic": {
+    "TRUE_answers_distinct": true,
+    "border_pair_reproduces_TRUE": false,
+    "status": "POSTHOC_ANSWER_TAG_DIAGNOSTIC_ONLY_NOT_ALTERNATIVE_SCORE",
+    "swap_changes_from_own_TRUE": 0,
+    "swap_follows_same_question_TRUE": 2,
+    "swap_follows_shown_image_TRUE": 0
+  },
+  "evidence_sha256": {
+    "calls": "f2b4e5a17e701211163143be6655efb8d418028458696d4fb0ca66a68a1d45c9",
+    "gate_record": "2570dd56741a693620e8a4054fef8e88dc32c5ae61f154bb2cdc4703181a9634",
+    "guardian_resources": "0b1d1c41f3eaaf5dd350fdd03293164276da83851d547d3ca100065e042265df",
+    "native_complete": "2e8a58008857b63eb8bf180fd094650cae987573b3788b9253ec45c4ef0ba929",
+    "native_exit": "40ae21cdb9d3e6be6b0aaf6d033f9834afee04ab908346e3bdb479e2b206a0ed",
+    "native_resources": "cccf6ba893700e455b4ac3e39dbe54ccddc641f145df8a7caf72e6882a71ee7e",
+    "native_terminal": "a2ce7781d755ceb85ade30f01113e13bdc622bb7180c8793f876019492d5d1a9",
+    "outer_exit": "0e4aa0fa5695f3a3dcb5a4ade2a38a3b3967e2fdd43808d346625749648e974e",
+    "pilot_input": "bf3dab116d42f9235a850618daa82d27e864177c897d207117215a0bafc7835c",
+    "scope_file": "fd565a94a47d471e867c9f908aceed956692ac50a0e3f11ac7ca6138c75941e4"
+  },
+  "experiment_outcome": "NO_SIGNAL",
+  "gate_reason": "INVALID_CONTROL",
+  "historical_parent_DEV24": {
+    "FLAIR_correct": 10,
+    "FLAIR_count": 12,
+    "FLAIR_recall": 0.8333333333333334,
+    "T1_correct": 8,
+    "T1_count": 12,
+    "T1_recall": 0.6666666666666666,
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "correct": 18,
+    "invalid": 0,
+    "items": 24,
+    "origin": "AUTHENTICATED_SAVED_V2_EP_CONCISE_DEV24_NOT_NEW_INFERENCE"
+  },
+  "integrity": {
+    "F32_LM_trace_entries": 122,
+    "F32_generation_trace_valid": true,
+    "actual_control_images_and_prompt_lengths_match": true,
+    "committed_files_authenticated": 6,
+    "input_pins_match": true,
+    "journal_commits_authenticated": 2,
+    "native_child_exit0_reaped": true,
+    "new_review_model_calls": 0,
+    "outer_exit0": true,
+    "parent_checkpoint_disk_hashes_match": true,
+    "release_verified": true,
+    "same_question_cross_image_prompt_hashes_match": true,
+    "source_pins_match": true
+  },
+  "limitations": [
+    "No sampled rollout, scorer, backward or optimizer update occurred; effective GSPO group quality was not measured.",
+    "All six controls are strictly invalid; unboxed answer-tag extraction is a post-hoc diagnostic only and does not relax the frozen gate.",
+    "Generation input/F32 traces are present, but zero scorer calls means no new rollout/scorer numerical parity qualification.",
+    "Resource monitor cannot externally observe MLX allocator; native allocator receipts attest its release. Thermal sensor was unavailable.",
+    "Exit witness does not attest live RNG restoration; saved parent RNG exists, but gate failure exits before its normal reload. Parent disk hashes remain intact.",
+    "Historical Parent DEV24 was reused without new inference; no new terminal accuracy or accuracy improvement is established.",
+    "Controls and tiny source-case data do not establish anatomical grounding, watermark exclusion or generalization."
+  ],
+  "resources": {
+    "MLX_release_bytes": 1052,
+    "available_min_GiB": 5.1367950439453125,
+    "battery_min_percent": 40,
+    "disk_min_GiB": 289.2254981994629,
+    "external_MLX": "NOT_OBSERVABLE",
+    "guardian_STOP": false,
+    "guardian_samples": 68,
+    "native_boundary_samples": 312,
+    "native_child_wall_seconds": 139.3936934999656,
+    "outer_wall_seconds": 151.433727,
+    "peak_MLX_GiB_native_reported": 6.221834477037191,
+    "peak_RSS_GiB_os_wait4": 5.5905609130859375,
+    "post_exit_available_GiB": 11.619659423828125,
+    "post_exit_lock_free": true,
+    "pressure_free_min_percent": 28.0,
+    "sampled_peak_RSS_GiB": 5.5904388427734375,
+    "swap_baseline_GiB": 13.917294921875,
+    "swap_growth_GiB": 2.980107421874999,
+    "swap_peak_GiB": 16.89740234375,
+    "swap_post_GiB": 16.89740234375,
+    "thermal_sensor": "UNAVAILABLE"
+  },
+  "reviewed_at_utc": "2026-10-23T01:07:49.962965+00:00",
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "schema": "heterogeneous-mri-pilot-actual-independent-review-v1",
+  "scope_file_sha256": "fd565a94a47d471e867c9f908aceed956692ac50a0e3f11ac7ca6138c75941e4",
+  "scope_sha256": "883cb2038f7ee3a4656dbf5a9a37fc285bb7a6fba5dea8a80432be856151c064",
+  "strict_controls": {
+    "format_score_counts": {
+      "0.5": 6
+    },
+    "invalid": 6,
+    "items": 6,
+    "missing_box": 6,
+    "valid": 0
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

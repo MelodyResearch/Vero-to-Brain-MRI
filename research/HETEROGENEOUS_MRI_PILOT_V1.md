@@ -1,10 +1,39 @@
 # First real heterogeneous MRI pilot v1 (sequence FLAIR/T1ce + VQA-RAD midline shift)
 
-**Status:** `SOURCE_IMPLEMENTED_CPU_SYNTHETIC_NOT_NATIVE_RUN`. CPU `prepare` returns
+**Preparation snapshot (before execution):** `SOURCE_IMPLEMENTED_CPU_SYNTHETIC_NOT_NATIVE_RUN`. CPU `prepare` returns
 `PREPARED_PENDING_EXACT_REVIEW_AND_FRESH_HUMAN` with 0 blockers. The exact scope has been published privately; fresh human execution permission remains absent.
 
 **Author:** Claude Code (claude-opus-5-5), primary implementer. Codex's source/resource review fixes and one final resource-boundary regression have been applied.
 The exact-scope independent review is recorded separately; it does not grant execution permission. No MLX, model load, generation, backward or update was run.
+
+## Actual authorized run — 2026-10-23 UTC
+
+**Current outcome: `NO_SIGNAL / INVALID_CONTROL`. This one-shot authorization is consumed and closed.**
+Claude Code (claude-opus-5-5) executed the frozen scope once. Both wrapper and native child exited 0. Actual cost was one model
+load, six TRAIN greedy controls and 110 returned tokens; no sampled TRAIN rollout, scorer, backward, optimizer update or new
+checkpoint was produced. The gate stopped the run before Parent midline EVAL or terminal evaluation. No retry or resampling occurred.
+
+All six replies contained think/answer tags but omitted the required boxed answer, producing format=0.5 and strict invalid.
+A separate diagnostic extraction of the already saved answer tags (not a relaxed official score) found zero prediction changes
+under the two opposite-image swaps. Thus fixing boxing alone would not establish the frozen image-dependence condition.
+This is not a causal finding about GSPO: no GSPO rollout or update occurred.
+
+Historical, same-contract Parent DEV24 is 18/24 (75%), FLAIR 10/12, T1 8/12, invalid 0. It was hash/journal-reused, not rerun.
+No new midline EVAL accuracy, equal-task/worst-task accuracy or accuracy improvement was measured.
+
+Observed wrapper time: 151.433727 s; native child: 139.393693 s. Peak RSS (wait4): 5.590561 GiB; reported MLX peak:
+6.221834 GiB. External monitor minimum available memory: 5.136795 GiB; minimum pressure-free: 28%. Runtime swap:
+13.917295 → 16.897402 GiB (+2.980107 GiB). No guardian STOP, TERM, KILL or monitor errors occurred. Temperature was unavailable.
+Model release was actually verified (model=None; active MLX=1052 bytes), child reaped and global lock free. Parent files remain
+unchanged. Post-exit available memory was 11.619659 GiB. This observation does not guarantee avoidance of future OS failures.
+
+[Actual result](../results/HETEROGENEOUS_MRI_PILOT_NATIVE_ACTUAL_V1.json) ·
+[Independent actual-run review](../results/HETEROGENEOUS_MRI_PILOT_ACTUAL_INDEPENDENT_REVIEW_V1.json)
+
+**Decision:** stop this configuration; do not expand or automatically reissue the unused budget. Any future changed input/output
+contract requires a separately declared test and fresh permission. Do not infer clinical generalization, image grounding or
+GSPO effectiveness from this rejected pre-update gate. The preparation record below is retained as its historical cutoff.
+
 
 ## Question
 Can one direct Vero-style same-prompt GSPO step from Parent Adam52 use two heterogeneous MRI tasks, each with a real
@@ -88,7 +117,7 @@ Resources: unchanged GREEN/YELLOW/RED policy, RSS 14 GiB, MLX 12 GiB, disk 26 Gi
 no recovery. The human grant must be ≤30 min old, must not appear in any historical consumed ledger, must cover the
 4,800 s flow, and is consumed once.
 
-## Remaining blockers
+## Prerequisites at the original CPU-preparation cutoff (historical)
 1. Fresh human execution grant. The final exact-scope independent Codex review is `PASS_WITH_LIMITATIONS`.
 2. The native path is untested. The 8 distinct midline inputs (TRAIN, SWAP, BORDER and EVAL) have no native F32
    qualification; the native hook refuses any length that differs from the frozen per-row value.

@@ -1,0 +1,144 @@
+{
+  "actual_compute": {
+    "attempted_GSPO_groups": 0,
+    "backward_calls": 0,
+    "effective_GSPO_groups": "NOT_MEASURED_PREUPDATE_GATE_REJECTED",
+    "greedy_generations": 6,
+    "language_model_calls": 122,
+    "model_loads": 1,
+    "new_cache_recovery_operations": 0,
+    "new_child_checkpoint": false,
+    "optimizer_updates": 0,
+    "returned_tokens": 110,
+    "sampled_TRAIN_responses": 0,
+    "sampler_calls": 116,
+    "scorer_forwards": 0,
+    "teacher_forced_positions": 0,
+    "vision_calls": 6
+  },
+  "code_commit": "eb158a6f14519f1009de5ab1c1297fed2291bb09",
+  "control_results": {
+    "actual_trace_records_saved": 6,
+    "descriptive_diagnostic_only": {
+      "TRUE_vs_SWAP_prediction_changes": 0,
+      "anatomical_grounding": "NOT_ESTABLISHED",
+      "counterfactual_dependence_rule_if_format_ignored": "QUESTION_FOLLOWING_NO_SIGNAL",
+      "not_a_relaxed_official_metric": true,
+      "original_TRAIN_content_correct": 0,
+      "original_TRAIN_items": 2,
+      "swaps": 2,
+      "unboxed_answer_tag_extraction_count": 6,
+      "uses_same_saved_answers_no_extra_calls": true
+    },
+    "format_score_counts": {
+      "0.5": 6
+    },
+    "missing_required_boxed_answer": 6,
+    "strict_invalid": 6,
+    "strict_valid": 0,
+    "think_and_answer_tags_present": 6
+  },
+  "data_scale": "DATA_TOO_SMALL_FOR_LEARNING_CLAIM",
+  "decision": "STOP_CURRENT_CONFIGURATION_NO_AUTOMATIC_EXPANSION",
+  "evaluation": {
+    "actual_accuracy_improvement": "NOT_DEMONSTRATED",
+    "historical_Parent_DEV24": {
+      "FLAIR_correct": 10,
+      "FLAIR_n": 12,
+      "FLAIR_recall": 0.8333333333333334,
+      "T1_correct": 8,
+      "T1_n": 12,
+      "T1_recall": 0.6666666666666666,
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "correct": 18,
+      "invalid": 0,
+      "n": 24,
+      "new_inference_calls": 0,
+      "origin": "JOURNAL_AUTHENTICATED_V2_EP_CONCISE_REUSE_ONLY"
+    },
+    "new_Midline_EVAL": "NOT_RUN_GATE_FAILED",
+    "new_equal_task_accuracy": "NOT_MEASURED",
+    "new_sequence_DEV24": "NOT_RUN_GATE_FAILED",
+    "new_worst_task_accuracy": "NOT_MEASURED",
+    "terminal": "NO_UPDATED_MODEL; Parent weight alias only, not independent evaluation"
+  },
+  "execution_lead": {
+    "CLI_result_turns": 10,
+    "actual_CLI_exit_code": 0,
+    "agent": "Claude Code",
+    "model": "claude-opus-5-5"
+  },
+  "independent_review": {
+    "artifact": "results/HETEROGENEOUS_MRI_PILOT_ACTUAL_INDEPENDENT_REVIEW_V1.json",
+    "artifact_FILE_sha256": "8d7ab262392d7730d5d0539d94785ae0af8f9e70d753ae3f098b0932d3b39c34",
+    "private_review_FILE_sha256": "7370eef9670c27e0286e544507ba91e1c5bb571f43b938fda5d067adb6547589",
+    "scientific_outcome": "NO_SIGNAL",
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "interpretation": [
+    "Strict output contract failed on all six TRAIN controls; no GSPO rollout or learning-signal test was reached.",
+    "Answer-tag-only analysis additionally showed zero prediction changes under the two true/opposite-image swaps; a boxing-only change is not sufficient evidence for training readiness.",
+    "This does not establish anatomical grounding, clinical generalization, or a causal GSPO accuracy regression."
+  ],
+  "native_run": {
+    "automatic_retry": false,
+    "child_exit": 0,
+    "child_seconds": 139.3936934999656,
+    "ended_utc": "2026-10-23T01:02:50.052992+00:00",
+    "gate_reason": "INVALID_CONTROL",
+    "outcome": "NO_SIGNAL",
+    "started_utc": "2026-10-23T01:00:18.619265+00:00",
+    "wrapper_exit": 0,
+    "wrapper_seconds": 151.433727
+  },
+  "next_execution_authorized": false,
+  "private_evidence_FILE_sha256": {
+    "analysis": "e105de63ee3f2493bf0e6d322624ff80d44225a0eda503d4a582178f70dd1a95",
+    "child_exit": "40ae21cdb9d3e6be6b0aaf6d033f9834afee04ab908346e3bdb479e2b206a0ed",
+    "gate": "2570dd56741a693620e8a4054fef8e88dc32c5ae61f154bb2cdc4703181a9634",
+    "generation_calls": "f2b4e5a17e701211163143be6655efb8d418028458696d4fb0ca66a68a1d45c9",
+    "outer_exit": "0e4aa0fa5695f3a3dcb5a4ade2a38a3b3967e2fdd43808d346625749648e974e",
+    "parent_terminal": "a2ce7781d755ceb85ade30f01113e13bdc622bb7180c8793f876019492d5d1a9",
+    "release": "e5493e530af82156aaf5aabaf40a208c2b2145c4b19033f7e4d8c0e30444ffb6"
+  },
+  "resources": {
+    "RED_release_requested": false,
+    "SIGKILL_sent": false,
+    "SIGTERM_sent": false,
+    "dynamic_color_counts": {
+      "YELLOW": 312
+    },
+    "guardian_STOP": false,
+    "guardian_samples": 68,
+    "min_available_GiB_external_monitor": 5.1367950439453125,
+    "min_pressure_free_percent_external_monitor": 28.0,
+    "monitor_errors": [],
+    "no_OS_crash_prevention_guarantee": true,
+    "post_exit_available_GiB": 11.619659423828125,
+    "post_exit_pressure_free_percent": 49.0,
+    "process_peak_RSS_GiB_wait4": 5.5905609130859375,
+    "reported_MLX_peak_GiB": 6.221834477037191,
+    "runtime_swap_growth_GiB": 2.980107421874999,
+    "runtime_swap_peak_GiB": 16.89740234375,
+    "runtime_swap_post_GiB": 16.89740234375,
+    "runtime_swap_start_GiB": 13.917294921875,
+    "thermal_sensor": "UNAVAILABLE"
+  },
+  "runtime_and_integrity": {
+    "F32_generation_trace_present_all_controls": true,
+    "active_MLX_bytes_after_release": 1052,
+    "child_reaped": true,
+    "global_lock_no_open_holders": true,
+    "historical_cache_runtime_admission_passed": true,
+    "in_memory_RNG_restore_on_failed_gate": "NOT_ATTESTED_NOT_CLAIMED",
+    "model_is_none": true,
+    "new_context_generation_scorer_parity": "NOT_RUN_0_SCORER_CALLS",
+    "parent_disk_unchanged": true,
+    "source_and_input_hashes_still_match": true
+  },
+  "schema": "heterogeneous-mri-pilot-native-actual-v1",
+  "scope_FILE_sha256": "fd565a94a47d471e867c9f908aceed956692ac50a0e3f11ac7ca6138c75941e4",
+  "scope_authorization": "CONSUMED_COMPLETED_EARLY_NO_RETRY_NO_TRANSFER_OF_UNUSED_BUDGET",
+  "scope_canonical_sha256": "883cb2038f7ee3a4656dbf5a9a37fc285bb7a6fba5dea8a80432be856151c064"
+}

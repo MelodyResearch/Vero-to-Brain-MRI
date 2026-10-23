@@ -573,3 +573,33 @@ Final isolated Codex review: PASS_WITH_LIMITATIONS for the final scope only; 58 
 (0.32 s), all 111 source / 165 input hashes verified, and no heavy module/native execution. Public review:
 results/HETEROGENEOUS_MRI_PILOT_INDEPENDENT_REVIEW_V1.json, SHA256
 2a368e96bd15edcf315541d0ddfcded7d6f2a520497bb7910c66cedfb9b682b0. Human execution authorization remains absent.
+
+
+## 2026-10-23 UTC — Authorized first heterogeneous MRI native pilot: NO_SIGNAL
+
+PRIMARY_VERO_TRANSFER / technical smoke only. The researcher explicitly approved final scope FILE
+fd565a94a47d471e867c9f908aceed956692ac50a0e3f11ac7ca6138c75941e4. Claude Code (claude-opus-5-5)
+actually executed the frozen entry once from source commit eb158a6f14519f1009de5ab1c1297fed2291bb09; Codex independently
+verified actual receipts. The authorization is now consumed and closed; no unused budget transfers to another run.
+
+OBSERVED: wrapper exit0, native exit0; one load, six TRAIN greedy controls, 110 returned tokens. NO_SIGNAL / INVALID_CONTROL:
+all six replies had think/answer tags but no required boxed answer, format0.5/strictinvalid. No sampled TRAIN rollout,
+scorer/TF positions, backward, optimizer update or child checkpoint. Parent midline EVAL and terminal DEV24/EVAL were not run.
+Posthoc answer-tag-only diagnostic (not an alternative official score) observed 0/2 prediction changes under image swaps.
+A formatting-only correction would therefore not establish image-following. No GSPO learning or accuracy effect was tested.
+
+REPRODUCED: isolated Codex authenticated two journal commits, six committed files, actual input/swap/prompt identities and
+122 F32 generation LM trace entries. Historical same-contract Parent DEV24 was 18/24, FLAIR10/12, T1 8/12, invalid0; reused
+without new inference. There is no new Midline EVAL accuracy, equal/worst-task accuracy or demonstrated accuracy gain.
+
+Resources: wrapper151.433727s/native139.393693s; exact wait4 RSS peak5.590560913GiB, native MLX peak6.221834477GiB.
+External minimum available5.136795044GiB, pressure-free28%; runtime swap13.917294922→16.897402344GiB (+2.980107422).
+No RED/guardianSTOP/TERM/KILL/monitor errors. Temperature unavailable. Actual release=modelNone/1052MLXbytes, child reaped,
+global lock free, Parent disk unchanged, post-exit available11.619659424GiB. No global OS protection or other app was changed.
+No claim of live RNG restoration is inferred from the exit witness; no F32 scorer parity was tested (zero scorer calls).
+
+Decision: STOP_CURRENT_CONFIGURATION_NO_AUTOMATIC_EXPANSION; DATA_TOO_SMALL_FOR_LEARNING_CLAIM remains.
+Public actual evidence: results/HETEROGENEOUS_MRI_PILOT_NATIVE_ACTUAL_V1.json.
+Independent review: results/HETEROGENEOUS_MRI_PILOT_ACTUAL_INDEPENDENT_REVIEW_V1.json, SHA256
+8d7ab262392d7730d5d0539d94785ae0af8f9e70d753ae3f098b0932d3b39c34. Private raw records, state and controls retained locally.
+Main, frozen research plan/lock and historical checkpoints/results remain unchanged.
