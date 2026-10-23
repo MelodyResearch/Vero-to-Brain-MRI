@@ -1,0 +1,225 @@
+{
+ "base_commit": "4ccb5cef71a9f1ade91f17dcd1d01191fc1b36a3",
+ "budget": {
+  "backward_calls_max": 16,
+  "generated_tokens_max": 14336,
+  "generations_max": 56,
+  "greedy_by_phase": {
+   "child_eval": 32,
+   "parent_eval": 2,
+   "train": 6
+  },
+  "greedy_calls_max": 40,
+  "greedy_prompt_prefill_positions_max": 12282,
+  "model_loads_max": 3,
+  "optimizer_updates_max": 1,
+  "own_old_TF_positions_max": 9724,
+  "sampled_rollout_responses": 16,
+  "scorer_forwards_max": 32,
+  "teacherforced_positions_total_max": 19448
+ },
+ "cross_model_review": "NOT_VERIFIED",
+ "date": "2026-10-23",
+ "execution_permission": "PENDING_FRESH_HUMAN; no authorization created or reused",
+ "execution_scope_file_sha256": "a0ce6e0bb5874eb0414fae9ac7d9fccaa9ab85d6ece326277268a488e22603f1",
+ "implementation": {
+  "claude_followup_exit": 1,
+  "claude_primary_exit": 0,
+  "followup": "Claude CLI returned Not logged in; Codex fixed independent-review resource boundaries, raw-capture provenance, transaction/exit closure and sanitized export",
+  "independent_exact_review": "PASS_WITH_LIMITATIONS; isolated Codex independently ran51 V2 tests",
+  "primary": "Claude Code claude-opus-5-5: core/native/entry, tests, CPU diagnosis/measurement and design"
+ },
+ "independent_review": {
+  "path": "results/HETEROGENEOUS_MRI_PILOT_V2_INDEPENDENT_REVIEW.json",
+  "private_sha256": "79f43d9934444cb85c3f81b2fa989926c3ca2149e69055f16eebb3274b37d22d",
+  "sha256": "daf3f20c74471cfb9342d429f3d574d63e1b35f2d6a8e8f830028a4d290609a1",
+  "verdict": "PASS_WITH_LIMITATIONS"
+ },
+ "native": {
+  "backward": 0,
+  "generations": 0,
+  "midline_V2_F32_contexts": "NOT_NATIVELY_QUALIFIED",
+  "model_loads": 0,
+  "native_V2_evidence": "NOT_RUN",
+  "teacher_forced": 0,
+  "updates": 0
+ },
+ "prepare": {
+  "blockers": [],
+  "census_decision": "DATA_TOO_SMALL_FOR_LEARNING_CLAIM",
+  "files_bound": 169,
+  "scope_sha256": "a3f8f6f49adcc62630fc6713d0850bfb097d1590e867821a45f0c275b14956c7",
+  "sources_bound": 115,
+  "status": "PREPARED_PENDING_EXACT_REVIEW_AND_FRESH_HUMAN",
+  "v1_proof": {
+   "v1_controls_boxed": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "v1_controls_format": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "v1_gate_reason": "INVALID_CONTROL",
+   "v1_outcome": "NO_SIGNAL",
+   "v1_prompts_reproduced": true
+  }
+ },
+ "private_files_sha256": {
+  "midline_prompt_lengths_v2": "80e38211bce5b9ef25820cd651aa17f94b3c9e140a35e9127b4af0fc2ec1abc2",
+  "spec_measured": "1f6995ec83e99c8f038782039a708f25b368172cf66cf0d0b15fa37a9c64fc04",
+  "spec_reviewed": "2d16ac5b2cb623041494cfa022fa80c05eb2095185bdc14b32bf47b6e6e5d6bf",
+  "spec_unmeasured": "71a1cd28f21cb630604ee5f1a6f89857842143c21c7978faf8315a2c9f347d09",
+  "v1_format_diagnosis_proof": "54ba3eb60f1c22c97a6993844077dd6982ec4e41e69281603e2c29de230d681d",
+  "v1_format_diagnosis_reviewed_private": "f164d23a3a920b311b03f4a12075f0ffed73ea2a0b03c0f28964dc5f744c8ce8",
+  "v1_format_diagnosis_reviewed_safe": "78fc966ef5f5e099a82958259584ddcf8188ef928f5ce5e2fd78fafb2b3b567c",
+  "v1_format_diagnosis_safe": "1d865903c9d56ca27d2499e04216f6a05407d5c319d0d6808556919855b173d3"
+ },
+ "schema": "heterogeneous-mri-pilot-v2-cpu-actual-v1",
+ "scientific_limitations": [
+  "Only 2 TRAIN + 2 EVAL Midline source-case components; global patient identity independence NOT_VERIFIED",
+  "New format has CPU contract tests only, actual native compliance NOT_RUN",
+  "Prompt and gate protocol changes fix execution qualification; they do not establish RL accuracy benefit",
+  "Unchanged greedy decisions are not image-probability equality; BORDER is not no-image/anatomical-grounding proof",
+  "No new GPU/model/gradient/update/accuracy result this preparation"
+ ],
+ "status": "CPU_PREPARED_INDEPENDENTLY_REVIEWED_PENDING_FRESH_HUMAN_NATIVE_AUTHORIZATION",
+ "tests": {
+  "heterogeneous_v2": 51,
+  "regression_total_incl_v1_multistep_safe_micro_vqarad_accuracy_v2": 209,
+  "result": "PASS",
+  "review_regressions": "Observed failing RED boundary / native-wiring / missing transaction helper fixtures, then 51 V2 PASS; real journal + tamper + exit-witness negatives PASS",
+  "scope": "Selected six related CPU suites; no unrestricted/native suite"
+ },
+ "v1_diagnosis": {
+  "confirmed": {
+   "boxed_probe_tokenizer_roundtrip_identical": true,
+   "controls_boxed": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "controls_parser_format": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "controls_think_answer_tags_each_1": true,
+   "delivered_prompts_reproduced_exactly": true,
+   "enable_thinking": false,
+   "greedy_swap_decision_changes": 0,
+   "max_tokens": 256,
+   "pinned_processor_has_clean_output": false,
+   "pixel_identity": {
+    "BORDER_0_input_ids_eq_TRUE_0": true,
+    "BORDER_0_pixels_differ_TRUE_0": true,
+    "BORDER_1_input_ids_eq_TRUE_1": true,
+    "BORDER_1_pixels_differ_TRUE_1": true,
+    "SWAP_0_pixels_eq_TRUE_1": true,
+    "SWAP_1_pixels_eq_TRUE_0": true,
+    "TRUE_0_pixels_differ_TRUE_1": true
+   },
+   "reencoded_text_tokens": [
+    17,
+    18,
+    17,
+    18,
+    17,
+    17
+   ],
+   "saved_token_counts_incl_EOS": [
+    18,
+    19,
+    18,
+    19,
+    18,
+    18
+   ],
+   "system_instruction_mentions_boxed": true,
+   "temperature": 0.0,
+   "text_tokens_equal_saved_minus_one_all": true,
+   "v1_suffix_mentions_boxed": true
+  },
+  "derived_from_enforced_invariant": "Pinned capture_stream source permits stop/EOS or exact-cap return. Saved short counts are consistent with stop/EOS, but absent token IDs and explicit finish metadata prevent independent reconstruction of the precise native stop.",
+  "evidence": "saved v1 artifacts + pinned processor/tokenizer files on CPU; 0 model calls; MLX not imported",
+  "greedy_note": "identical greedy decisions (SWAP==TRUE answers) do not imply identical image-conditional probabilities; no canonical margins were saved",
+  "hypotheses_not_tested": [
+   "the Parent policy prefers an unboxed <answer> continuation for this short yes/no clinical question under the v1 suffix",
+   "the concise instruction ('finish with the required boxed answer') was too indirect relative to an explicit boxed example"
+  ],
+  "not_available": [
+   "response token IDs not persisted (count only)",
+   "finish_reason / EOS id not persisted",
+   "no per-token logprobs or canonical yes/no margins persisted",
+   "explicit pre-clean text/cleaner invocation not persisted"
+  ]
+ },
+ "v2_prompt": {
+  "delta_vs_v1_each_row": 40,
+  "join": "\\n\\n (as V2 condition_row)",
+  "measured_lengths_sorted": [
+   183,
+   327,
+   445,
+   445,
+   449,
+   496,
+   500,
+   500
+  ],
+  "measurement": "native_processor_qualification_v1 CPU helper; mlx_imported false; torch_imported false; 0 model calls",
+  "original_question": "verbatim, unchanged",
+  "sequence_concise_check": {
+   "actual": [
+    233,
+    233
+   ],
+   "expected": 233
+  },
+  "suffix": "Look at the image and answer yes or no. Keep the reasoning to one short sentence. Reply in exactly one of these two forms: <think>one short sentence about the image</think><answer>\\boxed{yes}</answer> or <think>one short sentence about the image</think><answer>\\boxed{no}</answer>",
+  "suffix_sha256": "78ad42495ce6e416f2c4af88fadd50d4c532c0dfaa2b4dbe4d8d28a4ae38e116",
+  "unchanged": [
+   "global system instruction",
+   "sequence concise prompt",
+   "parsers",
+   "reward",
+   "LR",
+   "LoRA",
+   "Adam",
+   "GSPO loss/gate/advantages/weights"
+  ],
+  "visible_prompt_leaks": 0
+ },
+ "v2_protocol": {
+  "on_error": "STOP record; no in-process rollback/fingerprint; process release; no replay",
+  "outcomes": [
+   "FORMAT_BLOCKED",
+   "NO_GSPO_SIGNAL",
+   "REAL_PILOT_COMPLETED:{FEASIBLE,NEGATIVE_TRANSFER,NO_ACCURACY_GAIN}"
+  ],
+  "phase1_diagnostic_only": [
+   "SWAP",
+   "BORDER",
+   "v1 image-dependence class"
+  ],
+  "phase1_hard_gate": "strict format on TRUE_0 and TRUE_1 (FORMAT_BLOCKED otherwise)",
+  "phase2_gradient": "Finite nonzero joint .5*seq+.5*mid; zero/returned-nonfinite norm -> NO_GSPO_SIGNAL; actual native nonfinite-leaf exception -> STOP, never swallowed; <=1 Adam52->53",
+  "phase2_signal_gate": "both tasks: >=1 inherited-gate-admitted same-prompt K4 group with strict-valid CORRECT and WRONG; else NO_GSPO_SIGNAL before any backward",
+  "phase3": "Only after committed train journal, checkpoint hashes, matching terminal/scope, reaped clean exit and release; then new Parent EVAL2 and child DEV24+EVAL2+6 controls",
+  "raw_capture": "Unknown callable clean_output rejected before generation; observed no-cleaner path records clean_called:false and original text"
+ }
+}

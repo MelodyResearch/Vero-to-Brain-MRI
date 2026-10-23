@@ -603,3 +603,48 @@ Public actual evidence: results/HETEROGENEOUS_MRI_PILOT_NATIVE_ACTUAL_V1.json.
 Independent review: results/HETEROGENEOUS_MRI_PILOT_ACTUAL_INDEPENDENT_REVIEW_V1.json, SHA256
 8d7ab262392d7730d5d0539d94785ae0af8f9e70d753ae3f098b0932d3b39c34. Private raw records, state and controls retained locally.
 Main, frozen research plan/lock and historical checkpoints/results remain unchanged.
+
+
+## 2026-10-23 — Heterogeneous MRI V2: Midline format and on-policy signal qualification (CPU preparation only)
+
+OBSERVED: Claude Code 2.1.306, claude-opus-5-5, actually implemented the versioned core/native/authority entry, prompt measurement,
+saved-run diagnosis and CPU tests. Its primary CLI exited0. A focused follow-up CLI returned `Not logged in`/exit1; Codex completed
+independent-review corrections. Do not attribute those corrections or an unrun native experiment to Claude.
+
+REPRODUCED (saved V1 evidence only): all6 delivered prompts match their saved hashes and already mention boxed in both the system
+and Midline suffix. All6 returned complete tags but no boxed label (18–19 tokens, format0.5); they did not hit the256 cap.
+The exact stop/EOS/clean-before event cannot be independently reconstructed because V1 omitted those output fields. Current pinned
+processor has no cleaner, and a tokenizer boxed probe survives roundtrip; neither fact is an actual regenerated response.
+Saved fingerprints confirm distinct TRUE pixels and exact opposite TRUE pixels for SWAP. Zero of2 greedy swaps changed the label;
+this is not equality of image-conditional probabilities, nor proof that anatomy is unused. BORDER is not a no-image control.
+
+IMPLEMENTED_NOT_NATIVE_RUN: ONE symmetric explicit boxed yes/no Midline suffix, original clinical question verbatim; global system,
+Sequence concise prompt, strict parsers/reward, GSPO/Adam/LR/LoRA and source-case split unchanged. New processor-only lengths:
+TRAIN445/500, EVAL327/183, SWAP496/449, BORDER445/500 (+40 each vs V1); Sequence233/233. No visible identifier leaks.
+Phase1 only the two TRUE TRAIN strict formats veto. SWAP/BORDER remain diagnostics. Then16 on-policy responses once, full unfiltered
+original rewards/plans/advantages; BOTH tasks need an originally admitted same-prompt K4 containing strict-valid correct and wrong.
+Otherwise NO_GSPO_SIGNAL before backward. Format-only differences do not qualify. Joint=.5*g_sequence+.5*g_midline; <=1 Adam52->53.
+Unknown cleaners fail before generation; new full token/finish/EOS/trace records explicitly mark observed no-cleaning text.
+
+VERIFIED CPU: 51 V2 tests;209 tests across the six selected related CPU suites passed. Concrete regressions were observed failing
+then fixed for missing RED pre-state/snapshot/RNG-reload guards, readonly resource wiring and transaction admission. Tests validate
+real Journal commits, checkpoint tamper rejection and wrong/unreaped/guardian-stopped exit witnesses. Native nonfinite-leaf validation
+errors remain STOP; returned zero/nonfinite norm is a separate no-update branch. CPU fixtures are not native qualification/accuracy.
+
+FROZEN prospective scope FILE SHA256 a0ce6e0bb5874eb0414fae9ac7d9fccaa9ab85d6ece326277268a488e22603f1;
+canonical a3f8f6f49adcc62630fc6713d0850bfb097d1590e867821a45f0c275b14956c7. Source closure115/input169, prepare0blockers.
+Max3 serial loads,16 sampled+40greedy=56responses,14336returned tokens,32scorer/19448TFpositions,16backward,1update.
+Phase3 only after actual update AND committed journal/checkpoint/terminal/reaped clean exit/release: fresh Parent EVAL2 under the
+new prompt, then child DEV24+EVAL2+6 postcontrols. Parent Sequence DEV24 reuses authenticated same-contract results (18/24).
+Windows2400/900/3000s,total7200s including waits. Existing GREEN/YELLOW/RED, RSS14GiB/MLX12GiB/disk26GiB/battery20%, guardian/global
+lock and exact state/release checks retained; no retry/recovery/expansion/cache rebuild. Atomic native calls retain sampling blind spots.
+
+This preparation performed0 model loads/generations/scorer/backward/optimizer updates; no new MRI accuracy result. Fresh independent
+scope review and NEW human native authorization are required. Old V1 grant remains consumed. Midline2TRAIN+2EVAL remains technical
+smoke only, not an efficacy/generalization experiment. Main, frozen plan/lock, V1 sources/results and historical weights are preserved.
+Evidence: research/HETEROGENEOUS_MRI_PILOT_V2.md; results/HETEROGENEOUS_MRI_PILOT_V2_CPU_ACTUAL.json.
+
+FINAL EXACT REVIEW: isolated Codex PASS_WITH_LIMITATIONS; independently reran51V2tests (exit0), re-derived exact scope and verified
+all115source/169input pins. Private review SHA79f43d9934444cb85c3f81b2fa989926c3ca2149e69055f16eebb3274b37d22d;
+sanitized public review SHAdaf3f20c74471cfb9342d429f3d574d63e1b35f2d6a8e8f830028a4d290609a1.
+This review is preparation only; fresh human execution permission remains pending. Repository visibility independently confirmed PRIVATE.
