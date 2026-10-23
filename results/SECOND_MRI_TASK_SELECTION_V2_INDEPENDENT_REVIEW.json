@@ -1,0 +1,209 @@
+{
+  "SLAKE": {
+    "Chinese_vqa_image_split_overlap": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "English_vqa_image_counts": {
+      "test": 96,
+      "train": 450,
+      "validation": 96
+    },
+    "English_vqa_image_split_overlap": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "all_language_image_split_overlap": {
+      "train_test": 142,
+      "train_validation": 130,
+      "validation_test": 26
+    },
+    "author_reported_dataset_license": "CC-BY-4.0 in frozen author dataset card; paper text license is separate.",
+    "candidate": "original exact brain-normality vision-only QA; source label, not whole-patient health",
+    "candidate_QA_rows": 26,
+    "candidate_distinct_images": 26,
+    "candidate_image_split_overlap": {
+      "train_test": 0,
+      "train_validation": 0,
+      "validation_test": 0
+    },
+    "candidate_label_counts": {
+      "No": 15,
+      "Yes": 11
+    },
+    "candidate_other_language_TRAIN_exposure": {
+      "test": {
+        "Chinese_source_TRAIN_QA_rows": 34,
+        "Chinese_source_TRAIN_images": 4,
+        "English_source_TRAIN_images": 0
+      },
+      "validation": {
+        "Chinese_source_TRAIN_QA_rows": 25,
+        "Chinese_source_TRAIN_images": 3,
+        "English_source_TRAIN_images": 0
+      }
+    },
+    "clinical_provenance": {
+      "independent_per_QA_medical_readjudication": "NOT_ESTABLISHED; not invented as a new mandatory expert gate.",
+      "sections": [
+        "2.1",
+        "2.3",
+        "2.4"
+      ],
+      "source": "https://arxiv.org/html/2102.09542",
+      "statements": [
+        "Physicians annotated organ and disease labels on selected single slices from volumetric sources.",
+        "Doctors used, amended or rewrote template questions; vision-only questions have a dedicated semantic marker.",
+        "The published split is described at image level, not patient or source-volume level."
+      ],
+      "status": "SOURCE_PAPER_SUPPORTED"
+    },
+    "contradictory_same_image_endpoint_labels": 0,
+    "cross_language_note": "English and Chinese use different image partitions. All-language overlaps are not English-candidate leakage; selected validation/test images are absent from English source TRAIN. Mixing languages requires whole-image exclusion.",
+    "duplicate_exact_QA_rows": 0,
+    "image_level_count_minimum": "PASS: source TRAIN has at least2 per label; source TEST has exactly2 per label on4 distinct images. No new assignment made.",
+    "language": "English",
+    "metadata_archive_check": {
+      "additional_bounded_metadata_download_bytes": 327635,
+      "directory_entries": 3235,
+      "directory_range_bytes": 391790,
+      "fixed_candidate_images_with_metadata_checked": 2,
+      "image_payloads_downloaded": 0,
+      "limit": "Archive filename inventory plus4 metadata files only; not an inspection of every archive file.",
+      "mapping_filename_or_field_found": false,
+      "per_image_JSON_files_checked": 4
+    },
+    "patient_disjoint_split": "NOT_ESTABLISHED",
+    "per_image_question_fields": [
+      "answer",
+      "answer_type",
+      "base_type",
+      "img_id",
+      "img_name",
+      "location",
+      "modality",
+      "q_lang",
+      "question",
+      "triple"
+    ],
+    "per_original_split": {
+      "test": {
+        "QA_rows": 4,
+        "distinct_images": 4,
+        "label_counts": {
+          "No": 2,
+          "Yes": 2
+        }
+      },
+      "train": {
+        "QA_rows": 19,
+        "distinct_images": 19,
+        "label_counts": {
+          "No": 11,
+          "Yes": 8
+        }
+      },
+      "validation": {
+        "QA_rows": 3,
+        "distinct_images": 3,
+        "label_counts": {
+          "No": 2,
+          "Yes": 1
+        }
+      }
+    },
+    "pixel_duplicate_audit": "NOT_RUN",
+    "pixel_payloads_qualified_this_pass": 0,
+    "primary_links": [
+      "https://www.med-vqa.com/slake/",
+      "https://huggingface.co/datasets/BoKelvin/SLAKE",
+      "https://arxiv.org/html/2102.09542"
+    ],
+    "question_sha256": "b09bd110547ee7e251605a706156dc83a04c6c1933ec7be61899e270469d4eb0",
+    "source_QA_fields": [
+      "answer",
+      "answer_type",
+      "base_type",
+      "content_type",
+      "img_id",
+      "img_name",
+      "location",
+      "modality",
+      "q_lang",
+      "qid",
+      "question",
+      "triple"
+    ],
+    "source_case_patient_volume_mapping": "NOT_ESTABLISHED",
+    "source_files": {
+      "test": {
+        "bytes": 635829,
+        "git_blob_oid": "a6d8ca96e30bfd5a27d1dadc2fa30da2ba791041",
+        "sha256": "6be8f7b4c5a46cdbc713a5210a25b6ed5aa1fd1574c83cefb4f998131f17c2c3",
+        "source_QA_rows": 2094
+      },
+      "train": {
+        "bytes": 2964571,
+        "git_blob_oid": "afb9b3d634173aaccdb974f6b3d2754fb105c203",
+        "sha256": "7a9fb81f9d7bb145c3d7e9bc8d3b9016ba18b6539ea5031a53bae8fd3cd991c3",
+        "source_QA_rows": 9835
+      },
+      "validation": {
+        "bytes": 639139,
+        "git_blob_oid": "42bd974d0fdf5af0161f119eb016f45fa34f646c",
+        "sha256": "32b016440b0c3be11056a78a18eeab46333268407fbb6e6b32f9f4c2debc50f6",
+        "source_QA_rows": 2099
+      }
+    }
+  },
+  "VQA_RAD": {
+    "MRI_scope": "conservative positive-source-evidence lower bound, not complete dataset absence claim",
+    "reviewed_source_MRI_evaluated_HEAD_QA_rows": 183,
+    "reviewed_source_MRI_images_and_case_components": 33,
+    "source_rows": 2248,
+    "supported_single_endpoint_balanced_4_TRAIN_4_EVAL_found": false,
+    "unknown_modality_evaluated_HEAD_images": 48
+  },
+  "blocks": [
+    "Case/source-volume grouping required by the independent-case split is unavailable in the checked metadata.",
+    "Image IDs are not patient IDs; the physical source-case minimum cannot be certified from the26 image rows.",
+    "No image-payload answerability or pixel-duplicate qualification was performed in this selection pass."
+  ],
+  "decision": "PAUSE_HETEROGENEOUS_GPU_PENDING_SOURCE_CASE_MAPPING",
+  "evidence_sha256": {
+    "Claude_availability": "81d67b92be896ca7b7ea5afd48af80893b9b678454429678bf0fed252ed7096a",
+    "SLAKE_archive_directory_check": "52cdde15f380667a7dba573a892dba67ad45493c0826dbabb0f4d8f5d864562f",
+    "SLAKE_author_card": "9e55939536c0d457f0cde9242eaba4d192d555c0c886545532b109173ccf76a2",
+    "SLAKE_author_tree": "24b4005e925928a3c87ecf5aaecdabb68e1740aac52003a73a2fe19f3b8c709a",
+    "SLAKE_bounded_per_image_metadata": "90adf297686bf21a811776989b53172b3798f2c4118841acbbd6706cfc016005",
+    "SLAKE_candidate": "826b02cd24a92ae66f8e004e400e0738ff9143b584cf31585cd9227f57631e37",
+    "VQA_RAD_source": "948b7156059b864cf72344fb10669233526b175c243e5a046d20d4201d297a95",
+    "independent_VQA_RAD_census": "bd5ade7050ef6d4134141cbdb4d78a7c86b0b47aaf16f01b30c78af8ccab142e"
+  },
+  "execution": {
+    "Claude_executed_this_selection": false,
+    "GPU_calls": 0,
+    "endpoint_question_or_answer_rewritten": false,
+    "frozen_plan_edits": 0,
+    "image_payload_downloads_by_reviewer": 0,
+    "images_decoded_by_reviewer": 0,
+    "model_calls": 0,
+    "new_split_assigned": false,
+    "optimizer_updates": 0,
+    "source_code_edits": 0
+  },
+  "next_step": "STOP this selection pass and keep heterogeneous GPU paused pending verified source-case mapping; no executable GPU scope issued.",
+  "not_blocks": [
+    "The dataset and original exact clinical QA are available.",
+    "The English exact endpoint has enough image-level labels; label count is not the blocker.",
+    "No generic claim that VQA-RAD contains no other brain MRI is made."
+  ],
+  "reviewed_at_utc": "2026-10-23T08:40:10.769203+00:00",
+  "reviewer_id": "/root/v2_actual_verifier",
+  "reviewer_kind": "isolated_codex",
+  "schema": "second-mri-task-selection-v2-independent-review-v1",
+  "scope": "ONE endpoint selection pass plus bounded verification of its strongest exact-source candidate; no further endpoint search.",
+  "verdict": "SCIENTIFICALLY_BLOCKED_FOR_GPU_PENDING_SOURCE_CASE_MAPPING"
+}

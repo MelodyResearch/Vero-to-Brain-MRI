@@ -679,3 +679,38 @@ monitor minavailable5.346619GiB/free29%;internalboundarymin6.011826GiB/free31%. 
 bf9bc7a486c605a3f8a3542e036cb4fee7579b3582709d3f6db907d08c9f05b2; public review SHA
 20c93033eda952304510321ed613efb1d5791374b0a2106413ee7b7d501d342e, verdictPASS_WITH_LIMITATIONS/scientificNO_GSPO_SIGNAL.
 This saved-evidence review added0nativecalls. The exact once-only permission is closed; no further GPU/evaluation is authorized.
+
+
+## 2026-10-23 — One-pass second MRI task selection after V2 NO_GSPO_SIGNAL (CPU/source only)
+
+The researcher closes the Midline2+2/K4 configuration and requests a larger, genuine original clinical-source MRI endpoint instead
+of another prompt/gate/advantage experiment. Existing16rollout conclusions are accepted; no repeat model/rollout/gradient work.
+Claude-opus-5-5 CLI was actually called and returnedNotloggedin/exit1. Codex performed this bounded selection, isolatedCodexchecked.
+
+VQA-RAD: frozenoriginalsourceSHA948b7156059b864cf72344fb10669233526b175c243e5a046d20d4201d297a95;183evaluatedHEADQA/
+33source-MRIimages/33fullcasecomponents. No single endpoint meets balanced4TRAIN4EVAL minimum: edema2yes0no;hemorrhage0yes1no;
+mass-effect0yes1no;ventricular enlargement1yes;plane7allaxial;laterality7right1left2bilateral;literalpathology6componentswithoutadequate
+repeatedclasscounts. Other48evaluatedHEADimages haveunconfirmedmodality; no entire-datasetabsenceclaim and no syntheticlabelmerging.
+
+SLAKE: pinnedauthorrevisiona9083ce6c34ac3ffb17671a605962924d8a8f9e9; all3savedJSONbytefiles matchofficialgitblobIDs. Oneexactoriginal
+question“Is the brain healthy?” has26EnglishMRIbrainimageentries (Yes11No15), originalTRAIN19(Yes8No11),val3(Yes1No2),test4(Yes2No2).
+Aprivateall26candidate manifestisactuallysaved, originalQA/answers unchanged, noexperimentalTRAIN/EVALassignment. English-onlyimage
+splitsare disjoint; pooledEnglish+ChinesesplitdriftisnotanEnglishcandidateleak. Case/patient/volume groupingisNOTESTABLISHED.
+
+Targeted sourcecheckonly: paper§2.1physicianorgan/diseaseannotations,§2.3doctorquestiontemplates,§2.4image-levelsplit; no patientguarantee.
+OfficialZIPdirectory3235entries plus4question/detectionJSONs from2fixedcandidateimages read via boundedRange,719425metadatabytes,
+0MRIpixels/0largearchivedownloads. No groupingmapfilename orpatient/sourcevolume field observed; notallarchivecontentsinspected.
+Sourcelabelclinicalmeaning isnotwhole-patienthealth; no new lesionlabels/QA invented. Actualpixelanswerability/duplicatesunverified.
+
+DecisionPAUSE_HETEROGENEOUS_GPU_PENDING_SOURCE_CASE_MAPPING. Retain onlySLAKEexactsourceQAasconditionalcandidate. No runnableGPU
+scope or authorizationrequest isprepared while case-disjointsplit/imagebindingsaremissing. No extraGPUscope,0modelcalls,0updates,
+0resampling; GSPO/reward/Adam/LR/LoRA/prompt/gatesunchanged. Stopthissinglemetadata/source-selectionpass; no widerdataset/annotation
+project. If sourcegroupingcannotbesupplied, pauseheterogeneousMRItraining. Main/frozenplan/lock/historicalresults remain unchanged.
+Evidence:research/SECOND_MRI_TASK_SELECTION_V2.md;results/SECOND_MRI_TASK_SELECTION_V2_ACTUAL.json. Independentfinalreviewpending.
+
+FINAL INDEPENDENT SELECTION REVIEW: SCIENTIFICALLY_BLOCKED_FOR_GPU_PENDING_SOURCE_CASE_MAPPING.26exactENcandidatecounts,source
+SHA/bytes/GitblobIDs,0exactduplicates/conflicts,andEnglishimage-disjointsplit independentlyconfirmed; noglobalpatientindependence
+inferred. The7validation/testcandidateimages occur in otherTRAINquestions onlythroughZHrows,notEN; no currentmodelSLAKEexposure
+claim. Private final review SHAcabc5cd77f682b48197bf8e56526b176c086cc74a5969475f1ff48eb9375d89b; publicreviewSHA
+ e8c1ebe7e971d0c33731fe3e45ccc638389aa790f079d149fa5bb403d81b9ad8. Reviewer0newdownloads/model/GPUcalls. SelectionpassCLOSED;
+no executableGPU/optimizer authorization generated. Sourcecase-mappingblock is explicit; no furtherautomaticsearch/annotationproject.

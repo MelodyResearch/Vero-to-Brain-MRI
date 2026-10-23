@@ -1,0 +1,197 @@
+{
+ "SLAKE": {
+  "English_image_split_overlap": 0,
+  "QA_fields": [
+   "answer",
+   "answer_type",
+   "base_type",
+   "content_type",
+   "img_id",
+   "img_name",
+   "location",
+   "modality",
+   "q_lang",
+   "qid",
+   "question",
+   "triple"
+  ],
+  "TRAIN_EVAL_case_split_created": false,
+  "author_revision": "a9083ce6c34ac3ffb17671a605962924d8a8f9e9",
+  "candidate_QAs": 26,
+  "candidate_exact_question": "Is the brain healthy?",
+  "candidate_image_names": 26,
+  "candidate_source_answer_counts": {
+   "no": 15,
+   "yes": 11
+  },
+  "data_license": "CC-BY-4.0",
+  "endpoint_meaning": "Original source QA label; no claim of diagnosing entire patient health",
+  "image_payload_qualification": "NOT_RUN; no MRI image downloaded",
+  "language": "ENGLISH_ONLY",
+  "metadata_minimum_passes_on_image_ids": true,
+  "mixed_language_split_overlap_not_English_leak": [
+   130,
+   142,
+   26
+  ],
+  "original_question_changed": false,
+  "other_candidates": {
+   "edema_presence_original_yesno": {
+    "images": 8,
+    "no": 0,
+    "yes": 8
+   },
+   "open_disease_QA": {
+    "answers": "original multi-label sets; NOT collapsed into an invented binary pathology",
+    "images": 59
+   },
+   "open_plane": {
+    "all_answers": "transverse plane",
+    "images": 54
+   },
+   "tumor_enhancement": {
+    "images": 6,
+    "no": 1,
+    "yes": 5
+   },
+   "tumor_presence_original_yesno": {
+    "images": 8,
+    "no": 0,
+    "yes": 8
+   }
+  },
+  "patient_source_volume_mapping": "NOT_ESTABLISHED; image_ids are not patient_ids",
+  "source_QA_clinical_attribution": "Published physician organ/disease annotations and doctor-proposed/amended template questions; not independently per-QA second-review attestation",
+  "source_brain_MRI_image_names": 140,
+  "source_split_counts": {
+   "test": {
+    "no": 2,
+    "yes": 2
+   },
+   "train": {
+    "no": 11,
+    "yes": 8
+   },
+   "validation": {
+    "no": 2,
+    "yes": 1
+   }
+  },
+  "vision_only_QAs": 1133
+ },
+ "VQA_RAD": {
+  "clinical_endpoints": {
+   "edema_presence": {
+    "no_components": 0,
+    "yes_components": 2
+   },
+   "hemorrhage_presence": {
+    "no_components": 1,
+    "yes_components": 0
+   },
+   "lesion_enhancement": {
+    "no_components": 1,
+    "yes_components": 0
+   },
+   "mass_effect": {
+    "no_components": 1,
+    "yes_components": 0
+   },
+   "ventricular_enlargement": {
+    "no_components": 0,
+    "yes_components": 1
+   }
+  },
+  "private_review_sha256": "bd5ade7050ef6d4134141cbdb4d78a7c86b0b47aaf16f01b30c78af8ccab142e",
+  "result": "NO_BALANCED_SINGLE_ENDPOINT_IN_VERIFIED_MRI_SUBSET",
+  "review_scope": "183 evaluated HEAD QA /33source-MRIimage names /33completecase graph components; conservative source-QA modality lower-bound only",
+  "source_sha256": "948b7156059b864cf72344fb10669233526b175c243e5a046d20d4201d297a95",
+  "spatial_screens": {
+   "direct_plane_components": 7,
+   "direct_plane_labels": "ALL_AXIAL",
+   "laterality_components": {
+    "bilateral": 2,
+    "left": 1,
+    "right": 7
+   },
+   "literal_disease_name_components": 6,
+   "no_two_literal_classes_with_four_components_each": true,
+   "region_components": 15
+  },
+  "unconfirmed_evaluated_HEAD_image_names": 48,
+  "whole_dataset_no_task_claim": false
+ },
+ "base_commit": "a32efc1e27b95ed4f0e5aa5de002c482cb082d8e",
+ "candidate_only": "SLAKE exact source brain-healthy yes/no QA; original source labels, not global clinical brain health",
+ "closed_configuration": "VQA-RAD Midline2TRAIN2EVAL same-promptK4; no retry or boxed/gate/advantage search",
+ "date": "2026-10-23",
+ "decision": "PAUSE_HETEROGENEOUS_GPU_PENDING_SOURCE_CASE_MAPPING",
+ "execution": {
+  "Claude_actual_call_exit": 1,
+  "Claude_actual_result": "Not logged in; no Claude analysis claimed this round",
+  "Claude_requested": "claude-opus-5-5",
+  "GPU_authorization_requested": false,
+  "GPU_scope_created": false,
+  "GSPO_reward_LR_LoRA_Adam_prompt_sampling_changed": false,
+  "MRI_model_calls": 0,
+  "MRI_model_loads": 0,
+  "backward": 0,
+  "executor": "Codex; independent isolated Codex review",
+  "optimizer_updates": 0,
+  "rollout_resampling": 0,
+  "sealed_new16_or_final100_access": false
+ },
+ "independent_final_review": {
+  "path": "results/SECOND_MRI_TASK_SELECTION_V2_INDEPENDENT_REVIEW.json",
+  "private_sha256": "cabc5cd77f682b48197bf8e56526b176c086cc74a5969475f1ff48eb9375d89b",
+  "reviewer": "isolated Codex /root/v2_actual_verifier",
+  "sha256": "e8c1ebe7e971d0c33731fe3e45ccc638389aa790f079d149fa5bb403d81b9ad8",
+  "verdict": "SCIENTIFICALLY_BLOCKED_FOR_GPU_PENDING_SOURCE_CASE_MAPPING"
+ },
+ "minimum_metadata_screen": {
+  "eval": {
+   "labels": 2,
+   "per_label_components_min": 2
+  },
+  "minimum_total_components": 8,
+  "statistical_power_claim": false,
+  "train": {
+   "labels": 2,
+   "per_label_components_min": 2
+  }
+ },
+ "private_evidence_sha256": {
+  "Claude_availability": "81d67b92be896ca7b7ea5afd48af80893b9b678454429678bf0fed252ed7096a",
+  "SLAKE_test": "6be8f7b4c5a46cdbc713a5210a25b6ed5aa1fd1574c83cefb4f998131f17c2c3",
+  "SLAKE_train": "7a9fb81f9d7bb145c3d7e9bc8d3b9016ba18b6539ea5031a53bae8fd3cd991c3",
+  "SLAKE_validation": "32b016440b0c3be11056a78a18eeab46333268407fbb6e6b32f9f4c2debc50f6",
+  "archive_directory": "52cdde15f380667a7dba573a892dba67ad45493c0826dbabb0f4d8f5d864562f",
+  "candidate": "826b02cd24a92ae66f8e004e400e0738ff9143b584cf31585cd9227f57631e37",
+  "original_per_image_metadata_check": "90adf297686bf21a811776989b53172b3798f2c4118841acbbd6706cfc016005"
+ },
+ "public_primary_sources": [
+  "https://www.med-vqa.com/slake/",
+  "https://huggingface.co/datasets/BoKelvin/SLAKE/blob/a9083ce6c34ac3ffb17671a605962924d8a8f9e9/README.md",
+  "https://arxiv.org/html/2102.09542v1",
+  "https://osf.io/89kps/"
+ ],
+ "remaining_required_evidence": [
+  "Publisher source-patient/source-volume group mapping for the fixed candidate image IDs; preserve all QA and all language rows of one image/component in a single role",
+  "Bind actual source-image payloads and check duplicates, visibility and answer leakage once a case-disjoint candidate split is possible",
+  "Freeze the one next data/task intervention and matched Parent/Direct-Vero accuracy protocol before any new output"
+ ],
+ "schema": "second-mri-task-source-selection-decision-v2",
+ "source_access": {
+  "all_archive_contents_inspected": false,
+  "archive_directory_entries": 3235,
+  "archive_directory_range_bytes": 391790,
+  "new_MRI_pixel_downloads": 0,
+  "new_large_dataset_downloads": 0,
+  "no_obvious_case_mapping_filename_in_directory": true,
+  "per_image_metadata_JSONs_read": 4,
+  "per_image_metadata_bytes_including_directory": 327635,
+  "per_image_metadata_samples": 2,
+  "total_new_metadata_bytes": 719425
+ },
+ "stop_rule": "No next GPU pilot with currently available qualification. Stop this finite selection pass; no broader dataset sweep or new RL loss. Candidate is preserved, not silently approved."
+}
