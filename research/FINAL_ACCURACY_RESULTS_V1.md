@@ -82,4 +82,4 @@ Claude Code actually used `claude-opus-5-5` for candidate implementation/design 
 
 ## Selective main-branch publication
 
-This draft PR publishes reports and sanitized evidence only. Exact runnable training/source/tests remain at [the preserved research commit](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06). Its transitive native dependencies are intentionally not copied piecemeal into main. Native code integration remains a separate decision; this PR does not make main a runnable SFT checkout.
+This draft PR publishes reports and sanitized evidence only. Exact runnable training/source/tests remain at [the preserved research commit](https://github.com/MelodyResearch/Vero-to-Brain-MRI/tree/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06). Its transitive native dependencies are intentionally not copied piecemeal into main. Native code integration remains a separate decision; this PR does not make main a runnable SFT checkout.
