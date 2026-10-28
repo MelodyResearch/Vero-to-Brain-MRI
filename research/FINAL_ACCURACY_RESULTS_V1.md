@@ -30,6 +30,15 @@ Actual native computation: 56 distinct TRAIN images, 56 scorer/backward calls, 1
 
 The predeclared replication gate required >=19/24 correct, FLAIR>=10/12, T1>=8/12, invalid=0 and >=7 fully correct pairs. The candidate fails overall, T1 and pair thresholds. **Seeds 1 and 2 are NOT_RUN_BY_FROZEN_STOP_RULE.** No second candidate, target search, optimizer reset or extension is started.
 
+## Mission alignment and evidence tiers
+
+1. **Main-question link / B_LABEL_CONTROL:** the researcher explicitly authorized a final accuracy-first supervised control; its gains cannot be attributed to Vero GSPO.
+2. **Claim/falsifier:** complete paired dense supervision should improve strict class discrimination. The frozen class-protected gate failed.
+3. **Change isolation:** parent, prompt, LoRA and numerical readout stay fixed; training exposure/target/task allocation differ from historical GSPO, so causal method superiority is not tested.
+4. **Provenance:** actual native outputs and checkpoint receipts are OBSERVED; independent parsing and payload hashing are REPRODUCED.
+5. **Shortcut/baseline:** stronger FLAIR prediction bias and fewer correct modality pairs are OBSERVED. A unique optimizer or visual-path explanation is INFERRED/NOT_VERIFIED.
+6. **Resources/decision:** one bounded native run completed; the failed predeclared rule stops replication. Sealed evaluation is PROPOSED and requires confirmation.
+
 ## What the evidence supports
 
 **Confirmed:** original sparse modality exposure was a data-design defect; historical K4 correctness signal was uneven; prompt format affected strict accuracy; Direct/Paired GSPO both regressed on the matched DEV24; the new dense balanced full-response SFT also regressed, with increased FLAIR predictions. Therefore paired exposure alone is not sufficient under this specific supervision and inherited state.
