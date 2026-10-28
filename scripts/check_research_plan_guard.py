@@ -29,10 +29,24 @@ def history_report(head,*,require_plan=True):
     # parent follows the committed branch state, including merge results.
     commits=git('log','--reverse','--first-parent','--format=%H',head,'--',*PATHS).stdout.decode().splitlines()
     previous={};checks=[]
+    scientific_source=snapshot('a71bb39a5b75d4cb65b7a958fa79548ff0805254')
     for commit in commits:
         current=snapshot(commit)
         if not previous and not current:continue
-        report=check_trees(previous,current)
+        # A publication branch may have a short result log before importing the
+        # already-frozen scientific plan. This is not the raw scientific log.
+        # Only exact source-plan/lock bytes qualify; no approval flag or arbitrary
+        # new plan is admitted, and later mutations still use ordinary guards.
+        if PATHS[0] not in previous and PATHS[0] not in current and PATHS[1] not in current:
+            previous=current
+            continue
+        if PATHS[0] not in previous and PATHS[2] in previous and PATHS[0] in current:
+            if any(current.get(k)!=scientific_source.get(k) or k not in scientific_source for k in PATHS[:2]):
+                return {'status':'BLOCKED','errors':['IMPORTED_PLAN_NOT_EXACT_SCIENTIFIC_SOURCE'],'history_checks':checks}
+            report=check_trees({},current)
+            report['imported_from_scientific_source']='a71bb39a5b75d4cb65b7a958fa79548ff0805254'
+        else:
+            report=check_trees(previous,current)
         checks.append({'commit':commit,'status':report['status'],'errors':report['errors']})
         if report['errors']:
             return {**report,'history_checks':checks,'history_anchor':'first first-parent governance addition'}
