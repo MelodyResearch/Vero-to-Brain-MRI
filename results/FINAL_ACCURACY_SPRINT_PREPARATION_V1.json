@@ -1,0 +1,76 @@
+{
+  "Claude": {
+    "CPU_tests": 37,
+    "actual_implementation": true,
+    "model": "claude-opus-5-5"
+  },
+  "budget": {
+    "TF_positions_per_run": 14028,
+    "backward_per_run": 56,
+    "cache_quantizations": 0,
+    "candidate_methods": 1,
+    "greedy_per_run": 24,
+    "model_loads_per_run": 1,
+    "returned_tokens_per_run": 6144,
+    "run_window_seconds": 3600,
+    "total_window_seconds": 10800,
+    "training_runs": 3,
+    "updates_per_run": 28
+  },
+  "data": {
+    "DEV24_people": 4,
+    "DEV24_rows": 24,
+    "PNG_bytes_hashed": 2770166,
+    "TRAIN_DEV_patient_overlap": 0,
+    "canonical_images_existing": 56,
+    "checks": {
+      "DEV24_exact_records": true,
+      "TRAIN_DEV_patient_disjoint": true,
+      "all_row_checks": true,
+      "balanced_28_28": true,
+      "each_person_FLAIR_T1_pair": true,
+      "exactly_28_people": true,
+      "exactly_56_rows": true,
+      "prior_report_matches_independent_review": true,
+      "source_manifest_matches_prior_qualification": true,
+      "unique_image_SHA56": true
+    },
+    "current_people_present_in_prior_training_pool": 28,
+    "historical_embedded_image_paths_missing": 56,
+    "labels": {
+      "FLAIR": 28,
+      "contrast-enhanced T1": 28
+    },
+    "original_sequence_rows": 168,
+    "original_total_train_rows": 382,
+    "prior_training_pool_sequence_people": 28,
+    "prior_training_pool_sequence_rows": 28,
+    "status": "PASS_WITH_LIMITATIONS",
+    "train_people": 28,
+    "unique_image_sha256": 56,
+    "z045_rows": 56
+  },
+  "independent_numeric_proof_sha256": "b709e89ebd89b192267d23459eb148015505af0ee751f1ea66d83769f651fe1e",
+  "limits": [
+    "DEV24 is4previouslyexplored people,notnovelgeneralization",
+    "No budgetmatchedSFTvsGSPOcausality",
+    "HistoricalSFTfinal84 notcomparableto newDEV24",
+    "InheritedAdam52 moments retained",
+    "No clinical/anatomicalgrounding claim"
+  ],
+  "method": "Patient-paired balanced full-response SFT; NOT_GSPO",
+  "new_accuracy": false,
+  "new_optimizer_updates": 0,
+  "parent": "P_calibrated13/Adam52/boundary114",
+  "parent_adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+  "power": "Fresh researcher explicit reply permits only this SFT battery>=20; all other limits unchanged",
+  "prompt": "Same concise/F32,233expanded tokens",
+  "schema": "final-accuracy-sprint-preparation-v1",
+  "scope_file_sha256": "f9944527b47909dbd7fccbdd7ceab1a3ab12760ad0335e7c832770dc9022ab1f",
+  "sealed16_authorized": false,
+  "status": "CPU_PREPARED_NATIVE_NOT_RUN_PENDING_FINAL_POWER_AMENDMENT_REVIEW",
+  "target_lengths": {
+    "FLAIR": 17,
+    "contrast-enhanced T1": 20
+  }
+}

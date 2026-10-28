@@ -714,3 +714,16 @@ inferred. The7validation/testcandidateimages occur in otherTRAINquestions onlyth
 claim. Private final review SHAcabc5cd77f682b48197bf8e56526b176c086cc74a5969475f1ff48eb9375d89b; publicreviewSHA
  e8c1ebe7e971d0c33731fe3e45ccc638389aa790f079d149fa5bb403d81b9ad8. Reviewer0newdownloads/model/GPUcalls. SelectionpassCLOSED;
 no executableGPU/optimizer authorization generated. Sourcecase-mappingblock is explicit; no furtherautomaticsearch/annotationproject.
+
+
+## Accuracy-first final sprint — CPU preparation, not research closure
+
+The latest researcher request supersedes closeout-only work. No cleanup or RESEARCH_CLOSED declaration; main/plan/lock remain unchanged. Claude Code actually ran claude-opus-5-5 and wrote the new paired supervised SFT helper,37CPUfixturetests and design note. Codex integrated a fresh exact-scope entry, one serial model/own-child guardian, persistent counters, full checkpoints and the unchanged conciseF32DEV24 greedy. Independent Codex rechecked72savedDEV24rows and original22SAFEcounts; another finite audit verified28TRAINpeople/56z045PNGs(28/28labels),56uniquehashes and no overlap with4DEVpeople. No new16 or final100 predictions are accessed.
+
+The typed pool is newly derived from original immutableTRAINmanifest plus current56hash/headeraudit, not falsely represented as recovered privatepool. Only obsoleteprojectroot imagepaths are rebound. One NON_SITE scheduling stratum is used; no sitejoin inferred. OldTRAINpeople have parenttrainingexposure; an internalfold would not be unseenpatientvalidation.
+
+Onecandidate: samepatientFLAIR/T1 meanresponseCE averaged before one inheritedAdam52update. Perseed28updates/56backward/14028TF/24greedy/6144returnedtokens/one load/3600s. Seed0first; only nativecomplete >=19/24,FLAIR>=10/12,T1>=8/12,invalid0,bothcorrectpairs>=7/12 permits orderseeds1/2. Totalmax3runs/84updates/42084TF/72greedy/18432returnedtokens/3loads/10800s. Maccolorpolicy retainsRSS14/MLX12GiB/cache256MiB/disk26GiB/battery20% and severe-risk stops; noOOMguarantee, nootherapptermination. No oldscope reused.
+
+At this entry: newnativecalls0,updates0,accuracygainNOT_MEASURED. Exact independent scope review required before native launch under the newest researcher training grant. See results/FINAL_ACCURACY_SPRINT_PREPARATION_V1.json and research/FINAL_BALANCED_SFT_DESIGN_V1.md.
+
+Power admission clarification: a datedAGENTS substantial-training battery restriction was identified rather than silently bypassed. No native work was claimed/started while this was unresolved. The researcher then explicitly approved “仅为本次SFT允许电池≥20%，保留全部其他保护”. Only the new SFT localscope is amended; otherprotections/globalpolicies remain unchanged. Fresh independent power-amendment review required; no oldscope reused.
