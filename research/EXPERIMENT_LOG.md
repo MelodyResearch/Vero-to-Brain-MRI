@@ -745,3 +745,8 @@ One real native SFT seed completed28patient-pair updates/56backwards/14,028TFpos
 Independent Codex verified all28checkpoint sets/receipt continuity, exact saved terminal reload, unchanged10parent files, normal exit and allocator release1050bytes. Wholechild557.305s;RSSpeak5.8243GiB;MLXpeak7.9008GiB;swap17.0425→21.2609GiB,peak21.2999GiB. No guardianSTOP/TERM/KILL; lockFREE. Actual samples wereAC; sensor temperature unavailable. Full safe evidence: `results/FINAL_BALANCED_SFT_SEED0_ACTUAL_REVIEW_V1.json`.
 
 Retain Parent only as the best same-contract DEV24 endpoint; historical formal84 SFT scores are not a fair numerical comparator. No new MRI accuracy improvement or GSPO benefit is established. New16 outputs remain sealed pending final endpoint/protocol confirmation. Main/frozen plan/lock and all historical weights/states remain unchanged.
+
+
+## 2026-10-28 — Final cleanup classification after negative development result
+
+Compared exact main/results/source tracked trees for duplicate blobs, empty files and cache artifacts. No fully justified deletion candidate; actual deleted/movedfiles0, worktrees/branches0, privateassets0. Preserved all evidence and runtime state. README navigation consolidation is in the results PR. See `research/FINAL_REPOSITORY_CLEANUP_DECISION_V1.md` and `results/FINAL_REPOSITORY_CLEANUP_INVENTORY_V1.json`. This adds no model run and does not modify the frozen plan.
