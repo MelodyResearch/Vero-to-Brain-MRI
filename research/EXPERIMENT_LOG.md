@@ -745,3 +745,8 @@ One real native SFT seed completed28patient-pair updates/56backwards/14,028TFpos
 Independent Codex verified all28checkpoint sets/receipt continuity, exact saved terminal reload, unchanged10parent files, normal exit and allocator release1050bytes. Wholechild557.305s;RSSpeak5.8243GiB;MLXpeak7.9008GiB;swap17.0425→21.2609GiB,peak21.2999GiB. No guardianSTOP/TERM/KILL; lockFREE. Actual samples wereAC; sensor temperature unavailable. Full safe evidence: `results/FINAL_BALANCED_SFT_SEED0_ACTUAL_REVIEW_V1.json`.
 
 Retain Parent only as the best same-contract DEV24 endpoint; historical formal84 SFT scores are not a fair numerical comparator. No new MRI accuracy improvement or GSPO benefit is established. New16 outputs remain sealed pending final endpoint/protocol confirmation. Main/frozen plan/lock and all historical weights/states remain unchanged.
+
+
+## 2026-10-28 — Private draft delivery and preservation
+
+Results draftPR#6 targets main; separate cleanup-classification draftPR#7 is stacked on it. Neither is merged. Independent packaging review checked43new Markdown/pinned-file links, actual-result identity, private-path exclusion and exact cleanup snapshots. Main remainsb8b0493754451befaf5e61285ca8bb05570ca36d. Actual deleted/movedscientific/runtimefiles0. Runnable native source remains on the preserved research branch, with an explicit pinned source checkout in handoff. Full historical chronology remains append-only here; selective main publication links it rather than republishing obsolete local-machine paths. No further native run occurred; sealed16 remains unopened.
