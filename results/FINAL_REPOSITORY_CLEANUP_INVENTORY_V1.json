@@ -84,7 +84,7 @@
       "tracked_files": 651
     },
     "results_pr": {
-      "commit": "21924efb28f11598106873f5e2d75140d2916e9d",
+      "commit": "086c0b4699d625d559fb416287b2d808ebc86b79",
       "directory_counts": {
         ".agents": 1,
         "<root>": 5,
@@ -93,7 +93,7 @@
         "docs": 1,
         "experiments": 1,
         "research": 64,
-        "results": 297,
+        "results": 298,
         "reviews": 3,
         "scripts": 71,
         "src": 79,
@@ -102,10 +102,10 @@
       "empty_tracked_files": [],
       "exact_same_blob_groups": [],
       "tracked_cache_candidates": [],
-      "tracked_files": 659
+      "tracked_files": 660
     },
     "source": {
-      "commit": "b03d0b30a6f0de59f23ae2eb76a5b9563364fa06",
+      "commit": "33f5d9152aadcf4b3ea1a6b2325bb847cd4e5102",
       "directory_counts": {
         ".agents": 1,
         ".githooks": 1,
@@ -116,7 +116,7 @@
         "docs": 1,
         "experiments": 1,
         "research": 114,
-        "results": 479,
+        "results": 480,
         "reviews": 3,
         "scripts": 145,
         "src": 182,
@@ -125,7 +125,7 @@
       "empty_tracked_files": [],
       "exact_same_blob_groups": [],
       "tracked_cache_candidates": [],
-      "tracked_files": 1168
+      "tracked_files": 1169
     }
   },
   "verification": "Tree object-ID duplicate scan, tracked-empty and cache scan; new reports and JSON checked independently. No claim of exhaustive source reachability audit."
