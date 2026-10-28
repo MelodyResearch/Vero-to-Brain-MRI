@@ -1,4 +1,7 @@
 import json
+import os
+import subprocess
+import sys
 import pytest
 from mri_rl import final_accuracy_sprint_v1 as s
 
@@ -52,6 +55,7 @@ def test_dev_rejects_duplicate_pair_member_before_native_training():
 def test_child_replication_requires_real_completed_native_witness(tmp_path,monkeypatch):
     from mri_rl import final_balanced_sft_entry_v1 as entry
     monkeypatch.setattr(entry,'PRIVATE',tmp_path)
+    monkeypatch.setattr(entry,'RUN_ROOT',tmp_path)
     with pytest.raises(ValueError):entry.verify_replication(1,'scope')
     (tmp_path/'seed_0_PRIVATE').mkdir();(tmp_path/'seed_0_witness_PRIVATE').mkdir()
     (tmp_path/'seed_0_PRIVATE/complete_PRIVATE.json').write_text(json.dumps({'scope_file_sha256':'scope',
@@ -61,3 +65,10 @@ def test_child_replication_requires_real_completed_native_witness(tmp_path,monke
     p.write_text(json.dumps(w))
     with pytest.raises(ValueError):entry.verify_replication(1,'scope')
     w['guardian_stop']=False;p.write_text(json.dumps(w));entry.verify_replication(1,'scope')
+
+
+def test_real_module_entry_preserves_issued_authority_type_without_native():
+    p=subprocess.run([sys.executable,'-m','mri_rl.final_balanced_sft_entry_v1','--cpu-authority-identity'],
+        capture_output=True,text=True,env={**os.environ,'PYTHONPATH':'src'})
+    assert p.returncode==0,p.stdout+p.stderr
+    assert json.loads(p.stdout)=={'canonical_authorization_class_identical':True,'MLX_imported':False}

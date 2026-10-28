@@ -15,11 +15,19 @@ import signal
 import sys
 import time
 from pathlib import Path
+
+# ``python -m`` otherwise executes a second class namespace as __main__, while
+# the native factory imports the canonical name to check the issued authority.
+# Preserve one module/class identity; do not weaken the isinstance check.
+if __name__=='__main__' and __spec__ is not None:
+    sys.modules[__spec__.name]=sys.modules[__name__]
+
 from mri_rl import final_accuracy_sprint_v1 as core
 from mri_rl.shared_rollout_gspo_core_v1 import publish_once, replace_atomic
 
 ROOT=Path('/Users/vv/Documents/Codex/2026-10-15/files-pasted-by-the-user-codex-2/outputs/Vero-to-Brain-MRI')
 PRIVATE=ROOT/'local_data/final_accuracy_sprint_v1'
+RUN_ROOT=PRIVATE/'technical_entry_repair_v2'
 USER_REQUEST=Path('/Users/vv/.codex/attachments/b38bca07-be2c-4b2e-808f-bfea0661c0c3/已粘贴的文本.txt')
 _ISSUER=object()
 
@@ -31,7 +39,7 @@ class Authorization:
         self.started=time.monotonic()
     def check(self,name):
         core.require(time.monotonic()-self.started<core.BUDGET['run_window_seconds'],'Run operation-start window exhausted')
-        ledger=json.loads((PRIVATE/'runs_ledger_PRIVATE.json').read_text())
+        ledger=json.loads((RUN_ROOT/'runs_ledger_PRIVATE.json').read_text())
         core.require(ledger['scope']==self.sha and time.time()-ledger['started_unix']<core.BUDGET['total_window_seconds'],
                      'Original compound operation-start window exhausted')
 
@@ -77,7 +85,33 @@ def validate(scope_path,review_path):
                  'Independent exact-scope review required')
     core.verify_files(scope['file_sha256'])
     core.require(scope['output_root']==str(PRIVATE) and scope['sealed16_authorized'] is False,'Private bounded outputs/holdout exclusion required')
+    core.require(scope['run_root']==str(RUN_ROOT),'Exact technical-repair run root required')
+    repair=scope['zero_native_repair'];old=PRIVATE/'seed_0_witness_PRIVATE/actual_exit_PRIVATE.json'
+    failure=PRIVATE/'seed_0_PRIVATE/entry_STOP_PRIVATE.json'
+    w=json.loads(old.read_text());e=json.loads(failure.read_text())
+    core.require(core.sha(old)==repair['exit_sha256'] and core.sha(failure)==repair['failure_sha256'] and
+        w['native_exit_code']==1 and w['child_reaped'] and not w['guardian_stop'] and w['child_peak_RSS_GiB']<.25 and
+        e['error']=='Authorization must be an instance issued by the root SFT entry' and
+        not (PRIVATE/'seed_0_PRIVATE/actual_parent_identity_PRIVATE.json').exists() and
+        not (PRIVATE/'seed_0_PRIVATE/training_PRIVATE').exists(),'Only independently reviewed zero-native entry failure may be repaired')
     return scope,h
+
+
+def ensure_repair_ledger(scope,h):
+    """Keep the original total deadline; archive the spent zero-native attempt.
+
+    The old scope/claim/output is untouched. One zero-native failure plus the
+    three possible real runs is at most four attempts, not four extra trainings.
+    """
+    RUN_ROOT.mkdir(exist_ok=True)
+    old=json.loads((PRIVATE/'runs_ledger_PRIVATE.json').read_text())
+    core.require(old['seeds']==[0],'Unexpected earlier runs; cannot reset budget')
+    path=RUN_ROOT/'runs_ledger_PRIVATE.json'
+    if not path.exists():
+        publish_once(path,{'scope':h,'seeds':[],'started_unix':old['started_unix'],
+            'prior_zero_native_attempt_scope':old['scope'],'prior_zero_native_attempts':1,'max_total_attempts':4})
+    v=json.loads(path.read_text());core.require(v['scope']==h and v['started_unix']==old['started_unix'] and
+        v['prior_zero_native_attempts']==1 and v['max_total_attempts']==4,'No attempt or deadline refund')
 
 
 def execute_child(args):
@@ -85,8 +119,9 @@ def execute_child(args):
     core.require(seed in core.SEEDS,'Frozen seeds only')
     verify_replication(seed,h)
     core.validate_dev(json.loads((PRIVATE/'DEV24_COPY_PRIVATE.json').read_text()))
-    out=PRIVATE/('seed_%d_PRIVATE'%seed);core.require(not out.exists(),'No automatic retry or overwrite')
-    core.claim_run(PRIVATE/'runs_ledger_PRIVATE.json',seed,h)
+    ensure_repair_ledger(scope,h)
+    out=RUN_ROOT/('seed_%d_PRIVATE'%seed);core.require(not out.exists(),'No automatic retry or overwrite')
+    core.claim_run(RUN_ROOT/'runs_ledger_PRIVATE.json',seed,h)
     out.mkdir();runtime=json.loads((PRIVATE/'RUNTIME_PRIVATE.json').read_text())
     auth=Authorization({**scope,'execution_stage':'SFT_TRAIN'},h,seed,issuer=_ISSUER)
     gate=Gate(auth,runtime,out)
@@ -165,8 +200,8 @@ def execute_child(args):
 
 def verify_replication(seed,scope_sha):
     if not seed:return
-    first=PRIVATE/'seed_0_PRIVATE/complete_PRIVATE.json'
-    witness=PRIVATE/'seed_0_witness_PRIVATE/actual_exit_PRIVATE.json'
+    first=RUN_ROOT/'seed_0_PRIVATE/complete_PRIVATE.json'
+    witness=RUN_ROOT/'seed_0_witness_PRIVATE/actual_exit_PRIVATE.json'
     core.require(first.is_file() and witness.is_file(),'No completed seed0 native result')
     result=json.loads(first.read_text());w=json.loads(witness.read_text())
     core.require(result['scope_file_sha256']==scope_sha and w['scope_file_sha256']==scope_sha and w['native_exit_code']==0 and
@@ -196,13 +231,18 @@ def launch(args):
             try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
             except BlockingIOError:return {'status':'OCCUPIED'}
             fcntl.flock(lock,fcntl.LOCK_UN);return {'status':'FREE'}
-    result=witness_child(cmd,PRIVATE/('seed_%d_witness_PRIVATE'%args.seed),scope_sha256=h,sampler=lambda pid:sample_macos(pid),
+    result=witness_child(cmd,RUN_ROOT/('seed_%d_witness_PRIVATE'%args.seed),scope_sha256=h,sampler=lambda pid:sample_macos(pid),
         level=os_pressure_level,disk_free_gib=disk,post_sampler=lambda:dataclasses.asdict(sample_macos()),lock_inspector=inspect_lock)
     print(json.dumps(result,sort_keys=True))
     return 0 if result.get('native_exit_code')==0 and not result.get('guardian_stop') and result.get('post_child_global_lock',{}).get('status')=='FREE' else 1
 
 
 def main():
+    if sys.argv[1:]==['--cpu-authority-identity']:
+        from mri_rl.final_balanced_sft_v1 import _entry_authorization_class
+        same=Authorization is _entry_authorization_class()
+        print(json.dumps({'canonical_authorization_class_identical':same,'MLX_imported':'mlx.core' in sys.modules}))
+        return 0 if same else 1
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--scope',required=True);p.add_argument('--review',required=True)
     p.add_argument('--seed',type=int,required=True);p.add_argument('--child',action='store_true');a=p.parse_args()
     return execute_child(a) if a.child else launch(a)

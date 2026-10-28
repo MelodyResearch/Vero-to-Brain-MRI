@@ -727,3 +727,12 @@ Onecandidate: samepatientFLAIR/T1 meanresponseCE averaged before one inheritedAd
 At this entry: newnativecalls0,updates0,accuracygainNOT_MEASURED. Exact independent scope review required before native launch under the newest researcher training grant. See results/FINAL_ACCURACY_SPRINT_PREPARATION_V1.json and research/FINAL_BALANCED_SFT_DESIGN_V1.md.
 
 Power admission clarification: a datedAGENTS substantial-training battery restriction was identified rather than silently bypassed. No native work was claimed/started while this was unresolved. The researcher then explicitly approved “仅为本次SFT允许电池≥20%，保留全部其他保护”. Only the new SFT localscope is amended; otherprotections/globalpolicies remain unchanged. Fresh independent power-amendment review required; no oldscope reused.
+
+
+## 2026-10-28 — Zero-native SFT entry repair and bounded execution
+
+The first paired-SFT entry attempt exited before native backend construction: Python `-m` created distinct canonical and `__main__` authorization classes. The child exited with code 1, was reaped, left the global lock free, and had peak RSS 0.046143 GiB. Model loads, backward calls and optimizer updates were zero; original evidence and consumed scope were retained.
+
+The repair aliases the module identity without weakening the authorization type check. A real subprocess regression confirms class identity with MLX unimported. The separately reviewed repair scope is `6b6d51b44ccaf242c4540fa93afad0964f3e33c9016e4a2fb8f444538e077366`; it preserves the original compound start/deadline, all scientific budgets and safety limits. One zero-native failed attempt plus at most three actual runs remains within four total attempts. The researcher explicitly granted battery >=20% for this SFT only; all other protections remain.
+
+Independent review: `results/FINAL_SFT_ENTRY_REPAIR_V2_REVIEW_SAFE.json`. The repaired seed-0 entry has now started; native completion and accuracy are pending. No cache recovery, historical experiment rerun, sealed16 evaluation or cleanup was performed.
