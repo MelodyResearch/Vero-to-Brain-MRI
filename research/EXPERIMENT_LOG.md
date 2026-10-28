@@ -26,3 +26,8 @@ The initial delivery check printed BLOCKED because this publication branch had a
 ## 2026-10-28 — Earlier zero-deletion cleanup superseded
 
 The prior cleanup classification deleted0files; its immutable reports remain atb30dace1e96dc86bd88e6bc1c230946c541495cf. The finalresearcher directive now authorizes real semantic Git cleanup after resultspublication. A new per-file dependency/provenance manifest and actualgit-rmtransaction supersede those current-tree reports. Privateassets and history remain protected.
+
+
+## 2026-10-28 — Actual semantic git cleanup
+
+After finalresultspublication, git rm removed573trackedfiles (5,543,848payloadbytes):37src/68scripts/109tests/2configs/288results/54research/15otherdocs-workflowfiles. No local_data/model/cache/Adam/RNG/worktree/branch/history deletion. Per-filehashes/recoverycommit/reasons in CLEANUP_MANIFEST.json. Retained native/baselineclosure98sourcefiles, sourcepins/metrics/planlock unchanged. FullCPU171pass1native-opt-inskip; savedmetricrecountmatches. Testrepairs are scoped standalonepaths/retiredfixture/syntheticAST-sourcefixture, not inventedMRIparity. No newmodelcall/training/inference. Finalindependent16 stillNOT_RUNmissingoriginalmetadataandconfirmation.

@@ -54,9 +54,19 @@ def test_registry_complete_frozen_identity_and_geometry_validation(defect):
     with pytest.raises(ValueError):m.validate_sequence_registry(r,'Frozen sequence question')
 
 
-def test_frozen_sequence_transform_is_byte_exact_to_original_pure_functions():
-    m=module();source=Path(__file__).parents[3]/'work/ds007045_prompts.py'
-    # Read only the pre-existing renderer SOURCE, not any data or its top-level loops.
+def test_renderer_source_extraction_isolated_synthetic_pixel_contract(tmp_path):
+    # The old test depended on an undistributed work/ script. This fixture tests
+    # AST extraction without executing top-level code; it is NOT the historical
+    # 168-image source/pixel reconstruction or a new MRI validation.
+    m=module();source=tmp_path/'synthetic_renderer.py'
+    source.write_text("""raise RuntimeError('top-level source must never execute')
+def normalize(volume):
+    return np.percentile(volume[volume!=0][::16],[.5,99.5])
+def image_at(volume,z,lo,hi):
+    plane=np.rot90(volume[:,:,z])
+    pixels=np.uint8(np.round(np.clip((plane-lo)/(hi-lo),0,1)*255))
+    return Image.fromarray(pixels).resize((10,14),Image.Resampling.BILINEAR).convert('RGB')
+""")
     normalize,image_at=m.sequence_functions(source)
     volume=np.arange(5*7*9,dtype=np.float32).reshape(5,7,9);volume[0]=0
     lo,hi=normalize(volume);expected_window=np.percentile(volume[volume!=0][::16],[.5,99.5])

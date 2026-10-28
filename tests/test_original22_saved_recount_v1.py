@@ -5,7 +5,7 @@ W=Path(__file__).parents[1]
 def module():
  p=W/"scripts/recount_original22_saved_classes_cost_v1.py";assert p.exists(),"Saved-only recount missing";s=importlib.util.spec_from_file_location("final22_recount_test",p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
 def parser():
- p=W.parents[1]/"src/mri_rl/vero_mri_reward.py";s=importlib.util.spec_from_file_location("final22_exact_parser",p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m._answer_and_format
+ p=W/"src/mri_rl/vero_mri_reward.py";s=importlib.util.spec_from_file_location("final22_exact_parser",p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m._answer_and_format
 def fixture():
  ref=[{"id":"a","ability":"mri_sequence","reward_model":{"ground_truth":"FLAIR"}},{"id":"b","ability":"mri_sequence","reward_model":{"ground_truth":"contrast-enhanced T1"}},{"id":"c","ability":"mri_visit_correspondence","reward_model":{"ground_truth":"same"}},{"id":"d","ability":"mri_visit_correspondence","reward_model":{"ground_truth":"different"}}]
  texts=["<think>x</think><answer>FLAIR</answer>","<think>x</think><answer>\\boxed{FLAIR}</answer>","malformed","<think>x</think><answer>\\boxed{different}</answer>"]

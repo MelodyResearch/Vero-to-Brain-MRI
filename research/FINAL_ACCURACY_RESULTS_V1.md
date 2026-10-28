@@ -66,7 +66,7 @@ Peak wait4 RSS5.8243GiB, native reported MLX peak7.9008GiB. Swap was17.0425GiB i
 ## Execution and evidence index
 
 - [Actual independent aggregate](../results/FINAL_BALANCED_SFT_SEED0_ACTUAL_REVIEW_V1.json): metrics, transitions, costs, checkpoint and receipt hashes.
-- [Reviewed entry repair](../results/FINAL_SFT_ENTRY_REPAIR_V2_REVIEW_SAFE.json): exact scope and zero-native failure.
+- [Reviewed entry repair](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/a71bb39a5b75d4cb65b7a958fa79548ff0805254/results/FINAL_SFT_ENTRY_REPAIR_V2_REVIEW_SAFE.json): exact scope and zero-native failure.
 - [Candidate source](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06/src/mri_rl/final_balanced_sft_v1.py), [entry](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06/src/mri_rl/final_balanced_sft_entry_v1.py), [analysis/ledger](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06/src/mri_rl/final_accuracy_sprint_v1.py).
 - [Candidate CPU tests](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06/tests/test_final_balanced_sft_v1.py), [entry/metrics tests](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06/tests/test_final_accuracy_sprint_v1.py).
 - [Matched GSPO actual results](../results/ACCURACY_PILOT_V2_ACTUAL_RESULTS_V1.json).
