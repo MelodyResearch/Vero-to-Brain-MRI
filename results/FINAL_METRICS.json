@@ -1,0 +1,4456 @@
+{
+  "explored_DEV24": {
+    "class_order": [
+      "FLAIR",
+      "contrast-enhanced T1"
+    ],
+    "confusion_columns": [
+      "FLAIR",
+      "contrast-enhanced T1",
+      "INVALID"
+    ],
+    "images": 24,
+    "metric": "STRICT_GREEDY",
+    "models": {
+      "Balanced_SFT_Adam80_seed0": {
+        "accuracy": 0.625,
+        "balanced_accuracy": 0.625,
+        "class_correct": [
+          12,
+          3
+        ],
+        "class_n": [
+          12,
+          12
+        ],
+        "class_recalls": [
+          1.0,
+          0.25
+        ],
+        "confusion": [
+          [
+            12,
+            0,
+            0
+          ],
+          [
+            9,
+            3,
+            0
+          ]
+        ],
+        "correct": 15,
+        "descriptive_four_patient_cluster_percentile95": [
+          0.5416666666666666,
+          0.6666666666666666
+        ],
+        "invalid": 0,
+        "invalid_rate": 0.0,
+        "n": 24,
+        "optimizer_updates": 28,
+        "paired_image_outcomes": {
+          "fully_correct_pairs": 3,
+          "pairs": 12,
+          "profile": {
+            "BOTH_CORRECT": 3,
+            "CONSTANT_FLAIR": 9
+          }
+        },
+        "predicted_class_counts": [
+          21,
+          3,
+          0
+        ],
+        "uncertainty_status": "EXACT_4_TO_THE_4_CLUSTER_RESAMPLES_DESCRIPTIVE_NOT_POPULATION_INFERENCE"
+      },
+      "Direct_Vero_A54": {
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.6666666666666667,
+        "class_correct": [
+          9,
+          7
+        ],
+        "class_n": [
+          12,
+          12
+        ],
+        "class_recalls": [
+          0.75,
+          0.5833333333333334
+        ],
+        "confusion": [
+          [
+            9,
+            3,
+            0
+          ],
+          [
+            5,
+            7,
+            0
+          ]
+        ],
+        "correct": 16,
+        "descriptive_four_patient_cluster_percentile95": null,
+        "invalid": 0,
+        "invalid_rate": 0.0,
+        "n": 24,
+        "optimizer_updates": 2,
+        "paired_image_outcomes": {
+          "fully_correct_pairs": 5,
+          "pairs": 12,
+          "profile": {
+            "CONSTANT_FLAIR": 4,
+            "CONSTANT_T1": 2,
+            "DISCRIMINATES_CORRECTLY": 5,
+            "INVALID_INVOLVED": 0,
+            "REVERSED": 1
+          }
+        },
+        "predicted_class_counts": [
+          14,
+          10,
+          0
+        ],
+        "uncertainty_status": "NOT_AVAILABLE_FROM_PUBLIC_AGGREGATE"
+      },
+      "Paired_Vero_B54": {
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.6666666666666667,
+        "class_correct": [
+          9,
+          7
+        ],
+        "class_n": [
+          12,
+          12
+        ],
+        "class_recalls": [
+          0.75,
+          0.5833333333333334
+        ],
+        "confusion": [
+          [
+            9,
+            3,
+            0
+          ],
+          [
+            5,
+            7,
+            0
+          ]
+        ],
+        "correct": 16,
+        "descriptive_four_patient_cluster_percentile95": null,
+        "invalid": 0,
+        "invalid_rate": 0.0,
+        "n": 24,
+        "optimizer_updates": 2,
+        "paired_image_outcomes": {
+          "fully_correct_pairs": 5,
+          "pairs": 12,
+          "profile": {
+            "CONSTANT_FLAIR": 4,
+            "CONSTANT_T1": 2,
+            "DISCRIMINATES_CORRECTLY": 5,
+            "INVALID_INVOLVED": 0,
+            "REVERSED": 1
+          }
+        },
+        "predicted_class_counts": [
+          14,
+          10,
+          0
+        ],
+        "uncertainty_status": "NOT_AVAILABLE_FROM_PUBLIC_AGGREGATE"
+      },
+      "Parent_Adam52": {
+        "accuracy": 0.75,
+        "balanced_accuracy": 0.75,
+        "class_correct": [
+          10,
+          8
+        ],
+        "class_n": [
+          12,
+          12
+        ],
+        "class_recalls": [
+          0.8333333333333334,
+          0.6666666666666666
+        ],
+        "confusion": [
+          [
+            10,
+            2,
+            0
+          ],
+          [
+            4,
+            8,
+            0
+          ]
+        ],
+        "correct": 18,
+        "descriptive_four_patient_cluster_percentile95": [
+          0.5833333333333334,
+          0.9166666666666666
+        ],
+        "invalid": 0,
+        "invalid_rate": 0.0,
+        "n": 24,
+        "optimizer_updates": 0,
+        "paired_image_outcomes": {
+          "fully_correct_pairs": 7,
+          "pairs": 12,
+          "profile": {
+            "CONSTANT_FLAIR": 3,
+            "CONSTANT_T1": 1,
+            "DISCRIMINATES_CORRECTLY": 7,
+            "INVALID_INVOLVED": 0,
+            "REVERSED": 1
+          }
+        },
+        "predicted_class_counts": [
+          14,
+          10,
+          0
+        ],
+        "uncertainty_status": "EXACT_4_TO_THE_4_CLUSTER_RESAMPLES_DESCRIPTIVE_NOT_POPULATION_INFERENCE"
+      }
+    },
+    "patients": 4,
+    "status": "REPEATEDLY_EXPLORED_INTERNAL_DEV_NOT_INDEPENDENT_HOLDOUT",
+    "uncertainty_limit": "Four correlated patient clusters; descriptive intervals are not confidence in generalization."
+  },
+  "independent_holdout": {
+    "images": 32,
+    "model_outputs_accessed_by_reproduction": false,
+    "patients": 16,
+    "status": "NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED"
+  },
+  "original_frozen_final100": {
+    "Dallas_questions_per_model": 16,
+    "baseline_reuse": "B28 has one inference run reused in three seed rows, not three replications.",
+    "completed_RL_arms": 18,
+    "completed_SFT_controls": 3,
+    "families": {
+      "B28": {
+        "native_macro_mean": 0.5595238095238095,
+        "native_macro_range": [
+          0.5595238095238095,
+          0.5595238095238095
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "P_calibrated": {
+        "native_macro_mean": 0.5198412698412699,
+        "native_macro_range": [
+          0.4464285714285714,
+          0.5595238095238095
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5535714285714286,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      41,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9761904761904762,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        41,
+                        1,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      73,
+                      11,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      41,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9761904761904762,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        41,
+                        1,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      73,
+                      11,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.4464285714285714,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.39285714285714285,
+                    "balanced_accuracy": 0.39285714285714285,
+                    "class_correct": [
+                      17,
+                      16
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.40476190476190477,
+                      0.38095238095238093
+                    ],
+                    "confusion": [
+                      [
+                        17,
+                        3,
+                        22
+                      ],
+                      [
+                        10,
+                        16,
+                        16
+                      ]
+                    ],
+                    "correct": 33,
+                    "invalid": 38,
+                    "invalid_rate": 0.4523809523809524,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      27,
+                      19,
+                      38
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.39285714285714285,
+                    "balanced_accuracy": 0.39285714285714285,
+                    "class_correct": [
+                      17,
+                      16
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.40476190476190477,
+                      0.38095238095238093
+                    ],
+                    "confusion": [
+                      [
+                        17,
+                        3,
+                        22
+                      ],
+                      [
+                        10,
+                        16,
+                        16
+                      ]
+                    ],
+                    "correct": 33,
+                    "invalid": 38,
+                    "invalid_rate": 0.4523809523809524,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      27,
+                      19,
+                      38
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "P_raw": {
+        "native_macro_mean": 0.5620039682539683,
+        "native_macro_range": [
+          0.5297619047619048,
+          0.5967261904761905
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      39,
+                      13
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9285714285714286,
+                      0.30952380952380953
+                    ],
+                    "confusion": [
+                      [
+                        39,
+                        3,
+                        0
+                      ],
+                      [
+                        29,
+                        13,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      68,
+                      16,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      39,
+                      13
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9285714285714286,
+                      0.30952380952380953
+                    ],
+                    "confusion": [
+                      [
+                        39,
+                        3,
+                        0
+                      ],
+                      [
+                        29,
+                        13,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      68,
+                      16,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5297619047619048,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5595238095238095,
+                    "balanced_accuracy": 0.5595238095238095,
+                    "class_correct": [
+                      42,
+                      5
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.11904761904761904
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        37,
+                        5,
+                        0
+                      ]
+                    ],
+                    "correct": 47,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      79,
+                      5,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5595238095238095,
+                    "balanced_accuracy": 0.5595238095238095,
+                    "class_correct": [
+                      42,
+                      5
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.11904761904761904
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        37,
+                        5,
+                        0
+                      ]
+                    ],
+                    "correct": 47,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      79,
+                      5,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5967261904761905,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6309523809523809,
+                    "balanced_accuracy": 0.6309523809523809,
+                    "class_correct": [
+                      38,
+                      15
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9047619047619048,
+                      0.35714285714285715
+                    ],
+                    "confusion": [
+                      [
+                        38,
+                        4,
+                        0
+                      ],
+                      [
+                        27,
+                        15,
+                        0
+                      ]
+                    ],
+                    "correct": 53,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      65,
+                      19,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6309523809523809,
+                    "balanced_accuracy": 0.6309523809523809,
+                    "class_correct": [
+                      38,
+                      15
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9047619047619048,
+                      0.35714285714285715
+                    ],
+                    "confusion": [
+                      [
+                        38,
+                        4,
+                        0
+                      ],
+                      [
+                        27,
+                        15,
+                        0
+                      ]
+                    ],
+                    "correct": 53,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      65,
+                      19,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5625,
+                    "balanced_accuracy": 0.5625,
+                    "class_correct": [
+                      1,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.125,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        1,
+                        7,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 9,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      1,
+                      15,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5625,
+                    "balanced_accuracy": 0.5625,
+                    "class_correct": [
+                      1,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.125,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        1,
+                        7,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 9,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      1,
+                      15,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "S_correspondence": {
+        "native_macro_mean": 0.5595238095238095,
+        "native_macro_range": [
+          0.5595238095238095,
+          0.5595238095238095
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "S_sequence": {
+        "native_macro_mean": 0.5461309523809524,
+        "native_macro_range": [
+          0.53125,
+          0.5535714285714286
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5535714285714286,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428572,
+                    "class_correct": [
+                      39,
+                      12
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9285714285714286,
+                      0.2857142857142857
+                    ],
+                    "confusion": [
+                      [
+                        39,
+                        3,
+                        0
+                      ],
+                      [
+                        30,
+                        12,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      69,
+                      15,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428572,
+                    "class_correct": [
+                      39,
+                      12
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9285714285714286,
+                      0.2857142857142857
+                    ],
+                    "confusion": [
+                      [
+                        39,
+                        3,
+                        0
+                      ],
+                      [
+                        30,
+                        12,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      69,
+                      15,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.53125,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      2,
+                      40
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.047619047619047616,
+                      0.9523809523809523
+                    ],
+                    "confusion": [
+                      [
+                        2,
+                        40,
+                        0
+                      ],
+                      [
+                        2,
+                        40,
+                        0
+                      ]
+                    ],
+                    "correct": 42,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      4,
+                      80,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      2,
+                      40
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.047619047619047616,
+                      0.9523809523809523
+                    ],
+                    "confusion": [
+                      [
+                        2,
+                        40,
+                        0
+                      ],
+                      [
+                        2,
+                        40,
+                        0
+                      ]
+                    ],
+                    "correct": 42,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      4,
+                      80,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5625,
+                    "balanced_accuracy": 0.5625,
+                    "class_correct": [
+                      1,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.125,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        1,
+                        7,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 9,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      1,
+                      15,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5625,
+                    "balanced_accuracy": 0.5625,
+                    "class_correct": [
+                      1,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.125,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        1,
+                        7,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 9,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      1,
+                      15,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5535714285714286,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      40,
+                      11
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9523809523809523,
+                      0.2619047619047619
+                    ],
+                    "confusion": [
+                      [
+                        40,
+                        2,
+                        0
+                      ],
+                      [
+                        31,
+                        11,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      71,
+                      13,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      40,
+                      11
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9523809523809523,
+                      0.2619047619047619
+                    ],
+                    "confusion": [
+                      [
+                        40,
+                        2,
+                        0
+                      ],
+                      [
+                        31,
+                        11,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      71,
+                      13,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "U_calibrated": {
+        "native_macro_mean": 0.5515873015873016,
+        "native_macro_range": [
+          0.5476190476190477,
+          0.5595238095238095
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5476190476190477,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5952380952380952,
+                    "balanced_accuracy": 0.5952380952380952,
+                    "class_correct": [
+                      40,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9523809523809523,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        40,
+                        2,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 50,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      72,
+                      12,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5952380952380952,
+                    "balanced_accuracy": 0.5952380952380952,
+                    "class_correct": [
+                      40,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9523809523809523,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        40,
+                        2,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 50,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      72,
+                      12,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5476190476190477,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5952380952380952,
+                    "balanced_accuracy": 0.5952380952380952,
+                    "class_correct": [
+                      40,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9523809523809523,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        40,
+                        2,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 50,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      72,
+                      12,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5952380952380952,
+                    "balanced_accuracy": 0.5952380952380952,
+                    "class_correct": [
+                      40,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9523809523809523,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        40,
+                        2,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 50,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      72,
+                      12,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      42,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      74,
+                      10,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "U_raw": {
+        "native_macro_mean": 0.5575396825396826,
+        "native_macro_range": [
+          0.5535714285714286,
+          0.5654761904761905
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5654761904761905,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6309523809523809,
+                    "balanced_accuracy": 0.6309523809523809,
+                    "class_correct": [
+                      31,
+                      22
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.7380952380952381,
+                      0.5238095238095238
+                    ],
+                    "confusion": [
+                      [
+                        31,
+                        11,
+                        0
+                      ],
+                      [
+                        20,
+                        22,
+                        0
+                      ]
+                    ],
+                    "correct": 53,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      51,
+                      33,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6309523809523809,
+                    "balanced_accuracy": 0.6309523809523809,
+                    "class_correct": [
+                      31,
+                      22
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.7380952380952381,
+                      0.5238095238095238
+                    ],
+                    "confusion": [
+                      [
+                        31,
+                        11,
+                        0
+                      ],
+                      [
+                        20,
+                        22,
+                        0
+                      ]
+                    ],
+                    "correct": 53,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      51,
+                      33,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5535714285714286,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      42,
+                      9
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.21428571428571427
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        33,
+                        9,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      75,
+                      9,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      42,
+                      9
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.21428571428571427
+                    ],
+                    "confusion": [
+                      [
+                        42,
+                        0,
+                        0
+                      ],
+                      [
+                        33,
+                        9,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      75,
+                      9,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5535714285714286,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      41,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9761904761904762,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        41,
+                        1,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      73,
+                      11,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6071428571428571,
+                    "balanced_accuracy": 0.6071428571428571,
+                    "class_correct": [
+                      41,
+                      10
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9761904761904762,
+                      0.23809523809523808
+                    ],
+                    "confusion": [
+                      [
+                        41,
+                        1,
+                        0
+                      ],
+                      [
+                        32,
+                        10,
+                        0
+                      ]
+                    ],
+                    "correct": 51,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      73,
+                      11,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "same_C_SFT": {
+        "native_macro_mean": 0.5629960317460317,
+        "native_macro_range": [
+          0.5401785714285714,
+          0.5892857142857143
+        ],
+        "seed_rows": [
+          {
+            "equal_task_macro_native_accuracy": 0.5401785714285714,
+            "seed": 7,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6428571428571429,
+                    "balanced_accuracy": 0.6428571428571428,
+                    "class_correct": [
+                      38,
+                      16
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9047619047619048,
+                      0.38095238095238093
+                    ],
+                    "confusion": [
+                      [
+                        38,
+                        4,
+                        0
+                      ],
+                      [
+                        26,
+                        16,
+                        0
+                      ]
+                    ],
+                    "correct": 54,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      64,
+                      20,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6428571428571429,
+                    "balanced_accuracy": 0.6428571428571428,
+                    "class_correct": [
+                      38,
+                      16
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.9047619047619048,
+                      0.38095238095238093
+                    ],
+                    "confusion": [
+                      [
+                        38,
+                        4,
+                        0
+                      ],
+                      [
+                        26,
+                        16,
+                        0
+                      ]
+                    ],
+                    "correct": 54,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      64,
+                      20,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.4375,
+                    "balanced_accuracy": 0.4375,
+                    "class_correct": [
+                      2,
+                      5
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.25,
+                      0.625
+                    ],
+                    "confusion": [
+                      [
+                        2,
+                        6,
+                        0
+                      ],
+                      [
+                        3,
+                        5,
+                        0
+                      ]
+                    ],
+                    "correct": 7,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      5,
+                      11,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.4375,
+                    "balanced_accuracy": 0.4375,
+                    "class_correct": [
+                      2,
+                      5
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.25,
+                      0.625
+                    ],
+                    "confusion": [
+                      [
+                        2,
+                        6,
+                        0
+                      ],
+                      [
+                        3,
+                        5,
+                        0
+                      ]
+                    ],
+                    "correct": 7,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      5,
+                      11,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5892857142857143,
+            "seed": 11,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6785714285714286,
+                    "balanced_accuracy": 0.6785714285714286,
+                    "class_correct": [
+                      34,
+                      23
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.8095238095238095,
+                      0.5476190476190477
+                    ],
+                    "confusion": [
+                      [
+                        34,
+                        8,
+                        0
+                      ],
+                      [
+                        19,
+                        23,
+                        0
+                      ]
+                    ],
+                    "correct": 57,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      53,
+                      31,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6785714285714286,
+                    "balanced_accuracy": 0.6785714285714286,
+                    "class_correct": [
+                      34,
+                      23
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.8095238095238095,
+                      0.5476190476190477
+                    ],
+                    "confusion": [
+                      [
+                        34,
+                        8,
+                        0
+                      ],
+                      [
+                        19,
+                        23,
+                        0
+                      ]
+                    ],
+                    "correct": 57,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      53,
+                      31,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      8,
+                      0
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      1.0,
+                      0.0
+                    ],
+                    "confusion": [
+                      [
+                        8,
+                        0,
+                        0
+                      ],
+                      [
+                        8,
+                        0,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      16,
+                      0,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "equal_task_macro_native_accuracy": 0.5595238095238095,
+            "seed": 13,
+            "tasks": {
+              "mri_sequence": {
+                "class_order": [
+                  "FLAIR",
+                  "contrast-enhanced T1"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      37,
+                      15
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.8809523809523809,
+                      0.35714285714285715
+                    ],
+                    "confusion": [
+                      [
+                        37,
+                        5,
+                        0
+                      ],
+                      [
+                        27,
+                        15,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      64,
+                      20,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.6190476190476191,
+                    "balanced_accuracy": 0.6190476190476191,
+                    "class_correct": [
+                      37,
+                      15
+                    ],
+                    "class_n": [
+                      42,
+                      42
+                    ],
+                    "class_recalls": [
+                      0.8809523809523809,
+                      0.35714285714285715
+                    ],
+                    "confusion": [
+                      [
+                        37,
+                        5,
+                        0
+                      ],
+                      [
+                        27,
+                        15,
+                        0
+                      ]
+                    ],
+                    "correct": 52,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 84,
+                    "predicted_class_counts": [
+                      64,
+                      20,
+                      0
+                    ]
+                  }
+                }
+              },
+              "mri_visit_correspondence": {
+                "class_order": [
+                  "different",
+                  "same"
+                ],
+                "metrics": {
+                  "full_format": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  },
+                  "native": {
+                    "accuracy": 0.5,
+                    "balanced_accuracy": 0.5,
+                    "class_correct": [
+                      0,
+                      8
+                    ],
+                    "class_n": [
+                      8,
+                      8
+                    ],
+                    "class_recalls": [
+                      0.0,
+                      1.0
+                    ],
+                    "confusion": [
+                      [
+                        0,
+                        8,
+                        0
+                      ],
+                      [
+                        0,
+                        8,
+                        0
+                      ]
+                    ],
+                    "correct": 8,
+                    "invalid": 0,
+                    "invalid_rate": 0.0,
+                    "n": 16,
+                    "predicted_class_counts": [
+                      0,
+                      16,
+                      0
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "metric_limit": "native correctness and full-format correctness differ; Dallas is an engineering control, not a second qualified clinical skill.",
+    "questions_per_model": 100,
+    "sequence_questions_per_model": 84,
+    "status": "COMPLETED_HISTORICAL_FROZEN_EVALUATION_NOT_RERUN",
+    "uncertainty_limit": "Seeds do not add patients. Original tasks and DEV24 are not pooled or ranked across datasets.",
+    "unique_model_runs": 22
+  },
+  "reproduction": "CPU_SAVED_PUBLIC_AGGREGATE_RECOUNT_NOT_NEW_MODEL_EVALUATION",
+  "schema": "vero-to-brain-mri-final-metrics-v1",
+  "scientific_conclusion": "NO_STABLE_MRI_ACCURACY_BENEFIT_DEMONSTRATED_BY_THESE_VERO_ADAPTATIONS",
+  "selected_model": {
+    "adapter_sha256": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+    "identity": "P_calibrated13 / Adam52 / boundary114",
+    "model_processor_state_binding": {
+      "Parent_checkpoint.adapter.safetensors": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+      "Parent_checkpoint.adapter_config.json": "032becabb7cbb6d2af6f3451eb127e5f944551d42eb51eaee3e8d75b839b2f6a",
+      "Parent_checkpoint.attempt_reservation.json": "1c20247c28c5e590fa367f6f4b9484be8ffc1f213258a101ff6f2eb1f87d06ab",
+      "Parent_checkpoint.optimizer/manifest.json": "e377eabc853af2fea973d5d15a26f58211d7f7fd528356fb37a5a1a8e4f987d4",
+      "Parent_checkpoint.optimizer/state.safetensors": "e941a7cb91690bde7b2e9c574fdcfd4d78e74012c9dd62260feeed568055a3d1",
+      "Parent_checkpoint.optimizer_after.safetensors": "29be67b325cde4e9b54b42d1bde5625adafdb33bf3a6cab31f3c7620d46ebe6f",
+      "Parent_checkpoint.optimizer_before.safetensors": "29be67b325cde4e9b54b42d1bde5625adafdb33bf3a6cab31f3c7620d46ebe6f",
+      "Parent_checkpoint.receipt.json": "e0696a8186d413b2bb35034b5c5eb2568ddc0b05e1b719778de42fa491cc882a",
+      "Parent_checkpoint.rollout_PRIVATE.json": "b0b50927b66db66359a298036c4894746cc13b3f26adf8399b61e9229d83755a",
+      "Parent_checkpoint.rollout_progress_PRIVATE.json": "8194193d4c88dd650db0286143b48838ede70fa1edbe04da73b37affd585ad4c",
+      "base_cache.cache_manifest.json": "48f6bd20789badb4bd4b5a740e4697e7b750a1e407c8059561fd7c151655fd98",
+      "base_cache.chat_template.json": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+      "base_cache.config.json": "24001c9cf5029833dae04ea8dcc8dbecae91b067b3532c816716e1384d5e2e2b",
+      "base_cache.config_source.json": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+      "base_cache.generation_config.json": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+      "base_cache.merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "base_cache.model-00001-of-00002.safetensors": "6a332d4977c95fd6b51ac7155e039016d90041da1bf3cdd3e500192ea00fa626",
+      "base_cache.model-00002-of-00002.safetensors": "2c94dc6761ab4641a4e2c612eb3ff5fd62d939c5704f8301025e741650b9e1e8",
+      "base_cache.model.safetensors.index.json": "4ad152597c488c822e2f91f5b0bc09447f8ffd72cba7a6726911fe0da989d0f2",
+      "base_cache.preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "base_cache.tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+      "base_cache.tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+      "base_cache.video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "base_cache.vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "cache_certificate": "f3d0cdc0a00c2c7bc94938c0f594f677e7660542184f3b50129ead092777ff89",
+      "evaluation_contract": "eb5b4045b46ebd099e477f1aa67e873e7c51fbe71e59cebbcd41a6e4973d6129",
+      "original_model_metadata.chat_template.json": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+      "original_model_metadata.config.json": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+      "original_model_metadata.generation_config.json": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+      "original_model_metadata.merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "original_model_metadata.model.safetensors.index.json": "520b2e05079402e9468a8701d03d1154d14b2599593afb6effa7fb60c1bff070",
+      "original_model_metadata.preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "original_model_metadata.tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+      "original_model_metadata.tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+      "original_model_metadata.video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "original_model_metadata.vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "name": "Parent_Adam52",
+    "reason": "Highest observed strict greedy accuracy among the four matched DEV24 endpoints; no demonstrated RL gain.",
+    "selection_scope": "EXPLORED_DEV24_ONLY_NOT_GLOBAL_OR_INDEPENDENT_TEST_WINNER"
+  },
+  "source_sha256": {
+    "results/ACCURACY_PILOT_V2_ACTUAL_RESULTS_V1.json": "386c90a30bda025f27f95b1aee65a78ca9aefbbce58f2d0186fedd7bd0760af0",
+    "results/FINAL_BALANCED_SFT_SEED0_ACTUAL_REVIEW_V1.json": "cc58c2e3c4faa07e48e308f29ec195eb733c0798d99543b708645ae7a7ef2f72",
+    "results/FINAL_MODEL_ELIGIBILITY_REVIEW_V1.json": "f2f759b01c015139222e2136e327bba62774b6645bdac8f2698f64ebb664ded5",
+    "results/ORIGINAL21_TRAINING_ACTUAL_COMPLETION_V1.json": "5915fecfca893341231272e7fc3e9f96f0d123b1302c77c4d2a84592743e3c6f",
+    "results/ORIGINAL22_FINAL100_ACTUAL_MATRIX_V1.json": "4ce5a22c5594a12f0c8711c4f921a337b7bc63cb2636575ae52af2e1fbd02512",
+    "results/ORIGINAL22_FINAL100_CLASS_FORMAT_COST_SUPPLEMENT_V1.json": "9cd855ea076def78c2ae912fb162a7702691efdc23e8c96a8ea336662437c2f9"
+  },
+  "training_authorized": false
+}
