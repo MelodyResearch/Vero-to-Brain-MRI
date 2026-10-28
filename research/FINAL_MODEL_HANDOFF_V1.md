@@ -17,6 +17,14 @@ The exact runner is intentionally one-shot. An old consumed scope cannot authori
 
 Model outputs and patient records must not be shared externally without permission. An independent recipient currently needs the researcher's authorized private payload handoff; the Git checkout alone is insufficient for native reproduction. No backup/transfer is implied by this index.
 
+## Final model and processor configuration
+
+Qwen3-VL-8B, historical exact 4-bit base cache, rank4/alpha8 language LoRA, frozen vision, original processor/template and Concise Prompt. Full adapter, Adam52 and Python/MLX RNG are present and independently authenticated as serialized state; no native restoration was repeated for this closeout. Model/cache config, adapter config, tokenizer, chat-template, preprocessor and shard identities are pinned in [final model eligibility](../results/FINAL_MODEL_ELIGIBILITY_REVIEW_V1.json). Do not substitute an upstream revision or independently quantized cache.
+
+- Adapter config SHA: `032becabb7cbb6d2af6f3451eb127e5f944551d42eb51eaee3e8d75b839b2f6a`.
+- Tokenizer SHA: `a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7`.
+- Preprocessor SHA: `27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516`.
+
 ## Proposed once-only sealed16 evaluation — NOT AUTHORIZED / NOT RUN
 
 For researcher confirmation only: freeze the retained Parent adapter above as the sole final performance endpoint. Include all16 previously sealed people and all32 existing paired images, including the four quality-flagged pairs; no output-based exclusions. Use the exact existing concise sequence prompt, F32, processor, strict parser, greedy temperature0 and256-token cap. Report strict/balanced accuracy, each class recall, invalids, all16 patient paired scores and patient-cluster uncertainty. Preserve quality flags and report their predefined stratum descriptively; primary denominator remains32.
@@ -24,3 +32,9 @@ For researcher confirmation only: freeze the retained Parent adapter above as th
 Selection rule: no model, prompt, normalization, target, seed or training change after seeing the sealed outputs. This evaluation estimates the retained Parent's performance; it cannot demonstrate that the failed SFT improved it. Maximum proposed cost: one serial model load,32 greedy answers/8192returned-token cap,0backward/0updates. Exact token/source binding, resource budget and independent execution review must be frozen after the researcher confirms this final endpoint/protocol. This document is neither a runnable scope nor execution permission.
 
 No independent result exists yet. Training and cleanup cannot be called a successful accuracy-improvement study while this remains unmeasured. The negative DEV result is complete and independently verified; further training is stopped.
+
+## Current readiness and handoff boundary
+
+The original sealed plan/rowmanifest/seal/quality map are not currently located at the bounded known private paths. Published historical hashes are preserved in the eligibility review; they do not establish present executable availability. No replacement data is permitted. Final status is NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED. The CPU-validatable final protocol is `configs/final_evaluation_v1.json`; `scripts/evaluate.py` cannot execute without verified original inputs, exact independent scope review and a fresh confirmation tied to the selected Parent. Its new wrapper is CPU tested, NOT_NATIVE_QUALIFIED. The reused native dependencies remain byte-identical to the preserved implementation.
+
+The main deliverable is Parent. The rejected Adam80 checkpoint and historical GSPO/SFT endpoints remain private baselines/negative evidence, not alternate current candidates. This repository provides source/evidence and a private handoff index; it is not a public weight release or a completed independent clinical validation.

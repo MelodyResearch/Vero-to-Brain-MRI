@@ -18,6 +18,10 @@ Existing sequence TRAIN data contain 28 people with paired FLAIR/contrast-enhanc
 
 DEV24 contains fourTRAIN-disjoint but repeatedly explored people, with three levels and both modalities per person. It is a development population with 24 correlated images, not 24 independent patients and not an untouched generalization test. The 16-new-person / 32-image collection remains sealed. Any final independent evaluation requires an endpoint and once-only protocol confirmed by the researcher before outputs are opened.
 
+## Related Work
+
+Princeton Vero supplies the heterogeneous-task, task-routed verifiable-RL/GSPO research framework ([official source](https://github.com/zlab-princeton/vero)). This independent MLX transfer uses different hardware, model adaptation and response limits; it is not an official implementation-equivalence study. The supervised continuation is a conventional full-response cross-entropy control and is not claimed as a novel objective. MRI sequence labels come from acquisition metadata, not clinical expert diagnoses; the task measures sequence recognition. The present evidence supports an implementation-specific empirical comparison, not a new clinical benchmark or broad prior-art superiority claim.
+
 ## 3. Methods and controls
 
 ### 3.1 Verifiable RL comparisons
@@ -71,9 +75,15 @@ The paired readout is a behavioral image-sensitivity diagnostic. It is not an in
 
 Repeated DEV use, one failed order seed, four patients, nonmatched SFT/GSPO budgets and absent sealed evaluation restrict conclusions. The study cannot show cross-center generalization, a second clinically qualified task, statistical superiority, or reliable replication. Neither executing more updates nor finding valid gradients is a substitute for those outcomes.
 
+## Final selected model and independent evaluation
+
+The sole principal deliverable is Parent Adam52 (`P_calibrated13 / Adam52 / boundary114`), adapter SHA256 `c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6`. It has the best verified accuracy within the four matched, repeatedly explored DEV24 endpoints. Historical SFT has not been evaluated under that exact DEV24 contract, so this is not a global-best checkpoint claim.
+
+The independent16-person evaluation is **NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED**. Historical collection/seal/exclusion hashes exist, but the current private row manifest and per-pair quality map were not found within bounded known locations. No replacement patients or model outputs were used. A fixed Parent-only protocol includes all32images, including all four historically flagged pairs, with strict greedy/F32, no training and no output-based exclusions. Restoration and verification of the original metadata, independent executable-scope review and explicit researcher unsealing confirmation are required. The missing independent result does not change the reported negative DEV result.
+
 ## 7. Conclusion
 
-For the completed comparisons, retain the unchanged Adam52 Parent as the best same-contract DEV endpoint. Both the tested GSPOgrouping adaptation and the final balancedSFTcontinuation failed to improve it. The appropriate output is a reproducible negative development study with preserved checkpoints and explicit unresolved mechanisms, rather than an accuracy or clinical claim. Further training is stopped; final independent evaluation and handoff remain subject to researcher confirmation.
+For the completed comparisons, retain the unchanged Adam52 Parent as the best same-contract DEV endpoint. Both the tested GSPOgrouping adaptation and the final balancedSFTcontinuation failed to improve it. The appropriate output is a reproducible negative development study with preserved checkpoints and explicit unresolved mechanisms, rather than an accuracy or clinical claim. Further training is stopped; training and method search are now closed. The private handoff is indexed; the missing independent evaluation remains unrun pending original metadata and researcher confirmation.
 
 ## Evidence references
 

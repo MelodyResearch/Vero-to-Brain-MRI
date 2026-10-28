@@ -1,6 +1,6 @@
 # Final accuracy sprint: actual results and model selection
 
-2026-10-28. **Native training completed; no accuracy improvement.** One supervised candidate was tested. The maximum of two candidates was a cap, not a requirement to run an unsupported second method. No additional seeds are admitted. This is an internal development result; the independent 16-person evaluation remains sealed pending researcher confirmation.
+2026-10-28. **Native training completed; no accuracy improvement.** One supervised candidate was tested. The maximum of two candidates was a cap, not a requirement to run an unsupported second method. No additional seeds are admitted. This is an internal development result; the independent 16-person evaluation is NOT_RUN: original execution metadata is not currently located, and researcher confirmation is still required.
 
 ## Actual matched development results
 
@@ -82,4 +82,8 @@ Claude Code actually used `claude-opus-5-5` for candidate implementation/design 
 
 ## Selective main-branch publication
 
-This draft PR publishes reports and sanitized evidence only. Exact runnable training/source/tests remain at [the preserved research commit](https://github.com/MelodyResearch/Vero-to-Brain-MRI/tree/b03d0b30a6f0de59f23ae2eb76a5b9563364fa06). Its transitive native dependencies are intentionally not copied piecemeal into main. Native code integration remains a separate decision; this PR does not make main a runnable SFT checkout.
+The final delivery includes CPU result reproduction, a fail-closed read-only evaluator and the byte-identical native compatibility dependency closure. Historical training entrypoints are not exposed as current package commands. The preserved research commit remains the immutable provenance for actual training; the new final evaluation wrapper is not newly native-qualified and cannot run with missing inputs/confirmation.
+
+## Final closeout decision
+
+Training and method search are ended by the final researcher directive. Parent Adam52 is the sole principal model within the verified selection scope. Independent16 evaluation remains NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED. Historical SFT matched evaluation is not fabricated or pooled with formal84; it lacks matched saved outputs and a fresh exact reviewed native execution scope. No further model comparison is launched in this closeout. The final machine table is [FINAL_METRICS](../results/FINAL_METRICS.json); CPU recount and [reproduction instructions](../REPRODUCIBILITY.md) are provided.

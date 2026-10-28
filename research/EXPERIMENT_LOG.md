@@ -13,6 +13,16 @@ Independent Codex verified28checkpoint sets/receipt continuity, saved exact term
 Parent remains best only among the same-contract exploredDEV24 endpoints. No new accuracy gain or GSPO benefit is established. New16 predictions remain sealed pending endpoint/protocol confirmation. Frozen plan/lock and all historical/private states are preserved. Source, independent report review, model-selection limits, handoff and internal paper draft are linked from `research/FINAL_ACCURACY_RESULTS_V1.md`.
 
 
-## 2026-10-28 — Final cleanup classification after negative development result
+## 2026-10-28 — Final closeout delivery, training ended
 
-Compared exact main/results/source tracked trees for duplicate blobs, empty files and cache artifacts. No fully justified deletion candidate; actual deleted/movedfiles0, worktrees/branches0, privateassets0. Preserved all evidence and runtime state. README navigation consolidation is in the results PR. See `research/FINAL_REPOSITORY_CLEANUP_DECISION_V1.md` and `results/FINAL_REPOSITORY_CLEANUP_INVENTORY_V1.json`. This adds no model run and does not modify the frozen plan.
+Researcher finaldirective ends all newtraining/methodsearch. Sole principalmodel ParentAdam52 selected within four authenticatedConcise/F32DEV24endpoints; finalclasses/confusion/counts and original22separatehistoricalmetrics recomputed by CPU entry. Original parent/fullstate/config/processor/cache hashes verified; no native restoration or generation performed in closeout. Finalsealed16 is NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED: original plan/rowmanifest/qualitymap currently not located at bounded known paths; no substitution/search expansion or outputs read. Newreadonlyevaluation wrapper is independently CPU-reviewed15tests but NOT_NATIVE_QUALIFIED; explicit unsealing and exactinputscope still required. Compatibility source closure copied byte-identically before semanticcleanup. Final scientific report/paper/handoff/repro/evidence and collaborator draft prepared; no message sent. Realtrackeddeletions occur only after this delivery is committed and pushed; privateassets/worktrees/branches/main stay untouched.
+
+
+## 2026-10-28 — Publication guard integration correction
+
+The initial delivery check printed BLOCKED because this publication branch had a summary log before importing the already-frozen scientific plan; the original guard treated that history as a malformed initial freeze. No plan/lock bytes differed. Corrective code accepts this import only when plan+lock equal immutablea71scientificsource, then retains ordinary strict mutation/append checks. Three genuine regression tests and independent review pass. No approval flag, history rewrite or new model operation was introduced. The earlier BLOCKED check remains in execution evidence; final guard is rerun after staging.
+
+
+## 2026-10-28 — Earlier zero-deletion cleanup superseded
+
+The prior cleanup classification deleted0files; its immutable reports remain atb30dace1e96dc86bd88e6bc1c230946c541495cf. The finalresearcher directive now authorizes real semantic Git cleanup after resultspublication. A new per-file dependency/provenance manifest and actualgit-rmtransaction supersede those current-tree reports. Privateassets and history remain protected.
