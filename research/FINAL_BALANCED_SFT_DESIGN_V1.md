@@ -1,3 +1,5 @@
+> Historical preparation snapshot. Native execution subsequently completed with a negative result; see [actual results](FINAL_ACCURACY_RESULTS_V1.md). Status claims below describe preparation time.
+
 # Final accuracy sprint — balanced patient-paired sequence SFT candidate (design V1)
 
 Author: Claude Code (`claude-opus-5-5`), 2026-10-27/28. Status: **SOURCE_IMPLEMENTED_CPU_ONLY_NOT_NATIVE_RUN**.

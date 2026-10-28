@@ -736,3 +736,12 @@ The first paired-SFT entry attempt exited before native backend construction: Py
 The repair aliases the module identity without weakening the authorization type check. A real subprocess regression confirms class identity with MLX unimported. The separately reviewed repair scope is `6b6d51b44ccaf242c4540fa93afad0964f3e33c9016e4a2fb8f444538e077366`; it preserves the original compound start/deadline, all scientific budgets and safety limits. One zero-native failed attempt plus at most three actual runs remains within four total attempts. The researcher explicitly granted battery >=20% for this SFT only; all other protections remain.
 
 Independent review: `results/FINAL_SFT_ENTRY_REPAIR_V2_REVIEW_SAFE.json`. The repaired seed-0 entry has now started; native completion and accuracy are pending. No cache recovery, historical experiment rerun, sealed16 evaluation or cleanup was performed.
+
+
+## 2026-10-28 — Actual paired-SFT accuracy sprint: negative result, stop
+
+One real native SFT seed completed28patient-pair updates/56backwards/14,028TFpositions, Adam52→80, followed by24DEVgreedy generations/417returnedtokens. Strict accuracy15/24 (62.50%), FLAIR12/12, enhancedT13/12, invalid0; fully correct pairs3/12. Authenticated Parent18/24,F10/12,T8/12,pairs7/12. Two FLAIR gains and five T1 losses; prediction counts shifted14F/10T→21F/3T. The frozen replication gate fails, so seeds1/2 and expansion are not run. No second candidate is invented to fill the cap.
+
+Independent Codex verified all28checkpoint sets/receipt continuity, exact saved terminal reload, unchanged10parent files, normal exit and allocator release1050bytes. Wholechild557.305s;RSSpeak5.8243GiB;MLXpeak7.9008GiB;swap17.0425→21.2609GiB,peak21.2999GiB. No guardianSTOP/TERM/KILL; lockFREE. Actual samples wereAC; sensor temperature unavailable. Full safe evidence: `results/FINAL_BALANCED_SFT_SEED0_ACTUAL_REVIEW_V1.json`.
+
+Retain Parent only as the best same-contract DEV24 endpoint; historical formal84 SFT scores are not a fair numerical comparator. No new MRI accuracy improvement or GSPO benefit is established. New16 outputs remain sealed pending final endpoint/protocol confirmation. Main/frozen plan/lock and all historical weights/states remain unchanged.

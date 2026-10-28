@@ -1,3 +1,5 @@
+> Historical preparation snapshot. Native execution subsequently completed with a negative result; see [actual results](FINAL_ACCURACY_RESULTS_V1.md). Status claims below describe preparation time.
+
 # Accuracy-first sprint: evidence, candidate and evaluation boundary
 
 This operational experiment follows the researcher's newest accuracy-first request. It does not modify the frozen research plan,
