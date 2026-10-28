@@ -1,0 +1,81 @@
+{
+  "claim_checks": {
+    "Parent_18of24_F10_T8_pairs7": true,
+    "SFT_15of24_F12_T3_pairs3_invalid0": true,
+    "actual_aggregate_byte_identical": true,
+    "best_model_claim_limited_same_contract_explored_DEV24": true,
+    "cost_resource_swap_claims_accurate": true,
+    "counters_28updates_56backward_14028TF_accurate": true,
+    "formal84_not_mixed_with_DEV24_selection": true,
+    "no_SFT_vs_GSPO_causal_superiority_claim": true,
+    "no_clinical_or_anatomical_grounding_claim": true,
+    "no_further_same_candidate_seeds_admitted": true,
+    "optimizer_momentum_template_and_order_seed_limits_disclosed": true,
+    "sealed16_not_run_requires_confirmation": true,
+    "transitions_gain2_loss5_accurate": true
+  },
+  "cleanup_inventory_PR": {
+    "condition": "Inventory/report only until reproducibility/backup/reference proof supports any later deletion; inspect actual PR contents separately.",
+    "deletions_approved": 0,
+    "main_has_not_been_cleaned_by_this_review": true,
+    "strategy_acceptable": true
+  },
+  "created_at_utc": "2026-10-28T08:32:29.973758+00:00",
+  "limitations": [
+    "This PASS covers reviewed source-branch report claims and current file hashes. It does not certify a future selective PR diff or links after transplanting to main.",
+    "No new native model/GPU call, sealed16 output read, external private transfer or source edit by reviewer.",
+    "Four explored DEV people remain development evidence; the retained Parent is not proved globally best and independent patient performance remains unmeasured."
+  ],
+  "privacy_checks": {
+    "absolute_private_paths_absent": true,
+    "handoff_runtime_reference": "Generic relative private runtime index only; no patient/asset path or transfer is published.",
+    "known_DEV_identifiers_absent": true,
+    "no_case_answer_or_image_payload_in_reviewed_result_aggregate": true,
+    "untracked_private_adapters": "Preserve and exclude from Git; no cleanup deletion approved by this review."
+  },
+  "results_only_PR_packaging": {
+    "branch_only_dependencies_absent_from_main": [
+      "src/mri_rl/final_balanced_sft_v1.py",
+      "src/mri_rl/final_balanced_sft_entry_v1.py",
+      "src/mri_rl/final_accuracy_sprint_v1.py",
+      "tests/test_final_balanced_sft_v1.py",
+      "tests/test_final_accuracy_sprint_v1.py",
+      "research/FINAL_BALANCED_SFT_DESIGN_V1.md",
+      "results/FINAL_SFT_ENTRY_REPAIR_V2_REVIEW_SAFE.json",
+      "results/ACCURACY_PILOT_V2_ACTUAL_RESULTS_V1.json"
+    ],
+    "finding": "Relative native source/tests/design references work on reviewed research branch but are absent from main. Include safe aggregate dependencies or link branch-only material to an exact pushed research source commit. The handoff CPU reproduction command must explicitly identify that source checkout.",
+    "native_code_merge_required": false,
+    "proposed_safe_strategy": "Selective results/docs/aggregate PR to main with pinned research-source links; preserve research implementation history.",
+    "status": "REQUIRES_TARGET_BRANCH_LINK_CHECK_BEFORE_PR"
+  },
+  "reviewed_files_sha256": {
+    "README.md": "69ec4904e4bfc23b608de0eeab0fc915478198098bb73bd135854e75f2b9b2a6",
+    "research/EXPERIMENT_LOG.md": "d123e34e4ba4f5f6096dd745bb8bb92ba248afc76fb98dc9ca31b0d619615193",
+    "research/FINAL_ACCURACY_DIAGNOSIS_V1.md": "8a0a5594ba75de9a783bd3b5779081e829f0a8888646163ec38f6c8b479f345d",
+    "research/FINAL_ACCURACY_PAPER_DRAFT_V1.md": "5677cd0bb3bafb59095adeeb1443a2755a41259c58475179eb91401b785cc189",
+    "research/FINAL_ACCURACY_RESULTS_V1.md": "fd009fb387edb1d0db36d515f2dce698df59882bbe0a43067b0bf66e53f89b77",
+    "research/FINAL_BALANCED_SFT_DESIGN_V1.md": "c337ca003cdfa1765b4acb131992a78b91dfb7a695b4c97d50efe01b6c6e4ae5",
+    "research/FINAL_MODEL_HANDOFF_V1.md": "b1a6769375b21127609bdb461ec320b65b04878b8aaa4abbd4a8dd4690ac511c",
+    "results/FINAL_BALANCED_SFT_SEED0_ACTUAL_REVIEW_V1.json": "cc58c2e3c4faa07e48e308f29ec195eb733c0798d99543b708645ae7a7ef2f72"
+  },
+  "reviewed_source_commit": "b03d0b30a6f0de59f23ae2eb76a5b9563364fa06",
+  "reviewer_id": "Codex /root/closeout_numbers",
+  "reviewer_kind": "isolated_codex",
+  "schema": "final-accuracy-source-report-review-safe-v1",
+  "verdict": "PASS_WITH_LIMITATIONS",
+  "verification": {
+    "experiment_log_append_only_vs_source_commit": true,
+    "frozen_plan_and_lock_sha256": {
+      "research/CURRENT_RESEARCH_PLAN.lock.json": "6844b67a2b4d14ac3114b8176b42cb60f52487b343de66880f0157553c6cde70",
+      "research/CURRENT_RESEARCH_PLAN.md": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e"
+    },
+    "frozen_plan_git_diff_vs_source_commit_exit_code": 0,
+    "local_main_ref": "b8b0493754451befaf5e61285ca8bb05570ca36d",
+    "local_origin_main_ref": "b8b0493754451befaf5e61285ca8bb05570ca36d",
+    "main_unchanged_locally": true,
+    "reviewed_source_checkout_relative_links_exist": true,
+    "test_command": "PYTHONPATH=src python3 -m pytest -q tests/test_final_balanced_sft_v1.py tests/test_final_accuracy_sprint_v1.py tests/test_safe_micro_restore_v1.py tests/test_safe_micro_dynamic_v1.py tests/test_safe_micro_watchdog_v1.py",
+    "test_result": "73passed in1.31seconds;exit0"
+  }
+}
