@@ -74,3 +74,30 @@ def test_package_entry_prints_same_result_without_private_or_model_imports(capsy
     got = json.loads(capsys.readouterr().out)
     assert got["explored_DEV24"]["models"]["Parent_Adam52"]["correct"] == 18
     assert not any(name == "mlx" or name.startswith("mlx.") or name == "torch" for name in sys.modules)
+
+
+@pytest.mark.parametrize("collection_args", [[], ["."]])
+def test_checkout_collection_does_not_import_private_runtime_archives(tmp_path, collection_args):
+    """Collect only supported tests, even when local runtime archives are present."""
+    (tmp_path / "pyproject.toml").write_bytes((ROOT / "pyproject.toml").read_bytes())
+    public = tmp_path / "tests"
+    public.mkdir()
+    (public / "test_public_boundary.py").write_text("def test_public_boundary():\n    assert True\n")
+    markers = []
+    for name in ["local_data", "work", ".worktrees"]:
+        private = tmp_path / name
+        private.mkdir()
+        marker = tmp_path / (name.replace(".", "_") + "_IMPORTED")
+        markers.append(marker)
+        (private / "test_forbidden_archive.py").write_text(
+            "from pathlib import Path\n"
+            f"Path({str(marker)!r}).write_text('unexpected archive import')\n"
+            "raise RuntimeError('private runtime archive must not be imported')\n"
+        )
+    result = subprocess.run(
+        [sys.executable, "-m", "pytest", "--collect-only", "-q", "-p", "no:cacheprovider"] + collection_args,
+        cwd=tmp_path, capture_output=True, text=True,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "test_public_boundary" in result.stdout
+    assert all(not marker.exists() for marker in markers)

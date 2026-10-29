@@ -22,3 +22,5 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+testpaths = ["tests"]
+norecursedirs = [".*", "build", "dist", "local_data", "work", "node_modules", "venv", "__pycache__"]
