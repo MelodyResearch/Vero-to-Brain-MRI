@@ -1,49 +1,58 @@
 # Reproducibility
 
-## Verified result reproduction — CPU only
-
-Use Python3.11+ and install the package/test dependencies:
+## Current maintained entry points — CPU first
 
 ```bash
 python -m pip install -e '.[test]'
 python scripts/reproduce_results.py --check results/FINAL_METRICS.json
 python -m pytest -q
+python scripts/evaluate.py --validate-only
+python scripts/check_research_plan_guard.py --help
 ```
 
-The recount independently computes the four same-contract DEV24 results, class confusion/recall/invalids, paired outcomes, descriptive four-patient cluster intervals and the separate original22-model formal evaluation. It validates six immutable aggregate SHA256 inputs and rejects changed counts or nonfinite metrics. It does not load MRI, MLX, models or a GPU and does not reproduce inference by replaying an aggregate. `--output PATH` writes the same deterministic machine table; do not overwrite an existing published table without checking its diff.
+Use Python 3.11+ with the declared test dependencies. The recount computes the four same-contract DEV24 results, confusion/recall/invalids, paired outcomes, descriptive four-patient cluster intervals and separate original 22-model formal evaluation. Six immutable aggregate SHA256 inputs are checked; changed counts or nonfinite metrics are rejected. This is saved-evidence reproduction, not regenerated model inference. `final_results.recount_saved_responses` retains the original pure class/format/cost recount for saved response records. The six source JSON files and published `FINAL_METRICS.json` are unchanged by simplification.
 
-The historical formal100 and repeatedly exploredDEV24 are separate estimands. Seeds do not add patients. The original formal test is not reopened for final model selection. No final independent16 result exists.
+The maintained package contains seven files: `final_evaluation`, `final_results`, `historical_runtime`, `research_plan_guard`, `rollout_precision_v2`, `vero_mri_reward`, and `__init__`. Default pytest collection stays inside `tests/` and excludes private historical scripts and hidden worktrees, including explicit `.` collection. Tests never need private MRI or model assets.
 
-## Model and private runtime
+## Explicit historical native-engine dependency
 
-The sole principal model is P_calibrated13 / Adam52 / boundary114. [Handoff](research/FINAL_MODEL_HANDOFF_V1.md) and [state/config hashes](results/FINAL_MODEL_ELIGIBILITY_REVIEW_V1.json) identify the exact adapter, optimizer/RNG, model/cache and processor. Private assets are not distributed in Git. An authorized recipient needs those files and legal access to source data; a checkout alone cannot run a model.
-
-The retained native compatibility modules preserve the tested historical F32 preprocessing/generation and detached full-state restore code. Some import dependencies include old training helpers: they remain because whole-module imports and source hashes are part of the verified backend. They are not current training entry points or permission to rerun experiments. Obsolete external launch scripts/configurations/tests were removed by the merged cleanup PR #7. The package exports only the final result recount and final read-only evaluator.
-
-The actual historical MLX runtime lives in private local storage. The metadata-only runtime snapshot is `configs/final_native_environment_v1.json` (Python3.13.6, MLX0.32.4, MLX-VLM0.7.8). Before future inference, the exact interpreter/package versions, complete source closure and all parent/cache/processor payloads are checked against the reviewed scope. No MLX module was imported to collect this metadata. No dependency upgrade, cache regeneration or alternate quantization is permitted as a silent substitution. CPU tests of a wrapper are not a new native probability-parity PASS.
-
-## Once-only independent evaluation — currently blocked, no GPU authorization
+The final evaluator's native call graph imports 15 engine modules directly, with an 89-module historical dependency closure. Rather than maintain their retired training/debug implementations on current main, the evaluator now requires an explicitly exported **90-file source dependency** (including package initializer), pinned to commit `1e0d7be1bb099b42e717eb4eb081facc12607ed3` and per-file SHA256 in the [single manifest](results/SIMPLIFICATION_MANIFEST.json).
 
 ```bash
-python scripts/evaluate.py --validate-only
+# Choose a NEW directory outside private asset directories. CPU Git export only.
+python scripts/evaluate.py --export-runtime /absolute/new/readonly-engine
 ```
 
-The expected current outcome is exit2 with `NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_CONFIRMATION_REQUIRED`, before any MLX import. The historical sealed plan, rowmanifest and seal hashes are known; current execution metadata and per-pair quality map were not located. The 2026-10-29 follow-up inspected the project/private-run/work roots, historical collector/source references and all-ref Git object paths, then compared5994candidate metadata files against the original hashes without finding a match. This is not proof of permanent loss. Detailed checked paths are retained in the private `local_data/final_accuracy_sprint_v1/SEALED16_LOCATION_CHECK_20261029_PRIVATE.json` receipt; no source image or model output was opened and no cohort was reconstructed. Do not create substitute patients, replace quality-flagged cases or regenerate data.
+This exports only reviewed Python blobs from existing local Git objects. It does not fetch, load MLX, open patient data or replace existing files. Missing commit objects, changed/extra files and symbolic/special files fail closed. A shallow clone lacking the commit must obtain that exact historical Git object explicitly; no automatic alternative revision is accepted.
 
-After the original metadata is restored and verified, prepare a private input manifest containing all16people/32images, original54-person exclusion inventory and allfour quality flags. Freeze the Parent, originalConcise/F32/strictgreedy/256-token contract, source/runtime/inputs hashes and the exact resource scope. Obtain independent review and the researcher's explicit sealed16 confirmation. A local JSON or CLI flag is not human authorization.
+A fresh native execution scope must name `historical_runtime_root` and pin **every actual exported source path** in `file_sha256`, as well as all maintained source files, the simplification manifest, evaluation script, protocol and environment configuration. The evaluator verifies them before activating the source dependency. Its `inspect`/AST-based loader, exact F32 generation/scoring, detached Adam/RNG restore and resource controller use unchanged historical source bytes. The two maintained reward/precision files that overlap this dependency are byte-identical. Import caches from another engine checkout are rejected.
 
-Only then can `scripts/evaluate.py --execute` receive the exact private `--inputs`, `--runtime`, `--scope`, `--review`, `--approval` and once-only `--output` paths. The scope reserves1serialload,32greedy/8192returnedtokens,0TFscores,0backwards and0updates, with1800seconds including initial validation/waits; the guardian requests release at the deadline with at most20seconds signal grace and sampling latency. AC is required by the proposed final read-only scope; an old SFT battery exception is not reused. GREEN/YELLOW/RED, RSS14GiB, MLX12GiB/cache256MiB, disk26GiB, battery20% and serious-risk protections remain. The guardian handles only its own child process. No retry of an incomplete/STOP operation, other-app termination, shutdown/reboot or system protection change is allowed. Atomic GPU calls retain monitoring blind spots.
+**This reduces maintained source; it does not make native inference a standalone seven-file implementation.** Source packaging, imports, dynamic source reads and CPU numerical fixtures are verified. The changed packaging is **CPU_VERIFIED_ONLY / NOT_NATIVE_QUALIFIED**; no native model, inference or numerical-equivalence run was performed for this cleanup. A new scope cannot reuse an old authorization or claim a new native PASS from these tests.
 
-The new final wrapper is CPU-tested but **NOT_NATIVE_QUALIFIED**. Missing input metadata means its final scope is not execution-ready. If it cannot be run compliantly, publish NOT_RUN and retain the completed development result. Do not delay project delivery indefinitely.
+## Historical functionality and restoration
 
-## Verification after cleanup
+Current entry points do **not** support training, cache reconstruction, optimizer ablation, historical experiment launch, raw original-22 analysis orchestration or figure generation. The source-only dependency above is limited to the read-only evaluation graph; it is not a complete historical training checkout.
 
-Run the full retained CPU suite, import/dependency checks, saved-result recount, paper/table check, source-hash validation, Markdown links and deleted-file reference checks. Exact old code/results remain at immutable Git commits in the deletion manifest; no branch ref or history is deleted. Raw local weights, data and receipts are outside cleanup scope. See [evidence index](research/EVIDENCE_INDEX.md).
+Every removed file has its original path, size, SHA and reason in the manifest. All 138 removals are recoverable from the [pre-simplification source tree](https://github.com/MelodyResearch/Vero-to-Brain-MRI/tree/1e0d7be1bb099b42e717eb4eb081facc12607ed3). For one file:
 
-## Published main and final asset recheck — 2026-10-29
+```bash
+git show 1e0d7be1bb099b42e717eb4eb081facc12607ed3:src/mri_rl/safe_micro_restore_v1.py
+```
 
-PR #6 and #7 are merged; the verified main commit is `e37af9113d6a5aaf13e1c2372a9075a81e44232f`. The local primary main checkout was fast-forwarded to that already-merged remote commit after confirming a clean tree and no project Python/Claude process; this did not perform another GitHub merge. On-disk rehashing confirms36Parent/base/config/processor/certificate/contract assets still match their authenticated SHA256 values, including full Adam52 and serialized Python/MLX RNG. The private handoff manifest and source locations are listed in the model handoff. This is serialized asset qualification, not a fresh native model load. The only remaining evaluation input blocker is the unavailable original sealed input package; explicit unsealing and exact native execution review would still follow recovery.
+For original raw analysis/plot CLIs and their tests, use that fixed full checkout in a separate authorized workspace, not the current package. Actual final SFT implementation/protocol is pinned separately in the [results report](research/FINAL_ACCURACY_RESULTS_V1.md). Historical files describe what ran at the time; current refactoring is never represented as the original implementation. No Git history or branch ref is deleted.
 
-For a source checkout with CPU test dependencies already available, `python -m pytest -q` now resolves the local `src/` package through the repository pytest configuration. Before this correction, the same bare command failed collection with15`ModuleNotFoundError` errors unless the editable install or `PYTHONPATH=src` had been supplied. This test-path configuration does not change native execution or model code.
+## Model, environment and private inputs
 
-The default pytest collection is restricted to `tests/`; recursive collection also excludes `local_data/`, `work/` and hidden worktrees. The primary working directory contains private historical scripts that must not be imported as current tests. A two-case regression fixture verifies both bare collection and explicit `.` collection without importing synthetic private archives. This affects test discovery only, not model code or asset storage.
+The principal model is P_calibrated13 / Adam52 / boundary114. [Model handoff](research/FINAL_MODEL_HANDOFF_V1.md) and [state/config hashes](results/FINAL_MODEL_ELIGIBILITY_REVIEW_V1.json) identify adapter, full Adam/RNG, exact base/cache and processor. A Git checkout alone cannot run a model. Private assets were not read, moved, rehashed or cleaned in this round.
+
+The metadata-only runtime snapshot is `configs/final_native_environment_v1.json`: Python 3.13.6, MLX 0.32.4, MLX-VLM 0.7.8. Future native execution must validate exact package/interpreter and payload identities. No dependency upgrade, alternate quantization or cache rebuild can silently substitute for them.
+
+## Once-only independent evaluation — blocked, not authorized
+
+Default `evaluate.py --validate-only` returns exit 2 with `NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_CONFIRMATION_REQUIRED`, before native imports. Original sealed metadata and four-pair quality membership were not located in the previously recorded bounded search. That is not proof of permanent loss. See the handoff for the existing private location-check receipt; no recovery search or model output was opened during cleanup.
+
+After original metadata is recovered, an authorized manifest must include all 16 people/32 images, original 54-person exclusion inventory and all four quality flags. Freeze exact Parent, Concise Prompt/F32/strict greedy/256-token protocol, source/runtime/input hashes and independent review. Obtain the researcher's explicit sealed16 confirmation; a CLI flag or local JSON is not human permission. No replacement patients, later checkpoint selection or output-based exclusions are allowed.
+
+Only then may `evaluate.py --execute` receive verified `--inputs`, `--runtime`, `--scope`, `--review`, `--approval` and once-only `--output` paths. Existing limits remain: one serial model load, 32 greedy responses/8,192 returned tokens, zero TF scoring/backward/updates; 1,800 seconds including initial validation/waits, deadline guardian with at most 20 seconds signal grace plus sampling latency. AC, global lock, GREEN/YELLOW/RED, RSS 14 GiB, MLX 12 GiB/cache 256 MiB, disk 26 GiB, battery 20% and serious-risk protections remain. Only the experiment's own child may be terminated. No incomplete-operation retries, other-app closure, shutdown/reboot or system-protection changes. Atomic calls retain monitoring blind spots.
+
+The historical formal100, explored DEV24 and sealed16 are separate estimands. Seeds do not add patients. Independent16 remains NOT_RUN; cleanup does not constitute independent generalization or a new accuracy result.
