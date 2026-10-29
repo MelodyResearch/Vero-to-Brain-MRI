@@ -38,3 +38,19 @@ No independent result exists yet. Training and cleanup cannot be called a succes
 The original sealed plan/rowmanifest/seal/quality map are not currently located at the bounded known private paths. Published historical hashes are preserved in the eligibility review; they do not establish present executable availability. No replacement data is permitted. Final status is NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED. The CPU-validatable final protocol is `configs/final_evaluation_v1.json`; `scripts/evaluate.py` cannot execute without verified original inputs, exact independent scope review and a fresh confirmation tied to the selected Parent. Its new wrapper is CPU tested, NOT_NATIVE_QUALIFIED. The reused native dependencies remain byte-identical to the preserved implementation.
 
 The main deliverable is Parent. The rejected Adam80 checkpoint and historical GSPO/SFT endpoints remain private baselines/negative evidence, not alternate current candidates. This repository provides source/evidence and a private handoff index; it is not a public weight release or a completed independent clinical validation.
+
+## Actual storage and recovery follow-up — 2026-10-29
+
+All36authenticated Parent/base/config/processor/certificate/contract files were rehashed from current private storage:36/36match, including both base shards, adapter, complete optimizer state and receipt. The optimizer manifest still binds Adam52/boundary114 with504trainable arrays; its serialized layout contains both Python and MLX RNG. No model or MLX module was loaded.
+
+Private paths are relative to the canonical repository root:
+
+- Parent/full Adam/RNG: `local_data/c_two_task_pool_v1/tier_c_v1/calibrated_bundle_v1/P_calibrated_seed13/run/boundary_0114/`.
+- Certified base shards/cache: `work/accuracy-recovery-historical-gpu-cache-v4/cache/`; certificate is its sibling `certificate.json`.
+- Original processor/model metadata: `local_data/models/qwen3vl8b-base-recovered-v1/`.
+- Existing runtime index: `local_data/final_accuracy_sprint_v1/RUNTIME_PRIVATE.json`.
+- Actual per-file paths, bytes and expected/observed SHAs: `local_data/final_accuracy_sprint_v1/HANDOFF_ASSET_MANIFEST_20261029_PRIVATE.json`, SHA256 `544320420bbb3e6208898c6d769e733ea0764d2b3c435ae180b9efac9cdef773`. No payload is uploaded or copied to GitHub.
+
+The original holdout plan, row manifest, seal, exclusion list and four-pair QA membership were not found after enumerating current project local_data, shared research local_data and the two existing runtime/work roots, following historical collector/receipt references, checking all-ref Git object paths, and hashing5994candidate metadata files (including possible renamed files) against original evidence hashes. No errors or target matches were observed. The only archive encountered was an unrelated hippocampus source archive; it was not substituted. The private location-check receipt SHA256 is `f9c895ba95091ef0a3ddce53fb056a206761910d8c6d47de1f0dfc3fc00fbbf1`. This is a bounded unsuccessful recovery attempt, not a declaration of permanent loss. All independent outputs remain NOT_RUN; no replacement/download/rerender or selection occurred.
+
+Results PR #6 and cleanup PR #7 have already merged. Remaining wording updates and this handoff recheck are a small delivery correction; they do not change model selection, metrics, frozen research plan or native authorization.

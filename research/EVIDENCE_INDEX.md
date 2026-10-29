@@ -32,3 +32,7 @@ A collaborator with repository access can audit the numerical conclusions immedi
 ## Actual cleanup evidence
 
 [Semantic cleanup report](REPOSITORY_CLEANUP.md), [per-file deletion manifest](../results/CLEANUP_MANIFEST.json), [full diffstat](CLEANUP_DIFF_STAT.txt), and [independent verification](../results/CLEANUP_VERIFICATION.json). These describe actual tracked removal, not a zero-deletion inventory. Private assets and all immutable history are preserved.
+
+## Final remaining-work verification — 2026-10-29
+
+[Fresh independent final verification](../results/FINAL_REMAINING_VERIFICATION_V1.json) covers the already-merged PR6/PR7 tree, unchanged573deletion manifest, saved metrics, CPU tests/imports and fail-closed evaluation. The small handoff/status follow-up adds one review receipt (179tracked files versus178at the merged cleanup snapshot); it does not repeat cleanup or modify model/metric/source payloads. Original sealed input recovery remains unsuccessful within the recorded bounded roots, with all details kept in private local receipts linked by SHA from the model handoff.

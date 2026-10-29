@@ -19,3 +19,6 @@ mri-rl-evaluate = "mri_rl.final_evaluation:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

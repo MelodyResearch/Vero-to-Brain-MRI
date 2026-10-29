@@ -57,6 +57,7 @@ class RolloutPrecisionCPU(unittest.TestCase):
     def test_module_import_does_not_import_native_runtime(self):
         result = subprocess.run([sys.executable, '-c',
             "import sys; import mri_rl.rollout_precision_v2; assert not any(k.split('.')[0] in {'mlx','mlx_vlm','torch','transformers'} for k in sys.modules)"],
+            cwd=Path(__file__).resolve().parents[1] / "src",
             capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
 
