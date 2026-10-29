@@ -418,5 +418,129 @@
     "native_test_opt_in_environment": null,
     "assessment": "Required checkout-local CPU-test usability repair; smoke still rejects mlx/mlx_vlm/torch/transformers import. This does not qualify any native evaluation."
   },
-  "completion_statement": "Merged178-file tree and all573manifested deletions are independently verified. Fresh CPU171pass/1native-opt-in-skip,101module imports, six-source saved metrics, fail-closed validation, protected source identities and scientific limits pass. Seven documentation corrections and two CPU test setup repairs are consistent with bounded metadata recovery and36-asset SHA/header receipts. This one new receipt makes179delivery files. No native/independent clinical evidence is created."
+  "completion_statement": "Merged178-file tree and all573manifested deletions are independently verified. Fresh CPU171pass/1native-opt-in-skip,101module imports, six-source saved metrics, fail-closed validation, protected source identities and scientific limits pass. Seven documentation corrections and two CPU test setup repairs are consistent with bounded metadata recovery and36-asset SHA/header receipts. This one new receipt makes179delivery files. No native/independent clinical evidence is created.",
+  "post_merge_discovery_correction": {
+    "verdict": "PASS_WITH_LIMITATIONS",
+    "checked_at_utc": "2026-10-29T17:56:39.662628+00:00",
+    "reviewed_base_merged_PR8_commit": "5e703b155d229b98be67c2219a1e9ebf4611add3",
+    "branch": "fix/final-test-collection-boundary-v1",
+    "integration": "Separate PR9 correction; exact researcher approval is required before merge. PR8 approval is consumed and is not reused.",
+    "historical_evidence_note": "All earlier171-test records and their original snapshot scope are preserved verbatim as JSON values. This section records the later post-merge discovery and current173-test result.",
+    "problem": "Default bare pytest discovery in the primary checkout collected private historical scripts outside tests and exited2 with12collection errors. Isolated checkout did not contain those private archives. Parent reports an old prospective-data script refused changed-content overwrite through its existing assertion; the failed collection is not called a successful test or a native/training run.",
+    "reviewed_existing_files": [
+      "REPRODUCIBILITY.md",
+      "pyproject.toml",
+      "research/EXPERIMENT_LOG.md",
+      "tests/test_final_results.py"
+    ],
+    "reviewed_file_sha256": {
+      "REPRODUCIBILITY.md": "8a836850ba86a7b93f486fc3474bc7be4bf579500935cbc500f06db27544ae99",
+      "pyproject.toml": "7a58fcce4688ef2d869d5c2792b35bd03a14544afcf0c1b828f06107689ca9b9",
+      "research/EXPERIMENT_LOG.md": "bbf397d6237976bcd6d4de88774ff14b5490612fab5bd815473371607b3c3d73",
+      "tests/test_final_results.py": "e43ba0c6aa22ad61af7f9b87c994291989fe31fb0c83306519e56451d77fa0b7"
+    },
+    "reviewed_diff_sha256": "977a05cb70efdcd5ab6306aad0f9ab7989b6d2e946e832d9683ecec2855f9709",
+    "configuration_review": {
+      "testpaths": [
+        "tests"
+      ],
+      "norecursedirs": [
+        ".*",
+        "build",
+        "dist",
+        "local_data",
+        "work",
+        "node_modules",
+        "venv",
+        "__pycache__"
+      ],
+      "assessment": "Default discovery collects the supported test directory; explicit-dot recursion excludes private runtime/work and hidden worktree directories. No test assertion or native opt-in guard is removed."
+    },
+    "regression_review": {
+      "parameter_cases": 2,
+      "collection_arguments": [
+        [],
+        [
+          "."
+        ]
+      ],
+      "fixture": "Every synthetic archive, imported sentinel and generated public test is created beneath pytest tmp_path. The only repository input read by the fixture is pyproject.toml; subprocess cwd is tmp_path. No real private archive is enumerated or imported by this fixture.",
+      "assertions": "Collection exits0, public test is discovered, and no sentinel marker exists after collection in either case.",
+      "RED_evidence": {
+        "sourcefile": "vero_collection_boundary_RED.txt",
+        "sha256": "c758319ab478ced36b266ff0192cb3cb57277fe3a7d35097f9dd697cd843c647",
+        "result": "2 failed, 6 deselected; both cases collect synthetic local_data/work scripts under the prior unrestricted configuration.",
+        "evidence_boundary": "Reviewer inspected the parent-preserved failing output and old/new configuration diff; reviewer did not rerun the old configuration against real private directories."
+      }
+    },
+    "independent_current_CPU_validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider",
+      "environment": {
+        "PYTHONPATH": null,
+        "MRI_TEST_MLX_CPU": null,
+        "MRI_REAUTHORIZED_TINY_CPU": null
+      },
+      "exit_code": 0,
+      "passed": 173,
+      "skipped": 1,
+      "elapsed_seconds": 1.25,
+      "result": "173 passed, 1 skipped in 1.25s",
+      "scope": "Fresh independent run from the isolated checkout; new two-case synthetic fixtures exercise bare and explicit-dot discovery with private-directory names present. Native opt-in test remains skipped."
+    },
+    "unchanged_evidence": {
+      "protected9_match": true,
+      "native_compatibility98_source_sha_match": true,
+      "all_runtime_source_and_model_protocol_files_equal_merged_PR8": true,
+      "FINAL_METRICS_sha256": "78fe176328350f1bc0bcb14eca7580bf271339c5dbb3fb27180e9349d00a0f4a",
+      "cleanup_manifest_sha256": "67eaae48a8f6b3aacec7c03d8881e4b3d0bb31e4ae484e21ba9dc52877944c5a",
+      "tracked_file_count": 179,
+      "no_production_source_or_metrics_changes": true
+    },
+    "post_incident_private_asset_receipt": {
+      "sourcefile": "vero_post_collection_integrity_PRIVATE.json",
+      "sha256": "e1a8ea841815168e2d1e09c86667eca0a86043c3b1b1e534f7828da571a0ad3f",
+      "since_UTC": "2026-10-29T17:51:21Z",
+      "reported_modified_private_files": 0,
+      "reported_small_asset_SHA_rechecks": 34,
+      "reported_small_asset_all_match": true,
+      "rechecked_logical_keys_equal_prior34_under100MB_entries": true,
+      "prior36_asset_manifest_sourcefile": "HANDOFF_ASSET_MANIFEST_20261029_PRIVATE.json",
+      "prior36_asset_manifest_sha256": "544320420bbb3e6208898c6d769e733ea0764d2b3c435ae180b9efac9cdef773",
+      "two_large_base_shards": "Parent reports unchanged size/mtime; no new full payload SHA read was performed. Size/mtime identity is weaker than a new content hash.",
+      "independent_review_boundary": "Parent performed post-incident private modification enumeration and actual34small-asset SHA reads. Reviewer authenticated this receipt SHA and checked its34logical keys against the prior36-asset manifest, without repeating model I/O. This compact receipt stores names and all_match, not individual post-incident digests."
+    },
+    "operations_by_this_review": {
+      "native_imports": 0,
+      "model_loads": 0,
+      "GPU_operations": 0,
+      "model_generations": 0,
+      "backwards": 0,
+      "optimizer_updates": 0,
+      "original_sealed_metadata_images_or_outputs_read": 0,
+      "private_archive_searches_or_imports": 0,
+      "private_model_payload_rehashes": 0,
+      "additional_private_metadata_only_receipts_read": 1,
+      "repository_file_modified": "results/FINAL_REMAINING_VERIFICATION_V1.json"
+    },
+    "limits": [
+      "No new native/model/clinical qualification is created; independent16 remains NOT_RUN under the previous protocol and explicit authorization requirements.",
+      "New GREEN execution was independent in the isolated checkout; actual primary-checkout private layout was not searched or imported by this reviewer. Synthetic sentinel cases directly cover the collection boundary.",
+      "The prior171-pass isolated-checkout result remains valid for that snapshot and did not establish private-directory discovery safety. This later correction closes that specific gap.",
+      "Existing two-large-shard hashes are preserved provenance, supplemented by parent-reported unchanged metadata; they were not freshly rehashed after the collection incident."
+    ]
+  },
+  "latest_cpu_validation": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider",
+    "environment": {
+      "PYTHONPATH": null,
+      "MRI_TEST_MLX_CPU": null,
+      "MRI_REAUTHORIZED_TINY_CPU": null
+    },
+    "exit_code": 0,
+    "passed": 173,
+    "skipped": 1,
+    "elapsed_seconds": 1.25,
+    "result": "173 passed, 1 skipped in 1.25s",
+    "scope": "Fresh independent run from the isolated checkout; new two-case synthetic fixtures exercise bare and explicit-dot discovery with private-directory names present. Native opt-in test remains skipped."
+  }
 }
