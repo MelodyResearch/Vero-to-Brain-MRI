@@ -1,0 +1,18 @@
+{
+  "MLX_imported": false,
+  "evidence": "Distribution metadata only; no module/model/GPU import",
+  "machine": "arm64",
+  "packages": {
+    "Pillow": "13.0.0",
+    "huggingface-hub": "2.2.0",
+    "mlx": "0.32.4",
+    "mlx-lm": null,
+    "mlx-vlm": "0.7.8",
+    "numpy": "2.5.4",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.3",
+    "transformers": "5.20.0"
+  },
+  "platform": "Darwin",
+  "python_version": "3.13.6"
+}

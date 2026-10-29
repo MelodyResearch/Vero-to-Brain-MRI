@@ -1,0 +1,546 @@
+{
+  "Parent": {
+    "accuracy": 0.75,
+    "balanced_accuracy": 0.75,
+    "class_correct": [
+      10,
+      8
+    ],
+    "class_n": [
+      12,
+      12
+    ],
+    "class_recalls": [
+      0.8333333333333334,
+      0.6666666666666666
+    ],
+    "confusion": [
+      [
+        10,
+        2,
+        0
+      ],
+      [
+        4,
+        8,
+        0
+      ]
+    ],
+    "correct": 18,
+    "descriptive_four_patient_cluster_percentile95": [
+      0.5833333333333333,
+      0.9166666666666667
+    ],
+    "fully_correct_pairs": 7,
+    "invalid": 0,
+    "n": 24,
+    "pair_n": 12,
+    "pair_profile": {
+      "BOTH_CORRECT": 7,
+      "CONSTANT_FLAIR": 3,
+      "CONSTANT_T1": 1,
+      "REVERSED": 1
+    },
+    "patient_correct_counts_sorted": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "patient_n": 4,
+    "predicted_class_counts": [
+      14,
+      10,
+      0
+    ]
+  },
+  "SFT_seed0": {
+    "accuracy": 0.625,
+    "balanced_accuracy": 0.625,
+    "class_correct": [
+      12,
+      3
+    ],
+    "class_n": [
+      12,
+      12
+    ],
+    "class_recalls": [
+      1.0,
+      0.25
+    ],
+    "confusion": [
+      [
+        12,
+        0,
+        0
+      ],
+      [
+        9,
+        3,
+        0
+      ]
+    ],
+    "correct": 15,
+    "descriptive_four_patient_cluster_percentile95": [
+      0.5416666666666666,
+      0.6666666666666666
+    ],
+    "fully_correct_pairs": 3,
+    "invalid": 0,
+    "n": 24,
+    "pair_n": 12,
+    "pair_profile": {
+      "BOTH_CORRECT": 3,
+      "CONSTANT_FLAIR": 9
+    },
+    "patient_correct_counts_sorted": [
+      3,
+      4,
+      4,
+      4
+    ],
+    "patient_n": 4,
+    "predicted_class_counts": [
+      21,
+      3,
+      0
+    ]
+  },
+  "confusion_columns": [
+    "FLAIR",
+    "contrast-enhanced T1",
+    "INVALID"
+  ],
+  "cost": {
+    "evaluation_phase_seconds_saved": 119.22247733303811,
+    "new_greedy_generations": 24,
+    "process_wall_seconds": 557.3050697080325,
+    "returned_tokens_independently_counted": 417,
+    "saved_call_counters": {
+      "LM": 465,
+      "generated_tokens": 417,
+      "generations": 24,
+      "sampler": 441,
+      "vision": 24
+    },
+    "training_generations": 0,
+    "training_phase_seconds_saved": 372.912546333042
+  },
+  "limitations": [
+    "Saved artifacts authenticate native execution, checkpoint payload integrity, saved reload/release result; this reviewer did not rerun native restoration or model inference.",
+    "DEV24 is four repeatedly explored development people and12correlated pairs, not an untouched independent test. Bootstrap ranges are descriptive exact4^4cluster resamples, not clinical/general-population uncertainty.",
+    "Existing28TRAINpeople, singleNON_SITEorder; no independent patient generalization; candidate is supervisedCEwith inheritedGSPOAdam, not a GSPOmethod result.",
+    "Class/pair/overall degradation requires no further seed under frozen gate. IncreasedFLAIRprediction bias is observed, but no new no-image/swap/clinical-grounding test was run.",
+    "Resource peaks and clean release describe this completed process only; thermal sensor was unavailable and no prevention of future OOM/kernel failure is claimed.",
+    "No sealed16 predictions, no new final100evaluation, no model/GPUcall, no external private transfer by reviewer."
+  ],
+  "metric_label_order": [
+    "FLAIR",
+    "contrast-enhanced T1"
+  ],
+  "opaque_evidence_sha256": {
+    "actual_parent_identity": "96fed86c1cd62df6fff6f6c34b804daab8ca0bebe9d88f1507dbd19d9ae2b651",
+    "checkpoint_00_adapter.safetensors": "e6e32bedbad24ca14af7493a882240e0362d51d338ba9b364805e81b3b54d6d6",
+    "checkpoint_00_cursor.json": "543650936b8d0f896afd743b98176f8b7365cff3b01c061b8709b532cb3f4c06",
+    "checkpoint_00_optimizer_manifest.json": "1124670161dfdf785f89c75dfd6ff4c11d228dd79140c01947b1774aedd4af3e",
+    "checkpoint_00_optimizer_state.safetensors": "45552b62a9ebb8c699e2e3cb0eb46b54043ed6d4832e9fe23d85201b99a5b921",
+    "checkpoint_01_adapter.safetensors": "6f3eab83f4cf90043d200519d4669e2cda95fd994d8c6123191ed5f87c8f1b60",
+    "checkpoint_01_cursor.json": "1a828cddc54d748d27ea0e5d1f53cd857934755e9c02d0f17760da72150cbff4",
+    "checkpoint_01_optimizer_manifest.json": "a767df7e6f4810590e6a92aab2728283eb0a5da93e34cf49ac4a525ffcf05293",
+    "checkpoint_01_optimizer_state.safetensors": "231ce30bb8196712ff197892a2bdd52885a7c0eea9a72e1c3d1f0fe3257ba74b",
+    "checkpoint_02_adapter.safetensors": "d81a4bc5f7ce8d4815ffb93832e416c396fd5728a18480fb4cdccd91d4aae285",
+    "checkpoint_02_cursor.json": "c746a7d3b494c0b402a45ac9eb7d7015e9a593d5b4817488c51402cf38d14402",
+    "checkpoint_02_optimizer_manifest.json": "852b9308bc6f25b14e476557f68ef13daef08f893560e6c798b59e9e05fbc327",
+    "checkpoint_02_optimizer_state.safetensors": "a401c665e7de070a53d96a00a09c6ee895f3b397d7b635786101884a1ae1bbca",
+    "checkpoint_03_adapter.safetensors": "d4a0cfec3e8d827a5cba80e15dc0f2271fdade93de0f6be47f772390c2e1ee92",
+    "checkpoint_03_cursor.json": "707ab6f75bf4ed61202b4c66a132f2eaa3308e24f62b3b4bb8e62493bb0e15d1",
+    "checkpoint_03_optimizer_manifest.json": "451c7cce4e307a97a5d8140493463c76ef30a8ff2dac9140b07bcd14e096466e",
+    "checkpoint_03_optimizer_state.safetensors": "0614201d97353c65ee7200dbba65e83baf1eb413077f4dafcf48baf5e2efb1aa",
+    "checkpoint_04_adapter.safetensors": "61dad14366e68d0528f0fc8c7d5d8eda405592442e9c721d025081108da5946d",
+    "checkpoint_04_cursor.json": "f0fb54e60a9c3a9289ca1b2c0378ae41336a1bde10d72279cc29bc5f1fb0c6e6",
+    "checkpoint_04_optimizer_manifest.json": "07a9cb2a23092f34fd1f4d8e631b8031d9c45b3b4975656f96777844061d763a",
+    "checkpoint_04_optimizer_state.safetensors": "55928470d027bfcc4002ede8e5ba84b2b214efcc00ea7873da45acf558959639",
+    "checkpoint_05_adapter.safetensors": "758c0437f69f5434f69aa451135e635a9a760ccac9a3458f18f8d4a05ace30f6",
+    "checkpoint_05_cursor.json": "8a2680a130a29b730944df86cfe366bf2818f052a090c2aa85edcfc09099b532",
+    "checkpoint_05_optimizer_manifest.json": "8a4b1bcf79a17e65fd0478997a5e63b84552ab4e0fdb2ff900544c6d51fcde82",
+    "checkpoint_05_optimizer_state.safetensors": "7149c4800d030322aab12ca415bd466c6f6111ebb59cdfcf80975a8cf199d1f7",
+    "checkpoint_06_adapter.safetensors": "8220fe20b7b26ba085ca079ead88b8db5970bfa16719afed9e8308ea961445dd",
+    "checkpoint_06_cursor.json": "4bf465c48886ce1a6dbd25e636611ba47684a972bdfdb16dc163de9811188daa",
+    "checkpoint_06_optimizer_manifest.json": "ba07d9b0ac11d7186422057f8b6503f4a25e06962463aed491ef0a48fe845063",
+    "checkpoint_06_optimizer_state.safetensors": "1fa14f4b6a37758931b5cbfe6b5064b50a3fe0afe2fd3ba84aae2f455a61d5f8",
+    "checkpoint_07_adapter.safetensors": "5544bedce59187f837f6ca1756966c674969491e6fc254201a9d42d309b8fdda",
+    "checkpoint_07_cursor.json": "32c74e3be44657ac07b99facdf4b2003ada2143f1b2e6711a1fb0e3a1daa00e9",
+    "checkpoint_07_optimizer_manifest.json": "e6c360ce375027602165c065885c0d1c77321f4eb4cb62e760fe058927aedcdf",
+    "checkpoint_07_optimizer_state.safetensors": "da827ee8fdcc111a1fd49c5160ca5dd90f690d996586ef3f36ca7410debe2b04",
+    "checkpoint_08_adapter.safetensors": "eb3be8237f76d0b80cf7607bdc78f76965c616029ea17beff822a25b720bfcd4",
+    "checkpoint_08_cursor.json": "9a47174cb03d1b3699c0ebee2671f4ab1a5229e34ee2870b7763b032f9fe42f0",
+    "checkpoint_08_optimizer_manifest.json": "8644ebfdf81ee5f82fe4b62e7e750c0d993dd0c85785b93c439b5a791533fce2",
+    "checkpoint_08_optimizer_state.safetensors": "60fb481adbd3de93a8aaaa20ab7a154f1d38bb9a1c795f6aaab879dcce191702",
+    "checkpoint_09_adapter.safetensors": "97f984261bfc8e3e14c68fdaf8f909e499fa249168957578451926623c48550a",
+    "checkpoint_09_cursor.json": "cd550a38a520b47217ff58a09fec00b5b0c1713a086df18c920a21016d317401",
+    "checkpoint_09_optimizer_manifest.json": "5248cf6a71432083b901b24744f7c377a74669dee4370053f6e670815e798e4f",
+    "checkpoint_09_optimizer_state.safetensors": "365f8913fe37437cc847e93abfa34f167c6c77ccfcfc690b4e6e02e7f5a076f2",
+    "checkpoint_10_adapter.safetensors": "3fdf19cd20cf7512807e43832592b1143315a3e24e14303cec436da2f0af1b89",
+    "checkpoint_10_cursor.json": "a77245a813d1d28d0d43d028274b268c36f6c274a826f958cf5df73d9583a46d",
+    "checkpoint_10_optimizer_manifest.json": "51d9e4f4963138fc289893f018b6af369b8a8a872294eb4bc113ec409e22f489",
+    "checkpoint_10_optimizer_state.safetensors": "2bb7109b00c59c98935dbca616303fb5cd1e2eb44def24c90274dd26867b6682",
+    "checkpoint_11_adapter.safetensors": "f09f3c41d73c9cb042d219b74fa5b37cb439ce20c0ef58035f9eaccdc226f748",
+    "checkpoint_11_cursor.json": "6c51eb1f75a53c5d9eca399e6e23e6cd0cd64d8f4682574b6d91eb8018963f49",
+    "checkpoint_11_optimizer_manifest.json": "237dfb5acfef93a8812a631798edc8c29cfeb030b29f340dab9a7bc8ad3c0531",
+    "checkpoint_11_optimizer_state.safetensors": "d1e86771f15b52f3ff88a3015d9995b8f5e04e2074b3aa931afafbc4b2919b14",
+    "checkpoint_12_adapter.safetensors": "db1399e17698bfd38e145c76cf77f8d57b42cd10ffb2d1863bf66780d2fea5a7",
+    "checkpoint_12_cursor.json": "c713b44c32417ea40e8d10e232d2e0a0856f3302d35fd40be086e85101ab2b27",
+    "checkpoint_12_optimizer_manifest.json": "1a9d8c22c29372d4c8ec08263e06ba6e9bf3fcbbf404081d04def37c25956114",
+    "checkpoint_12_optimizer_state.safetensors": "63a5564d6d6f56fa21aaa3442a607bab18cef2d86dd2b5d830828ce570e78820",
+    "checkpoint_13_adapter.safetensors": "b69ea70929de7f11ceea3bdaf03da68447f981aa2ea13d8f4b679f469b85c636",
+    "checkpoint_13_cursor.json": "fda84b5fa620f50ab6f366d4fbf7b615107a108c7ed7db66f7616050dcc8ac14",
+    "checkpoint_13_optimizer_manifest.json": "5cb9a2144b4af1a6438431e534c11ee89d1b179a436c1c7ed418ea5fba3bd15a",
+    "checkpoint_13_optimizer_state.safetensors": "1dab2851fd3197c7ef947cbb4bfda85eb1d2a868aa6b6b1de6ed060d69d57e2c",
+    "checkpoint_14_adapter.safetensors": "34bf9eecf998049b0b9e2ee544e25400a1825dada4bc3132fde7d0db98526acc",
+    "checkpoint_14_cursor.json": "2dfadfa9e7a8f2069852cdf653b867b3c29a989d13cafa0d843c096a2c035978",
+    "checkpoint_14_optimizer_manifest.json": "b4039ab27dccaf322c3f8e3cfe02456128f7b20fb2b5437b1db85a7992a4859a",
+    "checkpoint_14_optimizer_state.safetensors": "d388262e8f84c31d3b024d704493b0d8abde45f20a0b3f3179c40992b45c212d",
+    "checkpoint_15_adapter.safetensors": "72a872ef1809ada51dc82d77fb69db27208acb732a2105d0b9b2d34e485afb83",
+    "checkpoint_15_cursor.json": "43abac987209fe391124bed841a7b10aa8fd00555848dc44c811ce27b8dc793d",
+    "checkpoint_15_optimizer_manifest.json": "e77d8d2c9b4c47df02f97c8dde3c04ff84aa575dbbf7779128c16b113e72fbf5",
+    "checkpoint_15_optimizer_state.safetensors": "5225a71f121c98d26e3a121c8d4701270e2cbe7a6a77631db601ed3bd6f3e08d",
+    "checkpoint_16_adapter.safetensors": "5ff88bccd27391723330a8eaa08397ca8761ab2ce4e8ba42e86ac9a173d4ae18",
+    "checkpoint_16_cursor.json": "bf185b7330a47d62eea1b22c64d036557fed2ccbf315801303398fc58be12c15",
+    "checkpoint_16_optimizer_manifest.json": "fcfa57d9c8f8ab930e890f51f19d3b6576c404a638a99d960b41892890d02387",
+    "checkpoint_16_optimizer_state.safetensors": "3f0d50494474f171520713456966b30e2bc5c034b2ee2359e7b4e9ef50ae4cfa",
+    "checkpoint_17_adapter.safetensors": "6e54ef2fae5f2e145253036b50a4f37a54638ec141074e49e112216ce631c216",
+    "checkpoint_17_cursor.json": "804c2000c713cfd0c9b45afaa5c4e5540956fe215d14e34332148b9fa62e4c1a",
+    "checkpoint_17_optimizer_manifest.json": "0a7a5f8720da9c86b17840ba6ebde406c39fd7e4ca0c76b5dcb6a5710e62fe1b",
+    "checkpoint_17_optimizer_state.safetensors": "fb3a898c0befa185b0da457e33f2a3617806a812c92025fcc64e558787d4f4ad",
+    "checkpoint_18_adapter.safetensors": "124cea5a55f51ee7cbf0d0dc9cc987a5c51f524cca9baee3a8e7ba661472fb99",
+    "checkpoint_18_cursor.json": "6eac339ad743abdc01da0b8856d11b9232b2046f88519d45c614f34ddb36da42",
+    "checkpoint_18_optimizer_manifest.json": "37d4b6896566af6943f0ebc82ca7aa5da616ed11dddbf9d02af937d34443d9d9",
+    "checkpoint_18_optimizer_state.safetensors": "55007967291f0d6c6fbfe0540abc13bd773d10c973a41a6d3383eb6f8474a119",
+    "checkpoint_19_adapter.safetensors": "a77077ce71397f638235c7cd1f6b3510f0c1a728475bbebd7c9380dff3c6d4d4",
+    "checkpoint_19_cursor.json": "b387d11d1746cc49ecf93ebdee6f515b2b0941247e88b3cbb442e554ac45a96d",
+    "checkpoint_19_optimizer_manifest.json": "445a98727e94b1857aef5037121963af3e441644a70839135987676a7a750842",
+    "checkpoint_19_optimizer_state.safetensors": "da1a2d3b5beedc805eba6750f2e151860d0b460fe9908740d2c40dc5cecaea56",
+    "checkpoint_20_adapter.safetensors": "2c898a1ccd9ce5bdef75f31bd0c193997c3f056cd01dac3a7083f089bf4a7d68",
+    "checkpoint_20_cursor.json": "70ca09b7183f60bb694784562058b92ba353cdcc68e08f53407479162e7448f0",
+    "checkpoint_20_optimizer_manifest.json": "3344f3b8158f575304eafc4503ec06c6c5d2dc6ac5298c97fe39fa50696822e1",
+    "checkpoint_20_optimizer_state.safetensors": "f23adbb4ff1bd8a7b31a36d169d75150ab02f00ddb59176ce2320e1ccc5c3770",
+    "checkpoint_21_adapter.safetensors": "0884a5500404cd4ce638ba4c4e4e918d523cd74837e3f22d41dbf03ae12211c9",
+    "checkpoint_21_cursor.json": "bffd55e6c97b95cc8939ba60b49e3c885c6b950589beec7eeb34bf6a16735cd8",
+    "checkpoint_21_optimizer_manifest.json": "cd9974698a7471f194f48e4ed3cb10b9d5d00b30a32aa8a63475e2477374edd0",
+    "checkpoint_21_optimizer_state.safetensors": "b8dfd790f0d60357c979d81723d51aa31e25ba9e41349fe9288a626526c1123c",
+    "checkpoint_22_adapter.safetensors": "d71fbcc9e538db9d01a234640ff2abca57e991aadbdf9af98c943cec2ad73b9f",
+    "checkpoint_22_cursor.json": "a9427dab61f1b78647dd83e52526e7b155ed9696281e5464367147706ac138c2",
+    "checkpoint_22_optimizer_manifest.json": "bac093ded3ce1eb442b2c79232f096e4e2a93fa448bea153fa9fa35d2e35376a",
+    "checkpoint_22_optimizer_state.safetensors": "47998ce17df14a199b7611b112ae1102f4e9c473ae4127fe1c7c459c2b756562",
+    "checkpoint_23_adapter.safetensors": "def0b3572278dd49a5093360e19d8d21de61428cff2b63715504611454fe6858",
+    "checkpoint_23_cursor.json": "fb41b66a08c158b943b7005699e13fc3a5a4bfe2fe385acf58986474d487eae3",
+    "checkpoint_23_optimizer_manifest.json": "850d5d4bfdcccb35af3998417c203b1fad685537f7cd89950b5e5417098c180f",
+    "checkpoint_23_optimizer_state.safetensors": "e3927aa2ee05ce0f425e8432c0b2934ec4a585cc21ea960061bdb307f810dd2f",
+    "checkpoint_24_adapter.safetensors": "cf63969a234e2e3ba55453dd2e5f25d43eefc67ff3c6d4acd3ae5a62bc5eeef1",
+    "checkpoint_24_cursor.json": "0c320e3b9e70a48d04cd12f511cc0e80514d4e57186f0e734427df2053598476",
+    "checkpoint_24_optimizer_manifest.json": "31b574054cc4e75b44ca32f9a1481b676db51d5179e41349b546c1ea7f359c74",
+    "checkpoint_24_optimizer_state.safetensors": "e67777780b653d78b9288e7ef8d3fac937aecf514e73db4565ab691394c48755",
+    "checkpoint_25_adapter.safetensors": "a40a7cf00773cd9eaa49ab2061ea715dd90086873399dedb81b4f77374d39148",
+    "checkpoint_25_cursor.json": "cd26dd703bb36471ac2e3d9573206a1ead287a5b484e4d1a3e7fe7a9599a7366",
+    "checkpoint_25_optimizer_manifest.json": "dcfdc339a6e579468d60f66df3b246d6eb2dea2c3cc6dec5b941e6951a92472e",
+    "checkpoint_25_optimizer_state.safetensors": "a17b084f72b9e97fdad8f80160737d685aa166ba1bba8614a9c3cd4f2ce273af",
+    "checkpoint_26_adapter.safetensors": "d17985b53c484a169386a93f54a672843217c745be3e488772002a993ea75385",
+    "checkpoint_26_cursor.json": "47763ca56606f45b81addc927f016011c4bfb98ba55107fd5eb5e7dfde30859d",
+    "checkpoint_26_optimizer_manifest.json": "73faa093f297eb529568be268ca30848ac66222dd8e5ca150d6b06482b5eef51",
+    "checkpoint_26_optimizer_state.safetensors": "7757f7edaa80c93e2fbe8d654c2e1b85e980afad233d646d2a84cedd767e28f4",
+    "checkpoint_27_adapter.safetensors": "7a6c414bae6790f88fd002bbcdc68a887aac5ecda29108bddb7971bbe4f683e8",
+    "checkpoint_27_cursor.json": "944a503e7ea960c629b70e2c012417b7a6221efdbdfab057f4847dcb215d9635",
+    "checkpoint_27_optimizer_manifest.json": "0e08e35e4e314cdc2b2d240317ca449d7280b204012a9831c6aba47896cf4a28",
+    "checkpoint_27_optimizer_state.safetensors": "9908bcf9a63d6e40dc2ed0a4389ce331524fdd1b6b28287ad696497f6224e3b4",
+    "child_saved_row_00": "8c5e13a85fa9ee450b122de07e6d6697b4f8d9ffdbfd17af20403645626ca0b3",
+    "child_saved_row_01": "368e38264df91a37e3c1145dbec7332074ee0a15f789f387b7572d26b79ebfb4",
+    "child_saved_row_02": "60584e02b8fbd9ef623db3fc71a2e5f4bb460eff77e7f4b61638b25bcbc0936a",
+    "child_saved_row_03": "b22da2913b6c3c9e8a1fc373fc158c1c906382cec813378577d7a35f4b6826fd",
+    "child_saved_row_04": "3327fa971556c17b97bec2e9ad252c9d008853d14b2d84e7b827d965cbcbde6e",
+    "child_saved_row_05": "535076fce0e7376f747a08596dc062035b328aa967048556953e139e5eb0171b",
+    "child_saved_row_06": "d7ec1f1e8dd63f00e2ce715c9b4a1008e2b4cb301b479546574672a2de1bfc23",
+    "child_saved_row_07": "7da44abcfb088c9e41da4b50de08141fa247378d8bc083a2da5dc939e81d2579",
+    "child_saved_row_08": "d4e7ac98dec53606275f4c3989543bf0d837913345b577b9c1b391ba61ec3e51",
+    "child_saved_row_09": "8c2a8db1212286b2b15e5b8609aa227b93433e712fe3054256c74223735658a0",
+    "child_saved_row_10": "29cdeebe81bffa8eb6edfaec1589b1b969d97d5eba630f7689713f176d6a0cab",
+    "child_saved_row_11": "3c7dda02fa7dd80f8c96437a3d52ff086d1e56d371e8caf0c7799169a45c6782",
+    "child_saved_row_12": "1ba22afd7b43d2c3e874c6f74501c0b5ef9858ab765273896183080e86b3498f",
+    "child_saved_row_13": "490840fcf071cc68e8c43a59f99bf37da88980911b47f518315bf8ce419d0e76",
+    "child_saved_row_14": "ce5a12722c413cdcc2fc6b3c0445d0a296dbf64d051fa738b6341436078811e1",
+    "child_saved_row_15": "846561fe0a8cbb85a8cfcbdde0f94b18149a879085ffaee34cf951f00e547d22",
+    "child_saved_row_16": "ecfab159dbc1749f6dcd1ff4c2693e2c55c96231035940e283ed6d73756f1aa6",
+    "child_saved_row_17": "506258168f196849eb01429b131a254f85aa9a880bab69a7a6b94c603c298e7d",
+    "child_saved_row_18": "ac89a5766d6635c9ca9e06bf8a1f9db2621a8e6ab79ed980b4beec1969641b06",
+    "child_saved_row_19": "f0432fd5cf51bc3efc315d583b29ad07336da8bfa2a6f16d66bfc28b95fe2ebd",
+    "child_saved_row_20": "7f4e16be4dba0d8fd6166a6d933235adf190dcfda057180852f1d5a14cde08fa",
+    "child_saved_row_21": "da5cb967f0ca4ccd1b43dfcffd5941dcb2be85437cb18c234648aba181aa2ccc",
+    "child_saved_row_22": "f0f1714334d111d9b181faa6ad4e635c08343a5eab2bcd27d94fe2c7fe65084c",
+    "child_saved_row_23": "92bc78c5650aaeb28b5eadb889c8e897de03054502172045fe7aecb1762167cd",
+    "complete": "d8c80c7527a8539ea2d00d52e81ea50edb717bc36cbe64c6406e7c318c392f00",
+    "counters": "58c885a0b07f91c90fa408db82efcb2d1237c8bb2d8ec8922aa2e1088a75c2a4",
+    "exit": "0f63aefd5d1988f2ce1abcf8c12d1ef099118ba111efa5aea9eb49d23749099d",
+    "guardian_monitor": "d1c4901b68f59b14503cf32b5061508677829ebfb98a1de89c6b1630097127a5",
+    "internal_resources": "b494cdf0e437f99ed5fb97da0f0f32a5496d27801bd4cc3daa7f350b1faa4601",
+    "parent_saved_row_00": "7608a7d5dbf84e6f68a5e5ea67660c6eff9a0d9fe0e9468eb5ed3a896ad2962f",
+    "parent_saved_row_01": "bc0a01dae79cc972fee5818cad72472d084f095b31994b0fd5814a16598ad3fc",
+    "parent_saved_row_02": "9a5ca3b7d0c55bedbca4c95c020cc4edf56ea61e7d77f561763cf8ffd05a32b9",
+    "parent_saved_row_03": "bf703e98323cc022ebf008d6cd742a596975ff5dcff7f0d7c20de0ca7fb0c71f",
+    "parent_saved_row_04": "1ec1f09443c83ed5d20daa61047d3cd34ad56836bbfb3861b8f3311a38ea4ad3",
+    "parent_saved_row_05": "0eb3f878610ab15f30c1a16f7aa25c487964435be82c26262c85de279f6d7489",
+    "parent_saved_row_06": "eca1a4d2ebc08a06317b9c335a34a0889f3b4afe9170e7381759f44eb0f2223e",
+    "parent_saved_row_07": "063180078595aabf6f5840e5787806b2918f4852471524566648e72fbcf54dce",
+    "parent_saved_row_08": "3adaaf36a2215e6ea071d51a5c96e5f4ac9802bfbd2f0abf10b619a5571ff008",
+    "parent_saved_row_09": "32b35c0e57543286677cc4a20c5087a8c98a9eea16fb5c0db8d392ae974ea65f",
+    "parent_saved_row_10": "182e3b4c0c6e40b33e01c3219d7f588bbf9b5eabc434df441d2bca60cb2262fa",
+    "parent_saved_row_11": "a8f35472502273af88ae54a9616d29073f9bc576e3d1ae337edc0cdc5a22e22f",
+    "parent_saved_row_12": "287df14748d3876f8a71b6b191160139b6008e048efbe72e0ee758d8824c04b2",
+    "parent_saved_row_13": "5d8a05ee82f2edbf6fa703fdcb31a988ab3958da5881e4963941f39494439b3d",
+    "parent_saved_row_14": "f15d3892065be71ed0d60591e0cf29f5e388194c718da530785612dbb6249ea7",
+    "parent_saved_row_15": "1ff326e3cfa541a063f0b2589404c8cbdb6c7f5e5ff08963d51444ffbe400d64",
+    "parent_saved_row_16": "b116d74fa5b52ffc768e2a0466d35e90bfbac4729a6d9b012e2c64b6a8d2b506",
+    "parent_saved_row_17": "21a0731ff80b8fb33fb9b7312a77fa2656538dd7e57500be9c7c61a885c99bb1",
+    "parent_saved_row_18": "a46a82af46924f4f59f439799e528fb2012ac34d02abdedda887a4bfccbba7f2",
+    "parent_saved_row_19": "a5a5fcb0915d2fdf4279ceabad8b3b9446c0c939a980f1592ace0075d66c3bea",
+    "parent_saved_row_20": "afa36f9ae2c7c47c475e390715313aeffa80fe36698855189e3ffff42ed154af",
+    "parent_saved_row_21": "2c14e76f84a097f5c6b81a86c0a42732d734818a5cae4df1a0c478028b5f8279",
+    "parent_saved_row_22": "062fc71a9b81c73c1651ca446ab5976e8965a883d63e1d3f8f0c4bf82004865d",
+    "parent_saved_row_23": "df907c8946cecfd6175c045e75c78dab073749289ff61842ee1f1c51d254a287",
+    "parser": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+    "preserved_parent_bound_file_00": "c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6",
+    "preserved_parent_bound_file_01": "032becabb7cbb6d2af6f3451eb127e5f944551d42eb51eaee3e8d75b839b2f6a",
+    "preserved_parent_bound_file_02": "1c20247c28c5e590fa367f6f4b9484be8ffc1f213258a101ff6f2eb1f87d06ab",
+    "preserved_parent_bound_file_03": "e377eabc853af2fea973d5d15a26f58211d7f7fd528356fb37a5a1a8e4f987d4",
+    "preserved_parent_bound_file_04": "e941a7cb91690bde7b2e9c574fdcfd4d78e74012c9dd62260feeed568055a3d1",
+    "preserved_parent_bound_file_05": "29be67b325cde4e9b54b42d1bde5625adafdb33bf3a6cab31f3c7620d46ebe6f",
+    "preserved_parent_bound_file_06": "29be67b325cde4e9b54b42d1bde5625adafdb33bf3a6cab31f3c7620d46ebe6f",
+    "preserved_parent_bound_file_07": "e0696a8186d413b2bb35034b5c5eb2568ddc0b05e1b719778de42fa491cc882a",
+    "preserved_parent_bound_file_08": "b0b50927b66db66359a298036c4894746cc13b3f26adf8399b61e9229d83755a",
+    "preserved_parent_bound_file_09": "8194193d4c88dd650db0286143b48838ede70fa1edbe04da73b37affd585ad4c",
+    "receipt_00": "11935dc3f5f10d9f9f37c343253ebbd2fc90ec7a8e157f817a145caefe13d697",
+    "receipt_01": "f52054601f362da73c38e2c620554bc33a1b8bcbfeffe4680ecf000155aaad13",
+    "receipt_02": "2addb64631c76bd24da6d76ad4235cf30efaa53d142c25da432aeec5c98618b5",
+    "receipt_03": "5190475dedecaa1d8dcc9d922e394da6ccc01afd74e861072b76ea68f8638cab",
+    "receipt_04": "95a16ea9c98a88d521db6a241777a5f809ad20510eb74ec44141dfb367a26b98",
+    "receipt_05": "ca378ad163183e2b982f554a8d1a24fd588e95452123730b93426622f6ca18ab",
+    "receipt_06": "8cdcea1b1b899c54df66f24cd7dac658ccc5ef6b2044199ba1ecf6e0ab890280",
+    "receipt_07": "4bda9c1ae7a4f5ac3bb8e29190ab8a30447280eaa96b1b3bcb066d19625a9abe",
+    "receipt_08": "61b363ccb060dbc5850a4f23c8c8ec5f97c1d46322e8d5f170a7a6e9def0e4f3",
+    "receipt_09": "37e36a91a95bef48e80c95243022c52b73bd17906447e53a13041037e0ac51a4",
+    "receipt_10": "10c364dd86fce6860ff258fdce8087e3dc751a5ce050b92cb9b00de228dbb0f6",
+    "receipt_11": "12a9388c5fda19f5a9ddc7a719472a1a4fea90fe8222814a5e0230ecd75d8ecd",
+    "receipt_12": "ca9ec2c4041bf119a89835fc100d464327c05ffc5c8e4cab3cc1bee2d9c2ce71",
+    "receipt_13": "395d7fa4f66d0a088092e0b8e55ab1bda3d1e893ef0d47c8c6db4ef81476f851",
+    "receipt_14": "cee299322f997e4bbb7d78b787f9081fae3585b815c656ead34b8dc80abf873c",
+    "receipt_15": "8f0cdb474de898d455e3c3310124982c188099e48bce80c72f45e48fc5ea6157",
+    "receipt_16": "04bb7d898886a7d1c54c12acca90017c3eff142c09e44fa21e9637669d4d4645",
+    "receipt_17": "a986a1db606896a8874bb056a5accc7f0e5be235381d6ed2f783e6c60faa4e21",
+    "receipt_18": "55ddf2e697ec7f5984b47c927dfab4b6c73b54aa4ecc4bfc67749aabc170e51b",
+    "receipt_19": "de797b4b49b337afd37043c20dd51a7129af3b80b86d207e2593b0d2d3c7b74a",
+    "receipt_20": "749a6f946018675224e89318c42b0d9df5c9c26d897c49c6112c7273c9f5228e",
+    "receipt_21": "a3c21db4b44d78389f8863797bfb088bf5be8419fb2c5d21cada5a172e55b2d5",
+    "receipt_22": "258caf20eb6da749895066a49d4c63ab7294197150edafb885972b3f741938b6",
+    "receipt_23": "41530702eab39aadb0d9a7d03bfb338755a0f2fa60dd7feb6e56e9bfdce48a10",
+    "receipt_24": "709bf0fa50b73584046133c62023475f4bebc5ae9640484b9a686949de3d08e5",
+    "receipt_25": "76bc61ff9ea5f42dd5a2ede2b2efd5aa9f3878532b10d9ee74f4169adbb4fd98",
+    "receipt_26": "054410fb27e81d1e0cdf48e85c3e68ae1b041e083e0adeda58fc93aefc5256dd",
+    "receipt_27": "30db3fb4b24731bf45eea20864f4758bbe503b003f9e9c57a72669980f2474c1",
+    "release": "00d834dce49048506422045b5818fb758f0d5923d85daa1bbad9e9282a33e39b",
+    "reload": "0b69cf7e2859e1348417777e8e47e8f4d89731348e667a232c1c4ff57cc1b806",
+    "run_ledger": "b97e64d15fe0598686e08b3f49edc6e1f9eb8c16deffcfa9837c1f0fa0d264f9",
+    "scope": "6b6d51b44ccaf242c4540fa93afad0964f3e33c9016e4a2fb8f444538e077366",
+    "training_complete": "1bf3461caf7e1548279298decf7f14a7ff32f353bec14c725334a2a53b791e08",
+    "training_start": "d3f396ebebc66a46bae9117056e619914a2b924bb17784e5b817fbd80fc92693"
+  },
+  "operations": {
+    "case_answer_text_in_output": false,
+    "patient_identifiers_in_output": false,
+    "private_paths_in_output": false,
+    "reviewer_MLX_imports": 0,
+    "reviewer_model_calls": 0
+  },
+  "paired_comparison": {
+    "accuracy_delta": -0.125,
+    "class_changes": {
+      "0": {
+        "gains": 2,
+        "losses": 0
+      },
+      "1": {
+        "gains": 0,
+        "losses": 5
+      }
+    },
+    "descriptive_paired_four_patient_cluster_percentile95": [
+      -0.375,
+      0.08333333333333333
+    ],
+    "fully_correct_pair_gains": 1,
+    "fully_correct_pair_losses": 5,
+    "patient_accuracy_deltas_sorted": [
+      -0.5,
+      -0.16666666666666666,
+      0.0,
+      0.16666666666666666
+    ],
+    "prediction_changes": 7,
+    "question_transitions": {
+      "correct_to_correct": 13,
+      "correct_to_wrong": 5,
+      "wrong_to_correct": 2,
+      "wrong_to_wrong": 4
+    }
+  },
+  "replication": {
+    "actual_ledger_claims": [
+      0
+    ],
+    "admit_seed1_or_seed2": false,
+    "decision": "NO_GO_STOP_SAME_CANDIDATE_NO_MORE_SEEDS",
+    "frozen_checks": {
+      "FLAIR_ge10": true,
+      "T1_ge8": false,
+      "accuracy_ge19": false,
+      "invalid_zero": true,
+      "pairs_ge7": false
+    },
+    "same_candidate_expansion_authorized": false
+  },
+  "resource": {
+    "OS_pressure_counts": {
+      "1": 1,
+      "2": 270
+    },
+    "SIGKILL": false,
+    "SIGTERM": false,
+    "child_reaped": true,
+    "guardian_stop": false,
+    "independent_guardian": {
+      "available_gib": {
+        "first": 7.428375244140625,
+        "last": 8.117828369140625,
+        "max": 10.248687744140625,
+        "min": 5.4973907470703125
+      },
+      "battery_percent": {
+        "first": 75,
+        "last": 80,
+        "max": 80,
+        "min": 75
+      },
+      "mlx_active_gib": null,
+      "mlx_peak_gib": null,
+      "power_counts": {
+        "AC": 271
+      },
+      "pressure_free_percent": {
+        "first": 42.0,
+        "last": 57.0,
+        "max": 57.0,
+        "min": 27.0
+      },
+      "process_rss_gib": {
+        "first": 0.0142059326171875,
+        "last": 5.532989501953125,
+        "max": 5.7905120849609375,
+        "min": 0.0142059326171875
+      },
+      "samples": 271,
+      "swap_used_gib": {
+        "first": 17.04248046875,
+        "last": 21.260859375,
+        "max": 21.299921875,
+        "min": 17.04248046875
+      },
+      "thermal_counts": {
+        "SENSOR_UNAVAILABLE": 271
+      }
+    },
+    "native_action_counts": {
+      "CONTINUE": 1353
+    },
+    "native_boundary": {
+      "available_gib": {
+        "first": 7.43011474609375,
+        "last": 7.86968994140625,
+        "max": 10.330764770507812,
+        "min": 6.447418212890625
+      },
+      "battery_percent": {
+        "first": 75,
+        "last": 80,
+        "max": 80,
+        "min": 75
+      },
+      "mlx_active_gib": {
+        "first": 0.050770021975040436,
+        "last": 4.989975544624031,
+        "max": 5.071274398826063,
+        "min": 0.050770021975040436
+      },
+      "mlx_peak_gib": {
+        "first": 0.050770021975040436,
+        "last": 7.90080051869154,
+        "max": 7.90080051869154,
+        "min": 0.050770021975040436
+      },
+      "power_counts": {
+        "AC": 1353
+      },
+      "pressure_free_percent": {
+        "first": 42.0,
+        "last": 42.0,
+        "max": 54.0,
+        "min": 35.0
+      },
+      "process_rss_gib": {
+        "first": 0.033966064453125,
+        "last": 5.204925537109375,
+        "max": 5.813629150390625,
+        "min": 0.033966064453125
+      },
+      "samples": 1353,
+      "swap_used_gib": {
+        "first": 17.04248046875,
+        "last": 21.260859375,
+        "max": 21.299921875,
+        "min": 17.04248046875
+      },
+      "thermal_counts": {
+        "SENSOR_UNAVAILABLE": 1353
+      }
+    },
+    "native_color_counts": {
+      "YELLOW": 1353
+    },
+    "post_exit_lock": "FREE",
+    "swap_growth_from_actual_first_sample_GiB": 4.218378906249999,
+    "swap_peak_growth_from_actual_first_sample_GiB": 4.257441406249999,
+    "wait4_peak_RSS_GiB": 5.8243408203125
+  },
+  "reviewer_id": "Codex /root/closeout_numbers",
+  "reviewer_kind": "isolated_codex",
+  "schema": "final-balanced-sft-seed0-actual-independent-aggregate-v1",
+  "scientific_result": "NO_GO_NEGATIVE_DEVELOPMENT_ACCURACY_RESULT",
+  "scope_file_sha256": "6b6d51b44ccaf242c4540fa93afad0964f3e33c9016e4a2fb8f444538e077366",
+  "training": {
+    "Adam_end": 80,
+    "Adam_start": 52,
+    "TF_positions": 14028,
+    "backwards": 56,
+    "full_checkpoint_sets_hashed": 28,
+    "gradient_forwards": 56,
+    "images": 56,
+    "optimizer_updates": 28,
+    "pairs": 28,
+    "parent_bound_files_unchanged": 10,
+    "receipt_chain_state_continuity": true,
+    "release_model_none": true,
+    "released_active_MLX_bytes": 1050,
+    "saved_actual_parent_identity_matches_start": true,
+    "saved_full_parameter_inventory": 1942,
+    "saved_full_terminal_reload_exact": true,
+    "terminal_adapter_sha256": "7a6c414bae6790f88fd002bbcdc68a887aac5ecda29108bddb7971bbe4f683e8"
+  },
+  "verdict": "PASS_WITH_LIMITATIONS"
+}

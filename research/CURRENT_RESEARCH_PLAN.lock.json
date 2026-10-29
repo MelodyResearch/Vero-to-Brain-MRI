@@ -1,0 +1,6 @@
+{
+  "schema": "research-plan-lock-v1",
+  "plan_sha256": "c7e96b76d8a821ae6c86a997e7b7f220c233295af073c360ae5ef76f4bfbe86e",
+  "initial_researcher_instruction_sha256": "4ef822f5ec91c49713092d9091e6907512bed56c125782b1af6552dcc1d601b0",
+  "purpose": "Digest provenance only; not a human-approval certificate. Git-baseline checker rejects ordinary later plan/lock mutation."
+}

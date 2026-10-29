@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "longitudinal-brainmri-verifiable-rl"
 version = "0.1.0"
-description = "Auditable feasibility path for verifiable brain MRI reasoning"
+description = "Vero-to-Brain-MRI: final MRI sequence recognition evidence and read-only evaluation"
 requires-python = ">=3.11"
 dependencies = ["numpy>=2.0", "Pillow>=10", "nibabel>=5.0", "scipy>=1.11"]
 
@@ -14,7 +14,8 @@ test = ["pytest>=8"]
 registration = ["dipy>=1.12,<2"]
 
 [project.scripts]
-mri-rl = "mri_rl.cli:main"
+mri-rl-results = "mri_rl.final_results:main"
+mri-rl-evaluate = "mri_rl.final_evaluation:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
