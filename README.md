@@ -60,4 +60,4 @@ python scripts/evaluate.py --validate-only
 
 The final evaluator defaults to non-native validation and currently reports missing original inputs/confirmation. Native evaluation requires exact private payloads, independent scope review, fresh researcher approval and resource protections. Its new wrapper is CPU-tested, not newly native-qualified. See [reproducibility and execution boundaries](REPRODUCIBILITY.md) and the [fixed final protocol](configs/final_evaluation_v1.json).
 
-The final source retains the unchanged native compatibility and original22recount dependencies. Obsolete process logs/launchers are removed by a separate cleanup PR; their immutable history is indexed, not rewritten. Main is not auto-merged and this PRIVATE repository is not a public model release.
+The final source retains the unchanged native compatibility and original22recount dependencies. Final results PR #6 and cleanup PR #7 were merged before the 2026-10-29 verification. All573manifested removals are verified and their immutable history remains accessible. This PRIVATE repository is not a public model release.

@@ -14,9 +14,9 @@ The project is independent of Princeton and does not use released Vero weights. 
 
 The original frozen formal evaluation contains 84 sequence images from 14 people and 16 Dallas whole-head correspondence questions. All 22 endpoints were evaluated under that original contract. Subsequent method development did not reopen these predictions for new selection. Dallas remains an engineering task; whole-head correspondence is not established as brain-specific reasoning.
 
-Existing sequence TRAIN data contain 28 people with paired FLAIR/contrast-enhancedT1 images at three levels. The historical 28-row main sequence pool exposed one modality per person. The new supervised experiment uses 56 existing images at z045, one of each modality for every TRAIN person, without rerendering or adding patients. Source labels are acquisition metadata, not radiological diagnoses.
+Existing sequence TRAIN data contain 28 people with paired FLAIR/contrast-enhanced T1 images at three levels. The historical 28-row main sequence pool exposed one modality per person. The new supervised experiment uses 56 existing images at z045, one of each modality for every TRAIN person, without rerendering or adding patients. Source labels are acquisition metadata, not radiological diagnoses.
 
-DEV24 contains fourTRAIN-disjoint but repeatedly explored people, with three levels and both modalities per person. It is a development population with 24 correlated images, not 24 independent patients and not an untouched generalization test. The 16-new-person / 32-image collection remains sealed. Any final independent evaluation requires an endpoint and once-only protocol confirmed by the researcher before outputs are opened.
+DEV24 contains four TRAIN-disjoint but repeatedly explored people, with three levels and both modalities per person. It is a development population with 24 correlated images, not 24 independent patients and not an untouched generalization test. The 16-new-person / 32-image collection remains sealed. Any final independent evaluation requires an endpoint and once-only protocol confirmed by the researcher before outputs are opened.
 
 ## Related Work
 
@@ -30,7 +30,7 @@ Direct Vero-style GSPO uses real on-policy same-prompt K4 responses, task-routed
 
 ### 3.2 Dense balanced supervised continuation
 
-The final candidate tests whether complete paired exposure and direct targets are sufficient under the existing model and state. For patient p and modality k, let CE(p,k) be mean negative conditional log probability over the fixed target response andEOS. Each update uses
+The final candidate tests whether complete paired exposure and direct targets are sufficient under the existing model and state. For patient p and modality k, let CE(p,k) be mean negative conditional log probability over the fixed target response and EOS. Each update uses
 
 `L(p) = 0.5 CE(p,FLAIR) + 0.5 CE(p,T1ce)`.
 
@@ -40,11 +40,11 @@ The model restores Adam52 / full moments / RNG, retains 1e-5 LR and existing LoR
 
 ### 3.3 Readout and stopping rule
 
-All matched DEV results use the same concise prompt, F32 scoring/generation path, processor, strict class parser, greedy temperature 0 and 256-token cap. Invalid answers remain in denominators. Only the end of the fixed pass is evaluated. Two additional order seeds are admitted only if the first seed reaches 19/24 correct, FLAIR>=10/12, T1>=8/12, invalid=0 and >=7 fully correct pairs. The maximum candidate count is a cap, not a quota for post-hoc searches.
+All matched DEV results use the same concise prompt, F32 scoring/generation path, processor, strict class parser, greedy temperature 0 and 256-token cap. Invalid answers remain in denominators. Only the end of the fixed pass is evaluated. The stopping rule admitted two additional order seeds only if the first seed reached 19/24 correct, FLAIR>=10/12, T1>=8/12, invalid=0 and >=7 fully correct pairs. That candidate cap did not require additional runs after the first seed failed; training and method search are closed.
 
 ## Experiments
 
-The primary final comparison uses the four existing endpoints under one concise-prompt, F32, strict-greedy DEV24 readout. We retain all24images and every invalid answer in the denominator; the descriptive cluster unit is the patient. The original22-model final100 cohort is reported separately, without post-hoc best-seed selection or pooling with development performance. Independent16 evaluation has not run.
+The primary final comparison uses the four existing endpoints under one concise-prompt, F32, strict-greedy DEV24 readout. We retain all 24 images and every invalid answer in the denominator; the descriptive cluster unit is the patient. The original 22-model final100 cohort is reported separately, without post-hoc best-seed selection or pooling with development performance. Independent16 evaluation has not run.
 
 ## 4. Results
 
@@ -55,9 +55,9 @@ The primary final comparison uses the four existing endpoints under one concise-
 | Paired-Prompt GSPO B54 | 16/24 (66.67%) | 9/12 | 7/12 | 0 | 5/12 |
 | Paired balanced SFT Adam80 | 15/24 (62.50%) | 12/12 | 3/12 | 0 | 3/12 |
 
-Table1 reports the same explored DEV24 readout. The first three rows are authenticated saved results; the last row is the new native experiment. No historical formal84 percentage is mixed into this table.
+Table 1 reports the same explored DEV24 readout. The first three rows are authenticated saved results; the last row is the new native experiment. No historical formal84 percentage is mixed into this table.
 
-The newSFT model gains two FLAIR answers but loses five T1 answers. Its label counts change fromParent 14 FLAIR / 10 T1 to 21 FLAIR / 3 T1. Nine paired inputs now both predict FLAIR. The frozen improvement gate fails; seeds 1 and 2 are not run. The results show increased class preference despite balanced paired exposure, and do not demonstrate improved image discrimination.
+The new SFT model gains two FLAIR answers but loses five T1 answers. Its label counts change from Parent 14 FLAIR / 10 T1 to 21 FLAIR / 3 T1. Nine paired inputs now both predict FLAIR. The frozen improvement gate fails; seeds 1 and 2 are not run. The results show increased class preference despite balanced paired exposure, and do not demonstrate improved image discrimination.
 
 Exact 4^4 patient-cluster resampling gives descriptive 95% ranges 58.33–91.67% for Parent and 54.17–66.67% for SFT. The paired accuracy-difference range is −37.50 to +8.33 percentage points. With four explored clusters these are descriptive uncertainty summaries, not a population significance claim.
 
@@ -65,7 +65,7 @@ The historical formal test is reported separately: B28 scored 52/84, with FLAIR 
 
 ## 5. Execution evidence and resource cost
 
-The new native run completed56backwards,14,028TFpositions,28optimizerupdates and24DEVgenerations totaling417returnedtokens. Training took 372.913 s, evaluation 119.222 s, and the child process 557.305 s. Independent review hashed all 28 full checkpoints and receipt chains, verified 10 Parent files unchanged, and checked the saved exact terminal reload. The process exited normally with model references released, 1,050 active MLX bytes and a free global lock.
+The new native run completed 56 backwards, 14,028 TF positions, 28 optimizer updates and 24 DEV generations totaling 417 returned tokens. Training took 372.913 s, evaluation 119.222 s, and the child process 557.305 s. Independent review hashed all 28 full checkpoints and receipt chains, verified 10 Parent files unchanged, and checked the saved exact terminal reload. The process exited normally with model references released, 1,050 active MLX bytes and a free global lock.
 
 Peak RSS was 5.8243 GiB; native reported MLX peak 7.9008 GiB. Swap increased 17.0425→21.2609 GiB, peaking 21.2999 GiB. The dynamic safety policy did not observe CRITICAL or trigger termination; temperature telemetry was unavailable. These measurements describe this run and cannot guarantee future system stability. No other application was closed or system protection changed.
 
@@ -83,11 +83,11 @@ Repeated DEV use, one failed order seed, four patients, nonmatched SFT/GSPO budg
 
 The sole principal deliverable is Parent Adam52 (`P_calibrated13 / Adam52 / boundary114`), adapter SHA256 `c70b426b58191446545ba6333f7595e96f4fdb4cc689ddbaf5206e276b329db6`. It has the best verified accuracy within the four matched, repeatedly explored DEV24 endpoints. Historical SFT has not been evaluated under that exact DEV24 contract, so this is not a global-best checkpoint claim.
 
-The independent16-person evaluation is **NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED**. Historical collection/seal/exclusion hashes exist, but the current private row manifest and per-pair quality map were not found within bounded known locations. No replacement patients or model outputs were used. A fixed Parent-only protocol includes all32images, including all four historically flagged pairs, with strict greedy/F32, no training and no output-based exclusions. Restoration and verification of the original metadata, independent executable-scope review and explicit researcher unsealing confirmation are required. The missing independent result does not change the reported negative DEV result.
+The independent 16-person evaluation is **NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_NOT_UNSEALED**. Historical collection/seal/exclusion hashes exist, but the current private row manifest and per-pair quality map were not found after the bounded project/private-run/work and historical-reference recovery check. No replacement patients or model outputs were used. A fixed Parent-only protocol includes all 32 images, including all four historically flagged pairs, with strict greedy/F32, no training and no output-based exclusions. Restoration and verification of the original metadata, independent executable-scope review and explicit researcher unsealing confirmation are required. The missing independent result does not change the reported negative DEV result.
 
 ## 7. Conclusion
 
-For the completed comparisons, retain the unchanged Adam52 Parent as the best same-contract DEV endpoint. Both the tested GSPOgrouping adaptation and the final balancedSFTcontinuation failed to improve it. The appropriate output is a reproducible negative development study with preserved checkpoints and explicit unresolved mechanisms, rather than an accuracy or clinical claim. Further training is stopped; training and method search are now closed. The private handoff is indexed; the missing independent evaluation remains unrun pending original metadata and researcher confirmation.
+For the completed comparisons, retain the unchanged Adam52 Parent as the best same-contract DEV endpoint. Both the tested GSPO grouping adaptation and the final balanced SFT continuation failed to improve it. The appropriate output is a reproducible negative development study with preserved checkpoints and explicit unresolved mechanisms, rather than an accuracy or clinical claim. Further training is stopped; training and method search are now closed. The private handoff is indexed; the missing independent evaluation remains unrun pending original metadata and researcher confirmation.
 
 ## Evidence references
 
@@ -99,4 +99,4 @@ For the completed comparisons, retain the unchanged Adam52 Parent as the best sa
 
 ## Internal claim review / draft status
 
-The principal contribution is evidence and bounded failure analysis, not an established new method. Major missing evidence: untouched patient evaluation, matched historicalSFTreadout, replication of an actually positive candidate, and clinically qualified heterogeneous transfer. No venue acceptance score or statistical significance is asserted. This is an internal English paper draft, not submitted or publication-ready.
+The principal contribution is evidence and bounded failure analysis, not an established new method. Major missing evidence: untouched patient evaluation, matched historical SFT readout, replication of an actually positive candidate, and clinically qualified heterogeneous transfer. No venue acceptance score or statistical significance is asserted. This is an internal English paper draft, not submitted or publication-ready.
