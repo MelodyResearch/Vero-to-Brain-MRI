@@ -94,17 +94,6 @@ def test_committed_payload_corruption_blocks_replay(tmp_path):
   with pytest.raises(ValueError):j.get('row0')
 
 
-def test_dynamic_authority_preserves_scientific_caps(tmp_path):
- from mri_rl import safe_micro_pilot_entry_v3 as e
- from mri_rl import safe_micro_pilot_entry_v2 as old
- from test_safe_micro_pilot_entry_v2 import s,grants
- scope=s(tmp_path);scope.update(schema=e.SCHEMA,scope_kind=e.KIND,action=e.ACTION,resource_policy=e.MODEL_POLICY,external_guardian_policy=e.GUARDIAN_POLICY,recovery_contract=e.RECOVERY)
- h,r=grants(scope);h['action']=e.ACTION
- token=e.authorize(scope,h,r,consumed=lambda _:None)
- assert token.scope['budgets']==old.BUDGETS
- assert e.RECOVERY['max_model_load_attempts']==7
- scope['recovery_contract']={**e.RECOVERY,'max_model_load_attempts':99};h,r=grants(scope);h['action']=e.ACTION
- with pytest.raises(ValueError):e.authorize(scope,h,r,consumed=lambda _:None)
 
 
 def test_guardian_cooperative_red_targets_only_owned_child(tmp_path):

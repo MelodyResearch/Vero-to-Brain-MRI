@@ -28,3 +28,7 @@ Frozen plan/lock are copied byte-for-byte from the scientific branch, not rewrit
 Only safe aggregates and opaque hashes are committed. MRI pixels, patient identifiers/row lists, modelweights, fullAdam/RNG and generated answer text stay in private local storage. The repository is PRIVATE, not a published model release. Parent payload/config hashing is independently verified; the final wrapper is not newly native-qualified. Four exploredDEVpeople do not establish independent clinical/generalization claims. Git hashes authenticate files, not expert judgment or human permission.
 
 A collaborator with repository access can audit the numerical conclusions immediately. Full inference requires an authorized payload handoff and exact environment, plus a fresh execution contract. No private weight/data transfer or external mailing occurs in closeout.
+
+## Actual cleanup evidence
+
+[Semantic cleanup report](REPOSITORY_CLEANUP.md), [per-file deletion manifest](../results/CLEANUP_MANIFEST.json), [full diffstat](CLEANUP_DIFF_STAT.txt), and [independent verification](../results/CLEANUP_VERIFICATION.json). These describe actual tracked removal, not a zero-deletion inventory. Private assets and all immutable history are preserved.

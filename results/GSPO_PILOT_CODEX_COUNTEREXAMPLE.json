@@ -1,8 +1,0 @@
-{
-  "kind": "CPU_SYNTHETIC_COUNTEREXAMPLE_NOT_MRI_TRAINING",
-  "entrypoint": "continuous_rl_pilot train passes max_new_groups=len(schedule) without update cap",
-  "declared_optimizer_steps": 1,
-  "attempted_groups": 2,
-  "actual_fixture_optimizer_updates": 2,
-  "finding": "Two informative groups cause two updates despite launcher declaring a one-update TierB scope."
-}

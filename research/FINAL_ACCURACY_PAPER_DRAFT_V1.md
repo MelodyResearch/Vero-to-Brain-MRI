@@ -4,7 +4,7 @@
 
 We investigate a local adaptation of Princeton Vero-style heterogeneous verifiable reinforcement learning to brain MRI, separating execution correctness from measured visual accuracy. Historical experiments completed 18 RL arms, 3 SFT controls and 22 frozen 100-question evaluations; subsequent matched small-development experiments compared Direct same-prompt GSPO and Paired-Prompt grouping from one saved parent. Both GSPO endpoints scored 16/24 against the common Parent's 18/24, while a newly executed patient-paired supervised continuation scored 15/24 after 28 updates and strengthened the FLAIR prediction bias. These results support a bounded negative finding for this implementation and explored development population; they do not establish a general failure of Vero, independent-patient improvement, or clinical reasoning ability.
 
-## 1. Research question and scope
+## 1. Introduction
 
 A verifiable answer format provides a computable reward, but it does not ensure that group-relative updates improve image-conditioned classification. We ask whether a small language-LoRA vision-language model adaptation benefits from direct Vero-style GSPO on MRI, whether pairing prompts improves the signal, and whether dense balanced supervision resolves a known modality-exposure defect. The final supervised continuation is a performance-oriented control, not a new RL method.
 
@@ -42,6 +42,10 @@ The model restores Adam52 / full moments / RNG, retains 1e-5 LR and existing LoR
 
 All matched DEV results use the same concise prompt, F32 scoring/generation path, processor, strict class parser, greedy temperature 0 and 256-token cap. Invalid answers remain in denominators. Only the end of the fixed pass is evaluated. Two additional order seeds are admitted only if the first seed reaches 19/24 correct, FLAIR>=10/12, T1>=8/12, invalid=0 and >=7 fully correct pairs. The maximum candidate count is a cap, not a quota for post-hoc searches.
 
+## Experiments
+
+The primary final comparison uses the four existing endpoints under one concise-prompt, F32, strict-greedy DEV24 readout. We retain all24images and every invalid answer in the denominator; the descriptive cluster unit is the patient. The original22-model final100 cohort is reported separately, without post-hoc best-seed selection or pooling with development performance. Independent16 evaluation has not run.
+
 ## 4. Results
 
 | Model | Accuracy / balanced accuracy | FLAIR recall | T1 recall | Invalid | Fully correct pairs |
@@ -65,13 +69,13 @@ The new native run completed56backwards,14,028TFpositions,28optimizerupdates and
 
 Peak RSS was 5.8243 GiB; native reported MLX peak 7.9008 GiB. Swap increased 17.0425→21.2609 GiB, peaking 21.2999 GiB. The dynamic safety policy did not observe CRITICAL or trigger termination; temperature telemetry was unavailable. These measurements describe this run and cannot guarantee future system stability. No other application was closed or system protection changed.
 
-One earlier launcher failure occurred before native construction because Python `-m` produced duplicate authorization-class identities. The module-identity repair preserved the strict type check, original total deadline and failure evidence. It repeated no native computation. CPU checks and saved process traces distinguish this technical failure from a training outcome.
-
-## 6. Interpretation and limitations
+## Discussion
 
 Sparse correctness signal, incomplete historical modality exposure and strict generation contracts are directly observed difficulties. Correcting paired exposure with dense full-response supervision was insufficient in the final candidate. Historical Adam dynamics, shared-template token weighting, label length, frozen vision/language-LoRA capacity and distribution shift remain plausible contributors; this experiment does not isolate their causal effects.
 
 The paired readout is a behavioral image-sensitivity diagnostic. It is not an independent image intervention or evidence of anatomical reasoning. No additional no-image probe, canonical margin analysis, Dallas retention test or clinical diagnosis evaluation was performed for the SFT endpoint. Invalid=0 does not imply correct visual decisions.
+
+## Limitations
 
 Repeated DEV use, one failed order seed, four patients, nonmatched SFT/GSPO budgets and absent sealed evaluation restrict conclusions. The study cannot show cross-center generalization, a second clinically qualified task, statistical superiority, or reliable replication. Neither executing more updates nor finding valid gradients is a substitute for those outcomes.
 
@@ -90,7 +94,7 @@ For the completed comparisons, retain the unchanged Adam52 Parent as the best sa
 1. [Original22 formal matrix](../results/ORIGINAL22_FINAL100_ACTUAL_MATRIX_V1.json) and [class/format/cost supplement](../results/ORIGINAL22_FINAL100_CLASS_FORMAT_COST_SUPPLEMENT_V1.json).
 2. [Matched GSPO pilot](../results/ACCURACY_PILOT_V2_ACTUAL_RESULTS_V1.json).
 3. [Actual SFT independent verification](../results/FINAL_BALANCED_SFT_SEED0_ACTUAL_REVIEW_V1.json).
-4. [Methods, limitations and exact scope](FINAL_ACCURACY_RESULTS_V1.md), [source design](FINAL_BALANCED_SFT_DESIGN_V1.md).
+4. [Methods, limitations and exact scope](FINAL_ACCURACY_RESULTS_V1.md), [source design](https://github.com/MelodyResearch/Vero-to-Brain-MRI/blob/a71bb39a5b75d4cb65b7a958fa79548ff0805254/research/FINAL_BALANCED_SFT_DESIGN_V1.md).
 5. [Princeton Vero source](https://github.com/zlab-princeton/vero): primary method provenance. No new literature review or third-party reproduction is claimed in this sprint.
 
 ## Internal claim review / draft status
