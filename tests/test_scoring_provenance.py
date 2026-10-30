@@ -3,7 +3,9 @@ from pathlib import Path
 import pytest
 W=Path(__file__).parents[1]
 def module():
- p=W/"scripts/recount_original22_saved_classes_cost_v1.py";assert p.exists(),"Saved-only recount missing";s=importlib.util.spec_from_file_location("final22_recount_test",p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m
+ from types import SimpleNamespace
+ from mri_rl.final_results import recount_saved_responses
+ return SimpleNamespace(recount=recount_saved_responses)
 def parser():
  p=W/"src/mri_rl/vero_mri_reward.py";s=importlib.util.spec_from_file_location("final22_exact_parser",p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m._answer_and_format
 def fixture():
@@ -20,3 +22,21 @@ def test_rejects_duplicate_unknown_and_nonfinite_actual_metadata():
  with pytest.raises(ValueError):m.recount(ref,rows[:-1]+[rows[0]],parser())
  rows[0]["elapsed_seconds"]=float("nan")
  with pytest.raises(ValueError):m.recount(ref,rows,parser())
+
+
+def test_original22_nine_source_pins_remain_recoverable_from_immutable_history():
+ import hashlib,json,subprocess
+ matrix=json.loads((W/'results/ORIGINAL22_FINAL100_ACTUAL_MATRIX_V1.json').read_text())
+ assert len(matrix['source_sha256'])==9
+ for name,expected in matrix['source_sha256'].items():
+  data=subprocess.check_output(['git','-C',str(W),'show','1e0d7be1bb099b42e717eb4eb081facc12607ed3:src/mri_rl/'+name])
+  assert hashlib.sha256(data).hexdigest()==expected
+
+
+def test_plan_guard_rejects_log_truncation_and_lock_replacement():
+ from mri_rl.research_plan_guard import check_trees,PATHS
+ before={p:(W/p).read_bytes() for p in PATHS}
+ truncated=dict(before);truncated[PATHS[2]]=b'not the original prefix'
+ assert 'LOG_NOT_APPEND_ONLY' in check_trees(before,truncated)['errors']
+ changed=dict(before);changed[PATHS[1]]=b'{}'
+ assert 'LOCK_CHANGED' in check_trees(before,changed)['errors']

@@ -82,7 +82,7 @@ Claude Code actually used `claude-opus-5-5` for candidate implementation/design 
 
 ## Selective main-branch publication
 
-The final delivery includes CPU result reproduction, a fail-closed read-only evaluator and the byte-identical native compatibility dependency closure. Historical training entrypoints are not exposed as current package commands. The preserved research commit remains the immutable provenance for actual training; the new final evaluation wrapper is not newly native-qualified and cannot run with missing inputs/confirmation.
+The current delivery maintains CPU result reproduction and a fail-closed read-only evaluator. Its native engine is an explicit 90-file, byte-identical historical source dependency exported from fixed commit `1e0d7be1bb099b42e717eb4eb081facc12607ed3`; it is not maintained training code in the current tree. Historical training and full raw-analysis entrypoints require their fixed original checkouts. The source packaging is CPU-verified, NOT_NATIVE_QUALIFIED, and cannot execute with missing inputs/confirmation. See [reproducibility](../REPRODUCIBILITY.md) and the [deletion/dependency manifest](../results/SIMPLIFICATION_MANIFEST.json).
 
 ## Final closeout decision
 

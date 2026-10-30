@@ -106,7 +106,10 @@ def verify_derivation(protocol,scope,inputs):
  flags=read(scope['original_quality_flag_map']);require(sha(scope['original_quality_flag_map'])==scope['quality_flag_map_sha256'],'Original reviewed quality map changed')
  require(set(flags['patient_keys_PRIVATE'])==set(inputs['quality_flag_patient_keys_PRIVATE']),'Quality flags differ from independently authenticated original map')
  for key,digest in protocol['payload_sha256'].items():require(key in scope['payload_paths'] and sha(scope['payload_paths'][key])==digest,'Parent/model/config/processor/cache payload differs')
+ from mri_rl.historical_runtime import verify_source
+ verify_source(scope['historical_runtime_root'],scope)
  required={str(q.resolve()) for q in Path(__file__).parent.glob('*.py')}
+ required.add(str((Path(__file__).resolve().parents[2]/'results/SIMPLIFICATION_MANIFEST.json').resolve()))
  required|={str((Path(__file__).resolve().parents[2]/x).resolve()) for x in ['configs/final_native_environment_v1.json','scripts/evaluate.py']}
  require(required<=set(scope['file_sha256']),'Complete local native dependency/source pins required')
  from importlib import metadata
@@ -133,17 +136,17 @@ def _validated(args):
  verify_derivation(protocol,scope,inputs)
  return protocol,scope,h,inputs,runtime
 
-def _native(args):
+def _native(args,legacy):
  protocol,scope,h,inputs,runtime=_validated(args);out=Path(args.output)
  require(not (out/'native_claim_PRIVATE.json').exists(),'No retry or repeated counting')
- from mri_rl.shared_rollout_gspo_core_v1 import publish_once
+ publish_once=legacy.module('shared_rollout_gspo_core_v1').publish_once
  attempt=read(registry(runtime,h).with_suffix('.json'));require(attempt['scope']==h and time.time()<attempt['deadline_unix'],'Original fixed execution window expired')
  publish_once(registry(runtime,h).with_suffix('.native.json'),{'scope':h,'started_unix':time.time(),'model_loads_reserved':1})
  publish_once(out/'native_claim_PRIVATE.json',{'scope':h,'deadline_unix':attempt['deadline_unix'],'model_loads_reserved':1})
  lock=open(runtime['global_lock'],'a+b');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
- from mri_rl.safe_micro_dynamic_resources_v1 import Controller
- from mri_rl.resource_supervisor import sample_macos
- from mri_rl.accuracy_recovery_gpu_cache_v3 import os_pressure_level
+ Controller=legacy.module('safe_micro_dynamic_resources_v1').Controller
+ sample_macos=legacy.module('resource_supervisor').sample_macos
+ os_pressure_level=legacy.module('accuracy_recovery_gpu_cache_v3').os_pressure_level
  controller=Controller();red=[False];signal.signal(signal.SIGUSR1,lambda *_:red.__setitem__(0,True))
  def gate(name):
   require(time.time()<attempt['deadline_unix'] and not red[0],'Window exhausted or guardian release request')
@@ -154,16 +157,20 @@ def _native(args):
  resident=[None]
  try:
   gate('before_native_load')
-  from mri_rl.accuracy_pilot_v2_native import PilotV2Backend,generate_one_v2,call_limits
-  from mri_rl.safe_micro_pilot_native_v1 import _configuration
-  from mri_rl.experiment_contract import load_contract
-  from mri_rl.accuracy_recovery_v1 import adam52_parent_anchor,parent_disk_snapshot
-  from mri_rl.accuracy_stage_native_v1 import restore_parent
-  from mri_rl.safe_micro_recovery_native_v1 import full_identity
-  from mri_rl.safe_micro_pilot_native_v2 import CallCounter
-  from mri_rl.safe_micro_restore_v1 import detach_containers
-  from mri_rl.accuracy_pilot_v2_core import condition_row,strict_label
-  from mri_rl.paired_z045_continuation_entry_v1 import run_with_release
+  PilotV2Backend=legacy.module('accuracy_pilot_v2_native').PilotV2Backend
+  generate_one_v2=legacy.module('accuracy_pilot_v2_native').generate_one_v2
+  call_limits=legacy.module('accuracy_pilot_v2_native').call_limits
+  _configuration=legacy.module('safe_micro_pilot_native_v1')._configuration
+  load_contract=legacy.module('experiment_contract').load_contract
+  adam52_parent_anchor=legacy.module('accuracy_recovery_v1').adam52_parent_anchor
+  parent_disk_snapshot=legacy.module('accuracy_recovery_v1').parent_disk_snapshot
+  restore_parent=legacy.module('accuracy_stage_native_v1').restore_parent
+  full_identity=legacy.module('safe_micro_recovery_native_v1').full_identity
+  CallCounter=legacy.module('safe_micro_pilot_native_v2').CallCounter
+  detach_containers=legacy.module('safe_micro_restore_v1').detach_containers
+  condition_row=legacy.module('accuracy_pilot_v2_core').condition_row
+  strict_label=legacy.module('accuracy_pilot_v2_core').strict_label
+  run_with_release=legacy.module('paired_z045_continuation_entry_v1').run_with_release
   parent=Path(runtime['parent_checkpoint']);require(sha(parent/'adapter.safetensors')==PARENT,'Selected Parent changed')
   anchor=adam52_parent_anchor(parent,protocol['parent_receipt_sha256']);disk=parent_disk_snapshot(parent)
   def operation():
@@ -186,20 +193,27 @@ def _native(args):
 def main(argv=None):
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--protocol',default=str(Path(__file__).resolve().parents[2]/'configs/final_evaluation_v1.json'))
  for k in ['inputs','scope','review','approval','runtime','output']:p.add_argument('--'+k)
- p.add_argument('--validate-only',action='store_true');p.add_argument('--execute',action='store_true');p.add_argument('--child',action='store_true');a=p.parse_args(argv);started_unix=time.time()
+ p.add_argument('--export-runtime',metavar='NEW_DIRECTORY',help='CPU-only exact source export from local pinned Git objects');p.add_argument('--validate-only',action='store_true');p.add_argument('--execute',action='store_true');p.add_argument('--child',action='store_true');a=p.parse_args(argv);started_unix=time.time();legacy=None
  try:
   validate_protocol(read(a.protocol))
+  if a.export_runtime:
+   require(not a.execute and not a.child,'Source export cannot execute a model')
+   from mri_rl.historical_runtime import export_source,COMMIT
+   files=export_source(a.export_runtime)
+   print(json.dumps({'status':'HISTORICAL_SOURCE_EXPORTED_CPU_ONLY','commit':COMMIT,'files':len(files),'GPU_operations':0}));return 0
   if not a.execute:
    if not a.inputs:print(json.dumps({'status':'NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_CONFIRMATION_REQUIRED','GPU_operations':0}));return 2
    inspect_inputs(a.inputs);print(json.dumps({'status':'INPUTS_VALID_NOT_EXECUTION_AUTHORIZED','GPU_operations':0}));return 0
-  _validated(a)
-  if a.child:_native(a);return 0
-  from mri_rl.safe_micro_watchdog_v2 import witness_child
-  from mri_rl.resource_supervisor import sample_macos
-  from mri_rl.accuracy_recovery_gpu_cache_v3 import os_pressure_level
+  _,validated_scope,_,_,_=_validated(a)
+  from mri_rl.historical_runtime import activate
+  legacy=activate(validated_scope)
+  if a.child:_native(a,legacy);return 0
+  witness_child=legacy.module('safe_micro_watchdog_v2').witness_child
+  sample_macos=legacy.module('resource_supervisor').sample_macos
+  os_pressure_level=legacy.module('accuracy_recovery_gpu_cache_v3').os_pressure_level
   runtime=read(a.runtime);out=Path(a.output);require(not out.exists(),'One-shot output already exists')
   deadline=started_unix+1800;require(time.time()<deadline,'Execution window exhausted during validation')
-  from mri_rl.shared_rollout_gspo_core_v1 import publish_once
+  publish_once=legacy.module('shared_rollout_gspo_core_v1').publish_once
   claim=registry(runtime,sha(a.scope)).with_suffix('.json');claim.parent.mkdir(parents=True,exist_ok=True)
   publish_once(claim,{'scope':sha(a.scope),'started_unix':started_unix,'deadline_unix':deadline,'output':str(out.resolve())})
   out.mkdir(parents=True);cmd=[sys.executable,'-m','mri_rl.final_evaluation','--execute','--child']
@@ -212,4 +226,6 @@ def main(argv=None):
   r=witness_child(cmd,out/'witness_PRIVATE',scope_sha256=sha(a.scope),sampler=lambda pid:deadline_sample(deadline,sample_macos,pid),level=os_pressure_level,disk_free_gib=lambda:shutil.disk_usage(out).free/1024**3,post_sampler=lambda:{'no_model_in_supervisor':True},lock_inspector=lock_status)
   print(json.dumps(r));return 0 if r['native_exit_code']==0 and not r['guardian_stop'] and r['post_child_global_lock']['status']=='FREE' else 1
  except (ValueError,KeyError,FileNotFoundError) as e:print(json.dumps({'status':'NOT_RUN_OR_STOP','error':str(e)}));return 2
+ finally:
+  if legacy is not None:legacy.close()
 if __name__=='__main__':raise SystemExit(main())

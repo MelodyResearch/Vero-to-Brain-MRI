@@ -270,3 +270,27 @@ def main(argv=None):
         print(f"reproduce_results: {exc}", file=sys.stderr)
         return 1
     return 0
+
+
+# Saved-response class/format/cost recount retained from the pinned original22
+# supplementary analyzer. Full historical authentication/analysis uses its fixed checkout.
+from collections import Counter
+import statistics
+SAVED_LABELS={"mri_sequence":("FLAIR","contrast-enhanced T1"),"mri_visit_correspondence":("different","same")}
+def require(condition,message):
+    if not condition:raise ValueError(message)
+
+def recount_saved_responses(reference,outputs,answer_and_format):
+ require(len(reference)==len({r['id'] for r in reference}) and len(outputs)==len({r['record_id'] for r in outputs}) and {r['id'] for r in reference}=={r['record_id'] for r in outputs},'Exact unique saved-output coverage required');by={r['record_id']:r for r in outputs};result={}
+ for task,labels in SAVED_LABELS.items():
+  rows=[r for r in reference if r['ability']==task];require(rows,'Both frozen tasks required');classes={l:{'questions':0,'native_correct':0,'full_format_correct':0} for l in labels};conf={l:{p:0 for p in (*labels,'INVALID')} for l in labels};strictconf={l:{p:0 for p in (*labels,'INVALID')} for l in labels};formats=Counter();finish=Counter();invalid=0;lengths=[];times=[];caps=0;truncated=0
+  for r in rows:
+   o=by[r['id']];truth=r['reward_model']['ground_truth'];require(truth in labels and o['category']==task and isinstance(o['response'],str),'Reference/output task or target differs');answer,fmt=answer_and_format(o['response']);normalized=next((l for l in labels if l.lower()==answer.lower()),None);valid=fmt>0 and normalized is not None;hit=bool(valid and normalized==truth);full=bool(hit and fmt==1)
+   classes[truth]['questions']+=1;classes[truth]['native_correct']+=hit;classes[truth]['full_format_correct']+=full;conf[truth][normalized if valid else 'INVALID']+=1;strictconf[truth][normalized if valid and fmt==1 else 'INVALID']+=1;invalid+=not valid;formats[str(fmt)]+=1
+   ids=o.get('token_ids');cap=o.get('max_tokens');require(isinstance(ids,list) and all(type(x) is int and x>=0 for x in ids) and type(cap) is int and cap>0 and len(ids)<=cap,'Actual saved token/cap metadata malformed');require('generation_tokens' not in o or o['generation_tokens']==len(ids),'Saved generation count differs');lengths.append(len(ids));finish[o.get('finish_reason','NOT_RECORDED')]+=1;caps+=o.get('hit_max_tokens') is True;truncated+=o.get('finish_reason')=='length' and len(ids)==cap
+   if 'elapsed_seconds' in o:
+    t=o['elapsed_seconds'];require(type(t) in (int,float) and math.isfinite(t) and t>=0,'Nonfinite/negative saved generation-call time');times.append(t)
+  for c in classes.values():
+   for kind in ('native','full_format'):c[kind+'_recall']=c[kind+'_correct']/c['questions'] if c['questions'] else None
+  n=len(rows);result[task]={'questions':n,'native_correct':sum(c['native_correct'] for c in classes.values()),'full_format_correct':sum(c['full_format_correct'] for c in classes.values()),'native_question_accuracy':sum(c['native_correct'] for c in classes.values())/n,'full_format_question_accuracy':sum(c['full_format_correct'] for c in classes.values())/n,'class_counts':classes,'native_confusion':conf,'full_format_confusion':strictconf,'invalid_answers':invalid,'format_score_counts':dict(formats),'format_half_records':formats['0.5'],'finish_reason_counts':dict(finish),'literal_hit_max_tokens_records':caps,'length_truncated_records':truncated,'tokens':{'records_with_actual_token_ids':n,'sum':sum(lengths),'min':min(lengths),'median':statistics.median(lengths),'max':max(lengths)},'call_time':{'records_with_actual_elapsed':len(times),'records_without_elapsed':n-len(times),'actual_elapsed_seconds_sum':math.fsum(times) if times else None,'actual_elapsed_seconds_mean':statistics.mean(times) if times else None},'aggregation':'Question/class counts only; canonical patient/cycle estimates, seed summaries and2000-bootstrap uncertainty remain in the unchanged main matrix.'}
+ return result

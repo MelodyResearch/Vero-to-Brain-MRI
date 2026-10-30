@@ -1,0 +1,1082 @@
+{
+  "after": {
+    "by_directory": {
+      "data": 2,
+      "research": 12,
+      "results": 8,
+      "root_and_config": 7,
+      "scripts": 3,
+      "src": 7,
+      "tests": 6
+    },
+    "files": 45,
+    "maintained_source_files": 7,
+    "native_external_source_files": 90
+  },
+  "base_commit": "1e0d7be1bb099b42e717eb4eb081facc12607ed3",
+  "before": {
+    "files": 179,
+    "tracked_payload_bytes": 3226752
+  },
+  "consolidated": {
+    "F32_CPU_assertions": "tests/test_paired_z045_f32_backend_v1.py -> tests/test_historical_runtime.py (all11 original test assertions retained)",
+    "native_safety": "final evaluation authorization/deadline/payload/partial-owner tests retained; frozen dynamic Controller, once-only publish and detached state copied-leaf checks consolidated in test_historical_runtime.py",
+    "saved_response_recount": "scripts/recount_original22_saved_classes_cost_v1.py:recount -> src/mri_rl/final_results.py:recount_saved_responses; all3 count/cost/format regressions retained in test_scoring_provenance.py"
+  },
+  "current_entrypoints": {
+    "CPU": [
+      "scripts/reproduce_results.py",
+      "scripts/check_research_plan_guard.py",
+      "python -m pytest -q"
+    ],
+    "READ_ONLY_GATED": [
+      "scripts/evaluate.py --validate-only",
+      "scripts/evaluate.py --export-runtime NEW_DIRECTORY",
+      "scripts/evaluate.py --execute (fresh original inputs/scope/human grant required)"
+    ],
+    "historical_only": [
+      "RL/SFT training and recovery",
+      "GPU quantization/cache reconstruction",
+      "historical optimizer ablation",
+      "original22 raw-analysis and plotting CLIs"
+    ]
+  },
+  "deleted": [
+    {
+      "bytes": 1653,
+      "path": "data/DATASET_MANIFEST.json",
+      "reason": "HISTORICAL_DATA_PROVENANCE",
+      "sha256": "cfe58bbfbd031fca421060ebf20d5453e8ade4d784d64cac04f035e5f67ecdeb"
+    },
+    {
+      "bytes": 8785,
+      "path": "data/PATIENT_KEYED_MRI_ELIGIBILITY.md",
+      "reason": "HISTORICAL_DATA_PROVENANCE",
+      "sha256": "6188de6c9ad378838ae133050ed95a8befeb837440105acebb0a1e4e1fe9ba43"
+    },
+    {
+      "bytes": 1684,
+      "path": "data/SUBJECT_STUDY_LINEAGE.md",
+      "reason": "HISTORICAL_DATA_PROVENANCE",
+      "sha256": "17f02fdbc990fff7d55c9976aae768f5654c71223c08d53827bddea73586be89"
+    },
+    {
+      "bytes": 58598,
+      "path": "research/CLEANUP_DIFF_STAT.txt",
+      "reason": "HISTORICAL_REPORT_OR_CLEANUP_PROCESS",
+      "sha256": "ad51d74da882cef53bbd3679d5f200d93437e9ac1fdced6ec28c0308875f8e29"
+    },
+    {
+      "bytes": 10441,
+      "path": "research/ORIGINAL22_FINAL100_ACTUAL_RESULTS_2026-10-18.md",
+      "reason": "HISTORICAL_REPORT_OR_CLEANUP_PROCESS",
+      "sha256": "388e85f849a42317eb3c11aca082b4a63f1f2a8ed3d0a5028caba368e196a9dc"
+    },
+    {
+      "bytes": 5050,
+      "path": "research/REPOSITORY_CLEANUP.md",
+      "reason": "HISTORICAL_REPORT_OR_CLEANUP_PROCESS",
+      "sha256": "b8ce217c7966e18f748c08cadc400e624d9aeb4aa0bc4e94f61a6e6dd720da44"
+    },
+    {
+      "bytes": 84345,
+      "path": "research/figures/ORIGINAL22_FINAL100_TRANSFER_MATRIX_V1.svg",
+      "reason": "HISTORICAL_REPORT_OR_CLEANUP_PROCESS",
+      "sha256": "abe30b939fd5f1207e2d899f2633c95cf3330a1265378fb318f9b8a49d4cf425"
+    },
+    {
+      "bytes": 9352,
+      "path": "research/paper_reading/2512.06581-medgrpo.md",
+      "reason": "HISTORICAL_REPORT_OR_CLEANUP_PROCESS",
+      "sha256": "26cdaf58c6184310f0b873e7586a6981ead23c9c3c6f44f64874a5ea0835ed6b"
+    },
+    {
+      "bytes": 12645,
+      "path": "research/paper_reading/2604.04917-vero.md",
+      "reason": "HISTORICAL_REPORT_OR_CLEANUP_PROCESS",
+      "sha256": "f6cd848d20629b5a72597847a1d61495442d2b5250892cc0bd0185bc36c06327"
+    },
+    {
+      "bytes": 545118,
+      "path": "results/CLEANUP_MANIFEST.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "67eaae48a8f6b3aacec7c03d8881e4b3d0bb31e4ae484e21ba9dc52877944c5a"
+    },
+    {
+      "bytes": 42899,
+      "path": "results/CLEANUP_VERIFICATION.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "e6cadef4fb92575eff1fa88897045d7659d630868a228036e6287e270a168bdc"
+    },
+    {
+      "bytes": 23255,
+      "path": "results/COMPLETED_RL18_INDEPENDENT_AGGREGATE_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "d80c8c53e5e6130169847ba15a870cfaca6a4bfc6f93f9a63171ea39bf537a03"
+    },
+    {
+      "bytes": 5165,
+      "path": "results/FINAL_ACCURACY_REPORT_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "553f635d0895bccec71f7ea80b17b58e3f53d2ff7271f820987fa83b414ef47b"
+    },
+    {
+      "bytes": 6079,
+      "path": "results/FINAL_EVALUATION_PIPELINE_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "5a4c2017510daea659da0777aefaedd6733ff0225c44a954ba413ed9690d2e59"
+    },
+    {
+      "bytes": 2542,
+      "path": "results/FINAL_PUBLICATION_GUARD_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "859d2c98e32132a9ceb8fbc103c01b28458e4bf05f6ea7f1a1f11c679b2dba5f"
+    },
+    {
+      "bytes": 29815,
+      "path": "results/FINAL_REMAINING_VERIFICATION_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "eaf8d9121b2731b93a936eb58c31d3f796003fc582c7d9b7095e74c613b3b25f"
+    },
+    {
+      "bytes": 3649,
+      "path": "results/ORIGINAL22_COMPLETE_BINDING_AND_ANALYSIS_SPEC_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "59ba5d1d81ab71085349c1cdb8349789fbc9ad77744ada3059ed3e1ee874b291"
+    },
+    {
+      "bytes": 15431,
+      "path": "results/ORIGINAL22_FINAL100_ACTUAL_MATRIX_NUMERICAL_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "84b489e781ea3bf5fd5b0da46bab50f0a3d5ff8982bb4cca64ab33ecf66a25e5"
+    },
+    {
+      "bytes": 17147,
+      "path": "results/ORIGINAL22_FINAL100_CLASS_FORMAT_COST_NUMERICAL_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "63f1e277e6d53b553f8178cdb691c7ec39066157739ac4f693a20451381ec623"
+    },
+    {
+      "bytes": 1977,
+      "path": "results/ORIGINAL22_FINAL100_CLASS_FORMAT_COST_SOURCE_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "7dc4073224c1036bbf7c55f766728c81e303d6d85c3ab77120fc296cbe60403d"
+    },
+    {
+      "bytes": 2579,
+      "path": "results/ORIGINAL22_FINAL_REPORT_SUPPLEMENT_FIGURE_INDEPENDENT_REVIEW_V1.json",
+      "reason": "SUPERSEDED_PROCESS_REVIEW",
+      "sha256": "4a455c6bcabf8e7377983b16d0e82c5cb437f62abea3ebe98fec230e5d614539"
+    },
+    {
+      "bytes": 8376,
+      "path": "scripts/analyze_original22_saved_final_v1.py",
+      "reason": "HISTORICAL_ANALYSIS_CLI",
+      "sha256": "95d9d2b0c4709498c103334b3d95c6a9634d8877a7e77ed60ddeb6045a5d4e4a"
+    },
+    {
+      "bytes": 3945,
+      "path": "scripts/plot_original22_transfer_matrix_v1.py",
+      "reason": "HISTORICAL_ANALYSIS_CLI",
+      "sha256": "be9cec914acf6de2db81cb5bb59e5941c66a73c50abd6f063896a85174766b72"
+    },
+    {
+      "bytes": 10849,
+      "path": "scripts/recount_original22_saved_classes_cost_v1.py",
+      "reason": "HISTORICAL_ANALYSIS_CLI",
+      "sha256": "8ea490c98200ab9c5570af609fef97a88f628c1499db98d91a5eacb6facdecd0"
+    },
+    {
+      "bytes": 43633,
+      "path": "src/mri_rl/accuracy_pilot_v2_core.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "5b7d2e377f7cd5a42ef18e6d5a0a404937bfc7cb50a272a47c9a570cf8e65d08"
+    },
+    {
+      "bytes": 42582,
+      "path": "src/mri_rl/accuracy_pilot_v2_entry.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "8d9c9610d22e950d5e91d5d676ed7d999e848273712b94c3ce836471dff3aeaa"
+    },
+    {
+      "bytes": 26441,
+      "path": "src/mri_rl/accuracy_pilot_v2_native.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "75caa4da213ede34d962a174c9d5b596d32b4c9e3507855e8111ccb8a06de797"
+    },
+    {
+      "bytes": 23748,
+      "path": "src/mri_rl/accuracy_recovery_cpu_cache_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "99b737790320cdb68d67cacd3f085931167a3ab9bd5732238d06460d6a82d8a8"
+    },
+    {
+      "bytes": 33068,
+      "path": "src/mri_rl/accuracy_recovery_driver_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "f66d18bf48bb27458c8343f212501134ddaf6f507ae2667916adcbcee28185e4"
+    },
+    {
+      "bytes": 16359,
+      "path": "src/mri_rl/accuracy_recovery_entry_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "8abb5d64210f4c595590a25dea82425306302b86ecb327237fd58138fb1ce679"
+    },
+    {
+      "bytes": 33680,
+      "path": "src/mri_rl/accuracy_recovery_eval_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "1d17ab4d11b8ef8a21e0692f5357961cb6c8e6f17207fcf3e25069a9b7bb0698"
+    },
+    {
+      "bytes": 50829,
+      "path": "src/mri_rl/accuracy_recovery_gpu_cache_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "5bbd7991533ac14ed2c0aa45a27c6f46a6ba1796fc3a1e34307af83912910383"
+    },
+    {
+      "bytes": 70438,
+      "path": "src/mri_rl/accuracy_recovery_gpu_cache_v3.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c71376338e5c5da8010ae5ee09f15134a45988801d7f72c67c816fb48d14ff0f"
+    },
+    {
+      "bytes": 20262,
+      "path": "src/mri_rl/accuracy_recovery_gpu_cache_v4.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "e9aed313475cc11a84bdd9178f918fe84135dfe6fbb2771a2fdb78a37d816ad1"
+    },
+    {
+      "bytes": 26856,
+      "path": "src/mri_rl/accuracy_recovery_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c00c7772ddb61d88159847243c671e921162bc1a88f437a9cc32ff2003cb8718"
+    },
+    {
+      "bytes": 23861,
+      "path": "src/mri_rl/accuracy_stage_entry_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "191b3577532a39e5e7139f490891edddf10b409effed96310e12f051e7c8f4bf"
+    },
+    {
+      "bytes": 24725,
+      "path": "src/mri_rl/accuracy_stage_native_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "04a4ff2a59dd7fc911afccde3e05f9171063de22fdd346da40cf0bc3be8e0fbf"
+    },
+    {
+      "bytes": 5502,
+      "path": "src/mri_rl/accuracy_stage_resources_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "ab4a34f7a5fb75af3711e3d8c0070c1243d14def7d93c1758f6ebe75cc345b25"
+    },
+    {
+      "bytes": 4146,
+      "path": "src/mri_rl/answer_likelihood.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "b27b8d7d6788290a643ec59d7cc4da61eb6d5d72da90a1f6471501b2c889f4eb"
+    },
+    {
+      "bytes": 18873,
+      "path": "src/mri_rl/class_margin_aux_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "4343fe861ac4d060afd8509939578b3c87f3fc1d92bfd38983ed09e11086ebb8"
+    },
+    {
+      "bytes": 20944,
+      "path": "src/mri_rl/conditional_gspo_gradient_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "ca4912a64de6ebf85b737b5623f73c19abdba3caa6eb39344369d12e29c2b180"
+    },
+    {
+      "bytes": 28253,
+      "path": "src/mri_rl/continuous_rl.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39"
+    },
+    {
+      "bytes": 9924,
+      "path": "src/mri_rl/continuous_rl_dev_eval.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "096da2be1b00a86b54f2716b198913f6ea0d1b72c3c9d71775548ebccc3529f9"
+    },
+    {
+      "bytes": 9498,
+      "path": "src/mri_rl/continuous_rl_pilot.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d"
+    },
+    {
+      "bytes": 7271,
+      "path": "src/mri_rl/core.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c613099a136953246984f3449c827cab0c4324a959e5b77f2fbb02f58b1e60de"
+    },
+    {
+      "bytes": 10901,
+      "path": "src/mri_rl/ds007045_internal_dev_eval.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "80386d7201fef0570d3bf96f4b5c4685f27a15a485f794d8bc111f837b9fadd2"
+    },
+    {
+      "bytes": 19236,
+      "path": "src/mri_rl/early_native_conditioning_probe_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "9a01c95314564afc8ef6e0fa83089dbef2ccaaccedb83ebf095ac4d7b424660c"
+    },
+    {
+      "bytes": 40257,
+      "path": "src/mri_rl/experiment_contract.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2"
+    },
+    {
+      "bytes": 1959,
+      "path": "src/mri_rl/experiments.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c3a87cc33a522e330505874c8c5f224013035b3f8242df36d4e276a5bb8a3d5d"
+    },
+    {
+      "bytes": 8989,
+      "path": "src/mri_rl/exposure_rounds_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "17e192cd069442c6fa3f895478ddde2e21913efdbd191a327a17cd6461d1614a"
+    },
+    {
+      "bytes": 12439,
+      "path": "src/mri_rl/final_test_loader.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "28757c00a678ad46fb6dc27019dfcb30c354e8f629fff5b2de39269077c6cd3f"
+    },
+    {
+      "bytes": 11997,
+      "path": "src/mri_rl/final_test_release.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "d5c67b299bcb783ebb190ae0218ed0df03d81b9385e81a8567a50d00ef64c244"
+    },
+    {
+      "bytes": 9704,
+      "path": "src/mri_rl/frozen_eval.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "878f29aa2d0bf7f023b76b3aa46256e7f0cc48d0175964f0153b927632181859"
+    },
+    {
+      "bytes": 7898,
+      "path": "src/mri_rl/full_arm_protocol.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "b0ab1f99baba5131ee3ced994a2d5d7041bd53d051bbf505de152d8e743310b1"
+    },
+    {
+      "bytes": 4401,
+      "path": "src/mri_rl/generation_recovery_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c63d397029f8b586848687fcba23471f36899b531d0fcbaebb1b2a94aaee3433"
+    },
+    {
+      "bytes": 5146,
+      "path": "src/mri_rl/likelihood_cache.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889"
+    },
+    {
+      "bytes": 725,
+      "path": "src/mri_rl/likelihood_loading.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b"
+    },
+    {
+      "bytes": 18540,
+      "path": "src/mri_rl/mlx_continuous_gspo.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3"
+    },
+    {
+      "bytes": 28539,
+      "path": "src/mri_rl/mlx_gspo_smoke.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a"
+    },
+    {
+      "bytes": 31043,
+      "path": "src/mri_rl/mlx_sft_warmstart.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "7247f2995b33162645fda7221c39d071c1563ec2fd51ed36fdb64f66aa1bd2d9"
+    },
+    {
+      "bytes": 32498,
+      "path": "src/mri_rl/multistep_gspo_core_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "413fbb9bd9587773172a942f5e6eedcc5b76a41bc4dd886059099104dd59e861"
+    },
+    {
+      "bytes": 25841,
+      "path": "src/mri_rl/native_gspo_path_probe_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "f24a4567b5b85fe59896aedf123e833e9c535820701a49126afda97130071718"
+    },
+    {
+      "bytes": 30353,
+      "path": "src/mri_rl/native_probability_resolution_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "dd4230424f0ef542e31c42a4b1b0543526ad0273b0c9ec6c35108a8667fa37db"
+    },
+    {
+      "bytes": 11505,
+      "path": "src/mri_rl/optimizer_checkpoint.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d"
+    },
+    {
+      "bytes": 12508,
+      "path": "src/mri_rl/original22_final_eval.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c3d249fa1127eb7edecfd1249163a70e27932b4fbacbf98d8884fa623beee9e9"
+    },
+    {
+      "bytes": 3403,
+      "path": "src/mri_rl/paced_resources.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb"
+    },
+    {
+      "bytes": 35247,
+      "path": "src/mri_rl/paired_class_margin_probe_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "b7b6eeb7fca43588404a3cb2025894e3c65a1094e94bf29571f815f3e9551107"
+    },
+    {
+      "bytes": 1936,
+      "path": "src/mri_rl/paired_classification_signal_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c320ee1469451aa44503edb3638b4d6416fd14d82fce17415acb387a6ee76aa8"
+    },
+    {
+      "bytes": 4604,
+      "path": "src/mri_rl/paired_interaction_signal_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "fc5be726f37a0bbd05421d837313070d7fe63e1869bb83748d51e77b9f11afe3"
+    },
+    {
+      "bytes": 10344,
+      "path": "src/mri_rl/paired_native_gradient_probe_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "0341effcb91196126c6dc9dadfdf52820f73314ad923b9b1d10ba63d8dbf5449"
+    },
+    {
+      "bytes": 25507,
+      "path": "src/mri_rl/paired_prompt_groups_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "4a8fea69ba4e14b110b192a89cda27d72bce05aecf5f33ca14a0728cef7ffa2e"
+    },
+    {
+      "bytes": 23142,
+      "path": "src/mri_rl/paired_signal_candidate_probe_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c84be4bc19731098292911b4c30a5906aef528401759e2c6304ba171cf88967a"
+    },
+    {
+      "bytes": 33760,
+      "path": "src/mri_rl/paired_z045_continuation_driver_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "18131e9d1f1a70c2f76f75b5ca7d7ff6de205cc1587fed413c4e92af88ce5f00"
+    },
+    {
+      "bytes": 27737,
+      "path": "src/mri_rl/paired_z045_continuation_entry_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "98e05a4c8b2bdee6818d3fbbd46886b2c9fd59b5b610cad33221b614a41a78ed"
+    },
+    {
+      "bytes": 8244,
+      "path": "src/mri_rl/paired_z045_data_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "681d322f9f843c5e0a1217a709a417946b8b1f3e9fa76907a304afa7437dabbe"
+    },
+    {
+      "bytes": 7328,
+      "path": "src/mri_rl/paired_z045_evaluation_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "7f874193cb172e2890fc29a80139c3e0cf284607cb3bc9e9d4ed6dc2343179d7"
+    },
+    {
+      "bytes": 3782,
+      "path": "src/mri_rl/paired_z045_exposure_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "762ffb168f3e4a95f4c3aa11dbd285af1290654b4e62f0c4397e5a2ff73607e5"
+    },
+    {
+      "bytes": 17422,
+      "path": "src/mri_rl/paired_z045_f32_backend_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "1b7e75cac1f30b3f888cfc6dcad5235f6614a81247d9edebca464d4b65e5df07"
+    },
+    {
+      "bytes": 20181,
+      "path": "src/mri_rl/paired_z045_f32_qualification_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "8ee603fd3624c6d9d9fcbd9dc89ad28688250d0656fa2867ad837dd7663943e7"
+    },
+    {
+      "bytes": 26908,
+      "path": "src/mri_rl/paired_z045_matched_f32_eval_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "1174a904fd2440f6cc919a0048ccbec21824bba80c451e5406ce61c321a85626"
+    },
+    {
+      "bytes": 7049,
+      "path": "src/mri_rl/quant_cache.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "25b6c8c3778d1a0d60d2841ba8076239f64f572493d2fe2f1d96ecb876008c13"
+    },
+    {
+      "bytes": 21029,
+      "path": "src/mri_rl/quant_convert.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "808682cf79242cf530e6dc67e57ce705ca474a6fb4fe99d2927697c01d21c2d5"
+    },
+    {
+      "bytes": 8475,
+      "path": "src/mri_rl/quant_probe.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "59469495fdddc60a59bc231fe2bff933ec326601fada83f83ee947cd095b43dd"
+    },
+    {
+      "bytes": 10514,
+      "path": "src/mri_rl/resource_supervisor.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af"
+    },
+    {
+      "bytes": 7347,
+      "path": "src/mri_rl/reward_replay.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "32a511c9a9c223766f889720af23fcd3d96e3e1482c57f024c4aaf962a8757f5"
+    },
+    {
+      "bytes": 6354,
+      "path": "src/mri_rl/safe_micro_dynamic_resources_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "e8c50a8bf9539711d1818e227effa16c15d536b14a41b29df8d3178a7cd4252a"
+    },
+    {
+      "bytes": 14246,
+      "path": "src/mri_rl/safe_micro_entry_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "d07860c6c8cf2bf2c704450e8868ba99c7301e1bcd386be7dc43cc436f2c8b6f"
+    },
+    {
+      "bytes": 3759,
+      "path": "src/mri_rl/safe_micro_journal_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "7351cbdc83b3b5da07b2afc022172e48c621be53690156d819eaf32d9e259b4a"
+    },
+    {
+      "bytes": 8312,
+      "path": "src/mri_rl/safe_micro_native_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "25c65864a457b7d3129ee45386de389735a6b0620b853c89584b50314bb48549"
+    },
+    {
+      "bytes": 23258,
+      "path": "src/mri_rl/safe_micro_pilot_entry_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "91f14397cc018eaa0463de2a2557bdfec50b7f59d84851f5997f67060022a176"
+    },
+    {
+      "bytes": 30346,
+      "path": "src/mri_rl/safe_micro_pilot_entry_v3.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "65729dc295077ab2809e97915bc7e3d4b3a96b8d351bbbeb81af340938c7ef59"
+    },
+    {
+      "bytes": 16880,
+      "path": "src/mri_rl/safe_micro_pilot_native_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "0d610c83318de1c646528d2cd17661a74949dfd5925722cabfbb9056c1de1902"
+    },
+    {
+      "bytes": 13666,
+      "path": "src/mri_rl/safe_micro_pilot_native_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "9a687b7f00c4ca3df17f0464ccba86275a8681b07fc12f8497631de0501ce993"
+    },
+    {
+      "bytes": 32956,
+      "path": "src/mri_rl/safe_micro_recovery_entry_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "f9f1015b1196573b5a57d7cc4076292431e3a311a7c2190f679b4cc0f3d3e0ab"
+    },
+    {
+      "bytes": 24970,
+      "path": "src/mri_rl/safe_micro_recovery_native_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "a92467cc7ac40752be35f72f223f889395e96990ec95934f8daf677abe559caa"
+    },
+    {
+      "bytes": 9329,
+      "path": "src/mri_rl/safe_micro_resources_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "137d71430c688cb225fb339ebd8e3d945232e2e6d49f8c68e29b31b2c9b6c3c5"
+    },
+    {
+      "bytes": 4745,
+      "path": "src/mri_rl/safe_micro_restore_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "42aa5299e390fae63dd816246a65c1f1814af546294754da5ccb1f8a1f0383c2"
+    },
+    {
+      "bytes": 20279,
+      "path": "src/mri_rl/safe_micro_training_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "071b2d2bb1b2a25d342ec6416a443f9d269123afaa343c3899403d11168e26ed"
+    },
+    {
+      "bytes": 9664,
+      "path": "src/mri_rl/safe_micro_training_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "57461b374ba297da65c0f4481b28d2de330ad4b9f137ef7d6e9b9c3180cc8366"
+    },
+    {
+      "bytes": 7790,
+      "path": "src/mri_rl/safe_micro_watchdog_v2.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "1c0da420bb1e4124d13f71afa1a29b652d4944e9e51ce02590b0ef694e7f3fad"
+    },
+    {
+      "bytes": 6397,
+      "path": "src/mri_rl/safe_micro_witness_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "3edff80ad8116e92a6240f0c11ded1def8564dd441801f5272f25d5e85091868"
+    },
+    {
+      "bytes": 5164,
+      "path": "src/mri_rl/sft_evidence.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "08b346dee5c15dcd39b42e65651eafd4cf66741ff26cbbce404cdafab129f859"
+    },
+    {
+      "bytes": 8227,
+      "path": "src/mri_rl/sft_resume.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "caefa2de66a0f644c520d4827188aebfffd06829a38bad63ee9cc816568ffc70"
+    },
+    {
+      "bytes": 16322,
+      "path": "src/mri_rl/shared_rollout_gspo_backend_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "13e72e584258fe4ca02f10d6c3b065ce19270cd96b62648a709188194113ad7c"
+    },
+    {
+      "bytes": 28028,
+      "path": "src/mri_rl/shared_rollout_gspo_core_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c9fc3f999d7e349250bca8dc8db524cbb595a8a87caeaac6ebfea57e24a2f12e"
+    },
+    {
+      "bytes": 29964,
+      "path": "src/mri_rl/shared_rollout_gspo_driver_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "6cb6ecf42fed4cda9713d4f597cbe37cb4d1d3c720773d662771ac7fbd5c931c"
+    },
+    {
+      "bytes": 18545,
+      "path": "src/mri_rl/shared_rollout_gspo_entry_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "64b6e425fe33b1bd4e1e634a8a349f858c7c980dda689abcca1b9f7e777dfac8"
+    },
+    {
+      "bytes": 13820,
+      "path": "src/mri_rl/shared_rollout_gspo_eval_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "ccf3cf94023412a7111ce4dacce8a504068104474a671987868bb743aab8efea"
+    },
+    {
+      "bytes": 1864,
+      "path": "src/mri_rl/shared_rollout_qualification_power_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "e522aaa44bc58b804084812e897865bf2080573baf2b989a41bf0add258d9c25"
+    },
+    {
+      "bytes": 14809,
+      "path": "src/mri_rl/tier_c_entry.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "84e2581dc8b1065301f2ce1e7098db5a213a6b1c29b002c2fb8de6db7b5ddaf8"
+    },
+    {
+      "bytes": 12250,
+      "path": "src/mri_rl/two_task_analysis.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "c599226e756438624468f3fc5dfd07dcf3e180cfb156a503d0cac386734a76c7"
+    },
+    {
+      "bytes": 5407,
+      "path": "src/mri_rl/two_task_evaluation.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "81119d879866a53e98ee49f478c12b962f06e3207dd94670e2edb90ac524d4ff"
+    },
+    {
+      "bytes": 7970,
+      "path": "src/mri_rl/two_task_native_results.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "a15be0db356fbaf4fa5db71faeebb54822cd50c7bf363dd71f9f4c7363d1c61a"
+    },
+    {
+      "bytes": 9969,
+      "path": "src/mri_rl/two_task_pool.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "b06d9278599b7ef08655137f8405cfd190a324807cc0b8777801833e07770053"
+    },
+    {
+      "bytes": 7996,
+      "path": "src/mri_rl/two_task_training.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd"
+    },
+    {
+      "bytes": 2870,
+      "path": "src/mri_rl/uniform_balance_continuation_gate_v1.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "026f62e1c2a3b7538283c4f90c71b8408a135230b9f619deee50ee8baea93311"
+    },
+    {
+      "bytes": 6671,
+      "path": "src/mri_rl/vero_category_sampler.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3"
+    },
+    {
+      "bytes": 10171,
+      "path": "src/mri_rl/vero_official_launch.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "ccc3cd3e5ab8d26890ae1062bd79bf7c4f1e5b8e6de34fff923c7388c5ba911f"
+    },
+    {
+      "bytes": 14853,
+      "path": "src/mri_rl/visit_correspondence.py",
+      "reason": "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE",
+      "sha256": "ccaaa7c4cf2ed75afae93cb44a2728d128b9943e8bba9296dd9904d7875d0bd5"
+    },
+    {
+      "bytes": 9801,
+      "path": "tests/test_final_test_loader.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "ab1598cfe561f907e8f29760986dda0fcbcd7541913d74a91f6d00a853fa4004"
+    },
+    {
+      "bytes": 7359,
+      "path": "tests/test_final_test_release.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "f98934f4b666723370ebb6ca14202800886aa0d1b8668ee537288cdc36f8f0ac"
+    },
+    {
+      "bytes": 2462,
+      "path": "tests/test_frozen_eval_adapter_config.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "b5db838c46fc0e75fd50ffed82d04e23db465f5e64686e55fde1f8f98c4d09ed"
+    },
+    {
+      "bytes": 9987,
+      "path": "tests/test_optimizer_checkpoint.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "a9c18d530a0e02c141d5b71042476360d612d2c958bcc144a309e91d4e82363a"
+    },
+    {
+      "bytes": 2604,
+      "path": "tests/test_original22_final_eval.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "d1c5891ddd3cae2d018fb5f8ba434df602355082a8593c0b8893ee849053fc4a"
+    },
+    {
+      "bytes": 2901,
+      "path": "tests/test_original22_saved_analysis_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "44c87b4ad494ddaa9af8c10e68ab7ce0cf5ed9352b5c32ea7cc6745c6bc4de5c"
+    },
+    {
+      "bytes": 2437,
+      "path": "tests/test_original22_saved_recount_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "7d2ad816564a7b5e7121b7ee0c87b9f12e62c9fc650d7f3023bbaa2334af488d"
+    },
+    {
+      "bytes": 1181,
+      "path": "tests/test_paced_resources.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "11f9700a49bd976412ae534a7e7a3483c0e8a9fde3877093e946f3d4750cc240"
+    },
+    {
+      "bytes": 6405,
+      "path": "tests/test_paired_z045_f32_backend_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "ecfc3e4a6a81b51428f7c3d4566f047f3892afd29cf2016a851e55836a440382"
+    },
+    {
+      "bytes": 2275,
+      "path": "tests/test_paired_z045_f32_qualification_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "3c56bce0ab08a7829f60ce39ed55ad5cbb0cdaa8e3a1d41ab1d9defc1c62d8a9"
+    },
+    {
+      "bytes": 4522,
+      "path": "tests/test_resource_supervisor.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "36837e357d2f944d4b9f000dad71ebdc8156c26fd90eab9543a77d94c3141691"
+    },
+    {
+      "bytes": 4297,
+      "path": "tests/test_reward_replay.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "3cbebeef943a5d80026e25b97f7e21138c523be085d5c49a028e31da79d7cc47"
+    },
+    {
+      "bytes": 4786,
+      "path": "tests/test_safe_micro_dynamic_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "18fa49d5f54bcf18f6d2516a1fa5d10cf76441494f2cd0710b555b0fdc582186"
+    },
+    {
+      "bytes": 3247,
+      "path": "tests/test_safe_micro_pilot_native_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "7b3a96cbe53712cba406192e9cab6a9a42b17f9ec73d2ea107e2c823ff0105e4"
+    },
+    {
+      "bytes": 5863,
+      "path": "tests/test_safe_micro_resources_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "acedace32be7b572ef26e31f8bc14856aebbdbb18a49ca27f4e67c5630e010a0"
+    },
+    {
+      "bytes": 7074,
+      "path": "tests/test_safe_micro_restore_v1.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "74fe4340d823d618cd7be54a2f04df77a82614b9df0f5efbfb44c00a6542f468"
+    },
+    {
+      "bytes": 8318,
+      "path": "tests/test_two_task_analysis.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "70203660ca725824c21eb6b48d50518669b07b82ef92d031fa12403e2622022f"
+    },
+    {
+      "bytes": 5700,
+      "path": "tests/test_two_task_evaluation.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "92dccc1f82f8a581ce86196518dc3cb3011bf52a0d9831580fc61fadeab57b87"
+    },
+    {
+      "bytes": 2911,
+      "path": "tests/test_two_task_pool.py",
+      "reason": "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST",
+      "sha256": "d6a86ba3b008a074b147a94a994c0a15a150c2e6aae12e6b46b388bcd7ed0e18"
+    }
+  ],
+  "historical_source_url": "https://github.com/MelodyResearch/Vero-to-Brain-MRI/tree/1e0d7be1bb099b42e717eb4eb081facc12607ed3",
+  "independent_review": {
+    "checks": {
+      "actual_deletions": 138,
+      "actual_native_engine_budget": "Original model/response/token/update/deadline contract preserved; _native changes consist of historical module acquisition only",
+      "cpu_tests": "48 passed in 1.14s with MetaPathFinder blocking mlx/mlx_vlm/torch/transformers",
+      "default_evaluation": "NOT_RUN_INPUT_METADATA_NOT_LOCATED_AND_CONFIRMATION_REQUIRED; GPU_operations=0",
+      "deletion_manifest_exact_path_bytes_sha_match": true,
+      "final_administrative_followup": "Reviewed final EOF whitespace cleanup, clarified 89-module closure wording, appended log, and manifest after count (45 total; seven maintained sources; 90 external source files). final_results previous hash reproduced exactly by adding one trailing newline to final bytes; runtime/evaluator hashes unchanged.",
+      "final_tracked_count": 45,
+      "fixed_six_evidence_and_FINAL_METRICS": "All byte-identical",
+      "historical_mri_rl_static_import_closure_complete": true,
+      "historical_runtime_files": 90,
+      "historical_source_hashes_match_base": true,
+      "maintained_documentation": "73 current local/Git-pinned Markdown targets exist; immutable history, current interfaces, private prerequisites and NOT_NATIVE_QUALIFIED/NOT_RUN boundaries are explicit",
+      "metric_recount": "reproduce_results.py --check results/FINAL_METRICS.json exit 0",
+      "original22_nine_source_pins": "All recoverable and exact in pinned Git history",
+      "original_F32_test_assertions": "11 original tests; all Assert ASTs identical",
+      "plan_lock_log": "Plan and lock byte-identical; experiment log preserves entire base byte prefix and appends 2155 administrative bytes only",
+      "runtime_close": "Package path, added module namespace and dont_write_bytecode restored; idempotent; exported source tree still verifies without pycache",
+      "saved_response_recount": "Full function AST identical after name/constant rename",
+      "special_source_objects": "FIFO regression independently passed; source verifier rejects non-file/non-directory objects"
+    },
+    "findings": [],
+    "limitations": [
+      "Historical native engine is a 90-file explicit immutable external source dependency; its export is source-only and not a standalone model installation.",
+      "CPU checks do not qualify the new packaging for native execution. Sealed16 evaluation remains NOT_RUN because original input metadata is unavailable and fresh reviewed scope/confirmation is required.",
+      "Historical training reproducibility requires the full pinned checkout and its original data/environment; current maintained interface has no training CLI."
+    ],
+    "receipt_sha256": "e64ee076b7c372669272ec5d6ade88a9bcc02d45b48838e8c6610fb4ce512775",
+    "resolved": "Reject special source objects; FIFO RED-to-GREEN regression",
+    "reviewed_source_sha256": {
+      "src/mri_rl/final_evaluation.py": "9d9ee73ebf647bd32527922c2b4302df0e247082dae0ca897feea722a0c8d356",
+      "src/mri_rl/final_results.py": "adea6c4d820266d8d00231339e9b8c8fbdd4b21db4c4ded545933752f21468ba",
+      "src/mri_rl/historical_runtime.py": "f9bc7cf2b997ea0d703273429eab6a6562c64be47c67172e3a7ac056a3a5f854"
+    },
+    "reviewer": "isolated Codex reviewer / second_simplification_review",
+    "verdict": "PASS_WITH_LIMITATIONS"
+  },
+  "native_runtime": {
+    "commit": "1e0d7be1bb099b42e717eb4eb081facc12607ed3",
+    "direct_entry_modules": [
+      "accuracy_pilot_v2_core",
+      "accuracy_pilot_v2_native",
+      "accuracy_recovery_gpu_cache_v3",
+      "accuracy_recovery_v1",
+      "accuracy_stage_native_v1",
+      "experiment_contract",
+      "paired_z045_continuation_entry_v1",
+      "resource_supervisor",
+      "safe_micro_dynamic_resources_v1",
+      "safe_micro_pilot_native_v1",
+      "safe_micro_pilot_native_v2",
+      "safe_micro_recovery_native_v1",
+      "safe_micro_restore_v1",
+      "safe_micro_watchdog_v2",
+      "shared_rollout_gspo_core_v1"
+    ],
+    "dynamic_source_edges": {
+      "accuracy_pilot_v2_native.PilotV2Backend.configure_v2": "inspect.getsource(SharedRolloutBackend._prepare_context)",
+      "experiment_contract.load_contract": "absolute private contract paths; no rematerialization or formatter/model import during validation",
+      "safe_micro_native_v1.capped_init_binding": "hash-bound mlx_continuous_gspo.NativeGSPOBackend.__init__ AST",
+      "shared_rollout_gspo_backend_v1": "frozen GSPO loss AST retained but not called by final read-only entry"
+    },
+    "files": {
+      "src/mri_rl/__init__.py": "1f88831cf57082aa079bac05ac87d2ca4d881b02da0425a7594f54c18f77902f",
+      "src/mri_rl/accuracy_pilot_v2_core.py": "5b7d2e377f7cd5a42ef18e6d5a0a404937bfc7cb50a272a47c9a570cf8e65d08",
+      "src/mri_rl/accuracy_pilot_v2_entry.py": "8d9c9610d22e950d5e91d5d676ed7d999e848273712b94c3ce836471dff3aeaa",
+      "src/mri_rl/accuracy_pilot_v2_native.py": "75caa4da213ede34d962a174c9d5b596d32b4c9e3507855e8111ccb8a06de797",
+      "src/mri_rl/accuracy_recovery_cpu_cache_v1.py": "99b737790320cdb68d67cacd3f085931167a3ab9bd5732238d06460d6a82d8a8",
+      "src/mri_rl/accuracy_recovery_driver_v1.py": "f66d18bf48bb27458c8343f212501134ddaf6f507ae2667916adcbcee28185e4",
+      "src/mri_rl/accuracy_recovery_entry_v1.py": "8abb5d64210f4c595590a25dea82425306302b86ecb327237fd58138fb1ce679",
+      "src/mri_rl/accuracy_recovery_eval_v1.py": "1d17ab4d11b8ef8a21e0692f5357961cb6c8e6f17207fcf3e25069a9b7bb0698",
+      "src/mri_rl/accuracy_recovery_gpu_cache_v2.py": "5bbd7991533ac14ed2c0aa45a27c6f46a6ba1796fc3a1e34307af83912910383",
+      "src/mri_rl/accuracy_recovery_gpu_cache_v3.py": "c71376338e5c5da8010ae5ee09f15134a45988801d7f72c67c816fb48d14ff0f",
+      "src/mri_rl/accuracy_recovery_gpu_cache_v4.py": "e9aed313475cc11a84bdd9178f918fe84135dfe6fbb2771a2fdb78a37d816ad1",
+      "src/mri_rl/accuracy_recovery_v1.py": "c00c7772ddb61d88159847243c671e921162bc1a88f437a9cc32ff2003cb8718",
+      "src/mri_rl/accuracy_stage_entry_v1.py": "191b3577532a39e5e7139f490891edddf10b409effed96310e12f051e7c8f4bf",
+      "src/mri_rl/accuracy_stage_native_v1.py": "04a4ff2a59dd7fc911afccde3e05f9171063de22fdd346da40cf0bc3be8e0fbf",
+      "src/mri_rl/accuracy_stage_resources_v1.py": "ab4a34f7a5fb75af3711e3d8c0070c1243d14def7d93c1758f6ebe75cc345b25",
+      "src/mri_rl/answer_likelihood.py": "b27b8d7d6788290a643ec59d7cc4da61eb6d5d72da90a1f6471501b2c889f4eb",
+      "src/mri_rl/class_margin_aux_v2.py": "4343fe861ac4d060afd8509939578b3c87f3fc1d92bfd38983ed09e11086ebb8",
+      "src/mri_rl/conditional_gspo_gradient_v2.py": "ca4912a64de6ebf85b737b5623f73c19abdba3caa6eb39344369d12e29c2b180",
+      "src/mri_rl/continuous_rl.py": "362574646994608986fbc8fb8bc159807555b17d0aa5f4ce5a96eb420c057b39",
+      "src/mri_rl/continuous_rl_pilot.py": "64cb407fd55e9d4290948000de13a01d1b7fc7296688b7469b54e28c0820b63d",
+      "src/mri_rl/core.py": "c613099a136953246984f3449c827cab0c4324a959e5b77f2fbb02f58b1e60de",
+      "src/mri_rl/ds007045_internal_dev_eval.py": "80386d7201fef0570d3bf96f4b5c4685f27a15a485f794d8bc111f837b9fadd2",
+      "src/mri_rl/early_native_conditioning_probe_v1.py": "9a01c95314564afc8ef6e0fa83089dbef2ccaaccedb83ebf095ac4d7b424660c",
+      "src/mri_rl/experiment_contract.py": "88ac2f447e1c9ee2f2072c03eaed76ede41079d1effce267c0f68b363dd376c2",
+      "src/mri_rl/exposure_rounds_v1.py": "17e192cd069442c6fa3f895478ddde2e21913efdbd191a327a17cd6461d1614a",
+      "src/mri_rl/frozen_eval.py": "878f29aa2d0bf7f023b76b3aa46256e7f0cc48d0175964f0153b927632181859",
+      "src/mri_rl/full_arm_protocol.py": "b0ab1f99baba5131ee3ced994a2d5d7041bd53d051bbf505de152d8e743310b1",
+      "src/mri_rl/generation_recovery_v1.py": "c63d397029f8b586848687fcba23471f36899b531d0fcbaebb1b2a94aaee3433",
+      "src/mri_rl/likelihood_cache.py": "7b495dec32a7d02ce5f1f5acabe3a6a94826c9e0e0c0f0ad6b8df2bdd0673889",
+      "src/mri_rl/likelihood_loading.py": "d2d446e1910e9a280015465ffab0617c94ba81f80af6fb391b35e3742c8b931b",
+      "src/mri_rl/mlx_continuous_gspo.py": "aceda9c4e212667d512e747447f3ef5533b91565f6cebc5a928b8a805c0b96e3",
+      "src/mri_rl/mlx_gspo_smoke.py": "4e9e424d683ca9c2ec7748b8fe6ba79e12e458514d3218e7057720968d2dbb1a",
+      "src/mri_rl/mlx_sft_warmstart.py": "7247f2995b33162645fda7221c39d071c1563ec2fd51ed36fdb64f66aa1bd2d9",
+      "src/mri_rl/multistep_gspo_core_v1.py": "413fbb9bd9587773172a942f5e6eedcc5b76a41bc4dd886059099104dd59e861",
+      "src/mri_rl/native_gspo_path_probe_v1.py": "f24a4567b5b85fe59896aedf123e833e9c535820701a49126afda97130071718",
+      "src/mri_rl/native_probability_resolution_v1.py": "dd4230424f0ef542e31c42a4b1b0543526ad0273b0c9ec6c35108a8667fa37db",
+      "src/mri_rl/optimizer_checkpoint.py": "572535defbc3191cc29954f61bf0124cd1e78db4b4996d7aa67fed3382d1766d",
+      "src/mri_rl/paced_resources.py": "57659545a09beb3839c6f14f919d8fb89c1e9067de81b5c5e3ca690d4b8f42cb",
+      "src/mri_rl/paired_class_margin_probe_v2.py": "b7b6eeb7fca43588404a3cb2025894e3c65a1094e94bf29571f815f3e9551107",
+      "src/mri_rl/paired_classification_signal_v2.py": "c320ee1469451aa44503edb3638b4d6416fd14d82fce17415acb387a6ee76aa8",
+      "src/mri_rl/paired_interaction_signal_v1.py": "fc5be726f37a0bbd05421d837313070d7fe63e1869bb83748d51e77b9f11afe3",
+      "src/mri_rl/paired_native_gradient_probe_v1.py": "0341effcb91196126c6dc9dadfdf52820f73314ad923b9b1d10ba63d8dbf5449",
+      "src/mri_rl/paired_prompt_groups_v1.py": "4a8fea69ba4e14b110b192a89cda27d72bce05aecf5f33ca14a0728cef7ffa2e",
+      "src/mri_rl/paired_signal_candidate_probe_v1.py": "c84be4bc19731098292911b4c30a5906aef528401759e2c6304ba171cf88967a",
+      "src/mri_rl/paired_z045_continuation_driver_v1.py": "18131e9d1f1a70c2f76f75b5ca7d7ff6de205cc1587fed413c4e92af88ce5f00",
+      "src/mri_rl/paired_z045_continuation_entry_v1.py": "98e05a4c8b2bdee6818d3fbbd46886b2c9fd59b5b610cad33221b614a41a78ed",
+      "src/mri_rl/paired_z045_data_v1.py": "681d322f9f843c5e0a1217a709a417946b8b1f3e9fa76907a304afa7437dabbe",
+      "src/mri_rl/paired_z045_evaluation_v1.py": "7f874193cb172e2890fc29a80139c3e0cf284607cb3bc9e9d4ed6dc2343179d7",
+      "src/mri_rl/paired_z045_exposure_v2.py": "762ffb168f3e4a95f4c3aa11dbd285af1290654b4e62f0c4397e5a2ff73607e5",
+      "src/mri_rl/paired_z045_f32_backend_v1.py": "1b7e75cac1f30b3f888cfc6dcad5235f6614a81247d9edebca464d4b65e5df07",
+      "src/mri_rl/paired_z045_f32_qualification_v1.py": "8ee603fd3624c6d9d9fcbd9dc89ad28688250d0656fa2867ad837dd7663943e7",
+      "src/mri_rl/paired_z045_matched_f32_eval_v1.py": "1174a904fd2440f6cc919a0048ccbec21824bba80c451e5406ce61c321a85626",
+      "src/mri_rl/quant_cache.py": "25b6c8c3778d1a0d60d2841ba8076239f64f572493d2fe2f1d96ecb876008c13",
+      "src/mri_rl/quant_convert.py": "808682cf79242cf530e6dc67e57ce705ca474a6fb4fe99d2927697c01d21c2d5",
+      "src/mri_rl/quant_probe.py": "59469495fdddc60a59bc231fe2bff933ec326601fada83f83ee947cd095b43dd",
+      "src/mri_rl/resource_supervisor.py": "556c84fd8b8dd1a57de54844e50463a74a5f5f0976fc54a3fff248cac67502af",
+      "src/mri_rl/reward_replay.py": "32a511c9a9c223766f889720af23fcd3d96e3e1482c57f024c4aaf962a8757f5",
+      "src/mri_rl/rollout_precision_v2.py": "179f9830d6e568c259e003a2fcfda9c5cf9288afd1e3f645f73a0709ddb75e3a",
+      "src/mri_rl/safe_micro_dynamic_resources_v1.py": "e8c50a8bf9539711d1818e227effa16c15d536b14a41b29df8d3178a7cd4252a",
+      "src/mri_rl/safe_micro_entry_v1.py": "d07860c6c8cf2bf2c704450e8868ba99c7301e1bcd386be7dc43cc436f2c8b6f",
+      "src/mri_rl/safe_micro_journal_v1.py": "7351cbdc83b3b5da07b2afc022172e48c621be53690156d819eaf32d9e259b4a",
+      "src/mri_rl/safe_micro_native_v1.py": "25c65864a457b7d3129ee45386de389735a6b0620b853c89584b50314bb48549",
+      "src/mri_rl/safe_micro_pilot_entry_v1.py": "91f14397cc018eaa0463de2a2557bdfec50b7f59d84851f5997f67060022a176",
+      "src/mri_rl/safe_micro_pilot_entry_v3.py": "65729dc295077ab2809e97915bc7e3d4b3a96b8d351bbbeb81af340938c7ef59",
+      "src/mri_rl/safe_micro_pilot_native_v1.py": "0d610c83318de1c646528d2cd17661a74949dfd5925722cabfbb9056c1de1902",
+      "src/mri_rl/safe_micro_pilot_native_v2.py": "9a687b7f00c4ca3df17f0464ccba86275a8681b07fc12f8497631de0501ce993",
+      "src/mri_rl/safe_micro_recovery_entry_v1.py": "f9f1015b1196573b5a57d7cc4076292431e3a311a7c2190f679b4cc0f3d3e0ab",
+      "src/mri_rl/safe_micro_recovery_native_v1.py": "a92467cc7ac40752be35f72f223f889395e96990ec95934f8daf677abe559caa",
+      "src/mri_rl/safe_micro_resources_v1.py": "137d71430c688cb225fb339ebd8e3d945232e2e6d49f8c68e29b31b2c9b6c3c5",
+      "src/mri_rl/safe_micro_restore_v1.py": "42aa5299e390fae63dd816246a65c1f1814af546294754da5ccb1f8a1f0383c2",
+      "src/mri_rl/safe_micro_training_v1.py": "071b2d2bb1b2a25d342ec6416a443f9d269123afaa343c3899403d11168e26ed",
+      "src/mri_rl/safe_micro_training_v2.py": "57461b374ba297da65c0f4481b28d2de330ad4b9f137ef7d6e9b9c3180cc8366",
+      "src/mri_rl/safe_micro_watchdog_v2.py": "1c0da420bb1e4124d13f71afa1a29b652d4944e9e51ce02590b0ef694e7f3fad",
+      "src/mri_rl/safe_micro_witness_v1.py": "3edff80ad8116e92a6240f0c11ded1def8564dd441801f5272f25d5e85091868",
+      "src/mri_rl/sft_evidence.py": "08b346dee5c15dcd39b42e65651eafd4cf66741ff26cbbce404cdafab129f859",
+      "src/mri_rl/sft_resume.py": "caefa2de66a0f644c520d4827188aebfffd06829a38bad63ee9cc816568ffc70",
+      "src/mri_rl/shared_rollout_gspo_backend_v1.py": "13e72e584258fe4ca02f10d6c3b065ce19270cd96b62648a709188194113ad7c",
+      "src/mri_rl/shared_rollout_gspo_core_v1.py": "c9fc3f999d7e349250bca8dc8db524cbb595a8a87caeaac6ebfea57e24a2f12e",
+      "src/mri_rl/shared_rollout_gspo_driver_v1.py": "6cb6ecf42fed4cda9713d4f597cbe37cb4d1d3c720773d662771ac7fbd5c931c",
+      "src/mri_rl/shared_rollout_gspo_entry_v1.py": "64b6e425fe33b1bd4e1e634a8a349f858c7c980dda689abcca1b9f7e777dfac8",
+      "src/mri_rl/shared_rollout_gspo_eval_v1.py": "ccf3cf94023412a7111ce4dacce8a504068104474a671987868bb743aab8efea",
+      "src/mri_rl/shared_rollout_qualification_power_v1.py": "e522aaa44bc58b804084812e897865bf2080573baf2b989a41bf0add258d9c25",
+      "src/mri_rl/tier_c_entry.py": "84e2581dc8b1065301f2ce1e7098db5a213a6b1c29b002c2fb8de6db7b5ddaf8",
+      "src/mri_rl/two_task_pool.py": "b06d9278599b7ef08655137f8405cfd190a324807cc0b8777801833e07770053",
+      "src/mri_rl/two_task_training.py": "cb8a116711b01ff923283d4241d9e28bf700795c22f410763d1bf7fbeb76c2cd",
+      "src/mri_rl/uniform_balance_continuation_gate_v1.py": "026f62e1c2a3b7538283c4f90c71b8408a135230b9f619deee50ee8baea93311",
+      "src/mri_rl/vero_category_sampler.py": "8102559baafb79b7ea256214f9bfa359bc8cb999409e5a8c53b8b1ca492b2be3",
+      "src/mri_rl/vero_mri_reward.py": "411ab099edcfb45305630c675f7ca4870d6501e69dd084c9e1218ad2cc7a0ed8",
+      "src/mri_rl/vero_official_launch.py": "ccc3cd3e5ab8d26890ae1062bd79bf7c4f1e5b8e6de34fff923c7388c5ba911f",
+      "src/mri_rl/visit_correspondence.py": "ccaaa7c4cf2ed75afae93cb44a2728d128b9943e8bba9296dd9904d7875d0bd5"
+    },
+    "qualification": "UNCHANGED_HISTORICAL_ENGINE; NEW_SOURCE_PACKAGING_CPU_VERIFIED_ONLY_NOT_NATIVE_QUALIFIED"
+  },
+  "reason_definitions": {
+    "FROZEN_ENGINE_OR_RETIRED_TRAINING_SOURCE": "Final read-only native engine is explicitly bound to an exact exported historical source dependency; current code retains launcher, result recount, parser, precision and governance. No training CLI is maintained. See native_runtime source graph.",
+    "HISTORICAL_ANALYSIS_CLI": "Current saved aggregate recount remains available; exact original22 raw analysis/plot/recount scripts recover at base_commit.",
+    "HISTORICAL_DATA_PROVENANCE": "Current legal/data-use/split constraints remain. Old preparation and lineage records retained at base_commit; no raw data is removed.",
+    "HISTORICAL_REPORT_OR_CLEANUP_PROCESS": "Current final report/paper/evidence/handoff/history and frozen governance remain. Redundant old report, readings, figure or cleanup details remain at base_commit.",
+    "RETIRED_WORKFLOW_OR_CONSOLIDATED_TEST": "Completed training/recovery/diagnostic workflow tests retired. Current final/evidence/native-boundary/F32/strict-parser/safety assertions retained or consolidated in current tests.",
+    "SUPERSEDED_PROCESS_REVIEW": "Final six immutable evidence inputs and machine metrics remain current. Historical review/cleanup process remains at base_commit; current independent simplification review is summarized in this one manifest."
+  },
+  "removed_summary": {
+    "by_directory": {
+      "data": 3,
+      "research": 6,
+      "results": 12,
+      "scripts": 3,
+      "src": 95,
+      "tests": 19
+    },
+    "by_extension": {
+      ".json": 13,
+      ".md": 6,
+      ".py": 117,
+      ".svg": 1,
+      ".txt": 1
+    },
+    "files": 138,
+    "tracked_payload_bytes": 2622691
+  },
+  "schema": "second-round-simplification-v1",
+  "verification": {
+    "Markdown_current_and_fixed_links": "PASS",
+    "default_evaluator": "FAIL_CLOSED_EXIT_2_GPU_0",
+    "final_metrics": "RECOUNT_EQUAL_AND_ORIGINAL_BYTES_UNCHANGED",
+    "historical_native_blobs": 90,
+    "historical_removed_blobs": 138,
+    "main_merge": "NOT_AUTHORIZED_NOT_PERFORMED",
+    "native_qualification": "NOT_RUN_NEW_PACKAGING_CPU_ONLY",
+    "original22_source_pins": 9,
+    "private_assets": "NO_READ_MOVE_REHASH_OR_DELETE",
+    "retained_CPU_tests": {
+      "passed": 48,
+      "skipped": 0
+    },
+    "six_numerical_sources": "BYTE_IDENTICAL",
+    "training_optimizer_GPU_operations": 0,
+    "working_directory_tests": {
+      "candidate_isolated_worktree": "48 passed, 0 skipped",
+      "candidate_suite_from_primary_directory": "48 passed, 0 skipped (explicit candidate config/test path; primary files unchanged)",
+      "unchanged_primary_main": "169 passed, 5 skipped (baseline suite; no main edits)"
+    }
+  }
+}
