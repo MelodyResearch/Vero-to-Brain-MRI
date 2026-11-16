@@ -55,4 +55,4 @@ The maintained package has seven source files for result recount, strict scoring
 
 ## Limitations
 
-Independent 16-person/32-image evaluation remains **NOT_RUN**: original execution metadata is not currently located and explicit final unsealing confirmation is required. No replacement patients, output-based exclusions, clinical validation or reliable generalization claim is permitted. Finite-context MLX numerical checks do not establish full official Vero equivalence. This PRIVATE repository is a reproducible negative development study, not a public model release.
+Independent 16-person/32-image evaluation remains **NOT_RUN**: original execution metadata is not currently located and explicit final unsealing confirmation is required. No replacement patients, output-based exclusions, clinical validation or reliable generalization claim is permitted. Finite-context MLX numerical checks do not establish full official Vero equivalence. This public repository contains a reproducible negative development study, not a public release of model weights or patient data.
